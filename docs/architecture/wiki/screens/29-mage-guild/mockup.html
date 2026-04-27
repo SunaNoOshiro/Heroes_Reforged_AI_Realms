@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>29. Mage Guild - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="29-mage-guild" data-archetype="curated-mage-guild" data-curation="curated-pass-2">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mage Guild mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="764" height="526" fill="#1b120c"/>
+  <rect x="28" y="28" width="744" height="306" fill="#6c8eb0" stroke="#d9b85a"/>
+  <path d="M28 196 C148 108 238 142 362 82 C508 12 626 126 772 58 L772 334 L28 334 Z" fill="#607444"/>
+  <path d="M28 292 C174 226 312 278 452 220 C590 168 670 210 772 176 L772 334 L28 334 Z" fill="#49311d"/>
+  <rect x="28" y="334" width="744" height="216" fill="url(#redwood)" stroke="#d9b85a"/><rect x="96" y="58" width="608" height="444" class="panel modal" filter="url(#shadow)"/>
+  <rect x="112" y="74" width="576" height="34" fill="url(#redwood)" stroke="#e4c064"/>
+  <text x="400" y="97" text-anchor="middle" class="label">Mage Guild</text>
+  <text x="400" y="124" text-anchor="middle" class="tiny">Spell shelves by level and hero eligibility</text>
+      <rect x="132" y="146" width="82" height="218" class="redPanel"/><text x="173" y="170" text-anchor="middle" class="label">L1</text><g data-item="Air"><rect x="146" y="194" width="52" height="34" class="slotHot"/><text x="172" y="242" text-anchor="middle" class="tiny">Air</text></g><g data-item="Earth"><rect x="146" y="250" width="52" height="34" class="slot"/><text x="172" y="298" text-anchor="middle" class="tiny">Earth</text></g><g data-item="Fire"><rect x="146" y="306" width="52" height="34" class="slot"/><text x="172" y="354" text-anchor="middle" class="tiny">Fire</text></g><rect x="236" y="146" width="82" height="218" class="redPanel"/><text x="277" y="170" text-anchor="middle" class="label">L2</text><g data-item="Air"><rect x="250" y="194" width="52" height="34" class="slotHot"/><text x="276" y="242" text-anchor="middle" class="tiny">Air</text></g><g data-item="Earth"><rect x="250" y="250" width="52" height="34" class="slot"/><text x="276" y="298" text-anchor="middle" class="tiny">Earth</text></g><g data-item="Fire"><rect x="250" y="306" width="52" height="34" class="slot"/><text x="276" y="354" text-anchor="middle" class="tiny">Fire</text></g><rect x="340" y="146" width="82" height="218" class="redPanel"/><text x="381" y="170" text-anchor="middle" class="label">L3</text><g data-item="Air"><rect x="354" y="194" width="52" height="34" class="slotHot"/><text x="380" y="242" text-anchor="middle" class="tiny">Air</text></g><g data-item="Earth"><rect x="354" y="250" width="52" height="34" class="slot"/><text x="380" y="298" text-anchor="middle" class="tiny">Earth</text></g><g data-item="Fire"><rect x="354" y="306" width="52" height="34" class="slot"/><text x="380" y="354" text-anchor="middle" class="tiny">Fire</text></g><rect x="444" y="146" width="82" height="218" class="slot"/><text x="485" y="170" text-anchor="middle" class="label">L4</text><g data-item="Air"><rect x="458" y="194" width="52" height="34" class="slotHot"/><text x="484" y="242" text-anchor="middle" class="tiny">Air</text></g><g data-item="Earth"><rect x="458" y="250" width="52" height="34" class="slot"/><text x="484" y="298" text-anchor="middle" class="tiny">Earth</text></g><g data-item="Fire"><rect x="458" y="306" width="52" height="34" class="slot"/><text x="484" y="354" text-anchor="middle" class="tiny">Fire</text></g><rect x="548" y="146" width="82" height="218" class="slot"/><text x="589" y="170" text-anchor="middle" class="label">L5</text><g data-item="Air"><rect x="562" y="194" width="52" height="34" class="slotHot"/><text x="588" y="242" text-anchor="middle" class="tiny">Air</text></g><g data-item="Earth"><rect x="562" y="250" width="52" height="34" class="slot"/><text x="588" y="298" text-anchor="middle" class="tiny">Earth</text></g><g data-item="Fire"><rect x="562" y="306" width="52" height="34" class="slot"/><text x="588" y="354" text-anchor="middle" class="tiny">Fire</text></g>
+      <rect x="142" y="396" width="334" height="68" class="status"/><text x="160" y="420" class="tiny">Visiting hero: Darkstorn - Expert Wisdom - Mana 20/20</text><text x="160" y="444" class="tiny">Selected: Stone Skin. Already known: no.</text>
+      <g class="button" data-action="mageGuild.learnSpell">
+    <rect class="outer" x="504" y="402" width="86" height="30" rx="2"/>
+    <rect class="inner" x="508" y="406" width="78" height="22" rx="1"/>
+    <text x="547" y="422" text-anchor="middle">LEARN</text>
+  </g><g class="button" data-action="mageGuild.close">
+    <rect class="outer" x="504" y="442" width="86" height="30" rx="2"/>
+    <rect class="inner" x="508" y="446" width="78" height="22" rx="1"/>
+    <text x="547" y="462" text-anchor="middle">CLOSE</text>
+  </g>
+</svg>
+</body>
+</html>

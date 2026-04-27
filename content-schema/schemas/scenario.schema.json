@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/scenario.schema.json",
+  "title": "Scenario",
+  "description": "Authored map + start state + objectives + pinned dependencies. Scenario packs own exactly one scenario each. Victory and defeat conditions are drawn from a closed discriminated union.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "worldId",
+    "players",
+    "objectives",
+    "pinnedDependencies"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "name":          { "type": "string", "minLength": 1 },
+    "description":   { "type": "string" },
+    "worldId":       { "type": "string", "minLength": 1 },
+    "rulesetId":     { "type": "string", "minLength": 1 },
+    "players": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["slot", "factionId", "kind"],
+        "properties": {
+          "slot":      { "type": "integer", "minimum": 0, "maximum": 7 },
+          "factionId": { "type": "string", "minLength": 1 },
+          "kind":      { "type": "string", "enum": ["human", "ai", "either"] },
+          "startingResources": {
+            "type": "object",
+            "propertyNames": { "$ref": "heroes-reforged/resource-id.schema.json" },
+            "additionalProperties": { "type": "integer", "minimum": 0 }
+          },
+          "startingHeroIds": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "objectives": {
+      "type": "object",
+      "required": ["victory", "defeat"],
+      "properties": {
+        "victory": {
+          "type": "array",
+          "minItems": 1,
+          "items":    { "$ref": "#/$defs/condition" }
+        },
+        "defeat": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/condition" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "pinnedDependencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["packId", "version"],
+        "properties": {
+          "packId":      { "type": "string", "minLength": 1 },
+          "version":     { "type": "string", "minLength": 1 },
+          "contentHash": { "type": "string", "pattern": "^[a-f0-9]{16,128}$" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "required": ["kind"],
+      "oneOf": [
+        {
+          "properties": { "kind": { "const": "defeat_all_enemies" } },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":   { "const": "capture_town" },
+            "townId": { "type": "string", "minLength": 1 }
+          },
+          "required": ["kind", "townId"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":       { "const": "acquire_artifact" },
+            "artifactId": { "type": "string", "minLength": 1 }
+          },
+          "required": ["kind", "artifactId"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "survive_days" },
+            "days": { "type": "integer", "minimum": 1 }
+          },
+          "required": ["kind", "days"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":     { "const": "accumulate_resource" },
+            "resource": { "$ref": "heroes-reforged/resource-id.schema.json" },
+            "amount":   { "type": "integer", "minimum": 1 }
+          },
+          "required": ["kind", "resource", "amount"],
+          "additionalProperties": false
+        },
+        {
+          "properties": { "kind": { "const": "lose_all_towns" } },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": { "kind": { "const": "lose_all_heroes" } },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":   { "const": "hero_dies" },
+            "heroId": { "type": "string", "minLength": 1 }
+          },
+          "required": ["kind", "heroId"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":     { "const": "resource_depleted" },
+            "resource": { "$ref": "heroes-reforged/resource-id.schema.json" }
+          },
+          "required": ["kind", "resource"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "day_limit_reached" },
+            "days": { "type": "integer", "minimum": 1 }
+          },
+          "required": ["kind", "days"],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "heroes-reforged/neutral-stack-template.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:neutral_template:mine_guard_t2",
+  "candidateUnitIds": [
+    "emberwild:unit:ash_hound"
+  ],
+  "stackSize": {
+    "op": "add",
+    "args": [
+      { "op": "const", "value": 8 },
+      {
+        "op": "mul",
+        "args": [
+          { "op": "var", "path": "scenario.difficulty" },
+          { "op": "const", "value": 4 }
+        ]
+      }
+    ]
+  },
+  "attitudeRules": {
+    "canJoin": false,
+    "canFlee": false
+  },
+  "spawnRules": {
+    "role": "mine_guard",
+    "minDistanceFromStart": 6
+  }
+}

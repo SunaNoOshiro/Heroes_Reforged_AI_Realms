@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/world.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:world:emberwild",
+  "name": "Emberwild",
+  "biomeIds": [
+    "emberwild:biome:ashen_grove"
+  ],
+  "generatorPresetIds": [
+    "emberwild:preset:two_islands"
+  ],
+  "presentation": {
+    "ambientMusicId": "world:emberwild:ambient",
+    "loadingArtId": "world:emberwild:loading"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Heroes Reforged Implementation"
+  short_description: "Implement work in Heroes Reforged repo"
+  default_prompt: "Use $heroes-reforged-implementation to implement work in the Heroes Reforged repo while preserving deterministic and pack-driven architecture rules."

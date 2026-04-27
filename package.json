@@ -1,0 +1,33 @@
+{
+  "name": "heroes-reforged-ai-realms",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:task-registry": "node scripts/generate-task-registry.mjs",
+    "generate:task-system-report": "node scripts/generate-task-system-report.mjs",
+    "generate:wiki": "node scripts/generate-architecture-wiki.mjs",
+    "validate:links": "node scripts/check-markdown-links.mjs",
+    "validate:contracts": "node scripts/check-repo-contracts.mjs",
+    "validate:cross-refs": "node scripts/check-cross-references.mjs",
+    "validate:commands": "node scripts/check-command-coverage.mjs",
+    "validate:task-commands": "node scripts/check-task-command-literals.mjs",
+    "validate:tasks": "node scripts/tasks.mjs lint",
+    "validate": "npm run generate:task-registry && npm run validate:links && npm run validate:contracts && npm run validate:cross-refs && npm run validate:commands && npm run validate:tasks",
+    "test": "node --test scripts/__tests__/*.test.mjs",
+    "tasks:next": "node scripts/tasks.mjs next",
+    "tasks:next:mvp": "node scripts/tasks.mjs next --phase=mvp",
+    "tasks:next:p2": "node scripts/tasks.mjs next --phase=phase-2",
+    "tasks:next:p3": "node scripts/tasks.mjs next --phase=phase-3",
+    "tasks:next:phase-2": "node scripts/tasks.mjs next --phase=phase-2",
+    "tasks:next:phase-3": "node scripts/tasks.mjs next --phase=phase-3",
+    "tasks:next:hot": "node scripts/tasks.mjs next --hot",
+    "tasks:next:hot:mvp": "node scripts/tasks.mjs next --hot --phase=mvp",
+    "tasks:next:json": "node scripts/tasks.mjs next --json",
+    "tasks:status": "node scripts/tasks.mjs status",
+    "tasks:show": "node scripts/tasks.mjs show",
+    "tasks:start": "node scripts/tasks.mjs start",
+    "tasks:done": "node scripts/tasks.mjs done",
+    "tasks:blocked": "node scripts/tasks.mjs blocked",
+    "tasks:lint": "node scripts/tasks.mjs lint"
+  }
+}

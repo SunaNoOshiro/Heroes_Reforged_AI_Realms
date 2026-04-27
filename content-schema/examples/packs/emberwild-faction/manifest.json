@@ -1,0 +1,39 @@
+{
+  "$schema": "heroes-reforged/manifest.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild_faction",
+  "type": "faction-pack",
+  "name": "Emberwild",
+  "version": "0.1.0",
+  "author": "Heroes Reforged",
+  "engine": ">=0.1.0",
+  "engineHash": "deadbeefcafef00d",
+  "contentHash": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+  "dependencies": [
+    "shared_skills",
+    "shared_abilities"
+  ],
+  "capabilities": [
+    "formulas.ast",
+    "scripts.none"
+  ],
+  "sandboxed": false,
+  "provides": {
+    "factions": [
+      "emberwild:faction:emberwild"
+    ],
+    "units": [
+      "emberwild:unit:ash_hound"
+    ],
+    "heroes": [
+      "emberwild:hero:kaelis"
+    ],
+    "buildings": [
+      "emberwild:building:fort",
+      "emberwild:building:kennels"
+    ],
+    "abilities": [
+      "emberwild:ability:pack_hunt"
+    ]
+  }
+}

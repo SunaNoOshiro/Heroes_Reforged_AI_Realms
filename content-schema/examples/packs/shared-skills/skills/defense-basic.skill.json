@@ -1,0 +1,31 @@
+{
+  "$schema": "heroes-reforged/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:skill:defense_basic",
+  "name": "Defense",
+  "description": "Hardens the army's defensive stat.",
+  "tags": ["combat", "defense"],
+  "levels": [
+    {
+      "mastery": "basic",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "defense", "value": 1 }
+      ]
+    },
+    {
+      "mastery": "advanced",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "defense", "value": 2 }
+      ]
+    },
+    {
+      "mastery": "expert",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "defense", "value": 3 }
+      ]
+    }
+  ],
+  "presentation": {
+    "iconId": "skill:defense:icon"
+  }
+}

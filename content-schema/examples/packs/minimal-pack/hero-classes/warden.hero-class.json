@@ -1,0 +1,21 @@
+{
+  "$schema": "heroes-reforged/hero-class.schema.json",
+  "schemaVersion": 1,
+  "id": "minimal:hero_class:warden",
+  "name": "Warden",
+  "factionId": "minimal:faction:slate",
+  "primaryStatGrowth": {
+    "earlyLevels": {
+      "attack": 40,
+      "defense": 40,
+      "power": 10,
+      "knowledge": 10
+    },
+    "lateLevels": {
+      "attack": 30,
+      "defense": 30,
+      "power": 20,
+      "knowledge": 20
+    }
+  }
+}

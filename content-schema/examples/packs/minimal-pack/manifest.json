@@ -1,0 +1,38 @@
+{
+  "$schema": "heroes-reforged/manifest.schema.json",
+  "schemaVersion": 1,
+  "id": "minimal_pack",
+  "type": "faction-pack",
+  "name": "Minimal",
+  "version": "0.1.0",
+  "author": "Heroes Reforged",
+  "engine": ">=0.1.0",
+  "engineHash": "deadbeefcafef00d",
+  "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+  "dependencies": [],
+  "capabilities": [
+    "formulas.ast",
+    "scripts.none"
+  ],
+  "sandboxed": false,
+  "provides": {
+    "factions": [
+      "minimal:faction:slate"
+    ],
+    "units": [
+      "minimal:unit:slate_footman"
+    ],
+    "heroes": [
+      "minimal:hero:slate_captain"
+    ],
+    "hero_classes": [
+      "minimal:hero_class:warden"
+    ],
+    "buildings": [
+      "minimal:building:slate_barracks"
+    ],
+    "abilities": [
+      "minimal:ability:slate_rally"
+    ]
+  }
+}

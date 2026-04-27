@@ -1,0 +1,21 @@
+{
+  "$schema": "heroes-reforged/ability.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:ability:pack_hunt",
+  "name": "Pack Hunt",
+  "description": "Gain a small attack bonus when adjacent to an ally.",
+  "tags": ["combat", "passive"],
+  "effects": [
+    {
+      "kind": "modify_stat",
+      "target": "self",
+      "stat": "attack",
+      "value": 1,
+      "condition": {
+        "kind": "adjacent_allies",
+        "op": "gte",
+        "value": 1
+      }
+    }
+  ]
+}

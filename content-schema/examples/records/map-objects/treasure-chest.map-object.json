@@ -1,0 +1,29 @@
+{
+  "$schema": "heroes-reforged/map-object.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:map_object:treasure_chest",
+  "name": "Treasure Chest",
+  "category": "reward",
+  "interactionModel": "consume_on_visit",
+  "rewards": [
+    {
+      "kind": "resource_bonus",
+      "resource": "gold",
+      "amount": 2000,
+      "cadence": "once"
+    }
+  ],
+  "cooldown": { "kind": "none" },
+  "placementRules": {
+    "allowedTerrainIds": [
+      "shared:terrain:grass",
+      "shared:terrain:dirt"
+    ]
+  },
+  "presentation": {
+    "mapSpriteId": "object:treasure_chest:sprite",
+    "animationSetId": "object:treasure_chest:animset",
+    "vfxSetId": "object:treasure_chest:vfx",
+    "soundSetId": "object:treasure_chest:sounds"
+  }
+}

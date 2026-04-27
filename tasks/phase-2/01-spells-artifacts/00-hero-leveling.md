@@ -1,0 +1,148 @@
+# Hero Leveling — LEVEL_UP Command & Stat Growth
+
+Status: planned
+
+Module: [Spells & Artifacts (P2)](../01-spells-artifacts.md)
+
+Description:
+Implement hero leveling when they gain enough experience. Each level-up increases primary stats (attack, defense, power, knowledge) using probabilistic growth weights. Implement the `LEVEL_UP` command and the `assignExperience(hero, amount, rng)` function that triggers level-ups deterministically.
+
+Read First:
+- [`research/deep-research-report.md` Section 4](../../../research/deep-research-report.md) (hero starting stats and growth weights)
+- [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
+
+Inputs:
+- Hero record (level, experience, primaryStats)
+- Experience to assign (from combat victories, map events)
+- Ruleset constants (experience table, growth weights per class role)
+- RNG substream (rng("hero-levelup", heroId))
+
+Outputs:
+- `src/engine/commands/level-up.ts`
+- `src/engine/hero-growth.ts`
+- `assignExperience(hero: Hero, amount: number, ruleset: Ruleset, rng: Rng): { levelUpsTriggered: number, newLevel: number, newStats: PrimaryStats }`
+- `LEVEL_UP` command: `{ kind: "LEVEL_UP", heroId: string, newLevel: number, newPrimaryStats: PrimaryStats }`
+
+Reference Growth Mechanics:
+
+**Experience Table (cumulative):**
+```
+Level 1: 0 XP
+Level 2: 1,000 XP
+Level 3: 3,000 XP
+Level 4: 6,000 XP
+Level 5: 10,000 XP
+...
+Level 20: 190,000 XP
+Level 30: 790,000 XP
+```
+
+Formula: `xpForLevel(n) = n × (n - 1) × 500`
+
+**Stat Growth (Probabilistic):**
+
+Each level-up rolls a "bucket" based on the hero's class role weights. For example, Warrior (ATK-heavy):
+
+```
+class: warrior
+weights: { attack: 35, defense: 35, power: 15, knowledge: 15 }
+```
+
+On level-up:
+1. Roll a random int [0, 100) using RNG
+2. Determine which stat gets +1 (cumulative bucket sum):
+   - [0, 35) → attack +1
+   - [35, 70) → defense +1
+   - [70, 85) → power +1
+   - [85, 100) → knowledge +1
+
+**Post-Level-10 Shift:**
+
+After level 10, caster roles shift weights to favor power/knowledge:
+- Martial roles (Warrior, Ranger, Knight): 25/25/25/25 (balanced)
+- Caster roles (Mage, Druid, Necromancer): 10/10/40/40 (power/knowledge focus)
+
+Owned Paths:
+- `src/engine/commands/level-up.ts`
+- `src/engine/hero-growth.ts`
+- Ruleset table update through the shared ruleset path below
+
+Owned Paths (shared):
+- `resources/packs/baseline-ruleset/ruleset.json`
+
+Dependencies:
+- mvp.05-adventure-map.01-strategic-game-state-model
+- mvp.02-content-schemas.07-hero-schema
+
+Acceptance Criteria:
+- Warrior gains 1000 XP → level 2 reaches
+- LEVEL_UP command fires with new level 2 and new stats
+- Level-up stat gain is deterministic (same seed → same rolls)
+- Post-level-10, Mage class gains power/knowledge instead of balanced
+- Assigning 0 XP does not trigger a level-up
+- Hero at level 30 cannot level further (cap enforced)
+- Experience overflow (XP beyond level 30) is discarded
+- RNG substream (rng("hero-levelup", heroId)) keeps hero level-ups independent of combat RNG
+- Shared path work is additive only: add leveling tables and growth
+  weights without rewriting the primary baseline ruleset contract owned
+  by `mvp.04-faction-emberwild.04-baseline-ruleset`
+
+Verify:
+- npm run validate
+- npm test
+
+Estimated Time:
+- 4 hours
+
+---
+
+## Worked Example: Warrior Level-Up
+
+**Initial state:**
+```json
+{
+  "level": 1,
+  "experience": 0,
+  "primaryStats": { "attack": 2, "defense": 2, "power": 1, "knowledge": 1 }
+}
+```
+
+**Assign 1000 XP:**
+```
+XP threshold for level 2 = 1000
+Current XP = 0 + 1000 = 1000 (meets level 2)
+→ LEVEL_UP triggered
+```
+
+**RNG Roll (using rng("hero-levelup", "warrior-hero-1") substream):**
+```
+Roll 1: 42 → [35, 70) → defense +1
+```
+
+**After LEVEL_UP:**
+```json
+{
+  "level": 2,
+  "experience": 0,
+  "primaryStats": { "attack": 2, "defense": 3, "power": 1, "knowledge": 1 }
+}
+```
+
+**Command:**
+```json
+{
+  "kind": "LEVEL_UP",
+  "heroId": "warrior-hero-1",
+  "newLevel": 2,
+  "newPrimaryStats": { "attack": 2, "defense": 3, "power": 1, "knowledge": 1 }
+}
+```
+
+---
+
+## Determinism Contract
+
+- RNG substream `rng("hero-levelup", heroId)` is pinned per hero
+- Experience assignment is deterministic (no variance in XP gain)
+- Stat growth rolls use seeded RNG (same seed, same rolls)
+- **Same seed + same game history → hero reaches exact same level and stats**

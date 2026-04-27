@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/unit.schema.json",
+  "title": "Unit",
+  "description": "A combat unit. Stats are integer-only with caps derived from the baseline corridor (see research/deep-research-report.md). The cost map uses the closed resource enum so typos like `sulphur` fail schema validation.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "factionId",
+    "tier",
+    "stats",
+    "cost",
+    "growth",
+    "abilityIds",
+    "presentation"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "factionId": { "type": "string", "minLength": 1 },
+    "tier": { "type": "integer", "minimum": 1, "maximum": 7 },
+    "traits": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "stats": {
+      "type": "object",
+      "required": [
+        "hp",
+        "attack",
+        "defense",
+        "speed",
+        "shots",
+        "damageMin",
+        "damageMax"
+      ],
+      "properties": {
+        "hp":        { "type": "integer", "minimum": 0, "maximum": 100000 },
+        "attack":    { "type": "integer", "minimum": 0, "maximum": 100 },
+        "defense":   { "type": "integer", "minimum": 0, "maximum": 100 },
+        "speed":     { "type": "integer", "minimum": 0, "maximum": 30 },
+        "shots":     { "type": "integer", "minimum": 0, "maximum": 64 },
+        "damageMin": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "damageMax": { "type": "integer", "minimum": 0, "maximum": 10000 }
+      },
+      "additionalProperties": false
+    },
+    "cost": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "heroes-reforged/resource-id.schema.json" },
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "growth": {
+      "type": "object",
+      "properties": {
+        "weekly":             { "type": "integer", "minimum": 0, "maximum": 1000 },
+        "baseWeekly":         { "type": "integer", "minimum": 0, "maximum": 1000 },
+        "dwellingBuildingId": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "abilityIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "presentation": {
+      "type": "object",
+      "required": [
+        "spriteAtlasId",
+        "portraitId"
+      ],
+      "properties": {
+        "spriteAtlasId":        { "type": "string" },
+        "portraitId":           { "type": "string" },
+        "iconId":               { "type": "string" },
+        "animationSetId":       { "type": "string" },
+        "soundSetId":           { "type": "string" },
+        "adventureMapSpriteId": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

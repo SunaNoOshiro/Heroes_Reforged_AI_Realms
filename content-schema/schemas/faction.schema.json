@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/faction.schema.json",
+  "title": "Faction",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "alignment",
+    "unitIds",
+    "heroIds",
+    "buildingIds",
+    "presentation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "alignment": {
+      "type": "string",
+      "enum": [
+        "good",
+        "neutral",
+        "evil"
+      ]
+    },
+    "unitIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "heroIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "buildingIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "skillIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "required": [
+        "townBackgroundId",
+        "townThemeMusicId",
+        "uiThemeId",
+        "bannerId"
+      ],
+      "properties": {
+        "townBackgroundId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "townThemeMusicId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uiThemeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bannerId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

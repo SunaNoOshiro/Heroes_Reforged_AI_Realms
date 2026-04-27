@@ -1,0 +1,15 @@
+{
+  "$schema": "heroes-reforged/sound-set.schema.json",
+  "schemaVersion": 1,
+  "id": "hero:kaelis:sounds",
+  "mixGroup": "heroes",
+  "events": {
+    "hero.map_move.start": "audio:hero_kaelis:hoof_start",
+    "hero.map_move.loop": "audio:hero_kaelis:hoof_loop",
+    "hero.level_up": "audio:hero_kaelis:level_up",
+    "hero.cast.combat": "audio:hero_kaelis:cast"
+  },
+  "fallbacks": {
+    "hero.*": "audio:shared:hero_generic"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/ability.schema.json",
+  "schemaVersion": 1,
+  "id": "minimal:ability:slate_rally",
+  "name": "Rally",
+  "description": "Gains a small morale bonus at the start of each battle.",
+  "tags": ["combat", "passive", "morale"],
+  "effects": [
+    {
+      "kind": "modify_stat",
+      "target": "self",
+      "stat": "morale",
+      "value": 1
+    }
+  ]
+}

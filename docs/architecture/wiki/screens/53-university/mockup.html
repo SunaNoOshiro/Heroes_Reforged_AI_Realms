@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>53. University - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="53-university" data-archetype="curated-university" data-curation="curated-pass-5">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="University mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="150" height="526" fill="#253321" stroke="#e0bd59"/><path d="M28 40 C130 80 88 210 158 260 C84 338 138 460 28 528" fill="#596d42"/><text x="42" y="526" class="tiny">Adventure context</text>
+  <rect x="176" y="18" width="466" height="526" class="panel"/><rect x="194" y="42" width="76" height="76" class="slotHot"/><text x="288" y="72" class="title">Darkstorn</text><text x="288" y="100" class="label">Level 5 Warlock</text>
+  <rect x="198" y="142" width="52" height="48" class="slot"/><text x="224" y="170" text-anchor="middle" class="tiny">Atk</text><rect x="276" y="142" width="52" height="48" class="slot"/><text x="302" y="170" text-anchor="middle" class="tiny">Def</text><rect x="354" y="142" width="52" height="48" class="slot"/><text x="380" y="170" text-anchor="middle" class="tiny">Pow</text><rect x="432" y="142" width="52" height="48" class="slot"/><text x="458" y="170" text-anchor="middle" class="tiny">Know</text>
+  <g data-component="Hero Army"><text x="198" y="464" class="label">Hero Army</text>
+    <rect x="198" y="472" width="48" height="42" class="slotHot"/><circle cx="222" cy="490" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="224" y="510" text-anchor="middle" class="tiny">52</text><rect x="252" y="472" width="48" height="42" class="slot"/><circle cx="276" cy="490" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="278" y="510" text-anchor="middle" class="tiny">6</text><rect x="306" y="472" width="48" height="42" class="slot"/><circle cx="330" cy="490" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="332" y="510" text-anchor="middle" class="tiny">4</text><rect x="360" y="472" width="48" height="42" class="slot"/><circle cx="384" cy="490" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="386" y="510" text-anchor="middle" class="tiny">16</text><rect x="414" y="472" width="48" height="42" class="slot"/><circle cx="438" cy="490" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="440" y="510" text-anchor="middle" class="tiny">31</text><rect x="468" y="472" width="48" height="42" class="slot"/><circle cx="492" cy="490" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="494" y="510" text-anchor="middle" class="tiny">8</text><rect x="522" y="472" width="48" height="42" class="slot"/><circle cx="546" cy="490" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="548" y="510" text-anchor="middle" class="tiny">28</text>
+  </g>
+  <rect x="650" y="18" width="132" height="526" class="rightChrome"/><rect x="664" y="36" width="104" height="90" fill="#315a45" stroke="#e0bd59"/><text x="690" y="118" class="tiny">MINIMAP</text>
+  <g data-component="ResourceDateBar">
+    <rect x="12" y="570" width="76" height="22" class="resource"/><text x="20" y="585" class="tiny">Wood 24</text><rect x="96" y="570" width="76" height="22" class="resource"/><text x="104" y="585" class="tiny">Ore 12</text><rect x="180" y="570" width="76" height="22" class="resource"/><text x="188" y="585" class="tiny">Merc 24</text><rect x="264" y="570" width="76" height="22" class="resource"/><text x="272" y="585" class="tiny">Sul 11</text><rect x="348" y="570" width="76" height="22" class="resource"/><text x="356" y="585" class="tiny">Cry 11</text><rect x="432" y="570" width="76" height="22" class="resource"/><text x="440" y="585" class="tiny">Kaelis 11</text><rect x="516" y="570" width="118" height="22" class="resource"/><text x="524" y="585" class="tiny">Gold 201092</text>
+    <rect x="640" y="570" width="148" height="22" class="resource"/><text x="650" y="585" class="tiny">Month 1, Week 1, Day 2</text>
+  </g><rect x="132" y="72" width="536" height="398" class="panel modal" filter="url(#shadow)"/>
+  <rect x="152" y="92" width="496" height="36" fill="url(#redwood)" stroke="#e4c064"/>
+  <text x="400" y="116" text-anchor="middle" class="label">University</text>
+  <text x="400" y="146" text-anchor="middle" class="tiny">Buy an offered secondary skill</text>
+      <rect x="166" y="168" width="90" height="142" class="slot"/><circle cx="211" cy="214" r="28" fill="#72502c" stroke="#ffe18a"/><text x="211" y="270" text-anchor="middle" class="tiny">Wisdom</text><text x="211" y="294" text-anchor="middle" class="tiny">2000g</text><rect x="282" y="168" width="90" height="142" class="slotHot"/><circle cx="327" cy="214" r="28" fill="#72502c" stroke="#ffe18a"/><text x="327" y="270" text-anchor="middle" class="tiny">Logistics</text><text x="327" y="294" text-anchor="middle" class="tiny">2000g</text><rect x="398" y="168" width="90" height="142" class="slot"/><circle cx="443" cy="214" r="28" fill="#72502c" stroke="#ffe18a"/><text x="443" y="270" text-anchor="middle" class="tiny">Earth</text><text x="443" y="294" text-anchor="middle" class="tiny">2000g</text><rect x="514" y="168" width="90" height="142" class="slot"/><circle cx="559" cy="214" r="28" fill="#72502c" stroke="#ffe18a"/><text x="559" y="270" text-anchor="middle" class="tiny">Archery</text><text x="559" y="294" text-anchor="middle" class="tiny">2000g</text>
+      <rect x="178" y="340" width="324" height="44" class="status"/><text x="196" y="366" class="tiny">Selected Logistics: open skill slot, gold available.</text>
+      <g class="button" data-action="university.learn">
+    <rect class="outer" x="512" y="342" width="74" height="30" rx="2"/>
+    <rect class="inner" x="516" y="346" width="66" height="22" rx="1"/>
+    <text x="549" y="362" text-anchor="middle">LEARN</text>
+  </g><g class="button" data-action="university.close">
+    <rect class="outer" x="596" y="342" width="74" height="30" rx="2"/>
+    <rect class="inner" x="600" y="346" width="66" height="22" rx="1"/>
+    <text x="633" y="362" text-anchor="middle">CLOSE</text>
+  </g>
+</svg>
+</body>
+</html>

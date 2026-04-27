@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>47. Spell Book - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="47-spell-book" data-archetype="curated-spellbook" data-curation="anchor-v1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spell Book mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="764" height="526" fill="#100906" opacity=".9"/>
+  <rect x="78" y="54" width="644" height="444" rx="18" fill="#c49c5e" stroke="#3a1b0d" stroke-width="5" data-component="SpellBook"/>
+  <path d="M400 62 C390 168 390 360 400 492" stroke="#70431d" stroke-width="4"/>
+  <path d="M98 82 C202 52 296 72 388 94 L388 470 C288 448 194 444 98 474 Z" fill="#d9bb76" stroke="#6b3d1a"/>
+  <path d="M412 94 C504 72 598 52 702 82 L702 474 C606 444 512 448 412 470 Z" fill="#d6b46f" stroke="#6b3d1a"/>
+  <g data-action="spellbook.selectSchool.All"><rect x="44" y="92" width="42" height="48" class="slotHot"/><text x="65" y="121" text-anchor="middle" class="tiny">All</text></g><g data-action="spellbook.selectSchool.Air"><rect x="44" y="156" width="42" height="48" class="slot"/><text x="65" y="185" text-anchor="middle" class="tiny">Air</text></g><g data-action="spellbook.selectSchool.Earth"><rect x="44" y="220" width="42" height="48" class="slot"/><text x="65" y="249" text-anchor="middle" class="tiny">Earth</text></g><g data-action="spellbook.selectSchool.Fire"><rect x="44" y="284" width="42" height="48" class="slot"/><text x="65" y="313" text-anchor="middle" class="tiny">Fire</text></g><g data-action="spellbook.selectSchool.Water"><rect x="44" y="348" width="42" height="48" class="slot"/><text x="65" y="377" text-anchor="middle" class="tiny">Water</text></g>
+  <g data-spell-slot="0"><rect x="132" y="124" width="42" height="42" class="slot"/><circle cx="153" cy="145" r="13" fill="#78a2d8" opacity=".9"/><text x="153" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="1"><rect x="190" y="124" width="42" height="42" class="slot"/><circle cx="211" cy="145" r="13" fill="#7760b8" opacity=".9"/><text x="211" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="2"><rect x="248" y="124" width="42" height="42" class="slot"/><circle cx="269" cy="145" r="13" fill="#a93b20" opacity=".9"/><text x="269" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="3"><rect x="306" y="124" width="42" height="42" class="slot"/><circle cx="327" cy="145" r="13" fill="#2d7b4f" opacity=".9"/><text x="327" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="4"><rect x="132" y="198" width="42" height="42" class="slot"/><circle cx="153" cy="219" r="13" fill="#78a2d8" opacity=".9"/><text x="153" y="256" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="5"><rect x="190" y="198" width="42" height="42" class="slotHot"/><circle cx="211" cy="219" r="13" fill="#7760b8" opacity=".9"/><text x="211" y="256" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="6"><rect x="248" y="198" width="42" height="42" class="slot"/><circle cx="269" cy="219" r="13" fill="#a93b20" opacity=".9"/><text x="269" y="256" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="7"><rect x="306" y="198" width="42" height="42" class="slot"/><circle cx="327" cy="219" r="13" fill="#2d7b4f" opacity=".9"/><text x="327" y="256" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="8"><rect x="132" y="272" width="42" height="42" class="slot"/><circle cx="153" cy="293" r="13" fill="#78a2d8" opacity=".9"/><text x="153" y="330" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="9"><rect x="190" y="272" width="42" height="42" class="slot"/><circle cx="211" cy="293" r="13" fill="#7760b8" opacity=".9"/><text x="211" y="330" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="10"><rect x="248" y="272" width="42" height="42" class="slot"/><circle cx="269" cy="293" r="13" fill="#a93b20" opacity=".9"/><text x="269" y="330" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="11"><rect x="306" y="272" width="42" height="42" class="slot"/><circle cx="327" cy="293" r="13" fill="#2d7b4f" opacity=".9"/><text x="327" y="330" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="12"><rect x="448" y="124" width="42" height="42" class="slot"/><circle cx="469" cy="145" r="13" fill="#78a2d8" opacity=".9"/><text x="469" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="13"><rect x="506" y="124" width="42" height="42" class="slot"/><circle cx="527" cy="145" r="13" fill="#7760b8" opacity=".9"/><text x="527" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="14"><rect x="564" y="124" width="42" height="42" class="slot"/><circle cx="585" cy="145" r="13" fill="#a93b20" opacity=".9"/><text x="585" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="15"><rect x="622" y="124" width="42" height="42" class="slot"/><circle cx="643" cy="145" r="13" fill="#2d7b4f" opacity=".9"/><text x="643" y="182" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="16"><rect x="448" y="198" width="42" height="42" class="slot"/><circle cx="469" cy="219" r="13" fill="#78a2d8" opacity=".9"/><text x="469" y="256" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="17"><rect x="506" y="198" width="42" height="42" class="slot"/><circle cx="527" cy="219" r="13" fill="#7760b8" opacity=".9"/><text x="527" y="256" text-anchor="middle" class="tiny">Spell</text></g><g data-spell-slot="18"><rect x="564" y="198" width="42" height="42" class="slot"/><circle cx="585" cy="219" r="13" fill="#a93b20" opacity=".32"/><text x="585" y="256" text-anchor="middle" class="tiny">Locked</text></g><g data-spell-slot="19"><rect x="622" y="198" width="42" height="42" class="slot"/><circle cx="643" cy="219" r="13" fill="#2d7b4f" opacity=".32"/><text x="643" y="256" text-anchor="middle" class="tiny">Locked</text></g><g data-spell-slot="20"><rect x="448" y="272" width="42" height="42" class="slot"/><circle cx="469" cy="293" r="13" fill="#78a2d8" opacity=".32"/><text x="469" y="330" text-anchor="middle" class="tiny">Locked</text></g><g data-spell-slot="21"><rect x="506" y="272" width="42" height="42" class="slot"/><circle cx="527" cy="293" r="13" fill="#7760b8" opacity=".32"/><text x="527" y="330" text-anchor="middle" class="tiny">Locked</text></g><g data-spell-slot="22"><rect x="564" y="272" width="42" height="42" class="slot"/><circle cx="585" cy="293" r="13" fill="#a93b20" opacity=".32"/><text x="585" y="330" text-anchor="middle" class="tiny">Locked</text></g><g data-spell-slot="23"><rect x="622" y="272" width="42" height="42" class="slot"/><circle cx="643" cy="293" r="13" fill="#2d7b4f" opacity=".32"/><text x="643" y="330" text-anchor="middle" class="tiny">Locked</text></g>
+  <rect x="132" y="384" width="224" height="68" class="status"/><text x="148" y="410" class="tiny">Stone Skin - Earth - Cost 5</text><text x="148" y="432" class="tiny">Target: allied stack or adventure hero</text>
+  <rect x="446" y="384" width="206" height="68" class="status"/><text x="462" y="410" class="tiny">Mana 20/20</text><text x="462" y="432" class="tiny">Expert Wisdom enabled</text>
+  <g class="button" data-action="spellbook.cast">
+    <rect class="outer" x="260" y="514" width="106" height="30" rx="2"/>
+    <rect class="inner" x="264" y="518" width="98" height="22" rx="1"/>
+    <text x="313" y="534" text-anchor="middle">CAST</text>
+  </g><g class="button" data-action="spellbook.close">
+    <rect class="outer" x="434" y="514" width="106" height="30" rx="2"/>
+    <rect class="inner" x="438" y="518" width="98" height="22" rx="1"/>
+    <text x="487" y="534" text-anchor="middle">CLOSE</text>
+  </g>
+  <g data-component="ResourceDateBar">
+    <rect x="12" y="570" width="76" height="22" class="resource"/><text x="20" y="585" class="tiny">Wood 24</text><rect x="96" y="570" width="76" height="22" class="resource"/><text x="104" y="585" class="tiny">Ore 12</text><rect x="180" y="570" width="76" height="22" class="resource"/><text x="188" y="585" class="tiny">Merc 24</text><rect x="264" y="570" width="76" height="22" class="resource"/><text x="272" y="585" class="tiny">Sul 11</text><rect x="348" y="570" width="76" height="22" class="resource"/><text x="356" y="585" class="tiny">Cry 11</text><rect x="432" y="570" width="76" height="22" class="resource"/><text x="440" y="585" class="tiny">Kaelis 11</text><rect x="516" y="570" width="118" height="22" class="resource"/><text x="524" y="585" class="tiny">Gold 201092</text>
+    <rect x="640" y="570" width="148" height="22" class="resource"/><text x="650" y="585" class="tiny">Month 1, Week 1, Day 2</text>
+  </g>
+</svg>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/resource-id.schema.json",
+  "title": "ResourceId",
+  "description": "Closed enum of canonical economy resources. Every cost / income / starting-resource field $refs this schema. Pack authors introduce new resources only through a library-pack that extends this list in a pinned schema version.",
+  "type": "string",
+  "enum": [
+    "gold",
+    "wood",
+    "ore",
+    "crystal",
+    "sulfur",
+    "gem",
+    "mercury"
+  ]
+}

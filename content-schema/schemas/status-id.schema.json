@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/status-id.schema.json",
+  "title": "StatusId",
+  "description": "Closed enum of status effects that may be applied by the `status` effect kind. Adding a new status requires a new entry here *and* a runtime handler — there is no free-form status string. Keeps AI-generated content from silently shipping with typo'd status names (e.g. `freeze` vs `frozen`).",
+  "type": "string",
+  "enum": [
+    "poisoned",
+    "burning",
+    "frozen",
+    "stunned",
+    "blinded",
+    "slowed",
+    "hasted",
+    "shielded",
+    "regenerating",
+    "silenced",
+    "weakened",
+    "stone_skin",
+    "mirror_image",
+    "berserk",
+    "feared",
+    "blessed",
+    "cursed"
+  ]
+}

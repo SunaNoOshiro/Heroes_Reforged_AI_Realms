@@ -1,0 +1,31 @@
+{
+  "$schema": "heroes-reforged/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:skill:leadership_basic",
+  "name": "Leadership",
+  "description": "Improves army morale.",
+  "tags": ["combat", "morale"],
+  "levels": [
+    {
+      "mastery": "basic",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "morale", "value": 1 }
+      ]
+    },
+    {
+      "mastery": "advanced",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "morale", "value": 2 }
+      ]
+    },
+    {
+      "mastery": "expert",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "morale", "value": 3 }
+      ]
+    }
+  ],
+  "presentation": {
+    "iconId": "skill:leadership:icon"
+  }
+}

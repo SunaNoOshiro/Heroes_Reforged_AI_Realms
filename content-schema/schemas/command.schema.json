@@ -1,0 +1,1529 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/command.schema.json",
+  "title": "Command",
+  "description": "A serializable, deterministic game command. Commands are the only way to mutate game state.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/moveHero"
+    },
+    {
+      "$ref": "#/$defs/endHeroTurn"
+    },
+    {
+      "$ref": "#/$defs/endDay"
+    },
+    {
+      "$ref": "#/$defs/recruitUnits"
+    },
+    {
+      "$ref": "#/$defs/buildBuilding"
+    },
+    {
+      "$ref": "#/$defs/learnSpell"
+    },
+    {
+      "$ref": "#/$defs/captureMine"
+    },
+    {
+      "$ref": "#/$defs/initiateBattle"
+    },
+    {
+      "$ref": "#/$defs/battleAttack"
+    },
+    {
+      "$ref": "#/$defs/battleWait"
+    },
+    {
+      "$ref": "#/$defs/battleDefend"
+    },
+    {
+      "$ref": "#/$defs/autoResolveBattle"
+    },
+    {
+      "$ref": "#/$defs/battleResolved"
+    },
+    {
+      "$ref": "#/$defs/scenarioLoad"
+    },
+    {
+      "$ref": "#/$defs/battleMove"
+    },
+    {
+      "$ref": "#/$defs/spellCast"
+    },
+    {
+      "$ref": "#/$defs/levelUp"
+    },
+    {
+      "$ref": "#/$defs/assignSkill"
+    },
+    {
+      "$ref": "#/$defs/tradeResources"
+    },
+    {
+      "$ref": "#/$defs/hireTavernHero"
+    },
+    {
+      "$ref": "#/$defs/releasePrisonHero"
+    },
+    {
+      "$ref": "#/$defs/recruitExternalDwellingUnits"
+    },
+    {
+      "$ref": "#/$defs/collectCreatureBankReward"
+    },
+    {
+      "$ref": "#/$defs/acknowledgeCalendarAnnouncement"
+    },
+    {
+      "$ref": "#/$defs/equipHeroArtifact"
+    },
+    {
+      "$ref": "#/$defs/unequipHeroArtifact"
+    },
+    {
+      "$ref": "#/$defs/retreatBeforeBattle"
+    },
+    {
+      "$ref": "#/$defs/acceptBattleSurrender"
+    },
+    {
+      "$ref": "#/$defs/buyArtifact"
+    },
+    {
+      "$ref": "#/$defs/sellArtifact"
+    },
+    {
+      "$ref": "#/$defs/tradeArtifact"
+    },
+    {
+      "$ref": "#/$defs/buyWarMachine"
+    },
+    {
+      "$ref": "#/$defs/learnUniversitySkill"
+    },
+    {
+      "$ref": "#/$defs/buildBoat"
+    },
+    {
+      "$ref": "#/$defs/buildGrailStructure"
+    },
+    {
+      "$ref": "#/$defs/rollRmgSeed"
+    },
+    {
+      "$ref": "#/$defs/generateRandomMap"
+    },
+    {
+      "$ref": "#/$defs/upgradeArmyStack"
+    },
+    {
+      "$ref": "#/$defs/upgradeAllEligibleStacks"
+    },
+    {
+      "$ref": "#/$defs/transferGarrisonStack"
+    },
+    {
+      "$ref": "#/$defs/transferTownArmyStack"
+    },
+    {
+      "$ref": "#/$defs/transferHeroArmyStack"
+    },
+    {
+      "$ref": "#/$defs/splitArmyStack"
+    },
+    {
+      "$ref": "#/$defs/transferHeroArtifact"
+    },
+    {
+      "$ref": "#/$defs/combineArtifacts"
+    },
+    {
+      "$ref": "#/$defs/placeTacticsStack"
+    },
+    {
+      "$ref": "#/$defs/startBattleAfterTactics"
+    },
+    {
+      "$ref": "#/$defs/fireCatapult"
+    },
+    {
+      "$ref": "#/$defs/visitMapObject"
+    }
+  ],
+  "$defs": {
+    "moveHero": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "path"
+      ],
+      "properties": {
+        "kind": {
+          "const": "MOVE_HERO"
+        },
+        "heroId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "q",
+              "r"
+            ],
+            "properties": {
+              "q": {
+                "type": "integer"
+              },
+              "r": {
+                "type": "integer"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "endHeroTurn": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "END_HERO_TURN"
+        },
+        "heroId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "endDay": {
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "const": "END_DAY"
+        }
+      },
+      "additionalProperties": false
+    },
+    "recruitUnits": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "townId",
+        "dwellingUnitId",
+        "quantity"
+      ],
+      "properties": {
+        "kind": {
+          "const": "RECRUIT_UNITS"
+        },
+        "heroId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "townId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dwellingUnitId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "buildBuilding": {
+      "type": "object",
+      "required": [
+        "kind",
+        "townId",
+        "buildingId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BUILD_BUILDING"
+        },
+        "townId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "buildingId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "learnSpell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "townId",
+        "spellId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "LEARN_SPELL"
+        },
+        "heroId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "townId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "spellId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "captureMine": {
+      "type": "object",
+      "required": [
+        "kind",
+        "mineId",
+        "heroId",
+        "playerId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "CAPTURE_MINE"
+        },
+        "mineId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "heroId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "playerId": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "initiateBattle": {
+      "type": "object",
+      "required": [
+        "kind",
+        "attackerId",
+        "defenderId",
+        "autoResolve"
+      ],
+      "properties": {
+        "kind": {
+          "const": "INITIATE_BATTLE"
+        },
+        "attackerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defenderId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "autoResolve": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "battleAttack": {
+      "type": "object",
+      "required": [
+        "kind",
+        "attackerStackId",
+        "defenderStackId",
+        "targetPosition"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BATTLE_ATTACK"
+        },
+        "attackerStackId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defenderStackId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetPosition": {
+          "type": "object",
+          "required": [
+            "q",
+            "r"
+          ],
+          "properties": {
+            "q": {
+              "type": "integer"
+            },
+            "r": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "battleWait": {
+      "type": "object",
+      "required": [
+        "kind",
+        "stackId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BATTLE_WAIT"
+        },
+        "stackId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "battleDefend": {
+      "type": "object",
+      "required": [
+        "kind",
+        "stackId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BATTLE_DEFEND"
+        },
+        "stackId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "autoResolveBattle": {
+      "type": "object",
+      "required": [
+        "kind",
+        "attackerArmyId",
+        "defenderArmyId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "AUTO_RESOLVE_BATTLE"
+        },
+        "attackerArmyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defenderArmyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attackerHeroId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "defenderHeroId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "battleResolved": {
+      "type": "object",
+      "required": [
+        "kind",
+        "winnerId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BATTLE_RESOLVED"
+        },
+        "winnerId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "winnerArmy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "unitId",
+              "count",
+              "hp"
+            ],
+            "properties": {
+              "unitId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "hp": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "loserArmy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "unitId",
+              "count",
+              "hp"
+            ],
+            "properties": {
+              "unitId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "hp": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarioLoad": {
+      "type": "object",
+      "required": [
+        "kind",
+        "scenarioId",
+        "seed"
+      ],
+      "properties": {
+        "kind": {
+          "const": "SCENARIO_LOAD"
+        },
+        "scenarioId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "contentHashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "stringId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hexCoord": {
+      "type": "object",
+      "required": [
+        "q",
+        "r"
+      ],
+      "properties": {
+        "q": {
+          "type": "integer"
+        },
+        "r": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "resourceBundle": {
+      "type": "object",
+      "propertyNames": {
+        "enum": [
+          "gold",
+          "wood",
+          "ore",
+          "mercury",
+          "sulfur",
+          "crystal",
+          "gems"
+        ]
+      },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "primaryStats": {
+      "type": "object",
+      "required": [
+        "attack",
+        "defense",
+        "power",
+        "knowledge"
+      ],
+      "properties": {
+        "attack": {
+          "type": "integer"
+        },
+        "defense": {
+          "type": "integer"
+        },
+        "power": {
+          "type": "integer"
+        },
+        "knowledge": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "battleMove": {
+      "type": "object",
+      "required": [
+        "kind",
+        "stackId",
+        "path"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BATTLE_MOVE"
+        },
+        "stackId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "path": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/hexCoord"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "spellCast": {
+      "type": "object",
+      "required": [
+        "kind",
+        "casterId",
+        "spellId",
+        "target"
+      ],
+      "properties": {
+        "kind": {
+          "const": "SPELL_CAST"
+        },
+        "casterId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "spellId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "stackId": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "position": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/hexCoord"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "levelUp": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "newLevel",
+        "newPrimaryStats"
+      ],
+      "properties": {
+        "kind": {
+          "const": "LEVEL_UP"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "newLevel": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "newPrimaryStats": {
+          "$ref": "#/$defs/primaryStats"
+        }
+      },
+      "additionalProperties": false
+    },
+    "assignSkill": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "skillId",
+        "skillLevel"
+      ],
+      "properties": {
+        "kind": {
+          "const": "ASSIGN_SKILL"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "skillId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "skillLevel": {
+          "enum": [
+            "basic",
+            "advanced",
+            "expert"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "tradeResources": {
+      "type": "object",
+      "required": [
+        "kind",
+        "playerId",
+        "fromResource",
+        "toResource",
+        "amount"
+      ],
+      "properties": {
+        "kind": {
+          "const": "TRADE_RESOURCES"
+        },
+        "playerId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "marketplaceId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fromResource": {
+          "enum": [
+            "gold",
+            "wood",
+            "ore",
+            "mercury",
+            "sulfur",
+            "crystal",
+            "gems"
+          ]
+        },
+        "toResource": {
+          "enum": [
+            "gold",
+            "wood",
+            "ore",
+            "mercury",
+            "sulfur",
+            "crystal",
+            "gems"
+          ]
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "hireTavernHero": {
+      "type": "object",
+      "required": [
+        "kind",
+        "playerId",
+        "townId",
+        "heroId",
+        "offerId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "HIRE_TAVERN_HERO"
+        },
+        "playerId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "townId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "offerId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "releasePrisonHero": {
+      "type": "object",
+      "required": [
+        "kind",
+        "playerId",
+        "prisonId",
+        "heroId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "RELEASE_PRISON_HERO"
+        },
+        "playerId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prisonId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "recruitExternalDwellingUnits": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "dwellingId",
+        "unitId",
+        "quantity"
+      ],
+      "properties": {
+        "kind": {
+          "const": "RECRUIT_EXTERNAL_DWELLING_UNITS"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "dwellingId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "unitId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "collectCreatureBankReward": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "bankId",
+        "rewardId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "COLLECT_CREATURE_BANK_REWARD"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "bankId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "rewardId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "acknowledgeCalendarAnnouncement": {
+      "type": "object",
+      "required": [
+        "kind",
+        "playerId",
+        "eventId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "ACKNOWLEDGE_CALENDAR_ANNOUNCEMENT"
+        },
+        "playerId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "eventId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "equipHeroArtifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "artifactId",
+        "slotId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "EQUIP_HERO_ARTIFACT"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "slotId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "unequipHeroArtifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "slotId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "UNEQUIP_HERO_ARTIFACT"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "slotId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "retreatBeforeBattle": {
+      "type": "object",
+      "required": [
+        "kind",
+        "battleId",
+        "heroId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "RETREAT_BEFORE_BATTLE"
+        },
+        "battleId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "acceptBattleSurrender": {
+      "type": "object",
+      "required": [
+        "kind",
+        "battleId",
+        "heroId",
+        "goldCost"
+      ],
+      "properties": {
+        "kind": {
+          "const": "ACCEPT_BATTLE_SURRENDER"
+        },
+        "battleId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "goldCost": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "buyArtifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "marketId",
+        "artifactId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BUY_ARTIFACT"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "marketId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sellArtifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "marketId",
+        "artifactId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "SELL_ARTIFACT"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "marketId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tradeArtifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "fromHeroId",
+        "toHeroId",
+        "artifactId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "TRADE_ARTIFACT"
+        },
+        "fromHeroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "toHeroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "buyWarMachine": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "factoryId",
+        "warMachineId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BUY_WAR_MACHINE"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "factoryId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "warMachineId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "learnUniversitySkill": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "universityId",
+        "skillId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "LEARN_UNIVERSITY_SKILL"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "universityId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "skillId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "buildBoat": {
+      "type": "object",
+      "required": [
+        "kind",
+        "townId",
+        "shipyardId",
+        "spawnTile"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BUILD_BOAT"
+        },
+        "townId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "shipyardId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "spawnTile": {
+          "$ref": "#/$defs/hexCoord"
+        }
+      },
+      "additionalProperties": false
+    },
+    "buildGrailStructure": {
+      "type": "object",
+      "required": [
+        "kind",
+        "townId",
+        "grailArtifactId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "BUILD_GRAIL_STRUCTURE"
+        },
+        "townId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "grailArtifactId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rollRmgSeed": {
+      "type": "object",
+      "required": [
+        "kind",
+        "templateId",
+        "seed"
+      ],
+      "properties": {
+        "kind": {
+          "const": "ROLL_RMG_SEED"
+        },
+        "templateId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "seed": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "generateRandomMap": {
+      "type": "object",
+      "required": [
+        "kind",
+        "templateId",
+        "seed",
+        "playerCount"
+      ],
+      "properties": {
+        "kind": {
+          "const": "GENERATE_RANDOM_MAP"
+        },
+        "templateId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "playerCount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "upgradeArmyStack": {
+      "type": "object",
+      "required": [
+        "kind",
+        "armyId",
+        "stackId",
+        "targetUnitId",
+        "quantity"
+      ],
+      "properties": {
+        "kind": {
+          "const": "UPGRADE_ARMY_STACK"
+        },
+        "armyId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "stackId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "targetUnitId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "upgradeAllEligibleStacks": {
+      "type": "object",
+      "required": [
+        "kind",
+        "armyId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "UPGRADE_ALL_ELIGIBLE_STACKS"
+        },
+        "armyId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "transferGarrisonStack": {
+      "type": "object",
+      "required": [
+        "kind",
+        "townId",
+        "fromSlot",
+        "toSlot",
+        "quantity"
+      ],
+      "properties": {
+        "kind": {
+          "const": "TRANSFER_GARRISON_STACK"
+        },
+        "townId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "fromSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "toSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "transferTownArmyStack": {
+      "type": "object",
+      "required": [
+        "kind",
+        "townId",
+        "heroId",
+        "fromSlot",
+        "toSlot",
+        "quantity"
+      ],
+      "properties": {
+        "kind": {
+          "const": "TRANSFER_TOWN_ARMY_STACK"
+        },
+        "townId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "fromSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "toSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "transferHeroArmyStack": {
+      "type": "object",
+      "required": [
+        "kind",
+        "fromHeroId",
+        "toHeroId",
+        "fromSlot",
+        "toSlot",
+        "quantity"
+      ],
+      "properties": {
+        "kind": {
+          "const": "TRANSFER_HERO_ARMY_STACK"
+        },
+        "fromHeroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "toHeroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "fromSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "toSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "splitArmyStack": {
+      "type": "object",
+      "required": [
+        "kind",
+        "armyId",
+        "sourceSlot",
+        "targetSlot",
+        "quantity"
+      ],
+      "properties": {
+        "kind": {
+          "const": "SPLIT_ARMY_STACK"
+        },
+        "armyId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "sourceSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "targetSlot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "transferHeroArtifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "fromHeroId",
+        "toHeroId",
+        "artifactId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "TRANSFER_HERO_ARTIFACT"
+        },
+        "fromHeroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "toHeroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "combineArtifacts": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "artifactIds"
+      ],
+      "properties": {
+        "kind": {
+          "const": "COMBINE_ARTIFACTS"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "artifactIds": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/stringId"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "placeTacticsStack": {
+      "type": "object",
+      "required": [
+        "kind",
+        "battleId",
+        "stackId",
+        "position"
+      ],
+      "properties": {
+        "kind": {
+          "const": "PLACE_TACTICS_STACK"
+        },
+        "battleId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "stackId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "position": {
+          "$ref": "#/$defs/hexCoord"
+        }
+      },
+      "additionalProperties": false
+    },
+    "startBattleAfterTactics": {
+      "type": "object",
+      "required": [
+        "kind",
+        "battleId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "START_BATTLE_AFTER_TACTICS"
+        },
+        "battleId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "fireCatapult": {
+      "type": "object",
+      "required": [
+        "kind",
+        "battleId",
+        "targetId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "FIRE_CATAPULT"
+        },
+        "battleId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "targetId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    },
+    "visitMapObject": {
+      "type": "object",
+      "required": [
+        "kind",
+        "heroId",
+        "objectId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "VISIT_MAP_OBJECT"
+        },
+        "heroId": {
+          "$ref": "#/$defs/stringId"
+        },
+        "objectId": {
+          "$ref": "#/$defs/stringId"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

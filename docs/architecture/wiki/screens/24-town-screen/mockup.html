@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>24. Town Screen - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="24-town-screen" data-archetype="curated-town" data-curation="anchor-v1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Town Screen mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="764" height="342" fill="#79a3c7" stroke="#e1bc58" stroke-width="2" data-component="TownPanorama"/>
+  <path d="M18 184 C142 88 226 146 356 84 C520 6 628 124 782 62 L782 360 L18 360 Z" fill="#607a44"/>
+  <path d="M18 306 C184 238 318 298 452 230 C574 170 660 210 782 170 L782 360 L18 360 Z" fill="#4b331c"/>
+  <g data-action="town.selectBuilding.Hall"><rect x="54" y="214" width="116" height="84" fill="#6b4425" stroke="#efc95f" stroke-width="2"/><path d="M54 214 L112 174 L170 214Z" fill="#8e2118" stroke="#efc95f"/><text x="112" y="262" text-anchor="middle" class="tiny">Hall</text></g><g data-action="town.selectBuilding.Tavern"><rect x="198" y="176" width="116" height="112" fill="#6b4425" stroke="#efc95f" stroke-width="2"/><path d="M198 176 L256 136 L314 176Z" fill="#8e2118" stroke="#efc95f"/><text x="256" y="238" text-anchor="middle" class="tiny">Tavern</text></g><g data-action="town.selectBuilding.Fort"><rect x="348" y="106" width="132" height="184" fill="#6b4425" stroke="#efc95f" stroke-width="2"/><path d="M348 106 L414 66 L480 106Z" fill="#8e2118" stroke="#efc95f"/><text x="414" y="204" text-anchor="middle" class="tiny">Fort</text><rect x="343" y="101" width="142" height="194" fill="none" stroke="#fff19a" class="pulse"/></g><g data-action="town.selectBuilding.Guild"><rect x="526" y="154" width="104" height="114" fill="#6b4425" stroke="#efc95f" stroke-width="2"/><path d="M526 154 L578 114 L630 154Z" fill="#8e2118" stroke="#efc95f"/><text x="578" y="217" text-anchor="middle" class="tiny">Guild</text></g><g data-action="town.selectBuilding.Market"><rect x="664" y="212" width="80" height="74" fill="#6b4425" stroke="#efc95f" stroke-width="2"/><path d="M664 212 L704 172 L744 212Z" fill="#8e2118" stroke="#efc95f"/><text x="704" y="255" text-anchor="middle" class="tiny">Market</text></g>
+  <rect x="18" y="360" width="764" height="28" fill="url(#redwood)" stroke="#e1bc58"/><text x="400" y="380" text-anchor="middle" class="label">Electrising - Marketplace selected - Built today: no</text>
+  <rect x="18" y="388" width="170" height="154" class="redPanel"/><rect x="32" y="402" width="58" height="58" class="slotHot"/><text x="98" y="420" class="label">Castle</text><text x="98" y="442" class="tiny">Gold income 9000</text><text x="98" y="462" class="tiny">Capitol built</text>
+  <g data-component="Town Garrison"><text x="210" y="400" class="label">Town Garrison</text>
+    <rect x="210" y="408" width="48" height="42" class="slotHot"/><circle cx="234" cy="426" r="12" fill="#772016" stroke="#e0c36c"/><text x="236" y="446" text-anchor="middle" class="tiny">52</text><rect x="264" y="408" width="48" height="42" class="slot"/><circle cx="288" cy="426" r="12" fill="#772016" stroke="#e0c36c"/><text x="290" y="446" text-anchor="middle" class="tiny">6</text><rect x="318" y="408" width="48" height="42" class="slot"/><circle cx="342" cy="426" r="12" fill="#772016" stroke="#e0c36c"/><text x="344" y="446" text-anchor="middle" class="tiny">4</text><rect x="372" y="408" width="48" height="42" class="slot"/><circle cx="396" cy="426" r="12" fill="#772016" stroke="#e0c36c"/><text x="398" y="446" text-anchor="middle" class="tiny">16</text><rect x="426" y="408" width="48" height="42" class="slot"/><circle cx="450" cy="426" r="12" fill="#772016" stroke="#e0c36c"/><text x="452" y="446" text-anchor="middle" class="tiny">31</text><rect x="480" y="408" width="48" height="42" class="slot"/><circle cx="504" cy="426" r="12" fill="#772016" stroke="#e0c36c"/><text x="506" y="446" text-anchor="middle" class="tiny">8</text><rect x="534" y="408" width="48" height="42" class="slot"/><circle cx="558" cy="426" r="12" fill="#772016" stroke="#e0c36c"/><text x="560" y="446" text-anchor="middle" class="tiny">28</text>
+  </g>
+  <g data-component="Visiting Hero"><text x="210" y="480" class="label">Visiting Hero</text>
+    <rect x="210" y="488" width="48" height="42" class="slotHot"/><circle cx="234" cy="506" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="236" y="526" text-anchor="middle" class="tiny">52</text><rect x="264" y="488" width="48" height="42" class="slot"/><circle cx="288" cy="506" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="290" y="526" text-anchor="middle" class="tiny">6</text><rect x="318" y="488" width="48" height="42" class="slot"/><circle cx="342" cy="506" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="344" y="526" text-anchor="middle" class="tiny">4</text><rect x="372" y="488" width="48" height="42" class="slot"/><circle cx="396" cy="506" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="398" y="526" text-anchor="middle" class="tiny">16</text><rect x="426" y="488" width="48" height="42" class="slot"/><circle cx="450" cy="506" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="452" y="526" text-anchor="middle" class="tiny">31</text><rect x="480" y="488" width="48" height="42" class="slot"/><circle cx="504" cy="506" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="506" y="526" text-anchor="middle" class="tiny">8</text><rect x="534" y="488" width="48" height="42" class="slot"/><circle cx="558" cy="506" r="12" fill="#1d4774" stroke="#e0c36c"/><text x="560" y="526" text-anchor="middle" class="tiny">28</text>
+  </g>
+  <g class="button" data-action="town.build">
+    <rect class="outer" x="32" y="548" width="96" height="28" rx="2"/>
+    <rect class="inner" x="36" y="552" width="88" height="20" rx="1"/>
+    <text x="80" y="567" text-anchor="middle">Build</text>
+  </g><g class="button" data-action="town.recruit">
+    <rect class="outer" x="156" y="548" width="96" height="28" rx="2"/>
+    <rect class="inner" x="160" y="552" width="88" height="20" rx="1"/>
+    <text x="204" y="567" text-anchor="middle">Recruit</text>
+  </g><g class="button" data-action="town.mage">
+    <rect class="outer" x="280" y="548" width="96" height="28" rx="2"/>
+    <rect class="inner" x="284" y="552" width="88" height="20" rx="1"/>
+    <text x="328" y="567" text-anchor="middle">Mage</text>
+  </g><g class="button" data-action="town.tavern">
+    <rect class="outer" x="404" y="548" width="96" height="28" rx="2"/>
+    <rect class="inner" x="408" y="552" width="88" height="20" rx="1"/>
+    <text x="452" y="567" text-anchor="middle">Tavern</text>
+  </g><g class="button" data-action="town.market">
+    <rect class="outer" x="528" y="548" width="96" height="28" rx="2"/>
+    <rect class="inner" x="532" y="552" width="88" height="20" rx="1"/>
+    <text x="576" y="567" text-anchor="middle">Market</text>
+  </g><g class="button" data-action="town.exit">
+    <rect class="outer" x="652" y="548" width="96" height="28" rx="2"/>
+    <rect class="inner" x="656" y="552" width="88" height="20" rx="1"/>
+    <text x="700" y="567" text-anchor="middle">Exit</text>
+  </g>
+  <g data-component="ResourceDateBar">
+    <rect x="12" y="574" width="76" height="22" class="resource"/><text x="20" y="589" class="tiny">Wood 24</text><rect x="96" y="574" width="76" height="22" class="resource"/><text x="104" y="589" class="tiny">Ore 12</text><rect x="180" y="574" width="76" height="22" class="resource"/><text x="188" y="589" class="tiny">Merc 24</text><rect x="264" y="574" width="76" height="22" class="resource"/><text x="272" y="589" class="tiny">Sul 11</text><rect x="348" y="574" width="76" height="22" class="resource"/><text x="356" y="589" class="tiny">Cry 11</text><rect x="432" y="574" width="76" height="22" class="resource"/><text x="440" y="589" class="tiny">Kaelis 11</text><rect x="516" y="574" width="118" height="22" class="resource"/><text x="524" y="589" class="tiny">Gold 201092</text>
+    <rect x="640" y="574" width="148" height="22" class="resource"/><text x="650" y="589" class="tiny">Month 1, Week 1, Day 2</text>
+  </g>
+</svg>
+</body>
+</html>

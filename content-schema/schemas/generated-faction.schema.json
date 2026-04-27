@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/generated-faction.schema.json",
+  "title": "Generated Faction",
+  "description": "Raw, pre-validation output of `GenerationProvider.generateStructured` for kind='faction'. Before this becomes a loadable pack the pipeline: (1) validates against record schemas, (2) runs the coherence check, (3) runs the auto-balancer, (4) writes manifest and contentHash.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "faction",
+    "units",
+    "heroes",
+    "buildings",
+    "abilities"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "faction": {
+      "type": "object",
+      "required": ["id", "name", "alignment", "theme"],
+      "properties": {
+        "id":        { "type": "string", "minLength": 1 },
+        "name":      { "type": "string", "minLength": 1 },
+        "alignment": { "type": "string", "enum": ["good", "neutral", "evil"] },
+        "theme":     { "type": "string", "minLength": 1 },
+        "loreBrief": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 7,
+      "items":    { "$ref": "heroes-reforged/unit.schema.json" }
+    },
+    "heroes": {
+      "type": "array",
+      "minItems": 1,
+      "items":    { "$ref": "heroes-reforged/hero.schema.json" }
+    },
+    "buildings": {
+      "type": "array",
+      "items": { "$ref": "heroes-reforged/building.schema.json" }
+    },
+    "abilities": {
+      "type": "array",
+      "items": { "$ref": "heroes-reforged/ability.schema.json" }
+    },
+    "spells": {
+      "type": "array",
+      "items": { "$ref": "heroes-reforged/spell.schema.json" }
+    },
+    "notes": {
+      "type": "object",
+      "description": "Generator-reported metadata (e.g. provider id, prompt hash, estimated power). Never load-bearing for gameplay.",
+      "properties": {
+        "providerId":  { "type": "string" },
+        "promptHash":  { "type": "string" },
+        "modelHint":   { "type": "string" },
+        "tokenCount":  { "type": "integer", "minimum": 0 },
+        "warnings":    { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

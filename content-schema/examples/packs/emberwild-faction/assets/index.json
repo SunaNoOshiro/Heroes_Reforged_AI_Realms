@@ -1,0 +1,32 @@
+{
+  "$schema": "heroes-reforged/asset-index.schema.json",
+  "schemaVersion": 1,
+  "packId": "emberwild_faction",
+  "assets": [
+    {
+      "id": "unit:ash_hound:sprite",
+      "kind": "image",
+      "path": "assets/sprites/ash-hound.png"
+    },
+    {
+      "id": "unit:ash_hound:portrait",
+      "kind": "image",
+      "path": "assets/portraits/ash-hound.png"
+    },
+    {
+      "id": "unit:ash_hound:animset",
+      "kind": "animation",
+      "path": "animations/ash-hound.anim.json"
+    },
+    {
+      "id": "unit:ash_hound:sounds",
+      "kind": "audio-bank",
+      "path": "sounds/ash-hound.json"
+    },
+    {
+      "id": "town:emberwild:bg",
+      "kind": "image",
+      "path": "assets/town/emberwild-bg.png"
+    }
+  ]
+}

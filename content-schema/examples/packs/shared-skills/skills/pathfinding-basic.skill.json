@@ -1,0 +1,46 @@
+{
+  "$schema": "heroes-reforged/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:skill:pathfinding_basic",
+  "name": "Pathfinding",
+  "description": "Reduces rough-terrain movement penalty.",
+  "tags": ["adventure", "movement"],
+  "levels": [
+    {
+      "mastery": "basic",
+      "effects": [
+        {
+          "kind": "modify_stat",
+          "target": "self",
+          "stat": "speed",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "mastery": "advanced",
+      "effects": [
+        {
+          "kind": "modify_stat",
+          "target": "self",
+          "stat": "speed",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "mastery": "expert",
+      "effects": [
+        {
+          "kind": "modify_stat",
+          "target": "self",
+          "stat": "speed",
+          "value": 3
+        }
+      ]
+    }
+  ],
+  "presentation": {
+    "iconId": "skill:pathfinding:icon"
+  }
+}

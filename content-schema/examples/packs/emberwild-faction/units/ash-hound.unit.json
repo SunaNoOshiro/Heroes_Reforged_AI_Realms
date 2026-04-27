@@ -1,0 +1,37 @@
+{
+  "$schema": "heroes-reforged/unit.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:unit:ash_hound",
+  "name": "Ash Hound",
+  "factionId": "emberwild:faction:emberwild",
+  "tier": 2,
+  "traits": ["living", "beast"],
+  "stats": {
+    "hp": 18,
+    "attack": 6,
+    "defense": 4,
+    "speed": 8,
+    "shots": 0,
+    "damageMin": 2,
+    "damageMax": 5
+  },
+  "cost": {
+    "gold": 120,
+    "sulfur": 1
+  },
+  "growth": {
+    "baseWeekly": 8,
+    "dwellingBuildingId": "emberwild:building:kennels"
+  },
+  "abilityIds": [
+    "emberwild:ability:pack_hunt"
+  ],
+  "presentation": {
+    "spriteAtlasId": "unit:ash_hound:sprite",
+    "portraitId": "unit:ash_hound:portrait",
+    "iconId": "unit:ash_hound:icon",
+    "animationSetId": "unit:ash_hound:animset",
+    "soundSetId": "unit:ash_hound:sounds",
+    "adventureMapSpriteId": "unit:ash_hound:map"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/neutral-stack-template.schema.json",
+  "title": "NeutralStackTemplate",
+  "description": "Template for neutral stacks that guard map objects or occupy wander points. The stack-size expression is a closed formula AST (no free-form strings, no eval).",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "candidateUnitIds",
+    "stackSize"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "candidateUnitIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "stackSize": { "$ref": "heroes-reforged/formula.schema.json" },
+    "attitudeRules": {
+      "type": "object",
+      "required": ["canJoin", "canFlee"],
+      "properties": {
+        "canJoin": { "type": "boolean" },
+        "canFlee": { "type": "boolean" },
+        "fleeThresholdHpPercent": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "additionalProperties": false
+    },
+    "rewardTableId": { "type": "string", "minLength": 1 },
+    "spawnRules": {
+      "type": "object",
+      "required": ["role"],
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "mine_guard",
+            "treasure_guard",
+            "wanderer",
+            "dwelling_guard",
+            "quest_guard"
+          ]
+        },
+        "minDistanceFromStart": { "type": "integer", "minimum": 0 },
+        "maxDistanceFromStart": { "type": "integer", "minimum": 0 },
+        "allowedBiomeIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "additionalProperties": false
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "flagSpriteId": { "type": "string" },
+        "ambientSoundId": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/animation.schema.json",
+  "title": "AnimationSet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "kind",
+    "spriteSheetAssetId",
+    "sequences"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string" },
+    "kind": { "type": "string" },
+    "spriteSheetAssetId": { "type": "string" },
+    "frameSize": { "type": "object", "additionalProperties": true },
+    "anchor": { "type": "object", "additionalProperties": true },
+    "sequences": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": true
+}

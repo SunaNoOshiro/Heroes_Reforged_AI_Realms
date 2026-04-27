@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/sound-set.schema.json",
+  "title": "SoundSet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "events"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string" },
+    "mixGroup": { "type": "string" },
+    "events": { "type": "object", "additionalProperties": { "type": "string" } },
+    "fallbacks": { "type": "object", "additionalProperties": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

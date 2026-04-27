@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/adventure-building.schema.json",
+  "title": "AdventureBuilding",
+  "description": "A static adventure-map structure (mine, dwelling, shrine, utility). Ownership, economy, visit behaviour, and blocking footprint are all discriminated unions — adding a new behaviour requires a new `kind`, never a free-form field.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "presentation"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "interactionIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "ownershipRules": { "$ref": "#/$defs/ownershipRules" },
+    "economy": { "$ref": "#/$defs/economy" },
+    "visitRules": { "$ref": "#/$defs/visitRules" },
+    "blockingShape": { "$ref": "#/$defs/blockingShape" },
+    "stateMachine": { "$ref": "#/$defs/stateMachine" },
+    "presentation": { "$ref": "#/$defs/presentation" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ownershipRules": {
+      "type": "object",
+      "required": ["kind"],
+      "oneOf": [
+        {
+          "properties": {
+            "kind": { "const": "none" }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "capturable" },
+            "ownerColorVisible": { "type": "boolean" },
+            "flagRevealRadius": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "scripted" },
+            "scriptId": { "type": "string", "minLength": 1 }
+          },
+          "required": ["kind", "scriptId"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "economy": {
+      "type": "object",
+      "required": ["kind"],
+      "oneOf": [
+        {
+          "properties": {
+            "kind": { "const": "none" }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "daily_income" },
+            "income": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "propertyNames": {
+                "$ref": "heroes-reforged/resource-id.schema.json"
+              }
+            }
+          },
+          "required": ["kind", "income"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "weekly_income" },
+            "income": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "propertyNames": {
+                "$ref": "heroes-reforged/resource-id.schema.json"
+              }
+            }
+          },
+          "required": ["kind", "income"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "unit_growth" },
+            "unitId": { "type": "string", "minLength": 1 },
+            "weeklyGrowth": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["kind", "unitId", "weeklyGrowth"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "visitRules": {
+      "type": "object",
+      "required": ["kind"],
+      "oneOf": [
+        {
+          "properties": {
+            "kind": { "const": "unrestricted" }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "once_per_turn" }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "once_per_hero" }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "guarded" },
+            "guardNeutralStackTemplateId": { "type": "string", "minLength": 1 }
+          },
+          "required": ["kind", "guardNeutralStackTemplateId"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "blockingShape": {
+      "type": "object",
+      "required": ["tiles"],
+      "properties": {
+        "tiles": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^-?[0-9]+,-?[0-9]+$"
+          }
+        },
+        "entryTile": {
+          "type": "string",
+          "pattern": "^-?[0-9]+,-?[0-9]+$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stateMachine": {
+      "type": "object",
+      "required": ["initialStateId", "states"],
+      "properties": {
+        "initialStateId": { "type": "string", "minLength": 1 },
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "transitions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["event", "nextStateId"],
+                  "properties": {
+                    "event": { "type": "string", "minLength": 1 },
+                    "nextStateId": { "type": "string", "minLength": 1 }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "presentation": {
+      "type": "object",
+      "required": ["mapSpriteId"],
+      "properties": {
+        "mapSpriteId": { "type": "string", "minLength": 1 },
+        "stateVisualIds": {
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "animationSetId": { "type": "string" },
+        "vfxSetId": { "type": "string" },
+        "soundSetId": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

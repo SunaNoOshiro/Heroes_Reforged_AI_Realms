@@ -1,0 +1,79 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:ember_lance",
+  "name": "Ember Lance",
+  "school": "fire",
+  "level": 2,
+  "scope": "combat",
+  "manaCost": 8,
+  "targeting": {
+    "kind": "unit_or_hex",
+    "maxRange": 12
+  },
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "fire",
+          "target": "enemy",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 40 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 12 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "fire",
+          "target": "enemy",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 55 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 13 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "fire",
+          "target": "line",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 70 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 14 }
+              ]}
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "iconId": "spell:ember_lance:icon",
+    "animationSetId": "spell:ember_lance:animset",
+    "vfxSetId": "spell:ember_lance:vfx",
+    "soundSetId": "spell:ember_lance:sounds"
+  }
+}

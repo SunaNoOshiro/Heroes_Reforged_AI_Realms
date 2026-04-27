@@ -1,0 +1,24 @@
+{
+  "$schema": "heroes-reforged/building.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:building:kennels",
+  "name": "Hound Kennels",
+  "factionId": "emberwild:faction:emberwild",
+  "requires": [
+    "emberwild:building:fort"
+  ],
+  "cost": {
+    "gold": 1200,
+    "wood": 5
+  },
+  "effects": [
+    {
+      "kind": "unlock_unit",
+      "unitId": "emberwild:unit:ash_hound"
+    }
+  ],
+  "presentation": {
+    "iconId": "building:kennels:icon",
+    "townOverlayId": "building:kennels:overlay"
+  }
+}

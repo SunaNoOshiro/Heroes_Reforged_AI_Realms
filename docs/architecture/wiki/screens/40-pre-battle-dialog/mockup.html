@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>40. Pre-Battle Dialog - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="40-pre-battle-dialog" data-archetype="curated-pre-battle" data-curation="curated-pass-2">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pre-Battle Dialog mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="764" height="470" fill="#5f7d43" stroke="#dfbd59" stroke-width="2"/>
+  <path d="M18 174 C180 88 318 130 484 58 C602 12 682 58 782 38 L782 488 L18 488Z" fill="#7e9360"/>
+  <g transform="translate(138 104)"><polygon points="0,-18 18,-9 18,9 0,18 -18,9 -18,-9" class="hex"/><polygon points="42,-18 60,-9 60,9 42,18 24,9 24,-9" class="hex"/><polygon points="84,-18 102,-9 102,9 84,18 66,9 66,-9" class="hex"/><polygon points="126,-18 144,-9 144,9 126,18 108,9 108,-9" class="hex"/><polygon points="168,-18 186,-9 186,9 168,18 150,9 150,-9" class="hex"/><polygon points="210,-18 228,-9 228,9 210,18 192,9 192,-9" class="hex"/><polygon points="252,-18 270,-9 270,9 252,18 234,9 234,-9" class="hex"/><polygon points="294,-18 312,-9 312,9 294,18 276,9 276,-9" class="hex"/><polygon points="336,-18 354,-9 354,9 336,18 318,9 318,-9" class="hex"/><polygon points="378,-18 396,-9 396,9 378,18 360,9 360,-9" class="hex"/><polygon points="420,-18 438,-9 438,9 420,18 402,9 402,-9" class="hex"/><polygon points="462,-18 480,-9 480,9 462,18 444,9 444,-9" class="hex"/><polygon points="21,17 39,26 39,44 21,53 3,44 3,26" class="hex"/><polygon points="63,17 81,26 81,44 63,53 45,44 45,26" class="hex"/><polygon points="105,17 123,26 123,44 105,53 87,44 87,26" class="hex"/><polygon points="147,17 165,26 165,44 147,53 129,44 129,26" class="hex"/><polygon points="189,17 207,26 207,44 189,53 171,44 171,26" class="hex"/><polygon points="231,17 249,26 249,44 231,53 213,44 213,26" class="hex"/><polygon points="273,17 291,26 291,44 273,53 255,44 255,26" class="hex"/><polygon points="315,17 333,26 333,44 315,53 297,44 297,26" class="hex"/><polygon points="357,17 375,26 375,44 357,53 339,44 339,26" class="hex"/><polygon points="399,17 417,26 417,44 399,53 381,44 381,26" class="hex"/><polygon points="441,17 459,26 459,44 441,53 423,44 423,26" class="hex"/><polygon points="483,17 501,26 501,44 483,53 465,44 465,26" class="hex"/><polygon points="0,52 18,61 18,79 0,88 -18,79 -18,61" class="hex"/><polygon points="42,52 60,61 60,79 42,88 24,79 24,61" class="hex"/><polygon points="84,52 102,61 102,79 84,88 66,79 66,61" class="hex"/><polygon points="126,52 144,61 144,79 126,88 108,79 108,61" class="hex"/><polygon points="168,52 186,61 186,79 168,88 150,79 150,61" class="hex"/><polygon points="210,52 228,61 228,79 210,88 192,79 192,61" class="hex"/><polygon points="252,52 270,61 270,79 252,88 234,79 234,61" class="hex"/><polygon points="294,52 312,61 312,79 294,88 276,79 276,61" class="hex"/><polygon points="336,52 354,61 354,79 336,88 318,79 318,61" class="hex"/><polygon points="378,52 396,61 396,79 378,88 360,79 360,61" class="hex"/><polygon points="420,52 438,61 438,79 420,88 402,79 402,61" class="hex"/><polygon points="462,52 480,61 480,79 462,88 444,79 444,61" class="hex"/><polygon points="21,87 39,96 39,114 21,123 3,114 3,96" class="hex"/><polygon points="63,87 81,96 81,114 63,123 45,114 45,96" class="hex"/><polygon points="105,87 123,96 123,114 105,123 87,114 87,96" class="hex"/><polygon points="147,87 165,96 165,114 147,123 129,114 129,96" class="hex"/><polygon points="189,87 207,96 207,114 189,123 171,114 171,96" class="hex"/><polygon points="231,87 249,96 249,114 231,123 213,114 213,96" class="hex"/><polygon points="273,87 291,96 291,114 273,123 255,114 255,96" class="hex"/><polygon points="315,87 333,96 333,114 315,123 297,114 297,96" class="hex"/><polygon points="357,87 375,96 375,114 357,123 339,114 339,96" class="hex"/><polygon points="399,87 417,96 417,114 399,123 381,114 381,96" class="hex"/><polygon points="441,87 459,96 459,114 441,123 423,114 423,96" class="hex"/><polygon points="483,87 501,96 501,114 483,123 465,114 465,96" class="hex"/><polygon points="0,122 18,131 18,149 0,158 -18,149 -18,131" class="hex"/><polygon points="42,122 60,131 60,149 42,158 24,149 24,131" class="hex"/><polygon points="84,122 102,131 102,149 84,158 66,149 66,131" class="hex"/><polygon points="126,122 144,131 144,149 126,158 108,149 108,131" class="hex"/><polygon points="168,122 186,131 186,149 168,158 150,149 150,131" class="hex"/><polygon points="210,122 228,131 228,149 210,158 192,149 192,131" class="hex"/><polygon points="252,122 270,131 270,149 252,158 234,149 234,131" class="hex"/><polygon points="294,122 312,131 312,149 294,158 276,149 276,131" class="hex"/><polygon points="336,122 354,131 354,149 336,158 318,149 318,131" class="hex"/><polygon points="378,122 396,131 396,149 378,158 360,149 360,131" class="hex"/><polygon points="420,122 438,131 438,149 420,158 402,149 402,131" class="hex"/><polygon points="462,122 480,131 480,149 462,158 444,149 444,131" class="hex"/><polygon points="21,157 39,166 39,184 21,193 3,184 3,166" class="hex"/><polygon points="63,157 81,166 81,184 63,193 45,184 45,166" class="hex"/><polygon points="105,157 123,166 123,184 105,193 87,184 87,166" class="hex"/><polygon points="147,157 165,166 165,184 147,193 129,184 129,166" class="hex"/><polygon points="189,157 207,166 207,184 189,193 171,184 171,166" class="hex"/><polygon points="231,157 249,166 249,184 231,193 213,184 213,166" class="hex"/><polygon points="273,157 291,166 291,184 273,193 255,184 255,166" class="hex"/><polygon points="315,157 333,166 333,184 315,193 297,184 297,166" class="hex"/><polygon points="357,157 375,166 375,184 357,193 339,184 339,166" class="hex"/><polygon points="399,157 417,166 417,184 399,193 381,184 381,166" class="hex"/><polygon points="441,157 459,166 459,184 441,193 423,184 423,166" class="hex"/><polygon points="483,157 501,166 501,184 483,193 465,184 465,166" class="hex"/><polygon points="0,192 18,201 18,219 0,228 -18,219 -18,201" class="hex"/><polygon points="42,192 60,201 60,219 42,228 24,219 24,201" class="hex"/><polygon points="84,192 102,201 102,219 84,228 66,219 66,201" class="hex"/><polygon points="126,192 144,201 144,219 126,228 108,219 108,201" class="hex"/><polygon points="168,192 186,201 186,219 168,228 150,219 150,201" class="hex"/><polygon points="210,192 228,201 228,219 210,228 192,219 192,201" class="hex"/><polygon points="252,192 270,201 270,219 252,228 234,219 234,201" class="hex"/><polygon points="294,192 312,201 312,219 294,228 276,219 276,201" class="hex"/><polygon points="336,192 354,201 354,219 336,228 318,219 318,201" class="hex"/><polygon points="378,192 396,201 396,219 378,228 360,219 360,201" class="hex"/><polygon points="420,192 438,201 438,219 420,228 402,219 402,201" class="hex"/><polygon points="462,192 480,201 480,219 462,228 444,219 444,201" class="hex"/><polygon points="21,227 39,236 39,254 21,263 3,254 3,236" class="hex"/><polygon points="63,227 81,236 81,254 63,263 45,254 45,236" class="hex"/><polygon points="105,227 123,236 123,254 105,263 87,254 87,236" class="hex"/><polygon points="147,227 165,236 165,254 147,263 129,254 129,236" class="hex"/><polygon points="189,227 207,236 207,254 189,263 171,254 171,236" class="hex"/><polygon points="231,227 249,236 249,254 231,263 213,254 213,236" class="hex"/><polygon points="273,227 291,236 291,254 273,263 255,254 255,236" class="hex"/><polygon points="315,227 333,236 333,254 315,263 297,254 297,236" class="hex"/><polygon points="357,227 375,236 375,254 357,263 339,254 339,236" class="hex"/><polygon points="399,227 417,236 417,254 399,263 381,254 381,236" class="hex"/><polygon points="441,227 459,236 459,254 441,263 423,254 423,236" class="hex"/><polygon points="483,227 501,236 501,254 483,263 465,254 465,236" class="hex"/></g>
+  <rect x="18" y="488" width="764" height="72" fill="url(#bronze)" stroke="#e1bc58"/>
+  <g data-component="ResourceDateBar">
+    <rect x="12" y="570" width="76" height="22" class="resource"/><text x="20" y="585" class="tiny">Wood 24</text><rect x="96" y="570" width="76" height="22" class="resource"/><text x="104" y="585" class="tiny">Ore 12</text><rect x="180" y="570" width="76" height="22" class="resource"/><text x="188" y="585" class="tiny">Merc 24</text><rect x="264" y="570" width="76" height="22" class="resource"/><text x="272" y="585" class="tiny">Sul 11</text><rect x="348" y="570" width="76" height="22" class="resource"/><text x="356" y="585" class="tiny">Cry 11</text><rect x="432" y="570" width="76" height="22" class="resource"/><text x="440" y="585" class="tiny">Kaelis 11</text><rect x="516" y="570" width="118" height="22" class="resource"/><text x="524" y="585" class="tiny">Gold 201092</text>
+    <rect x="640" y="570" width="148" height="22" class="resource"/><text x="650" y="585" class="tiny">Month 1, Week 1, Day 2</text>
+  </g><rect x="126" y="82" width="548" height="372" class="panel modal" filter="url(#shadow)"/>
+      <text x="400" y="118" text-anchor="middle" class="title">Enemy Encounter</text>
+      <rect x="158" y="148" width="174" height="196" class="redPanel"/><rect x="188" y="172" width="72" height="82" class="slotHot"/><text x="246" y="282" text-anchor="middle" class="label">Attacker</text><g data-item="52"><rect x="180" y="306" width="38" height="28" class="slotHot"/><text x="199" y="348" text-anchor="middle" class="tiny">52</text></g><g data-item="6"><rect x="232" y="306" width="38" height="28" class="slot"/><text x="251" y="348" text-anchor="middle" class="tiny">6</text></g><g data-item="4"><rect x="284" y="306" width="38" height="28" class="slot"/><text x="303" y="348" text-anchor="middle" class="tiny">4</text></g>
+      <rect x="468" y="148" width="174" height="196" class="redPanel"/><rect x="498" y="172" width="72" height="82" class="slot"/><text x="556" y="282" text-anchor="middle" class="label">Defender</text><g data-item="82"><rect x="490" y="306" width="38" height="28" class="slotHot"/><text x="509" y="348" text-anchor="middle" class="tiny">82</text></g><g data-item="138"><rect x="542" y="306" width="38" height="28" class="slot"/><text x="561" y="348" text-anchor="middle" class="tiny">138</text></g><g data-item="28"><rect x="594" y="306" width="38" height="28" class="slot"/><text x="613" y="348" text-anchor="middle" class="tiny">28</text></g>
+      <circle cx="400" cy="224" r="48" fill="#5b1a13" stroke="#ffe18a" class="pulse"/><text x="400" y="230" text-anchor="middle" class="label">VS</text>
+      <rect x="286" y="362" width="228" height="34" class="status"/><text x="304" y="384" class="tiny">Terrain: grass. Tactics: available.</text>
+      <g class="button" data-action="preBattle.fight">
+    <rect class="outer" x="250" y="414" width="88" height="30" rx="2"/>
+    <rect class="inner" x="254" y="418" width="80" height="22" rx="1"/>
+    <text x="294" y="434" text-anchor="middle">FIGHT</text>
+  </g><g class="button" data-action="preBattle.autoResolve">
+    <rect class="outer" x="356" y="414" width="88" height="30" rx="2"/>
+    <rect class="inner" x="360" y="418" width="80" height="22" rx="1"/>
+    <text x="400" y="434" text-anchor="middle">AUTO</text>
+  </g><g class="button" data-action="preBattle.retreat">
+    <rect class="outer" x="462" y="414" width="88" height="30" rx="2"/>
+    <rect class="inner" x="466" y="418" width="80" height="22" rx="1"/>
+    <text x="506" y="434" text-anchor="middle">RETREAT</text>
+  </g>
+</svg>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "$schema": "heroes-reforged/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:skill:wisdom_basic",
+  "name": "Wisdom",
+  "description": "Grants a small knowledge-like offensive bonus at each mastery tier. Spell-tier unlock semantics are handled at the hero-class level; this skill keeps a combat-stat shape inside the closed effect registry.",
+  "tags": ["combat", "caster"],
+  "levels": [
+    {
+      "mastery": "basic",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "attack", "value": 1 }
+      ]
+    },
+    {
+      "mastery": "advanced",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "attack", "value": 2 }
+      ]
+    },
+    {
+      "mastery": "expert",
+      "effects": [
+        { "kind": "modify_stat", "target": "self", "stat": "attack", "value": 3 }
+      ]
+    }
+  ],
+  "presentation": {
+    "iconId": "skill:wisdom:icon"
+  }
+}

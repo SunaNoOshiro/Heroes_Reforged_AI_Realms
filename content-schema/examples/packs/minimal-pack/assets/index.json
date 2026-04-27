@@ -1,0 +1,47 @@
+{
+  "$schema": "heroes-reforged/asset-index.schema.json",
+  "schemaVersion": 1,
+  "packId": "minimal_pack",
+  "assets": [
+    {
+      "id": "unit:slate_footman:sprite",
+      "kind": "image",
+      "path": "assets/sprites/slate-footman.png"
+    },
+    {
+      "id": "unit:slate_footman:portrait",
+      "kind": "image",
+      "path": "assets/portraits/slate-footman.png"
+    },
+    {
+      "id": "hero:slate_captain:portrait",
+      "kind": "image",
+      "path": "assets/portraits/slate-captain.png"
+    },
+    {
+      "id": "building:slate_barracks:icon",
+      "kind": "image",
+      "path": "assets/buildings/slate-barracks.png"
+    },
+    {
+      "id": "town:slate:bg",
+      "kind": "image",
+      "path": "assets/town/slate-bg.png"
+    },
+    {
+      "id": "town:slate:theme",
+      "kind": "audio",
+      "path": "sounds/slate-theme.ogg"
+    },
+    {
+      "id": "ui:slate:theme",
+      "kind": "theme",
+      "path": "themes/slate.json"
+    },
+    {
+      "id": "banner:slate",
+      "kind": "image",
+      "path": "assets/banners/slate.png"
+    }
+  ]
+}

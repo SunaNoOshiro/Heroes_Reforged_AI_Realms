@@ -1,0 +1,42 @@
+# Undead Immunity — Morale and Mind-Spell Rules
+
+Status: planned
+
+Module: [Second Faction — Necropolis (M3)](../03-second-faction.md)
+
+Description:
+Undead units have special rules: they are immune to morale rolls (neither positive nor negative) and immune to mind-affecting spells (Blind, Berserk, Hypnotize).
+
+Read First:
+- [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)
+- [`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)
+- [`docs/architecture/spells-and-mage-guild.md`](../../../docs/architecture/spells-and-mage-guild.md)
+
+Inputs:
+- `09-tactical-combat.md` Tasks 6–7
+- `01-spells-artifacts.md` Task 2
+
+Outputs:
+- Update `morale-luck.ts` (`09-tactical-combat.md` Task 6): undead units return "neutral" always
+- Update `spell-targets.ts`: mind spells cannot target units with `undead` ability
+- `SPELL_CAST` validation rejects mind spells on undead targets with clear error message
+
+Owned Paths:
+- `morale-luck.ts`
+- `09-tactical-combat.md`
+- `spell-targets.ts`
+
+Dependencies:
+- mvp.09-tactical-combat.06-morale-and-luck-rolls
+
+Acceptance Criteria:
+- Blind cast on Skeletons returns `ValidationError: "Undead units are immune to mind spells"`
+- Undead units in a mixed army do not reduce morale of other units
+- Undead units themselves always have 0 morale (no lucky strikes, no fumbles)
+
+Verify:
+- npm run validate
+- npm test
+
+Estimated Time:
+- 2 hours

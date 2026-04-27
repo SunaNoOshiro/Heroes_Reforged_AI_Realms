@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/effect.schema.json",
+  "title": "Effect",
+  "description": "Closed, discriminated effect kinds consumed by spells, abilities, and artifacts. Runtime effect handlers are resolved via the `kind` discriminator. Adding a new effect kind requires a new subschema and a new handler registration — never a free-form string. Conditions use the closed condition AST, not free-form DSL strings.",
+  "type": "object",
+  "required": ["kind"],
+  "oneOf": [
+    { "$ref": "#/$defs/damage" },
+    { "$ref": "#/$defs/heal" },
+    { "$ref": "#/$defs/status" },
+    { "$ref": "#/$defs/modifyStat" },
+    { "$ref": "#/$defs/modifyPrimaryStat" },
+    { "$ref": "#/$defs/summon" },
+    { "$ref": "#/$defs/dispel" },
+    { "$ref": "#/$defs/resourceBonus" },
+    { "$ref": "#/$defs/grantSpell" },
+    { "$ref": "#/$defs/grantAbility" },
+    { "$ref": "#/$defs/unlockUnit" },
+    { "$ref": "#/$defs/unlockBuilding" }
+  ],
+  "$defs": {
+    "damage": {
+      "type": "object",
+      "required": ["kind", "amount"],
+      "properties": {
+        "kind":       { "const": "damage" },
+        "damageType": { "type": "string", "enum": ["physical", "fire", "cold", "lightning", "earth", "air", "holy", "shadow", "pure"] },
+        "amount":     { "$ref": "heroes-reforged/formula.schema.json" },
+        "target":     { "$ref": "heroes-reforged/target-scope.schema.json" },
+        "condition":  { "$ref": "heroes-reforged/condition.schema.json" }
+      },
+      "additionalProperties": false
+    },
+    "heal": {
+      "type": "object",
+      "required": ["kind", "amount"],
+      "properties": {
+        "kind":      { "const": "heal" },
+        "amount":    { "$ref": "heroes-reforged/formula.schema.json" },
+        "target":    { "$ref": "heroes-reforged/target-scope.schema.json" },
+        "condition": { "$ref": "heroes-reforged/condition.schema.json" }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "required": ["kind", "status"],
+      "properties": {
+        "kind":      { "const": "status" },
+        "status":    { "$ref": "heroes-reforged/status-id.schema.json" },
+        "duration":  { "type": "integer", "minimum": 0 },
+        "target":    { "$ref": "heroes-reforged/target-scope.schema.json" },
+        "condition": { "$ref": "heroes-reforged/condition.schema.json" }
+      },
+      "additionalProperties": false
+    },
+    "modifyStat": {
+      "type": "object",
+      "required": ["kind", "stat", "value"],
+      "properties": {
+        "kind":      { "const": "modify_stat" },
+        "stat":      { "$ref": "heroes-reforged/stat-id.schema.json" },
+        "value":     { "type": "integer" },
+        "target":    { "$ref": "heroes-reforged/target-scope.schema.json" },
+        "duration":  { "type": "integer", "minimum": 0 },
+        "condition": { "$ref": "heroes-reforged/condition.schema.json" }
+      },
+      "additionalProperties": false
+    },
+    "modifyPrimaryStat": {
+      "type": "object",
+      "required": ["kind", "stat", "value"],
+      "properties": {
+        "kind":  { "const": "modify_primary_stat" },
+        "stat":  { "type": "string", "enum": ["attack", "defense", "power", "knowledge"] },
+        "value": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "summon": {
+      "type": "object",
+      "required": ["kind", "unitId", "count"],
+      "properties": {
+        "kind":   { "const": "summon" },
+        "unitId": { "type": "string", "minLength": 1 },
+        "count":  { "$ref": "heroes-reforged/formula.schema.json" }
+      },
+      "additionalProperties": false
+    },
+    "dispel": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind":   { "const": "dispel" },
+        "scope":  { "type": "string", "enum": ["positive", "negative", "all"] },
+        "target": { "$ref": "heroes-reforged/target-scope.schema.json" }
+      },
+      "additionalProperties": false
+    },
+    "resourceBonus": {
+      "type": "object",
+      "required": ["kind", "resource", "amount"],
+      "properties": {
+        "kind":     { "const": "resource_bonus" },
+        "resource": { "$ref": "heroes-reforged/resource-id.schema.json" },
+        "amount":   { "type": "integer" },
+        "cadence":  { "type": "string", "enum": ["once", "daily", "weekly"] }
+      },
+      "additionalProperties": false
+    },
+    "grantSpell": {
+      "type": "object",
+      "required": ["kind", "spellId"],
+      "properties": {
+        "kind":    { "const": "grant_spell" },
+        "spellId": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "grantAbility": {
+      "type": "object",
+      "required": ["kind", "abilityId"],
+      "properties": {
+        "kind":      { "const": "grant_ability" },
+        "abilityId": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "unlockUnit": {
+      "type": "object",
+      "required": ["kind", "unitId"],
+      "properties": {
+        "kind":   { "const": "unlock_unit" },
+        "unitId": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "unlockBuilding": {
+      "type": "object",
+      "required": ["kind", "buildingId"],
+      "properties": {
+        "kind":       { "const": "unlock_building" },
+        "buildingId": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

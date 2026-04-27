@@ -1,0 +1,27 @@
+{
+  "$schema": "heroes-reforged/hero-class.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:hero_class:cinder_knight",
+  "name": "Cinder Knight",
+  "factionId": "emberwild:faction:emberwild",
+  "primaryStatGrowth": {
+    "earlyLevels": {
+      "attack": 45,
+      "defense": 35,
+      "power": 10,
+      "knowledge": 10
+    },
+    "lateLevels": {
+      "attack": 30,
+      "defense": 30,
+      "power": 20,
+      "knowledge": 20
+    }
+  },
+  "skillPool": [
+    { "skillId": "shared:skill:pathfinding_basic", "weight": 10 }
+  ],
+  "presentation": {
+    "iconId": "hero_class:cinder_knight:icon"
+  }
+}

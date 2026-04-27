@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/formula.schema.json",
+  "title": "Formula (fixed-point AST)",
+  "description": "Structured formula AST. Evaluated by src/rules/ with fixed-point integer math. No floats, no eval(), no free-form strings. Every numeric literal is an integer; fractional ratios are expressed via the `ratio` op (numerator/denominator).",
+  "oneOf": [
+    { "$ref": "#/$defs/literal" },
+    { "$ref": "#/$defs/lookup" },
+    { "$ref": "#/$defs/op" }
+  ],
+  "$defs": {
+    "literal": {
+      "type": "object",
+      "required": ["op", "value"],
+      "properties": {
+        "op":    { "const": "const" },
+        "value": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "lookup": {
+      "type": "object",
+      "required": ["op", "path"],
+      "description": "Read a named variable from the evaluation scope (e.g. 'attacker.attack', 'defender.defense', 'ruleset.atkBonusNum').",
+      "properties": {
+        "op":   { "const": "var" },
+        "path": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_.]*$" }
+      },
+      "additionalProperties": false
+    },
+    "op": {
+      "type": "object",
+      "required": ["op", "args"],
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": [
+            "add",
+            "sub",
+            "mul",
+            "divFloor",
+            "ratio",
+            "min",
+            "max",
+            "clamp",
+            "neg",
+            "abs"
+          ]
+        },
+        "args": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "heroes-reforged/formula.schema.json" }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

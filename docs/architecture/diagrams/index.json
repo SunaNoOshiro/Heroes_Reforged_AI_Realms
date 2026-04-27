@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "description": "Index of all architecture diagrams. Each entry references a markdown file with frontmatter and a mermaid code block. AI agents and tools can read each .md file directly.",
+  "categories": [
+    {
+      "id": "lifecycle",
+      "title": "Game Lifecycle",
+      "icon": "🎯",
+      "diagrams": ["01-game-startup", "02-new-game-flow", "03-race-castle", "04-map-loading"]
+    },
+    {
+      "id": "town",
+      "title": "Town & Castle",
+      "icon": "🏰",
+      "diagrams": ["05-castle-render", "06-town-animations", "07-day-night", "08-building-click"]
+    },
+    {
+      "id": "battle",
+      "title": "Battle System",
+      "icon": "⚔️",
+      "diagrams": ["09-battle-init", "10-turn-order", "11-attack-anim", "12-spell-anim", "13-death-victory"]
+    },
+    {
+      "id": "asset-loading",
+      "title": "Asset Loading",
+      "icon": "🎨",
+      "diagrams": ["14-enter-map", "15-enter-town", "16-enter-battle", "17-cache-strategy"]
+    },
+    {
+      "id": "localization",
+      "title": "Localization",
+      "icon": "🌍",
+      "diagrams": ["18-string-resolution", "19-locale-variants", "20-number-format"]
+    },
+    {
+      "id": "animation",
+      "title": "Animation",
+      "icon": "🎬",
+      "diagrams": ["21-creature-states", "22-building-loop", "23-hero-movement"]
+    },
+    {
+      "id": "save-load",
+      "title": "Save & Load",
+      "icon": "💾",
+      "diagrams": ["24-save-flow", "25-load-flow"]
+    },
+    {
+      "id": "multiplayer",
+      "title": "Multiplayer",
+      "icon": "🌐",
+      "diagrams": ["26-multiplayer-sync"]
+    }
+  ]
+}

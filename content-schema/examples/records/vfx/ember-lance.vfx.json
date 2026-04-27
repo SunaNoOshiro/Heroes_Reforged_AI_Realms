@@ -1,0 +1,18 @@
+{
+  "$schema": "heroes-reforged/vfx.schema.json",
+  "schemaVersion": 1,
+  "id": "spell:ember_lance:vfx",
+  "phases": {
+    "cast": {
+      "particleSystemIds": ["vfx:ember_lance:cast_runes"]
+    },
+    "projectile": {
+      "particleSystemIds": ["vfx:ember_lance:bolt"]
+    },
+    "impact": {
+      "particleSystemIds": ["vfx:ember_lance:burst"],
+      "screenShake": { "strength": 0.3, "durationMs": 180 },
+      "lightFlash": { "color": "#ff8a33", "durationMs": 120 }
+    }
+  }
+}

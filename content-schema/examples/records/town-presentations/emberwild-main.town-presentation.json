@@ -1,0 +1,29 @@
+{
+  "$schema": "heroes-reforged/town-presentation.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:town_presentation:main",
+  "factionId": "emberwild:faction:emberwild",
+  "backgroundLayers": [
+    "town:emberwild:bg_far",
+    "town:emberwild:bg_mid",
+    "town:emberwild:bg_front"
+  ],
+  "buildingSlots": [
+    {
+      "buildingId": "emberwild:building:kennels",
+      "overlayId": "town:emberwild:kennels_overlay",
+      "position": { "x": 422, "y": 278 }
+    }
+  ],
+  "stateVariants": {
+    "day": "town:emberwild:day",
+    "night": "town:emberwild:night",
+    "sieged": "town:emberwild:sieged"
+  },
+  "uiThemeId": "ui:emberwild:theme",
+  "presentation": {
+    "ambientAnimationSetId": "town:emberwild:ambient",
+    "constructionAnimationSetId": "town:emberwild:construction",
+    "soundSetId": "town:emberwild:sounds"
+  }
+}

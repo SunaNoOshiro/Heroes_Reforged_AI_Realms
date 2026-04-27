@@ -1,0 +1,28 @@
+{
+  "$schema": "heroes-reforged/hero.schema.json",
+  "schemaVersion": 1,
+  "id": "minimal:hero:slate_captain",
+  "name": "Slate Captain",
+  "factionId": "minimal:faction:slate",
+  "heroClassId": "minimal:hero_class:warden",
+  "primaryStats": {
+    "attack": 2,
+    "defense": 2,
+    "power": 1,
+    "knowledge": 1
+  },
+  "startingArmy": [
+    { "unitId": "minimal:unit:slate_footman", "count": 5 }
+  ],
+  "specialty": {
+    "kind": "unit_bonus",
+    "targetUnitId": "minimal:unit:slate_footman",
+    "bonus": {
+      "stat": "attack",
+      "value": 1
+    }
+  },
+  "presentation": {
+    "portraitId": "hero:slate_captain:portrait"
+  }
+}

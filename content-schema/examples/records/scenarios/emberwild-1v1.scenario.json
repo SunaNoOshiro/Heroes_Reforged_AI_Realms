@@ -1,0 +1,55 @@
+{
+  "$schema": "heroes-reforged/scenario.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:scenario:emberwild_1v1",
+  "name": "Emberwild — 1v1 Duel",
+  "description": "Two rival Cinder Knights race to capture the opposing town while guarding their crystal mines.",
+  "worldId": "emberwild:world:emberwild",
+  "rulesetId": "shared:ruleset:baseline",
+  "players": [
+    {
+      "slot": 0,
+      "factionId": "emberwild:faction:emberwild",
+      "kind": "either",
+      "startingResources": {
+        "gold": 20000,
+        "wood": 15,
+        "ore": 10
+      },
+      "startingHeroIds": ["emberwild:hero:kaelis"]
+    },
+    {
+      "slot": 1,
+      "factionId": "emberwild:faction:emberwild",
+      "kind": "either",
+      "startingResources": {
+        "gold": 20000,
+        "wood": 15,
+        "ore": 10
+      },
+      "startingHeroIds": ["emberwild:hero:kaelis"]
+    }
+  ],
+  "objectives": {
+    "victory": [
+      { "kind": "defeat_all_enemies" }
+    ],
+    "defeat": [
+      { "kind": "lose_all_towns" },
+      { "kind": "lose_all_heroes" },
+      { "kind": "day_limit_reached", "days": 100 }
+    ]
+  },
+  "pinnedDependencies": [
+    {
+      "packId": "emberwild-faction",
+      "version": "0.1.0",
+      "contentHash": "0000000000000000"
+    },
+    {
+      "packId": "emberwild-world",
+      "version": "0.1.0",
+      "contentHash": "0000000000000000"
+    }
+  ]
+}

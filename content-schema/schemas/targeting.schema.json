@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/targeting.schema.json",
+  "title": "Targeting",
+  "description": "Closed targeting shapes for spells and abilities. Discriminated on `kind` so the combat solver can dispatch without a string grammar. MVP engine supports `self`, `single_unit`, and `hex`. The remaining kinds (`unit_or_hex`, `area`, `line`, `all`) are RESERVED — the subschemas are published so AI-generated content can round-trip, but the runtime dispatcher rejects them until phase-2 lands. Authors should avoid the reserved kinds for MVP content.",
+  "type": "object",
+  "required": ["kind"],
+  "oneOf": [
+    {
+      "type": "object",
+      "description": "MVP kind: cast on self.",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "const": "self" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "description": "MVP kind: target one unit (ally/enemy/any) within `maxRange` hexes.",
+      "required": ["kind"],
+      "properties": {
+        "kind":        { "const": "single_unit" },
+        "allegiance":  { "type": "string", "enum": ["ally", "enemy", "any"] },
+        "maxRange":    { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "description": "MVP kind: target a single hex within `maxRange`.",
+      "required": ["kind"],
+      "properties": {
+        "kind":     { "const": "hex" },
+        "maxRange": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "description": "RESERVED (phase-2). Unit or hex with a single pointer. Engine dispatcher rejects this kind in MVP.",
+      "required": ["kind"],
+      "properties": {
+        "kind":     { "const": "unit_or_hex" },
+        "maxRange": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "description": "RESERVED (phase-2). Area-of-effect with radius. Engine dispatcher rejects this kind in MVP.",
+      "required": ["kind", "radius"],
+      "properties": {
+        "kind":     { "const": "area" },
+        "radius":   { "type": "integer", "minimum": 0 },
+        "maxRange": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "description": "RESERVED (phase-2). Straight-line projectile. Engine dispatcher rejects this kind in MVP.",
+      "required": ["kind", "length"],
+      "properties": {
+        "kind":   { "const": "line" },
+        "length": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "description": "RESERVED (phase-2). All allies, enemies, or any. Engine dispatcher rejects this kind in MVP.",
+      "required": ["kind"],
+      "properties": {
+        "kind":       { "const": "all" },
+        "allegiance": { "type": "string", "enum": ["ally", "enemy", "any"] }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

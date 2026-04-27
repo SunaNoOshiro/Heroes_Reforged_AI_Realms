@@ -1,0 +1,53 @@
+name: Validate Repo Contracts
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    env:
+      NPM_CONFIG_AUDIT: false
+      NPM_CONFIG_FUND: false
+      NPM_CONFIG_PREFER_OFFLINE: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install
+        run: npm ci --prefer-offline --no-audit --no-fund
+
+      - name: Validate
+        run: npm run validate
+
+      - name: Fail on stale task-registry.json
+        # `npm run validate` regenerates tasks/task-registry.json. If
+        # the tracked copy drifts from the regenerated one, the PR
+        # must regenerate and commit before merge. Keeps the file
+        # browsable on GitHub (audit I11 fix, 2026-04-22).
+        run: git diff --exit-code tasks/task-registry.json
+
+      - name: Test
+        run: npm test

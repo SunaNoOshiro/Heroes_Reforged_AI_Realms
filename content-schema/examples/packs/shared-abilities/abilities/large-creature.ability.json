@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/ability.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:ability:large_creature",
+  "name": "Large Creature",
+  "description": "Occupies two adjacent hexes on the battlefield. Passive marker used by the renderer and pathfinder; has no combat-math effect on the unit itself.",
+  "tags": ["combat", "passive", "marker"],
+  "effects": [
+    {
+      "kind": "modify_stat",
+      "target": "self",
+      "stat": "defense",
+      "value": 0
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>27. Thieves Guild - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="27-thieves-guild" data-archetype="curated-thieves-guild" data-curation="curated-pass-2">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Thieves Guild mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="764" height="526" fill="#1b120c"/>
+  <rect x="28" y="28" width="744" height="306" fill="#6c8eb0" stroke="#d9b85a"/>
+  <path d="M28 196 C148 108 238 142 362 82 C508 12 626 126 772 58 L772 334 L28 334 Z" fill="#607444"/>
+  <path d="M28 292 C174 226 312 278 452 220 C590 168 670 210 772 176 L772 334 L28 334 Z" fill="#49311d"/>
+  <rect x="28" y="334" width="744" height="216" fill="url(#redwood)" stroke="#d9b85a"/><rect x="96" y="58" width="608" height="444" class="panel modal" filter="url(#shadow)"/>
+  <rect x="112" y="74" width="576" height="34" fill="url(#redwood)" stroke="#e4c064"/>
+  <text x="400" y="97" text-anchor="middle" class="label">Thieves Guild</text>
+  <text x="400" y="124" text-anchor="middle" class="tiny">Intelligence shown by guild access</text>
+      <rect x="126" y="136" width="548" height="292" class="status"/>
+      <rect x="142" y="156" width="78" height="28" class="redPanel"/><text x="181" y="174" text-anchor="middle" class="tiny">Player</text><rect x="228" y="156" width="78" height="28" class="redPanel"/><text x="267" y="174" text-anchor="middle" class="tiny">Towns</text><rect x="314" y="156" width="78" height="28" class="redPanel"/><text x="353" y="174" text-anchor="middle" class="tiny">Heroes</text><rect x="400" y="156" width="78" height="28" class="redPanel"/><text x="439" y="174" text-anchor="middle" class="tiny">Gold</text><rect x="486" y="156" width="78" height="28" class="redPanel"/><text x="525" y="174" text-anchor="middle" class="tiny">Army</text><rect x="572" y="156" width="78" height="28" class="redPanel"/><text x="611" y="174" text-anchor="middle" class="tiny">Arts</text>
+      <rect x="142" y="196" width="78" height="28" class="slotHot"/><text x="181" y="214" text-anchor="middle" class="tiny">Red</text><rect x="228" y="196" width="78" height="28" class="slotHot"/><text x="267" y="214" text-anchor="middle" class="tiny">3</text><rect x="314" y="196" width="78" height="28" class="slotHot"/><text x="353" y="214" text-anchor="middle" class="tiny">4</text><rect x="400" y="196" width="78" height="28" class="slotHot"/><text x="439" y="214" text-anchor="middle" class="tiny">5</text><rect x="486" y="196" width="78" height="28" class="slotHot"/><text x="525" y="214" text-anchor="middle" class="tiny">6</text><rect x="572" y="196" width="78" height="28" class="slotHot"/><text x="611" y="214" text-anchor="middle" class="tiny">7</text><rect x="142" y="234" width="78" height="28" class="slot"/><text x="181" y="252" text-anchor="middle" class="tiny">Blue</text><rect x="228" y="234" width="78" height="28" class="slot"/><text x="267" y="252" text-anchor="middle" class="tiny">6</text><rect x="314" y="234" width="78" height="28" class="slot"/><text x="353" y="252" text-anchor="middle" class="tiny">8</text><rect x="400" y="234" width="78" height="28" class="slot"/><text x="439" y="252" text-anchor="middle" class="tiny">10</text><rect x="486" y="234" width="78" height="28" class="slot"/><text x="525" y="252" text-anchor="middle" class="tiny">12</text><rect x="572" y="234" width="78" height="28" class="slot"/><text x="611" y="252" text-anchor="middle" class="tiny">14</text><rect x="142" y="272" width="78" height="28" class="slot"/><text x="181" y="290" text-anchor="middle" class="tiny">Tan</text><rect x="228" y="272" width="78" height="28" class="slot"/><text x="267" y="290" text-anchor="middle" class="tiny">9</text><rect x="314" y="272" width="78" height="28" class="slot"/><text x="353" y="290" text-anchor="middle" class="tiny">12</text><rect x="400" y="272" width="78" height="28" class="slot"/><text x="439" y="290" text-anchor="middle" class="tiny">15</text><rect x="486" y="272" width="78" height="28" class="slot"/><text x="525" y="290" text-anchor="middle" class="tiny">18</text><rect x="572" y="272" width="78" height="28" class="slot"/><text x="611" y="290" text-anchor="middle" class="tiny">21</text><rect x="142" y="310" width="78" height="28" class="slot"/><text x="181" y="328" text-anchor="middle" class="tiny">Green</text><rect x="228" y="310" width="78" height="28" class="slot"/><text x="267" y="328" text-anchor="middle" class="tiny">12</text><rect x="314" y="310" width="78" height="28" class="slot"/><text x="353" y="328" text-anchor="middle" class="tiny">16</text><rect x="400" y="310" width="78" height="28" class="slot"/><text x="439" y="328" text-anchor="middle" class="tiny">20</text><rect x="486" y="310" width="78" height="28" class="slot"/><text x="525" y="328" text-anchor="middle" class="tiny">?</text><rect x="572" y="310" width="78" height="28" class="slot"/><text x="611" y="328" text-anchor="middle" class="tiny">?</text><rect x="142" y="348" width="78" height="28" class="slot"/><text x="181" y="366" text-anchor="middle" class="tiny">Orange</text><rect x="228" y="348" width="78" height="28" class="slot"/><text x="267" y="366" text-anchor="middle" class="tiny">15</text><rect x="314" y="348" width="78" height="28" class="slot"/><text x="353" y="366" text-anchor="middle" class="tiny">20</text><rect x="400" y="348" width="78" height="28" class="slot"/><text x="439" y="366" text-anchor="middle" class="tiny">25</text><rect x="486" y="348" width="78" height="28" class="slot"/><text x="525" y="366" text-anchor="middle" class="tiny">?</text><rect x="572" y="348" width="78" height="28" class="slot"/><text x="611" y="366" text-anchor="middle" class="tiny">?</text>
+      <rect x="146" y="448" width="378" height="28" class="status"/><text x="160" y="466" class="tiny">Covered cells stay hidden until intelligence rules allow them.</text>
+      <g class="button" data-action="thieves.close">
+    <rect class="outer" x="544" y="446" width="86" height="30" rx="2"/>
+    <rect class="inner" x="548" y="450" width="78" height="22" rx="1"/>
+    <text x="587" y="466" text-anchor="middle">CLOSE</text>
+  </g>
+</svg>
+</body>
+</html>

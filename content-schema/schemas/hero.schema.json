@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/hero.schema.json",
+  "title": "Hero",
+  "description": "A hero record. Specialty bonuses use the shared stat-id and resource-id enums so hero stats and effect stats draw from one vocabulary.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "factionId",
+    "heroClassId",
+    "startingArmy",
+    "presentation"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "name":          { "type": "string", "minLength": 1 },
+    "factionId":     { "type": "string", "minLength": 1 },
+    "heroClassId":   { "type": "string", "minLength": 1 },
+    "primaryStats": {
+      "type": "object",
+      "properties": {
+        "attack":    { "type": "integer", "minimum": 0, "maximum": 99 },
+        "defense":   { "type": "integer", "minimum": 0, "maximum": 99 },
+        "power":     { "type": "integer", "minimum": 0, "maximum": 99 },
+        "knowledge": { "type": "integer", "minimum": 0, "maximum": 99 }
+      },
+      "additionalProperties": false
+    },
+    "startingArmy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["unitId", "count"],
+        "properties": {
+          "unitId": { "type": "string", "minLength": 1 },
+          "count":  { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "startingSkillIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "specialty": {
+      "description": "Discriminated union keyed by `kind`. Each kind pins exactly the fields it needs so AI generation and the runtime cannot drift.",
+      "oneOf": [
+        {
+          "title": "UnitBonusSpecialty",
+          "type": "object",
+          "required": ["kind", "targetUnitId", "bonus"],
+          "properties": {
+            "kind":         { "const": "unit_bonus" },
+            "targetUnitId": { "type": "string", "minLength": 1 },
+            "bonus": {
+              "type": "object",
+              "required": ["stat", "value"],
+              "properties": {
+                "stat":  { "$ref": "heroes-reforged/stat-id.schema.json" },
+                "value": { "type": "integer" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "title": "CreatureSpecialtySpecialty",
+          "description": "Per-hero-level scaling bonus granted to a specific unit (the heroic 'specialty' pattern).",
+          "type": "object",
+          "required": ["kind", "targetUnitId", "bonus"],
+          "properties": {
+            "kind":         { "const": "creature_specialty" },
+            "targetUnitId": { "type": "string", "minLength": 1 },
+            "bonus": {
+              "type": "object",
+              "required": ["stat", "perHeroLevelNum", "perHeroLevelDen"],
+              "properties": {
+                "stat":            { "$ref": "heroes-reforged/stat-id.schema.json" },
+                "perHeroLevelNum": { "type": "integer" },
+                "perHeroLevelDen": { "type": "integer", "minimum": 1 },
+                "maxBonus":        { "type": "integer", "minimum": 0 }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "title": "SpellBonusSpecialty",
+          "type": "object",
+          "required": ["kind", "targetSpellId", "bonus"],
+          "properties": {
+            "kind":          { "const": "spell_bonus" },
+            "targetSpellId": { "type": "string", "minLength": 1 },
+            "bonus": {
+              "type": "object",
+              "required": ["kind", "value"],
+              "properties": {
+                "kind":  { "type": "string", "enum": ["damage", "duration", "range"] },
+                "value": { "type": "integer" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "title": "SkillBonusSpecialty",
+          "type": "object",
+          "required": ["kind", "targetSkillId", "bonus"],
+          "properties": {
+            "kind":          { "const": "skill_bonus" },
+            "targetSkillId": { "type": "string", "minLength": 1 },
+            "bonus": {
+              "type": "object",
+              "required": ["levelOffset"],
+              "properties": {
+                "levelOffset": { "type": "integer", "minimum": 1, "maximum": 3 }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "title": "ResourceBonusSpecialty",
+          "type": "object",
+          "required": ["kind", "targetResource", "bonus"],
+          "properties": {
+            "kind":           { "const": "resource_bonus" },
+            "targetResource": { "$ref": "heroes-reforged/resource-id.schema.json" },
+            "bonus": {
+              "type": "object",
+              "required": ["perDay"],
+              "properties": {
+                "perDay": { "type": "integer" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "presentation": {
+      "type": "object",
+      "required": ["portraitId"],
+      "properties": {
+        "portraitId":           { "type": "string" },
+        "paperDollId":          { "type": "string" },
+        "adventureMapSpriteId": { "type": "string" },
+        "mapSpriteId":          { "type": "string" },
+        "mountSpriteId":        { "type": "string" },
+        "animationSetId":       { "type": "string" },
+        "soundSetId":           { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

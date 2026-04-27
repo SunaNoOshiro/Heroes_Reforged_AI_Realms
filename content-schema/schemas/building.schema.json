@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/building.schema.json",
+  "title": "Building",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "factionId",
+    "requires",
+    "cost",
+    "effects"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "name":          { "type": "string", "minLength": 1 },
+    "factionId":     { "type": "string", "minLength": 1 },
+    "requires": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "cost": {
+      "type": "object",
+      "propertyNames": { "$ref": "heroes-reforged/resource-id.schema.json" },
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "effects": {
+      "type": "array",
+      "items": { "$ref": "heroes-reforged/effect.schema.json" }
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "iconId":              { "type": "string" },
+        "townOverlayId":       { "type": "string" },
+        "buildAnimationSetId": { "type": "string" },
+        "soundSetId":          { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

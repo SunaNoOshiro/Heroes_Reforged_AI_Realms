@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/ability.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:ability:hardy",
+  "name": "Hardy",
+  "description": "Reduces incoming damage by a flat amount.",
+  "tags": ["combat", "passive", "defense"],
+  "effects": [
+    {
+      "kind": "modify_stat",
+      "target": "self",
+      "stat": "defense",
+      "value": 1
+    }
+  ]
+}

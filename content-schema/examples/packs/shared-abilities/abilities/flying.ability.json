@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/ability.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:ability:flying",
+  "name": "Flying",
+  "description": "Ignores adventure-map and battlefield ground obstacles when moving.",
+  "tags": ["combat", "adventure", "passive", "movement"],
+  "effects": [
+    {
+      "kind": "modify_stat",
+      "target": "self",
+      "stat": "speed",
+      "value": 2
+    }
+  ]
+}

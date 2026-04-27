@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/map-object.schema.json",
+  "title": "MapObject",
+  "description": "A pickupable / interactable placed map element (treasure chest, shrine, event). Rewards reuse the closed effect registry so every reward shape is already typed.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "category",
+    "interactionModel",
+    "presentation"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "category": {
+      "type": "string",
+      "enum": ["reward", "hazard", "shrine", "event", "quest", "utility"]
+    },
+    "interactionModel": {
+      "type": "string",
+      "enum": [
+        "consume_on_visit",
+        "persistent",
+        "once_per_hero",
+        "once_per_turn"
+      ]
+    },
+    "rewards": {
+      "type": "array",
+      "items": { "$ref": "heroes-reforged/effect.schema.json" }
+    },
+    "cooldown": {
+      "type": "object",
+      "required": ["kind"],
+      "oneOf": [
+        {
+          "properties": {
+            "kind": { "const": "none" }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "turns" },
+            "turns": { "type": "integer", "minimum": 1 }
+          },
+          "required": ["kind", "turns"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind": { "const": "weekly" }
+          },
+          "required": ["kind"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "placementRules": {
+      "type": "object",
+      "properties": {
+        "allowedTerrainIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "allowedBiomeIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "minDistanceFromStart": { "type": "integer", "minimum": 0 },
+        "minDistanceBetween": { "type": "integer", "minimum": 0 },
+        "maxPerMap": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "presentation": {
+      "type": "object",
+      "required": ["mapSpriteId"],
+      "properties": {
+        "mapSpriteId": { "type": "string", "minLength": 1 },
+        "animationSetId": { "type": "string" },
+        "vfxSetId": { "type": "string" },
+        "soundSetId": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

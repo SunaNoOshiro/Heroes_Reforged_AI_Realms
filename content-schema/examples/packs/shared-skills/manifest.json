@@ -1,0 +1,26 @@
+{
+  "$schema": "heroes-reforged/manifest.schema.json",
+  "schemaVersion": 1,
+  "id": "shared_skills",
+  "type": "library-pack",
+  "name": "Shared Hero Skills",
+  "version": "0.1.0",
+  "author": "Heroes Reforged",
+  "engine": ">=0.1.0",
+  "engineHash": "deadbeefcafef00d",
+  "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "dependencies": [],
+  "capabilities": [
+    "formulas.ast",
+    "scripts.none"
+  ],
+  "sandboxed": false,
+  "provides": {
+    "skills": [
+      "shared:skill:pathfinding_basic",
+      "shared:skill:leadership_basic",
+      "shared:skill:defense_basic",
+      "shared:skill:wisdom_basic"
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "heroes-reforged/generated-faction.schema.json",
+  "schemaVersion": 1,
+  "faction": {
+    "id": "emberwild:faction:emberwild",
+    "name": "Emberwild",
+    "alignment": "neutral",
+    "theme": "nomadic fire-warden",
+    "loreBrief": "Ash-drift clans who tame beasts on volcanic plains."
+  },
+  "units": [
+    {
+      "schemaVersion": 1,
+      "id": "emberwild:unit:ash_hound",
+      "name": "Ash Hound",
+      "factionId": "emberwild:faction:emberwild",
+      "tier": 2,
+      "traits": ["living", "beast"],
+      "stats": {
+        "hp": 18,
+        "attack": 6,
+        "defense": 4,
+        "speed": 8,
+        "shots": 0,
+        "damageMin": 2,
+        "damageMax": 5
+      },
+      "cost": { "gold": 120, "sulfur": 1 },
+      "growth": { "baseWeekly": 8, "dwellingBuildingId": "emberwild:building:kennels" },
+      "abilityIds": ["emberwild:ability:pack_hunt"],
+      "presentation": {
+        "spriteAtlasId": "unit:ash_hound:sprite",
+        "portraitId": "unit:ash_hound:portrait"
+      }
+    }
+  ],
+  "heroes": [
+    {
+      "schemaVersion": 1,
+      "id": "emberwild:hero:kaelis",
+      "name": "Kaelis",
+      "factionId": "emberwild:faction:emberwild",
+      "heroClassId": "emberwild:hero_class:cinder_knight",
+      "primaryStats": { "attack": 2, "defense": 1, "power": 0, "knowledge": 1 },
+      "startingArmy": [{ "unitId": "emberwild:unit:ash_hound", "count": 6 }],
+      "specialty": {
+        "kind": "unit_bonus",
+        "targetUnitId": "emberwild:unit:ash_hound",
+        "bonus": { "stat": "speed", "value": 1 }
+      },
+      "presentation": { "portraitId": "hero:kaelis:portrait" }
+    }
+  ],
+  "buildings": [],
+  "abilities": [
+    {
+      "schemaVersion": 1,
+      "id": "emberwild:ability:pack_hunt",
+      "name": "Pack Hunt",
+      "description": "Gain a small attack bonus when adjacent to an ally.",
+      "tags": ["combat", "passive"],
+      "effects": [
+        {
+          "kind": "modify_stat",
+          "target": "self",
+          "stat": "attack",
+          "value": 1,
+          "condition": { "kind": "adjacent_allies", "op": "gte", "value": 1 }
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "providerId": "example-provider",
+    "modelHint": "any-structured-json",
+    "warnings": []
+  }
+}

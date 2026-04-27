@@ -1,0 +1,85 @@
+{
+  "$schema": "heroes-reforged/ruleset.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:ruleset:baseline",
+  "version": "0.1.0",
+  "constants": {
+    "atkBonusPerPointNum": 1,
+    "atkBonusPerPointDen": 20,
+    "defReductionPerPointNum": 1,
+    "defReductionPerPointDen": 20,
+    "atkBonusCap": 60,
+    "defReductionCap": 60,
+    "fixedPointBasis": 1000,
+    "moraleExtraTurnProbNum": 1,
+    "moraleExtraTurnProbDen": 24,
+    "moralePenaltyMissProbNum": 1,
+    "moralePenaltyMissProbDen": 24,
+    "moraleMax": 3,
+    "luckDoubleProbNum": 1,
+    "luckDoubleProbDen": 24,
+    "luckMax": 3,
+    "autoResolveAttackerAdvantageNum": 105,
+    "autoResolveAttackerAdvantageDen": 100,
+    "defendDamageReductionPermille": 250,
+    "heroExperiencePerLevel": 500
+  },
+  "formulas": {
+    "attackBonus": {
+      "op": "mul",
+      "args": [
+        {
+          "op": "clamp",
+          "args": [
+            {
+              "op": "sub",
+              "args": [
+                { "op": "var", "path": "attacker.attack" },
+                { "op": "var", "path": "defender.defense" }
+              ]
+            },
+            { "op": "const", "value": 0 },
+            { "op": "var", "path": "ruleset.atkBonusCap" }
+          ]
+        },
+        {
+          "op": "ratio",
+          "args": [
+            { "op": "var", "path": "ruleset.atkBonusPerPointNum" },
+            { "op": "var", "path": "ruleset.atkBonusPerPointDen" }
+          ]
+        }
+      ]
+    },
+    "defenseMitigation": {
+      "op": "mul",
+      "args": [
+        {
+          "op": "clamp",
+          "args": [
+            {
+              "op": "sub",
+              "args": [
+                { "op": "var", "path": "defender.defense" },
+                { "op": "var", "path": "attacker.attack" }
+              ]
+            },
+            { "op": "const", "value": 0 },
+            { "op": "var", "path": "ruleset.defReductionCap" }
+          ]
+        },
+        {
+          "op": "ratio",
+          "args": [
+            { "op": "var", "path": "ruleset.defReductionPerPointNum" },
+            { "op": "var", "path": "ruleset.defReductionPerPointDen" }
+          ]
+        }
+      ]
+    },
+    "defendDamageReduction": {
+      "op": "var",
+      "path": "ruleset.defendDamageReductionPermille"
+    }
+  }
+}

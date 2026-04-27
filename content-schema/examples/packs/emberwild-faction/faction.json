@@ -1,0 +1,24 @@
+{
+  "$schema": "heroes-reforged/faction.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:faction:emberwild",
+  "name": "Emberwild",
+  "alignment": "neutral",
+  "unitIds": [
+    "emberwild:unit:ash_hound"
+  ],
+  "heroIds": [
+    "emberwild:hero:kaelis"
+  ],
+  "buildingIds": [
+    "emberwild:building:fort",
+    "emberwild:building:kennels"
+  ],
+  "skillIds": [],
+  "presentation": {
+    "townBackgroundId": "town:emberwild:bg",
+    "townThemeMusicId": "town:emberwild:theme",
+    "uiThemeId": "ui:emberwild:theme",
+    "bannerId": "faction:emberwild:banner"
+  }
+}

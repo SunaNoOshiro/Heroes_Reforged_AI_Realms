@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/hero-class.schema.json",
+  "title": "Hero Class",
+  "description": "Hero archetype. Defines primary stat growth probabilities, allowed skill pool, and starting gear.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "factionId",
+    "primaryStatGrowth"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "name":          { "type": "string", "minLength": 1 },
+    "factionId":     { "type": "string", "minLength": 1 },
+    "primaryStatGrowth": {
+      "type": "object",
+      "required": ["earlyLevels", "lateLevels"],
+      "description": "Probability weights (integers, sum-to-100 per phase) for each primary stat to be offered on level-up.",
+      "properties": {
+        "earlyLevels": { "$ref": "#/$defs/growthWeights" },
+        "lateLevels":  { "$ref": "#/$defs/growthWeights" }
+      },
+      "additionalProperties": false
+    },
+    "skillPool": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["skillId", "weight"],
+        "properties": {
+          "skillId": { "type": "string", "minLength": 1 },
+          "weight":  { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "iconId": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "growthWeights": {
+      "type": "object",
+      "required": ["attack", "defense", "power", "knowledge"],
+      "properties": {
+        "attack":    { "type": "integer", "minimum": 0, "maximum": 100 },
+        "defense":   { "type": "integer", "minimum": 0, "maximum": 100 },
+        "power":     { "type": "integer", "minimum": 0, "maximum": 100 },
+        "knowledge": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

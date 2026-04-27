@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>65. Map Editor - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="65-map-editor" data-archetype="curated-map-editor" data-curation="curated-pass-6">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map Editor mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/><rect x="18" y="18" width="764" height="526" fill="#242821" stroke="#e0bd59"/>
+      <rect x="18" y="18" width="764" height="42" fill="url(#redwood)" stroke="#e0bd59"/><text x="400" y="46" text-anchor="middle" class="label">Map Editor</text>
+      <rect x="28" y="72" width="126" height="430" class="panel"/><text x="52" y="100" class="label">Palette</text><rect x="52" y="126" width="70" height="24" class="slotHot"/><text x="64" y="144" class="tiny">Grass</text><rect x="52" y="158" width="70" height="24" class="slot"/><text x="64" y="176" class="tiny">Dirt</text><rect x="52" y="190" width="70" height="24" class="slot"/><text x="64" y="208" class="tiny">Road</text><rect x="52" y="222" width="70" height="24" class="slot"/><text x="64" y="240" class="tiny">River</text><rect x="52" y="254" width="70" height="24" class="slot"/><text x="64" y="272" class="tiny">Town</text><rect x="52" y="286" width="70" height="24" class="slot"/><text x="64" y="304" class="tiny">Mine</text>
+      <rect x="172" y="72" width="430" height="430" fill="#516b38" stroke="#e0bd59"/><g opacity=".42"><polygon points="214,110 232,119 232,137 214,146 196,137 196,119" class="hex"/><polygon points="256,110 274,119 274,137 256,146 238,137 238,119" class="hex"/><polygon points="298,110 316,119 316,137 298,146 280,137 280,119" class="hex"/><polygon points="340,110 358,119 358,137 340,146 322,137 322,119" class="hex"/><polygon points="382,110 400,119 400,137 382,146 364,137 364,119" class="hex"/><polygon points="424,110 442,119 442,137 424,146 406,137 406,119" class="hex"/><polygon points="466,110 484,119 484,137 466,146 448,137 448,119" class="hex"/><polygon points="508,110 526,119 526,137 508,146 490,137 490,119" class="hex"/><polygon points="235,145 253,154 253,172 235,181 217,172 217,154" class="hex"/><polygon points="277,145 295,154 295,172 277,181 259,172 259,154" class="hex"/><polygon points="319,145 337,154 337,172 319,181 301,172 301,154" class="hex"/><polygon points="361,145 379,154 379,172 361,181 343,172 343,154" class="hex"/><polygon points="403,145 421,154 421,172 403,181 385,172 385,154" class="hex"/><polygon points="445,145 463,154 463,172 445,181 427,172 427,154" class="hex"/><polygon points="487,145 505,154 505,172 487,181 469,172 469,154" class="hex"/><polygon points="529,145 547,154 547,172 529,181 511,172 511,154" class="hex"/><polygon points="214,180 232,189 232,207 214,216 196,207 196,189" class="hex"/><polygon points="256,180 274,189 274,207 256,216 238,207 238,189" class="hex"/><polygon points="298,180 316,189 316,207 298,216 280,207 280,189" class="hex"/><polygon points="340,180 358,189 358,207 340,216 322,207 322,189" class="hex"/><polygon points="382,180 400,189 400,207 382,216 364,207 364,189" class="hex"/><polygon points="424,180 442,189 442,207 424,216 406,207 406,189" class="hex"/><polygon points="466,180 484,189 484,207 466,216 448,207 448,189" class="hex"/><polygon points="508,180 526,189 526,207 508,216 490,207 490,189" class="hex"/><polygon points="235,215 253,224 253,242 235,251 217,242 217,224" class="hex"/><polygon points="277,215 295,224 295,242 277,251 259,242 259,224" class="hex"/><polygon points="319,215 337,224 337,242 319,251 301,242 301,224" class="hex"/><polygon points="361,215 379,224 379,242 361,251 343,242 343,224" class="hex"/><polygon points="403,215 421,224 421,242 403,251 385,242 385,224" class="hex"/><polygon points="445,215 463,224 463,242 445,251 427,242 427,224" class="hex"/><polygon points="487,215 505,224 505,242 487,251 469,242 469,224" class="hex"/><polygon points="529,215 547,224 547,242 529,251 511,242 511,224" class="hex"/><polygon points="214,250 232,259 232,277 214,286 196,277 196,259" class="hex"/><polygon points="256,250 274,259 274,277 256,286 238,277 238,259" class="hex"/><polygon points="298,250 316,259 316,277 298,286 280,277 280,259" class="hex"/><polygon points="340,250 358,259 358,277 340,286 322,277 322,259" class="hex"/><polygon points="382,250 400,259 400,277 382,286 364,277 364,259" class="hex"/><polygon points="424,250 442,259 442,277 424,286 406,277 406,259" class="hex"/><polygon points="466,250 484,259 484,277 466,286 448,277 448,259" class="hex"/><polygon points="508,250 526,259 526,277 508,286 490,277 490,259" class="hex"/><polygon points="235,285 253,294 253,312 235,321 217,312 217,294" class="hex"/><polygon points="277,285 295,294 295,312 277,321 259,312 259,294" class="hex"/><polygon points="319,285 337,294 337,312 319,321 301,312 301,294" class="hex"/><polygon points="361,285 379,294 379,312 361,321 343,312 343,294" class="hex"/><polygon points="403,285 421,294 421,312 403,321 385,312 385,294" class="hex"/><polygon points="445,285 463,294 463,312 445,321 427,312 427,294" class="hex"/><polygon points="487,285 505,294 505,312 487,321 469,312 469,294" class="hex"/><polygon points="529,285 547,294 547,312 529,321 511,312 511,294" class="hex"/><polygon points="214,320 232,329 232,347 214,356 196,347 196,329" class="hex"/><polygon points="256,320 274,329 274,347 256,356 238,347 238,329" class="hex"/><polygon points="298,320 316,329 316,347 298,356 280,347 280,329" class="hex"/><polygon points="340,320 358,329 358,347 340,356 322,347 322,329" class="hex"/><polygon points="382,320 400,329 400,347 382,356 364,347 364,329" class="hex"/><polygon points="424,320 442,329 442,347 424,356 406,347 406,329" class="hex"/><polygon points="466,320 484,329 484,347 466,356 448,347 448,329" class="hex"/><polygon points="508,320 526,329 526,347 508,356 490,347 490,329" class="hex"/><polygon points="235,355 253,364 253,382 235,391 217,382 217,364" class="hex"/><polygon points="277,355 295,364 295,382 277,391 259,382 259,364" class="hex"/><polygon points="319,355 337,364 337,382 319,391 301,382 301,364" class="hex"/><polygon points="361,355 379,364 379,382 361,391 343,382 343,364" class="hex"/><polygon points="403,355 421,364 421,382 403,391 385,382 385,364" class="hex"/><polygon points="445,355 463,364 463,382 445,391 427,382 427,364" class="hex"/><polygon points="487,355 505,364 505,382 487,391 469,382 469,364" class="hex"/><polygon points="529,355 547,364 547,382 529,391 511,382 511,364" class="hex"/></g><circle cx="382" cy="286" r="24" fill="#8e2118" stroke="#ffe18a" class="pulse"/>
+      <rect x="620" y="72" width="142" height="430" class="status"/><text x="644" y="104" class="label">Properties</text><text x="644" y="136" class="tiny">Object: Town</text><text x="644" y="164" class="tiny">Owner: Red</text><text x="644" y="192" class="tiny">Validation: 2 issues</text>
+      <g class="button" data-action="editor.save">
+    <rect class="outer" x="632" y="444" width="74" height="28" rx="2"/>
+    <rect class="inner" x="636" y="448" width="66" height="20" rx="1"/>
+    <text x="669" y="463" text-anchor="middle">SAVE</text>
+  </g>
+</svg>
+</body>
+</html>

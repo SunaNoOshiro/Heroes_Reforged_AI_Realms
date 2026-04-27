@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/vfx.schema.json",
+  "title": "VfxSet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string" },
+    "phases": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "heroes-reforged/artifact.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:artifact:torch_of_cinders",
+  "name": "Torch of Cinders",
+  "rarity": "major",
+  "slotIds": ["weapon"],
+  "effects": [
+    { "kind": "modify_primary_stat", "stat": "power", "value": 2 },
+    { "kind": "grant_spell", "spellId": "shared:spell:ember_lance" }
+  ],
+  "presentation": {
+    "iconId": "artifact:torch_of_cinders:icon",
+    "inventoryCardArtId": "artifact:torch_of_cinders:card",
+    "paperDollLayerId": "artifact:torch_of_cinders:paperdoll",
+    "vfxSetId": "artifact:torch_of_cinders:vfx",
+    "soundSetId": "artifact:torch_of_cinders:sounds"
+  }
+}

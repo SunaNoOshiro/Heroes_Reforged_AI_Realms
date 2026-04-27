@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "description": "Data-driven semantic readiness checks that are too project-specific to belong inline in task-system scripts.",
+  "secondarySkillContract": {
+    "requiredTaskIds": [
+      "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization",
+      "phase-2.01-spells-artifacts.07b-combat-skill-appliers",
+      "phase-2.01-spells-artifacts.07c-adventure-skill-appliers",
+      "phase-2.01-spells-artifacts.07d-magic-economy-and-special-skill-appliers"
+    ],
+    "replacedTaskIds": [
+      "phase-2.01-spells-artifacts.07-hero-secondary-skills-28-skills-3-levels"
+    ]
+  }
+}

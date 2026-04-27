@@ -1,0 +1,32 @@
+{
+  "$schema": "heroes-reforged/unit.schema.json",
+  "schemaVersion": 1,
+  "id": "minimal:unit:slate_footman",
+  "name": "Slate Footman",
+  "factionId": "minimal:faction:slate",
+  "tier": 1,
+  "traits": ["living"],
+  "stats": {
+    "hp": 6,
+    "attack": 4,
+    "defense": 3,
+    "speed": 4,
+    "shots": 0,
+    "damageMin": 1,
+    "damageMax": 2
+  },
+  "cost": {
+    "gold": 60
+  },
+  "growth": {
+    "baseWeekly": 14,
+    "dwellingBuildingId": "minimal:building:slate_barracks"
+  },
+  "abilityIds": [
+    "minimal:ability:slate_rally"
+  ],
+  "presentation": {
+    "spriteAtlasId": "unit:slate_footman:sprite",
+    "portraitId": "unit:slate_footman:portrait"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/target-scope.schema.json",
+  "title": "TargetScope",
+  "description": "Closed enum of effect target scopes. Shared across `damage`, `heal`, `status`, `modify_stat`, and `dispel` effect kinds so they never drift into incompatible sub-enums. Not every scope is legal on every effect kind — the effect subschema restricts further where needed.",
+  "type": "string",
+  "enum": [
+    "self",
+    "ally",
+    "enemy",
+    "hex",
+    "line",
+    "all_allies",
+    "all_enemies",
+    "all_units"
+  ]
+}

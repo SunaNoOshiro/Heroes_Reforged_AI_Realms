@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>23. Hero Prison - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="23-hero-prison" data-archetype="curated-hero-prison" data-curation="curated-pass-3">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hero Prison mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="590" height="528" fill="#384b24" stroke="#e4c461" stroke-width="2" data-component="MapViewport"/>
+  <g opacity=".36"><path d="M18 18 L0 546" stroke="#64753b"/><path d="M64 18 L34 546" stroke="#64753b"/><path d="M110 18 L68 546" stroke="#64753b"/><path d="M156 18 L102 546" stroke="#64753b"/><path d="M202 18 L136 546" stroke="#64753b"/><path d="M248 18 L170 546" stroke="#64753b"/><path d="M294 18 L204 546" stroke="#64753b"/><path d="M340 18 L238 546" stroke="#64753b"/><path d="M386 18 L272 546" stroke="#64753b"/><path d="M432 18 L306 546" stroke="#64753b"/><path d="M478 18 L340 546" stroke="#64753b"/><path d="M524 18 L374 546" stroke="#64753b"/><path d="M570 18 L408 546" stroke="#64753b"/><path d="M616 18 L442 546" stroke="#64753b"/></g>
+  <g data-component="ObjectLayer">
+    <path d="M38 448 C190 332 336 462 548 318" fill="none" stroke="#30587c" stroke-width="34" opacity=".72"/>
+    <path d="M76 94 C230 56 324 126 514 72" fill="none" stroke="#6d5534" stroke-width="22" opacity=".75"/>
+    <g data-map-object="Mine"><rect x="90" y="122" width="42" height="42" fill="#8a6e24" stroke="#f0d06a"/><text x="111" y="148" text-anchor="middle" class="tiny">Mine</text></g><g data-map-object="Town"><rect x="212" y="342" width="42" height="42" fill="#5b1b19" stroke="#f0d06a"/><text x="233" y="368" text-anchor="middle" class="tiny">Town</text></g><g data-map-object="Hero"><rect x="318" y="240" width="42" height="42" fill="#244d86" stroke="#f0d06a"/><text x="339" y="266" text-anchor="middle" class="tiny">Hero</text></g><g data-map-object="Mon"><rect x="450" y="158" width="42" height="42" fill="#5d241c" stroke="#f0d06a"/><text x="471" y="184" text-anchor="middle" class="tiny">Mon</text></g><g data-map-object="Tre"><rect x="490" y="360" width="42" height="42" fill="#b38f2a" stroke="#f0d06a"/><text x="511" y="386" text-anchor="middle" class="tiny">Tre</text></g>
+    <path class="path" d="M338 260 C378 232 410 190 470 178"/>
+  </g>
+  <rect x="18" y="18" width="590" height="528" fill="url(#fog)" opacity=".20" data-component="FogMask"/>
+  <rect x="608" y="18" width="174" height="528" class="rightChrome" data-component="RightCommandPanel"/>
+  <rect x="624" y="36" width="140" height="118" fill="#183b25" stroke="#e1bc58"/><rect x="660" y="74" width="48" height="36" fill="none" stroke="#ffec85" stroke-width="2"/><text x="694" y="142" class="tiny">MINIMAP</text>
+  <rect x="626" y="172" width="44" height="32" class="slotHot"/><text x="680" y="192" class="tiny">Kaelis</text><rect x="626" y="210" width="44" height="32" class="slot"/><text x="680" y="230" class="tiny">Rowan</text><rect x="626" y="248" width="44" height="32" class="slot"/><text x="680" y="268" class="tiny">Veyra</text><rect x="626" y="286" width="44" height="32" class="slot"/><text x="680" y="306" class="tiny">Tamsin</text>
+  <rect x="624" y="332" width="140" height="126" class="panel"/><rect x="638" y="346" width="50" height="50" class="slotHot"/><text x="700" y="364" class="label">Kaelis</text><text x="700" y="384" class="tiny">Move 1200</text><text x="700" y="404" class="tiny">Mana 25/25</text>
+  <rect x="18" y="546" width="764" height="22" class="status"/><text x="28" y="561" class="tiny">Hero Prison</text>
+  <g data-component="ResourceDateBar">
+    <rect x="12" y="570" width="76" height="22" class="resource"/><text x="20" y="585" class="tiny">Wood 24</text><rect x="96" y="570" width="76" height="22" class="resource"/><text x="104" y="585" class="tiny">Ore 12</text><rect x="180" y="570" width="76" height="22" class="resource"/><text x="188" y="585" class="tiny">Merc 24</text><rect x="264" y="570" width="76" height="22" class="resource"/><text x="272" y="585" class="tiny">Sul 11</text><rect x="348" y="570" width="76" height="22" class="resource"/><text x="356" y="585" class="tiny">Cry 11</text><rect x="432" y="570" width="76" height="22" class="resource"/><text x="440" y="585" class="tiny">Kaelis 11</text><rect x="516" y="570" width="118" height="22" class="resource"/><text x="524" y="585" class="tiny">Gold 201092</text>
+    <rect x="640" y="570" width="148" height="22" class="resource"/><text x="650" y="585" class="tiny">Month 1, Week 1, Day 2</text>
+  </g><rect x="108" y="70" width="560" height="418" class="panel modal" filter="url(#shadow)"/>
+  <rect x="126" y="88" width="524" height="36" fill="url(#redwood)" stroke="#e4c064"/>
+  <text x="388" y="112" text-anchor="middle" class="label">Hero Prison</text>
+  <text x="388" y="142" text-anchor="middle" class="tiny">Release imprisoned hero</text>
+      <rect x="150" y="156" width="168" height="192" fill="#16100d" stroke="#e0bd59"/><rect x="184" y="178" width="100" height="112" class="slotHot"/><path d="M184 178 V290 M209 178 V290 M234 178 V290 M259 178 V290 M284 178 V290" stroke="#d8bd76" stroke-width="5"/><text x="234" y="324" text-anchor="middle" class="label">Prisoner</text>
+      <rect x="350" y="160" width="248" height="156" class="status"/><text x="372" y="190" class="label">Sir Mullich</text><text x="372" y="216" class="tiny">Level 6 Knight</text><text x="372" y="242" class="tiny">Roster slots: 7 / 8</text><text x="372" y="268" class="tiny">Spawn tile clear: yes</text>
+      <rect x="364" y="344" width="160" height="34" class="slotHot pulse"/><text x="444" y="366" text-anchor="middle" class="tiny">Release guard passed</text>
+      <g class="button" data-action="prison.release">
+    <rect class="outer" x="384" y="414" width="86" height="30" rx="2"/>
+    <rect class="inner" x="388" y="418" width="78" height="22" rx="1"/>
+    <text x="427" y="434" text-anchor="middle">RELEASE</text>
+  </g><g class="button" data-action="prison.leave">
+    <rect class="outer" x="486" y="414" width="76" height="30" rx="2"/>
+    <rect class="inner" x="490" y="418" width="68" height="22" rx="1"/>
+    <text x="524" y="434" text-anchor="middle">LEAVE</text>
+  </g>
+</svg>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "$schema": "heroes-reforged/hero.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild:hero:kaelis",
+  "name": "Kaelis",
+  "factionId": "emberwild:faction:emberwild",
+  "heroClassId": "emberwild:hero_class:cinder_knight",
+  "primaryStats": {
+    "attack": 2,
+    "defense": 1,
+    "power": 0,
+    "knowledge": 1
+  },
+  "startingArmy": [
+    { "unitId": "emberwild:unit:ash_hound", "count": 6 }
+  ],
+  "startingSkillIds": [
+    "shared:skill:pathfinding_basic"
+  ],
+  "specialty": {
+    "kind": "unit_bonus",
+    "targetUnitId": "emberwild:unit:ash_hound",
+    "bonus": {
+      "stat": "speed",
+      "value": 1
+    }
+  },
+  "presentation": {
+    "portraitId": "hero:kaelis:portrait",
+    "paperDollId": "hero:kaelis:paperdoll",
+    "adventureMapSpriteId": "hero:kaelis:map",
+    "mountSpriteId": "hero:kaelis:mount",
+    "animationSetId": "hero:kaelis:animset",
+    "soundSetId": "hero:kaelis:sounds"
+  }
+}

@@ -1,0 +1,73 @@
+# Architecture Docs
+
+This folder contains the design source of truth for the engine and
+creator platform.
+
+## Files
+
+- `overview.md`
+  The shortest high-signal architecture summary.
+- `state-flow.md`
+  Game loop, command dispatcher, and state mutation boundaries.
+- `command-schema.md`
+  Canonical reference for all game commands (MOVE_HERO, RECRUIT_UNITS, BATTLE_ATTACK, etc.).
+- `determinism.md`
+  Rules for RNG, math, replay, and desync-safe implementation.
+- `content-platform.md`
+  The pack/content model, extensibility rules, and update strategy.
+- `pack-contract.md`
+  Canonical manifest fields, pack layout, archive rules, and trust flags.
+- `effect-registry.md`
+  Closed gameplay-effect vocabulary and extension rules.
+- `ai-integration.md`
+  Provider-neutral boundary for AI generation and moderation work.
+- `renderer-technology-choice.md`
+  WebGL2 selection rationale and implementation approach.
+- `schema-matrix.md`
+  Concrete schema inventory, example records, and dependency hints.
+- `glossary.md`
+  Stable project terms used across tasks, schemas, and docs.
+- `master-plan.md`
+  Compact single-file architecture summary.
+- `diagrams/`
+  Per-scenario Mermaid diagrams (game startup, race → castle, battle
+  attack sequence, asset loading per context, localization, save/load,
+  etc.). One `.md` per scenario plus `index.json`. See
+  [`diagrams/README.md`](diagrams/README.md) for format and authoring
+  rules. Rendered inside the architecture wiki on every build.
+- `wiki/screens/`
+  Numbered UI screen packages. Each package has `mockup.html` for the
+  visual state, `spec.md` for components and state bindings,
+  `interactions.md` for per-control behavior, `data-contracts.md` for
+  schema/config/localization/asset links, and `architecture.md` for
+  screen-specific logic diagrams. The sibling `index.json` assigns each
+  package to one UI group. Package numbers follow that group order so
+  every wiki section reads in a natural numeric sequence. The index must
+  cover every screen exactly once. See
+  [`wiki/README.md`](wiki/README.md) for authoring rules.
+- `architecture-wiki.html`
+  **Unified read-only viewer** for architecture docs, general diagrams,
+  and numbered UI screen packages. Screen pages have these tabs: Mockup,
+  Spec, Interactions, Data Contracts, and Architecture Diagrams. Open
+  directly via `file://` — no server needed. Run
+  `npm run generate:wiki` after editing any source file to rebuild it.
+
+## Companion Inputs
+
+- `../../research/deep-research-report.md`
+  Baseline balance corridor and numeric guardrails used by rulesets,
+  faction authoring, and AI-generation checks.
+- `../../content-schema/README.md`
+  Canonical machine-readable contract layout and example-fixture
+  layout.
+
+## Suggested Reading Order
+
+1. `overview.md`
+2. `determinism.md`
+3. `content-platform.md`
+4. `pack-contract.md`
+5. `schema-matrix.md`
+6. `effect-registry.md`
+7. `ai-integration.md`
+8. `master-plan.md`

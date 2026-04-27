@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/manifest.schema.json",
+  "title": "Content Pack Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "type",
+    "name",
+    "version",
+    "author",
+    "engine",
+    "dependencies",
+    "provides"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Must match the `$id` form of the manifest schema. Relative paths are not allowed; editors and AI generators should emit the canonical ID so validators can resolve the schema without filesystem walking.",
+      "pattern": "^heroes-reforged/manifest\\.schema\\.json$"
+    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ruleset-pack",
+        "library-pack",
+        "faction-pack",
+        "world-pack",
+        "scenario-pack",
+        "asset-pack"
+      ]
+    },
+    "name":    { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "author":  { "type": "string", "minLength": 1 },
+    "engine":  { "type": "string", "minLength": 1 },
+    "engineHash": {
+      "type": "string",
+      "description": "Hex digest of the engine build this pack was authored against. Pinned by saves/replays/multiplayer. Pre-M2: optional and unused — the engine does not exist yet, so there is no stable hash to pin against. Post-M2: required at load time when a trusted runtime asks for reproducible play.",
+      "pattern": "^[a-f0-9]{16,128}$"
+    },
+    "contentHash": {
+      "type": "string",
+      "description": "Hex digest of the canonical-JSON serialization of every record in the pack. Produced by the content-runtime at pack build time. Required for multiplayer and trusted replay.",
+      "pattern": "^[a-f0-9]{16,128}$"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "formulas.ast",
+          "spells.custom-kind",
+          "abilities.custom-kind",
+          "assets.binary",
+          "scripts.none"
+        ]
+      }
+    },
+    "signature": {
+      "type": "object",
+      "required": ["scheme", "keyId", "value"],
+      "properties": {
+        "scheme": { "type": "string", "enum": ["ed25519"] },
+        "keyId":  { "type": "string", "minLength": 1 },
+        "value":  { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "sandboxed": { "type": "boolean" },
+    "provides": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "additionalProperties": false
+}

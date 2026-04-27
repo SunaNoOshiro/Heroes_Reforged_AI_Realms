@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/town-presentation.schema.json",
+  "title": "TownPresentation",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "factionId",
+    "uiThemeId"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "type": "string" },
+    "factionId": { "type": "string" },
+    "backgroundLayers": { "type": "array", "items": { "type": "string" } },
+    "buildingSlots": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "stateVariants": { "type": "object", "additionalProperties": { "type": "string" } },
+    "uiThemeId": { "type": "string" },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "ambientAnimationSetId": { "type": "string" },
+        "constructionAnimationSetId": { "type": "string" },
+        "soundSetId": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

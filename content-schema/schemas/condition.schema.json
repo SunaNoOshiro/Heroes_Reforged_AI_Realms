@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/condition.schema.json",
+  "title": "Condition",
+  "description": "Closed, discriminated condition AST. Used by effect.* to gate on battle context. Adding a new condition requires a new `kind` subschema and a new handler — never a free-form string.",
+  "type": "object",
+  "required": ["kind"],
+  "oneOf": [
+    {
+      "description": "Always true (identity).",
+      "properties": {
+        "kind": { "const": "always" }
+      },
+      "required": ["kind"],
+      "additionalProperties": false
+    },
+    {
+      "description": "Count of allied units in the 6 adjacent hexes compared to a threshold.",
+      "properties": {
+        "kind": { "const": "adjacent_allies" },
+        "op":   { "type": "string", "enum": ["gte", "lte", "eq"] },
+        "value": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["kind", "op", "value"],
+      "additionalProperties": false
+    },
+    {
+      "description": "Count of enemy units in the 6 adjacent hexes.",
+      "properties": {
+        "kind": { "const": "adjacent_enemies" },
+        "op":   { "type": "string", "enum": ["gte", "lte", "eq"] },
+        "value": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["kind", "op", "value"],
+      "additionalProperties": false
+    },
+    {
+      "description": "HP ratio of the target (current / max, expressed as a percent 0..100).",
+      "properties": {
+        "kind": { "const": "target_hp_percent" },
+        "op":    { "type": "string", "enum": ["gte", "lte", "eq"] },
+        "value": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "required": ["kind", "op", "value"],
+      "additionalProperties": false
+    },
+    {
+      "description": "Whether the target currently has a named status effect.",
+      "properties": {
+        "kind":   { "const": "target_has_status" },
+        "status": { "type": "string", "minLength": 1 }
+      },
+      "required": ["kind", "status"],
+      "additionalProperties": false
+    },
+    {
+      "description": "Whether the target matches a trait tag (e.g. `flying`, `undead`).",
+      "properties": {
+        "kind":  { "const": "target_has_trait" },
+        "trait": { "type": "string", "minLength": 1 }
+      },
+      "required": ["kind", "trait"],
+      "additionalProperties": false
+    },
+    {
+      "description": "Caster primary-stat threshold (e.g. `power >= 3`).",
+      "properties": {
+        "kind": { "const": "caster_primary_stat" },
+        "stat": { "type": "string", "enum": ["attack", "defense", "power", "knowledge"] },
+        "op":   { "type": "string", "enum": ["gte", "lte", "eq"] },
+        "value": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["kind", "stat", "op", "value"],
+      "additionalProperties": false
+    },
+    {
+      "description": "All sub-conditions must hold.",
+      "properties": {
+        "kind": { "const": "and" },
+        "args": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "heroes-reforged/condition.schema.json" }
+        }
+      },
+      "required": ["kind", "args"],
+      "additionalProperties": false
+    },
+    {
+      "description": "At least one sub-condition must hold.",
+      "properties": {
+        "kind": { "const": "or" },
+        "args": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "heroes-reforged/condition.schema.json" }
+        }
+      },
+      "required": ["kind", "args"],
+      "additionalProperties": false
+    },
+    {
+      "description": "Negates the wrapped condition.",
+      "properties": {
+        "kind": { "const": "not" },
+        "arg":  { "$ref": "heroes-reforged/condition.schema.json" }
+      },
+      "required": ["kind", "arg"],
+      "additionalProperties": false
+    }
+  ]
+}

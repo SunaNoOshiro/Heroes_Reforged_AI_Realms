@@ -1,0 +1,22 @@
+{
+  "$schema": "heroes-reforged/manifest.schema.json",
+  "schemaVersion": 1,
+  "id": "emberwild_world",
+  "type": "world-pack",
+  "name": "Emberwild World",
+  "version": "0.1.0",
+  "author": "Heroes Reforged",
+  "engine": ">=0.1.0",
+  "engineHash": "deadbeefcafef00d",
+  "contentHash": "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210",
+  "dependencies": [],
+  "capabilities": [
+    "formulas.ast",
+    "scripts.none"
+  ],
+  "provides": {
+    "worlds": [
+      "emberwild:world:emberwild"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "heroes-reforged/generation-request.schema.json",
+  "schemaVersion": 1,
+  "kind": "faction",
+  "prompt": {
+    "user": "A nomadic fire-warden faction that rides ash hounds across volcanic plains.",
+    "system": "You design balanced factions for a turn-based strategy engine. Output JSON that matches the generated-faction schema. Use only closed effect kinds from the effect registry."
+  },
+  "constraints": {
+    "maxUnits": 7,
+    "allowedSchools": ["fire", "earth"],
+    "bannedTraits": ["undead", "mechanical"],
+    "powerBudget": 100,
+    "referenceFactionId": "emberwild:faction:emberwild",
+    "referenceRulesetId": "heroes-reforged:ruleset:baseline"
+  },
+  "seed": "demo-emberwild-001"
+}

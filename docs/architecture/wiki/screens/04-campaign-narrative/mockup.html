@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>04. Campaign Inter-Mission Narrative - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .soft { fill: #d8bd76; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 25px Georgia, serif; letter-spacing: .6px; }
+  .huge { fill: #f8d96a; font: 700 58px Georgia, serif; letter-spacing: 1px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .innerFrame { fill: none; stroke: #3c190c; stroke-width: 2; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .wood { fill: #3d2413; stroke: #8b6229; stroke-width: 1; }
+  .slot { fill: #27180f; stroke: #8d6a30; stroke-width: 1; }
+  .slotHot { fill: #623516; stroke: #ffdf76; stroke-width: 1.5; filter: url(#glow); }
+  .button { cursor: pointer; }
+  .button rect.outer { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button rect.inner { fill: #7e431f; stroke: #2b1308; stroke-width: .7; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .button:hover rect.outer { filter: url(#glow); stroke: #fff1a8; }
+  .rightChrome { fill: #51311b; stroke: #dbb85a; stroke-width: 2; }
+  .resource { fill: #0f4618; stroke: #d0b052; stroke-width: 1; }
+  .status { fill: #2c190e; stroke: #d6ad4a; stroke-width: 1; }
+  .hex { fill: rgba(87,111,47,.28); stroke: rgba(210,232,73,.78); stroke-width: .9; }
+  .path { fill: none; stroke: #ffeb82; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1s linear infinite; }
+  .pulse { animation: pulse 1.4s ease-in-out infinite; }
+  .float { animation: floatUp 1.8s ease-out infinite; }
+  .modal { animation: modalIn .18s ease-out both; }
+  @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes dash { to { stroke-dashoffset: -30; } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(.985) translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="04-campaign-narrative" data-archetype="curated-campaign-narrative" data-curation="curated-pass-6">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Campaign Inter-Mission Narrative mockup">
+  <defs>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffe784" flood-opacity=".8"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+    <linearGradient id="redwood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c1512"/><stop offset=".45" stop-color="#3b0a08"/><stop offset="1" stop-color="#a22918"/></linearGradient>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse"><rect width="48" height="48" fill="#2d2419"/><path d="M0 12 H48 M14 0 V48 M36 0 V48" stroke="#4c3a23" stroke-width="1"/></pattern>
+    <pattern id="fog" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#050404"/><circle cx="18" cy="18" r="17" fill="#111019"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ffe784"/></marker>
+  </defs>
+<rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="none" stroke="#35170c" stroke-width="2"/>
+  <rect x="18" y="18" width="764" height="526" fill="#1b2634" stroke="#e0bd59"/>
+  <path d="M18 396 C160 280 320 318 472 214 C604 124 690 154 782 92 L782 544 L18 544 Z" fill="#34452f"/>
+  <rect x="38" y="38" width="724" height="52" fill="url(#redwood)" stroke="#e0bd59"/>
+  <text x="400" y="72" text-anchor="middle" class="title">Briefing</text>
+      <rect x="70" y="118" width="184" height="300" class="redPanel"/><rect x="106" y="154" width="112" height="142" class="slotHot"/><text x="162" y="338" text-anchor="middle" class="label">Aurelia</text>
+      <rect x="282" y="118" width="424" height="300" fill="#caa36a" stroke="#5a2c12"/><text x="306" y="154" class="small">Our scouts have found enemy banners near the valley.</text><text x="306" y="188" class="small">Secure the mines, hold the town, and find the grail clue.</text><text x="306" y="244" class="label">Objectives</text><text x="326" y="274" class="tiny">Victory: capture all enemy towns.</text><text x="326" y="298" class="tiny">Loss: lose starting hero.</text>
+      <g data-item="Gold"><rect x="314" y="340" width="58" height="40" class="slotHot"/><text x="343" y="394" text-anchor="middle" class="tiny">Gold</text></g><g data-item="Archers"><rect x="386" y="340" width="58" height="40" class="slot"/><text x="415" y="394" text-anchor="middle" class="tiny">Archers</text></g><g data-item="Spell"><rect x="458" y="340" width="58" height="40" class="slot"/><text x="487" y="394" text-anchor="middle" class="tiny">Spell</text></g>
+      <g class="button" data-action="narrative.start">
+    <rect class="outer" x="488" y="452" width="94" height="30" rx="2"/>
+    <rect class="inner" x="492" y="456" width="86" height="22" rx="1"/>
+    <text x="535" y="472" text-anchor="middle">START</text>
+  </g><g class="button" data-action="narrative.back">
+    <rect class="outer" x="596" y="452" width="80" height="30" rx="2"/>
+    <rect class="inner" x="600" y="456" width="72" height="22" rx="1"/>
+    <text x="636" y="472" text-anchor="middle">BACK</text>
+  </g>
+</svg>
+</body>
+</html>

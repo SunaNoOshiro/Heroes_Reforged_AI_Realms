@@ -1,0 +1,21 @@
+{
+  "$schema": "heroes-reforged/building.schema.json",
+  "schemaVersion": 1,
+  "id": "minimal:building:slate_barracks",
+  "name": "Slate Barracks",
+  "factionId": "minimal:faction:slate",
+  "requires": [],
+  "cost": {
+    "gold": 500,
+    "wood": 5
+  },
+  "effects": [
+    {
+      "kind": "unlock_unit",
+      "unitId": "minimal:unit:slate_footman"
+    }
+  ],
+  "presentation": {
+    "iconId": "building:slate_barracks:icon"
+  }
+}

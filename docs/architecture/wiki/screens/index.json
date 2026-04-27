@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "description": "Index of all UI screen packages. Each entry references docs/architecture/wiki/screens/<nn-screen>/ with mockup.html, spec.md, interactions.md, data-contracts.md, and architecture.md. AI agents and tools can read each package directly.",
+  "categories": [
+    {
+      "id": "menus-game-setup",
+      "title": "Menus & Game Setup",
+      "screens": [
+        "01-main-menu",
+        "02-new-game-setup",
+        "03-campaign-selection",
+        "04-campaign-narrative",
+        "05-intro-cinematic",
+        "06-random-map-setup"
+      ]
+    },
+    {
+      "id": "adventure-map",
+      "title": "Adventure Map",
+      "screens": [
+        "07-adventure-map",
+        "08-kingdom-overview",
+        "09-map-object-dialog",
+        "10-puzzle-map",
+        "11-quest-log",
+        "12-creature-bank-loot",
+        "13-hill-fort",
+        "14-war-machine-factory",
+        "15-underground-toggle",
+        "16-view-world",
+        "17-adventure-spell-targeting",
+        "18-map-object-tooltip",
+        "19-status-bar",
+        "20-mine-visit-dialog",
+        "21-external-dwelling",
+        "22-garrison-structure",
+        "23-hero-prison"
+      ]
+    },
+    {
+      "id": "town-castle",
+      "title": "Town & Castle",
+      "screens": [
+        "24-town-screen",
+        "25-building-recruitment-dialog",
+        "26-marketplace",
+        "27-thieves-guild",
+        "28-tavern",
+        "29-mage-guild",
+        "30-build-tree",
+        "31-grail-building",
+        "32-artifact-merchant-black-market",
+        "33-shipyard",
+        "34-fort-view",
+        "35-town-flyby",
+        "36-marketplace-artifact-trading",
+        "37-quick-recruit-window"
+      ]
+    },
+    {
+      "id": "battle",
+      "title": "Battle",
+      "screens": [
+        "38-combat-screen",
+        "39-battle-results",
+        "40-pre-battle-dialog",
+        "41-surrender-cost-dialog",
+        "42-victory-defeat-cinematic",
+        "43-siege-combat",
+        "44-combat-spell-targeting",
+        "45-tactics-phase"
+      ]
+    },
+    {
+      "id": "hero-army",
+      "title": "Hero & Army",
+      "screens": [
+        "46-hero-screen",
+        "47-spell-book",
+        "48-level-up-dialog",
+        "49-hero-meeting",
+        "50-creature-info",
+        "51-split-stack-dialog",
+        "52-artifact-combine-dialog",
+        "53-university"
+      ]
+    },
+    {
+      "id": "system-dialogs",
+      "title": "System & Dialogs",
+      "screens": [
+        "54-system-menu",
+        "55-save-load",
+        "56-options",
+        "57-high-scores",
+        "58-week-month-popup",
+        "59-loading-screen",
+        "60-confirmation-dialog",
+        "61-ai-turn-indicator"
+      ]
+    },
+    {
+      "id": "multiplayer",
+      "title": "Multiplayer",
+      "screens": [
+        "62-multiplayer-setup",
+        "63-hotseat-turn-handoff",
+        "64-network-lobby"
+      ]
+    },
+    {
+      "id": "editor",
+      "title": "Editor",
+      "screens": [
+        "65-map-editor"
+      ]
+    }
+  ]
+}

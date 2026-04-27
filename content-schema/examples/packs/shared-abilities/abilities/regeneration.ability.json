@@ -1,0 +1,15 @@
+{
+  "$schema": "heroes-reforged/ability.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:ability:regeneration",
+  "name": "Regeneration",
+  "description": "Heals a flat amount at the start of each owner turn.",
+  "tags": ["combat", "passive", "healing"],
+  "effects": [
+    {
+      "kind": "heal",
+      "target": "self",
+      "amount": { "op": "const", "value": 2 }
+    }
+  ]
+}

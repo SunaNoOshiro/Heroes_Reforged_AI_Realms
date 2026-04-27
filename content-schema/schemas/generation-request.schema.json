@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/generation-request.schema.json",
+  "title": "Generation Request",
+  "description": "Input contract for the provider-neutral `GenerationProvider.generateStructured` boundary. Orchestration code constructs one of these, not a provider-specific payload.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "kind",
+    "prompt",
+    "constraints"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "kind": {
+      "type": "string",
+      "enum": ["faction", "hero", "spell", "artifact", "scenario"]
+    },
+    "prompt": {
+      "type": "object",
+      "required": ["user"],
+      "properties": {
+        "user":     { "type": "string", "minLength": 1 },
+        "system":   { "type": "string" },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "additionalProperties": false
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Balance, format, and safety constraints the generator must respect.",
+      "properties": {
+        "targetTier":            { "type": "integer", "minimum": 1, "maximum": 7 },
+        "maxUnits":              { "type": "integer", "minimum": 1, "maximum": 7 },
+        "allowedSchools":        { "type": "array", "items": { "type": "string" } },
+        "bannedTraits":          { "type": "array", "items": { "type": "string" } },
+        "powerBudget":           { "type": "integer", "minimum": 0 },
+        "referenceFactionId":    { "type": "string" },
+        "referenceRulesetId":    { "type": "string" },
+        "temperatureHint":       { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "additionalProperties": false
+    },
+    "seed": {
+      "type": "string",
+      "description": "Deterministic seed passed to providers that support reproducible output.",
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "providerHints": {
+      "type": "object",
+      "description": "Opaque provider hints. Orchestration never reads this; adapters translate it to vendor-specific params.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
