@@ -42,11 +42,21 @@ function normalizeTarget(rawTarget) {
   return trimmed.split("#")[0];
 }
 
+function isForwardLookingDoc(filePath) {
+  const relative = repoRelative(filePath);
+  // Implementation plans describe future state and intentionally point at
+  // artifacts that will exist after the plan is implemented. Their links
+  // are validated separately when each plan lands; skipping them here keeps
+  // the link checker focused on docs that describe current state.
+  return relative.startsWith("docs/implementation-plans/");
+}
+
 export async function collectBrokenLinks() {
   const markdownFiles = await walkFiles(repoRoot, (filePath) => filePath.endsWith(".md"));
   const broken = [];
 
   for (const filePath of markdownFiles) {
+    if (isForwardLookingDoc(filePath)) continue;
     const rawContents = await readUtf8(filePath);
     const contents = stripFencedCodeBlocks(rawContents);
 

@@ -95,7 +95,7 @@ The following work is already present in the repo:
 ### Audit-2026-04-20 Implementation Pass
 
 Applied on 2026-04-21, following
-[`audit-2026-04-20.md`](./audits/audit-2026-04-20.md):
+[`audit-2026-04-20.md`](../archive/audit-2026-04-20.md):
 
 - Renamed reference faction from "Castle" to **Emberwild** across 44
   task and doc files; all IP-unsafe references (legacy expansion, classic fantasy strategy, "Angels",
@@ -227,7 +227,7 @@ Applied to resolve the 2026-04-28 full task-system consistency audit:
 ### Task-System AI-Execution Polish Pass (2026-05-01)
 
 Applied after
-[`AUDIT-2026-05-01-TASK-SYSTEM-AI-EXECUTION-AUDIT.md`](./audits/AUDIT-2026-05-01-TASK-SYSTEM-AI-EXECUTION-AUDIT.md):
+[`AUDIT-2026-05-01-TASK-SYSTEM-AI-EXECUTION-AUDIT.md`](../archive/AUDIT-2026-05-01-TASK-SYSTEM-AI-EXECUTION-AUDIT.md):
 
 - Added the `renderer-primitive` module lint tag and a task-lint guard
   so renderer-only visual-fidelity tasks stay anchored to
@@ -280,6 +280,41 @@ Right now the repository does not yet prove:
 - that gameplay is deterministic in implementation
 - that factions, worlds, animations, artifacts, heroes, towns, and
   map objects can be played in-engine
+
+### Core-Architecture Plan Implementation (2026-05-02)
+
+Closed the ten audit gaps from
+[`docs/implementation-plans/01-core-architecture-plan.md`](../implementation-plans/01-core-architecture-plan.md):
+
+- Authored
+  [`docs/architecture/state-shape.md`](../architecture/state-shape.md),
+  [`docs/architecture/rng-streams.md`](../architecture/rng-streams.md),
+  [`docs/architecture/id-allocator.md`](../architecture/id-allocator.md),
+  [`docs/architecture/multi-engine-harness.md`](../architecture/multi-engine-harness.md),
+  and
+  [`docs/architecture/module-graph.md`](../architecture/module-graph.md).
+- Added the closed top-level state schema
+  [`content-schema/schemas/game-state.schema.json`](../../content-schema/schemas/game-state.schema.json)
+  with a canonical example.
+- Extended `command.schema.json` so every command requires a `metadata`
+  block with a pattern-checked `nonce`; `command-schema.md` gained
+  Deduplication, Dispatcher Queue, Cross-Actor Ordering, and Seed
+  Source Precedence sections.
+- Pinned the renderer's frame-time budget &amp; degradation tier table in
+  [`renderer-technology-choice.md`](../architecture/renderer-technology-choice.md#frame-time-budget--degradation)
+  and updated audits Q4 in `01-core-architecture.md` plus the
+  performance audit anchor in `09-performance.md`.
+- Authored
+  [`scripts/check-module-graph.mjs`](../../scripts/check-module-graph.mjs)
+  (zero-deps Node, ~200 lines) instead of the source plan's
+  `dependency-cruiser` to keep `node_modules` empty. Added
+  `npm run validate:arch` to the `validate` aggregate. The empty
+  `src/` tree is clean; the rules go live the moment any source file
+  is added. Switching to `dependency-cruiser` later is a one-line
+  change in `package.json`.
+- Authored 10 owning tasks plus a module file under
+  [`tasks/mvp/00-core-architecture/`](../../tasks/mvp/00-core-architecture/);
+  registry now contains 294 tasks across 24 modules.
 
 ## Recommended Next Steps
 

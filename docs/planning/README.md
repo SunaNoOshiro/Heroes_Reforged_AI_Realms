@@ -21,7 +21,7 @@ and need to decide what to build next.
 ## Audits and Reports
 
 All audit, refactor, and implementation-report files live in
-[`audits/`](./audits/) (moved 2026-04-22 to keep the top level
+[`audits/`](../archive/) (moved 2026-04-22 to keep the top level
 focused on durable planning docs). Most recent first:
 
 - `audits/audit-2026-04-22-full-repo.md`

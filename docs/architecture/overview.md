@@ -54,6 +54,11 @@ No `Math.random()`, wall-clock time, or uncontrolled floating-point math
 in deterministic paths. Full rules and anti-patterns live in
 [determinism.md](determinism.md).
 
+The reducer's input shape is pinned in
+[state-shape.md](state-shape.md); module-graph boundaries that protect
+this shape are in [module-graph.md](module-graph.md) and enforced by
+`npm run validate:arch`.
+
 ## Content Model
 
 Everything important is data-driven:

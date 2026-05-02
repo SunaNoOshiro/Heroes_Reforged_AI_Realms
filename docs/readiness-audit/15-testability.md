@@ -127,8 +127,8 @@ A user-facing "Tournament mode UI" also exists in `phase-3/04-polish/04-tourname
 The task system flags this as a known gap. The audits explicitly recommend adding a Playwright or `vitest --browser` smoke step to `tasks:done` for any task whose `ownedPaths` include `src/ui/**`, because UI changes can pass headless tests but break interactively. Today, UI tasks rely on `npm run validate && npm test` (Node-only) plus manual inspection via the wiki mockups. No snapshot, interaction, or E2E test framework is wired in.
 
 **Evidence:**
-- [docs/planning/audits/AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md](../planning/audits/AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md) — "Add a Playwright/vitest browser smoke check to the verify chain"
-- [docs/planning/audits/AUDIT-2026-04-30-TASK-SYSTEM-AI-EXECUTABILITY-V2.md](../planning/audits/AUDIT-2026-04-30-TASK-SYSTEM-AI-EXECUTABILITY-V2.md)
+- [docs/planning/audits/AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md](../archive/AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md) — "Add a Playwright/vitest browser smoke check to the verify chain"
+- [docs/planning/audits/AUDIT-2026-04-30-TASK-SYSTEM-AI-EXECUTABILITY-V2.md](../archive/AUDIT-2026-04-30-TASK-SYSTEM-AI-EXECUTABILITY-V2.md)
 - ❌ no Playwright/Cypress/Storybook/snapshot config or task in repo today
 
 ---

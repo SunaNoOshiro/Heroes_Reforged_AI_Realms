@@ -94,7 +94,7 @@ against the wiki mockups
 ([docs/architecture/wiki/screens/](../architecture/wiki/screens/)).
 No snapshot, interaction, or E2E framework is wired in. The audit
 chapter explicitly names this gap and quotes the prior audits
-([AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md](../planning/audits/AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md))
+([AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md](../archive/AUDIT-2026-04-30-TASK-SYSTEM-FULL-CONSISTENCY.md))
 as already having flagged it. The
 [scripts/tasks.mjs](../../scripts/tasks.mjs) gate runs each task's
 `verifyCommands` but has no per-`ownedPaths` policy that adds a

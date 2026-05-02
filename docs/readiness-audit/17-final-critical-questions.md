@@ -279,7 +279,7 @@ By definition, chat-thread-only contracts are not in the repo and cannot be enum
 **Evidence:**
 - [docs/architecture/command-schema.md](../architecture/command-schema.md) line 303 — "(TBD: exact reduction)"
 - [tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md](../../tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md) — TBD
-- [docs/planning/audits/AUDIT-EXECUTIVE-SUMMARY.md](../planning/audits/AUDIT-EXECUTIVE-SUMMARY.md) — declares lock
+- [docs/planning/audits/AUDIT-EXECUTIVE-SUMMARY.md](../archive/AUDIT-EXECUTIVE-SUMMARY.md) — declares lock
 - ❌ provenance gap between canonical source and audit claim
 
 ---

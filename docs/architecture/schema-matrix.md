@@ -45,6 +45,7 @@ Canonical source files:
 | `Formula` | closed AST over integer ops (`add`, `sub`, `mul`, `divFloor`, `ratio`, `min`, `max`, `clamp`, `neg`, `abs`) plus `var`/`const` | none | [formula](../../content-schema/schemas/formula.schema.json) | embedded in ruleset/effect examples |
 | `GenerationRequest` | provider-neutral AI generation input (theme, tier bands, constraints) | none | [generation-request](../../content-schema/schemas/generation-request.schema.json) | [emberwild request](../../content-schema/examples/generation/emberwild.generation-request.json) |
 | `GeneratedFaction` | provider-neutral AI generation output — a draft faction pack shape | none | [generated-faction](../../content-schema/schemas/generated-faction.schema.json) | [emberwild generated faction](../../content-schema/examples/generation/emberwild.generated-faction.json) |
+| `GameState` | top-level deterministic engine state; closed shape, normalized collections, canonical-JSON serialized | none | [game-state](../../content-schema/schemas/game-state.schema.json) | [game-state example](../../content-schema/examples/game-state.example.json) |
 
 ## Fast Dependency View
 
@@ -64,6 +65,13 @@ Canonical source files:
 - `GenerationRequest` and `GeneratedFaction` are the only surface
   crossing the AI-provider boundary — see
   [`tasks/phase-3/02-ai-generation/00-generation-io-schemas.md`](../../tasks/phase-3/02-ai-generation/00-generation-io-schemas.md).
+- `command.schema.json` requires a `metadata` block with a
+  pattern-checked `nonce` on every command kind. The dispatcher rejects
+  duplicate nonces; see
+  [`command-schema.md` § Deduplication](./command-schema.md#deduplication).
+- `game-state.schema.json` is the closed top-level state shape consumed
+  by the reducer; see
+  [`state-shape.md`](./state-shape.md).
 
 ## Example Policy
 

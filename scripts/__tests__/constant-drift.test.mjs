@@ -14,7 +14,9 @@ import { repoRoot } from "../lib/repo-utils.mjs";
  * the num/den pair.
  *
  * This prevents the drift pattern flagged in audit 2026-04-22 from
- * re-introducing itself through prose edits that outpace the JSON.
+ * re-introducing itself through canonical architecture and task prose
+ * that outpace the JSON. Historical audits, planning notes, and research
+ * are not source-of-truth contracts and are intentionally excluded.
  */
 
 const rulesetPath = path.join(
@@ -26,10 +28,10 @@ const rulesetPath = path.join(
   "baseline.ruleset.json"
 );
 
-const SCAN_DIRS = ["docs", "research", "tasks"];
-const SKIP_DIRS = new Set([
-  path.join("docs", "planning", "audits")
-]);
+const SCAN_DIRS = [
+  path.join("docs", "architecture"),
+  "tasks"
+];
 
 const CONSTANT_KEYS = [
   "atkBonusPerPointNum",
@@ -63,7 +65,6 @@ async function walk(dir, out = []) {
   for (const entry of entries) {
     const rel = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      if (SKIP_DIRS.has(rel)) continue;
       await walk(rel, out);
     } else if (entry.name.endsWith(".md")) {
       out.push(rel);

@@ -180,6 +180,12 @@ Preferred stack when implementation starts:
   Runs the task's verify commands, then marks it done only on success.
 - `npm run validate:tasks`
   Fails on task-system issues that block automated execution.
+- `npm run validate:arch`
+  Runs the zero-dependency `scripts/check-module-graph.mjs` against the
+  boundaries in
+  [`docs/architecture/module-graph.md`](docs/architecture/module-graph.md);
+  catches cross-layer imports (e.g. `src/engine/` ↦ `src/renderer/`)
+  and import cycles.
 - `npm run validate`
   Full repo validation; use this before handoff.
 

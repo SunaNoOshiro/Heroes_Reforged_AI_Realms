@@ -54,7 +54,7 @@ The project enforces fail-loud semantics in two cases ("missing presentation may
 
 **Evidence:**
 - [AGENTS.md](../../AGENTS.md) — "Protect These Rules"
-- [docs/planning/audits/](../planning/audits/) — multiple consecutive consistency audits
+- [docs/planning/audits/](../archive/) — multiple consecutive consistency audits
 - [docs/readiness-audit/15-testability.md](./15-testability.md) — flags missing per-module test rubric and DI convention
 - ⚠ "obvious behavior" gap is itself diagnosed in the audit cadence
 
@@ -85,7 +85,7 @@ At least one live TBD remains in a critical spec. `docs/architecture/command-sch
 **Evidence:**
 - [docs/architecture/command-schema.md](../architecture/command-schema.md) line 303 — "(TBD: exact reduction)"
 - [tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md](../../tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md) — "formula TBD based on DEF stat"
-- [docs/planning/audits/AUDIT-EXECUTIVE-SUMMARY.md](../planning/audits/AUDIT-EXECUTIVE-SUMMARY.md) — claims DEFEND was locked at "250 permille"
+- [docs/planning/audits/AUDIT-EXECUTIVE-SUMMARY.md](../archive/AUDIT-EXECUTIVE-SUMMARY.md) — claims DEFEND was locked at "250 permille"
 - ⚠ doc/audit divergence — DEFEND formula
 
 ---

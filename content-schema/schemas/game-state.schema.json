@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/game-state.schema.json",
+  "title": "GameState",
+  "description": "Top-level deterministic engine state. Closed shape; serialized in canonical JSON for hashing and replay. See docs/architecture/state-shape.md.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "phase",
+    "turn",
+    "activePlayerId",
+    "players",
+    "worldMap",
+    "towns",
+    "heroes",
+    "stacks",
+    "mines",
+    "mapObjects",
+    "battle",
+    "log",
+    "events",
+    "rngStreams",
+    "idCounters",
+    "contentHashes",
+    "engineHash",
+    "seed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "phase": {
+      "enum": ["adventure", "battle", "menu"]
+    },
+    "turn": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "activePlayerId": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "players": { "$ref": "#/$defs/normalizedCollection" },
+    "worldMap": { "$ref": "#/$defs/worldMap" },
+    "towns": { "$ref": "#/$defs/normalizedCollection" },
+    "heroes": { "$ref": "#/$defs/normalizedCollection" },
+    "stacks": { "$ref": "#/$defs/normalizedCollection" },
+    "mines": { "$ref": "#/$defs/normalizedCollection" },
+    "mapObjects": { "$ref": "#/$defs/normalizedCollection" },
+    "battle": {
+      "anyOf": [
+        { "$ref": "#/$defs/battle" },
+        { "type": "null" }
+      ]
+    },
+    "log": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/loggedCommand" }
+    },
+    "events": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/event" }
+    },
+    "rngStreams": {
+      "type": "object",
+      "description": "Per-stream PCG32 state, keyed by sub-stream name from docs/architecture/rng-streams.md.",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1
+      },
+      "additionalProperties": { "$ref": "#/$defs/pcgState" }
+    },
+    "idCounters": {
+      "type": "object",
+      "description": "Per-actor, per-turn entity-ID allocator counters. See docs/architecture/id-allocator.md.",
+      "propertyNames": { "type": "string", "minLength": 1 },
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": { "type": "string", "minLength": 1 },
+        "additionalProperties": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "contentHashes": {
+      "type": "object",
+      "propertyNames": { "type": "string", "minLength": 1 },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "engineHash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seed": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "stringId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "normalizedCollection": {
+      "type": "object",
+      "required": ["byId", "order"],
+      "properties": {
+        "byId": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/stringId" },
+          "additionalProperties": { "type": "object" }
+        },
+        "order": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/stringId" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "pcgState": {
+      "type": "object",
+      "required": ["state", "inc"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "description": "PCG32 64-bit internal state, encoded as a decimal-string BigInt."
+        },
+        "inc": {
+          "type": "string",
+          "description": "PCG32 64-bit stream constant, encoded as a decimal-string BigInt."
+        }
+      },
+      "additionalProperties": false
+    },
+    "hexCoord": {
+      "type": "object",
+      "required": ["q", "r"],
+      "properties": {
+        "q": { "type": "integer" },
+        "r": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "worldMap": {
+      "type": "object",
+      "required": ["width", "height", "terrain", "fog", "objectIndex"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "terrain": {
+          "type": "array",
+          "description": "Row-major terrain id grid; one entry per hex.",
+          "items": { "$ref": "#/$defs/stringId" }
+        },
+        "fog": {
+          "type": "object",
+          "description": "Per-player fog masks keyed by playerId, each a row-major boolean grid.",
+          "propertyNames": { "type": "string", "minLength": 1 },
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "boolean" }
+          }
+        },
+        "objectIndex": {
+          "type": "object",
+          "description": "Maps hex coord (\"q,r\") to map-object id.",
+          "propertyNames": { "type": "string", "minLength": 1 },
+          "additionalProperties": { "$ref": "#/$defs/stringId" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "battle": {
+      "type": "object",
+      "required": [
+        "battleId",
+        "battleStacks",
+        "battlefield",
+        "initiativeQueue",
+        "log",
+        "events"
+      ],
+      "properties": {
+        "battleId": { "$ref": "#/$defs/stringId" },
+        "battleStacks": { "$ref": "#/$defs/normalizedCollection" },
+        "battlefield": {
+          "type": "object",
+          "required": ["width", "height"],
+          "properties": {
+            "width": { "type": "integer", "minimum": 1 },
+            "height": { "type": "integer", "minimum": 1 },
+            "obstacles": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/hexCoord" }
+            }
+          },
+          "additionalProperties": false
+        },
+        "initiativeQueue": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/stringId" }
+        },
+        "tacticsPlacement": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/hexCoord" }
+        },
+        "log": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/loggedCommand" }
+        },
+        "events": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/event" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "loggedCommand": {
+      "type": "object",
+      "required": ["kind", "metadata", "payload"],
+      "properties": {
+        "kind": { "type": "string", "minLength": 1 },
+        "metadata": {
+          "type": "object",
+          "required": ["turn", "playerId", "nonce"],
+          "properties": {
+            "turn": { "type": "integer", "minimum": 0 },
+            "playerId": { "type": "integer", "minimum": 0 },
+            "nonce": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]+:[0-9]+:[0-9]+$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "payload": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    }
+  }
+}

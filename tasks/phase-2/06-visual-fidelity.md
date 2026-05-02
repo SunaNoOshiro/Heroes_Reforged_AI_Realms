@@ -9,7 +9,7 @@ asset briefs; external captures are not implementation inputs.
 
 **Status**: moved from `mvp/06b-visual-fidelity` to `phase-2/` on
 2026-04-22 per
-[`audit-2026-04-22-full-repo`](../../docs/planning/audits/audit-2026-04-22-full-repo.md)
+[`audit-2026-04-22-full-repo`](../../docs/archive/audit-2026-04-22-full-repo.md)
 item I5. The solo-build-lane defers this module in full, and keeping
 the "b" suffix in the MVP index kept confusing linear readers.
 

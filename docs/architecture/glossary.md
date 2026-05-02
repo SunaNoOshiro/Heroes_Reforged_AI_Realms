@@ -19,8 +19,43 @@ introducing new jargon.
   pack. Pinned by saves, replays, and multiplayer.
 - **Command** — an atomic, serializable player or AI action. The engine
   is a reducer: `state = apply(state, command)`.
+- **GameState** — the closed top-level value the reducer consumes.
+  Normalized `byId` collections, frozen plain objects, structural
+  sharing across reducer steps. Shape pinned in
+  [`state-shape.md`](./state-shape.md) and
+  [`game-state.schema.json`](../../content-schema/schemas/game-state.schema.json).
 - **Replay** — the ordered list of commands plus the seed and ruleset
   ids. Replaying regenerates the state without storing it.
+- **Named sub-stream** — one PCG32 generator forked from the root seed
+  by name (`damage`, `morale`, `mage-guild`, ...). Each stream advances
+  independently so adding a new system never shifts existing draw
+  sequences. Catalogue:
+  [`rng-streams.md`](./rng-streams.md).
+- **Command nonce** — the per-actor, per-turn dedup key
+  `<actorId>:<turn>:<sequence>` carried in every command's metadata.
+  The dispatcher rejects repeats; the format also supplies the
+  `(actorId, turn, sequence)` ordering tuple. See
+  [`command-schema.md` § Deduplication](./command-schema.md#deduplication).
+- **Dispatcher queue** — the single bounded FIFO per engine instance.
+  Capacity 1024, hard-reject overflow, single-threaded drain. See
+  [`command-schema.md` § Dispatcher Queue](./command-schema.md#dispatcher-queue).
+- **Cross-actor ordering** — the canonical tie-break rule when more
+  than one actor (hotseat, AI co-actor, multiplayer peer) emits
+  commands in the same window. See
+  [`command-schema.md` § Cross-Actor Ordering](./command-schema.md#cross-actor-ordering).
+- **Seed source** — the precedence list that resolves
+  `SCENARIO_LOAD.seed` for a fresh session: explicit user input >
+  scenario field > `ROLL_RMG_SEED` > CSPRNG fallback. See
+  [`command-schema.md` § Seed Source Precedence](./command-schema.md#seed-source-precedence).
+- **Multi-engine harness** — the test fixture that runs two
+  `createEngine()` instances side by side and compares their state
+  hashes after each command to catch determinism leaks. See
+  [`multi-engine-harness.md`](./multi-engine-harness.md).
+- **Frame-time tier** — the renderer's degradation bucket
+  (Green / Amber / Orange / Red) selected from the rolling-average
+  frame time. Each tier prescribes which presentation features stay
+  on. See
+  [`renderer-technology-choice.md` § Frame-Time Budget &amp; Degradation](./renderer-technology-choice.md#frame-time-budget--degradation).
 
 ## Content Model
 
@@ -28,8 +63,13 @@ introducing new jargon.
   The extension boundary for the engine.
 - **Record** — one gameplay-or-presentation JSON file (unit, hero,
   spell, artifact, etc.) with a stable namespaced id.
-- **Stable ID** — a `<packId>:<kind>:<local>` string that is public API.
-  Never reused, aliased on rename.
+- **Stable ID** — a `<packId>:<kind>:<local>` string that is public API
+  for authored content. Never reused, aliased on rename. Mid-game
+  entities (recruited stacks, captured mines, summons, RMG objects) use
+  the runtime form `<kind>:<turn>:<actorId>:<perTurnCounter>` minted by
+  the deterministic allocator in
+  [`id-allocator.md`](./id-allocator.md); both forms share the
+  "stable, never-reused" contract.
 - **Registry** — in-memory map from id to resolved record used at
   runtime. Assembled by `src/content-runtime/` once per game start.
 - **Ruleset** — balance constants and formulas. Structured fixed-point

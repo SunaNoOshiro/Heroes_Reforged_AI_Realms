@@ -13,10 +13,41 @@ Canonical reference for all game commands. Commands are the only way to mutate g
 - Command dispatcher is a pure reducer: `state' = apply(state, command)`
 - All commands serialize / deserialize identically
 - Commands are logged in order for replay and multiplayer sync
+- Every dispatched command carries a `metadata` block with a `nonce`;
+  see [Deduplication](#deduplication)
+- Commands enter through one bounded FIFO per engine instance; see
+  [Dispatcher Queue](#dispatcher-queue)
+- Cross-actor ordering follows the rule in
+  [Cross-Actor Ordering](#cross-actor-ordering)
+- Commands that mint new entity IDs use the deterministic allocator in
+  [`id-allocator.md`](./id-allocator.md); they MUST NOT invent IDs in
+  any other way
 - Screen interaction tokens are checked by
   [`screen-command-coverage.json`](./screen-command-coverage.json) and
   `npm run validate:commands`. A token must be a schema command, an
   alias to one, UI-local, or explicitly out of scope with an owning task.
+
+### Command Envelope
+
+Every example below shows only the payload fields. The dispatcher
+wraps each command in the following envelope before validation,
+logging, and dispatch:
+
+```typescript
+{
+  ...payload,                  // kind plus the per-command fields shown below
+  metadata: {
+    turn: number,              // current GameState.turn at dispatch
+    playerId: number,          // numeric player id of the actor
+    nonce: string              // "<actorId>:<turn>:<sequence>"; see Deduplication
+  }
+}
+```
+
+The closed JSON schema in
+[`content-schema/schemas/command.schema.json`](../../content-schema/schemas/command.schema.json)
+already requires `metadata` with a pattern-checked `nonce` on every
+command kind, so individual examples below omit it for brevity.
 
 ---
 
@@ -408,8 +439,34 @@ Load a scenario or save file.
 
 **Effects:**
 - Initializes game state from scenario
-- Seeds RNG
+- Seeds RNG (forks every named sub-stream from
+  [`rng-streams.md`](./rng-streams.md) off this `seed`)
 - Pins content hashes for determinism
+- Pins the resolved `seed` into the command log so replays use the same value
+
+#### Seed Source Precedence
+
+`SCENARIO_LOAD.seed` is resolved at session start by the first matching
+rule, in this order:
+
+1. **Explicit user input.** Tournament rooms, daily-challenge codes,
+   and bug-report replays paste an explicit integer seed. UI surfaces
+   that collect this value live in screens
+   [`docs/architecture/wiki/screens/`](./wiki/screens/) (multiplayer
+   lobby, scenario settings, replay-import dialogs).
+2. **Scenario `seed` field.** Authored scenarios may pin a fixed seed
+   in their JSON. Used by tutorial and balanced-fixture scenarios.
+3. **`ROLL_RMG_SEED` command result.** For random-map games, the
+   pre-load `ROLL_RMG_SEED` command produces a seed that
+   `SCENARIO_LOAD` then consumes.
+4. **Cryptographically strong fallback.** If none of the above apply, a
+   single CSPRNG draw produces the seed at session start. The value is
+   pinned into the command log immediately so the rest of the session
+   is deterministic.
+
+In every case the resolved integer is recorded as
+`SCENARIO_LOAD.seed` and is the only RNG entropy the engine ever
+consumes.
 
 ---
 
@@ -462,9 +519,122 @@ artifact transfer flows.
 Every command must:
 1. Serialize to JSON with no functions or circular references
 2. Round-trip identically (JSON → object → JSON is byte-equal)
-3. Include metadata: `{ kind, ..., turn: number, playerId: number }` (added by dispatcher)
+3. Include the dispatcher-added `metadata` block:
+   `{ turn: number, playerId: number, nonce: string }` (see
+   [Deduplication](#deduplication) and
+   [Cross-Actor Ordering](#cross-actor-ordering))
 
-All string IDs (heroId, townId, etc.) must be stable across sessions (defined at scenario load).
+All string IDs (heroId, townId, etc.) must be stable across sessions
+(defined at scenario load) or minted via the deterministic allocator
+in [`id-allocator.md`](./id-allocator.md).
+
+---
+
+## Deduplication
+
+Commands are intentionally **non-idempotent** — each application
+mutates state. To make at-most-once delivery safe at the UI / network
+boundary, every dispatched command carries a `nonce` field in its
+metadata.
+
+### Nonce Format
+
+```
+"<actorId>:<turn>:<sequence>"
+```
+
+| Segment | Meaning |
+|---|---|
+| `actorId` | The actor minting the command. Use a deterministic actor identifier (e.g. `p1`, `p2`, `system` for engine-only commands). Must match `^[A-Za-z0-9_-]+$`. |
+| `turn` | The turn at mint time. Matches the metadata `turn` field. |
+| `sequence` | A per-actor, per-turn monotonic counter starting at 0; resets at the start of each turn for that actor. |
+
+Example: `p1:12:7` is the eighth command player 1 emitted on turn 12.
+JSON Schema enforces the format with the regex
+`^[A-Za-z0-9_-]+:[0-9]+:[0-9]+$`.
+
+### Dispatcher Behavior
+
+- The dispatcher rejects a command whose `nonce` already appears in
+  the current turn's slice of the command log. Rejection emits a
+  structured error `{ kind: 'duplicate_nonce', nonce }` and does NOT
+  append to the log or advance state.
+- The dedup window is the current turn slice only — once `END_DAY`
+  rolls over, the per-actor sequence resets and earlier nonces become
+  unreachable by definition.
+- Replays trust the log: replaying a logged command never re-checks
+  for duplicates, since duplicates were filtered at original dispatch.
+
+### Why a Per-Actor Counter
+
+A deterministic counter (rather than a UUID or wall-clock value)
+preserves replay reproducibility: the nonce is a function of state and
+order, not entropy. Multiplayer lockstep can demux a network frame
+exactly because the tuple `(actorId, turn, sequence)` is total and
+totally orderable.
+
+---
+
+## Dispatcher Queue
+
+The engine exposes one **single FIFO queue per engine instance**.
+
+| Property | Value |
+|---|---|
+| Capacity | 1024 commands (default; configurable per engine) |
+| Order | FIFO (single-actor in single-player; for multi-actor see [Cross-Actor Ordering](#cross-actor-ordering)) |
+| Drain | Single-threaded synchronous `apply` per dequeue |
+| Dedup | At enqueue time using the `nonce` rule above |
+| Overflow policy | Hard reject — never silent drop |
+
+### Overflow Error
+
+When enqueue would exceed capacity, the dispatcher returns the
+structured error and does not append:
+
+```jsonc
+{
+  "kind": "queue_overflow",
+  "capacity": 1024,
+  "queued": 1024
+}
+```
+
+### Multiplayer Lockstep (M5)
+
+The lockstep transport wraps the per-engine queue with a **network-frame
+demuxer**: per-frame command bundles are split into per-engine
+sequences ordered by the rule in
+[Cross-Actor Ordering](#cross-actor-ordering), then enqueued through
+this same FIFO. The per-engine queue contract is unchanged.
+
+### AI Co-Actors and Scripted Scenarios
+
+AI co-actors and scripted scenarios may batch-submit commands as long
+as each one carries a unique nonce. Batches still respect the bounded
+capacity; over-large batches are rejected with `queue_overflow` and
+must be split.
+
+---
+
+## Cross-Actor Ordering
+
+Within a single actor's turn, commands run in the order the actor
+emits them. **Across actors**, the canonical tie-break rule is:
+
+| Mode | Rule |
+|---|---|
+| Single-player | Trivial — one actor per turn. |
+| Hotseat | Strict turn order from `players[].turnOrder` in the scenario file (see [`scenario.schema.json`](../../content-schema/schemas/scenario.schema.json)). No interleaving within a turn. Handoff happens through the screen package [`63-hotseat-turn-handoff`](./wiki/screens/63-hotseat-turn-handoff/). |
+| AI co-actors | Treated as players with deterministic `playerId`s. Same rule as hotseat. |
+| Multiplayer lockstep (M5) | Commands within one network frame are sorted by the tuple `(playerId asc, turn asc, sequence asc)` before dispatch. The `(turn, sequence)` half comes directly from the command's `nonce`. |
+
+Commands minted by the engine itself (e.g. `BATTLE_RESOLVED`,
+end-of-day book-keeping) use the literal actor id `"system"` for both
+nonce generation and ordering. The `playerId asc` comparison is a
+literal Unicode-codepoint compare on the `playerId` segment of the
+nonce, so the resulting total order is deterministic across all peers
+without any special case.
 
 ---
 
@@ -489,3 +659,7 @@ Each command kind has:
 - `src/engine/commands/` — command handler implementations
 - `src/engine/dispatcher.ts` — command dispatcher reducer
 - `docs/architecture/state-flow.md` — how commands fit in the game loop
+- `docs/architecture/state-shape.md` — top-level `GameState` shape commands consume
+- `docs/architecture/rng-streams.md` — named PCG32 sub-streams seeded by `SCENARIO_LOAD`
+- `docs/architecture/id-allocator.md` — runtime entity-ID format used by minting commands
+- `docs/architecture/multi-engine-harness.md` — desync detection across engine instances

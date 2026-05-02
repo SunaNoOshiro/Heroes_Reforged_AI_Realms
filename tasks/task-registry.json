@@ -3,6 +3,59 @@
   "generatedBy": "npm run generate:task-registry",
   "modules": [
     {
+      "id": "mvp.00-core-architecture",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Core Architecture Contracts (M0)",
+      "path": "tasks/mvp/00-core-architecture.md",
+      "milestone": "M0 — Skeleton",
+      "totalEstimate": "~22 hours",
+      "exitCriteria": "All ten audit gaps from the source plan are closed",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "arch-state-shape.md",
+          "link": "00-core-architecture/arch-state-shape.md"
+        },
+        {
+          "label": "det-rng-streams.md",
+          "link": "00-core-architecture/det-rng-streams.md"
+        },
+        {
+          "label": "det-id-allocator.md",
+          "link": "00-core-architecture/det-id-allocator.md"
+        },
+        {
+          "label": "cmd-nonce.md",
+          "link": "00-core-architecture/cmd-nonce.md"
+        },
+        {
+          "label": "cmd-dispatcher-queue.md",
+          "link": "00-core-architecture/cmd-dispatcher-queue.md"
+        },
+        {
+          "label": "cmd-cross-actor-ordering.md",
+          "link": "00-core-architecture/cmd-cross-actor-ordering.md"
+        },
+        {
+          "label": "det-seed-source.md",
+          "link": "00-core-architecture/det-seed-source.md"
+        },
+        {
+          "label": "arch-multi-engine-harness.md",
+          "link": "00-core-architecture/arch-multi-engine-harness.md"
+        },
+        {
+          "label": "arch-module-graph.md",
+          "link": "00-core-architecture/arch-module-graph.md"
+        },
+        {
+          "label": "perf-frame-budget.md",
+          "link": "00-core-architecture/perf-frame-budget.md"
+        }
+      ]
+    },
+    {
       "id": "mvp.01-engine-core",
       "kind": "module",
       "status": "planned",
@@ -1445,6 +1498,596 @@
     }
   ],
   "tasks": [
+    {
+      "id": "mvp.00-core-architecture.arch-module-graph",
+      "kind": "task",
+      "status": "done",
+      "title": "Module-graph fitness check",
+      "path": "tasks/mvp/00-core-architecture/arch-module-graph.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "The intended dependency graph (engine → schemas; UI/AI/net → engine contracts; renderer read-only) is acyclic and unidirectional in design, but no automated check existed. This task adds a zero-dependency Node script that codifies the boundary table from [`state-flow.md`](../../../docs/architecture/state-flow.md), wires `validate:arch` into `npm run validate`, and authors a human-readable `module-graph.md` that mirrors the script's rules in prose. Implementation note: the source plan suggested `dependency-cruiser`, but that pulls in 43 transitive packages to lint a tree that today is empty. The custom script is a ~200-line replacement that resolves relative imports, flags forbidden cross-layer edges, and detects cycles via DFS. When the engine reducer lands and the import graph gets dense, swapping the script for `dependency-cruiser` (or `madge`) remains a one-line change in `package.json`. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q22, Q24, Issue 3.A-2).",
+      "inputs": [
+        "Audit Q22 / Q24 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)"
+      ],
+      "outputs": [
+        "`scripts/check-module-graph.mjs`",
+        "`docs/architecture/module-graph.md`",
+        "`validate:arch` script entry in `package.json`",
+        "Mention of `validate:arch` in `AGENTS.md` workflow guide"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
+        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
+      ],
+      "ownedPaths": [
+        "scripts/check-module-graph.mjs",
+        "docs/architecture/module-graph.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "acceptanceCriteria": [
+        "`npm run validate:arch` exits 0 on the current `src/` tree (no violations expected since the tree is largely placeholders).",
+        "`validate:arch` is included in the `validate` aggregate script.",
+        "`scripts/check-module-graph.mjs` codifies at minimum: `src/engine/` ⇏ `src/renderer/`, `src/engine/` ⇏ `src/ui/`, `src/engine/` ⇏ `src/ai/`, `src/engine/` ⇏ `src/net/`, `src/engine/` ⇏ `src/persistence/`, `src/engine/` ⇏ `src/editor/`, `src/renderer/` ⇏ `src/engine/`, `src/rules/` ⇏ anything outside `src/rules/` and `src/content-schema/`, plus a no-cycles rule via DFS.",
+        "`module-graph.md` documents the same edges in prose plus an \"Adding a New Module\" workflow.",
+        "`AGENTS.md` and `CLAUDE.md` mention `npm run validate:arch`."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.arch-multi-engine-harness",
+      "kind": "task",
+      "status": "done",
+      "title": "Multi-engine harness contract",
+      "path": "tasks/mvp/00-core-architecture/arch-multi-engine-harness.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Desync detection requires running two engine instances side by side and comparing state hashes after each command. The engine's purity makes this implicitly possible — but only if every shared global, module-level singleton, or hidden cache is forbidden. This task pins the `createEngine()` factory contract and a canonical desync test fixture so engine implementers cannot accidentally introduce hidden non-purity. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q20, Issue 3.A-3).",
+      "inputs": [
+        "Audit Q20 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "`GameState` shape from `state-shape.md`"
+      ],
+      "outputs": [
+        "`docs/architecture/multi-engine-harness.md`",
+        "\"Multi-engine harness\" entry in `glossary.md`",
+        "Cross-links from `state-flow.md` boundary table and `determinism.md` step-6 fuzz-harness section"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/state-shape.md`](../../../docs/architecture/state-shape.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/multi-engine-harness.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.arch-state-shape"
+      ],
+      "acceptanceCriteria": [
+        "`multi-engine-harness.md` documents the `createEngine()` factory contract: no globals, no module-level singletons, no shared mutable caches, no `Math.random` / `Date.now` / `performance.now`, no I/O.",
+        "The doc shows a canonical desync-detection pseudocode pattern that applies the same command stream to two engines and compares `Engine.hash()` per step.",
+        "A \"Prohibited Patterns\" list flags module-level mutable bindings, singletons, and Map/Set iteration without an explicit order.",
+        "`glossary.md` has a \"multi-engine harness\" entry pointing to the new file.",
+        "`determinism.md` cross-links the new doc from its fuzz-harness bullet."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.arch-state-shape"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.arch-state-shape"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.arch-state-shape",
+      "kind": "task",
+      "status": "done",
+      "title": "Top-level GameState shape",
+      "path": "tasks/mvp/00-core-architecture/arch-state-shape.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Define the closed JSON shape of `GameState`, the value the deterministic reducer consumes. The reducer signature `state' = apply(state, command)` is established, but until this task the *shape* of `state` (top-level keys, normalization rule, immutability strategy, serialization rules) is not pinned. Two implementers would otherwise pick incompatible shapes and force a later rewrite of every command handler. Deliverables: - A canonical `state-shape.md` enumerating top-level keys, the nested tactical-battle sub-state placement, the `byId` + `order` normalization rule, the structural-sharing immutability strategy (frozen plain objects only — no third-party library), and canonical JSON serialization rules consistent with [`determinism.md`](../../../docs/architecture/determinism.md). - A closed JSON schema at `content-schema/schemas/game-state.schema.json` with `additionalProperties: false`. - A canonical example covering one player, one hero, one town, one mine, and bootstrap RNG sub-streams under `content-schema/examples/game-state.example.json`. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q5, Issue 3.A-1).",
+      "inputs": [
+        "Audit Q5 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "Existing per-record schemas under `content-schema/schemas/`"
+      ],
+      "outputs": [
+        "`docs/architecture/state-shape.md`",
+        "`content-schema/schemas/game-state.schema.json`",
+        "`content-schema/examples/game-state.example.json`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/state-shape.md",
+        "content-schema/schemas/game-state.schema.json",
+        "content-schema/examples/game-state.example.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "acceptanceCriteria": [
+        "`content-schema/schemas/game-state.schema.json` exists and is parseable JSON Schema 2020-12 with `additionalProperties: false` on every fully-enumerated sub-shape.",
+        "The example `content-schema/examples/game-state.example.json` validates against the schema (or is referenced by a future Zod test) and demonstrates one hero, one town, one mine.",
+        "`state-shape.md` documents the structural-sharing + frozen-plain- objects immutability strategy and forbids third-party libraries (Immer / immutable.js).",
+        "`schema-matrix.md` lists `GameState` and links the schema by canonical path.",
+        "`glossary.md` has a `GameState` entry."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/game-state.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/game-state.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.00-core-architecture.cmd-cross-actor-ordering",
+      "kind": "task",
+      "status": "done",
+      "title": "Cross-actor command ordering",
+      "path": "tasks/mvp/00-core-architecture/cmd-cross-actor-ordering.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Within a single actor's turn, commands run in the order the actor emits them. Across actors (hotseat handoff, AI co-actors, multiplayer peers), the canonical tie-break rule was unspecified. This task pins that rule so M5 multiplayer lockstep has a spec to implement against. Rule: - Single-player: trivial — one actor per turn. - Hotseat: strict turn order from `players[].turnOrder` (no interleaving within a turn); handoff via screen package [`63-hotseat-turn-handoff`](../../../docs/architecture/wiki/screens/63-hotseat-turn-handoff/). - AI co-actors: deterministic `playerId`s, same rule as hotseat. - Multiplayer lockstep: commands within one network frame are sorted by `(playerId asc, turn asc, sequence asc)` before dispatch; the `(turn, sequence)` half comes from the command's nonce. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q17, Issue 3.B-3).",
+      "inputs": [
+        "Audit Q17 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "Existing scenario schema at `content-schema/schemas/scenario.schema.json` (`players[].turnOrder` field)"
+      ],
+      "outputs": [
+        "New \"Cross-Actor Ordering\" section in [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "\"Cross-actor ordering\" entry in [`docs/architecture/glossary.md`](../../../docs/architecture/glossary.md)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)"
+      ],
+      "ownedPaths": [],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": true,
+      "ownedPathsOptOutReason": "additive section in the existing command-schema doc; primary owner is mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.cmd-nonce"
+      ],
+      "acceptanceCriteria": [
+        "\"Cross-Actor Ordering\" section enumerates rules per mode (single- player, hotseat, AI co-actor, multiplayer lockstep).",
+        "Hotseat rule references the screen package `docs/architecture/wiki/screens/63-hotseat-turn-handoff` by path.",
+        "Multiplayer rule documents the `(playerId, turn, sequence)` tuple and that `playerId` ordering is a literal Unicode-codepoint compare.",
+        "`glossary.md` has a \"cross-actor ordering\" entry."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/63-hotseat-turn-handoff"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/scenario.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.cmd-nonce"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.cmd-nonce"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.cmd-dispatcher-queue",
+      "kind": "task",
+      "status": "done",
+      "title": "Dispatcher queue + overflow policy",
+      "path": "tasks/mvp/00-core-architecture/cmd-dispatcher-queue.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "A command **log** is documented; a command **input queue** was not. Single-player turn-based play does not need one (synchronous `apply`), but multiplayer lockstep, AI co-actors, and scripted scenarios all need a bounded queue with a clear overflow rule. This task pins that contract. The contract is one bounded FIFO per engine instance, capacity 1024, single-threaded synchronous drain, dedup on enqueue using the nonce rule, and a hard-reject overflow policy that returns `{ kind: 'queue_overflow', capacity, queued }` rather than silently dropping. The M5 lockstep transport wraps this queue with a network- frame demuxer; the per-engine queue contract does not change. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q15, Issue 3.B-2).",
+      "inputs": [
+        "Audit Q15 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)"
+      ],
+      "outputs": [
+        "New \"Dispatcher Queue\" section in [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "Boundary-table row \"Command queue\" added to [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
+        "\"Dispatcher queue\" entry in [`docs/architecture/glossary.md`](../../../docs/architecture/glossary.md)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)"
+      ],
+      "ownedPaths": [],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": true,
+      "ownedPathsOptOutReason": "additive sections inside the existing command-schema, state-flow, and glossary docs; no net-new files. Primary owner of command-schema.md is mvp.01-engine-core.06b-extend-command-schema-coverage-checklist.",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.cmd-nonce"
+      ],
+      "acceptanceCriteria": [
+        "\"Dispatcher Queue\" section documents capacity, FIFO drain, dedup, overflow policy, and the structured `queue_overflow` error shape.",
+        "Reference to the `command.schema.json` schema by canonical path `content-schema/schemas/command.schema.json` is preserved in the command-schema doc.",
+        "`state-flow.md` boundary table lists \"Command queue\" with the doc-anchor link.",
+        "`glossary.md` has a \"dispatcher queue\" entry."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.cmd-nonce"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.cmd-nonce"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.cmd-nonce",
+      "kind": "task",
+      "status": "done",
+      "title": "Command nonce + deduplication contract",
+      "path": "tasks/mvp/00-core-architecture/cmd-nonce.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Commands are intentionally non-idempotent — each application mutates state. Without an at-most-once delivery key, a UI double-click or a network retry corrupts the log and breaks replays. This task adds a required `nonce` to every command's dispatcher-added metadata and formalizes the dedup rule. Nonce format: `<actorId>:<turn>:<sequence>`, with `sequence` a per-actor, per-turn monotonic counter starting at 0. The dispatcher rejects any command whose nonce already appears in the current turn's log slice with the structured error `{ kind: 'duplicate_nonce', nonce }`. The closed schema at `content-schema/schemas/command.schema.json` requires `metadata` with a pattern-checked `nonce` on every command kind. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q16, Issue 3.B-1).",
+      "inputs": [
+        "Audit Q16 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "Existing command schema at `content-schema/schemas/command.schema.json`"
+      ],
+      "outputs": [
+        "New \"Deduplication\" section in [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "`content-schema/schemas/command.schema.json` extended so every command def requires `metadata` with a `nonce` matching `^[A-Za-z0-9_-]+:[0-9]+:[0-9]+$`",
+        "\"command nonce\" entry in [`docs/architecture/glossary.md`](../../../docs/architecture/glossary.md)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/command.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "acceptanceCriteria": [
+        "`content-schema/schemas/command.schema.json` requires `metadata` with `turn`, `playerId`, `nonce` on every command def.",
+        "`nonce` is pattern-checked with `^[A-Za-z0-9_-]+:[0-9]+:[0-9]+$`.",
+        "`command-schema.md` documents the nonce format, dedup window (current turn slice), and rejection error shape.",
+        "`command-schema.md` \"Command Envelope\" preamble shows that individual examples below it omit `metadata` for brevity but the schema still requires it.",
+        "`glossary.md` has a \"command nonce\" entry."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.det-rng-streams"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.00-core-architecture.det-id-allocator",
+      "kind": "task",
+      "status": "done",
+      "title": "Runtime entity-ID allocator",
+      "path": "tasks/mvp/00-core-architecture/det-id-allocator.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Pin the deterministic format and counter-state for IDs minted at runtime: stacks recruited mid-game, mines captured, summons, random-map-generated objects. Without this contract two engines fed identical commands can mint different IDs, breaking saves, replays, and multiplayer. Format: `<kind>:<turn>:<actorId>:<perTurnCounter>` with the counter table living inside `GameState.idCounters` (added by the state-shape task). Replays reproduce IDs byte-identically because the counters are part of the canonical state. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q7, Issue 3.D-2).",
+      "inputs": [
+        "Audit Q7 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "Closed list of minting commands in `command-schema.md` (`RECRUIT_UNITS`, `RECRUIT_EXTERNAL_DWELLING_UNITS`, `SPLIT_ARMY_STACK`, `CAPTURE_MINE`, `SPELL_CAST` (summon-class effects), `BUILD_BOAT`, `GENERATE_RANDOM_MAP`)"
+      ],
+      "outputs": [
+        "`docs/architecture/id-allocator.md`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/state-shape.md`](../../../docs/architecture/state-shape.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/id-allocator.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.arch-state-shape"
+      ],
+      "acceptanceCriteria": [
+        "Allocator format documented as `<kind>:<turn>:<actorId>:<perTurnCounter>` with examples.",
+        "Per-turn-per-actor counter rule documented; counters reset each turn for that `(kind, actorId)` pair.",
+        "`state-shape.md` references `idCounters` and links to this file.",
+        "`command-schema.md` Contract section requires minting commands to use this allocator.",
+        "`glossary.md` \"Stable ID\" entry covers both authored and runtime forms."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.arch-state-shape"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.arch-state-shape"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.det-rng-streams",
+      "kind": "task",
+      "status": "done",
+      "title": "Named RNG sub-stream catalogue",
+      "path": "tasks/mvp/00-core-architecture/det-rng-streams.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Pin the canonical list of PCG32 sub-stream names every reducer call site is allowed to fork. Without this, the first new system that calls `rng.next()` silently shifts every other system's draw sequence and breaks every existing replay. This task delivers the catalogue document and the cross-links from [`determinism.md`](../../../docs/architecture/determinism.md), [`glossary.md`](../../../docs/architecture/glossary.md), and the top-level state shape so engine implementers cannot miss it. No runtime engine code is shipped here. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q10, Issue 3.D-1).",
+      "inputs": [
+        "Audit Q10 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)"
+      ],
+      "outputs": [
+        "`docs/architecture/rng-streams.md` — canonical catalogue",
+        "Cross-links from `determinism.md`, `glossary.md`, and `state-shape.md`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/rng-streams.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "Catalogue lists at least the ten initial sub-streams from the source plan (`damage`, `morale`, `luck`, `mage-guild`, `hero-traits`, `creature-growth`, `treasure`, `combat-init`, `rmg`, `ai-decision`).",
+        "Add-a-stream rule explicitly forbids renaming or retiring an entry once shipped.",
+        "`glossary.md` has a \"named sub-stream\" entry pointing here.",
+        "`determinism.md` step 1 references this catalogue by path."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 7
+    },
+    {
+      "id": "mvp.00-core-architecture.det-seed-source",
+      "kind": "task",
+      "status": "done",
+      "title": "Fresh-session seed-source precedence",
+      "path": "tasks/mvp/00-core-architecture/det-seed-source.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Loaded games and replays inherit their seed from the saved triple. For a brand-new session, the source was undocumented (scenario field? random-map roll? UI input?). Two implementers would pick differently. This task pins the precedence so tournament games, fixed-seed scenarios, and random-map games can all be reproduced. Precedence (first match wins): 1. Explicit user input (tournament codes, daily challenges, replay import). 2. Scenario `seed` field if present. 3. `ROLL_RMG_SEED` command result for random-map games. 4. CSPRNG fallback at session start, pinned into the log immediately. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q11, Issue 3.D-3).",
+      "inputs": [
+        "Audit Q11 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "Existing `SCENARIO_LOAD` command in `command-schema.md`"
+      ],
+      "outputs": [
+        "\"Seed Source Precedence\" subsection under `SCENARIO_LOAD` in [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "Cross-link from [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "\"Seed source\" entry in [`docs/architecture/glossary.md`](../../../docs/architecture/glossary.md)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": true,
+      "ownedPathsOptOutReason": "additive subsection in the existing command-schema doc; primary owner is mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "`command-schema.md` `SCENARIO_LOAD` block lists the four-step precedence, names each UI surface that supplies an explicit seed, and references `ROLL_RMG_SEED` for random-map games.",
+        "`determinism.md` step-5 (Replay API) cites the seed-source precedence section by anchor.",
+        "`glossary.md` has a \"seed source\" entry pointing to the new section."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.perf-frame-budget",
+      "kind": "task",
+      "status": "done",
+      "title": "Frame-time budget &amp; degradation policy",
+      "path": "tasks/mvp/00-core-architecture/perf-frame-budget.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "60 FPS is aspirational; without a frame-time budget and degradation table, renderer regressions ship invisibly until users complain. This task pins the four-tier degradation table (Green / Amber / Orange / Red), the rolling-average measurement window, and the Canvas 2D fallback trigger. Source audit: [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md) (Q4, Issue 3.E-1).",
+      "inputs": [
+        "Audit Q4 in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "Audit Q164–Q177 in [`docs/readiness-audit/09-performance.md`](../../../docs/readiness-audit/09-performance.md)"
+      ],
+      "outputs": [
+        "\"Frame-Time Budget &amp; Degradation\" subsection in [`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)",
+        "Updated Q4 entry in [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)",
+        "New top-of-file Q in [`docs/readiness-audit/09-performance.md`](../../../docs/readiness-audit/09-performance.md)",
+        "\"Frame-time tier\" entry in [`docs/architecture/glossary.md`](../../../docs/architecture/glossary.md)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)",
+        "[`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)",
+        "[`docs/readiness-audit/09-performance.md`](../../../docs/readiness-audit/09-performance.md)"
+      ],
+      "ownedPaths": [],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": true,
+      "ownedPathsOptOutReason": "additive sections inside renderer-technology-choice, the core-architecture audit, the performance audit, and the glossary; no net-new files",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "Tier table covers Green (≤16.7 ms), Amber (16.8–25 ms), Orange (25–40 ms), Red (>40 ms sustained 1 s) with the prescribed action per tier.",
+        "Tier entry uses a 60-frame rolling average; tier exit also requires a rolling-average drop; Red can escalate on a single bad frame.",
+        "Telemetry rule documented: tier transitions surface via a debug overlay; uploads are opt-in.",
+        "Audit Q4 in `01-core-architecture.md` flips from ❌ UNKNOWN to ✔ Defined.",
+        "`glossary.md` has a \"frame-time tier\" entry."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
     {
       "id": "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout",
       "kind": "task",

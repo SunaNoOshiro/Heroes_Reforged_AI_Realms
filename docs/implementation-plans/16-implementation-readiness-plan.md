@@ -58,7 +58,7 @@ either get stuck or make up an answer.
 **Problem:**
 - [docs/architecture/command-schema.md:303](../architecture/command-schema.md) still reads `(TBD: exact reduction)`.
 - [tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md](../../tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md) still reads `formula TBD based on DEF stat`.
-- [docs/planning/audits/AUDIT-EXECUTIVE-SUMMARY.md](../planning/audits/AUDIT-EXECUTIVE-SUMMARY.md) (now archived under [docs/archive/](../archive/)) claims DEFEND was locked at "250 permille".
+- [docs/planning/audits/AUDIT-EXECUTIVE-SUMMARY.md](../archive/AUDIT-EXECUTIVE-SUMMARY.md) (now archived under [docs/archive/](../archive/)) claims DEFEND was locked at "250 permille".
 - The same wording is mirrored in `tasks/task-registry.json`.
 
 **Impact:**

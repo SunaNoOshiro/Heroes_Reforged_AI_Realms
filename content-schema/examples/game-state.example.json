@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "phase": "adventure",
+  "turn": 1,
+  "activePlayerId": 0,
+  "players": {
+    "byId": {
+      "p1": {
+        "id": "p1",
+        "name": "Player 1",
+        "factionId": "emberwild:faction:emberwild",
+        "resources": {
+          "gold": 10000,
+          "wood": 20,
+          "ore": 20,
+          "mercury": 5,
+          "sulfur": 5,
+          "crystal": 5,
+          "gems": 5
+        }
+      }
+    },
+    "order": ["p1"]
+  },
+  "worldMap": {
+    "width": 4,
+    "height": 4,
+    "terrain": [
+      "core:terrain:grass", "core:terrain:grass", "core:terrain:grass", "core:terrain:grass",
+      "core:terrain:grass", "core:terrain:dirt",  "core:terrain:dirt",  "core:terrain:grass",
+      "core:terrain:grass", "core:terrain:dirt",  "core:terrain:dirt",  "core:terrain:grass",
+      "core:terrain:grass", "core:terrain:grass", "core:terrain:grass", "core:terrain:grass"
+    ],
+    "fog": {
+      "p1": [
+        false, false, false, false,
+        false, false, false, false,
+        false, false, false, false,
+        false, false, false, false
+      ]
+    },
+    "objectIndex": {
+      "1,1": "mine:0:p1:001"
+    }
+  },
+  "towns": {
+    "byId": {
+      "t1": {
+        "id": "t1",
+        "ownerId": "p1",
+        "factionId": "emberwild:faction:emberwild",
+        "position": { "q": 0, "r": 0 },
+        "buildings": []
+      }
+    },
+    "order": ["t1"]
+  },
+  "heroes": {
+    "byId": {
+      "h1": {
+        "id": "h1",
+        "ownerId": "p1",
+        "classId": "emberwild:hero-class:cinder-knight",
+        "position": { "q": 0, "r": 0 },
+        "movementPoints": 1500,
+        "armyStackIds": []
+      }
+    },
+    "order": ["h1"]
+  },
+  "stacks": {
+    "byId": {},
+    "order": []
+  },
+  "mines": {
+    "byId": {
+      "mine:0:p1:001": {
+        "id": "mine:0:p1:001",
+        "kind": "core:mine:gold",
+        "ownerId": "p1",
+        "position": { "q": 1, "r": 1 }
+      }
+    },
+    "order": ["mine:0:p1:001"]
+  },
+  "mapObjects": {
+    "byId": {},
+    "order": []
+  },
+  "battle": null,
+  "log": [
+    {
+      "kind": "SCENARIO_LOAD",
+      "metadata": {
+        "turn": 0,
+        "playerId": 0,
+        "nonce": "p1:0:0"
+      },
+      "payload": {
+        "scenarioId": "core:scenario:demo",
+        "seed": 42
+      }
+    }
+  ],
+  "events": [],
+  "rngStreams": {
+    "damage": { "state": "9600629759793949339", "inc": "1442695040888963407" },
+    "morale": { "state": "9600629759793949339", "inc": "1442695040888963409" },
+    "luck":   { "state": "9600629759793949339", "inc": "1442695040888963411" }
+  },
+  "idCounters": {
+    "stack": { "p1:1": 0 },
+    "mine":  { "p1:0": 1 }
+  },
+  "contentHashes": {
+    "core": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "emberwild": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "engineHash": "engine:1.0.0+abcd",
+  "seed": 42
+}

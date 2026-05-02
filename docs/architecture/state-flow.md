@@ -47,7 +47,9 @@ flowchart TD
 |---|---|---|
 | Content load + validation | [`src/content-runtime/`](../../src/content-runtime/) | Manifest resolution, dependency graph, pack-hash pin |
 | State hydration | [`src/engine/`](../../src/engine/) | Replay from command log OR initialize from scenario |
-| Command dispatch | [`src/engine/`](../../src/engine/) | Pure reducer; no I/O, no timing |
+| Command queue | [`src/engine/`](../../src/engine/) | Bounded FIFO per engine instance; dedups by nonce. See [`command-schema.md` § Dispatcher Queue](./command-schema.md#dispatcher-queue). |
+| Command dispatch | [`src/engine/`](../../src/engine/) | Pure reducer; no I/O, no timing. Cross-actor ordering rule in [`command-schema.md` § Cross-Actor Ordering](./command-schema.md#cross-actor-ordering). |
+| Multi-engine desync detection | [`src/engine/`](../../src/engine/) test harness | Two `createEngine()` instances apply the same log; hashes compared per step. See [`multi-engine-harness.md`](./multi-engine-harness.md). |
 | Formula evaluation | [`src/rules/`](../../src/rules/) | AST walker over the formula schema |
 | Tactical battle step | [`src/engine/`](../../src/engine/) | Nested reducer with its own command alphabet |
 | Rendering (read-only) | [`src/renderer/`](../../src/renderer/) | Subscribes to state; never mutates |

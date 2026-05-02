@@ -84,6 +84,43 @@ Renderer does not depend on simulation code. Pure snapshot consumer. This enforc
 - 60 FPS during battle (animating 7 stacks × 5 frames per sprite)
 - 0.1 ms per-frame GPU time (leave headroom for UI)
 
+### Frame-Time Budget & Degradation
+
+60 FPS is aspirational, not absolute. The renderer monitors a
+sliding-window frame-time average and degrades along the tier table
+below. A device that cannot sustain Green is still playable; it just
+loses non-essential animations.
+
+| Frame time | Tier | Action |
+|---|---|---|
+| ≤ 16.7 ms | Green | Full render path |
+| 16.8–25 ms | Amber | Drop non-critical animations (idle bobs, particle FX) |
+| 25–40 ms | Orange | Disable layered animations entirely; freeze camera tweens |
+| > 40 ms sustained 1 s | Red | Fall back to Canvas 2D / static map render |
+
+Measurement rules:
+
+- **Tier entry** uses a 60-frame rolling average. A device must spend
+  ~1 s in a tier before formally entering it.
+- **Tier escalation** is allowed on a single bad frame for `Red` only
+  (40 ms+ for one frame is enough to start preparing the Canvas 2D
+  fallback, since users feel that immediately).
+- **Tier exit** also requires a 60-frame rolling average back below
+  the upper bound of the lower tier; this avoids oscillation.
+
+Telemetry:
+
+- Tier transitions are reported to a debug overlay (toggleable via
+  hotkey). They are **not** written to disk by default — telemetry
+  uploads are opt-in.
+- The currently-active tier is exposed to the renderer test fixtures
+  so worst-case-scenario benchmarks can assert the expected tier on
+  reference hardware.
+
+Cross-link: [`docs/readiness-audit/09-performance.md`](../readiness-audit/09-performance.md)
+keeps the broader perf-audit narrative; this section is the
+machine-actionable tier table.
+
 ---
 
 ## Constraints & Anti-Patterns

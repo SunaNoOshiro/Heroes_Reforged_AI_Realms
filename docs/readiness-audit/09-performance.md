@@ -1,5 +1,27 @@
 # 9. PERFORMANCE
 
+### Q: Frame-time budget &amp; degradation policy (cross-link to Q4)
+
+**Status:** ✔ Defined
+
+**Answer:**
+The renderer monitors a 60-frame rolling-average frame time and
+degrades along a four-tier table (Green / Amber / Orange / Red).
+Crossing into Red triggers a Canvas 2D fallback. Tier transitions are
+surfaced via a toggleable debug overlay; telemetry uploads are opt-in.
+
+The canonical table and entry/exit rules live in
+[`renderer-technology-choice.md` § Frame-Time Budget &amp; Degradation](../architecture/renderer-technology-choice.md#frame-time-budget--degradation).
+This entry exists so the broader performance audit has a stable
+anchor for Q4 from
+[`01-core-architecture.md`](./01-core-architecture.md).
+
+**Evidence:**
+- [docs/architecture/renderer-technology-choice.md § Frame-Time Budget &amp; Degradation](../architecture/renderer-technology-choice.md#frame-time-budget--degradation)
+- [docs/architecture/glossary.md](../architecture/glossary.md) — "frame-time tier"
+
+---
+
 ### Q: 164. What is the target FPS on minimum-spec hardware?
 
 **Status:** ⚠ Partial

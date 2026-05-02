@@ -8,14 +8,22 @@ hashes produce the same state on any machine, any time.
 The engine must provide these, in this order:
 
 1. **Seeded RNG** (PCG32 with named sub-streams, no
-   `Math.random()`).
+   `Math.random()`). The canonical sub-stream catalogue lives in
+   [`rng-streams.md`](./rng-streams.md); every `rng.next()` site
+   MUST cite a stream from that table.
 2. **Fixed-point math** (integer arithmetic with explicit
    numerator/denominator ratios).
 3. **Command dispatcher** (pure reducer: `state = apply(state, command)`).
 4. **Canonical serializer + state hash** (sorted keys, no whitespace,
    xxh64 over canonical bytes).
-5. **Replay API** (seed + command log reproduces final state).
-6. **Fuzz harness** (N random commands replayed bit-identically).
+5. **Replay API** (seed + command log reproduces final state). The
+   seed itself is resolved by the precedence list in
+   [`command-schema.md` § Seed Source Precedence](./command-schema.md#seed-source-precedence)
+   and pinned into `SCENARIO_LOAD`.
+6. **Fuzz harness** (N random commands replayed bit-identically). The
+   companion **multi-engine harness** runs two `createEngine()`
+   instances in parallel and compares hashes per step; see
+   [`multi-engine-harness.md`](./multi-engine-harness.md).
 
 ## Forbidden In Deterministic Paths
 

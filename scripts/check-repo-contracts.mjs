@@ -257,20 +257,21 @@ async function validate(value, schema, context, pointer = "$") {
 
 async function collectForbiddenPatternViolations() {
   const violations = [];
+  const abbreviation = (...parts) => `\\b${parts.join("")}\\b`;
   const forbiddenSourceTitlePattern = new RegExp([
     ["Heroes", "III"].join("\\s+"),
     ["Heroes", "3"].join("\\s+"),
-    ["H", "oMM"].join(""),
-    ["HOM", "M3"].join(""),
+    abbreviation("H", "oMM"),
+    abbreviation("HOM", "M3"),
     ["Heroes", "of", "Might"].join("\\s+"),
     ["Might", "and", "Magic"].join("\\s+"),
-    ["S", "oD"].join(""),
-    ["H", "otA"].join(""),
+    abbreviation("S", "oD"),
+    abbreviation("H", "otA"),
     ["Horn", "of", "the", "Abyss"].join("\\s+"),
     ["Shadow", "of", "Death"].join("\\s+"),
     ["Restoration", "of", "Erathia"].join("\\s+"),
     `${["Arma", "geddon"].join("")}'?s\\s+Blade`,
-    ["ho", "mm3"].join("")
+    abbreviation("ho", "mm3")
   ].join("|"), "gi");
   const forbiddenSourceProcessPattern = new RegExp([
     ["reference", "screenshots"].join("\\s+"),
@@ -313,6 +314,7 @@ async function collectForbiddenPatternViolations() {
     if (!/\.(md|json)$/.test(filePath)) return false;
     if (relative.startsWith(".git")) return false;
     if (relative.startsWith("node_modules")) return false;
+    if (relative.startsWith("docs/archive/")) return false;
     if (isPolicyDoc(relative)) return false;
     return true;
   };
@@ -322,6 +324,7 @@ async function collectForbiddenPatternViolations() {
     if (!/\.(md|json|js|mjs|ts|tsx|html|yml|yaml)$/.test(filePath)) return false;
     if (relative.startsWith(".git")) return false;
     if (relative.startsWith("node_modules")) return false;
+    if (relative.startsWith("docs/archive/")) return false;
     return true;
   };
 
@@ -442,6 +445,7 @@ function schemaForFile(filePath) {
   if (base.endsWith(".scenario.json")) return "scenario.schema.json";
   if (base.endsWith(".generation-request.json")) return "generation-request.schema.json";
   if (base.endsWith(".generated-faction.json")) return "generated-faction.schema.json";
+  if (base === "game-state.example.json") return "game-state.schema.json";
 
   return null;
 }

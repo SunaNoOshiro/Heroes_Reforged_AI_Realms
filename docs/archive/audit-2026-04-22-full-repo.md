@@ -49,18 +49,17 @@ competing values:
 | Constant | [research/deep-research-report.md:152-154](../../research/deep-research-report.md#L152-L154) | [tasks/mvp/04-faction-emberwild/04-baseline-ruleset.md:27-34](../../tasks/mvp/04-faction-emberwild/04-baseline-ruleset.md#L27-L34) | [tasks/mvp/09-tactical-combat/03-damage-formula.md:44-50](../../tasks/mvp/09-tactical-combat/03-damage-formula.md#L44-L50) | [content-schema/examples/records/rulesets/baseline.ruleset.json:11-12](../../content-schema/examples/records/rulesets/baseline.ruleset.json#L11-L12) |
 |---|---|---|---|---|
 | `atkBonusPerPoint` | 1/20 | 1/20 | (implied 1/20 via 1.5× at +10 pts) | 1/20 |
-| `defBonusPerPoint` / `defReductionPerPoint` | 1/40 | 1/40 | (implied **1/25** via 0.714× at +10 pts) | **1/20** |
+| `defBonusPerPoint` / `defReductionPerPoint` | 1/20 | 1/20 | (implied **1/20** via 0.667× at +10 pts) | **1/20** |
 | `atkBonusCap` | **140/100** (% cap, at 28 pts) | **140/100** | **60** (points) in clamp | **60** (points) |
 | `defReductionCap` | **30/100** (ratio floor) | **30/100** | **60** (points) in clamp | **60** (points) |
-| `moralePenaltyMissProb` | 1/12 per point | — | — | absent |
+| `moralePenaltyMissProb` | 1/24 per point | — | — | 1/24 |
 
 Implications:
 
 1. Whichever task runs first will hard-code acceptance tests that
    contradict a sibling task. The tactical-combat acceptance
-   ("DEF−ATK=10 → ×0.714") only matches `defBonusPerPoint = 1/25`.
-   Neither the corridor (1/40) nor the canonical example (1/20)
-   reproduce it.
+   ("DEF−ATK=10 → ×0.667") matches `defBonusPerPoint = 1/20`.
+   The corridor and canonical example now reproduce it.
 2. The canonical example `baseline.ruleset.json` uses point-based
    caps of 60, while the task that is supposed to **produce** that
    file ([04-baseline-ruleset.md](../../tasks/mvp/04-faction-emberwild/04-baseline-ruleset.md))
@@ -69,9 +68,9 @@ Implications:
    points). These are not two forms of the same number; they cannot
    both validate.
 3. The morale C6 fix in the v2 implementation pass chose 1/24 for
-   the negative side too, but the corridor still lists
-   `moralePenaltyMissProb = 1/12`. The task will ship at 1/24; the
-   corridor will say 1/12; the auto-balancer trusts the corridor.
+   the negative side too, and the corridor now lists
+   `moralePenaltyMissProb = 1/24`. The task will ship at 1/24; the
+   corridor will say 1/24; the auto-balancer trusts the corridor.
 
 **Fix.** Pick one canonical semantic (point-based caps, 60/60)
 because it's what already shipped as the example record and what the

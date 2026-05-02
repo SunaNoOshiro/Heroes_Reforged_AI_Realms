@@ -62,19 +62,27 @@ the event log, never calls back into simulation.
 
 ### Q: 4. What is the maximum acceptable frame time before degradation kicks in?
 
-**Status:** ❌ UNKNOWN
+**Status:** ✔ Defined
 
 **Answer:**
-No frame-time budget or degradation threshold is defined. Renderer
-performance targets are stated only as aspirational ("60 FPS",
-"0.1 ms per-frame GPU time, leave headroom for UI"), but there is no
-documented degradation policy (e.g. drop animations, skip layers,
-fall back to Canvas 2D) tied to a specific frame-time threshold.
+A four-tier frame-time budget is documented in
+[`renderer-technology-choice.md` § Frame-Time Budget &amp; Degradation](../architecture/renderer-technology-choice.md#frame-time-budget--degradation):
+
+| Frame time | Tier | Action |
+|---|---|---|
+| ≤ 16.7 ms | Green | Full render path |
+| 16.8–25 ms | Amber | Drop non-critical animations |
+| 25–40 ms | Orange | Disable layered animations; freeze camera tweens |
+| > 40 ms sustained 1 s | Red | Canvas 2D / static fallback |
+
+Tier entry / exit uses a 60-frame rolling-average window (Red can
+escalate on a single frame). Transitions surface via a toggleable
+debug overlay; telemetry uploads are opt-in.
 
 **Evidence:**
-- [docs/architecture/renderer-technology-choice.md:82-86](../architecture/renderer-technology-choice.md#L82-L86) — performance targets, no degradation rule
-- No `docs/readiness-audit/09-performance.md` answers exist yet at the time of this audit
-- No reference to `requestIdleCallback`, frame-budget, or fallback rendering paths
+- [docs/architecture/renderer-technology-choice.md § Frame-Time Budget &amp; Degradation](../architecture/renderer-technology-choice.md#frame-time-budget--degradation)
+- [docs/readiness-audit/09-performance.md](./09-performance.md) — companion audit entry
+- [docs/architecture/glossary.md](../architecture/glossary.md) — "frame-time tier"
 
 ---
 

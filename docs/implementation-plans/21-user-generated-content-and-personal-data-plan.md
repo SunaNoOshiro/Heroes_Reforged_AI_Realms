@@ -1020,8 +1020,8 @@ bugs, not moderation.
      reason (closed enum: `infringement`, `harassment`,
      `mature-without-rating`, `malware`, `other`), notes
      (text-area, max 1000 chars, sanitized via the contract from
-     Issue "No text-sanitization contract"), optional screenshot
-     reference (asset path, no upload at v1).
+     Issue "No text-sanitization contract"), optional screenshot pointer
+     (asset path, no upload at v1).
    - **Output:** a `ContentReport` record validated against the
      new schema, persisted to a local
      `state.privacy.outboundReports[]` queue with retry. **No
