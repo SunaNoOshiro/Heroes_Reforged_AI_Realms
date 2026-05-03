@@ -57,6 +57,14 @@ Acceptance Criteria:
   `content-schema/examples/**/*.json` validates under both the JSON
   Schema (existing CI) and the Zod validator; disagreement fails the
   build
+- For every JSON example, the JSON-Schema-defaulted output and the
+  Zod-defaulted output produce **byte-identical** canonical-JSON per
+  [`docs/architecture/schema-defaults-policy.md`](../../../docs/architecture/schema-defaults-policy.md);
+  disagreement fails the build
+- The Zod adapter exposes
+  `toValidationErrors(zodError, ctx): ValidationError[]` so consumers
+  never see raw Zod internals. Shape pinned in
+  [`content-schema/schemas/validation-error.schema.json`](../../../content-schema/schemas/validation-error.schema.json)
 
 Verify:
 - npm run validate

@@ -11,7 +11,7 @@ flow without tracing through task docs.
 flowchart TD
     A([boot]) --> B[load content packs]
     B --> C{pack hashes match save?}
-    C -- no --> C1[fail loud: contentHash mismatch]
+    C -- no --> C1[apply version-policy matrix]
     C -- yes --> D[hydrate game state from save or scenario]
     D --> E[enter adventure turn]
     E --> F{player action?}
@@ -40,6 +40,12 @@ flowchart TD
     V -- yes --> W[next player]
     W --> E
 ```
+
+The behaviour of the `apply version-policy matrix` branch (refuse,
+migrate, or degrade) is pinned in
+[`version-policy.md`](./version-policy.md). That matrix covers six
+mismatch kinds across offline, multiplayer, and trusted-replay
+contexts; this file does not duplicate the rules.
 
 ## Boundary Responsibilities
 
@@ -113,6 +119,7 @@ animations cannot lap the reducer.
 
 ## Related docs
 
+- [`version-policy.md`](./version-policy.md) — refuse / migrate / degrade matrix for save and pack mismatches
 - [`determinism.md`](./determinism.md) — why this loop is pure
 - [`effect-registry.md`](./effect-registry.md) — what commands may produce
 - [`pack-contract.md`](./pack-contract.md) — how packs enter at step B

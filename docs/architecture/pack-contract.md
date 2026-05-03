@@ -39,6 +39,11 @@ Hash fields:
   without it. Post-M2 it becomes required at load time for
   reproducible play.
 
+The exact loader behaviour on a `contentHash`, `contentPackHashes`, or
+`engineHash` mismatch is pinned in
+[`version-policy.md`](./version-policy.md). This file does not repeat
+the per-context rules; trust the matrix.
+
 See [`determinism.md`](determinism.md).
 
 ## Canonical Example

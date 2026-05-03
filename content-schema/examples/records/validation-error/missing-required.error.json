@@ -1,0 +1,12 @@
+{
+  "$schema": "heroes-reforged/validation-error.schema.json",
+  "packId": "emberwild-faction",
+  "recordId": "unit:emberwild.ash-hound",
+  "schemaId": "heroes-reforged/unit.schema.json",
+  "jsonPointer": "/stats",
+  "rule": "required",
+  "expected": "hp",
+  "message": "missing required property \"hp\"",
+  "severity": "error",
+  "sourcePath": "content-schema/examples/packs/emberwild-faction/units/ash-hound.unit.json"
+}

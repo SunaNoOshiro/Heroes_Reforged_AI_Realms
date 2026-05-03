@@ -47,7 +47,7 @@ Dependencies:
 Acceptance Criteria:
 - `save(state, "My Save")` writes correct `SaveRecord` to IndexedDB
 - `load(saveId)` replays commands and returns `AdventureState` with identical hash to save time
-- Loading with a mismatched content pack hash shows a warning: "Content pack changed since save"
+- Loading with a mismatched content pack hash applies the row from [`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md) (`degrade` offline → toast "Content pack changed since save"; `refuse loud` in multiplayer/trusted-replay)
 - Save record for a 7-day game is < 50KB
 
 Verify:

@@ -1,0 +1,786 @@
+{
+  "heroes-reforged/adventure-building.schema.json": {
+    "heroes-reforged/adventure-building.schema.json#/$defs/economy/oneOf~10/properties/kind/const": [
+      "none"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/economy/oneOf~11/properties/kind/const": [
+      "daily_income"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/economy/oneOf~12/properties/kind/const": [
+      "weekly_income"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/economy/oneOf~13/properties/kind/const": [
+      "unit_growth"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/ownershipRules/oneOf~10/properties/kind/const": [
+      "none"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/ownershipRules/oneOf~11/properties/kind/const": [
+      "capturable"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/ownershipRules/oneOf~12/properties/kind/const": [
+      "scripted"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/visitRules/oneOf~10/properties/kind/const": [
+      "unrestricted"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/visitRules/oneOf~11/properties/kind/const": [
+      "once_per_turn"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/visitRules/oneOf~12/properties/kind/const": [
+      "once_per_hero"
+    ],
+    "heroes-reforged/adventure-building.schema.json#/$defs/visitRules/oneOf~13/properties/kind/const": [
+      "guarded"
+    ]
+  },
+  "heroes-reforged/animation.schema.json": {
+    "heroes-reforged/animation.schema.json#/definitions/event/properties/kind/enum": [
+      "damage",
+      "sound",
+      "status",
+      "vfx"
+    ],
+    "heroes-reforged/animation.schema.json#/definitions/sequence/properties/channel/enum": [
+      "body",
+      "fx",
+      "status"
+    ],
+    "heroes-reforged/animation.schema.json#/properties/frameOrder/enum": [
+      "column-major",
+      "row-major"
+    ]
+  },
+  "heroes-reforged/artifact.schema.json": {
+    "heroes-reforged/artifact.schema.json#/properties/rarity/enum": [
+      "major",
+      "minor",
+      "relic",
+      "treasure"
+    ]
+  },
+  "heroes-reforged/command.schema.json": {
+    "heroes-reforged/command.schema.json#/$defs/acceptBattleSurrender/properties/kind/const": [
+      "ACCEPT_BATTLE_SURRENDER"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/acknowledgeCalendarAnnouncement/properties/kind/const": [
+      "ACKNOWLEDGE_CALENDAR_ANNOUNCEMENT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/assignSkill/properties/kind/const": [
+      "ASSIGN_SKILL"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/assignSkill/properties/skillLevel/enum": [
+      "advanced",
+      "basic",
+      "expert"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/autoResolveBattle/properties/kind/const": [
+      "AUTO_RESOLVE_BATTLE"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/battleAttack/properties/kind/const": [
+      "BATTLE_ATTACK"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/battleDefend/properties/kind/const": [
+      "BATTLE_DEFEND"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/battleMove/properties/kind/const": [
+      "BATTLE_MOVE"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/battleResolved/properties/kind/const": [
+      "BATTLE_RESOLVED"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/battleWait/properties/kind/const": [
+      "BATTLE_WAIT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/buildBoat/properties/kind/const": [
+      "BUILD_BOAT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/buildBuilding/properties/kind/const": [
+      "BUILD_BUILDING"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/buildGrailStructure/properties/kind/const": [
+      "BUILD_GRAIL_STRUCTURE"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/buyArtifact/properties/kind/const": [
+      "BUY_ARTIFACT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/buyWarMachine/properties/kind/const": [
+      "BUY_WAR_MACHINE"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/captureMine/properties/kind/const": [
+      "CAPTURE_MINE"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/collectCreatureBankReward/properties/kind/const": [
+      "COLLECT_CREATURE_BANK_REWARD"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/combineArtifacts/properties/kind/const": [
+      "COMBINE_ARTIFACTS"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/endDay/properties/kind/const": [
+      "END_DAY"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/endHeroTurn/properties/kind/const": [
+      "END_HERO_TURN"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/equipHeroArtifact/properties/kind/const": [
+      "EQUIP_HERO_ARTIFACT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/fireCatapult/properties/kind/const": [
+      "FIRE_CATAPULT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/generateRandomMap/properties/kind/const": [
+      "GENERATE_RANDOM_MAP"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/hireTavernHero/properties/kind/const": [
+      "HIRE_TAVERN_HERO"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/initiateBattle/properties/kind/const": [
+      "INITIATE_BATTLE"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/learnSpell/properties/kind/const": [
+      "LEARN_SPELL"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/learnUniversitySkill/properties/kind/const": [
+      "LEARN_UNIVERSITY_SKILL"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/levelUp/properties/kind/const": [
+      "LEVEL_UP"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/moveHero/properties/kind/const": [
+      "MOVE_HERO"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/placeTacticsStack/properties/kind/const": [
+      "PLACE_TACTICS_STACK"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/recruitExternalDwellingUnits/properties/kind/const": [
+      "RECRUIT_EXTERNAL_DWELLING_UNITS"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/recruitUnits/properties/kind/const": [
+      "RECRUIT_UNITS"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/releasePrisonHero/properties/kind/const": [
+      "RELEASE_PRISON_HERO"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/resourceBundle/propertyNames/enum": [
+      "crystal",
+      "gems",
+      "gold",
+      "mercury",
+      "ore",
+      "sulfur",
+      "wood"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/retreatBeforeBattle/properties/kind/const": [
+      "RETREAT_BEFORE_BATTLE"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/rollRmgSeed/properties/kind/const": [
+      "ROLL_RMG_SEED"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/scenarioLoad/properties/kind/const": [
+      "SCENARIO_LOAD"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/sellArtifact/properties/kind/const": [
+      "SELL_ARTIFACT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/spellCast/properties/kind/const": [
+      "SPELL_CAST"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/splitArmyStack/properties/kind/const": [
+      "SPLIT_ARMY_STACK"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/startBattleAfterTactics/properties/kind/const": [
+      "START_BATTLE_AFTER_TACTICS"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/swapTownHeroes/properties/kind/const": [
+      "SWAP_TOWN_HEROES"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/tradeArtifact/properties/kind/const": [
+      "TRADE_ARTIFACT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/tradeResources/properties/fromResource/enum": [
+      "crystal",
+      "gems",
+      "gold",
+      "mercury",
+      "ore",
+      "sulfur",
+      "wood"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/tradeResources/properties/kind/const": [
+      "TRADE_RESOURCES"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/tradeResources/properties/toResource/enum": [
+      "crystal",
+      "gems",
+      "gold",
+      "mercury",
+      "ore",
+      "sulfur",
+      "wood"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/transferGarrisonStack/properties/kind/const": [
+      "TRANSFER_GARRISON_STACK"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/transferHeroArmyStack/properties/kind/const": [
+      "TRANSFER_HERO_ARMY_STACK"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/transferHeroArtifact/properties/kind/const": [
+      "TRANSFER_HERO_ARTIFACT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/transferTownArmyStack/properties/kind/const": [
+      "TRANSFER_TOWN_ARMY_STACK"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/unequipHeroArtifact/properties/kind/const": [
+      "UNEQUIP_HERO_ARTIFACT"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/upgradeAllEligibleStacks/properties/kind/const": [
+      "UPGRADE_ALL_ELIGIBLE_STACKS"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/upgradeArmyStack/properties/kind/const": [
+      "UPGRADE_ARMY_STACK"
+    ],
+    "heroes-reforged/command.schema.json#/$defs/visitMapObject/properties/kind/const": [
+      "VISIT_MAP_OBJECT"
+    ]
+  },
+  "heroes-reforged/condition.schema.json": {
+    "heroes-reforged/condition.schema.json#/oneOf~10/properties/kind/const": [
+      "always"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~11/properties/kind/const": [
+      "adjacent_allies"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~11/properties/op/enum": [
+      "eq",
+      "gte",
+      "lte"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~12/properties/kind/const": [
+      "adjacent_enemies"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~12/properties/op/enum": [
+      "eq",
+      "gte",
+      "lte"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~13/properties/kind/const": [
+      "target_hp_percent"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~13/properties/op/enum": [
+      "eq",
+      "gte",
+      "lte"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~14/properties/kind/const": [
+      "target_has_status"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~15/properties/kind/const": [
+      "target_has_trait"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~16/properties/kind/const": [
+      "caster_primary_stat"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~16/properties/op/enum": [
+      "eq",
+      "gte",
+      "lte"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~16/properties/stat/enum": [
+      "attack",
+      "defense",
+      "knowledge",
+      "power"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~17/properties/kind/const": [
+      "and"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~18/properties/kind/const": [
+      "or"
+    ],
+    "heroes-reforged/condition.schema.json#/oneOf~19/properties/kind/const": [
+      "not"
+    ]
+  },
+  "heroes-reforged/easing.schema.json": {
+    "heroes-reforged/easing.schema.json#/oneOf~10/enum": [
+      "bezier",
+      "easeInCubic",
+      "easeInOutCubic",
+      "easeInOutQuad",
+      "easeInOutSine",
+      "easeInQuad",
+      "easeOutCubic",
+      "easeOutQuad",
+      "linear"
+    ],
+    "heroes-reforged/easing.schema.json#/oneOf~11/properties/kind/const": [
+      "bezier"
+    ]
+  },
+  "heroes-reforged/effect.schema.json": {
+    "heroes-reforged/effect.schema.json#/$defs/awardResources/properties/kind/const": [
+      "award_resources"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/damage/properties/damageType/enum": [
+      "air",
+      "cold",
+      "earth",
+      "fire",
+      "holy",
+      "lightning",
+      "physical",
+      "pure",
+      "shadow"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/damage/properties/kind/const": [
+      "damage"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/dispel/properties/kind/const": [
+      "dispel"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/dispel/properties/scope/enum": [
+      "all",
+      "negative",
+      "positive"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/grantAbility/properties/kind/const": [
+      "grant_ability"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/grantSpell/properties/kind/const": [
+      "grant_spell"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/growthModifier/properties/kind/const": [
+      "growth_modifier"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/heal/properties/kind/const": [
+      "heal"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/modifyPrimaryStat/properties/kind/const": [
+      "modify_primary_stat"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/modifyPrimaryStat/properties/stat/enum": [
+      "attack",
+      "defense",
+      "knowledge",
+      "power"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/modifyStat/properties/kind/const": [
+      "modify_stat"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/resourceBonus/properties/cadence/enum": [
+      "daily",
+      "once",
+      "weekly"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/resourceBonus/properties/kind/const": [
+      "resource_bonus"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/setFlag/properties/kind/const": [
+      "set_flag"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/spawnArmy/properties/kind/const": [
+      "spawn_army"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/status/properties/durationUnit/enum": [
+      "days",
+      "rounds",
+      "turns"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/status/properties/kind/const": [
+      "status"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/status/properties/stacking/enum": [
+      "highest_magnitude_refresh_duration",
+      "ignore",
+      "refresh",
+      "stack"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/summon/properties/kind/const": [
+      "summon"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/unlockBuilding/properties/kind/const": [
+      "unlock_building"
+    ],
+    "heroes-reforged/effect.schema.json#/$defs/unlockUnit/properties/kind/const": [
+      "unlock_unit"
+    ]
+  },
+  "heroes-reforged/error-state.schema.json": {
+    "heroes-reforged/error-state.schema.json#/properties/severity/enum": [
+      "error",
+      "fatal",
+      "info",
+      "warn"
+    ]
+  },
+  "heroes-reforged/faction.schema.json": {
+    "heroes-reforged/faction.schema.json#/properties/alignment/enum": [
+      "evil",
+      "good",
+      "neutral"
+    ]
+  },
+  "heroes-reforged/formula.schema.json": {
+    "heroes-reforged/formula.schema.json#/$defs/literal/properties/op/const": [
+      "const"
+    ],
+    "heroes-reforged/formula.schema.json#/$defs/lookup/properties/op/const": [
+      "var"
+    ],
+    "heroes-reforged/formula.schema.json#/$defs/op/properties/op/enum": [
+      "abs",
+      "add",
+      "clamp",
+      "divFloor",
+      "max",
+      "min",
+      "mul",
+      "neg",
+      "ratio",
+      "sub"
+    ]
+  },
+  "heroes-reforged/game-state.schema.json": {
+    "heroes-reforged/game-state.schema.json#/properties/phase/enum": [
+      "adventure",
+      "battle",
+      "menu"
+    ]
+  },
+  "heroes-reforged/generated-faction.schema.json": {
+    "heroes-reforged/generated-faction.schema.json#/properties/faction/properties/alignment/enum": [
+      "evil",
+      "good",
+      "neutral"
+    ]
+  },
+  "heroes-reforged/generation-request.schema.json": {
+    "heroes-reforged/generation-request.schema.json#/properties/kind/enum": [
+      "artifact",
+      "faction",
+      "hero",
+      "scenario",
+      "spell"
+    ]
+  },
+  "heroes-reforged/hero.schema.json": {
+    "heroes-reforged/hero.schema.json#/properties/specialty/oneOf~10/properties/kind/const": [
+      "unit_bonus"
+    ],
+    "heroes-reforged/hero.schema.json#/properties/specialty/oneOf~11/properties/kind/const": [
+      "creature_specialty"
+    ],
+    "heroes-reforged/hero.schema.json#/properties/specialty/oneOf~12/properties/bonus/properties/kind/enum": [
+      "damage",
+      "duration",
+      "range"
+    ],
+    "heroes-reforged/hero.schema.json#/properties/specialty/oneOf~12/properties/kind/const": [
+      "spell_bonus"
+    ],
+    "heroes-reforged/hero.schema.json#/properties/specialty/oneOf~13/properties/kind/const": [
+      "skill_bonus"
+    ],
+    "heroes-reforged/hero.schema.json#/properties/specialty/oneOf~14/properties/kind/const": [
+      "resource_bonus"
+    ]
+  },
+  "heroes-reforged/hotkey.schema.json": {
+    "heroes-reforged/hotkey.schema.json#/$defs/hotkeyEntry/properties/scope/enum": [
+      "global",
+      "modal",
+      "screen"
+    ]
+  },
+  "heroes-reforged/manifest.schema.json": {
+    "heroes-reforged/manifest.schema.json#/properties/capabilities/items/enum": [
+      "abilities.custom-kind",
+      "assets.binary",
+      "formulas.ast",
+      "scripts.none",
+      "spells.custom-kind"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/signature/properties/scheme/enum": [
+      "ed25519"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/type/enum": [
+      "asset-pack",
+      "faction-pack",
+      "library-pack",
+      "ruleset-pack",
+      "scenario-pack",
+      "world-pack"
+    ]
+  },
+  "heroes-reforged/map-object.schema.json": {
+    "heroes-reforged/map-object.schema.json#/properties/category/enum": [
+      "event",
+      "hazard",
+      "quest",
+      "reward",
+      "shrine",
+      "utility"
+    ],
+    "heroes-reforged/map-object.schema.json#/properties/cooldown/oneOf~10/properties/kind/const": [
+      "none"
+    ],
+    "heroes-reforged/map-object.schema.json#/properties/cooldown/oneOf~11/properties/kind/const": [
+      "turns"
+    ],
+    "heroes-reforged/map-object.schema.json#/properties/cooldown/oneOf~12/properties/kind/const": [
+      "weekly"
+    ],
+    "heroes-reforged/map-object.schema.json#/properties/interactionModel/enum": [
+      "consume_on_visit",
+      "once_per_hero",
+      "once_per_turn",
+      "persistent"
+    ]
+  },
+  "heroes-reforged/map-trigger.schema.json": {
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~10/properties/kind/const": [
+      "on_day"
+    ],
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~11/properties/kind/const": [
+      "on_week_index"
+    ],
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~12/properties/kind/const": [
+      "on_tile_visit"
+    ],
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~13/properties/kind/const": [
+      "on_army_defeat"
+    ],
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~14/properties/comparator/enum": [
+      "eq",
+      "gte",
+      "lte"
+    ],
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~14/properties/kind/const": [
+      "on_resource_threshold"
+    ],
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~15/properties/kind/const": [
+      "on_flag_set"
+    ],
+    "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~16/properties/kind/const": [
+      "on_object_owned"
+    ]
+  },
+  "heroes-reforged/modal-entry.schema.json": {
+    "heroes-reforged/modal-entry.schema.json#/$defs/modalId/enum": [
+      "09-map-object-dialog",
+      "20-mine-visit-dialog",
+      "25-building-recruitment-dialog",
+      "37-quick-recruit-window",
+      "40-pre-battle-dialog",
+      "41-surrender-cost-dialog",
+      "48-level-up-dialog",
+      "51-split-stack-dialog",
+      "52-artifact-combine-dialog",
+      "54-system-menu",
+      "60-confirmation-dialog"
+    ],
+    "heroes-reforged/modal-entry.schema.json#/properties/severity/enum": [
+      "destructive",
+      "info",
+      "system",
+      "warn"
+    ]
+  },
+  "heroes-reforged/neutral-stack-template.schema.json": {
+    "heroes-reforged/neutral-stack-template.schema.json#/properties/spawnRules/properties/role/enum": [
+      "dwelling_guard",
+      "mine_guard",
+      "quest_guard",
+      "treasure_guard",
+      "wanderer"
+    ]
+  },
+  "heroes-reforged/resource-id.schema.json": {
+    "heroes-reforged/resource-id.schema.json#/enum": [
+      "crystal",
+      "gem",
+      "gold",
+      "mercury",
+      "ore",
+      "sulfur",
+      "wood"
+    ]
+  },
+  "heroes-reforged/scenario.schema.json": {
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~10/properties/kind/const": [
+      "defeat_all_enemies"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~11/properties/kind/const": [
+      "capture_town"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~12/properties/kind/const": [
+      "acquire_artifact"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~13/properties/kind/const": [
+      "survive_days"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~14/properties/kind/const": [
+      "accumulate_resource"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~15/properties/kind/const": [
+      "lose_all_towns"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~16/properties/kind/const": [
+      "lose_all_heroes"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~17/properties/kind/const": [
+      "hero_dies"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~18/properties/kind/const": [
+      "resource_depleted"
+    ],
+    "heroes-reforged/scenario.schema.json#/$defs/condition/oneOf~19/properties/kind/const": [
+      "day_limit_reached"
+    ],
+    "heroes-reforged/scenario.schema.json#/properties/players/items/properties/kind/enum": [
+      "ai",
+      "either",
+      "human"
+    ]
+  },
+  "heroes-reforged/skill.schema.json": {
+    "heroes-reforged/skill.schema.json#/properties/levels/items/properties/mastery/enum": [
+      "advanced",
+      "basic",
+      "expert"
+    ]
+  },
+  "heroes-reforged/spell.schema.json": {
+    "heroes-reforged/spell.schema.json#/properties/school/enum": [
+      "air",
+      "arcane",
+      "dark",
+      "earth",
+      "fire",
+      "light",
+      "nature",
+      "water"
+    ],
+    "heroes-reforged/spell.schema.json#/properties/scope/enum": [
+      "adventure",
+      "both",
+      "combat"
+    ]
+  },
+  "heroes-reforged/stat-id.schema.json": {
+    "heroes-reforged/stat-id.schema.json#/enum": [
+      "attack",
+      "damageMax",
+      "damageMin",
+      "defense",
+      "hp",
+      "luck",
+      "morale",
+      "shots",
+      "speed"
+    ]
+  },
+  "heroes-reforged/status-id.schema.json": {
+    "heroes-reforged/status-id.schema.json#/enum": [
+      "berserk",
+      "blessed",
+      "blinded",
+      "boat_summoned",
+      "burning",
+      "counterstrike",
+      "cursed",
+      "disguised",
+      "feared",
+      "frozen",
+      "hasted",
+      "mirror_image",
+      "poisoned",
+      "regenerating",
+      "shielded",
+      "silenced",
+      "slowed",
+      "stone_skin",
+      "stunned",
+      "town_portal_pending",
+      "town_portal_pending_choose",
+      "view_earth_active",
+      "visions_active",
+      "weakened"
+    ]
+  },
+  "heroes-reforged/target-scope.schema.json": {
+    "heroes-reforged/target-scope.schema.json#/enum": [
+      "all_allies",
+      "all_enemies",
+      "all_units",
+      "ally",
+      "enemy",
+      "hex",
+      "line",
+      "self"
+    ]
+  },
+  "heroes-reforged/targeting.schema.json": {
+    "heroes-reforged/targeting.schema.json#/oneOf~10/properties/kind/const": [
+      "self"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~11/properties/allegiance/enum": [
+      "ally",
+      "any",
+      "enemy"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~11/properties/kind/const": [
+      "single_unit"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~12/properties/kind/const": [
+      "hex"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~13/properties/kind/const": [
+      "unit_or_hex"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~14/properties/kind/const": [
+      "area"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~15/properties/kind/const": [
+      "line"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~16/properties/allegiance/enum": [
+      "ally",
+      "any",
+      "enemy"
+    ],
+    "heroes-reforged/targeting.schema.json#/oneOf~16/properties/kind/const": [
+      "all"
+    ]
+  },
+  "heroes-reforged/validation-error.schema.json": {
+    "heroes-reforged/validation-error.schema.json#/properties/rule/enum": [
+      "additional",
+      "allOf",
+      "anyOf",
+      "const",
+      "custom",
+      "discriminator",
+      "enum",
+      "format",
+      "maxItems",
+      "maxLength",
+      "maximum",
+      "minItems",
+      "minLength",
+      "minimum",
+      "oneOf",
+      "pattern",
+      "ref",
+      "required",
+      "type",
+      "uniqueItems"
+    ],
+    "heroes-reforged/validation-error.schema.json#/properties/severity/enum": [
+      "error",
+      "fatal",
+      "info",
+      "warn"
+    ]
+  }
+}

@@ -171,6 +171,18 @@ Preferred stack when implementation starts:
 - use `npm run validate` before finishing broad task-system edits; it
   regenerates the registry and runs links, contracts, cross-refs, and
   task lint
+- if you edited any `enum: [...]` array or `const:` value inside a
+  schema under `content-schema/schemas/`, run
+  `npm run generate:enum-snapshot` and commit the resulting
+  `content-schema/enums.snapshot.json` diff in the same change. The
+  snapshot is the public contract for save/replay/multiplayer; CI
+  refuses removed values without an alias entry, but additions
+  silently drift the snapshot until you regenerate. The full
+  lifecycle (additive → deprecated → aliased → removed) lives in
+  [`docs/architecture/enum-lifecycle-policy.md`](docs/architecture/enum-lifecycle-policy.md).
+  Never run `generate:enum-snapshot` to "fix" a failing
+  `validate:enums` without first checking whether the failing removal
+  was intentional
 - implement the smallest coherent unit, staying within the task's
   `ownedPaths`
 - treat `Owned Paths`, `Owned Paths (shared)`, and `Dependencies` as
@@ -212,6 +224,15 @@ Preferred stack when implementation starts:
   [`docs/architecture/module-graph.md`](docs/architecture/module-graph.md);
   catches cross-layer imports (e.g. `src/engine/` ↦ `src/renderer/`)
   and import cycles.
+- `npm run validate:enums`
+  Read-only check that every value in
+  `content-schema/enums.snapshot.json` is still present in the
+  schemas, or has an alias entry plus a migration, or is listed in
+  `content-schema/enums.removed.json`. Wired into `npm run validate`.
+- `npm run generate:enum-snapshot`
+  Manual writer that rebuilds `content-schema/enums.snapshot.json`
+  from the current schemas. Run **only** after an intentional enum
+  change; commit the diff in the same PR.
 - `npm run validate`
   Full repo validation; use this before handoff.
 

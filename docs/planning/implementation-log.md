@@ -281,6 +281,61 @@ Right now the repository does not yet prove:
 - that factions, worlds, animations, artifacts, heroes, towns, and
   map objects can be played in-engine
 
+### Data Contracts & Schema Plan Implementation (2026-05-03)
+
+Closed the seven data-contract gaps from
+[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../implementation-plans/06-data-contracts-and-schema-plan.md):
+
+- Authored
+  [`docs/architecture/version-policy.md`](../architecture/version-policy.md)
+  with the consolidated refuse / migrate / degrade decision matrix
+  (six mismatch kinds × three contexts) and removed the duplicated
+  prose from `state-flow.md`, `pack-contract.md`, `content-platform.md`,
+  and the persistence task.
+- Authored
+  [`docs/architecture/schema-migration-policy.md`](../architecture/schema-migration-policy.md)
+  plus the worked example migration under
+  [`src/content-schema/migrations/`](../../src/content-schema/migrations/)
+  (illustrative `example-v1-to-v2-rename-field` entry, registry
+  `README.md`, fixtures, test).
+- Authored
+  [`docs/architecture/enum-lifecycle-policy.md`](../architecture/enum-lifecycle-policy.md)
+  with the additive → deprecated → aliased → removed lifecycle, and
+  shipped the CI snapshot gate
+  ([`scripts/snapshot-enums.mjs`](../../scripts/snapshot-enums.mjs),
+  [`scripts/check-enum-snapshot.mjs`](../../scripts/check-enum-snapshot.mjs),
+  baseline [`content-schema/enums.snapshot.json`](../../content-schema/enums.snapshot.json)).
+  `npm run validate:enums` is wired into `npm run validate`.
+- Authored
+  [`docs/architecture/schema-defaults-policy.md`](../architecture/schema-defaults-policy.md)
+  pinning `default` keyword authoring rules, the integers-only
+  constraint, and the round-trip-of-defaults parity test required by
+  Task 10.
+- Added the canonical `ValidationError` schema
+  [`content-schema/schemas/validation-error.schema.json`](../../content-schema/schemas/validation-error.schema.json)
+  with two example records under
+  [`content-schema/examples/records/validation-error/`](../../content-schema/examples/records/validation-error/).
+  `schemaForFile` in
+  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
+  gained the `.error.json` suffix mapping.
+- Broadened the float-ban ESLint task scope from `src/engine` only to
+  `src/{engine,rules,content-runtime,content-schema}/**/*.ts` so
+  formula evaluators, content-runtime helpers, and schema-side
+  defaulting cannot reintroduce floats.
+- Authored 6 new task records pulling the work into the tasks-next
+  queue:
+  - [`tasks/mvp/02-content-schemas/22-validation-error-contract.md`](../../tasks/mvp/02-content-schemas/22-validation-error-contract.md)
+  - [`tasks/mvp/02-content-schemas/23-schema-migration-policy-and-example.md`](../../tasks/mvp/02-content-schemas/23-schema-migration-policy-and-example.md)
+  - [`tasks/mvp/02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md`](../../tasks/mvp/02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md)
+  - [`tasks/mvp/02-content-schemas/25-default-declarations-and-zod-parity.md`](../../tasks/mvp/02-content-schemas/25-default-declarations-and-zod-parity.md)
+  - [`tasks/mvp/02-content-schemas/26-m2-engine-hash-backfill.md`](../../tasks/mvp/02-content-schemas/26-m2-engine-hash-backfill.md)
+    (dormant until engine M2 ship)
+  - [`tasks/mvp/07-ui-shell/21-screen-view-model-types-generation.md`](../../tasks/mvp/07-ui-shell/21-screen-view-model-types-generation.md)
+- Extended Task 10 (Zod validators), Task 11 (schema-version stub),
+  and Task 5 (float-ban ESLint rule) acceptance criteria to require
+  the parity test, the discovered-from-registry runner, and the
+  broadened scope respectively.
+
 ### UI State & Interactions Plan Implementation (2026-05-03)
 
 Closed the thirteen audit gaps from

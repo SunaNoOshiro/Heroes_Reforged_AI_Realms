@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/validation-error.schema.json",
+  "title": "ValidationError",
+  "description": "Canonical, transport-friendly error record produced by every validator in the project (CI repo-contract checker, runtime Zod adapter, engine pre-dispatch validator, AI generation feedback loop). Replaces ad-hoc string errors so that editors, IDE integrations, and the Phase-3 AI feedback loop can consume failures generically. Errors are presentation-side only — they do not enter saves, replays, or the canonical state hash.",
+  "type": "object",
+  "required": [
+    "schemaId",
+    "jsonPointer",
+    "rule",
+    "message"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Must match the `$id` form of the validation-error schema.",
+      "pattern": "^heroes-reforged/validation-error\\.schema\\.json$"
+    },
+    "packId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Pack identifier the offending record belongs to. Optional for repo-wide errors (e.g. CI checks that scan source trees, not pack contents)."
+    },
+    "recordId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable record id within the pack (e.g. `unit:emberwild.ash-hound`). Optional when the failure is at the pack level (e.g. manifest validation) or repo level."
+    },
+    "schemaId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The `$id` of the schema that produced the error (e.g. `heroes-reforged/unit.schema.json`). Lets editors resolve the offending field's documentation."
+    },
+    "jsonPointer": {
+      "type": "string",
+      "description": "RFC 6901 JSON Pointer into the offending record. Use `\"\"` for whole-document errors. Always present so consumers can render a jump-to-source affordance.",
+      "pattern": "^(|/.*)$"
+    },
+    "rule": {
+      "type": "string",
+      "enum": [
+        "enum",
+        "required",
+        "additional",
+        "type",
+        "minimum",
+        "maximum",
+        "minLength",
+        "maxLength",
+        "pattern",
+        "format",
+        "const",
+        "uniqueItems",
+        "minItems",
+        "maxItems",
+        "oneOf",
+        "anyOf",
+        "allOf",
+        "discriminator",
+        "ref",
+        "custom"
+      ],
+      "description": "Closed enum of validator rule kinds. `custom` covers project-specific checks (e.g. cross-pack reference resolution, formula AST whitelist) that do not map to a JSON Schema keyword."
+    },
+    "expected": {
+      "description": "Schema-side expectation. May be any JSON-safe value (string, integer, array of allowed enum values, or object describing the expected shape). Optional — some rules (e.g. `additional`) carry the offending value in `actual` only."
+    },
+    "actual": {
+      "description": "The value that failed validation. Any JSON-safe value. Optional when the failure is structural (e.g. missing required field has nothing to report)."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable summary. Stable enough to log; not localized — the localized rendering uses `messageKey` in the consuming UI."
+    },
+    "messageKey": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional localization id paired with `message`. When present, UI surfaces should resolve this against the localization table; when absent, fall back to `message`."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warn", "error", "fatal"],
+      "description": "Mirrors `error-state.schema.json` severity tiers. Defaults to `error` when omitted."
+    },
+    "sourcePath": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Repo-relative path of the file the error came from (e.g. `content-schema/examples/packs/emberwild-faction/units/ash-hound.unit.json`). Optional — set by file-walking validators, omitted by in-memory validators."
+    }
+  },
+  "additionalProperties": false
+}

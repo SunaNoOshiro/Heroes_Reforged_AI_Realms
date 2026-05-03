@@ -1,0 +1,25 @@
+{
+  "$schema": "heroes-reforged/validation-error.schema.json",
+  "packId": "shared-library",
+  "recordId": "spell:fireball-variant",
+  "schemaId": "heroes-reforged/spell.schema.json",
+  "jsonPointer": "/effects/0/kind",
+  "rule": "enum",
+  "expected": [
+    "damage",
+    "heal",
+    "status",
+    "modify_stat",
+    "summon",
+    "dispel",
+    "teleport",
+    "raise",
+    "transform",
+    "bless",
+    "curse",
+    "shield"
+  ],
+  "actual": "explode",
+  "message": "expected one of damage, heal, status, modify_stat, summon, dispel, teleport, raise, transform, bless, curse, shield",
+  "severity": "error"
+}

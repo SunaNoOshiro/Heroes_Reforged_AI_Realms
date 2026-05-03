@@ -53,6 +53,7 @@ Canonical source files:
 | `ErrorState` | none — UI presentation only | canonical UI error record consumed by toasts, recoverable-error panels, and telemetry sinks; pinned in [`ui-state-contract.md` § Error State](./ui-state-contract.md#error-state) | [error-state](../../content-schema/schemas/error-state.schema.json) | [recoverable-load](../../content-schema/examples/records/error-state/recoverable-load.error-state.json), [invalid-target](../../content-schema/examples/records/error-state/invalid-target.error-state.json), [save-failed](../../content-schema/examples/records/error-state/save-failed.error-state.json) |
 | `ModalEntry` | none — UI presentation only | one frame on `state.ui.modalStack`; carries caller route, focus restoration, severity, and params per [`ui-routing.md` § Modal Stack](./ui-routing.md#modal-stack) | [modal-entry](../../content-schema/schemas/modal-entry.schema.json) | [system-menu](../../content-schema/examples/records/modal-entry/system-menu.modal-entry.json), [quit-confirmation](../../content-schema/examples/records/modal-entry/quit-confirmation.modal-entry.json), [recruitment](../../content-schema/examples/records/modal-entry/recruitment.modal-entry.json) |
 | `HotkeyRegistry` | none — UI presentation only | global registry of keyboard bindings, scopes, and rebindability per [`ui-hotkeys.md`](./ui-hotkeys.md) | [hotkey](../../content-schema/schemas/hotkey.schema.json) | [global-default](../../content-schema/examples/records/hotkey/global-default.hotkey.json) |
+| `ValidationError` | none — validator output only | canonical, transport-friendly error record produced by every validator (CI repo-contract checker, runtime Zod adapter, engine pre-dispatch validator, AI feedback loop). Pinned in [`validation-error.schema.json`](../../content-schema/schemas/validation-error.schema.json). | [validation-error](../../content-schema/schemas/validation-error.schema.json) | [missing-required](../../content-schema/examples/records/validation-error/missing-required.error.json), [unknown-enum](../../content-schema/examples/records/validation-error/unknown-enum.error.json) |
 
 ## Fast Dependency View
 
@@ -87,3 +88,19 @@ Canonical source files:
 - Embedded-only contracts such as `Targeting`, `Effect`, and `Formula`
   intentionally demonstrate usage through parent records instead of
   standalone files.
+
+## Migrations
+
+Schema evolution rules — when to bump `schemaVersion`, the canonical
+filename and required exports for a migration entry, the deprecation
+window, and the worked example — live in
+[`schema-migration-policy.md`](./schema-migration-policy.md). Migration
+entries themselves live under
+[`src/content-schema/migrations/`](../../src/content-schema/migrations/).
+Enum-value lifecycle (additive → deprecated → aliased → removed) lives
+in [`enum-lifecycle-policy.md`](./enum-lifecycle-policy.md). Default
+declarations and JSON Schema ↔ Zod parity rules live in
+[`schema-defaults-policy.md`](./schema-defaults-policy.md). Loader
+behaviour on a mismatch (refuse / migrate / degrade across offline,
+multiplayer, trusted-replay contexts) lives in
+[`version-policy.md`](./version-policy.md).

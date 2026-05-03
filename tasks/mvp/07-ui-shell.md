@@ -51,3 +51,5 @@ The React layer: app shell, HUD, town screen, hero panel. The UI never reads fro
   🤖 Task 19: Touch + keyboard + gamepad input modalities (~3h)
 - [20-command-lifecycle.md](07-ui-shell/20-command-lifecycle.md)
   🧠 Task 20: Command lifecycle + in-flight UI contract (~3h)
+- [21-screen-view-model-types-generation.md](07-ui-shell/21-screen-view-model-types-generation.md)
+  🧠 Task 21: Screen view-model types generation (~6h)

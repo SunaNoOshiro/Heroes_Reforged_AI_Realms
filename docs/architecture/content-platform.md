@@ -86,6 +86,17 @@ To stay easy to extend:
 - allow missing visuals to fall back
 - reject missing gameplay requirements loudly
 
+The migration cycle, schema-version bump procedure, and worked example
+live in
+[`schema-migration-policy.md`](./schema-migration-policy.md).
+Enum-value lifecycle (deprecate, alias, remove) lives in
+[`enum-lifecycle-policy.md`](./enum-lifecycle-policy.md). Default-value
+declarations and JSON Schema ↔ Zod parity rules live in
+[`schema-defaults-policy.md`](./schema-defaults-policy.md). The single
+matrix that decides refuse / migrate / degrade across offline,
+multiplayer, and trusted-replay contexts lives in
+[`version-policy.md`](./version-policy.md).
+
 ## Tooling Expectations
 
 Authoring tools should:

@@ -210,6 +210,26 @@
         {
           "label": "21-error-state-schema.md",
           "link": "02-content-schemas/21-error-state-schema.md"
+        },
+        {
+          "label": "22-validation-error-contract.md",
+          "link": "02-content-schemas/22-validation-error-contract.md"
+        },
+        {
+          "label": "23-schema-migration-policy-and-example.md",
+          "link": "02-content-schemas/23-schema-migration-policy-and-example.md"
+        },
+        {
+          "label": "24-enum-lifecycle-and-snapshot-gate.md",
+          "link": "02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md"
+        },
+        {
+          "label": "25-default-declarations-and-zod-parity.md",
+          "link": "02-content-schemas/25-default-declarations-and-zod-parity.md"
+        },
+        {
+          "label": "26-m2-engine-hash-backfill.md",
+          "link": "02-content-schemas/26-m2-engine-hash-backfill.md"
         }
       ]
     },
@@ -582,6 +602,10 @@
         {
           "label": "20-command-lifecycle.md",
           "link": "07-ui-shell/20-command-lifecycle.md"
+        },
+        {
+          "label": "21-screen-view-model-types-generation.md",
+          "link": "07-ui-shell/21-screen-view-model-types-generation.md"
         }
       ]
     },
@@ -2209,8 +2233,8 @@
       "moduleDependencies": [],
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 292
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 296
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2270,8 +2294,8 @@
         "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 291
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 295
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2327,8 +2351,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 188
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 189
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2383,24 +2407,24 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 209
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 213
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
       "kind": "task",
       "status": "planned",
-      "title": "ESLint rule — ban Math.random() and floats in `src/engine`",
+      "title": "ESLint rule — ban Math.random() and floats in deterministic-adjacent code",
       "path": "tasks/mvp/01-engine-core/05-eslint-rule-ban-math-random-and-floats-in-src-engine.md",
       "moduleId": "mvp.01-engine-core",
       "modulePath": "tasks/mvp/01-engine-core.md",
-      "description": "Write a custom ESLint rule (or use `eslint-plugin-no-restricted-syntax`) that: 1. Bans `Math.random()` in any file under `src/engine/` or `src/rules/` 2. Warns on bare floating-point literals (e.g., `0.5`, `1.5`) in those modules 3. Enforces that division (`/`) on values typed as `FixedPoint` must go through `fpDiv`",
+      "description": "Write a custom ESLint rule (or use `eslint-plugin-no-restricted-syntax`) that: 1. Bans `Math.random()` in any file under `src/engine/`, `src/rules/`, `src/content-runtime/`, or `src/content-schema/` 2. Warns on bare floating-point literals (e.g., `0.5`, `1.5`) in those modules 3. Enforces that division (`/`) on values typed as `FixedPoint` must go through `fpDiv` The broader file glob covers every deterministic-adjacent path: a formula evaluator producing `0.5` instead of an integer numerator/denominator silently breaks the canonical-JSON contract; content-runtime helpers reading numbers from packs could float-cast on JSON parse; schema-side defaulting could introduce floats if [`schema-defaults-policy.md`](../../../docs/architecture/schema-defaults-policy.md) is not mechanically enforced.",
       "inputs": [
         "ESLint config at repo root"
       ],
       "outputs": [
-        "Updated `.eslintrc` or `eslint.config.mjs`",
-        "`npm run lint` catches violations in the deterministic core modules"
+        "Updated `.eslintrc` or `eslint.config.mjs` with file glob `src/{engine,rules,content-runtime,content-schema}/**/*.ts`",
+        "`npm run lint` catches violations across every covered module"
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -2418,8 +2442,9 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "acceptanceCriteria": [
-        "Adding `Math.random()` to any file in `src/engine` causes `npm run lint` to fail",
-        "Adding `const x = 0.5` inside a sim function causes a lint warning",
+        "Adding `Math.random()` to any file under `src/engine/`, `src/rules/`, `src/content-runtime/`, or `src/content-schema/` causes `npm run lint` to fail",
+        "Adding `const x = 0.5` inside a sim function under any of those four paths causes a lint warning",
+        "A fixture-based test asserts the rule fires on each of the four covered paths",
         "Existing code passes with zero violations"
       ],
       "verifyCommands": [
@@ -2441,8 +2466,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 77
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 89
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -2511,8 +2536,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 23,
-      "downstreamTransitiveCount": 179
+      "downstreamDirectCount": 24,
+      "downstreamTransitiveCount": 180
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -2583,8 +2608,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
@@ -2641,8 +2666,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 52
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 53
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -2703,8 +2728,8 @@
         "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 2
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "mvp.01-engine-core.08-replay-api",
@@ -2762,8 +2787,8 @@
         "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 50
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -2819,8 +2844,8 @@
         "mvp.01-engine-core.08-replay-api"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 3
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "mvp.01-engine-core.10-github-actions-ci",
@@ -2877,8 +2902,8 @@
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 2
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "mvp.02-content-schemas.01-unit-schema",
@@ -2937,7 +2962,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 218
+      "downstreamTransitiveCount": 221
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -2995,7 +3020,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 137
+      "downstreamTransitiveCount": 140
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -3059,7 +3084,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 93
+      "downstreamTransitiveCount": 96
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -3117,7 +3142,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 98
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -3178,7 +3203,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 126
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -3239,7 +3264,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 187
+      "downstreamTransitiveCount": 190
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -3313,7 +3338,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 84
+      "downstreamTransitiveCount": 87
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -3398,7 +3423,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 58
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -3499,7 +3524,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 58
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -3555,7 +3580,9 @@
         "Errors are human-readable (not raw Zod internals)",
         "Effects use `z.discriminatedUnion(\"kind\", ...)` over the 12 effect kinds in [`effect.schema.json`](../../../content-schema/schemas/effect.schema.json); an unknown `kind` value fails with a clear \"unknown effect kind X\" error, not a generic union miss",
         "Hero specialty uses the same discriminated-union pattern keyed by `kind`; cross-kind fields (e.g. `targetSpellId` inside `unit_bonus`) fail with a field-path error",
-        "A round-trip test asserts every JSON example under `content-schema/examples/**/*.json` validates under both the JSON Schema (existing CI) and the Zod validator; disagreement fails the build"
+        "A round-trip test asserts every JSON example under `content-schema/examples/**/*.json` validates under both the JSON Schema (existing CI) and the Zod validator; disagreement fails the build",
+        "For every JSON example, the JSON-Schema-defaulted output and the Zod-defaulted output produce **byte-identical** canonical-JSON per [`docs/architecture/schema-defaults-policy.md`](../../../docs/architecture/schema-defaults-policy.md); disagreement fails the build",
+        "The Zod adapter exposes `toValidationErrors(zodError, ctx): ValidationError[]` so consumers never see raw Zod internals. Shape pinned in [`content-schema/schemas/validation-error.schema.json`](../../../content-schema/schemas/validation-error.schema.json)"
       ],
       "verifyCommands": [
         "npm run validate",
@@ -3564,11 +3591,13 @@
       "estimatedTime": "- 3 hours",
       "screenPackages": [],
       "directSchemaPaths": [
-        "content-schema/schemas/effect.schema.json"
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/validation-error.schema.json"
       ],
       "screenSchemaPaths": [],
       "schemaPaths": [
-        "content-schema/schemas/effect.schema.json"
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/validation-error.schema.json"
       ],
       "taskDependencies": [
         "mvp.02-content-schemas.01-unit-schema",
@@ -3602,8 +3631,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 47
+      "downstreamDirectCount": 13,
+      "downstreamTransitiveCount": 50
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -3620,7 +3649,8 @@
       "outputs": [
         "`schemaVersion` field added to all schemas",
         "`src/content-schema/migrate.ts` — `migrate(data: unknown, fromVersion: number, toVersion: number): unknown`",
-        "Initial migration table is empty (no migrations needed for v1)"
+        "Discovers entries from `src/content-schema/migrations/` (not an inline empty array) per [`docs/architecture/schema-migration-policy.md`](../../../docs/architecture/schema-migration-policy.md)",
+        "Initial migration table contains only the illustrative example entry (`example-v1-to-v2-rename-field.ts`); no shipping schema is migrated yet"
       ],
       "readFirst": [
         "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)",
@@ -3650,7 +3680,9 @@
       "acceptanceCriteria": [
         "Content with `schemaVersion: 1` loads in an engine expecting version 1 with no warnings",
         "Content with `schemaVersion: 0` triggers migration attempt (currently a no-op) with a console warning",
-        "Content with `schemaVersion: 99` (future) fails with clear error: \"Content version 99 requires engine upgrade\""
+        "Content with `schemaVersion: 99` (future) fails with clear error: \"Content version 99 requires engine upgrade\"",
+        "The runner discovers migration entries from `src/content-schema/migrations/` and refuses to ship if an entry violates the file naming, exports, or `to === from + 1` rules from [`schema-migration-policy.md`](../../../docs/architecture/schema-migration-policy.md)",
+        "The illustrative `example-v1-to-v2-rename-field.ts` entry's tests pass under `node --test` and serve as the worked-example template"
       ],
       "verifyCommands": [
         "npm run validate",
@@ -3689,8 +3721,8 @@
         "mvp.02-content-schemas.13-effect-registry"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 29
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 31
     },
     {
       "id": "mvp.02-content-schemas.12-formula-dsl",
@@ -3759,7 +3791,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 103
+      "downstreamTransitiveCount": 106
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -3851,7 +3883,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 62
+      "downstreamTransitiveCount": 65
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -3921,7 +3953,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 58
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -3983,7 +4015,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 57
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -4436,7 +4468,381 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 16
+    },
+    {
+      "id": "mvp.02-content-schemas.22-validation-error-contract",
+      "kind": "task",
+      "status": "planned",
+      "title": "ValidationError Contract",
+      "path": "tasks/mvp/02-content-schemas/22-validation-error-contract.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Land the canonical `ValidationError` JSON schema and route every validator in the project through it. Today [`scripts/check-repo-contracts.mjs`](../../../scripts/check-repo-contracts.mjs) emits ad-hoc strings, runtime loaders log their own format, and the Zod adapter (Task 10) returns raw Zod errors. Without a unified shape, editor surfacing, the Phase-3 AI generation feedback loop, and any multi-validator parity test cannot consume errors generically. Source plan: [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md) (§ ValidationError shape, T-15).",
+      "inputs": [
+        "Existing CI script [`scripts/check-repo-contracts.mjs`](../../../scripts/check-repo-contracts.mjs)",
+        "Zod validator entry point from Task 10 ([`tasks/mvp/02-content-schemas/10-zod-validators-for-all-schemas.md`](./10-zod-validators-for-all-schemas.md))"
+      ],
+      "outputs": [
+        "`content-schema/schemas/validation-error.schema.json`",
+        "`content-schema/examples/records/validation-error/missing-required.error.json`",
+        "`content-schema/examples/records/validation-error/unknown-enum.error.json`",
+        "`src/content-schema/validation-error.ts` (TS type + Zod schema mirror)",
+        "`scripts/check-repo-contracts.mjs` refactored to emit `ValidationError[]`; `--json` flag exposes the structured array"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)",
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)",
+        "[`content-schema/schemas/error-state.schema.json`](../../../content-schema/schemas/error-state.schema.json)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/validation-error.schema.json",
+        "content-schema/examples/records/validation-error/missing-required.error.json",
+        "content-schema/examples/records/validation-error/unknown-enum.error.json",
+        "src/content-schema/validation-error.ts",
+        "scripts/check-repo-contracts.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "scripts/check-repo-contracts.mjs"
+      ],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "The shared edit to `scripts/check-repo-contracts.mjs` is **additive**: it adds the `--json` flag and the `ValidationError[]` emitter without removing the existing human-readable output. The script's primary contract remains owned by the engine-core CI task; this task must not rewrite its file-walking, JSON-Schema-walking, or task-doc lint logic.",
+        "`validation-error.schema.json` parses as JSON Schema 2020-12 with `additionalProperties: false`.",
+        "Required fields are `schemaId`, `jsonPointer`, `rule`, `message`. `rule` is a closed enum that matches every validator the project ships (`enum`, `required`, `additional`, `type`, `minimum`, `maximum`, `minLength`, `maxLength`, `pattern`, `format`, `const`, `uniqueItems`, `minItems`, `maxItems`, `oneOf`, `anyOf`, `allOf`, `discriminator`, `ref`, `custom`).",
+        "Both canonical examples validate against the schema; they cover one `required` and one `enum` failure across two different schemas (`unit` and `spell`).",
+        "`scripts/check-repo-contracts.mjs` accepts `--json` and emits a structured `ValidationError[]` array on stdout; default human output is preserved.",
+        "The Zod adapter from Task 10 lands an export `toValidationErrors(zodError, ctx): ValidationError[]` so consumers never see raw Zod internals.",
+        "`docs/architecture/schema-matrix.md` lists `ValidationError` under a new \"Validator output\" family with a link to the schema.",
+        "A snapshot test in [`scripts/__tests__/`](../../../scripts/__tests__) runs both validators on the malformed example fixtures and asserts the resulting `ValidationError[]` matches a committed snapshot."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/error-state.schema.json",
+        "content-schema/schemas/validation-error.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/error-state.schema.json",
+        "content-schema/schemas/validation-error.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 16
+    },
+    {
+      "id": "mvp.02-content-schemas.23-schema-migration-policy-and-example",
+      "kind": "task",
+      "status": "planned",
+      "title": "Schema Migration Policy and Worked Example",
+      "path": "tasks/mvp/02-content-schemas/23-schema-migration-policy-and-example.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Author the canonical schema-migration policy and ship one end-to-end worked example so the first real schema-evolution PR has a template to clone instead of inventing one under deadline pressure. Today [`src/content-schema/migrate.ts`](../../../src/content-schema/) is a stub with an empty migration table and the only stated policy lives in prose under [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md). Without a concrete file-layout convention and a passing fixture, two parallel agents writing migrations will diverge on naming, required exports, and test conventions. Source plan: [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md) (§ Schema migration policy is undocumented, T-12).",
+      "inputs": [
+        "Existing migration stub task [`tasks/mvp/02-content-schemas/11-schema-version-field-plus-migration-stub.md`](./11-schema-version-field-plus-migration-stub.md)",
+        "Schema list under [`content-schema/schemas/`](../../../content-schema/schemas/)"
+      ],
+      "outputs": [
+        "`docs/architecture/schema-migration-policy.md`",
+        "`src/content-schema/migrations/README.md`",
+        "`src/content-schema/migrations/example-v1-to-v2-rename-field.ts`",
+        "`src/content-schema/migrations/example-v1-to-v2-rename-field.test.ts`",
+        "`src/content-schema/migrations/fixtures/example-v1-to-v2-rename-field.input.json`",
+        "`src/content-schema/migrations/fixtures/example-v1-to-v2-rename-field.expected.json`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)",
+        "[`docs/architecture/schema-migration-policy.md`](../../../docs/architecture/schema-migration-policy.md)",
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
+        "[`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/schema-migration-policy.md",
+        "src/content-schema/migrations/README.md",
+        "src/content-schema/migrations/example-v1-to-v2-rename-field.ts",
+        "src/content-schema/migrations/example-v1-to-v2-rename-field.test.ts",
+        "src/content-schema/migrations/fixtures/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub"
+      ],
+      "acceptanceCriteria": [
+        "`schema-migration-policy.md` covers when to bump `schemaVersion`, the canonical filename `v<N>-to-v<M>-<short-purpose>.ts`, the required exports (`from`, `to`, `appliesTo`, `migrate`), the test convention (input/expected fixtures), and the deprecation window definition.",
+        "`migrations/README.md` lists the entry conventions and explains how the runner discovers entries.",
+        "`example-v1-to-v2-rename-field.ts` exports `from = 1`, `to = 2`, an `appliesTo` array containing only the placeholder `heroes-reforged/_example-only.schema.json` (so the runner never applies it to a shipping schema), and a pure `migrate` function.",
+        "`example-v1-to-v2-rename-field.test.ts` runs under `node --test` and asserts: deep-equal of `migrate(input.json) === expected.json`, pass-through of non-matching records, and the `to === from + 1` invariant.",
+        "`docs/architecture/content-platform.md` \"Update Safety\" section links to `schema-migration-policy.md`.",
+        "`docs/architecture/schema-matrix.md` references the policy via a Migrations footnote."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
       "downstreamTransitiveCount": 15
+    },
+    {
+      "id": "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate",
+      "kind": "task",
+      "status": "planned",
+      "title": "Enum Lifecycle and Snapshot Gate",
+      "path": "tasks/mvp/02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Land the enum-value lifecycle policy and the CI snapshot gate that backs it. Closed enums are pervasive (`command.kind`, `manifest.capabilities`, `resource-id`, `stat-id`, `status-id`, effect kinds, spell schools). Removing a value is silently breaking for every save and replay that references it. Today no procedure or check exists; a single PR can corrupt every existing save with no failing CI gate. This task adds the policy doc and the snapshot/check pair. Source plan: [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md) (§ Enum-value lifecycle, T-13).",
+      "inputs": [
+        "All `*.schema.json` files under [`content-schema/schemas/`](../../../content-schema/schemas/)",
+        "The validation-error contract from [`tasks/mvp/02-content-schemas/22-validation-error-contract.md`](./22-validation-error-contract.md)",
+        "The migration registry layout from [`tasks/mvp/02-content-schemas/23-schema-migration-policy-and-example.md`](./23-schema-migration-policy-and-example.md)"
+      ],
+      "outputs": [
+        "`docs/architecture/enum-lifecycle-policy.md`",
+        "`scripts/snapshot-enums.mjs`",
+        "`scripts/check-enum-snapshot.mjs`",
+        "`content-schema/enums.snapshot.json` (committed baseline)",
+        "`package.json` exposes `npm run generate:enum-snapshot` and `npm run validate:enums`; the latter is wired into `npm run validate`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)",
+        "[`docs/architecture/enum-lifecycle-policy.md`](../../../docs/architecture/enum-lifecycle-policy.md)",
+        "[`docs/architecture/schema-migration-policy.md`](../../../docs/architecture/schema-migration-policy.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/enum-lifecycle-policy.md",
+        "scripts/snapshot-enums.mjs",
+        "scripts/check-enum-snapshot.mjs",
+        "content-schema/enums.snapshot.json",
+        "package.json",
+        "content-schema/schemas/README.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json",
+        "content-schema/schemas/README.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.23-schema-migration-policy-and-example",
+        "mvp.02-content-schemas.22-validation-error-contract"
+      ],
+      "acceptanceCriteria": [
+        "The shared edits to `package.json` and `content-schema/schemas/README.md` are **additive**: this task adds the `generate:enum-snapshot` and `validate:enums` scripts and the \"Enum value lifecycle\" section without rewriting unrelated scripts or removing existing schema-family prose. Their primary contracts remain owned by the repo-root tooling task and the schema-family README, respectively, and must not be rewritten by this task.",
+        "`enum-lifecycle-policy.md` defines the four lifecycle states (additive, deprecated, aliased, removed) and the workflow per kind of change.",
+        "`scripts/snapshot-enums.mjs` walks every `*.schema.json`, collects `enum` arrays and `const` values, and writes a sorted JSON file keyed by `<schemaId>#<jsonPointer>` → `string[]`.",
+        "`scripts/check-enum-snapshot.mjs` rebuilds the snapshot in memory, diffs against the baseline, and fails on a removed value unless one of: (a) an alias entry exists in `<record>.aliases.json` paired with a migration entry under `src/content-schema/migrations/`, or (b) the value is listed in `content-schema/enums.removed.json` with a `since:` tag.",
+        "`npm run generate:enum-snapshot && git diff --exit-code` is clean on a freshly checked-out tree.",
+        "`npm run validate:enums` is wired into `npm run validate`.",
+        "`content-schema/schemas/README.md` includes an \"Enum value lifecycle\" section pointing at the policy and the snapshot file."
+      ],
+      "verifyCommands": [
+        "npm run generate:enum-snapshot",
+        "npm run validate:enums",
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.22-validation-error-contract",
+        "mvp.02-content-schemas.23-schema-migration-policy-and-example"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.22-validation-error-contract",
+        "mvp.02-content-schemas.23-schema-migration-policy-and-example"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 14
+    },
+    {
+      "id": "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
+      "kind": "task",
+      "status": "planned",
+      "title": "Default Declarations and Zod Parity",
+      "path": "tasks/mvp/02-content-schemas/25-default-declarations-and-zod-parity.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "For every optional field whose prose documents a default (\"if absent\", \"defaults to\", \"derive from\"), declare a `default` keyword in the JSON Schema and mirror it with a `.default(...)` call in the Zod validator. Without this, the JSON Schema walker in [`scripts/check-repo-contracts.mjs`](../../../scripts/check-repo-contracts.mjs) and the Zod adapter authored under Task 10 may fill defaults differently, producing different canonical-JSON for the same input record. Different canonical-JSON → different `contentHash` → broken save/replay/multiplayer determinism. Source plan: [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md) (§ default keyword missing, T-14).",
+      "inputs": [
+        "All `*.schema.json` files under [`content-schema/schemas/`](../../../content-schema/schemas/)",
+        "Zod adapter from [`tasks/mvp/02-content-schemas/10-zod-validators-for-all-schemas.md`](./10-zod-validators-for-all-schemas.md)"
+      ],
+      "outputs": [
+        "`docs/architecture/schema-defaults-policy.md`",
+        "`default` keywords added to every optional field in `content-schema/schemas/*.schema.json` whose prose documents a default value",
+        "A grep audit recorded under this task showing every prose match for \"if absent\" / \"defaults to\" / \"derive from\" and which schema field resolved each"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)",
+        "[`docs/architecture/schema-defaults-policy.md`](../../../docs/architecture/schema-defaults-policy.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/schema-defaults-policy.md",
+        "content-schema/schemas/",
+        "tasks/mvp/02-content-schemas/10-zod-validators-for-all-schemas.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/",
+        "tasks/mvp/02-content-schemas/10-zod-validators-for-all-schemas.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "The shared edits to `content-schema/schemas/` and Task 10's acceptance criteria are **additive**: this task only declares `default` keywords next to optional fields and extends Task 10's acceptance list. The primary contracts (each schema's record shape is owned by its authoring task; Task 10 owns the Zod adapter) — this task must not rewrite them.",
+        "`schema-defaults-policy.md` covers when to declare a default, the Zod mirror requirement, the integers-only rule, and the fillable-defaults-forbidden-on-required-fields rule.",
+        "Every optional field whose prose documents a default has a `default` keyword in the JSON Schema. The audit grep shows zero un-resolved prose-only defaults remaining.",
+        "All declared defaults are integers, booleans, the empty array, the empty object, or strings matching the field's `pattern`/`enum`. No floats.",
+        "Task 10 acceptance criteria include the round-trip-of-defaults parity test (already extended).",
+        "`npm run validate:contracts` passes with the new `default` keywords in place."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 14
+    },
+    {
+      "id": "mvp.02-content-schemas.26-m2-engine-hash-backfill",
+      "kind": "task",
+      "status": "planned",
+      "title": "M2 Engine-Hash Backfill (Dormant)",
+      "path": "tasks/mvp/02-content-schemas/26-m2-engine-hash-backfill.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "One-shot migration that backfills the `engineHash` field on every shipped pack manifest the first day the engine ships at M2. `engineHash` is documented optional pre-M2 in [`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md) because no engine exists yet to hash. The moment a real engine binary lands, every existing pack instantly fails the `engineHash` row of the [`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md) matrix in multiplayer and trusted-replay contexts (now non-empty expectation vs. missing field). Without this task scheduled, the backfill races the engine release and the engine-hash transition lands ad-hoc, possibly skipping the matching `contentHash` recompute. This task is **dormant** until the engine reaches M2. Author it now so the procedure is reviewable before deadline pressure exists. Source plan: [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md) (§ engineHash backfill at M2, T-FB).",
+      "inputs": [
+        "The engine M2 build that produces a stable `engineHash` digest",
+        "Every `manifest.json` under `resources/packs/` and `content-schema/examples/packs/`"
+      ],
+      "outputs": [
+        "Every shipped manifest carries a non-empty `engineHash` matching the M2 build's hash",
+        "Every modified manifest's `contentHash` is recomputed because the manifest itself changed",
+        "A short procedural note appended to [`docs/planning/implementation-log.md`](../../../docs/planning/implementation-log.md) recording the backfill"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "docs/planning/implementation-log.md",
+        "resources/packs/**/manifest.json",
+        "content-schema/examples/packs/**/manifest.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "resources/packs/**/manifest.json",
+        "content-schema/examples/packs/**/manifest.json",
+        "docs/planning/implementation-log.md"
+      ],
+      "dependencies": [
+        "module:mvp.01-engine-core"
+      ],
+      "acceptanceCriteria": [
+        "The shared edits to `resources/packs/`, `content-schema/examples/packs/`, and the implementation log are **additive**: this task fills in the existing optional `engineHash` field and recomputes `contentHash` only because the manifest itself changed; it does not rewrite manifest schemas, pack folder layout, or unrelated log entries. Each pack's primary contract remains owned by its authoring faction/world/scenario task; this task must not rewrite their gameplay records.",
+        "`scripts/hash-pack.mjs --check` (the M2 hash tool, name TBD) reports zero missing or stale `engineHash` fields.",
+        "Every shipped manifest has a non-empty `engineHash` matching the pattern in [`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json).",
+        "Every modified manifest has a recomputed `contentHash` that matches its canonical-JSON content.",
+        "`npm run validate:contracts` passes.",
+        "The implementation log records the backfill date and the M2 build identifier."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [
+        "mvp.01-engine-core"
+      ],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout",
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
+        "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
+        "mvp.01-engine-core.04-implement-fixed-point-math-library",
+        "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.07b-canonical-json",
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
+        "mvp.01-engine-core.10-github-actions-ci"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
@@ -9320,7 +9726,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 4
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "mvp.07-ui-shell.12-component-state-matrix",
@@ -9432,7 +9838,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 5
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "mvp.07-ui-shell.13-screen-package-contract-sweep",
@@ -9595,8 +10001,8 @@
         "mvp.07-ui-shell.18-hotkey-registry"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 0,
-      "downstreamTransitiveCount": 0
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
     },
     {
       "id": "mvp.07-ui-shell.14-modal-stack",
@@ -9697,7 +10103,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 3
+      "downstreamTransitiveCount": 4
     },
     {
       "id": "mvp.07-ui-shell.15-input-arbitration",
@@ -9761,7 +10167,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 4
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "mvp.07-ui-shell.16-gesture-taxonomy",
@@ -9860,7 +10266,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 2
+      "downstreamTransitiveCount": 3
     },
     {
       "id": "mvp.07-ui-shell.17-tooltip-lifecycle",
@@ -10096,7 +10502,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 2
+      "downstreamTransitiveCount": 3
     },
     {
       "id": "mvp.07-ui-shell.19-input-modalities",
@@ -10312,6 +10718,136 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "mvp.07-ui-shell.21-screen-view-model-types-generation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Screen View-Model Types Generation",
+      "path": "tasks/mvp/07-ui-shell/21-screen-view-model-types-generation.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Generate TypeScript view-model interfaces for every screen package from the structured \"Selectors\" tables in `docs/architecture/wiki/screens/<nn-screen>/data-contracts.md`. Today each `data-contracts.md` lists the schemas and selectors a screen consumes by name only — the shape of the props/DTO the renderer actually receives is not formally typed. A screen rewrite allowed by the UI evolution policy cannot be contract-checked against the previous renderer's input, and two parallel agents implementing the same screen can shape the same selector differently with no detection. Source plan: [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md) (§ Per-screen view-model contract is missing, T-SVM).",
+      "inputs": [
+        "The 65 screen packages under [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)",
+        "All schemas under [`content-schema/schemas/`](../../../content-schema/schemas/)",
+        "The validation-error contract from [`tasks/mvp/02-content-schemas/22-validation-error-contract.md`](../02-content-schemas/22-validation-error-contract.md)"
+      ],
+      "outputs": [
+        "`scripts/generate-screen-types.mjs`",
+        "`src/ui/screen-view-models.generated.ts` (machine-generated; checked in for diff visibility)",
+        "`package.json` exposes `npm run generate:screen-types`; the generator is wired into `npm run validate` so a stale or missing diff fails CI"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)",
+        "[`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)",
+        "[`docs/architecture/wiki/screens/07-adventure-map/data-contracts.md`](../../../docs/architecture/wiki/screens/07-adventure-map/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/24-town-screen/data-contracts.md`](../../../docs/architecture/wiki/screens/24-town-screen/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/38-combat-screen/data-contracts.md`](../../../docs/architecture/wiki/screens/38-combat-screen/data-contracts.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`content-schema/schemas/validation-error.schema.json`](../../../content-schema/schemas/validation-error.schema.json)"
+      ],
+      "ownedPaths": [
+        "scripts/generate-screen-types.mjs",
+        "src/ui/screen-view-models.generated.ts",
+        "package.json",
+        "data-contracts.md",
+        "docs/architecture/wiki/screens/<nn-screen>/data-contracts.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json",
+        "data-contracts.md",
+        "docs/architecture/wiki/screens/<nn-screen>/data-contracts.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.22-validation-error-contract",
+        "mvp.07-ui-shell.13-screen-package-contract-sweep"
+      ],
+      "acceptanceCriteria": [
+        "The shared edits to `package.json` and per-screen `data-contracts.md` files are **additive**: this task adds the `generate:screen-types` script and a parseable \"Selectors\" table where missing. Each screen package's primary contract remains owned by its primary screen-curation task per [`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md); this task must not rewrite mockups, component trees, or behaviour prose.",
+        "Every screen package under `docs/architecture/wiki/screens/<nn-screen>/data-contracts.md` has a parseable \"Selectors\" table with columns `name`, `type-ref`, `required`. The contract sweep already enforces this on swept screens; this task adds the table where missing and pins the format in `docs/architecture/wiki/README.md`.",
+        "For at least the three high-traffic screen packages [`docs/architecture/wiki/screens/07-adventure-map/`](../../../docs/architecture/wiki/screens/07-adventure-map/), [`docs/architecture/wiki/screens/24-town-screen/`](../../../docs/architecture/wiki/screens/24-town-screen/), and [`docs/architecture/wiki/screens/38-combat-screen/`](../../../docs/architecture/wiki/screens/38-combat-screen/), the generator emits a `ScreenViewModel<id>` interface that resolves every selector type-ref against a real schema in `content-schema/schemas/`.",
+        "`scripts/generate-screen-types.mjs` reads each `data-contracts.md`, resolves type refs against existing JSON Schemas (e.g. `unit.schema.json#/definitions/Unit`), and emits one `ScreenViewModel<<id>>` interface per package to `src/ui/screen-view-models.generated.ts`.",
+        "An unresolved type reference produces a `ValidationError` of `rule: ref` and fails the generator.",
+        "`npm run generate:screen-types && git diff --exit-code` is clean on a freshly checked-out tree.",
+        "`npm run generate:screen-types` is wired into `npm run validate`.",
+        "A lint rule (or convention documented in `docs/architecture/wiki/README.md`) requires screen renderers to import the generated `ScreenViewModel<id>` instead of declaring an ad-hoc inline shape."
+      ],
+      "verifyCommands": [
+        "npm run generate:screen-types",
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/24-town-screen",
+        "docs/architecture/wiki/screens/38-combat-screen"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/validation-error.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/validation-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.22-validation-error-contract",
+        "mvp.07-ui-shell.13-screen-package-contract-sweep"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.22-validation-error-contract",
+        "mvp.07-ui-shell.13-screen-package-contract-sweep"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "mvp.08-persistence.01-indexeddb-wrapper",
       "kind": "task",
       "status": "planned",
@@ -10406,7 +10942,7 @@
       "acceptanceCriteria": [
         "`save(state, \"My Save\")` writes correct `SaveRecord` to IndexedDB",
         "`load(saveId)` replays commands and returns `AdventureState` with identical hash to save time",
-        "Loading with a mismatched content pack hash shows a warning: \"Content pack changed since save\"",
+        "Loading with a mismatched content pack hash applies the row from [`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md) (`degrade` offline → toast \"Content pack changed since save\"; `refuse loud` in multiplayer/trusted-replay)",
         "Save record for a 7-day game is < 50KB"
       ],
       "verifyCommands": [
@@ -12791,7 +13327,12 @@
         "mvp.02-content-schemas.18-random-map-template-schema",
         "mvp.02-content-schemas.19-tavern-and-marketplace-tables",
         "mvp.02-content-schemas.20-university-skill-table",
-        "mvp.02-content-schemas.21-error-state-schema"
+        "mvp.02-content-schemas.21-error-state-schema",
+        "mvp.02-content-schemas.22-validation-error-contract",
+        "mvp.02-content-schemas.23-schema-migration-policy-and-example",
+        "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate",
+        "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
+        "mvp.02-content-schemas.26-m2-engine-hash-backfill"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -26364,6 +26905,11 @@
         "mvp.02-content-schemas.19-tavern-and-marketplace-tables",
         "mvp.02-content-schemas.20-university-skill-table",
         "mvp.02-content-schemas.21-error-state-schema",
+        "mvp.02-content-schemas.22-validation-error-contract",
+        "mvp.02-content-schemas.23-schema-migration-policy-and-example",
+        "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate",
+        "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
+        "mvp.02-content-schemas.26-m2-engine-hash-backfill",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",
