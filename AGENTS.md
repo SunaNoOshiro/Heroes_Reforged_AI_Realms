@@ -44,12 +44,17 @@ Read first if you need to understand the full project:
 22. [docs/architecture/atlas-pipeline.md](docs/architecture/atlas-pipeline.md)
     — atlas-generation pipeline (pinned packer, deterministic invocation,
     publish step ordering)
-23. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-24. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
+23. [docs/architecture/ai-contract.md](docs/architecture/ai-contract.md)
+    — gameplay-AI runtime contract: input view projection, worker
+    protocol, per-turn budget table, cancellation, parallelism,
+    decision log, BotProvider, cheats. Provider-backed content
+    generation lives in `ai-integration.md`.
+24. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
+25. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
     Mermaid flows: game startup, race → castle rendering, battle attack
     sequence, asset loading per context, localization, save/load. Read
     a single `<id>.md` to understand one runtime behavior end-to-end.
-25. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
+26. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
     numbered per-screen UI packages. Each package contains
     `mockup.html` for visuals, `spec.md` for components and bindings,
     `interactions.md` for per-control behavior, `data-contracts.md` for

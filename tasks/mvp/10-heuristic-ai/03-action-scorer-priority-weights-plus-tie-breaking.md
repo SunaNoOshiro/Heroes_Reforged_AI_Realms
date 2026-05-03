@@ -8,6 +8,7 @@ Description:
 Given the Want list, select the single best action for the AI hero and translate it into a Command. Handle tie-breaking with deterministic rules (never use `Math.random()` — use sorted comparison on hero IDs).
 
 Read First:
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table, § 7 Decision Log
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 

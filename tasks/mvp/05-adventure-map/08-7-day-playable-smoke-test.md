@@ -10,8 +10,15 @@ heroes, captures mines, builds in towns, and triggers
 `AUTO_RESOLVE_BATTLE` through the command dispatcher. Verifies that all
 subsystems work together correctly end-to-end.
 
+The scripted opponent is wired through `scriptedBot(commands)` (provider
+id `"scripted"`) from the `BotProvider` interface owned by
+[`tasks/mvp/10-heuristic-ai/10-bot-provider-interface.md`](../10-heuristic-ai/10-bot-provider-interface.md),
+not as ad-hoc fixture code. This keeps the swap point uniform across
+M2 / M3 / M7 regression suites.
+
 Read First:
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider
 
 Inputs:
 - All tasks in this module
@@ -22,6 +29,8 @@ Outputs:
 - Script: Day 1 → move hero → capture mine; Day 3 → visit town →
   build building; Day 5 → trigger battle and dispatch
   `AUTO_RESOLVE_BATTLE`; Day 7 → week growth fires
+- Driven by `scriptedBot(commands)` (`BotProvider` id
+  `"scripted"`) instead of ad-hoc fixture code
 
 Owned Paths:
 - `src/engine/__tests__/adventure-smoke.test.ts`
@@ -35,6 +44,7 @@ Dependencies:
 - mvp.05-adventure-map.06-auto-resolve-combat
 - mvp.05-adventure-map.07-victory-defeat-conditions
 - mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands
+- mvp.10-heuristic-ai.10-bot-provider-interface
 
 Acceptance Criteria:
 - 7-day scripted session runs without throwing

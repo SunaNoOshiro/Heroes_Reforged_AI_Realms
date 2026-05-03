@@ -117,9 +117,32 @@ Turn-affecting commands are gated by
 the dispatcher rejects them while the slot is non-null so renderer
 animations cannot lap the reducer.
 
+## AI Side Channels
+
+Gameplay-AI workers emit one `Command` per `requestAIMove` call;
+that command is the only thing that lands in the canonical
+command log. The `aiDecisionLog` ring buffer (per
+[`ai-contract.md` § 7 Decision Log](./ai-contract.md#7-decision-log))
+is **not** part of the command log: enabling the
+`Engine.config.aiDecisionLog` runtime flag does not change the
+replay hash or save format.
+
+AI players act sequentially in turn order. Multi-worker parallel
+compute is permitted only as an internal optimization that does
+not affect the order of `Command`s appended to the log; see
+[`ai-contract.md` § 6 Parallelism](./ai-contract.md#6-parallelism)
+and [`command-schema.md` § Cross-Actor Ordering](./command-schema.md#cross-actor-ordering).
+
+The worker boundary consumes the projected per-player
+`AdventureView` (per
+[`ai-contract.md` § 1 Input View](./ai-contract.md#1-input-view)),
+not raw `AdventureState`. Dispatcher legality validation still
+runs against full state.
+
 ## Related docs
 
 - [`version-policy.md`](./version-policy.md) — refuse / migrate / degrade matrix for save and pack mismatches
+- [`ai-contract.md`](./ai-contract.md) — gameplay-AI runtime contract (input view, worker protocol, budgets, cancellation, parallelism, decision log)
 - [`determinism.md`](./determinism.md) — why this loop is pure
 - [`effect-registry.md`](./effect-registry.md) — what commands may produce
 - [`pack-contract.md`](./pack-contract.md) — how packs enter at step B

@@ -84,6 +84,14 @@
       ]
     },
     {
+      "componentId": "AiTurnHeader",
+      "module": "src/ui/dev/ai-inspector/ai-turn-header.tsx",
+      "exportName": "AiTurnHeader",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "AiTurnIndicator",
       "module": "src/ui/components/ai-turn-indicator.tsx",
       "exportName": "AiTurnIndicator",
@@ -524,6 +532,14 @@
       ]
     },
     {
+      "componentId": "ChosenCommandPanel",
+      "module": "src/ui/dev/ai-inspector/chosen-command-panel.tsx",
+      "exportName": "ChosenCommandPanel",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "CinematicPlayer",
       "module": "src/ui/components/cinematic-player.tsx",
       "exportName": "CinematicPlayer",
@@ -921,6 +937,14 @@
       "exportName": "DestinationSlotPreview",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "DevAiInspectorOverlay",
+      "module": "src/ui/dev/ai-inspector/dev-ai-inspector-overlay.tsx",
+      "exportName": "DevAiInspectorOverlay",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -2229,6 +2253,14 @@
       ]
     },
     {
+      "componentId": "ProjectedViewPanel",
+      "module": "src/ui/dev/ai-inspector/projected-view-panel.tsx",
+      "exportName": "ProjectedViewPanel",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "PromptText",
       "module": "src/ui/components/prompt-text.tsx",
       "exportName": "PromptText",
@@ -2357,6 +2389,14 @@
       ]
     },
     {
+      "componentId": "ReasoningPanel",
+      "module": "src/ui/dev/ai-inspector/reasoning-panel.tsx",
+      "exportName": "ReasoningPanel",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "ReceiveResourceGrid",
       "module": "src/ui/components/receive-resource-grid.tsx",
       "exportName": "ReceiveResourceGrid",
@@ -2402,6 +2442,14 @@
       "exportName": "RelicPedestal",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "ReplayControlsBar",
+      "module": "src/ui/dev/ai-inspector/replay-controls-bar.tsx",
+      "exportName": "ReplayControlsBar",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -2618,6 +2666,14 @@
       "exportName": "ScoreMedallions",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "ScoredActionsPanel",
+      "module": "src/ui/dev/ai-inspector/scored-actions-panel.tsx",
+      "exportName": "ScoredActionsPanel",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -3378,6 +3434,14 @@
       "exportName": "WarningIcon",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "WantsListPanel",
+      "module": "src/ui/dev/ai-inspector/wants-list-panel.tsx",
+      "exportName": "WantsListPanel",
+      "tags": [
+        "debug"
       ]
     },
     {

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "id": "default",
+  "name": "Default AI Profile",
+  "description": "Canonical empty profile. No weights = identical behavior to no profile reference. Reserved slot; populated by M3-or-later content work."
+}

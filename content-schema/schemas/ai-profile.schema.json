@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/ai-profile.schema.json",
+  "title": "AiProfile",
+  "description": "Reserved slot for per-faction or per-hero AI personality profiles. Empty-but-valid in MVP: only `id`, `schemaVersion`, and an optional `weights` map are defined. Populated by M3-or-later content work; references on faction.schema.json and hero.schema.json are optional.",
+  "type": "object",
+  "required": ["schemaVersion", "id"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "name":          { "type": "string", "minLength": 1 },
+    "description":   { "type": "string" },
+    "weights": {
+      "type": "object",
+      "description": "Optional per-Want-type weight overrides consumed by mvp.10-heuristic-ai.02-wants-engine. Keys are WantType identifiers; values are numeric multipliers.",
+      "additionalProperties": {
+        "type": "number"
+      }
+    }
+  },
+  "additionalProperties": false
+}

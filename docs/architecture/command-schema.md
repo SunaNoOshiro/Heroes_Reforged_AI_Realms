@@ -27,6 +27,20 @@ Canonical reference for all game commands. Commands are the only way to mutate g
   `npm run validate:commands`. A token must be a schema command, an
   alias to one, UI-local, or explicitly out of scope with an owning task.
 
+### AI-Emitted Commands
+
+Gameplay-AI workers emit the same closed `Command` enum as human
+players; there are no AI-only kinds. The AI consumes a projected
+per-player `AdventureView` (per
+[`ai-contract.md` § 1 Input View](./ai-contract.md#1-input-view))
+when deciding which command to emit. The dispatcher validates
+the emitted command against full `AdventureState` per the
+[Validation Framework](#validation-framework) below; the
+projected view is the AI's perception, not a relaxation of
+legality. `MOVE_HERO`, `INITIATE_BATTLE`, and every other kind
+are checked against the full state at dispatch time, regardless
+of which actor emitted them.
+
 ### Command Envelope
 
 Every example below shows only the payload fields. The dispatcher
@@ -663,3 +677,4 @@ Each command kind has:
 - `docs/architecture/rng-streams.md` — named PCG32 sub-streams seeded by `SCENARIO_LOAD`
 - `docs/architecture/id-allocator.md` — runtime entity-ID format used by minting commands
 - `docs/architecture/multi-engine-harness.md` — desync detection across engine instances
+- `docs/architecture/ai-contract.md` — gameplay-AI runtime contract (projected view, worker protocol, budgets, cancellation, parallelism)

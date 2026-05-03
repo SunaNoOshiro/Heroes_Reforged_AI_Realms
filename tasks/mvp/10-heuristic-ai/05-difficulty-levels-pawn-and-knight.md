@@ -11,6 +11,7 @@ Implement two difficulty settings by modifying AI behavior:
 - **Knight** (medium): Full heuristic, no randomness. All scoring components active.
 
 Read First:
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table, § 8 BotProvider
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 
@@ -29,6 +30,14 @@ Outputs:
   scales `maxNodes` linearly with `width * height / (128*128)` so
   budgets stay proportional on smaller maps. The function is pure
   and deterministic.
+- Per-turn wall-clock budgets per
+  [`ai-contract.md` § 4 Per-Turn Budget Table](../../../docs/architecture/ai-contract.md#4-per-turn-budget-table):
+  - Pawn:   per-turn budget 200 ms, hard timeout 500 ms,
+    no-action fallback `END_HERO_TURN`
+  - Knight: per-turn budget 500 ms, hard timeout 1 s,
+    no-action fallback `END_HERO_TURN`
+  Worker enforcement is owned by
+  [`06-run-ai-in-web-worker.md`](./06-run-ai-in-web-worker.md).
 
 Owned Paths:
 - `src/ai/bots/difficulty.ts`
@@ -47,8 +56,8 @@ Acceptance Criteria:
   `mvp.00-perf.01-bench-harness`).
 - Budget constants are deterministic — same difficulty + map
   dims yields identical `(maxNodes, maxDepth)` on every call.
-- **Quality Gate (Knight difficulty):** Run 10 independent games (different seeds) where Knight AI plays against "random AI" opponent. Knight must win ≥ 8 out of 10 games (80 % win rate minimum).
-  - Random AI: picks a legal action uniformly at random (no heuristic)
+- **Quality Gate (Knight difficulty):** Run 10 independent games (different seeds) where Knight AI plays against the `randomBot` baseline opponent (provider id `"random"`, owned by [`10-bot-provider-interface.md`](./10-bot-provider-interface.md)). Knight must win ≥ 8 out of 10 games (80 % win rate minimum). Verified continuously by the bench harness owned by [`11-ai-bench-harness.md`](./11-ai-bench-harness.md).
+  - Random opponent: `randomBot(seed)` picks a legal action uniformly at random from the projected view
   - Game length: max 50 turns per player (100 turns total), or until victory condition
   - Metric: Knight AI takes gold mines, builds towns, and captures enemy structures faster than random moves
 
@@ -67,7 +76,7 @@ Estimated Time:
 The benchmark is deterministic and runs as part of acceptance testing:
 
 ```bash
-npm run ai:bench -- --difficulty knight --opponent random --games 10
+npm run ai:bench -- --a heuristic --b random --difficulty knight --games 10
 ```
 
 Expected output:

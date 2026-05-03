@@ -8,6 +8,7 @@ Description:
 Create "Grand Master" difficulty: full lookahead, no randomness, uses all strategic subsystems. Then validate it by running 100 headless Grand Master vs Knight games and measuring win rate.
 
 Read First:
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table (Grand Master row), § 8 BotProvider
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 

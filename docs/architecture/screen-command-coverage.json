@@ -58,7 +58,10 @@
     "PAUSE_PRESENTATION",
     "STEP_PRESENTATION_BACK",
     "STEP_PRESENTATION_FORWARD",
-    "SCRUB_PRESENTATION_TO_INDEX"
+    "SCRUB_PRESENTATION_TO_INDEX",
+    "AI_TRACE_REQUEST",
+    "AI_TRACE_RESULT",
+    "COMPUTE_MOVE"
   ],
   "outOfScope": {
     "COMPLETE_CINEMATIC": "phase-2.08-meta-systems.03-cinematic-playback-engine owns cinematic completion state.",

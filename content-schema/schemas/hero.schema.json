@@ -47,6 +47,11 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
     },
+    "aiProfileId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional reference to an ai-profile.schema.json record. Reserved slot; consumers may treat absent values as equivalent to the default profile."
+    },
     "specialty": {
       "description": "Discriminated union keyed by `kind`. Each kind pins exactly the fields it needs so AI generation and the runtime cannot drift.",
       "oneOf": [

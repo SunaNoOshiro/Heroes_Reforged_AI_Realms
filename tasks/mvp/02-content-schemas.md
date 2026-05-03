@@ -80,3 +80,5 @@ content loader rejects malformed JSON with clear error messages.
   🤖 Task 25: Default declarations and Zod parity (~4h)
 - [26-m2-engine-hash-backfill.md](02-content-schemas/26-m2-engine-hash-backfill.md)
   🤖 Task 26: M2 engine-hash backfill (dormant until M2 ship) (~4h)
+- [27-reserve-ai-profile-schema.md](02-content-schemas/27-reserve-ai-profile-schema.md)
+  🤖 Task 27: Reserve `ai-profile.schema.json` slot (~2h)

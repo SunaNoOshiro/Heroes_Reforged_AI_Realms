@@ -263,6 +263,10 @@
         {
           "label": "26-m2-engine-hash-backfill.md",
           "link": "02-content-schemas/26-m2-engine-hash-backfill.md"
+        },
+        {
+          "label": "27-reserve-ai-profile-schema.md",
+          "link": "02-content-schemas/27-reserve-ai-profile-schema.md"
         }
       ]
     },
@@ -751,8 +755,8 @@
       "title": "Module: Heuristic AI (M2)",
       "path": "tasks/mvp/10-heuristic-ai.md",
       "milestone": "M2 — Tactical Combat",
-      "totalEstimate": "~24 hours",
-      "exitCriteria": "AI plays a full game without illegal moves; \"Knight\" difficulty provides meaningful opposition.",
+      "totalEstimate": "~52 hours",
+      "exitCriteria": "AI plays a full game without illegal moves; \"Knight\" difficulty provides meaningful opposition; Knight wins ≥ 80 % vs random over the bench harness; the runtime contract in [`docs/architecture/ai-contract.md`](../../docs/architecture/ai-contract.md) is fully implemented.",
       "lintTags": [],
       "taskLinks": [
         {
@@ -778,6 +782,26 @@
         {
           "label": "06-run-ai-in-web-worker.md",
           "link": "10-heuristic-ai/06-run-ai-in-web-worker.md"
+        },
+        {
+          "label": "07-ai-player-view-projection.md",
+          "link": "10-heuristic-ai/07-ai-player-view-projection.md"
+        },
+        {
+          "label": "08-ai-inspector-dev-screen.md",
+          "link": "10-heuristic-ai/08-ai-inspector-dev-screen.md"
+        },
+        {
+          "label": "09-ai-decision-log-channel.md",
+          "link": "10-heuristic-ai/09-ai-decision-log-channel.md"
+        },
+        {
+          "label": "10-bot-provider-interface.md",
+          "link": "10-heuristic-ai/10-bot-provider-interface.md"
+        },
+        {
+          "label": "11-ai-bench-harness.md",
+          "link": "10-heuristic-ai/11-ai-bench-harness.md"
         }
       ]
     },
@@ -2618,7 +2642,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 309
+      "downstreamTransitiveCount": 315
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2679,7 +2703,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 307
+      "downstreamTransitiveCount": 313
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2736,7 +2760,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 200
+      "downstreamTransitiveCount": 205
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2792,7 +2816,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 224
+      "downstreamTransitiveCount": 230
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2925,8 +2949,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 25,
-      "downstreamTransitiveCount": 191
+      "downstreamDirectCount": 26,
+      "downstreamTransitiveCount": 196
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3373,7 +3397,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 230
+      "downstreamTransitiveCount": 235
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -3430,8 +3454,8 @@
         "mvp.02-content-schemas.01-unit-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 148
+      "downstreamDirectCount": 15,
+      "downstreamTransitiveCount": 156
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -3495,7 +3519,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 102
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -3553,7 +3577,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 106
+      "downstreamTransitiveCount": 107
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -3614,7 +3638,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 137
+      "downstreamTransitiveCount": 145
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -3675,7 +3699,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 199
+      "downstreamTransitiveCount": 204
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -3748,8 +3772,8 @@
         "mvp.02-content-schemas.06-ruleset-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 92
+      "downstreamDirectCount": 14,
+      "downstreamTransitiveCount": 93
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -3834,7 +3858,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 64
+      "downstreamTransitiveCount": 65
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -3935,7 +3959,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -4042,8 +4066,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 50
+      "downstreamDirectCount": 14,
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -4202,7 +4226,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 113
+      "downstreamTransitiveCount": 118
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -4294,7 +4318,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -4364,7 +4388,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 58
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -4426,7 +4450,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 60
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -5256,6 +5280,104 @@
       "downstreamTransitiveCount": 14
     },
     {
+      "id": "mvp.02-content-schemas.27-reserve-ai-profile-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Reserve `ai-profile.schema.json` Slot",
+      "path": "tasks/mvp/02-content-schemas/27-reserve-ai-profile-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Reserve `content-schema/schemas/ai-profile.schema.json` as an empty-but-valid schema with a stable `$id` and a single optional `weights` map. Add an optional `aiProfileId` field to `faction.schema.json` and `hero.schema.json`. Do **not** populate any first-party content. M3-or-later tasks fill the slot per [`tasks/phase-2/02-strategic-ai.md`](../../phase-2/02-strategic-ai.md) and [`tasks/phase-2/03-second-faction.md`](../../phase-2/03-second-faction.md). This locks personalities as a pure additive extension. Without the reservation, M3+ would force a non-additive change across faction.schema.json + hero.schema.json + every existing pack — exactly the migration cost the project's \"additive-first\" rule exists to avoid.",
+      "inputs": [
+        "Existing `faction.schema.json` and `hero.schema.json`",
+        "The wants vocabulary from [`mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization`](../10-heuristic-ai/02-wants-engine-strategic-action-prioritization.md)"
+      ],
+      "outputs": [
+        "`content-schema/schemas/ai-profile.schema.json`:",
+        "`$id: \"heroes-reforged/ai-profile.schema.json\"`",
+        "Required: `schemaVersion`, `id`",
+        "Optional: `name`, `description`, `weights: Record<string, number>`",
+        "`additionalProperties: false`",
+        "`content-schema/examples/records/ai-profiles/default.ai-profile.json`:",
+        "Canonical empty profile (`id` only, no weights → identical behavior to no profile reference).",
+        "Additive edits to `content-schema/schemas/faction.schema.json`:",
+        "Optional `aiProfileId: string` field, no validators yet.",
+        "Additive edits to `content-schema/schemas/hero.schema.json`:",
+        "Optional `aiProfileId: string` field, no validators yet.",
+        "Schema-matrix row added in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md)",
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)",
+        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)",
+        "[`docs/architecture/schema-migration-policy.md`](../../../docs/architecture/schema-migration-policy.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/ai-profile.schema.json",
+        "content-schema/examples/records/ai-profiles/default.ai-profile.json",
+        "content-schema/schemas/faction.schema.json",
+        "02-faction-schema.md",
+        "content-schema/schemas/hero.schema.json",
+        "07-hero-schema.md",
+        "docs/architecture/schema-matrix.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/faction.schema.json",
+        "02-faction-schema.md",
+        "content-schema/schemas/hero.schema.json",
+        "07-hero-schema.md",
+        "docs/architecture/schema-matrix.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.02-faction-schema",
+        "mvp.02-content-schemas.07-hero-schema",
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`npm run validate:contracts` passes; the new schema validates the canonical `default.ai-profile.json` example.",
+        "`aiProfileId` is optional on faction and hero records: every existing example in `content-schema/examples/packs/` continues to validate.",
+        "The schema declares `additionalProperties: false`.",
+        "The schema-matrix entry references the canonical example and cites the `Want`-weight consumer in [`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md).",
+        "No first-party pack populates `aiProfileId` in this task; that is M3-or-later content work.",
+        "Shared-path edits to `faction.schema.json`, `hero.schema.json`, and `schema-matrix.md` are **additive**: the optional `aiProfileId` field and the new matrix row land without changing existing required fields, validators, or other rows. This task **must not** rewrite the faction or hero schema shapes — those remain owned by the **primary owner** [`02-faction-schema.md`](./02-faction-schema.md) (faction) and [`07-hero-schema.md`](./07-hero-schema.md) (hero). The primary contract on `schema-matrix.md` is owned by [`mvp.02-content-schemas` schema authoring tasks](../02-content-schemas.md)."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/ai-profile.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/ai-profile.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.02-faction-schema",
+        "mvp.02-content-schemas.07-hero-schema",
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.02-faction-schema",
+        "mvp.02-content-schemas.07-hero-schema",
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 14
+    },
+    {
       "id": "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
       "kind": "task",
       "status": "planned",
@@ -5991,7 +6113,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 157
+      "downstreamTransitiveCount": 161
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -6051,7 +6173,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 96
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -6107,7 +6229,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 137
+      "downstreamTransitiveCount": 141
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -6170,7 +6292,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 95
+      "downstreamTransitiveCount": 99
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -6767,7 +6889,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 74
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -6919,7 +7041,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 95
+      "downstreamTransitiveCount": 99
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -7053,8 +7175,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 31,
-      "downstreamTransitiveCount": 124
+      "downstreamDirectCount": 32,
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -7082,6 +7204,7 @@
       "readFirst": [
         "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
         "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 6 Parallelism",
         "[`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json)"
       ],
       "ownedPaths": [
@@ -7102,7 +7225,8 @@
         "Day 7 `WEEK_START` event fires exactly once and town growth triggers",
         "Hero MP is restored at start of each new day",
         "Turn order is deterministic (same seed → same order)",
-        "Same seed and command log produce the same final state hash across 3 runs"
+        "Same seed and command log produce the same final state hash across 3 runs",
+        "AI players act sequentially in turn order alongside human players per [`ai-contract.md` § 6 Parallelism](../../../docs/architecture/ai-contract.md#6-parallelism) and [`command-schema.md` § Cross-Actor Ordering](../../../docs/architecture/command-schema.md#cross-actor-ordering). Multi-worker parallel AI compute is permitted only as an internal optimization that does not affect the order of `Command`s appended to the log."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -7128,7 +7252,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 95
+      "downstreamTransitiveCount": 99
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -7191,7 +7315,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 85
+      "downstreamTransitiveCount": 89
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -7257,7 +7381,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 65
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -7323,7 +7447,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 64
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -7401,7 +7525,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 42
+      "downstreamTransitiveCount": 49
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -7456,7 +7580,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 42
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -7466,17 +7590,19 @@
       "path": "tasks/mvp/05-adventure-map/08-7-day-playable-smoke-test.md",
       "moduleId": "mvp.05-adventure-map",
       "modulePath": "tasks/mvp/05-adventure-map.md",
-      "description": "Integration test that runs a scripted 7-day game session: player moves heroes, captures mines, builds in towns, and triggers `AUTO_RESOLVE_BATTLE` through the command dispatcher. Verifies that all subsystems work together correctly end-to-end.",
+      "description": "Integration test that runs a scripted 7-day game session: player moves heroes, captures mines, builds in towns, and triggers `AUTO_RESOLVE_BATTLE` through the command dispatcher. Verifies that all subsystems work together correctly end-to-end. The scripted opponent is wired through `scriptedBot(commands)` (provider id `\"scripted\"`) from the `BotProvider` interface owned by [`tasks/mvp/10-heuristic-ai/10-bot-provider-interface.md`](../10-heuristic-ai/10-bot-provider-interface.md), not as ad-hoc fixture code. This keeps the swap point uniform across M2 / M3 / M7 regression suites.",
       "inputs": [
         "All tasks in this module",
         "All of `03-map-system.md`, `04-faction-emberwild.md`"
       ],
       "outputs": [
         "`src/engine/__tests__/adventure-smoke.test.ts`",
-        "Script: Day 1 → move hero → capture mine; Day 3 → visit town → build building; Day 5 → trigger battle and dispatch `AUTO_RESOLVE_BATTLE`; Day 7 → week growth fires"
+        "Script: Day 1 → move hero → capture mine; Day 3 → visit town → build building; Day 5 → trigger battle and dispatch `AUTO_RESOLVE_BATTLE`; Day 7 → week growth fires",
+        "Driven by `scriptedBot(commands)` (`BotProvider` id `\"scripted\"`) instead of ad-hoc fixture code"
       ],
       "readFirst": [
-        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)"
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider"
       ],
       "ownedPaths": [
         "src/engine/__tests__/adventure-smoke.test.ts"
@@ -7493,7 +7619,8 @@
         "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
         "mvp.05-adventure-map.06-auto-resolve-combat",
         "mvp.05-adventure-map.07-victory-defeat-conditions",
-        "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands"
+        "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
       ],
       "acceptanceCriteria": [
         "7-day scripted session runs without throwing",
@@ -7519,7 +7646,8 @@
         "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
         "mvp.05-adventure-map.06-auto-resolve-combat",
         "mvp.05-adventure-map.07-victory-defeat-conditions",
-        "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands"
+        "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
@@ -7530,7 +7658,8 @@
         "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
         "mvp.05-adventure-map.06-auto-resolve-combat",
         "mvp.05-adventure-map.07-victory-defeat-conditions",
-        "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands"
+        "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -12110,7 +12239,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 73
+      "downstreamTransitiveCount": 78
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -12172,7 +12301,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -12317,7 +12446,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 53
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -12384,7 +12513,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 41
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -12520,7 +12649,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 41
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -12583,7 +12712,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 50
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -12656,7 +12785,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 39
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -12846,17 +12975,19 @@
       "path": "tasks/mvp/09-tactical-combat/10-replay-smoke-test-20-round-battle.md",
       "moduleId": "mvp.09-tactical-combat",
       "modulePath": "tasks/mvp/09-tactical-combat.md",
-      "description": "Scripted integration test that replays a full 20-round battle between two Emberwild armies, verifying that state hashes are identical across three independent replays with the same seed.",
+      "description": "Scripted integration test that replays a full 20-round battle between two Emberwild armies, verifying that state hashes are identical across three independent replays with the same seed. The scripted commands are driven through `scriptedBot(commands)` (`BotProvider` id `\"scripted\"`) from [`tasks/mvp/10-heuristic-ai/10-bot-provider-interface.md`](../10-heuristic-ai/10-bot-provider-interface.md), not ad-hoc fixture code.",
       "inputs": [
         "All tasks in this module"
       ],
       "outputs": [
         "`src/engine/__tests__/battle-smoke.test.ts`",
         "Script: Phoenix Vanguard vs Phoenix Vanguard (Emberwild T7), 5 per side, 20 rounds of scripted commands",
-        "Compares hash at round 5, 10, 15, 20"
+        "Compares hash at round 5, 10, 15, 20",
+        "Driven by `scriptedBot(commands)` (`BotProvider` id `\"scripted\"`) for both sides"
       ],
       "readFirst": [
-        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)"
+        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)",
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider"
       ],
       "ownedPaths": [
         "src/engine/__tests__/battle-smoke.test.ts"
@@ -12874,7 +13005,8 @@
         "mvp.09-tactical-combat.06-morale-and-luck-rolls",
         "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
         "mvp.09-tactical-combat.08-battle-end-condition",
-        "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle"
+        "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
       ],
       "acceptanceCriteria": [
         "3 replays of same battle produce identical hashes at all checkpoints",
@@ -12899,7 +13031,8 @@
         "mvp.09-tactical-combat.06-morale-and-luck-rolls",
         "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
         "mvp.09-tactical-combat.08-battle-end-condition",
-        "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle"
+        "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
@@ -12911,7 +13044,8 @@
         "mvp.09-tactical-combat.06-morale-and-luck-rolls",
         "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
         "mvp.09-tactical-combat.08-battle-end-condition",
-        "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle"
+        "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
@@ -13325,7 +13459,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -13337,7 +13471,8 @@
       "modulePath": "tasks/mvp/10-heuristic-ai.md",
       "description": "The AI's decision-making center. Given current game state and threat map, generates a prioritized list of \"wants\" (desired actions) for each AI hero.",
       "inputs": [
-        "`AdventureState`, `ThreatMap` (Task 1)"
+        "Projected `AdventureView` from [`07-ai-player-view-projection.md`](./07-ai-player-view-projection.md) (the wants engine reads the view, not raw `AdventureState`; `SCOUT_FOG` operates over fog-stripped tiles by construction)",
+        "`ThreatMap` (Task 1)"
       ],
       "outputs": [
         "`src/ai/bots/wants-engine.ts`",
@@ -13353,6 +13488,7 @@
         "`PATROL`: idle wants when no other goal is actionable Each Want has a `score: number` and `target: HexCoord | string`."
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 1 Input View",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
       ],
@@ -13410,8 +13546,8 @@
         "mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 36
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -13434,6 +13570,7 @@
         "Tie-breaking: same score → prefer the want type that appears first in priority list above"
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table, § 7 Decision Log",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
       ],
@@ -13472,8 +13609,8 @@
         "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 33
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 42
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -13498,6 +13635,7 @@
         "**Status EV** = expected value of morale/luck from current stack morale (× weight 15) WAIT scoring: if no attack is better than waiting for a faster allied stack to strike first, score WAIT highly."
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 7 Decision Log (the `reasoning` field is the consumer of this task's output)",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
       ],
@@ -13553,8 +13691,8 @@
         "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 32
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 42
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -13575,9 +13713,13 @@
         "Per-difficulty deterministic search budget constants consumed by `mvp.10-heuristic-ai.06-run-ai-in-web-worker`:",
         "`pawn`: `maxNodes = 4 000`, `maxDepth = 3`",
         "`knight`: `maxNodes = 16 000`, `maxDepth = 5`",
-        "`searchBudgetFor(difficulty: DifficultyLevel, mapDims: { width: number, height: number }): { maxNodes: number, maxDepth: number }` scales `maxNodes` linearly with `width * height / (128*128)` so budgets stay proportional on smaller maps. The function is pure and deterministic."
+        "`searchBudgetFor(difficulty: DifficultyLevel, mapDims: { width: number, height: number }): { maxNodes: number, maxDepth: number }` scales `maxNodes` linearly with `width * height / (128*128)` so budgets stay proportional on smaller maps. The function is pure and deterministic.",
+        "Per-turn wall-clock budgets per [`ai-contract.md` § 4 Per-Turn Budget Table](../../../docs/architecture/ai-contract.md#4-per-turn-budget-table):",
+        "Pawn: per-turn budget 200 ms, hard timeout 500 ms, no-action fallback `END_HERO_TURN`",
+        "Knight: per-turn budget 500 ms, hard timeout 1 s, no-action fallback `END_HERO_TURN` Worker enforcement is owned by [`06-run-ai-in-web-worker.md`](./06-run-ai-in-web-worker.md)."
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table, § 8 BotProvider",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
       ],
@@ -13598,8 +13740,8 @@
         "Difficulty is set at game start and not changeable mid-game (locked in `AdventureState`)",
         "`searchBudgetFor(\"knight\", { 200, 200 })` keeps every move in bench-harness Scenario C under the **2 s wall-clock watchdog threshold** on the Minimum-spec emulation profile (validated by `mvp.00-perf.01-bench-harness`).",
         "Budget constants are deterministic — same difficulty + map dims yields identical `(maxNodes, maxDepth)` on every call.",
-        "**Quality Gate (Knight difficulty):** Run 10 independent games (different seeds) where Knight AI plays against \"random AI\" opponent. Knight must win ≥ 8 out of 10 games (80 % win rate minimum).",
-        "Random AI: picks a legal action uniformly at random (no heuristic)",
+        "**Quality Gate (Knight difficulty):** Run 10 independent games (different seeds) where Knight AI plays against the `randomBot` baseline opponent (provider id `\"random\"`, owned by [`10-bot-provider-interface.md`](./10-bot-provider-interface.md)). Knight must win ≥ 8 out of 10 games (80 % win rate minimum). Verified continuously by the bench harness owned by [`11-ai-bench-harness.md`](./11-ai-bench-harness.md).",
+        "Random opponent: `randomBot(seed)` picks a legal action uniformly at random from the projected view",
         "Game length: max 50 turns per player (100 turns total), or until victory condition",
         "Metric: Knight AI takes gold mines, builds towns, and captures enemy structures faster than random moves"
       ],
@@ -13623,8 +13765,8 @@
         "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 22
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 38
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -13634,50 +13776,78 @@
       "path": "tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md",
       "moduleId": "mvp.10-heuristic-ai",
       "modulePath": "tasks/mvp/10-heuristic-ai.md",
-      "description": "The AI can take up to 200ms to compute a move on complex states. Running it on the main thread would freeze the UI. Move all AI computation into a Web Worker with a simple message-passing interface. The worker runs under a **deterministic search budget**, not a wall-clock timeout. AI workers stop when `nodesExpanded >= maxNodes(difficulty, mapDims)` or `searchDepth >= maxDepth(difficulty)`, whichever fires first. The per-difficulty constants are pinned in [`05-difficulty-levels-pawn-and-knight.md`](./05-difficulty-levels-pawn-and-knight.md). A wall-clock timer is retained **only as a watchdog**: it logs a warning if a single move exceeds 2 s on the current machine but **never truncates** the search. Wall-clock-driven truncation is forbidden by [`determinism.md` § AI Compute Budget](../../../docs/architecture/determinism.md#ai-compute-budget).",
+      "description": "The AI can take up to 200ms to compute a move on complex states. Running it on the main thread would freeze the UI. Move all AI computation into a Web Worker with a simple message-passing interface. The full AI runtime contract (input view, output, worker protocol, per-turn budget table, cancellation, parallelism, decision log, BotProvider, cheats) lives in [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md). This task implements the worker boundary against that contract; it does not re-state contract clauses. The worker runs under a **deterministic search budget**, not a wall-clock timeout. AI workers stop when `nodesExpanded >= maxNodes(difficulty, mapDims)` or `searchDepth >= maxDepth(difficulty)`, whichever fires first. The per-difficulty constants are pinned in [`05-difficulty-levels-pawn-and-knight.md`](./05-difficulty-levels-pawn-and-knight.md). A wall-clock per-turn cap layered on top is the cancellation trigger pinned by the per-difficulty budget table in [`ai-contract.md` § 4](../../../docs/architecture/ai-contract.md#4-per-turn-budget-table). On hard-timeout fire, the worker returns the best-found `Command` or the per-difficulty no-action fallback (`END_HERO_TURN` / `END_DAY`); the resulting `Command` is logged once and replays bit-identically from the log without re-running the search.",
       "inputs": [
         "All AI modules (Tasks 1–5)",
+        "`aiPlayerView(state, playerId, cheats)` projection from [`07-ai-player-view-projection.md`](./07-ai-player-view-projection.md)",
         "`searchBudget = { maxNodes, maxDepth }` derived from difficulty + map dimensions (Task 5)."
       ],
       "outputs": [
         "`src/ai/bots/ai-worker.ts` (Web Worker entry point)",
-        "Message in: `{ type: \"COMPUTE_MOVE\", state: AdventureState, difficulty: DifficultyLevel, searchBudget: { maxNodes: number, maxDepth: number } }`",
-        "Message out: `{ type: \"MOVE_RESULT\", command: Command, nodesExpanded: number, searchDepthReached: number }`",
+        "Message in `COMPUTE_MOVE`: `{ type: \"COMPUTE_MOVE\", requestId, view: AdventureView, difficulty: DifficultyLevel, searchBudget: { maxNodes: number, maxDepth: number }, cheats?: AiCheats, rngSeed: string }`",
+        "Message out `MOVE_RESULT`: `{ type: \"MOVE_RESULT\", requestId, command: Command, nodesExpanded: number, searchDepthReached: number }`",
+        "Error path `AI_ERROR`: `{ type: \"AI_ERROR\", requestId, reason: string }`",
         "`src/ai/bots/ai-client.ts` — thin wrapper used by the UI:",
-        "`requestAIMove(state, difficulty): Promise<Command>`"
+        "`requestAIMove(view: AdventureView, difficulty: DifficultyLevel, signal?: AbortSignal): Promise<Command>`",
+        "The client calls `aiPlayerView` before sending `COMPUTE_MOVE`; raw `AdventureState` never crosses the worker boundary."
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md)",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
         "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)"
       ],
       "ownedPaths": [
         "src/ai/bots/ai-worker.ts",
-        "src/ai/bots/ai-client.ts"
+        "src/ai/bots/ai-client.ts",
+        "08-ai-inspector-dev-screen.md",
+        "10-bot-provider-interface.md"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
       "ownedPathsOptOutReason": "",
-      "sharedOwnedPaths": [],
+      "sharedOwnedPaths": [
+        "src/ai/bots/ai-worker.ts",
+        "08-ai-inspector-dev-screen.md",
+        "src/ai/bots/ai-client.ts",
+        "10-bot-provider-interface.md"
+      ],
       "dependencies": [
         "mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients",
         "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
         "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
         "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
-        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight"
+        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection"
       ],
       "acceptanceCriteria": [
-        "UI remains responsive (input events fire) while AI is computing",
-        "AI worker terminates cleanly when the game ends or user navigates away",
-        "Worker stops on `searchBudget` (`maxNodes` or `maxDepth`), **not** on a wall-clock timer; identical seed + state + budget on two runs produces an identical `Command` (verified by a determinism unit test at two simulated `setTimeout` rates).",
-        "Wall-clock watchdog: if a single AI move exceeds 2 s, the worker logs a warning **and continues** to completion. A watchdog warning is treated as a difficulty-tuning bug, not a runtime fallback.",
-        "Worker receives a serialized state copy (not a reference — workers cannot share memory)"
+        "UI remains responsive (input events fire) while AI is computing.",
+        "Worker receives a serialized projected view (`AdventureView`), not raw `AdventureState`. A test asserts no field absent from the projection is read inside the worker (instrumented via a `Proxy` in test mode). See [`07-ai-player-view-projection.md`](./07-ai-player-view-projection.md) acceptance criteria.",
+        "Worker stops on `searchBudget` (`maxNodes` or `maxDepth`) within the per-turn budget; identical seed + view + budget on two runs produces an identical `Command` when search completes within budget (verified by a determinism unit test at two simulated `setTimeout` rates).",
+        "Per-turn budget enforcement matches the table in [`ai-contract.md` § 4 Per-Turn Budget Table](../../../docs/architecture/ai-contract.md#4-per-turn-budget-table):",
+        "Pawn 200 ms / hard 500 ms",
+        "Knight 500 ms / hard 1 s",
+        "Grand Master 1 s / hard 2 s",
+        "Lord 2 s / hard 4 s",
+        "Immortal 3 s / hard 6 s",
+        "`requestAIMove` accepts an optional `AbortSignal`. On abort the worker:",
+        "Finishes the current `evaluateActions` call (≤ 5 ms).",
+        "Returns the best-found `Command` if any has scored, else the per-difficulty no-action fallback (`END_HERO_TURN` / `END_DAY`).",
+        "Resolves the returned `Promise` (never rejects). The dispatcher always sees a valid `Command`.",
+        "`Worker.terminate()` is reserved for \"game ends\" / \"user navigates away\" only. It is not the cancellation path.",
+        "Required cancellation tests:",
+        "\"abort during `buildThreatMap` returns `END_HERO_TURN` deterministically\".",
+        "\"abort after one `evaluateActions` call returns the scored best-action deterministically\".",
+        "\"Lord with view containing 0 ready heroes returns `END_DAY` within 6 s hard timeout\".",
+        "`AI_TRACE_REQUEST` / `AI_TRACE_RESULT` message handlers are additive surfaces (owned by task 08) that do not affect `COMPUTE_MOVE` semantics. The trace return for input `(view, rngSeed)` is itself deterministic; calling it mid-game is allowed but **not** part of the canonical command log.",
+        "Error path: on uncaught worker exception, the worker emits `AI_ERROR` and the client resolves with the per-difficulty no-action fallback so the dispatcher always advances.",
+        "Shared-path extensions to `src/ai/bots/ai-worker.ts` and `src/ai/bots/ai-client.ts` are **additive**: this task **must not** be rewritten when downstream tasks add the `AI_TRACE_REQUEST` / `AI_TRACE_RESULT` handlers (primary contract for those handlers is **owned by** [`08-ai-inspector-dev-screen.md`](./08-ai-inspector-dev-screen.md)) or the `BotProvider` interface (primary contract **owned by** [`10-bot-provider-interface.md`](./10-bot-provider-interface.md)). Trace handlers and the BotProvider wrapper extend the worker surface without rewriting the `COMPUTE_MOVE` semantics owned here."
       ],
       "verifyCommands": [
         "npm run validate",
         "npm test"
       ],
-      "estimatedTime": "- 2 hours",
+      "estimatedTime": "- 3 hours",
       "screenPackages": [],
       "directSchemaPaths": [],
       "screenSchemaPaths": [],
@@ -13687,7 +13857,8 @@
         "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
         "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
         "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
-        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight"
+        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
@@ -13695,11 +13866,409 @@
         "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
         "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
         "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
-        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight"
+        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 37
+    },
+    {
+      "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI Player View Projection — `aiPlayerView`",
+      "path": "tasks/mvp/10-heuristic-ai/07-ai-player-view-projection.md",
+      "moduleId": "mvp.10-heuristic-ai",
+      "modulePath": "tasks/mvp/10-heuristic-ai.md",
+      "description": "Implement the per-player projection that the AI worker consumes in place of raw `AdventureState`. By default the AI sees what the player sees: fog-of-war is enforced, opponent hero internals (inventory, spell book, planned path) are stripped, and hidden map objects do not appear. Higher cheat tiers are an explicit opt-in via the `cheats` parameter. Locks the worker input contract for [`06-run-ai-in-web-worker.md`](./06-run-ai-in-web-worker.md) — the worker boundary calls `aiPlayerView(state, playerId, cheats)` before dispatching `COMPUTE_MOVE`. Without this projection, the default M2 heuristic would silently read full-map information, making the Knight 80 % vs random quality gate unreviewable and breaking multiplayer parity.",
+      "inputs": [
+        "`AdventureState` from `mvp.05-adventure-map.01-strategic-game-state-model`",
+        "Visibility / fog-of-war system from `mvp.05-adventure-map`",
+        "`PlayerId` and per-player visibility map"
+      ],
+      "outputs": [
+        "`src/engine/ai/aiPlayerView.ts`",
+        "`aiPlayerView(state: AdventureState, playerId: PlayerId, cheats?: AiCheats): AdventureView`",
+        "`AdventureView` type (closed; structurally a subset of `AdventureState` with private fields stripped)",
+        "`AiCheats` type: ```ts type AiCheats = { seeFog?: boolean; resourceBonus?: number; }; ``` Stripping rules (applied when the corresponding cheat is not set):",
+        "`seeFog !== true`:",
+        "tiles outside the player's current visibility map are absent",
+        "opponent hero `inventory`, `spellBook`, `path`, equipped artifacts not yet revealed are absent",
+        "opponent town garrison composition, build queue, and gold reserves are absent",
+        "map objects on hidden tiles are absent",
+        "Self-owned entities are unchanged.",
+        "Public scenario metadata (`turn`, `day`, `weather`, scenario id) is unchanged."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 1 Input View",
+        "[`docs/architecture/state-shape.md`](../../../docs/architecture/state-shape.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "src/engine/ai/aiPlayerView.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.05-adventure-map.01-strategic-game-state-model"
+      ],
+      "acceptanceCriteria": [
+        "`aiPlayerView` is a pure function: no I/O, no `Math.random()`, no time-of-day sampling.",
+        "Default `cheats = {}` strips fog-hidden tiles, opponent hero internals, and hidden map objects.",
+        "`cheats.seeFog === true` returns the full `AdventureState` shape unchanged for the projected player slot.",
+        "The projection commutes with serialization: round-tripping through canonical JSON yields the same view structure.",
+        "A projection-leak smoke test (extending [`tasks/mvp/05-adventure-map/08-7-day-playable-smoke-test.md`](../05-adventure-map/08-7-day-playable-smoke-test.md)) asserts that the worker's read trace contains no `AdventureState` field absent from the projection (instrumented via a `Proxy` in test mode).",
+        "The dispatcher remains the source of truth for command legality. `MOVE_HERO` / `INITIATE_BATTLE` are validated against full state at dispatch time, not the projected view. See [`docs/architecture/command-schema.md` § Validation Framework](../../../docs/architecture/command-schema.md#validation-framework)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.05-adventure-map.01-strategic-game-state-model"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.05-adventure-map.01-strategic-game-state-model"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 38
+    },
+    {
+      "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI Inspector — Dev-Only Screen",
+      "path": "tasks/mvp/10-heuristic-ai/08-ai-inspector-dev-screen.md",
+      "moduleId": "mvp.10-heuristic-ai",
+      "modulePath": "tasks/mvp/10-heuristic-ai.md",
+      "description": "Dev-only UI surface that visualizes a single AI turn end-to-end: the projected view, the `Want[]` priority list, each `ScoredAction` with its `reasoning`, the chosen `Command`, and a step button that re-runs the worker against the same `(view, rngSeed)` to reproduce. Hidden behind the same dev gate as the performance plan's profiler overlay. QA uses this surface to triage \"AI did the wrong thing\" reports without local re-runs and to audit difficulty quality gates (Knight ≥ 80 % vs random; Lord ≥ 60 % vs Grand Master).",
+      "inputs": [
+        "`AI_TRACE_REQUEST` / `AI_TRACE_RESULT` worker messages (this task adds them additively to the worker; see Owned Paths shared)",
+        "`aiDecisionLog` ring buffer from [`09-ai-decision-log-channel.md`](./09-ai-decision-log-channel.md)",
+        "The 5-file screen package `docs/architecture/wiki/screens/69-dev-ai-inspector/`"
+      ],
+      "outputs": [
+        "`src/ui/dev/AiInspector.tsx` — React component for the overlay",
+        "`src/ui/dev/AiInspector.styles.ts` — scoped styles (dark-amber panel system, distinct from `dev-profiler` to allow co-display)",
+        "Worker message kinds (additive on `ai-worker.ts`):",
+        "`{ type: \"AI_TRACE_REQUEST\", requestId, view, difficulty, rngSeed }`",
+        "`{ type: \"AI_TRACE_RESULT\", requestId, view, wants, scored, command, reasoning }`",
+        "Hotkey wiring: `Ctrl+Shift+A` toggles the overlay (registered through the hotkey registry; non-blocking on input layers below)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 7 Decision Log",
+        "[`docs/architecture/wiki/screens/69-dev-ai-inspector/`](../../../docs/architecture/wiki/screens/69-dev-ai-inspector/)",
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md) § Build Flags"
+      ],
+      "ownedPaths": [
+        "docs/architecture/wiki/screens/69-dev-ai-inspector/",
+        "src/ui/dev/AiInspector.tsx",
+        "src/ui/dev/AiInspector.styles.ts",
+        "src/ai/bots/ai-worker.ts",
+        "06-run-ai-in-web-worker.md",
+        "docs/architecture/wiki/screens/index.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/ai/bots/ai-worker.ts",
+        "06-run-ai-in-web-worker.md",
+        "docs/architecture/wiki/screens/index.json"
+      ],
+      "dependencies": [
+        "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
+        "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.09-ai-decision-log-channel"
+      ],
+      "acceptanceCriteria": [
+        "Overlay is gated behind `import.meta.env.DEV`. Production bundles tree-shake the screen unless `?dev_ai_inspector=1` is present in the URL (QA / alpha-tester escape hatch).",
+        "Overlay does not appear in production builds without the URL parameter.",
+        "Overlay does not block input on layers below it.",
+        "Re-running `AI_TRACE_REQUEST` against the same `(view, rngSeed)` returns identical `wants`, `scored`, and `command` — the trace is deterministic for the input.",
+        "Calling `AI_TRACE_REQUEST` mid-game does NOT append entries to the canonical command log; replay hash is unchanged whether the inspector was opened during the run or not (CI test).",
+        "The screen package's 5 standard files (`mockup.html`, `spec.md`, `interactions.md`, `data-contracts.md`, `architecture.md`) at [`docs/architecture/wiki/screens/69-dev-ai-inspector/`](../../../docs/architecture/wiki/screens/69-dev-ai-inspector/) exist and pass `npm run validate` (links + cross-refs + screen-package lint).",
+        "`index.json` registers `69-dev-ai-inspector` under the existing `diagnostics` group (alongside `66-debug-overlay`, `67-animation-debug-overlay`, `68-dev-profiler`).",
+        "The wiki regenerates without errors: `npm run generate:wiki`.",
+        "Shared-path edits to `src/ai/bots/ai-worker.ts` and `docs/architecture/wiki/screens/index.json` are **additive**: the new `AI_TRACE_REQUEST` / `AI_TRACE_RESULT` handlers and the new `index.json` entry land without rewriting the `COMPUTE_MOVE` worker semantics or other groups in `index.json`. The primary contract for the worker entrypoint is **owned by** [`06-run-ai-in-web-worker.md`](./06-run-ai-in-web-worker.md); the primary contract for `index.json` group ordering is **owned by** the existing screen-package authoring system. This task **must not** rewrite either."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm run generate:wiki",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/69-dev-ai-inspector"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/ui-component-registry.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/ui-component-registry.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
+        "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.09-ai-decision-log-channel"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
+        "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.09-ai-decision-log-channel"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
+    },
+    {
+      "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI Decision Log — Out-of-Band Side Channel",
+      "path": "tasks/mvp/10-heuristic-ai/09-ai-decision-log-channel.md",
+      "moduleId": "mvp.10-heuristic-ai",
+      "modulePath": "tasks/mvp/10-heuristic-ai.md",
+      "description": "Add an opt-in, out-of-band `aiDecisionLog` channel that records the AI's `Want[]`, `ScoredAction[]`, chosen `Command`, and `reasoning` for each turn. The channel is **not** part of the canonical command log: enabling it must not change the replay hash or the save format. The canonical log is sufficient for replay (the engine re-derives state from the `Command` log) but insufficient for debugging the AI itself. This task closes that gap without breaking determinism for unrelated replays.",
+      "inputs": [
+        "`Want[]` from `mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization`",
+        "`ScoredAction[]` and `reasoning` from `mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring`",
+        "The chosen `Command` from `mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking`"
+      ],
+      "outputs": [
+        "`src/engine/ai/aiDecisionLog.ts`",
+        "Type: ```ts type AdventureViewSnapshotHash = string; // xxh64 hex of canonical view type AiDecisionLogEntry = { turn: number; playerId: PlayerId; difficulty: DifficultyLevel; view: AdventureViewSnapshotHash; wants: Want[]; scored: ScoredAction[]; chosen: Command; reasoning: string; }; ```",
+        "Runtime flag: `Engine.config.aiDecisionLog: boolean` (default `false`).",
+        "In-memory ring buffer: last `N = 64` turns when the flag is on.",
+        "Optional disk serializer for QA: gated behind a separate `Engine.config.aiDecisionLogPath?: string`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 7 Decision Log",
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "src/engine/ai/aiDecisionLog.ts",
+        "src/ai/bots/tactical-evaluator.ts",
+        "04-tactical-evaluator-combat-move-scoring.md",
+        "src/ai/bots/ai-worker.ts",
+        "06-run-ai-in-web-worker.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/ai/bots/tactical-evaluator.ts",
+        "04-tactical-evaluator-combat-move-scoring.md",
+        "src/ai/bots/ai-worker.ts",
+        "06-run-ai-in-web-worker.md"
+      ],
+      "dependencies": [
+        "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
+        "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
+        "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+      ],
+      "acceptanceCriteria": [
+        "When `Engine.config.aiDecisionLog === false`, no `AiDecisionLogEntry` is allocated and the AI hot path has no added overhead measurable by the bench harness.",
+        "When `true`, entries are written to a ring buffer of last N = 64 turns; the oldest entry is evicted on overflow.",
+        "CI test asserts replay hash is **identical** with the flag on vs off, across the 7-day adventure smoke test and the 20-round battle smoke test.",
+        "CI test asserts save snapshot hash is **identical** with the flag on vs off (saves do not capture the channel).",
+        "`view` is recorded as the xxh64 hash of the canonical-JSON serialization of the projected view, not the view itself, so the ring buffer stays bounded.",
+        "The disk serializer (`aiDecisionLogPath`) is a side-effect sink only; it never feeds back into engine state.",
+        "Shared-path extensions to `src/ai/bots/tactical-evaluator.ts` and `src/ai/bots/ai-worker.ts` are **additive**: this task plumbs `reasoning` and emits `AiDecisionLogEntry` only when the runtime flag is on. It **must not** rewrite the existing scoring logic or `COMPUTE_MOVE` flow. The **primary owner** of the tactical evaluator is [`04-tactical-evaluator-combat-move-scoring.md`](./04-tactical-evaluator-combat-move-scoring.md); the **primary owner** of the worker entrypoint is [`06-run-ai-in-web-worker.md`](./06-run-ai-in-web-worker.md). Both primary contracts remain unchanged."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
+        "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
+        "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
+        "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
+        "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 17
+    },
+    {
+      "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
+      "kind": "task",
+      "status": "planned",
+      "title": "BotProvider Interface",
+      "path": "tasks/mvp/10-heuristic-ai/10-bot-provider-interface.md",
+      "moduleId": "mvp.10-heuristic-ai",
+      "modulePath": "tasks/mvp/10-heuristic-ai.md",
+      "description": "Define the `BotProvider` interface that tests, the bench harness, and future MCTS regression all use to swap the AI opponent. Ship three first-party implementations: `heuristicBot`, `randomBot`, and `scriptedBot`. Tests pick a provider by `id`; production wires `heuristicBot` only. Without this interface, every test reinvents the bot swap and M3 / M7 regression cannot reference M2 by name.",
+      "inputs": [
+        "`requestAIMove` worker client from [`06-run-ai-in-web-worker.md`](./06-run-ai-in-web-worker.md)",
+        "Closed `Command` enum from [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "Pure deterministic RNG (PCG32) from [`docs/architecture/rng-streams.md`](../../../docs/architecture/rng-streams.md)"
+      ],
+      "outputs": [
+        "`src/engine/ai/BotProvider.ts`: ```ts type BotProvider = { id: string; requestAIMove( view: AdventureView, difficulty: DifficultyLevel, signal?: AbortSignal ): Promise<Command>; }; ```",
+        "`src/engine/ai/heuristicBot.ts` — wraps the M2 worker client.",
+        "`id: \"heuristic\"`",
+        "`src/engine/ai/randomBot.ts` — picks a uniformly-random legal action from the projected view using a seeded PCG32 stream.",
+        "`id: \"random\"`",
+        "Constructor: `randomBot(seed: string): BotProvider`",
+        "`src/engine/ai/scriptedBot.ts` — replays a fixed `Command[]`.",
+        "`id: \"scripted\"`",
+        "Constructor: `scriptedBot(commands: Command[]): BotProvider`",
+        "On exhaustion, returns the per-difficulty no-action fallback (`END_HERO_TURN` / `END_DAY`)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "src/engine/ai/BotProvider.ts",
+        "src/engine/ai/heuristicBot.ts",
+        "src/engine/ai/randomBot.ts",
+        "src/engine/ai/scriptedBot.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection",
+        "mvp.01-engine-core.06-command-dispatcher"
+      ],
+      "acceptanceCriteria": [
+        "`heuristicBot.requestAIMove` returns the same `Command` as calling the worker client directly for identical inputs.",
+        "`randomBot(seed).requestAIMove` returns the same `Command` for identical `(view, difficulty, seed)`. Two calls with the same seed and view produce identical streams.",
+        "`randomBot` enumerates legal actions from the projected view only — no full-state cheating.",
+        "`scriptedBot` returns commands from its array in order; on exhaustion it returns the per-difficulty no-action fallback.",
+        "All three implementations honor `AbortSignal` per [`ai-contract.md` § 5 Cancellation](../../../docs/architecture/ai-contract.md#5-cancellation).",
+        "Provider IDs (`\"heuristic\"`, `\"random\"`, `\"scripted\"`) are stable string literals; tests reference them by ID.",
+        "A unit test enumerates registered provider IDs and asserts no duplicates."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 21
+      "downstreamTransitiveCount": 29
+    },
+    {
+      "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI Bench Harness — Continuous Quality Gate",
+      "path": "tasks/mvp/10-heuristic-ai/11-ai-bench-harness.md",
+      "moduleId": "mvp.10-heuristic-ai",
+      "modulePath": "tasks/mvp/10-heuristic-ai.md",
+      "description": "Continuous bench harness that runs the difficulty quality gates in CI against the current heuristic and reports win-rates per commit. Plugged into the `BotProvider` interface so any pair of bots (heuristic vs random, Lord vs Grand Master, future MCTS vs heuristic) can be benched without rewriting harness code. Verifies: - M2 Knight gate: Knight vs random, ≥ 80 % over 10 games. - M3 Grand Master gate: Grand Master vs Knight, ≥ 70 % over 100 games. - M7 Lord gate: Lord vs Grand Master, ≥ 60 % over 50 games.",
+      "inputs": [
+        "`BotProvider` interface from [`10-bot-provider-interface.md`](./10-bot-provider-interface.md)",
+        "Headless engine harness from `mvp.01-engine-core`",
+        "Scenario fixture(s) — small deterministic adventure-map scenarios for fast bench runs"
+      ],
+      "outputs": [
+        "`src/engine/ai/bench/runMatch.ts`:",
+        "`runMatch({ a: BotProvider, b: BotProvider, games: number, scenario: ScenarioId, seedBase: string }): MatchReport`",
+        "`MatchReport`: `{ wins: { a: number, b: number, draw: number }, avgGameLength: number, gamesById: GameRecord[] }`",
+        "`GameRecord`: `{ seed: string, winner: \"a\" | \"b\" | \"draw\", length: number, commands: Command[] }`",
+        "`src/engine/ai/bench/cli.ts`:",
+        "`npm run ai:bench -- --a <id> --b <id> --games <n> --scenario <id>`",
+        "CI hook: a non-blocking metric in M2 (records win-rate per commit). Promote to blocking when the Knight gate is reached and again at each subsequent gate."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider",
+        "[`tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md`](./05-difficulty-levels-pawn-and-knight.md) § Quality Gate Details"
+      ],
+      "ownedPaths": [
+        "src/engine/ai/bench/runMatch.ts",
+        "src/engine/ai/bench/cli.ts",
+        "src/engine/ai/bench/__tests__/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.10-heuristic-ai.10-bot-provider-interface",
+        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight"
+      ],
+      "acceptanceCriteria": [
+        "`runMatch` is deterministic for identical inputs: same bots, scenario, seedBase, and game count produce an identical `MatchReport`.",
+        "The bench harness uses `BotProvider` exclusively; no direct worker-client imports outside the `heuristicBot` wrapper.",
+        "`npm run ai:bench -- --a heuristic --b random --games 10` runs to completion in < 60 s on the Reference tier.",
+        "CI records win-rate per commit. Below the M2 Knight gate, the metric is non-blocking; once met, the harness is upgraded to blocking.",
+        "The harness reports per-game `Command[]` for failure triage without re-running the AI.",
+        "Win-rate report is reproducible from the on-disk `MatchReport` JSON; replays of `commands` against a fresh engine instance yield identical state hashes."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test",
+        "npm run ai:bench -- --a heuristic --b random --games 10"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
+        "mvp.10-heuristic-ai.10-bot-provider-interface"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -14175,7 +14744,8 @@
         "mvp.02-content-schemas.23-schema-migration-policy-and-example",
         "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate",
         "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
-        "mvp.02-content-schemas.26-m2-engine-hash-backfill"
+        "mvp.02-content-schemas.26-m2-engine-hash-backfill",
+        "mvp.02-content-schemas.27-reserve-ai-profile-schema"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -16010,6 +16580,7 @@
         "Report: win rate, average game length, most common win condition"
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table (Grand Master row), § 8 BotProvider",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
       ],
@@ -25335,7 +25906,12 @@
         "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
         "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
         "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
-        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection",
+        "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
+        "mvp.10-heuristic-ai.09-ai-decision-log-channel",
+        "mvp.10-heuristic-ai.10-bot-provider-interface",
+        "mvp.10-heuristic-ai.11-ai-bench-harness"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
@@ -27090,6 +27666,7 @@
         "Immortal: MCTS 2000 nodes tactical, beam depth=3 width=10 strategic, no randomness"
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table (Lord and Immortal rows)",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)"
       ],
       "ownedPaths": [
@@ -27155,6 +27732,7 @@
         "Evaluation: 50 games Lord vs Grand Master (random seeds)"
       ],
       "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)"
       ],
       "ownedPaths": [
@@ -27172,7 +27750,7 @@
       ],
       "acceptanceCriteria": [
         "MCTS search: < 50ms average per tactical move (with WASM)",
-        "Lord wins ≥ 60% of 50 games vs Grand Master",
+        "Lord wins ≥ 60% of 50 games vs Grand Master, verified continuously by the bench harness owned by [`tasks/mvp/10-heuristic-ai/11-ai-bench-harness.md`](../../mvp/10-heuristic-ai/11-ai-bench-harness.md) using the `BotProvider` interface (provider id `\"mcts\"` added by this task / Task 5)",
         "Test report: win rate, avg game length, any timeouts"
       ],
       "verifyCommands": [
@@ -27919,6 +28497,11 @@
         "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
         "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
         "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.10-heuristic-ai.07-ai-player-view-projection",
+        "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
+        "mvp.10-heuristic-ai.09-ai-decision-log-channel",
+        "mvp.10-heuristic-ai.10-bot-provider-interface",
+        "mvp.10-heuristic-ai.11-ai-bench-harness",
         "phase-2.02-strategic-ai.01-resource-deficit-detector",
         "phase-2.02-strategic-ai.02-town-building-planner",
         "phase-2.02-strategic-ai.03-multi-hero-role-assignment",
@@ -28030,6 +28613,7 @@
         "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate",
         "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
         "mvp.02-content-schemas.26-m2-engine-hash-backfill",
+        "mvp.02-content-schemas.27-reserve-ai-profile-schema",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",

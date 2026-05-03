@@ -8,6 +8,7 @@ Description:
 For each possible combat action (move + attack), compute an evaluation score. The AI picks the highest-scoring action. This is the hardest part of the AI — getting it wrong makes the AI obvious and exploitable.
 
 Read First:
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 7 Decision Log (the `reasoning` field is the consumer of this task's output)
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 

@@ -121,7 +121,8 @@
       "screens": [
         "66-debug-overlay",
         "67-animation-debug-overlay",
-        "68-dev-profiler"
+        "68-dev-profiler",
+        "69-dev-ai-inspector"
       ]
     }
   ]

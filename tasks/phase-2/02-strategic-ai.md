@@ -6,6 +6,18 @@ Upgrade the heuristic AI to master-level strategic play: multi-hero coordination
 **Total Estimate**: ~22 hours  
 **Exit Criteria**: "Grand Master" AI makes no obviously sub-optimal strategic decisions; wins consistently vs "Knight" AI in 100 headless games.
 
+The AI runtime contract (input view, output, worker protocol,
+per-turn budget table, cancellation, parallelism, decision log,
+BotProvider, cheats) is the single source of truth in
+[`docs/architecture/ai-contract.md`](../../docs/architecture/ai-contract.md).
+M3 tasks below extend that contract additively (e.g. the Grand
+Master row of the per-turn budget table); they do not redefine it.
+
+The Grand Master row of the per-turn budget table per
+[`ai-contract.md` § 4 Per-Turn Budget Table](../../docs/architecture/ai-contract.md#4-per-turn-budget-table):
+per-turn budget 1 s, hard timeout 2 s, no-action fallback
+`END_HERO_TURN`.
+
 ---
 
 ## Task Files

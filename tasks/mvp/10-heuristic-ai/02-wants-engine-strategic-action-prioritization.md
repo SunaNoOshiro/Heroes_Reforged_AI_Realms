@@ -8,11 +8,16 @@ Description:
 The AI's decision-making center. Given current game state and threat map, generates a prioritized list of "wants" (desired actions) for each AI hero.
 
 Read First:
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 1 Input View
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 
 Inputs:
-- `AdventureState`, `ThreatMap` (Task 1)
+- Projected `AdventureView` from
+  [`07-ai-player-view-projection.md`](./07-ai-player-view-projection.md)
+  (the wants engine reads the view, not raw `AdventureState`;
+  `SCOUT_FOG` operates over fog-stripped tiles by construction)
+- `ThreatMap` (Task 1)
 
 Outputs:
 - `src/ai/bots/wants-engine.ts`

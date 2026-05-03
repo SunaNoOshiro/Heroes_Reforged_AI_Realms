@@ -8,6 +8,7 @@ Description:
 Add "Lord" and "Immortal" difficulty levels to the existing difficulty system. Both use MCTS. Immortal gets a larger node budget and wider beam search.
 
 Read First:
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table (Lord and Immortal rows)
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 
 Inputs:

@@ -14,6 +14,7 @@ happens at end of day. On day 7, weekly growth triggers.
 Read First:
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 6 Parallelism
 - [`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json)
 
 Inputs:
@@ -55,6 +56,12 @@ Acceptance Criteria:
 - Turn order is deterministic (same seed → same order)
 - Same seed and command log produce the same final state hash across 3
   runs
+- AI players act sequentially in turn order alongside human players
+  per [`ai-contract.md` § 6 Parallelism](../../../docs/architecture/ai-contract.md#6-parallelism)
+  and [`command-schema.md` § Cross-Actor Ordering](../../../docs/architecture/command-schema.md#cross-actor-ordering).
+  Multi-worker parallel AI compute is permitted only as an
+  internal optimization that does not affect the order of
+  `Command`s appended to the log.
 
 Verify:
 - npm run validate

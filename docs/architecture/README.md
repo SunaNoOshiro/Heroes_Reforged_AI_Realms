@@ -21,6 +21,12 @@ creator platform.
   Closed gameplay-effect vocabulary and extension rules.
 - `ai-integration.md`
   Provider-neutral boundary for AI generation and moderation work.
+- `ai-contract.md`
+  Single source of truth for the gameplay-opponent AI runtime
+  (heuristic + MCTS): input view projection, worker protocol,
+  per-turn budget table, cancellation, parallelism, decision
+  log, BotProvider, and cheats. Provider-backed content
+  generation remains in `ai-integration.md`.
 - `renderer-technology-choice.md`
   WebGL2 selection rationale and implementation approach.
 - `schema-matrix.md`
@@ -70,4 +76,5 @@ creator platform.
 5. `schema-matrix.md`
 6. `effect-registry.md`
 7. `ai-integration.md`
-8. `master-plan.md`
+8. `ai-contract.md`
+9. `master-plan.md`

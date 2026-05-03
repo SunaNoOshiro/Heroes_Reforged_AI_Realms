@@ -127,6 +127,20 @@ ally standing in the second hex of the line is damaged.
 4. Register the runtime handler under `src/rules/effects/`.
 5. Document the row in this file.
 
+## AI-Profile Want Weights
+
+The reserved `ai-profile.schema.json` slot exposes an optional
+`weights: Record<WantType, number>` map consumed by the heuristic
+AI's wants engine
+([`tasks/mvp/10-heuristic-ai/02-wants-engine-strategic-action-prioritization.md`](../../tasks/mvp/10-heuristic-ai/02-wants-engine-strategic-action-prioritization.md)).
+Weights are presentation-of-priority knobs, not effects: they
+multiply per-`Want` scores before action selection. They never
+change command legality and never enter the canonical command
+log. The schema is empty-but-valid in MVP; populating it is M3+
+content work per
+[`docs/architecture/ai-contract.md`](./ai-contract.md) § 7
+Decision Log and § 8 BotProvider.
+
 ## Anti-Patterns
 
 - ❌ `additionalProperties: true` on the effect root — defeats the

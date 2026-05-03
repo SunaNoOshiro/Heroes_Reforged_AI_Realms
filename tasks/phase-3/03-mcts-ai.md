@@ -6,6 +6,26 @@ Monte Carlo Tree Search for strategic and tactical play. Replaces the heuristic 
 **Total Estimate**: ~28 hours  
 **Exit Criteria**: "Lord" difficulty beats "Grand Master" heuristic AI in ≥ 60% of 50 headless games.
 
+The AI runtime contract (input view, output, worker protocol,
+per-turn budget table, cancellation, parallelism, decision log,
+BotProvider, cheats) is the single source of truth in
+[`docs/architecture/ai-contract.md`](../../docs/architecture/ai-contract.md).
+M7 extends that contract additively for the Lord and Immortal
+rows of the per-turn budget table; it does not redefine it.
+
+Per
+[`ai-contract.md` § 4 Per-Turn Budget Table](../../docs/architecture/ai-contract.md#4-per-turn-budget-table):
+
+- Lord:     per-turn budget 2 s, hard timeout 4 s, no-action
+  fallback "best-of-MCTS-rollouts so far, else `END_HERO_TURN`".
+- Immortal: per-turn budget 3 s, hard timeout 6 s, no-action
+  fallback "best-of-MCTS-rollouts so far, else `END_HERO_TURN`".
+
+The 60 % vs Grand Master quality gate is verified continuously by
+the bench harness owned by
+[`tasks/mvp/10-heuristic-ai/11-ai-bench-harness.md`](../mvp/10-heuristic-ai/11-ai-bench-harness.md);
+M7 is not a one-shot end-of-milestone check.
+
 ---
 
 ## Task Files

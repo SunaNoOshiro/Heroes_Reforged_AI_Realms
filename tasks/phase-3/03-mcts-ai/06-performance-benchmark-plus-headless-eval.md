@@ -8,6 +8,7 @@ Description:
 Benchmark MCTS performance and run the head-to-head evaluation to confirm Lord beats Grand Master ≥ 60% of the time.
 
 Read First:
+- [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 
 Inputs:
@@ -29,7 +30,11 @@ Dependencies:
 
 Acceptance Criteria:
 - MCTS search: < 50ms average per tactical move (with WASM)
-- Lord wins ≥ 60% of 50 games vs Grand Master
+- Lord wins ≥ 60% of 50 games vs Grand Master, verified
+  continuously by the bench harness owned by
+  [`tasks/mvp/10-heuristic-ai/11-ai-bench-harness.md`](../../mvp/10-heuristic-ai/11-ai-bench-harness.md)
+  using the `BotProvider` interface (provider id `"mcts"`
+  added by this task / Task 5)
 - Test report: win rate, avg game length, any timeouts
 
 Verify:

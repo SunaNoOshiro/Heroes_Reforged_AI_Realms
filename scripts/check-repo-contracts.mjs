@@ -453,6 +453,7 @@ function schemaForFile(filePath) {
   if (base.endsWith(".error.json")) return "validation-error.schema.json";
   if (base.endsWith(".modal-entry.json")) return "modal-entry.schema.json";
   if (base.endsWith(".hotkey.json")) return "hotkey.schema.json";
+  if (base.endsWith(".ai-profile.json")) return "ai-profile.schema.json";
 
   return null;
 }
