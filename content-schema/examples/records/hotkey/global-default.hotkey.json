@@ -1,0 +1,85 @@
+{
+  "$schema": "heroes-reforged/hotkey.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:hotkey:global-default",
+  "version": "0.1.0",
+  "entries": [
+    {
+      "id": "global.system-menu",
+      "defaultBinding": "Escape",
+      "scope": "global",
+      "labelKey": "ui.hotkeys.global.systemMenu",
+      "rebindable": false
+    },
+    {
+      "id": "global.help",
+      "defaultBinding": "F1",
+      "scope": "global",
+      "labelKey": "ui.hotkeys.global.help",
+      "rebindable": true
+    },
+    {
+      "id": "global.confirm",
+      "defaultBinding": "Enter",
+      "scope": "global",
+      "labelKey": "ui.hotkeys.global.confirm",
+      "rebindable": false
+    },
+    {
+      "id": "screen.adventure-map.end-turn",
+      "defaultBinding": "Enter",
+      "scope": "screen",
+      "screenId": "07-adventure-map",
+      "labelKey": "ui.hotkeys.adventure.endTurn",
+      "rebindable": true
+    },
+    {
+      "id": "screen.adventure-map.next-hero",
+      "defaultBinding": "KeyH",
+      "scope": "screen",
+      "screenId": "07-adventure-map",
+      "labelKey": "ui.hotkeys.adventure.nextHero",
+      "rebindable": true
+    },
+    {
+      "id": "screen.adventure-map.kingdom-overview",
+      "defaultBinding": "KeyK",
+      "scope": "screen",
+      "screenId": "07-adventure-map",
+      "labelKey": "ui.hotkeys.adventure.kingdomOverview",
+      "rebindable": true
+    },
+    {
+      "id": "screen.map-editor.undo",
+      "defaultBinding": "Control+Z",
+      "scope": "screen",
+      "screenId": "65-map-editor",
+      "labelKey": "ui.hotkeys.map-editor.undo",
+      "rebindable": true
+    },
+    {
+      "id": "screen.map-editor.redo",
+      "defaultBinding": "Control+Shift+Z",
+      "scope": "screen",
+      "screenId": "65-map-editor",
+      "labelKey": "ui.hotkeys.map-editor.redo",
+      "rebindable": true
+    },
+    {
+      "id": "screen.confirmation-dialog.confirm",
+      "defaultBinding": "Enter",
+      "scope": "modal",
+      "screenId": "60-confirmation-dialog",
+      "labelKey": "ui.hotkeys.confirmation.confirm",
+      "rebindable": false
+    },
+    {
+      "id": "screen.confirmation-dialog.cancel",
+      "defaultBinding": "Escape",
+      "scope": "modal",
+      "screenId": "60-confirmation-dialog",
+      "labelKey": "ui.hotkeys.confirmation.cancel",
+      "rebindable": false
+    }
+  ]
+}

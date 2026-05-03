@@ -95,6 +95,23 @@ hi-DPI rules live in [screen-scaling.md](screen-scaling.md). The
 (single-player, optimistic UI, M5 lockstep, context loss, replay) are
 in [ui-frame-lag-contract.md](ui-frame-lag-contract.md).
 
+Cross-screen UI rules (component-state matrix, selector purity, modal
+stack, gesture taxonomy, hotkey registry, input arbitration, modality
+bridging) live in:
+
+- [ui-state-contract.md](ui-state-contract.md) — component states,
+  selector purity, tooltip lifecycle, command lifecycle, undo/redo
+- [ui-routing.md](ui-routing.md) — screen-router FSM, transition
+  graph, modal stack, dismissal policy
+- [ui-input-arbitration.md](ui-input-arbitration.md) — single-emit,
+  Esc precedence ladder, animation gates
+- [ui-gestures.md](ui-gestures.md) — gesture taxonomy and drag
+  contract
+- [ui-hotkeys.md](ui-hotkeys.md) — hotkey registry, focus order,
+  tab-trap, focus restoration
+- [ui-input-modalities.md](ui-input-modalities.md) — mouse / touch /
+  keyboard / gamepad bridging
+
 Future UI redesigns are allowed when the relevant screen package is
 updated first. The canonical policy lives in
 [wiki/README.md](wiki/README.md#ui-evolution-policy).

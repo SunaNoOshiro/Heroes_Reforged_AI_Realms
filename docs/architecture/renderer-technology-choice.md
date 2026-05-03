@@ -193,4 +193,5 @@ Canvas 2D fallback for older browsers: ship both codepaths, same animation logic
 - [`docs/architecture/ui-renderer-seam.md`](./ui-renderer-seam.md) — DOM ↔ canvas seam
 - [`docs/architecture/screen-scaling.md`](./screen-scaling.md) — virtual stage, hi-DPI, aspect
 - [`docs/architecture/ui-frame-lag-contract.md`](./ui-frame-lag-contract.md) — UI lag bounds
+- [`docs/architecture/ui-input-modalities.md`](./ui-input-modalities.md) — touch / mouse / keyboard / gamepad bridging on top of the renderer surface
 - `docs/architecture/determinism.md` — why replay must be bit-identical

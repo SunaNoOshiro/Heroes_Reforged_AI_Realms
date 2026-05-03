@@ -15,6 +15,8 @@ Canonical JSON Schema files live here.
 - shared embedded contracts:
   `effect`, `formula`, `targeting`, `condition`, `resource-id`,
   `stat-id`, `status-id`, `target-scope`
+- UI presentation contracts:
+  `ui-component-registry`, `error-state`, `modal-entry`, `hotkey`
 - AI boundary:
   `generation-request`, `generated-faction`
 

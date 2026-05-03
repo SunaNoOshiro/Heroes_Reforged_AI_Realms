@@ -49,6 +49,12 @@
       "title": "Multiplayer",
       "icon": "🌐",
       "diagrams": ["26-multiplayer-sync"]
+    },
+    {
+      "id": "ui-input",
+      "title": "UI Input",
+      "icon": "🖱️",
+      "diagrams": ["29-input-arbitration"]
     }
   ]
 }

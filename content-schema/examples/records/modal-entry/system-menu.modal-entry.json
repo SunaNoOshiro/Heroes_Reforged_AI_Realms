@@ -1,0 +1,9 @@
+{
+  "$schema": "heroes-reforged/modal-entry.schema.json",
+  "id": "54-system-menu",
+  "openedAt": 314,
+  "callerRoute": "07-adventure-map",
+  "previousFocusElementId": "hud.endTurn",
+  "severity": "system",
+  "params": {}
+}

@@ -81,5 +81,20 @@
       "op": "var",
       "path": "ruleset.defendDamageReductionPermille"
     }
+  },
+  "ui": {
+    "timing": {
+      "tooltipHoldDelayMs": 350,
+      "tooltipFadeInMs": 120,
+      "tooltipFadeOutMs": 80,
+      "doubleClickWindowMs": 400,
+      "longPressMs": 600,
+      "dragThresholdPx": 8,
+      "inputDebounceMs": 50,
+      "endTurnAnimationMaxMs": 4000
+    },
+    "editor": {
+      "maxHistory": 200
+    }
   }
 }

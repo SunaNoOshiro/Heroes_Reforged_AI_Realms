@@ -84,6 +84,19 @@ package:
   `data-component` registry, reuse policy, missing-component fallback.
 - [`../ui-frame-lag-contract.md`](../ui-frame-lag-contract.md) — UI
   lag bounds, optimistic UI, M5 lockstep, context loss, replay.
+- [`../ui-state-contract.md`](../ui-state-contract.md) — component-
+  state matrix, selector purity, tooltip lifecycle, command lifecycle,
+  undo/redo (map editor).
+- [`../ui-routing.md`](../ui-routing.md) — screen-router FSM,
+  transition graph, modal stack, dismissal policy.
+- [`../ui-input-arbitration.md`](../ui-input-arbitration.md) —
+  single-emit per gesture, Esc precedence ladder, animation gates.
+- [`../ui-gestures.md`](../ui-gestures.md) — gesture taxonomy and
+  drag contract.
+- [`../ui-hotkeys.md`](../ui-hotkeys.md) — hotkey registry, focus
+  order, tab-trap, focus restoration.
+- [`../ui-input-modalities.md`](../ui-input-modalities.md) — mouse /
+  touch / keyboard / gamepad bridging.
 
 ## Authoring Rules
 
@@ -105,6 +118,33 @@ package:
   criteria, and AI implementation notes in `spec.md`.
 - Put every button, hotkey, route, command, data update, animation,
   sound, disabled case, and error case in `interactions.md`.
+- The `interactions.md` Actions table MUST include a `Hotkey` column
+  whose values resolve to entries in
+  [`../../../content-schema/schemas/hotkey.schema.json`](../../../content-schema/schemas/hotkey.schema.json).
+  Mouse-only actions leave the cell empty and document the reason in
+  AI Implementation Notes. See
+  [`../ui-hotkeys.md`](../ui-hotkeys.md).
+- Use canonical gesture names from [`../ui-gestures.md`](../ui-gestures.md)
+  (`click`, `double-click`, `right-click`, `long-press`, `drag`,
+  `dragstart`, `dragmove`, `dragend`). Ad-hoc gesture vocabulary fails
+  validation.
+- The `spec.md` Animation Contract MUST enumerate the seven normative
+  states (`idle`, `hover`, `pressed`, `disabled`, `focused`, `error`,
+  `loading`) per [`../ui-state-contract.md` § Component State Matrix](../ui-state-contract.md#component-state-matrix)
+  for every interactive control, or explicitly waive each
+  inapplicable state with a one-line justification.
+- Modal screens MUST declare an explicit Esc row matching their
+  `severity` per
+  [`../ui-routing.md` § Dismissal Policy](../ui-routing.md#dismissal-policy)
+  and bind `state.ui.modalStack[top]` instead of per-screen
+  `callerRoute` fields.
+- When a screen renders errors, `data-contracts.md` MUST list
+  [`error-state.schema.json`](../../../content-schema/schemas/error-state.schema.json)
+  in its **Content Schemas And Registries** table and type
+  `errors.*` bindings as `ErrorState[]`.
+- Every new screen package MUST declare at least one inbound
+  transition in another screen's `interactions.md`. A package with
+  zero inbound references is an orphan and fails validation.
 - Put content schema, runtime selector, config, localization, asset,
   save/replay, and fallback references in `data-contracts.md`.
 - Put small screen-specific Mermaid diagrams in `architecture.md`.

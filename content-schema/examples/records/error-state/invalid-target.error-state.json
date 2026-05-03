@@ -1,0 +1,11 @@
+{
+  "$schema": "heroes-reforged/error-state.schema.json",
+  "code": "ui.combat.invalidTarget",
+  "severity": "warn",
+  "messageKey": "ui.combat.errors.invalidTarget",
+  "messageParams": {
+    "targetId": "stack-3"
+  },
+  "recoverable": true,
+  "raisedAtTick": 142
+}

@@ -68,3 +68,5 @@ content loader rejects malformed JSON with clear error messages.
   🤖 Task 19: Tavern and marketplace tables (~3h)
 - [20-university-skill-table.md](02-content-schemas/20-university-skill-table.md)
   🤖 Task 20: University skill table (~3h)
+- [21-error-state-schema.md](02-content-schemas/21-error-state-schema.md)
+  🤖 Task 21: ErrorState schema (canonical UI error record) (~3h)

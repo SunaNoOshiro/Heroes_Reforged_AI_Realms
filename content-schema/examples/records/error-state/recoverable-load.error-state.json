@@ -1,0 +1,21 @@
+{
+  "$schema": "heroes-reforged/error-state.schema.json",
+  "code": "ui.loading.scenarioFetchFailed",
+  "severity": "warn",
+  "messageKey": "ui.loading.errors.scenarioFetchFailed",
+  "messageParams": {
+    "scenarioId": "shared:scenario:emberwild-1v1"
+  },
+  "recoverable": true,
+  "retryAction": {
+    "kind": "SCENARIO_LOAD",
+    "scenarioId": "shared:scenario:emberwild-1v1",
+    "seed": 17,
+    "metadata": {
+      "turn": 0,
+      "playerId": 0,
+      "nonce": "0:0:1"
+    }
+  },
+  "raisedAtTick": 0
+}

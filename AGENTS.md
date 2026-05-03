@@ -23,12 +23,25 @@ Read first if you want to understand the full project:
     — `data-component` registry, reuse policy, missing-component fallback
 13. [docs/architecture/ui-frame-lag-contract.md](docs/architecture/ui-frame-lag-contract.md)
     — single-player lag, optimistic UI, M5 lockstep, context loss, replay
-14. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-15. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
+14. [docs/architecture/ui-state-contract.md](docs/architecture/ui-state-contract.md)
+    — component-state matrix, selector purity, tooltip lifecycle,
+    command lifecycle, undo/redo (map editor)
+15. [docs/architecture/ui-routing.md](docs/architecture/ui-routing.md)
+    — screen-router FSM, transition graph, modal stack, dismissal policy
+16. [docs/architecture/ui-input-arbitration.md](docs/architecture/ui-input-arbitration.md)
+    — single-emit per gesture, Esc precedence ladder, animation gates
+17. [docs/architecture/ui-gestures.md](docs/architecture/ui-gestures.md)
+    — gesture taxonomy, drag contract, drop acceptance
+18. [docs/architecture/ui-hotkeys.md](docs/architecture/ui-hotkeys.md)
+    — hotkey registry, focus order, tab-trap, focus restoration
+19. [docs/architecture/ui-input-modalities.md](docs/architecture/ui-input-modalities.md)
+    — mouse / touch / keyboard / gamepad bridging
+20. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
+21. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
     Mermaid flows: game startup, race → castle rendering, battle attack
     sequence, asset loading per context, localization, save/load. Read
     a single `<id>.md` to understand one runtime behavior end-to-end.
-16. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
+22. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
     numbered per-screen UI packages. Each package contains
     `mockup.html` for visuals, `spec.md` for components and bindings,
     `interactions.md` for per-control behavior, `data-contracts.md` for

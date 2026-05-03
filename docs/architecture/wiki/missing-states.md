@@ -12,6 +12,25 @@ numbered screen package with the same five-file shape:
 minor conditional state, describe it inside the existing screen package's
 `spec.md`, `interactions.md`, `data-contracts.md`, and `architecture.md`.
 
+## Cross-screen Contract Coverage
+
+The seven normative component states (`idle`, `hover`, `pressed`,
+`disabled`, `focused`, `error`, `loading`) and their precedence rules
+are pinned in
+[`../ui-state-contract.md` § Component State Matrix](../ui-state-contract.md#component-state-matrix).
+Every screen `spec.md`'s Animation Contract MUST enumerate the seven
+states or waive the inapplicable ones with a one-line justification.
+
+The hotkey, modal-stack, gesture, and ErrorState contracts are pinned
+in [`../ui-hotkeys.md`](../ui-hotkeys.md),
+[`../ui-routing.md`](../ui-routing.md),
+[`../ui-gestures.md`](../ui-gestures.md), and
+[`../../../content-schema/schemas/error-state.schema.json`](../../../content-schema/schemas/error-state.schema.json).
+
+Templates for the per-screen sweeps live under
+[`_templates/animation-states.md`](_templates/animation-states.md) and
+[`_templates/contract-sweep.md`](_templates/contract-sweep.md).
+
 ## High Priority Variants
 
 - Adventure Map: moving hero animation, no active hero, enemy turn visible movement, water embark/disembark, object reward resolved.

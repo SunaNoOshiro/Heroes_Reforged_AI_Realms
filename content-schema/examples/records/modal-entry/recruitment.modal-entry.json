@@ -1,0 +1,12 @@
+{
+  "$schema": "heroes-reforged/modal-entry.schema.json",
+  "id": "25-building-recruitment-dialog",
+  "openedAt": 421,
+  "callerRoute": "24-town-screen",
+  "previousFocusElementId": "town.dwelling.kennels",
+  "severity": "info",
+  "params": {
+    "buildingId": "shared:building:emberwild:kennels",
+    "townId": "town-2"
+  }
+}

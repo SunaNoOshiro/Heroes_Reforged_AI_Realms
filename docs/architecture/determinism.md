@@ -82,3 +82,26 @@ sole exception to "every state shape is reducer-owned"; it is pinned
 in [`ui-frame-lag-contract.md` § Optimistic UI](./ui-frame-lag-contract.md#2-optimistic-ui).
 Drafts must clear when the matching command resolves; persisting a
 draft across save/load is a determinism leak.
+
+## UI Selector Purity
+
+Selectors live in `src/ui/` and the UI layer is non-deterministic at
+the input boundary, but selectors themselves MUST be pure functions
+of state. The full rule — no `Math.random()`, `Date.now()`,
+`performance.now()`, `crypto.randomUUID()`, no async, no I/O, no
+module-level mutable state — is pinned in
+[`ui-state-contract.md` § Selector Purity](./ui-state-contract.md#selector-purity).
+A selector that consults the wall clock or local storage will
+diverge between M5 peers even when the state is identical, producing
+apparent UI desync invisible to the hash-based replay check.
+
+## Single-emit Per Input Gesture
+
+The reducer is synchronous; `requestAnimationFrame` and React
+batching can deliver two browser events in the same logical frame.
+To keep the command log identical across input modalities and across
+M5 peers, the DOM shell enforces a per-control debounce token: a
+gesture starts at `pointerdown` / `keydown` and ends at `pointerup` /
+`keyup`, and emits at most one command per gesture. First-event-wins
+on click + hotkey races. The full rule lives in
+[`ui-input-arbitration.md`](./ui-input-arbitration.md).

@@ -33,6 +33,36 @@
     "formulas": {
       "type": "object",
       "additionalProperties": { "$ref": "heroes-reforged/formula.schema.json" }
+    },
+    "ui": {
+      "type": "object",
+      "description": "Optional UI-only thresholds and editor limits. Content-driven so QA can tune timing without code edits. UI numbers do not enter deterministic gameplay state.",
+      "properties": {
+        "timing": {
+          "type": "object",
+          "description": "Numeric thresholds for tooltip lifecycle, gesture detection, input debounce, and animation gates. Pinned by ui-gestures.md, ui-input-arbitration.md, and ui-state-contract.md.",
+          "properties": {
+            "tooltipHoldDelayMs":    { "type": "integer", "minimum": 0 },
+            "tooltipFadeInMs":       { "type": "integer", "minimum": 0 },
+            "tooltipFadeOutMs":      { "type": "integer", "minimum": 0 },
+            "doubleClickWindowMs":   { "type": "integer", "minimum": 0 },
+            "longPressMs":           { "type": "integer", "minimum": 0 },
+            "dragThresholdPx":       { "type": "integer", "minimum": 0 },
+            "inputDebounceMs":       { "type": "integer", "minimum": 0 },
+            "endTurnAnimationMaxMs": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "editor": {
+          "type": "object",
+          "description": "Map-editor history limits and other editor-shell ceilings. See ui-state-contract.md § Undo / Redo.",
+          "properties": {
+            "maxHistory": { "type": "integer", "minimum": 1 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

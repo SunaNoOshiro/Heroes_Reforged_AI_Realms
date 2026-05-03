@@ -281,6 +281,74 @@ Right now the repository does not yet prove:
 - that factions, worlds, animations, artifacts, heroes, towns, and
   map objects can be played in-engine
 
+### UI State & Interactions Plan Implementation (2026-05-03)
+
+Closed the thirteen audit gaps from
+[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../implementation-plans/03-ui-state-and-interactions-plan.md):
+
+- Authored the cross-screen UI contract docs:
+  [`docs/architecture/ui-state-contract.md`](../architecture/ui-state-contract.md)
+  (component-state matrix, selector purity, tooltip lifecycle,
+  command lifecycle, error state, undo/redo),
+  [`docs/architecture/ui-routing.md`](../architecture/ui-routing.md)
+  (screen-router FSM, transition graph, modal stack, dismissal policy),
+  [`docs/architecture/ui-input-arbitration.md`](../architecture/ui-input-arbitration.md)
+  (single-emit, Esc precedence ladder, animation gates),
+  [`docs/architecture/ui-gestures.md`](../architecture/ui-gestures.md)
+  (gesture taxonomy and drag contract),
+  [`docs/architecture/ui-hotkeys.md`](../architecture/ui-hotkeys.md)
+  (hotkey registry, focus order, tab-trap, focus restoration), and
+  [`docs/architecture/ui-input-modalities.md`](../architecture/ui-input-modalities.md)
+  (mouse / touch / keyboard / gamepad bridging).
+- Added the canonical `ErrorState`, `ModalEntry`, and `HotkeyRegistry`
+  schemas under
+  [`content-schema/schemas/`](../../content-schema/schemas/) plus
+  example records under
+  [`content-schema/examples/records/`](../../content-schema/examples/records/).
+  `schemaForFile` in
+  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
+  gained `.error-state.json`, `.modal-entry.json`, and `.hotkey.json`
+  suffix mappings.
+- Extended
+  [`content-schema/schemas/ruleset.schema.json`](../../content-schema/schemas/ruleset.schema.json)
+  additively with the optional `ui.timing` and `ui.editor` blocks
+  (tooltip hold-delay, gesture thresholds, debounce, animation cap,
+  editor history bound). The canonical example
+  [`baseline.ruleset.json`](../../content-schema/examples/records/rulesets/baseline.ruleset.json)
+  carries the new block.
+- Added the Mermaid sequence diagram
+  [`docs/architecture/diagrams/29-input-arbitration.md`](../architecture/diagrams/29-input-arbitration.md)
+  showing the click + hotkey race through the per-control debounce
+  token and the animation gate.
+- Added the per-screen sweep templates
+  [`docs/architecture/wiki/_templates/animation-states.md`](../architecture/wiki/_templates/animation-states.md)
+  and
+  [`docs/architecture/wiki/_templates/contract-sweep.md`](../architecture/wiki/_templates/contract-sweep.md).
+- Cross-linked the new docs from
+  [`docs/architecture/overview.md`](../architecture/overview.md),
+  [`docs/architecture/schema-matrix.md`](../architecture/schema-matrix.md),
+  [`docs/architecture/determinism.md`](../architecture/determinism.md),
+  [`docs/architecture/state-flow.md`](../architecture/state-flow.md),
+  [`docs/architecture/renderer-technology-choice.md`](../architecture/renderer-technology-choice.md),
+  [`docs/architecture/wiki/README.md`](../architecture/wiki/README.md),
+  [`docs/architecture/wiki/missing-states.md`](../architecture/wiki/missing-states.md),
+  [`content-schema/schemas/README.md`](../../content-schema/schemas/README.md),
+  and [`CLAUDE.md`](../../CLAUDE.md).
+- Authored 13 task records pulling the work into the tasks-next queue:
+  - [`tasks/mvp/02-content-schemas/21-error-state-schema.md`](../../tasks/mvp/02-content-schemas/21-error-state-schema.md)
+  - [`tasks/mvp/07-ui-shell/10-selector-purity-lint.md`](../../tasks/mvp/07-ui-shell/10-selector-purity-lint.md)
+  - [`tasks/mvp/07-ui-shell/11-screen-router-fsm.md`](../../tasks/mvp/07-ui-shell/11-screen-router-fsm.md)
+  - [`tasks/mvp/07-ui-shell/12-component-state-matrix.md`](../../tasks/mvp/07-ui-shell/12-component-state-matrix.md)
+  - [`tasks/mvp/07-ui-shell/13-screen-package-contract-sweep.md`](../../tasks/mvp/07-ui-shell/13-screen-package-contract-sweep.md)
+  - [`tasks/mvp/07-ui-shell/14-modal-stack.md`](../../tasks/mvp/07-ui-shell/14-modal-stack.md)
+  - [`tasks/mvp/07-ui-shell/15-input-arbitration.md`](../../tasks/mvp/07-ui-shell/15-input-arbitration.md)
+  - [`tasks/mvp/07-ui-shell/16-gesture-taxonomy.md`](../../tasks/mvp/07-ui-shell/16-gesture-taxonomy.md)
+  - [`tasks/mvp/07-ui-shell/17-tooltip-lifecycle.md`](../../tasks/mvp/07-ui-shell/17-tooltip-lifecycle.md)
+  - [`tasks/mvp/07-ui-shell/18-hotkey-registry.md`](../../tasks/mvp/07-ui-shell/18-hotkey-registry.md)
+  - [`tasks/mvp/07-ui-shell/19-input-modalities.md`](../../tasks/mvp/07-ui-shell/19-input-modalities.md)
+  - [`tasks/mvp/07-ui-shell/20-command-lifecycle.md`](../../tasks/mvp/07-ui-shell/20-command-lifecycle.md)
+  - [`tasks/phase-2/08-meta-systems/09-map-editor-undo-redo.md`](../../tasks/phase-2/08-meta-systems/09-map-editor-undo-redo.md)
+
 ### Core-Architecture Plan Implementation (2026-05-02)
 
 Closed the ten audit gaps from

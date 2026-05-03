@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/error-state.schema.json",
+  "title": "ErrorState",
+  "description": "Canonical UI error record consumed by every cross-screen error pipe (toast tray, recoverable-error panel, telemetry sink). Replaces ad-hoc per-screen error shapes. Errors are presentation only — they are part of state.ui.* and never enter saves, replays, or the canonical state hash.",
+  "type": "object",
+  "required": [
+    "code",
+    "severity",
+    "messageKey"
+  ],
+  "properties": {
+    "code": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable namespaced error id, e.g. 'ui.combat.invalidTarget'. Used for telemetry and de-duplication. Stable across releases."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warn", "error", "fatal"],
+      "description": "Display tier and dismissal policy. 'info' is recoverable and auto-dismissable; 'warn' surfaces an inline message; 'error' blocks the offending control; 'fatal' takes the user back to a known recovery screen."
+    },
+    "messageKey": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Localization id resolved against localization.schema.json. The renderer never embeds raw English strings."
+    },
+    "messageParams": {
+      "type": "object",
+      "description": "Parameter bag interpolated into the localized template. Keys are template names; values must be JSON-safe scalars or arrays of scalars.",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "integer" },
+          { "type": "boolean" },
+          {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "type": "string" },
+                { "type": "integer" },
+                { "type": "boolean" }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "recoverable": {
+      "type": "boolean",
+      "description": "True when the user can retry from the same screen (e.g. retry a failed save). False for terminal errors that route to a recovery surface."
+    },
+    "retryAction": {
+      "$ref": "heroes-reforged/command.schema.json",
+      "description": "Optional command re-dispatched when the user accepts the retry affordance. Same shape as a normal gameplay command; resolved through the command nonce gate."
+    },
+    "raisedAtTick": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Reducer tick at which the error was raised. Used to age out stale errors and to order them deterministically when more than one fires in the same frame."
+    }
+  },
+  "additionalProperties": false
+}

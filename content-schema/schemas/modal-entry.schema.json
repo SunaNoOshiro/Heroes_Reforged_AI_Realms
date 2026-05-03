@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/modal-entry.schema.json",
+  "title": "ModalEntry",
+  "description": "One frame on state.ui.modalStack. The stack replaces per-screen callerRoute fields so deeply nested confirm-on-confirm flows preserve the bottom caller and per-element focus. Lives in state.ui.* and is excluded from saves and replays. The full lifecycle is pinned in docs/architecture/ui-routing.md § Modal Stack.",
+  "type": "object",
+  "required": [
+    "id",
+    "openedAt",
+    "callerRoute",
+    "previousFocusElementId",
+    "severity",
+    "params"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/modalId"
+    },
+    "openedAt": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Reducer tick at which the modal was pushed. Used for stale-modal eviction and deterministic ordering when two modal opens land in the same frame."
+    },
+    "callerRoute": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Screen route that owned focus when the modal was pushed. ScreenRoute id from docs/architecture/wiki/screens/index.json. Restored after MODAL_CLOSE pops this entry."
+    },
+    "previousFocusElementId": {
+      "type": ["string", "null"],
+      "description": "DOM-side focusOrder id of the control that had keyboard focus before the modal opened. Null when no element was focused. Restored on MODAL_CLOSE per ui-hotkeys.md § Focus Restoration."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warn", "destructive", "system"],
+      "description": "Determines the dismissal policy. See docs/architecture/ui-routing.md § Dismissal Policy. 'destructive' rejects click-outside-to-close and remaps Esc to Cancel."
+    },
+    "params": {
+      "type": "object",
+      "description": "Caller-provided payload. Closed shape is defined per modal id in the owning screen's data-contracts.md. Stored values must be JSON-safe so the stack survives reducer canonicalization checks.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "modalId": {
+      "type": "string",
+      "description": "Closed enum of modal screen ids. Sourced from the wiki index.json modal entries. New modals MUST add a screen package and extend this enum in the same change.",
+      "enum": [
+        "09-map-object-dialog",
+        "20-mine-visit-dialog",
+        "25-building-recruitment-dialog",
+        "37-quick-recruit-window",
+        "40-pre-battle-dialog",
+        "41-surrender-cost-dialog",
+        "48-level-up-dialog",
+        "51-split-stack-dialog",
+        "52-artifact-combine-dialog",
+        "54-system-menu",
+        "60-confirmation-dialog"
+      ]
+    }
+  }
+}

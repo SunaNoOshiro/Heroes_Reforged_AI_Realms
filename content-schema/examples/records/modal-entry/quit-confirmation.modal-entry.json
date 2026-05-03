@@ -1,0 +1,13 @@
+{
+  "$schema": "heroes-reforged/modal-entry.schema.json",
+  "id": "60-confirmation-dialog",
+  "openedAt": 318,
+  "callerRoute": "54-system-menu",
+  "previousFocusElementId": "system-menu.quit",
+  "severity": "destructive",
+  "params": {
+    "promptKey": "ui.system-menu.confirmQuit",
+    "confirmAction": "QUIT_TO_MAIN_MENU",
+    "payload": {}
+  }
+}

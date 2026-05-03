@@ -100,6 +100,17 @@ flowchart LR
 - Lag bounds, optimistic UI, and lockstep behavior are pinned in
   [`ui-frame-lag-contract.md`](./ui-frame-lag-contract.md).
 
+## Command Lifecycle (UI side)
+
+A user gesture flows through four UI-visible phases — drafting,
+pending confirmation, applied, animating — pinned in
+[`ui-state-contract.md` § Command Lifecycle](./ui-state-contract.md#command-lifecycle).
+Turn-affecting commands are gated by
+`state.ui.animations.activeTimelineId` per
+[`ui-input-arbitration.md` § Animation Gate](./ui-input-arbitration.md#animation-gate);
+the dispatcher rejects them while the slot is non-null so renderer
+animations cannot lap the reducer.
+
 ## Related docs
 
 - [`determinism.md`](./determinism.md) — why this loop is pure
@@ -108,3 +119,6 @@ flowchart LR
 - [`ui-technology-choice.md`](./ui-technology-choice.md) — DOM-side framework + selectors
 - [`ui-renderer-seam.md`](./ui-renderer-seam.md) — DOM/WebGL seam
 - [`ui-frame-lag-contract.md`](./ui-frame-lag-contract.md) — UI lag bounds
+- [`ui-state-contract.md`](./ui-state-contract.md) — command lifecycle, selector purity, component-state matrix
+- [`ui-input-arbitration.md`](./ui-input-arbitration.md) — single-emit, Esc ladder, animation gates
+- [`ui-routing.md`](./ui-routing.md) — screen-router FSM and modal stack

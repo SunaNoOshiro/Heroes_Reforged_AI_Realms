@@ -206,6 +206,10 @@
         {
           "label": "20-university-skill-table.md",
           "link": "02-content-schemas/20-university-skill-table.md"
+        },
+        {
+          "label": "21-error-state-schema.md",
+          "link": "02-content-schemas/21-error-state-schema.md"
         }
       ]
     },
@@ -534,6 +538,50 @@
         {
           "label": "09-loading-screen.md",
           "link": "07-ui-shell/09-loading-screen.md"
+        },
+        {
+          "label": "10-selector-purity-lint.md",
+          "link": "07-ui-shell/10-selector-purity-lint.md"
+        },
+        {
+          "label": "11-screen-router-fsm.md",
+          "link": "07-ui-shell/11-screen-router-fsm.md"
+        },
+        {
+          "label": "12-component-state-matrix.md",
+          "link": "07-ui-shell/12-component-state-matrix.md"
+        },
+        {
+          "label": "13-screen-package-contract-sweep.md",
+          "link": "07-ui-shell/13-screen-package-contract-sweep.md"
+        },
+        {
+          "label": "14-modal-stack.md",
+          "link": "07-ui-shell/14-modal-stack.md"
+        },
+        {
+          "label": "15-input-arbitration.md",
+          "link": "07-ui-shell/15-input-arbitration.md"
+        },
+        {
+          "label": "16-gesture-taxonomy.md",
+          "link": "07-ui-shell/16-gesture-taxonomy.md"
+        },
+        {
+          "label": "17-tooltip-lifecycle.md",
+          "link": "07-ui-shell/17-tooltip-lifecycle.md"
+        },
+        {
+          "label": "18-hotkey-registry.md",
+          "link": "07-ui-shell/18-hotkey-registry.md"
+        },
+        {
+          "label": "19-input-modalities.md",
+          "link": "07-ui-shell/19-input-modalities.md"
+        },
+        {
+          "label": "20-command-lifecycle.md",
+          "link": "07-ui-shell/20-command-lifecycle.md"
         }
       ]
     },
@@ -1301,6 +1349,10 @@
         {
           "label": "08-debug-overlay-screen.md",
           "link": "08-meta-systems/08-debug-overlay-screen.md"
+        },
+        {
+          "label": "09-map-editor-undo-redo.md",
+          "link": "08-meta-systems/09-map-editor-undo-redo.md"
         }
       ]
     },
@@ -2158,7 +2210,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 284
+      "downstreamTransitiveCount": 286
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2219,7 +2271,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 283
+      "downstreamTransitiveCount": 285
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2885,7 +2937,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 213
+      "downstreamTransitiveCount": 215
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -3186,8 +3238,8 @@
         "mvp.02-content-schemas.01-unit-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 17,
-      "downstreamTransitiveCount": 182
+      "downstreamDirectCount": 18,
+      "downstreamTransitiveCount": 184
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4298,6 +4350,87 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
       "downstreamTransitiveCount": 13
+    },
+    {
+      "id": "mvp.02-content-schemas.21-error-state-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "ErrorState Schema (canonical UI error record)",
+      "path": "tasks/mvp/02-content-schemas/21-error-state-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Land the canonical `ErrorState` JSON schema and three example records. Every cross-screen error pipe (toast tray, recoverable-error panel, telemetry sink) consumes this shape. Today every screen invents its own error fields; without the shared schema, telemetry cannot key on stable codes and localization fallbacks differ per screen. The schema is presentation-only — `ErrorState` lives under `state.ui.*` and is excluded from saves, replays, and the canonical state hash. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q54, Issue 3.B-1, Missing Logic bullet 3).",
+      "inputs": [
+        "Audit Q54 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "Existing per-screen error bindings under [`docs/architecture/wiki/screens/59-loading-screen/`](../../../docs/architecture/wiki/screens/59-loading-screen/)",
+        "[`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json) (referenced by `retryAction`)",
+        "[`content-schema/schemas/localization.schema.json`](../../../content-schema/schemas/localization.schema.json) (referenced by `messageKey`)"
+      ],
+      "outputs": [
+        "`content-schema/schemas/error-state.schema.json`",
+        "`content-schema/examples/records/error-state/recoverable-load.error-state.json`",
+        "`content-schema/examples/records/error-state/invalid-target.error-state.json`",
+        "`content-schema/examples/records/error-state/save-failed.error-state.json`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/error-state.schema.json",
+        "content-schema/examples/records/error-state/recoverable-load.error-state.json",
+        "content-schema/examples/records/error-state/invalid-target.error-state.json",
+        "content-schema/examples/records/error-state/save-failed.error-state.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "`content-schema/schemas/error-state.schema.json` parses as JSON Schema 2020-12 with `additionalProperties: false`.",
+        "Required fields are `code`, `severity`, and `messageKey`. `severity` is a closed enum of `info | warn | error | fatal`. `retryAction` `$ref`s `command.schema.json` so retried commands flow through the normal nonce gate.",
+        "All three canonical examples validate against the schema and cover the three severity tiers (`warn` recoverable load, `warn` recoverable invalid target, `error` non-recoverable save failure).",
+        "`docs/architecture/schema-matrix.md` lists `ErrorState` and links the schema by canonical path.",
+        "`content-schema/schemas/README.md` registers the schema under the UI presentation contracts family."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/59-loading-screen"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/error-state.schema.json",
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/error-state.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
@@ -8960,6 +9093,1205 @@
       "downstreamTransitiveCount": 2
     },
     {
+      "id": "mvp.07-ui-shell.10-selector-purity-lint",
+      "kind": "task",
+      "status": "planned",
+      "title": "Selector Purity Contract + Lint Rule",
+      "path": "tasks/mvp/07-ui-shell/10-selector-purity-lint.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land the ESLint rule (or equivalent) that enforces the selector purity contract pinned in [`docs/architecture/ui-state-contract.md` § Selector Purity](../../../docs/architecture/ui-state-contract.md#selector-purity). Selectors live in `src/ui/` which the architecture marks as \"non-deterministic\", but selector functions themselves MUST be pure or M5 lockstep diverges silently between peers — the same `(state, command-log)` triple has to produce the same selector output on every client. The host doc declares the rule; this task lands the machine-checkable enforcement (lint + sentinel test). Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q47, Issue 3.A-2).",
+      "inputs": [
+        "Audit Q47 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The Selector Purity section of [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)"
+      ],
+      "outputs": [
+        "`eslint-rules/no-impure-selectors.cjs` — banned-API rule covering `Math.random()`, `Date.now()`, `performance.now()`, `crypto.randomUUID()`, and `await` for files matching `src/**/selectors/**`",
+        "`tests/selectors/purity.spec.ts` — sentinel test that runs each selector twice on identical input and asserts deep equality"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "`docs/architecture/wiki/screens/07-adventure-map/spec.md`"
+      ],
+      "ownedPaths": [
+        "eslint-rules/no-impure-selectors.cjs",
+        "tests/selectors/purity.spec.ts",
+        "docs/architecture/ui-state-contract.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/ui-state-contract.md"
+      ],
+      "dependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix"
+      ],
+      "acceptanceCriteria": [
+        "This task's edit to [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md) is additive: it adds enforcement notes to the existing § Selector Purity section rather than rewriting it. The primary owner of the host doc remains [`12-component-state-matrix.md`](./12-component-state-matrix.md); this task must not rewrite or repurpose unrelated sections.",
+        "`eslint-rules/no-impure-selectors.cjs` flags any of the banned APIs inside files matching `src/**/selectors/**` and emits a localized message that cites the contract.",
+        "`tests/selectors/purity.spec.ts` runs every exported selector twice on the same input and fails when results differ by deep equality.",
+        "Until `src/ui/` lands, both files stand as scaffolds with at least one self-test demonstrating the rule fires correctly on a fixture selector that calls `Date.now()`.",
+        "`npm run validate:tasks` passes."
+      ],
+      "verifyCommands": [
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/07-adventure-map"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.07-ui-shell.11-screen-router-fsm",
+      "kind": "task",
+      "status": "planned",
+      "title": "Screen-Router FSM + Aggregated Transition Graph",
+      "path": "tasks/mvp/07-ui-shell/11-screen-router-fsm.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land the cross-screen routing contract: a closed `ScreenRoute` enum, the `RouterState = { active, modalStack }` shape, transition rules, group invariants, and a generated transition graph. Today every screen package's `interactions.md` lists a \"Next Screen\" column, but no document aggregates the transitions; AI agents cannot validate that a navigation they add is reachable or reversible from the main menu. The generator emits `docs/architecture/screen-transition-graph.json` and a Mermaid render inside `ui-routing.md` so reachability is machine-checkable. The modal stack and dismissal policy are sub-contracts of this router and live in the same host doc; their schema and per-screen sweep are owned by [`14-modal-stack.md`](./14-modal-stack.md). Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q49, Q50, Issue 3.A-1, Missing Logic bullet 1).",
+      "inputs": [
+        "Audit Q49, Q50 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "Each screen package's `interactions.md` \"Next Screen\" column under [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)",
+        "[`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json) for the closed `ScreenRoute` enum"
+      ],
+      "outputs": [
+        "`docs/architecture/ui-routing.md`",
+        "`docs/architecture/screen-transition-graph.json` (generated)",
+        "`scripts/generate-screen-transition-graph.mjs`",
+        "`package.json` script entry `generate:screen-transition-graph` and validate-time orphan / dangling-reference checks"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)",
+        "[`docs/architecture/wiki/screens/01-main-menu/interactions.md`](../../../docs/architecture/wiki/screens/01-main-menu/interactions.md)",
+        "[`docs/architecture/wiki/screens/07-adventure-map/interactions.md`](../../../docs/architecture/wiki/screens/07-adventure-map/interactions.md)",
+        "[`docs/architecture/wiki/screens/24-town-screen/interactions.md`](../../../docs/architecture/wiki/screens/24-town-screen/interactions.md)",
+        "[`docs/architecture/wiki/screens/38-combat-screen/interactions.md`](../../../docs/architecture/wiki/screens/38-combat-screen/interactions.md)",
+        "[`docs/architecture/wiki/screens/54-system-menu/interactions.md`](../../../docs/architecture/wiki/screens/54-system-menu/interactions.md)",
+        "[`docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md`](../../../docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md)",
+        "[`docs/architecture/wiki/screens/65-map-editor/interactions.md`](../../../docs/architecture/wiki/screens/65-map-editor/interactions.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-routing.md",
+        "docs/architecture/screen-transition-graph.json",
+        "scripts/generate-screen-transition-graph.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "`ScreenRoute` is a closed enum mirroring [`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json).",
+        "`scripts/generate-screen-transition-graph.mjs` parses every screen package's `interactions.md` \"Next Screen\" column and emits `docs/architecture/screen-transition-graph.json` plus a Mermaid block injected into `ui-routing.md`.",
+        "`npm run validate` rejects: a screen package with zero inbound transitions (orphan, excluding `01-main-menu`); a `Next Screen` cell that does not resolve to an `index.json` package id; a transition `guard` referencing an unknown selector path.",
+        "`package.json` includes a `generate:screen-transition-graph` script wired into `npm run validate`.",
+        "The Modal Stack and Dismissal Policy sections in `ui-routing.md` point at [`14-modal-stack.md`](./14-modal-stack.md) for the schema and per-screen sweep."
+      ],
+      "verifyCommands": [
+        "npm run generate:screen-transition-graph",
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/01-main-menu",
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/24-town-screen",
+        "docs/architecture/wiki/screens/38-combat-screen",
+        "docs/architecture/wiki/screens/54-system-menu",
+        "docs/architecture/wiki/screens/60-confirmation-dialog",
+        "docs/architecture/wiki/screens/65-map-editor"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "mvp.07-ui-shell.12-component-state-matrix",
+      "kind": "task",
+      "status": "planned",
+      "title": "Component-State Matrix + Cross-Screen UI Contract",
+      "path": "tasks/mvp/07-ui-shell/12-component-state-matrix.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md) as the host doc for the cross-screen UI rules: the seven normative component states (`idle`, `hover`, `pressed`, `disabled`, `focused`, `error`, `loading`), their precedence and composition layers, the selector purity contract, the tooltip lifecycle, the command lifecycle, and the editor undo/redo contract. Without this doc, two AI agents implementing different screens diverge on `disabled + hover`, focus rings disappear under `disabled`, and `error` overlays flicker against `loading`. This task is the primary owner of the host doc; sibling tasks land their sections under `Owned Paths (shared)`. The seven-state sweep across the existing 65 screen packages is owned by [`13-screen-package-contract-sweep.md`](./13-screen-package-contract-sweep.md). Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q52, Q53, Issue 3.A-3, Missing Logic bullet 2).",
+      "inputs": [
+        "Audit Q52, Q53 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "Existing per-screen `spec.md` Animation Contract sections under [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)"
+      ],
+      "outputs": [
+        "`docs/architecture/ui-state-contract.md` (host doc — Component State Matrix, Selector Purity, Tooltip Lifecycle, Command Lifecycle, Error State, Undo / Redo sections)",
+        "`docs/architecture/wiki/_templates/animation-states.md` — sweep template applied per screen by [`13-screen-package-contract-sweep.md`](./13-screen-package-contract-sweep.md)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
+        "[`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)",
+        "[`docs/architecture/wiki/missing-states.md`](../../../docs/architecture/wiki/missing-states.md)",
+        "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
+        "`docs/architecture/wiki/screens/24-town-screen/spec.md`",
+        "`docs/architecture/wiki/screens/38-combat-screen/spec.md`",
+        "`docs/architecture/wiki/screens/46-hero-screen/spec.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-state-contract.md",
+        "docs/architecture/wiki/_templates/animation-states.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "The host doc enumerates the seven normative states and the precedence rules: `disabled` suppresses `hover`/`pressed` but not `focused`; `error` overlays every state except `loading`; `loading` overlays `idle` only; `focused` is always rendered when present.",
+        "A Mermaid composition diagram shows the layer order `[base | idle | hover/pressed | disabled | loading | focused ring | error overlay]`.",
+        "The Selector Purity section bans `Math.random()`, `Date.now()`, `performance.now()`, `crypto.randomUUID()`, and `await` inside `src/**/selectors/**`. It points at [`10-selector-purity-lint.md`](./10-selector-purity-lint.md) for the lint and sentinel test.",
+        "The Tooltip Lifecycle, Command Lifecycle, Error State, and Undo/Redo sections exist as section anchors that sibling tasks ([`17-tooltip-lifecycle.md`](./17-tooltip-lifecycle.md), [`20-command-lifecycle.md`](./20-command-lifecycle.md), Issue 3.B-1, [`../../phase-2/08-meta-systems/09-map-editor-undo-redo.md`](../../phase-2/08-meta-systems/09-map-editor-undo-redo.md)) extend additively.",
+        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md) and [`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md) link the host doc.",
+        "The sweep template enumerates the seven states with one-line waiver guidance and references this host doc."
+      ],
+      "verifyCommands": [
+        "npm run validate:links",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/24-town-screen",
+        "docs/architecture/wiki/screens/38-combat-screen",
+        "docs/architecture/wiki/screens/46-hero-screen"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "mvp.07-ui-shell.13-screen-package-contract-sweep",
+      "kind": "task",
+      "status": "planned",
+      "title": "Per-Screen Contract Sweep",
+      "path": "tasks/mvp/07-ui-shell/13-screen-package-contract-sweep.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Apply the cross-screen contracts (component-state matrix, hotkey column, modal-stack bindings, gesture vocabulary, ErrorState typing) to every screen package. Running each contract sweep independently would re-edit the same files four times; running them in one coordinated pass keeps screens coherent and avoids drift between contracts as they land at different times. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q52, Q53, Q54, Q56, Q58, Q60, Issues 3.D-1 and 3.D-2).",
+      "inputs": [
+        "The two sweep templates under [`docs/architecture/wiki/_templates/`](../../../docs/architecture/wiki/_templates/)",
+        "The 65 screen packages under [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)",
+        "[`content-schema/schemas/error-state.schema.json`](../../../content-schema/schemas/error-state.schema.json)",
+        "[`content-schema/schemas/modal-entry.schema.json`](../../../content-schema/schemas/modal-entry.schema.json)",
+        "[`content-schema/schemas/hotkey.schema.json`](../../../content-schema/schemas/hotkey.schema.json)"
+      ],
+      "outputs": [
+        "A sweep-progress index file listing every screen and the contracts applied",
+        "Per-screen edits to `spec.md`, `interactions.md`, and `data-contracts.md` covering the four contracts in the contract-sweep template"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/wiki/_templates/animation-states.md`](../../../docs/architecture/wiki/_templates/animation-states.md)",
+        "[`docs/architecture/wiki/_templates/contract-sweep.md`](../../../docs/architecture/wiki/_templates/contract-sweep.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/ui-routing.md`](../../../docs/architecture/ui-routing.md)",
+        "[`docs/architecture/ui-gestures.md`](../../../docs/architecture/ui-gestures.md)",
+        "[`docs/architecture/ui-hotkeys.md`](../../../docs/architecture/ui-hotkeys.md)",
+        "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
+        "`docs/architecture/wiki/screens/24-town-screen/spec.md`",
+        "`docs/architecture/wiki/screens/38-combat-screen/spec.md`",
+        "`docs/architecture/wiki/screens/46-hero-screen/spec.md`",
+        "`docs/architecture/wiki/screens/54-system-menu/interactions.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md`",
+        "`docs/architecture/wiki/screens/65-map-editor/spec.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/wiki/_sweep-progress.md",
+        "docs/architecture/wiki/screens/01-main-menu/",
+        "docs/architecture/wiki/screens/24-town-screen/",
+        "docs/architecture/wiki/screens/38-combat-screen/",
+        "docs/architecture/wiki/screens/46-hero-screen/",
+        "docs/architecture/wiki/screens/54-system-menu/",
+        "docs/architecture/wiki/screens/60-confirmation-dialog/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/wiki/screens/01-main-menu/",
+        "docs/architecture/wiki/screens/24-town-screen/",
+        "docs/architecture/wiki/screens/38-combat-screen/",
+        "docs/architecture/wiki/screens/46-hero-screen/",
+        "docs/architecture/wiki/screens/54-system-menu/",
+        "docs/architecture/wiki/screens/60-confirmation-dialog/"
+      ],
+      "dependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.14-modal-stack",
+        "mvp.07-ui-shell.16-gesture-taxonomy",
+        "mvp.07-ui-shell.18-hotkey-registry",
+        "mvp.02-content-schemas.21-error-state-schema"
+      ],
+      "acceptanceCriteria": [
+        "The sweep is additive: it adds the seven-state Animation Contract block, the `Hotkey` column, modal-stack bindings, canonical gesture vocabulary, and `ErrorState` typing to existing screen packages without rewriting their visual contract, mockup, or authoritative state bindings.",
+        "This task must not rewrite or invent gameplay rules — screen packages remain owned by their primary screen-curation tasks; this sweep is a coordinated additive pass and does not change which task owns the primary screen contract.",
+        "Each modal-using screen (`09`, `20`, `25`, `37`, `40`, `41`, `48`, `51`, `52`, `54`, `60`) has its `callerRoute` binding replaced by `state.ui.modalStack[top]` and an explicit Esc row matching its `severity`.",
+        "Every `interactions.md` Actions table includes a `Hotkey` column; cells reference an entry id in [`hotkey/global-default.hotkey.json`](../../../content-schema/examples/records/hotkey/global-default.hotkey.json) or the row documents a deliberate mouse-only action in AI Implementation Notes.",
+        "Every `spec.md` Animation Contract enumerates the seven normative states or waives an inapplicable state with a one-line justification per [`docs/architecture/ui-state-contract.md` § Component State Matrix](../../../docs/architecture/ui-state-contract.md#component-state-matrix).",
+        "Every screen that renders errors lists [`error-state.schema.json`](../../../content-schema/schemas/error-state.schema.json) in its `data-contracts.md` Content Schemas And Registries table.",
+        "`npm run generate:wiki` succeeds and produces no diff against the rendered wiki HTML other than the swept content."
+      ],
+      "verifyCommands": [
+        "npm run generate:wiki",
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/01-main-menu",
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/24-town-screen",
+        "docs/architecture/wiki/screens/38-combat-screen",
+        "docs/architecture/wiki/screens/46-hero-screen",
+        "docs/architecture/wiki/screens/54-system-menu",
+        "docs/architecture/wiki/screens/60-confirmation-dialog",
+        "docs/architecture/wiki/screens/65-map-editor"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/error-state.schema.json",
+        "content-schema/schemas/hotkey.schema.json",
+        "content-schema/schemas/modal-entry.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/error-state.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/hotkey.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.21-error-state-schema",
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.14-modal-stack",
+        "mvp.07-ui-shell.16-gesture-taxonomy",
+        "mvp.07-ui-shell.18-hotkey-registry"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.21-error-state-schema",
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.14-modal-stack",
+        "mvp.07-ui-shell.16-gesture-taxonomy",
+        "mvp.07-ui-shell.18-hotkey-registry"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.07-ui-shell.14-modal-stack",
+      "kind": "task",
+      "status": "planned",
+      "title": "Modal Stack Schema + Dismissal Policy",
+      "path": "tasks/mvp/07-ui-shell/14-modal-stack.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land the canonical `state.ui.modalStack` shape and the severity-driven dismissal policy. Today every modal screen (`60-confirmation-dialog`, `54-system-menu`, `09-map-object-dialog`, `25-building-recruitment-dialog`, `40-pre-battle-dialog`, `48-level-up-dialog`, `51-split-stack-dialog`, `52-artifact-combine-dialog`) stores a single `callerRoute`. The existing `54-system-menu` → `60-confirmation-dialog` chain already implies a 2-level stack, and 3-deep flows (recruitment → confirm overspend → second confirm) silently lose the bottom caller. Element-level focus restoration is also unspecified. This task adds the modal-entry schema, the modal stack rules to [`docs/architecture/ui-routing.md`](../../../docs/architecture/ui-routing.md), and the canonical example records. The per-screen replacement of `callerRoute` bindings is owned by [`13-screen-package-contract-sweep.md`](./13-screen-package-contract-sweep.md). Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q60, Q61, Q62, Issues 3.A-4 and 3.A-5, Missing Logic bullets 4–6).",
+      "inputs": [
+        "Audit Q60, Q61, Q62 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The eleven modal screen packages under [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)",
+        "[`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json) for the closed `ModalId` enum",
+        "[`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json)"
+      ],
+      "outputs": [
+        "`content-schema/schemas/modal-entry.schema.json`",
+        "`content-schema/examples/records/modal-entry/system-menu.modal-entry.json`",
+        "`content-schema/examples/records/modal-entry/quit-confirmation.modal-entry.json`",
+        "`content-schema/examples/records/modal-entry/recruitment.modal-entry.json`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/ui-routing.md`](../../../docs/architecture/ui-routing.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "`docs/architecture/wiki/screens/54-system-menu/spec.md`",
+        "`docs/architecture/wiki/screens/54-system-menu/interactions.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/spec.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md`",
+        "`docs/architecture/wiki/screens/25-building-recruitment-dialog/spec.md`"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/modal-entry.schema.json",
+        "content-schema/examples/records/modal-entry/system-menu.modal-entry.json",
+        "content-schema/examples/records/modal-entry/quit-confirmation.modal-entry.json",
+        "content-schema/examples/records/modal-entry/recruitment.modal-entry.json",
+        "docs/architecture/ui-routing.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/ui-routing.md"
+      ],
+      "dependencies": [
+        "mvp.07-ui-shell.11-screen-router-fsm"
+      ],
+      "acceptanceCriteria": [
+        "This task is additive: it populates the § Modal Stack and § Dismissal Policy sections of [`docs/architecture/ui-routing.md`](../../../docs/architecture/ui-routing.md). The host doc is primarily owned by [`11-screen-router-fsm.md`](./11-screen-router-fsm.md); this task must not rewrite the router FSM, transition graph, or generator invariants.",
+        "`modal-entry.schema.json` defines `ModalEntry` with required fields `id`, `openedAt`, `callerRoute`, `previousFocusElementId`, `severity`, `params`, and `additionalProperties: false`.",
+        "`severity` is a closed enum of `info | warn | destructive | system`. The dismissal policy in `ui-routing.md` declares Esc and click-outside behavior for each severity tier per [the plan's table](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md).",
+        "`modalStack.length` MUST NOT exceed 3. The reducer-side rejection is documented in `ui-routing.md` and emits an `ErrorState` with `code: \"ui.modalStack.overflow\"`.",
+        "The three canonical examples cover the system-menu push, the destructive quit-confirmation push from the system menu, and the recruitment-from-town push.",
+        "`state.ui.modalStack` is excluded from saves and replays per the rule in [`docs/architecture/determinism.md` § UI Draft Slice](../../../docs/architecture/determinism.md#ui-draft-slice).",
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md) and [`content-schema/schemas/README.md`](../../../content-schema/schemas/README.md) register the schema."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/25-building-recruitment-dialog",
+        "docs/architecture/wiki/screens/54-system-menu",
+        "docs/architecture/wiki/screens/60-confirmation-dialog"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/modal-entry.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.11-screen-router-fsm"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.11-screen-router-fsm"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 3
+    },
+    {
+      "id": "mvp.07-ui-shell.15-input-arbitration",
+      "kind": "task",
+      "status": "planned",
+      "title": "Input Arbitration Contract",
+      "path": "tasks/mvp/07-ui-shell/15-input-arbitration.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land the deterministic contract for resolving input conflicts: the single-emit-per-gesture rule, the per-control debounce token, first-event-wins on click + hotkey races, the animation gate (`state.ui.animations.activeTimelineId`), the Esc precedence ladder (drag → modal → tooltip → system menu), and drag cancellation. Without this contract, a click + Enter on the End Turn control dispatches `END_HERO_TURN` twice — producing a divergent command log between two M5 lockstep peers — and Esc behavior fragments across screens. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q59, Issue 3.A-6, Missing Logic bullet 9).",
+      "inputs": [
+        "Audit Q59 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The synchronous reducer contract in [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
+        "Existing `state.ui.drag.*` and `state.ui.tooltips.*` slot usage across screen packages"
+      ],
+      "outputs": [
+        "`docs/architecture/ui-input-arbitration.md`",
+        "`docs/architecture/diagrams/29-input-arbitration.md`",
+        "`docs/architecture/diagrams/index.json` (additive entry)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
+        "[`docs/architecture/ui-frame-lag-contract.md`](../../../docs/architecture/ui-frame-lag-contract.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-input-arbitration.md",
+        "docs/architecture/diagrams/29-input-arbitration.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "The contract declares the single-emit rule, the per-control `debounceUntil[controlId]` token using `ruleset.ui.timing.inputDebounceMs`, and the first-event-wins modality precedence.",
+        "The animation gate rejects `END_HERO_TURN`, `END_DAY`, `BATTLE_ATTACK`, `BATTLE_MOVE`, `BATTLE_WAIT`, `BATTLE_DEFEND`, `SPELL_CAST`, and `AUTO_RESOLVE_BATTLE` while `state.ui.animations.activeTimelineId` is non-null. Hover and modal-open commands are not gated.",
+        "The Esc precedence ladder runs in this strict order: cancel active drag → close top modal → close pinned tooltip → open system menu. Each fired layer consumes the keystroke; lower layers do not run.",
+        "Drag cancellation clears `state.ui.drag.*` and emits `feedback.drag.cancel` without dispatching a command.",
+        "The diagram at `diagrams/29-input-arbitration.md` shows a click + hotkey race through the debounce token and the animation gate.",
+        "`docs/architecture/determinism.md` includes a forward link to this contract under \"Single-emit Per Input Gesture\".",
+        "`docs/architecture/state-flow.md` cross-references the animation gate."
+      ],
+      "verifyCommands": [
+        "npm run validate:links",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "mvp.07-ui-shell.16-gesture-taxonomy",
+      "kind": "task",
+      "status": "planned",
+      "title": "Gesture Taxonomy Contract",
+      "path": "tasks/mvp/07-ui-shell/16-gesture-taxonomy.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land [`docs/architecture/ui-gestures.md`](../../../docs/architecture/ui-gestures.md) defining the canonical gesture names, detection thresholds, and event sequences every screen package may bind: `click`, `double-click`, `right-click`/`context`, `long-press`, and `drag` plus the drop-acceptance contract. Today only right-click and tooltip hold-delay are formalized; drag-and-drop, double-click, and long-press have no canonical names. Numeric thresholds (`doubleClickWindowMs`, `longPressMs`, `dragThresholdPx`) are content-driven and live in the ruleset. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q58, Issue 3.A-7, Missing Logic bullet 8).",
+      "inputs": [
+        "Audit Q58 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "Existing tooltip and drag references in screen packages",
+        "The `ruleset.ui.timing` block in [`content-schema/schemas/ruleset.schema.json`](../../../content-schema/schemas/ruleset.schema.json)"
+      ],
+      "outputs": [
+        "`docs/architecture/ui-gestures.md`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)",
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "`docs/architecture/wiki/screens/46-hero-screen/spec.md`",
+        "`docs/architecture/wiki/screens/51-split-stack-dialog/spec.md`",
+        "`docs/architecture/wiki/screens/52-artifact-combine-dialog/spec.md`",
+        "`docs/architecture/wiki/screens/26-marketplace/spec.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-gestures.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.15-input-arbitration"
+      ],
+      "acceptanceCriteria": [
+        "The taxonomy enumerates `click`, `double-click`, `right-click` / `context`, `long-press`, `drag` (with `dragstart`, `dragmove`, `dragend`), and pinch / pan / wheel as viewport-only.",
+        "`state.ui.drag.{sourceId, sourceKind, ghostPosition, acceptedTargetIds}` is documented as UI-only and excluded from saves and replays.",
+        "Drop targets declare an `accepts: DragKind[]` array; legal targets highlight while a drag is in flight.",
+        "Cancellation defers to the Esc ladder in [`ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md); releasing over a non-accepting target is a cancel.",
+        "A Mermaid state diagram shows the gesture FSM (idle → pressed → click / double-click / long-press / drag → drop / cancel).",
+        "Numeric thresholds (300 / 400 ms double-click window, 600 ms long-press, 8 px drag threshold) reference `ruleset.ui.timing.*` so they remain tunable as content.",
+        "[`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md) requires `interactions.md` to use canonical gesture names from this doc."
+      ],
+      "verifyCommands": [
+        "npm run validate:links",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/26-marketplace",
+        "docs/architecture/wiki/screens/46-hero-screen",
+        "docs/architecture/wiki/screens/51-split-stack-dialog",
+        "docs/architecture/wiki/screens/52-artifact-combine-dialog"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.15-input-arbitration"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.15-input-arbitration"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.07-ui-shell.17-tooltip-lifecycle",
+      "kind": "task",
+      "status": "planned",
+      "title": "Tooltip Lifecycle + Numeric Timing Constants",
+      "path": "tasks/mvp/07-ui-shell/17-tooltip-lifecycle.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land the tooltip lifecycle contract — per-tick re-resolution against `selectors.mapObjects.publicTooltipInfo` and `selectors.scouting.hiddenTooltipFields`, auto-dismiss on stale anchor, ownership-change re-render — plus the numeric `ruleset.ui` block that pins tooltip, gesture, and animation thresholds. Today the tooltip flow is well-specified at open/pin/close but does not say what happens when the underlying object dies, gets fogged, or changes ownership. The hold-delay duration is also unstated; two screens use 200 ms vs. 800 ms today, feeling like bugs to playtesters. Constants live in the ruleset so QA can tune them without code changes. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q64, Q65, Issues 3.A-8 and 3.D-3, Missing Logic bullets 11 & 13).",
+      "inputs": [
+        "Audit Q64, Q65 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The Tooltip Lifecycle section anchor in [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "The existing `ruleset.schema.json` shape under [`content-schema/schemas/ruleset.schema.json`](../../../content-schema/schemas/ruleset.schema.json)"
+      ],
+      "outputs": [
+        "Additions to [`docs/architecture/ui-state-contract.md` § Tooltip Lifecycle](../../../docs/architecture/ui-state-contract.md#tooltip-lifecycle)",
+        "The `ui.timing` and `ui.editor` blocks in [`content-schema/schemas/ruleset.schema.json`](../../../content-schema/schemas/ruleset.schema.json)",
+        "Updated canonical example [`content-schema/examples/records/rulesets/baseline.ruleset.json`](../../../content-schema/examples/records/rulesets/baseline.ruleset.json) with the new block"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)",
+        "`docs/architecture/wiki/screens/18-map-object-tooltip/spec.md`",
+        "`docs/architecture/wiki/screens/18-map-object-tooltip/interactions.md`",
+        "`docs/architecture/wiki/screens/50-creature-info/spec.md`",
+        "`docs/architecture/wiki/screens/19-status-bar/spec.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-state-contract.md",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/examples/records/rulesets/baseline.ruleset.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/ui-state-contract.md",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/examples/records/rulesets/baseline.ruleset.json"
+      ],
+      "dependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.02-content-schemas.06-ruleset-schema"
+      ],
+      "acceptanceCriteria": [
+        "This task is additive: the tooltip-lifecycle text only adds sections to the host doc primarily owned by [`12-component-state-matrix.md`](./12-component-state-matrix.md); the ruleset edits add an optional `ui` block without changing the existing `constants` or `formulas` shape, so they cannot rewrite the schema primarily owned by [`../02-content-schemas/06-ruleset-schema.md`](../02-content-schemas/06-ruleset-schema.md). This task must not rewrite combat-math constants or formula definitions, which remain owned by their original tasks.",
+        "The tooltip controller re-resolves the pinned tooltip body every tick. A `null` result auto-dismisses the tooltip with a `feedback.tooltip.invalidate` animation; the pin clears; no localized error is shown.",
+        "Ownership change re-renders the tooltip body against the new visibility scope; multiplayer captures cannot leak fogged information through stale tooltips.",
+        "The `ui.timing` block declares `tooltipHoldDelayMs` (default `350`), `tooltipFadeInMs` (default `120`), `tooltipFadeOutMs` (default `80`), `doubleClickWindowMs` (default `400`), `longPressMs` (default `600`), `dragThresholdPx` (default `8`), `inputDebounceMs` (default `50`), and `endTurnAnimationMaxMs` (default `4000`). All values are integers ≥ 0; the schema uses `additionalProperties: false`.",
+        "The `ui.editor` block declares `maxHistory` (default `200`).",
+        "The canonical example [`content-schema/examples/records/rulesets/baseline.ruleset.json`](../../../content-schema/examples/records/rulesets/baseline.ruleset.json) validates against the extended schema and includes the new block.",
+        "The tooltip screens ([`18-map-object-tooltip`](../../../docs/architecture/wiki/screens/18-map-object-tooltip/), [`50-creature-info`](../../../docs/architecture/wiki/screens/50-creature-info/)) consume the timing constants — no hard-coded delays remain in their `interactions.md` or `data-contracts.md`. The per-screen edits land via [`13-screen-package-contract-sweep.md`](./13-screen-package-contract-sweep.md); the constant-drift CI check passes."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/18-map-object-tooltip",
+        "docs/architecture/wiki/screens/19-status-bar",
+        "docs/architecture/wiki/screens/50-creature-info"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.06-ruleset-schema",
+        "mvp.07-ui-shell.12-component-state-matrix"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.06-ruleset-schema",
+        "mvp.07-ui-shell.12-component-state-matrix"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "mvp.07-ui-shell.18-hotkey-registry",
+      "kind": "task",
+      "status": "planned",
+      "title": "Hotkey Registry + Focus Order",
+      "path": "tasks/mvp/07-ui-shell/18-hotkey-registry.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land [`docs/architecture/ui-hotkeys.md`](../../../docs/architecture/ui-hotkeys.md), the `hotkey.schema.json` global registry shape, and the canonical default-binding example. Define the focus-order rule, the modal tab-trap, and element-level focus restoration via `state.ui.modalStack[top].previousFocusElementId`. Today `selectedRow` bindings are described as supporting \"keyboard and pointer navigation\" but no global registry exists, hotkey conflicts between screens are undetectable, and modal-heavy screens ship as mouse-only. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q56, Q61, Q62, Issues 3.A-9 and 3.B-3, Missing Logic bullet 7).",
+      "inputs": [
+        "Audit Q56, Q61, Q62 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The modal-stack `previousFocusElementId` field defined by [`14-modal-stack.md`](./14-modal-stack.md)",
+        "Existing hotkey hints in screen `interactions.md` Description paragraphs"
+      ],
+      "outputs": [
+        "`docs/architecture/ui-hotkeys.md`",
+        "`content-schema/schemas/hotkey.schema.json`",
+        "`content-schema/examples/records/hotkey/global-default.hotkey.json`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/ui-routing.md`](../../../docs/architecture/ui-routing.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)",
+        "`docs/architecture/wiki/screens/07-adventure-map/interactions.md`",
+        "`docs/architecture/wiki/screens/24-town-screen/interactions.md`",
+        "`docs/architecture/wiki/screens/46-hero-screen/interactions.md`",
+        "`docs/architecture/wiki/screens/54-system-menu/interactions.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md`",
+        "`docs/architecture/wiki/screens/65-map-editor/interactions.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-hotkeys.md",
+        "content-schema/schemas/hotkey.schema.json",
+        "content-schema/examples/records/hotkey/global-default.hotkey.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "acceptanceCriteria": [
+        "`hotkey.schema.json` defines `HotkeyRegistry` with `additionalProperties: false`, a non-empty `entries` array, and the regex `^(global|screen)\\.[a-z0-9-]+(\\.[a-z0-9-]+)*$` for entry ids.",
+        "Every entry declares `defaultBinding` in W3C `KeyboardEvent.code` form (`Escape`, `Enter`, `F1`, `KeyZ`, `Control+Z`, `Control+Shift+Z`, ...) with modifiers in canonical order (`Control`, `Alt`, `Shift`, `Meta`).",
+        "`scope` is one of `global`, `screen`, `modal`. `screen` and `modal` entries require `screenId` matching a package id from [`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json).",
+        "The host doc declares the focus-order rule (every interactive control in a screen `spec.md` Component Tree carries `focusOrder: int`), the modal tab-trap (Tab cycles only inside the top modal's controls), and element-level focus restoration via `state.ui.modalStack[top].previousFocusElementId`.",
+        "Global defaults pin: `global.system-menu` = `Escape` (rebindable: false), `global.confirm` = `Enter` (rebindable: false), `global.help` = `F1` (rebindable: true).",
+        "The canonical example covers global, screen-scoped (adventure map and editor), and modal-scoped (confirmation dialog) entries.",
+        "[`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md) requires a `Hotkey` column in `interactions.md` Actions tables. The per-screen sweep is owned by [`13-screen-package-contract-sweep.md`](./13-screen-package-contract-sweep.md).",
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md) registers `HotkeyRegistry`."
+      ],
+      "verifyCommands": [
+        "npm run validate:contracts",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/24-town-screen",
+        "docs/architecture/wiki/screens/46-hero-screen",
+        "docs/architecture/wiki/screens/54-system-menu",
+        "docs/architecture/wiki/screens/60-confirmation-dialog",
+        "docs/architecture/wiki/screens/65-map-editor"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/hotkey.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero-class.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/hotkey.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.07-ui-shell.19-input-modalities",
+      "kind": "task",
+      "status": "planned",
+      "title": "Touch + Keyboard + Gamepad Input Modalities",
+      "path": "tasks/mvp/07-ui-shell/19-input-modalities.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land [`docs/architecture/ui-input-modalities.md`](../../../docs/architecture/ui-input-modalities.md): the per-modality contracts for mouse (baseline), touch (44 × 44 px minimum tap targets, long-press → right-click bridge, viewport-only pinch/pan), keyboard (parity through the hotkey registry), and gamepad (Phase 2 — namespace reserved). Tablet is an MVP target, but per-screen tap-target floors and touch interaction contracts are unspecified today, and there is no reserved slot for gamepad support. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q57, Issue 3.A-10).",
+      "inputs": [
+        "Audit Q57 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The Component State Matrix host doc anchor ([`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)) for the `state.ui.input.activeModality` slot"
+      ],
+      "outputs": [
+        "`docs/architecture/ui-input-modalities.md`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)",
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/ui-gestures.md`](../../../docs/architecture/ui-gestures.md)",
+        "[`docs/architecture/ui-hotkeys.md`](../../../docs/architecture/ui-hotkeys.md)",
+        "[`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)",
+        "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
+        "`docs/architecture/wiki/screens/24-town-screen/spec.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-input-modalities.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.16-gesture-taxonomy"
+      ],
+      "acceptanceCriteria": [
+        "The contract reserves `state.ui.input.activeModality: \"mouse\" | \"touch\" | \"keyboard\" | \"gamepad\"` and lists it under the Command Lifecycle state slot inventory in [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md).",
+        "Touch contract pins a minimum tap-target size of 44 × 44 px; long-press maps to right-click; pinch and pan are viewport-only.",
+        "Keyboard parity defers to [`docs/architecture/ui-hotkeys.md`](../../../docs/architecture/ui-hotkeys.md) for bindings, focus order, tab-trap, and focus restoration.",
+        "Gamepad scope is explicitly Phase 2: the `gamepad.*` hotkey-id namespace and the `activeModality = \"gamepad\"` value are reserved; the binding map is a placeholder pointing at `tasks/phase-2/07-ui-screen-backlog/`.",
+        "A modality-bridging table maps mouse / touch / keyboard / gamepad onto the canonical gesture vocabulary from [`docs/architecture/ui-gestures.md`](../../../docs/architecture/ui-gestures.md).",
+        "[`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md) links to this modalities doc."
+      ],
+      "verifyCommands": [
+        "npm run validate:links",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/24-town-screen"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.16-gesture-taxonomy"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.16-gesture-taxonomy"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.07-ui-shell.20-command-lifecycle",
+      "kind": "task",
+      "status": "planned",
+      "title": "Command Lifecycle + In-Flight UI Contract",
+      "path": "tasks/mvp/07-ui-shell/20-command-lifecycle.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Land the four-phase command-lifecycle contract in [`docs/architecture/ui-state-contract.md` § Command Lifecycle](../../../docs/architecture/ui-state-contract.md#command-lifecycle): **Drafting** (UI-only `state.ui.<screen>.draft.*`), **Pending confirmation** (`state.ui.confirmation.pendingAction`), **Applied** (reducer state final), and **Animating** (`state.ui.animations.activeTimelineId`). Today the synchronous reducer plus per-domain pending slots (`state.pendingBattle`, `state.ui.adventure.pathPreview`, `state.ui.targeting.draft`) leave no canonical \"command in-flight\" indicator, so end-turn animations play while the next AI turn has already mutated state and players double-clicking attack buttons dispatch two commands with different animation timelines. The animation gate consumed by [`15-input-arbitration.md`](./15-input-arbitration.md) reads from the slot defined here. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q55, Issue 3.A-11).",
+      "inputs": [
+        "Audit Q55 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The Command Lifecycle section anchor in [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "The animation gate consumer in [`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)"
+      ],
+      "outputs": [
+        "Additions to [`docs/architecture/ui-state-contract.md` § Command Lifecycle](../../../docs/architecture/ui-state-contract.md#command-lifecycle)",
+        "A cross-reference in [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)",
+        "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
+        "`docs/architecture/wiki/screens/38-combat-screen/spec.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/spec.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-state-contract.md",
+        "docs/architecture/state-flow.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/ui-state-contract.md",
+        "docs/architecture/state-flow.md"
+      ],
+      "dependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.15-input-arbitration"
+      ],
+      "acceptanceCriteria": [
+        "This task is additive: the Command Lifecycle section is added alongside the existing Component State Matrix, Selector Purity, and Tooltip Lifecycle sections in the host doc. The host doc is primarily owned by [`12-component-state-matrix.md`](./12-component-state-matrix.md); this task must not rewrite earlier sections or repurpose unrelated rules.",
+        "The four phases are enumerated explicitly: Drafting, Pending confirmation, Applied, Animating.",
+        "`state.ui.animations.activeTimelineId: string | null` is added to the state-slot inventory and pinned as the gate consumed by [`15-input-arbitration.md`](./15-input-arbitration.md).",
+        "The state slot inventory lists `state.ui.<screen>.draft.*`, `state.ui.confirmation.pendingAction`, `state.ui.modalStack`, `state.ui.animations.activeTimelineId`, `state.ui.input.activeModality`, and `state.ui.loading.errors`.",
+        "The single-emit guarantee references [`docs/architecture/ui-input-arbitration.md` § Single-emit Rule](../../../docs/architecture/ui-input-arbitration.md#single-emit-rule) for the canonical debounce rule.",
+        "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md) cross-references the lifecycle from its turn-loop section."
+      ],
+      "verifyCommands": [
+        "npm run validate:links",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/38-combat-screen",
+        "docs/architecture/wiki/screens/60-confirmation-dialog"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/ability.schema.json",
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/skill.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/targeting.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.15-input-arbitration"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.15-input-arbitration"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "mvp.08-persistence.01-indexeddb-wrapper",
       "kind": "task",
       "status": "planned",
@@ -11289,7 +12621,8 @@
         "mvp.02-content-schemas.17-campaign-schema",
         "mvp.02-content-schemas.18-random-map-template-schema",
         "mvp.02-content-schemas.19-tavern-and-marketplace-tables",
-        "mvp.02-content-schemas.20-university-skill-table"
+        "mvp.02-content-schemas.20-university-skill-table",
+        "mvp.02-content-schemas.21-error-state-schema"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -21921,6 +23254,126 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "phase-2.08-meta-systems.09-map-editor-undo-redo",
+      "kind": "task",
+      "status": "planned",
+      "title": "Map-Editor Undo / Redo Contract",
+      "path": "tasks/phase-2/08-meta-systems/09-map-editor-undo-redo.md",
+      "moduleId": "phase-2.08-meta-systems",
+      "modulePath": "tasks/phase-2/08-meta-systems.md",
+      "description": "Land the editor-only undo/redo contract in [`docs/architecture/ui-state-contract.md` § Undo / Redo](../../../docs/architecture/ui-state-contract.md#undo--redo-map-editor): the `state.editor.history.commandLog` and `state.editor.history.cursor` slots, the bounded history per `ruleset.ui.editor.maxHistory`, and the `screen.map-editor.undo` / `screen.map-editor.redo` hotkey bindings. Today the deterministic command-log model would technically allow time-travel debugging, but no UI flow exposes it; the Map Editor (`65-map-editor`) is the most natural undo candidate and its package is silent on the topic, blocking non-trivial authoring. In-game undo (e.g. spell-cast undo) is explicitly deferred to a later Phase 2 / Phase 3 scope. Source audit: [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md) (Q63, Issue 3.A-12, Missing Logic bullet 10).",
+      "inputs": [
+        "Audit Q63 in [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)",
+        "The Undo / Redo section anchor in [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "The `ui.editor.maxHistory` constant in [`content-schema/schemas/ruleset.schema.json`](../../../content-schema/schemas/ruleset.schema.json)"
+      ],
+      "outputs": [
+        "Additions to [`docs/architecture/ui-state-contract.md` § Undo / Redo](../../../docs/architecture/ui-state-contract.md#undo--redo-map-editor)",
+        "Updates to the map-editor screen package ([`docs/architecture/wiki/screens/65-map-editor/`](../../../docs/architecture/wiki/screens/65-map-editor/)) declaring the `editor.undo` / `editor.redo` actions, the `Ctrl+Z` / `Ctrl+Shift+Z` bindings, and the `state.editor.history.*` bindings"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)",
+        "[`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)",
+        "[`docs/architecture/ui-hotkeys.md`](../../../docs/architecture/ui-hotkeys.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "`docs/architecture/wiki/screens/65-map-editor/spec.md`",
+        "`docs/architecture/wiki/screens/65-map-editor/interactions.md`",
+        "`docs/architecture/wiki/screens/65-map-editor/data-contracts.md`",
+        "`docs/architecture/wiki/screens/65-map-editor/architecture.md`"
+      ],
+      "ownedPaths": [
+        "docs/architecture/ui-state-contract.md",
+        "docs/architecture/wiki/screens/65-map-editor/",
+        "docs/architecture/wiki/screens/65-map-editor/spec.md",
+        "docs/architecture/wiki/screens/65-map-editor/interactions.md",
+        "docs/architecture/wiki/screens/65-map-editor/data-contracts.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/ui-state-contract.md",
+        "docs/architecture/wiki/screens/65-map-editor/spec.md",
+        "docs/architecture/wiki/screens/65-map-editor/interactions.md",
+        "docs/architecture/wiki/screens/65-map-editor/data-contracts.md"
+      ],
+      "dependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.17-tooltip-lifecycle",
+        "mvp.07-ui-shell.18-hotkey-registry"
+      ],
+      "acceptanceCriteria": [
+        "This task is additive: it appends the Undo / Redo subsection to the host doc, which remains primarily owned by [`12-component-state-matrix.md`](../../mvp/07-ui-shell/12-component-state-matrix.md). This task must not rewrite earlier sections or change the `ruleset.ui.editor` block (owned by [`17-tooltip-lifecycle.md`](../../mvp/07-ui-shell/17-tooltip-lifecycle.md)).",
+        "The map-editor screen package edits are additive: this task adds the undo/redo controls, hotkeys, and state bindings without rewriting the existing tool ribbon, palette, or save controls whose primary contract is owned by the screen-curation task.",
+        "`state.editor.history.commandLog: EditorCommand[]` and `state.editor.history.cursor: int` are documented as a separate stream from gameplay commands; editor commands MUST NOT enter the gameplay command log, the state hash, saves, or replays.",
+        "`editor.undo` decrements cursor and re-applies the prefix; `editor.redo` increments cursor; any new edit truncates the forward history. The bound is `ruleset.ui.editor.maxHistory` (default `200`).",
+        "`screen.map-editor.undo` defaults to `Control+Z`; `screen.map-editor.redo` defaults to `Control+Shift+Z`. Both resolve to entries in [`hotkey/global-default.hotkey.json`](../../../content-schema/examples/records/hotkey/global-default.hotkey.json).",
+        "In-game undo is explicitly deferred — no in-game `state.history` slot is reserved by this task."
+      ],
+      "verifyCommands": [
+        "npm run validate:links",
+        "npm run validate:tasks",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/65-map-editor"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.17-tooltip-lifecycle",
+        "mvp.07-ui-shell.18-hotkey-registry"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.12-component-state-matrix",
+        "mvp.07-ui-shell.17-tooltip-lifecycle",
+        "mvp.07-ui-shell.18-hotkey-registry"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
       "kind": "task",
       "status": "planned",
@@ -24390,6 +25843,7 @@
         "mvp.02-content-schemas.18-random-map-template-schema",
         "mvp.02-content-schemas.19-tavern-and-marketplace-tables",
         "mvp.02-content-schemas.20-university-skill-table",
+        "mvp.02-content-schemas.21-error-state-schema",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",

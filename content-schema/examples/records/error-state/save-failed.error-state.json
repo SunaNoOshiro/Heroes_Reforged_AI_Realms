@@ -1,0 +1,12 @@
+{
+  "$schema": "heroes-reforged/error-state.schema.json",
+  "code": "ui.persistence.saveFailed",
+  "severity": "error",
+  "messageKey": "ui.save-load.errors.saveFailed",
+  "messageParams": {
+    "slotId": "save-04",
+    "reason": "diskFull"
+  },
+  "recoverable": false,
+  "raisedAtTick": 1893
+}

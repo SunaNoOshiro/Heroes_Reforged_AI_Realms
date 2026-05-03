@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/hotkey.schema.json",
+  "title": "HotkeyRegistry",
+  "description": "Global registry of keyboard bindings. Each entry pins a stable id, a default key sequence, the scope at which it fires, and (for screen-local entries) the owning screen package id. Pinned by docs/architecture/ui-hotkeys.md. The registry is the single source of truth — every interactions.md row that references a Hotkey id must resolve to an entry here.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "entries"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "version":       { "type": "string", "minLength": 1 },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/hotkeyEntry" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "hotkeyEntry": {
+      "type": "object",
+      "required": [
+        "id",
+        "defaultBinding",
+        "scope"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(global|screen)\\.[a-z0-9-]+(\\.[a-z0-9-]+)*$",
+          "description": "Stable namespaced id. 'global.<action>' for engine-wide bindings (Esc, F10, ...); 'screen.<screenSlug>.<action>' for screen-local bindings."
+        },
+        "defaultBinding": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Default key sequence in canonical W3C KeyboardEvent.code form, e.g. 'Escape', 'Enter', 'F10', 'Control+Z', 'Control+Shift+Z'. Modifier order is Control, Alt, Shift, Meta."
+        },
+        "scope": {
+          "type": "string",
+          "enum": ["global", "screen", "modal"],
+          "description": "'global' fires regardless of focus; 'screen' fires only on the active screen; 'modal' fires only when the matching modal id is the top of state.ui.modalStack."
+        },
+        "screenId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Required when scope is 'screen' or 'modal'. Screen package id (e.g. '07-adventure-map' or '60-confirmation-dialog')."
+        },
+        "labelKey": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Localization id for the human-readable label shown in keybinding UIs."
+        },
+        "rebindable": {
+          "type": "boolean",
+          "description": "False for hardcoded bindings (e.g. 'global.system-menu' on Esc) that the player cannot remap."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
