@@ -39,6 +39,17 @@ Each building must:
 - use only effect registry kinds for `effects` (for example
   `unlock_unit`, `unlock_building`, `resource_bonus`)
 
+Per-tier resource buildings (Village Hall → Town Hall → City Hall →
+Capitol) must read their daily gold value from
+`ruleset.townTier.<tier>.goldPerDay` (see
+[`baseline.ruleset.json`](../../../content-schema/examples/records/rulesets/baseline.ruleset.json)
+and
+[`ruleset.schema.json` §`townTier`](../../../content-schema/schemas/ruleset.schema.json)).
+Either embed the resolved integer in the building's `effects` block
+at load-time, or reference the ruleset value through the building
+runtime resolver — but every faction's village/town/city/capitol must
+agree on the same per-tier number.
+
 Dependencies:
 - mvp.02-content-schemas.05-building-schema
 

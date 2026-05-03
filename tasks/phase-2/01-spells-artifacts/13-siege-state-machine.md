@@ -36,6 +36,13 @@ Dependencies:
 - phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs
 
 Acceptance Criteria:
+- All siege values come from `ruleset.siege.*` (wall HP, gate HP, moat
+  damage / passability, tower damage / shots-per-round, drawbridge
+  default rounds). Schema:
+  [`ruleset.schema.json` §`siege`](../../../content-schema/schemas/ruleset.schema.json);
+  baseline values:
+  [`baseline.ruleset.json`](../../../content-schema/examples/records/rulesets/baseline.ruleset.json).
+  Values land as **placeholders** pending a balance-pass task.
 - Siege battle initialization creates wall, gate, moat, and tower state
   from content IDs and ruleset values
 - Moat damage and passability rules apply when stacks enter moat cells

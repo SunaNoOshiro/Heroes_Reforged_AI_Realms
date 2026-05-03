@@ -37,6 +37,11 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
     },
+    "tags": {
+      "type": "array",
+      "description": "Free-form classification tags. Reserved tag `mind` is consumed by the undead immunity rule (phase-2.03-second-faction.05). Tags do not change targeting; they let immunity rules and AI heuristics filter spells by category.",
+      "items": { "type": "string", "minLength": 1 }
+    },
     "presentation": {
       "type": "object",
       "properties": {

@@ -20,6 +20,9 @@ Inputs:
 Outputs:
 - `src/engine/commands/calendar-commands.ts`
 - `ACKNOWLEDGE_CALENDAR_ANNOUNCEMENT` reducer and validator
+- Acknowledgement payload includes the rolled themed-week id when the
+  acknowledged event is a `WEEK_START` calendar entry; see
+  [`phase-2.08-meta-systems.08-themed-week-roller`](../../phase-2/08-meta-systems/08-themed-week-roller.md)
 
 Owned Paths:
 - `src/engine/commands/calendar-commands.ts`

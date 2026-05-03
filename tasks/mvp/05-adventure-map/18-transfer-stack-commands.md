@@ -27,6 +27,11 @@ Outputs:
 - `TRANSFER_GARRISON_STACK` reducer and validator
 - `TRANSFER_TOWN_ARMY_STACK` reducer and validator
 - `TRANSFER_HERO_ARMY_STACK` reducer and validator
+- `SWAP_TOWN_HEROES` reducer and validator
+  (`{ townId }` → swaps `town.garrisonHeroId` and `town.visitingHeroId`;
+  see [`mvp.05-adventure-map.01-strategic-game-state-model`](01-strategic-game-state-model.md);
+  token cost = 0; deterministic; rejected during active siege per
+  [`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md))
 - Shared pure helper for move, merge, split-transfer, and swap outcomes
 
 Owned Paths:
@@ -47,6 +52,9 @@ Acceptance Criteria:
   fails if either hero is missing, enemy-owned, or not adjacent
 - Merge and swap outcomes preserve stable stack IDs deterministically
   and never leave an army with zero-count stacks
+- `SWAP_TOWN_HEROES` requires both `garrisonHeroId` and
+  `visitingHeroId` to be set; rejects during active siege; reversible
+  (swap → swap-back is byte-equal); replay-deterministic
 - Screens 22, 24, and 49 dispatch live commands once this task is done
 
 Verify:

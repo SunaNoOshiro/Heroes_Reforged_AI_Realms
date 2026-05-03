@@ -36,6 +36,10 @@ Dependencies:
 - mvp.09-tactical-combat.06-morale-and-luck-rolls
 
 Acceptance Criteria:
+- Combat appliers emit `{stat, value}` deltas that feed the canonical
+  pipeline pinned in
+  [`docs/architecture/stat-composition-order.md`](../../../docs/architecture/stat-composition-order.md);
+  no applier mutates hero stats directly
 - Leadership at Expert adds +3 morale through the combat applier before
   battle initialization finalizes stack stats
 - Luck, Archery, Offense, Armorer, Defense, and Discipline each have

@@ -48,32 +48,35 @@
     },
     {
       "type": "object",
-      "description": "RESERVED (phase-2). Area-of-effect with radius. Engine dispatcher rejects this kind in MVP.",
-      "required": ["kind", "radius"],
+      "description": "RESERVED (phase-2). Area-of-effect with radius. Engine dispatcher rejects this kind in MVP. AOE shapes default to friendly-fire ON; pin per-spell via `allowFriendly` (see effect-registry §Friendly-fire defaults).",
+      "required": ["kind", "radius", "allowFriendly"],
       "properties": {
-        "kind":     { "const": "area" },
-        "radius":   { "type": "integer", "minimum": 0 },
-        "maxRange": { "type": "integer", "minimum": 0 }
+        "kind":          { "const": "area" },
+        "radius":        { "type": "integer", "minimum": 0 },
+        "maxRange":      { "type": "integer", "minimum": 0 },
+        "allowFriendly": { "type": "boolean" }
       },
       "additionalProperties": false
     },
     {
       "type": "object",
-      "description": "RESERVED (phase-2). Straight-line projectile. Engine dispatcher rejects this kind in MVP.",
-      "required": ["kind", "length"],
+      "description": "RESERVED (phase-2). Straight-line projectile. Engine dispatcher rejects this kind in MVP. AOE-shaped: default friendly-fire ON unless `allowFriendly: false`.",
+      "required": ["kind", "length", "allowFriendly"],
       "properties": {
-        "kind":   { "const": "line" },
-        "length": { "type": "integer", "minimum": 1 }
+        "kind":          { "const": "line" },
+        "length":        { "type": "integer", "minimum": 1 },
+        "allowFriendly": { "type": "boolean" }
       },
       "additionalProperties": false
     },
     {
       "type": "object",
-      "description": "RESERVED (phase-2). All allies, enemies, or any. Engine dispatcher rejects this kind in MVP.",
+      "description": "RESERVED (phase-2). All allies, enemies, or any. Engine dispatcher rejects this kind in MVP. `allowFriendly` is implied by `allegiance` (ally / any → true; enemy → false) but may be pinned explicitly.",
       "required": ["kind"],
       "properties": {
-        "kind":       { "const": "all" },
-        "allegiance": { "type": "string", "enum": ["ally", "enemy", "any"] }
+        "kind":          { "const": "all" },
+        "allegiance":    { "type": "string", "enum": ["ally", "enemy", "any"] },
+        "allowFriendly": { "type": "boolean" }
       },
       "additionalProperties": false
     }

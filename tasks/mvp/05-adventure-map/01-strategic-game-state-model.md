@@ -41,7 +41,9 @@ type Hero = {
   playerId: number,
   position: HexCoord,
   movementPoints: number,
-  army: ArmyStack[],       // up to 7 stacks
+  army: ArmyStack[],       // schema-enforced maxItems: 7 (hero.schema.json)
+                           // runtime invariant: STACK_CAP_EXCEEDED on overflow
+                           // see docs/architecture/edge-case-policy.md
   experience: number,
   level: number,
   primaryStats: PrimaryStats,
@@ -57,6 +59,8 @@ type Town = {
   faction: string,
   buildings: string[],      // built building ids
   garrison: ArmyStack[],
+  garrisonHeroId: string | null,    // see two-hero-per-town protocol
+  visitingHeroId: string | null,    // SWAP_TOWN_HEROES command
   mageGuildSpells: SpellId[][],  // [level][index]
 }
 ```
@@ -68,6 +72,13 @@ Acceptance Criteria:
 - `AdventureState` fully serializes / deserializes via `serializer.ts` with identical hash
 - No mutable references (all arrays are never mutated in place; use spread/structuredClone)
 - TypeScript strict types — no `any`
+- `hero.army` schema-enforces `maxItems: 7`; the runtime additionally
+  rejects any reducer that would create an 8th stack with
+  `STACK_CAP_EXCEEDED` (see
+  [`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md))
+- `Town` shape carries optional `garrisonHeroId` and `visitingHeroId`
+  for the two-hero-per-town protocol; SWAP_TOWN_HEROES command in
+  [`18-transfer-stack-commands.md`](18-transfer-stack-commands.md)
 
 Verify:
 - npm run validate

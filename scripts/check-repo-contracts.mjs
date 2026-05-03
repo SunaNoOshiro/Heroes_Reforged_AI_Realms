@@ -443,6 +443,8 @@ function schemaForFile(filePath) {
     return "neutral-stack-template.schema.json";
   }
   if (base.endsWith(".scenario.json")) return "scenario.schema.json";
+  if (base.endsWith(".map-trigger.json")) return "map-trigger.schema.json";
+  if (base.endsWith(".themed-week.json")) return "themed-week.schema.json";
   if (base.endsWith(".generation-request.json")) return "generation-request.schema.json";
   if (base.endsWith(".generated-faction.json")) return "generated-faction.schema.json";
   if (base === "game-state.example.json") return "game-state.schema.json";

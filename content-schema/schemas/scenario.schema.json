@@ -74,6 +74,11 @@
         },
         "additionalProperties": false
       }
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Optional scenario-scoped triggers. Schema in map-trigger.schema.json.",
+      "items": { "$ref": "heroes-reforged/map-trigger.schema.json" }
     }
   },
   "additionalProperties": false,

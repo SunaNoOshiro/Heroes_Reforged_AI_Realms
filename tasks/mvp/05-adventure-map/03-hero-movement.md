@@ -48,13 +48,17 @@ Estimated Time:
 
 **Scenario:** Hero at (5, 5) wants to move to gold mine at (7, 6).
 
-**Terrain Costs (from ruleset):**
+**Terrain Costs (from ruleset; mirrored in
+[`docs/architecture/diagrams/23-hero-movement.md`](../../../docs/architecture/diagrams/23-hero-movement.md)
+for replay-determinism — both files store integer ×100 values, never
+decimals):**
 ```json
 {
   "grass": 100,
   "sand": 150,
   "swamp": 200,
-  "snow": 150,
+  "snow": 200,
+  "road": 75,
   "water": 9999,
   "mountain": 9999
 }
@@ -109,7 +113,11 @@ objectAt(7, 6) = goldMine
 ```
 
 **Determinism contract:**
-- Pathfinding is deterministic (A* with consistent tie-breaking by hex coord)
+- Pathfinding is deterministic (A* with consistent tie-breaking).
+  Ties are broken by **axial coord ascending: `q` first, then `r`**.
+  Two equal-cost paths must select the path whose first divergent hex
+  has the lower `(q, r)` lexicographic value. The implementation must
+  round-trip stable through canonical-JSON serialization.
 - MP cost is deterministic (ruleset-based, no variance)
 - Fog of war is deterministic (line-of-sight algorithm, seeded by map, not RNG)
 

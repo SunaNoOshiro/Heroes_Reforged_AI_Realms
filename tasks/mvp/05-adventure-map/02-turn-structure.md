@@ -29,7 +29,10 @@ Outputs:
 - Events emitted as event-log entries, not command kinds:
   - `DAY_START` restores hero MP and notifies all players
   - `DAY_END` collects daily resource income
-  - `WEEK_START` triggers unit growth in towns
+  - `WEEK_START` triggers unit growth in towns and rolls a themed-week
+    record via the roller task
+    [`phase-2.08-meta-systems.08-themed-week-roller`](../../phase-2/08-meta-systems/08-themed-week-roller.md)
+    (the rolled id is captured on the scenario for the popup)
 
 Owned Paths:
 - `src/engine/adventure-turn.ts`

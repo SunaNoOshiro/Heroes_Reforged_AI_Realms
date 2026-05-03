@@ -21,6 +21,13 @@
     "berserk",
     "feared",
     "blessed",
-    "cursed"
+    "cursed",
+    "counterstrike",
+    "town_portal_pending",
+    "town_portal_pending_choose",
+    "visions_active",
+    "disguised",
+    "view_earth_active",
+    "boat_summoned"
   ]
 }

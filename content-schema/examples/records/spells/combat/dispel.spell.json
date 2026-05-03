@@ -1,0 +1,29 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:dispel",
+  "name": "Dispel",
+  "school": "water",
+  "level": 1,
+  "scope": "combat",
+  "manaCost": 5,
+  "targeting": { "kind": "single_unit", "allegiance": "any", "maxRange": 16 },
+  "tags": ["utility"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        { "kind": "dispel", "scope": "all" }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        { "kind": "dispel", "scope": "all" }
+      ]
+    },
+    "expert": {
+      "effects": [
+        { "kind": "dispel", "scope": "all" }
+      ]
+    }
+  }
+}

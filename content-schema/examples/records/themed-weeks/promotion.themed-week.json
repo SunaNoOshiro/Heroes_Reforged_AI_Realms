@@ -1,0 +1,21 @@
+{
+  "$schema": "heroes-reforged/themed-week.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:themed-week:promotion",
+  "name": "Week of Promotion",
+  "weight": 4,
+  "descriptionLocalizationKey": "themed_week.promotion.description",
+  "effects": [
+    {
+      "kind": "growth_modifier",
+      "unitId": "*",
+      "multiplierNum": 5,
+      "multiplierDen": 4
+    },
+    {
+      "kind": "set_flag",
+      "flagId": "themed_week.promotion.active",
+      "value": true
+    }
+  ]
+}

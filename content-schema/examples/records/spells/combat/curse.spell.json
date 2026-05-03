@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:curse",
+  "name": "Curse",
+  "school": "dark",
+  "level": 1,
+  "scope": "combat",
+  "manaCost": 4,
+  "targeting": { "kind": "single_unit", "allegiance": "enemy", "maxRange": 16 },
+  "tags": ["debuff", "mind"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "cursed",
+          "duration": 3,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 1
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "cursed",
+          "duration": 5,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 1
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "cursed",
+          "duration": 7,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 2
+        }
+      ]
+    }
+  }
+}

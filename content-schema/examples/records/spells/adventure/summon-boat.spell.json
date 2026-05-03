@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:summon_boat",
+  "name": "Summon Boat",
+  "school": "water",
+  "level": 1,
+  "scope": "adventure",
+  "manaCost": 6,
+  "targeting": { "kind": "self" },
+  "tags": ["mobility"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "boat_summoned",
+          "duration": 1,
+          "durationUnit": "days",
+          "stacking": "refresh",
+          "magnitude": 1
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "boat_summoned",
+          "duration": 1,
+          "durationUnit": "days",
+          "stacking": "refresh",
+          "magnitude": 2
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "boat_summoned",
+          "duration": 1,
+          "durationUnit": "days",
+          "stacking": "refresh",
+          "magnitude": 3
+        }
+      ]
+    }
+  }
+}

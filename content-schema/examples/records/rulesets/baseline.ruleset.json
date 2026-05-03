@@ -22,7 +22,63 @@
     "autoResolveAttackerAdvantageNum": 105,
     "autoResolveAttackerAdvantageDen": 100,
     "defendDamageReductionPermille": 250,
-    "heroExperiencePerLevel": 500
+    "heroExperiencePerLevel": 500,
+    "magicManaPerKnowledge": 10,
+    "magicMysticismRegenBase": 1,
+    "magicMysticismRegenPerLevel": 1,
+    "magicSpellPowerDamageMultiplier": 1,
+    "siegeWallSegmentHp": 1500,
+    "siegeWallBreachThresholdNum": 1,
+    "siegeWallBreachThresholdDen": 2,
+    "siegeGateHp": 1000,
+    "siegeMoatDamageNum": 70,
+    "siegeMoatDamageDen": 1,
+    "siegeMoatPassable": true,
+    "siegeTowerDamage": 20,
+    "siegeTowerShotsPerRound": 1,
+    "siegeDrawbridgeRaisedDefaultRounds": 0,
+    "townTierVillageGoldPerDay": 500,
+    "townTierTownGoldPerDay": 1000,
+    "townTierCityHallGoldPerDay": 2000,
+    "townTierCapitolGoldPerDay": 4000,
+    "combatBattlefieldMaxStacks": 14,
+    "heroArmyMaxStacks": 7
+  },
+  "magic": {
+    "manaPerKnowledge": 10,
+    "mysticismRegenBase": 1,
+    "mysticismRegenPerLevel": 1,
+    "spellPowerDamageMultiplier": 1
+  },
+  "siege": {
+    "wallSegmentHp": 1500,
+    "wallBreachThresholdNum": 1,
+    "wallBreachThresholdDen": 2,
+    "gateHp": 1000,
+    "moatDamageNum": 70,
+    "moatDamageDen": 1,
+    "moatPassable": true,
+    "towerDamage": 20,
+    "towerShotsPerRound": 1,
+    "drawbridgeRaisedDefaultRounds": 0
+  },
+  "townTier": {
+    "village":  { "goldPerDay": 500 },
+    "town":     { "goldPerDay": 1000 },
+    "cityHall": { "goldPerDay": 2000 },
+    "capitol":  { "goldPerDay": 4000 }
+  },
+  "combat": {
+    "battlefieldMaxStacks": 14
+  },
+  "heroLevelup": {
+    "classWeights": {
+      "knight":      { "pre10": [35, 45, 10, 10], "post10": [25, 30, 20, 25] },
+      "cleric":      { "pre10": [10, 10, 30, 50], "post10": [10, 10, 40, 40] },
+      "ranger":      { "pre10": [30, 40, 15, 15], "post10": [25, 25, 25, 25] },
+      "druid":       { "pre10": [15, 15, 40, 30], "post10": [10, 10, 40, 40] },
+      "necromancer": { "pre10": [15, 15, 35, 35], "post10": [10, 10, 40, 40] }
+    }
   },
   "formulas": {
     "attackBonus": {

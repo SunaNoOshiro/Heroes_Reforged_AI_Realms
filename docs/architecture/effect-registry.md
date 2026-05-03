@@ -20,8 +20,8 @@ artifacts, skills, and buildings. Schema:
 |---|---|---|---|
 | `damage` | `amount` | spells, abilities | `damageType` is an enum, not free-form. Optional `target` and `condition`. |
 | `heal` | `amount` | spells, abilities | `target` defaults to `ally`. |
-| `status` | `status` | spells, abilities | Named status effect with optional `duration`. |
-| `modify_stat` | `stat`, `value` | abilities, artifacts | Integer delta. Stat is enum over combat stats. |
+| `status` | `status` | spells, abilities | Named status effect with optional `duration`. `durationUnit ∈ {rounds, turns, days}` (default `rounds` for combat scope, `days` for adventure scope). Default stacking is `highest_magnitude_refresh_duration`; override via `stacking ∈ {stack, refresh, highest_magnitude_refresh_duration, ignore}`. Full lifecycle in [`status-effects.md`](status-effects.md). |
+| `modify_stat` | `stat`, `value` | abilities, artifacts | Integer delta. Stat is enum over combat stats. Composition order is pinned by [`stat-composition-order.md`](stat-composition-order.md). |
 | `modify_primary_stat` | `stat`, `value` | artifacts, skills | Hero attack/defense/power/knowledge. |
 | `summon` | `unitId`, `count` | spells | `count` is a formula. |
 | `dispel` | — | spells | `scope` filters positive/negative. |
@@ -30,6 +30,10 @@ artifacts, skills, and buildings. Schema:
 | `grant_ability` | `abilityId` | artifacts, buildings | Adds to unit or hero ability list. |
 | `unlock_unit` | `unitId` | buildings | Dwellings producing recruitable units. |
 | `unlock_building` | `buildingId` | buildings | Opens the next-tier slot. |
+| `spawn_army` | `stacks`, `q`, `r` | map triggers | Spawns a fixed army at a hex; bound by 7-stack cap. |
+| `set_flag` | `flagId`, `value` | map triggers, quests | Sets or clears a boolean scenario flag consumed by `on_flag_set` triggers. |
+| `award_resources` | `amounts` | map triggers, quest rewards | One-time payout of multiple resources to a player. |
+| `growth_modifier` | `unitId`, `multiplierNum`, `multiplierDen` | themed weeks | Multiplicative weekly growth bonus. `unitId = "*"` applies to all units. |
 
 ## Secondary Skill Boundary
 
@@ -47,6 +51,15 @@ behaviors. If a skill behavior should become reusable by spells,
 artifacts, abilities, and buildings, add a new closed effect kind here
 and in [`content-schema/schemas/effect.schema.json`](../../content-schema/schemas/effect.schema.json)
 before content depends on it.
+
+## Diplomacy
+
+Player-vs-player diplomacy / treaties are **out of scope through
+Phase 2** — see the corresponding row in
+[`mechanics-coverage.md`](mechanics-coverage.md). Effects that
+interact with neutrals (e.g. neutral-stack negotiation) flow through
+the existing `dispel`, `award_resources`, and `set_flag` kinds; no
+PvP-treaty effect kind exists.
 
 ## Spell School ↔ Damage Type Mapping
 
@@ -82,6 +95,27 @@ Rules of thumb:
   damage types only if the fiction demands it; prefer consistency.
 - Immunity / resistance lookups key on `damageType`, never on
   `school`. The school is catalog metadata, not a combat axis.
+
+## Friendly-fire Defaults
+
+Whether a damaging effect can hit allies is decided by the parent
+spell/ability's `targeting.allowFriendly` flag (see
+[`targeting.schema.json`](../../content-schema/schemas/targeting.schema.json)).
+
+| Targeting kind | Default `allowFriendly` | Override |
+|---|---|---|
+| `self` | n/a — only the caster | — |
+| `single_unit` | `false` (single-target) | `allegiance` enum drives validity; `allowFriendly` is rejected here |
+| `hex` | `false` (single-target) | author may set `allowFriendly: true` |
+| `unit_or_hex` | `false` | author may opt-in |
+| `area` | **`true`** (AOE shape) | author may pin `false` |
+| `line` | **`true`** (AOE shape) | author may pin `false` |
+| `all` | inferred from `allegiance` | optional explicit pin |
+
+The `breath_attack` ability (see
+[`tasks/mvp/09-tactical-combat/07-unit-abilities-flying-double-strike-breath-no-retaliation.md`](../../tasks/mvp/09-tactical-combat/07-unit-abilities-flying-double-strike-breath-no-retaliation.md))
+defaults `allowFriendly: true` because it sweeps a multi-hex line; an
+ally standing in the second hex of the line is damaged.
 
 ## Adding A New Kind
 

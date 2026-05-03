@@ -34,6 +34,72 @@
       "type": "object",
       "additionalProperties": { "$ref": "heroes-reforged/formula.schema.json" }
     },
+    "magic": {
+      "type": "object",
+      "description": "Mana pool and spell damage scaling constants. Pinned by docs/architecture/spells-and-mage-guild.md §6a/6b.",
+      "properties": {
+        "manaPerKnowledge":            { "type": "integer", "minimum": 0 },
+        "mysticismRegenBase":          { "type": "integer", "minimum": 0 },
+        "mysticismRegenPerLevel":      { "type": "integer", "minimum": 0 },
+        "spellPowerDamageMultiplier":  { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "siege": {
+      "type": "object",
+      "description": "Siege-state-machine constants. Values are placeholders pending balance pass; shape is pinned by tasks/phase-2/01-spells-artifacts/13-siege-state-machine.md.",
+      "properties": {
+        "wallSegmentHp":               { "type": "integer", "minimum": 0 },
+        "wallBreachThresholdNum":      { "type": "integer", "minimum": 0 },
+        "wallBreachThresholdDen":      { "type": "integer", "minimum": 1 },
+        "gateHp":                      { "type": "integer", "minimum": 0 },
+        "moatDamageNum":               { "type": "integer", "minimum": 0 },
+        "moatDamageDen":               { "type": "integer", "minimum": 1 },
+        "moatPassable":                { "type": "boolean" },
+        "towerDamage":                 { "type": "integer", "minimum": 0 },
+        "towerShotsPerRound":          { "type": "integer", "minimum": 0 },
+        "drawbridgeRaisedDefaultRounds": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "townTier": {
+      "type": "object",
+      "description": "Per-tier town income (Village → Town → City Hall → Capitol). Owned by mvp.04-faction-emberwild.02-emberwild-town-building-tree.",
+      "properties": {
+        "village":  { "$ref": "#/$defs/townTierEntry" },
+        "town":     { "$ref": "#/$defs/townTierEntry" },
+        "cityHall": { "$ref": "#/$defs/townTierEntry" },
+        "capitol":  { "$ref": "#/$defs/townTierEntry" }
+      },
+      "additionalProperties": false
+    },
+    "combat": {
+      "type": "object",
+      "description": "Tactical combat-grid limits. battlefieldMaxStacks caps how many stacks may exist on the battlefield (initial + summoned + raised). See docs/architecture/in-combat-stack-rules.md.",
+      "properties": {
+        "battlefieldMaxStacks": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "heroLevelup": {
+      "type": "object",
+      "description": "Per-class primary-stat growth weights. Each tuple is [attack, defense, power, knowledge] integers summing to 100. Owned by phase-2.01-spells-artifacts.00-hero-leveling.",
+      "properties": {
+        "classWeights": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["pre10", "post10"],
+            "properties": {
+              "pre10":  { "$ref": "#/$defs/levelupWeightTuple" },
+              "post10": { "$ref": "#/$defs/levelupWeightTuple" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "ui": {
       "type": "object",
       "description": "Optional UI-only thresholds and editor limits. Content-driven so QA can tune timing without code edits. UI numbers do not enter deterministic gameplay state.",
@@ -65,5 +131,21 @@
       "additionalProperties": false
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$defs": {
+    "townTierEntry": {
+      "type": "object",
+      "required": ["goldPerDay"],
+      "properties": {
+        "goldPerDay": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "levelupWeightTuple": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "type": "integer", "minimum": 0, "maximum": 100 }
+    }
+  }
 }

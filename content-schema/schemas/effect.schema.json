@@ -17,7 +17,11 @@
     { "$ref": "#/$defs/grantSpell" },
     { "$ref": "#/$defs/grantAbility" },
     { "$ref": "#/$defs/unlockUnit" },
-    { "$ref": "#/$defs/unlockBuilding" }
+    { "$ref": "#/$defs/unlockBuilding" },
+    { "$ref": "#/$defs/spawnArmy" },
+    { "$ref": "#/$defs/setFlag" },
+    { "$ref": "#/$defs/awardResources" },
+    { "$ref": "#/$defs/growthModifier" }
   ],
   "$defs": {
     "damage": {
@@ -46,12 +50,16 @@
     "status": {
       "type": "object",
       "required": ["kind", "status"],
+      "description": "Named status effect. `duration` is interpreted in `durationUnit`s. Default unit is `rounds` for combat-scope spells/abilities and `days` for adventure-scope. Default stacking is `highest_magnitude_refresh_duration`. See docs/architecture/status-effects.md.",
       "properties": {
-        "kind":      { "const": "status" },
-        "status":    { "$ref": "heroes-reforged/status-id.schema.json" },
-        "duration":  { "type": "integer", "minimum": 0 },
-        "target":    { "$ref": "heroes-reforged/target-scope.schema.json" },
-        "condition": { "$ref": "heroes-reforged/condition.schema.json" }
+        "kind":         { "const": "status" },
+        "status":       { "$ref": "heroes-reforged/status-id.schema.json" },
+        "duration":     { "type": "integer", "minimum": 0 },
+        "durationUnit": { "type": "string", "enum": ["rounds", "turns", "days"] },
+        "stacking":     { "type": "string", "enum": ["stack", "refresh", "highest_magnitude_refresh_duration", "ignore"] },
+        "magnitude":    { "type": "integer" },
+        "target":       { "$ref": "heroes-reforged/target-scope.schema.json" },
+        "condition":    { "$ref": "heroes-reforged/condition.schema.json" }
       },
       "additionalProperties": false
     },
@@ -142,6 +150,71 @@
       "properties": {
         "kind":       { "const": "unlock_building" },
         "buildingId": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "spawnArmy": {
+      "type": "object",
+      "description": "Spawn a fixed army at a hex. Used by map triggers.",
+      "required": ["kind", "stacks", "q", "r"],
+      "properties": {
+        "kind": { "const": "spawn_army" },
+        "q":    { "type": "integer" },
+        "r":    { "type": "integer" },
+        "playerId": { "type": "integer", "minimum": 0 },
+        "stacks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 7,
+          "items": {
+            "type": "object",
+            "required": ["unitId", "count"],
+            "properties": {
+              "unitId": { "type": "string", "minLength": 1 },
+              "count":  { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "setFlag": {
+      "type": "object",
+      "description": "Set or clear a scenario flag. Used by map triggers and quest scripts.",
+      "required": ["kind", "flagId", "value"],
+      "properties": {
+        "kind":   { "const": "set_flag" },
+        "flagId": { "type": "string", "minLength": 1 },
+        "value":  { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "awardResources": {
+      "type": "object",
+      "description": "One-time payout of multiple resources. Used by map triggers and quest rewards.",
+      "required": ["kind", "amounts"],
+      "properties": {
+        "kind":     { "const": "award_resources" },
+        "playerId": { "type": "integer", "minimum": 0 },
+        "amounts": {
+          "type": "object",
+          "propertyNames": { "$ref": "heroes-reforged/resource-id.schema.json" },
+          "additionalProperties": { "type": "integer" },
+          "minProperties": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "growthModifier": {
+      "type": "object",
+      "description": "Multiplicative growth modifier applied to a unit ID (or `*` for all units) for the active week. Used by themed-week records and similar weekly content.",
+      "required": ["kind", "unitId", "multiplierNum", "multiplierDen"],
+      "properties": {
+        "kind":          { "const": "growth_modifier" },
+        "unitId":        { "type": "string", "minLength": 1, "description": "Stable unit ID, or `*` for any unit." },
+        "multiplierNum": { "type": "integer" },
+        "multiplierDen": { "type": "integer", "minimum": 1 }
       },
       "additionalProperties": false
     }

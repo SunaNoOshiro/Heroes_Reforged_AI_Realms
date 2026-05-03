@@ -31,6 +31,8 @@
     },
     "startingArmy": {
       "type": "array",
+      "maxItems": 7,
+      "description": "Up to 7 stacks per hero army. Cap pinned by docs/architecture/edge-case-policy.md §3.",
       "items": {
         "type": "object",
         "required": ["unitId", "count"],

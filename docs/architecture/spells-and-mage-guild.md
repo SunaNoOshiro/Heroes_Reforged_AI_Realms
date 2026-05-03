@@ -98,6 +98,64 @@ compose without double-dipping.
 
 The command is deterministic; no randomness at the learn step.
 
+## 6a. Mana pool
+
+A hero's maximum mana is a deterministic function of `knowledge`
+(post stat-composition-order), the ruleset constant
+`magic.manaPerKnowledge`, and the sum of any Mysticism /
+mana-bonus contributions emitted by skill appliers:
+
+```
+maxMana(hero) =
+    hero.knowledge × ruleset.magic.manaPerKnowledge
+  + Σ (mysticism / mana-cap bonuses from 07d skill appliers)
+```
+
+The `hero.knowledge` value passed in is the **final** value from the
+canonical stat composition pipeline
+([`stat-composition-order.md`](stat-composition-order.md)) — i.e.
+after all sources are summed and clamped. Mana never reads the raw
+hero record.
+
+Daily regeneration:
+
+```
+manaRegenPerDay(hero) =
+    ruleset.magic.mysticismRegenBase
+  + skill.mysticism.level × ruleset.magic.mysticismRegenPerLevel
+```
+
+`skill.mysticism.level` is `0` if the skill is unlearned. All
+arithmetic is integer; the regen value is added at `DAY_END` and
+capped at `maxMana(hero)`.
+
+## 6b. Spell damage scaling
+
+For any `effect.kind = "damage"` carried by a spell, the dealt damage
+is:
+
+```
+spellDamage =
+    baseAmountAt(masteryTier)
+  + hero.power × ruleset.magic.spellPowerDamageMultiplier
+```
+
+`baseAmountAt(masteryTier)` is the AST-evaluated `amount` for the tier
+selected per §2 above. `hero.power` is again the post-pipeline value.
+`spellPowerDamageMultiplier` is integer; if a pack wants fractional
+scaling it should split the spell's `amount` AST instead of changing
+this constant.
+
+The formula is applied **after** mastery-tier selection, **before**
+spell-specific damageType resistance / immunity lookups. Specialty
+`spell_bonus.kind = "damage"` value is added to `baseAmountAt` so it
+benefits from the power scaling.
+
+Fixture test (referenced from
+[`tasks/phase-2/01-spells-artifacts/02-combat-spells.md`](../../tasks/phase-2/01-spells-artifacts/02-combat-spells.md)):
+hero `{power: 10, knowledge: 8}` casting `magic_arrow` at basic
+mastery yields a fixed damage value reproducible by both engines.
+
 ## 7. What's not in MVP
 
 - Spell creation / custom spell editor — phase 2.

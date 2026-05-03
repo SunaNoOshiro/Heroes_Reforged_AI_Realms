@@ -1,0 +1,47 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:town_portal",
+  "name": "Town Portal",
+  "school": "earth",
+  "level": 4,
+  "scope": "adventure",
+  "manaCost": 16,
+  "targeting": { "kind": "self" },
+  "tags": ["mobility"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "town_portal_pending",
+          "duration": 1,
+          "durationUnit": "days",
+          "stacking": "refresh"
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "town_portal_pending",
+          "duration": 1,
+          "durationUnit": "days",
+          "stacking": "refresh"
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "town_portal_pending_choose",
+          "duration": 1,
+          "durationUnit": "days",
+          "stacking": "refresh"
+        }
+      ]
+    }
+  }
+}

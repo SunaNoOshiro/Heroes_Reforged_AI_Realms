@@ -27,6 +27,17 @@ Test cases to cover:
 - ZoC blocking diagonal movement
 - Map edge (starting at corner)
 - Large open map (benchmark: 128×128, 10 random paths in < 50ms total)
+- **Deliberate-tie scenario** (adventure map and tactical grid):
+  construct a fixture with two equal-cost paths from src to dst. The
+  pathfinder must select the path whose first divergent hex has the
+  lower axial `(q, r)` value (per
+  [`tasks/mvp/05-adventure-map/03-hero-movement.md`](../../mvp/05-adventure-map/03-hero-movement.md#L112)
+  determinism contract). The fixture is committed under
+  `src/engine/__tests__/fixtures/pathfinder-tiebreak.json`.
+- **Tactical-grid case** (covers
+  [`tasks/mvp/09-tactical-combat/04a-tactical-pathfinder.md`](../../mvp/09-tactical-combat/04a-tactical-pathfinder.md)):
+  flying-vs-non-flying treatment of obstacle hexes; wall segments
+  block non-flying.
 
 Dependencies:
 - mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc

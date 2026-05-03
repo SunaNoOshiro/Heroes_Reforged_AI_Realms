@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:slow",
+  "name": "Slow",
+  "school": "earth",
+  "level": 1,
+  "scope": "combat",
+  "manaCost": 4,
+  "targeting": { "kind": "single_unit", "allegiance": "enemy", "maxRange": 16 },
+  "tags": ["debuff"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "slowed",
+          "duration": 3,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 40
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "slowed",
+          "duration": 4,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 50
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "slowed",
+          "duration": 5,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 60
+        }
+      ]
+    }
+  }
+}

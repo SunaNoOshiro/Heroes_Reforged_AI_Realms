@@ -41,26 +41,36 @@ Formula: `xpForLevel(n) = n × (n - 1) × 500`
 
 **Stat Growth (Probabilistic):**
 
-Each level-up rolls a "bucket" based on the hero's class role weights. For example, Warrior (ATK-heavy):
+Each level-up rolls a "bucket" based on the hero's class role weights
+sourced from
+`ruleset.heroLevelup.classWeights.<classId>`
+(see
+[`baseline.ruleset.json`](../../../content-schema/examples/records/rulesets/baseline.ruleset.json)
+and
+[`ruleset.schema.json` §`heroLevelup`](../../../content-schema/schemas/ruleset.schema.json)).
 
-```
-class: warrior
-weights: { attack: 35, defense: 35, power: 15, knowledge: 15 }
-```
+Per-class weight tuples (`[attack, defense, power, knowledge]`,
+integer percentages summing to 100):
+
+| Class | Pre-10 | Post-10 |
+|---|---|---|
+| `knight`      | `[35, 45, 10, 10]` | `[25, 30, 20, 25]` |
+| `cleric`      | `[10, 10, 30, 50]` | `[10, 10, 40, 40]` |
+| `ranger`      | `[30, 40, 15, 15]` | `[25, 25, 25, 25]` |
+| `druid`       | `[15, 15, 40, 30]` | `[10, 10, 40, 40]` |
+| `necromancer` | `[15, 15, 35, 35]` | `[10, 10, 40, 40]` |
+
+Values are **placeholders pending a balance pass.** New classes ship
+through pack content by adding a row under
+`ruleset.heroLevelup.classWeights`; no engine change required.
 
 On level-up:
-1. Roll a random int [0, 100) using RNG
-2. Determine which stat gets +1 (cumulative bucket sum):
-   - [0, 35) → attack +1
-   - [35, 70) → defense +1
-   - [70, 85) → power +1
-   - [85, 100) → knowledge +1
+1. Roll a random int [0, 100) using `rng("hero-levelup", heroId)`.
+2. Determine which stat gets +1 (cumulative bucket sum from the
+   active tuple).
 
-**Post-Level-10 Shift:**
-
-After level 10, caster roles shift weights to favor power/knowledge:
-- Martial roles (Warrior, Ranger, Knight): 25/25/25/25 (balanced)
-- Caster roles (Mage, Druid, Necromancer): 10/10/40/40 (power/knowledge focus)
+**Post-Level-10 shift** is applied automatically: at hero-level
+`> 10`, the runtime reads `post10` instead of `pre10`.
 
 Owned Paths:
 - `src/engine/commands/level-up.ts`
@@ -75,6 +85,10 @@ Dependencies:
 - mvp.02-content-schemas.07-hero-schema
 
 Acceptance Criteria:
+- All five baseline classes (knight, cleric, ranger, druid,
+  necromancer) have validated weight tuples in
+  `ruleset.heroLevelup.classWeights`; each tuple sums to 100
+- Validation rejects any class entry whose tuple does not sum to 100
 - Warrior gains 1000 XP → level 2 reaches
 - LEVEL_UP command fires with new level 2 and new stats
 - Level-up stat gain is deterministic (same seed → same rolls)

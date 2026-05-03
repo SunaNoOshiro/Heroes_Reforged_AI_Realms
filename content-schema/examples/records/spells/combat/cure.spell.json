@@ -1,0 +1,73 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:cure",
+  "name": "Cure",
+  "school": "light",
+  "level": 2,
+  "scope": "combat",
+  "manaCost": 6,
+  "targeting": { "kind": "single_unit", "allegiance": "ally", "maxRange": 16 },
+  "tags": ["heal"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "heal",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 10 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 5 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "heal",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 25 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 5 }
+              ]}
+            ]
+          }
+        },
+        {
+          "kind": "dispel",
+          "scope": "negative"
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "heal",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 50 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 5 }
+              ]}
+            ]
+          }
+        },
+        {
+          "kind": "dispel",
+          "scope": "negative"
+        }
+      ]
+    }
+  }
+}

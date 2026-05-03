@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:haste",
+  "name": "Haste",
+  "school": "air",
+  "level": 1,
+  "scope": "combat",
+  "manaCost": 4,
+  "targeting": { "kind": "single_unit", "allegiance": "ally", "maxRange": 16 },
+  "tags": ["buff"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "hasted",
+          "duration": 3,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 3
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "hasted",
+          "duration": 4,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 4
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "hasted",
+          "duration": 5,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 5
+        }
+      ]
+    }
+  }
+}

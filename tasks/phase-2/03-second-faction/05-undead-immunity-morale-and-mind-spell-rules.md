@@ -18,7 +18,10 @@ Inputs:
 
 Outputs:
 - Update `morale-luck.ts` (`09-tactical-combat.md` Task 6): undead units return "neutral" always
-- Update `spell-targets.ts`: mind spells cannot target units with `undead` ability
+- Update `spell-targets.ts`: a spell whose `tags` array contains
+  `"mind"` cannot target a unit with the `undead` ability. The `mind`
+  tag is the canonical marker — the rule is data-driven, not a
+  hard-coded ID list.
 - `SPELL_CAST` validation rejects mind spells on undead targets with clear error message
 
 Owned Paths:
@@ -30,9 +33,13 @@ Dependencies:
 - mvp.09-tactical-combat.06-morale-and-luck-rolls
 
 Acceptance Criteria:
-- Blind cast on Skeletons returns `ValidationError: "Undead units are immune to mind spells"`
+- A spell with `tags` ⊇ `["mind"]` cast on an `undead` unit returns
+  `ValidationError: "Undead units are immune to mind spells"` (e.g.
+  Blind, Forgetfulness, Hypnotize, Berserk in the baseline roster)
 - Undead units in a mixed army do not reduce morale of other units
 - Undead units themselves always have 0 morale (no lucky strikes, no fumbles)
+- The `mind` tag is data-driven; adding a new mind-tagged spell
+  through pack content auto-extends the rule without engine edits
 
 Verify:
 - npm run validate

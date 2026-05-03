@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:stone_skin",
+  "name": "Stone Skin",
+  "school": "earth",
+  "level": 2,
+  "scope": "combat",
+  "manaCost": 6,
+  "targeting": { "kind": "single_unit", "allegiance": "ally", "maxRange": 16 },
+  "tags": ["buff"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "stone_skin",
+          "duration": 3,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 3
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "stone_skin",
+          "duration": 5,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 4
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "stone_skin",
+          "duration": 7,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 6
+        }
+      ]
+    }
+  }
+}

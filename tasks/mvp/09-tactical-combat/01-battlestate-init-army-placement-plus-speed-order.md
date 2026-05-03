@@ -46,6 +46,17 @@ Acceptance Criteria:
 - Initiative queue orders all 14 stacks (7 per side) by speed descending
 - Two stacks with same speed: attacker goes first
 - `initBattle` is deterministic for same inputs (same seed → same stack IDs, same queue)
+- Battlefield stack cap = `ruleset.combat.battlefieldMaxStacks`
+  (default 14); summon/raise effects rejected past the cap per
+  [`docs/architecture/in-combat-stack-rules.md`](../../../docs/architecture/in-combat-stack-rules.md)
+
+## Not in scope
+
+- **In-combat split** — splitting a stack mid-battle is explicitly
+  out-of-scope. See
+  [`docs/architecture/in-combat-stack-rules.md`](../../../docs/architecture/in-combat-stack-rules.md)
+  and the corresponding row in
+  [`docs/architecture/mechanics-coverage.md`](../../../docs/architecture/mechanics-coverage.md).
 
 Verify:
 - npm run validate

@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/themed-week.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:themed-week:plague",
+  "name": "Week of the Plague",
+  "weight": 4,
+  "descriptionLocalizationKey": "themed_week.plague.description",
+  "effects": [
+    {
+      "kind": "growth_modifier",
+      "unitId": "*",
+      "multiplierNum": 1,
+      "multiplierDen": 4
+    }
+  ]
+}

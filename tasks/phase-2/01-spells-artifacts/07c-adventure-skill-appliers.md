@@ -40,6 +40,10 @@ Dependencies:
 - mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands
 
 Acceptance Criteria:
+- Adventure-skill stat deltas (e.g. capacity, sight) are emitted in the
+  canonical pipeline shape pinned by
+  [`docs/architecture/stat-composition-order.md`](../../../docs/architecture/stat-composition-order.md);
+  no applier mutates hero stats directly
 - Pathfinding and Navigation adjust movement cost deterministically
   before movement validation consumes MP
 - Logistics adjusts adventure capacity through a stable, replayed

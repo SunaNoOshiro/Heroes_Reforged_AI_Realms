@@ -41,6 +41,10 @@ Dependencies:
 - mvp.09-tactical-combat.08-battle-end-condition
 
 Acceptance Criteria:
+- Magic / economy stat deltas (mana cap, regeneration, market rate
+  derived stats) are emitted in the canonical pipeline shape pinned by
+  [`docs/architecture/stat-composition-order.md`](../../../docs/architecture/stat-composition-order.md);
+  no applier mutates hero stats directly
 - Wisdom school mastery gates spell learning and spell casting through
   `SPELL_CAST` / learn-spell validation, not through school-specific
   command kinds

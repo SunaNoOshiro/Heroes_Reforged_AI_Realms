@@ -3,6 +3,10 @@
 This file is intentionally compact. It is the shortest single-file
 summary of the repo.
 
+> **Mechanic scope register:** the SSOT for what's in / out of scope per
+> milestone is [`mechanics-coverage.md`](mechanics-coverage.md). Read
+> that before adding "out of scope" lines to any task.
+
 ## Project
 
 Heroes Reforged is a deterministic turn-based strategy engine plus a

@@ -1,0 +1,68 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:magic_arrow",
+  "name": "Magic Arrow",
+  "school": "arcane",
+  "level": 1,
+  "scope": "combat",
+  "manaCost": 5,
+  "targeting": { "kind": "single_unit", "allegiance": "enemy", "maxRange": 16 },
+  "tags": ["damage", "single_target"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "pure",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 10 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 10 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "pure",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 20 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 10 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "pure",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 30 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 10 }
+              ]}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

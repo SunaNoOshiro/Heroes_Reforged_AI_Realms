@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/themed-week.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:themed-week:standard",
+  "name": "Standard Week",
+  "weight": 50,
+  "descriptionLocalizationKey": "themed_week.standard.description",
+  "effects": [
+    {
+      "kind": "growth_modifier",
+      "unitId": "*",
+      "multiplierNum": 1,
+      "multiplierDen": 1
+    }
+  ]
+}

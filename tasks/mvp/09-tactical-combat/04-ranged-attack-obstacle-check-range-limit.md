@@ -35,12 +35,25 @@ Dependencies:
 - mvp.09-tactical-combat.03-damage-formula
 - mvp.03-map-system.01-axial-hex-coordinate-utilities
 
+## Line of sight
+
+Wall hexes, fortifications, and battlefield obstacles block ranged
+shots via the deterministic cube-interpolation hex-line algorithm
+pinned in
+[`docs/architecture/line-of-sight.md`](../../../docs/architecture/line-of-sight.md).
+Stacks do **not** occlude shots by default; flying stacks never
+occlude. Use `castLineOfSight(field, src, dst)` from
+`src/engine/line-of-sight.ts`; on `blocked`, the ranged attack
+returns a validation error rather than a silent miss.
+
 Acceptance Criteria:
 - Marksman at distance 5 deals full damage (no penalty)
 - Marksman at distance 15 deals ×0.5 damage
 - Marksman adjacent to enemy deals ×0.5 (melee penalty)
 - Monk at distance 15 adjacent to enemy deals ×0.5 (no melee penalty, but long range applies)
 - Shots property depletes by 1 per ranged attack; at 0, unit must use melee
+- Shot blocked by a wall hex returns `BLOCKED`; shot blocked at edge
+  tie selects the lower `(q, r)` hex per the algorithm spec
 
 Verify:
 - npm run validate

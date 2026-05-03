@@ -1,0 +1,17 @@
+{
+  "$schema": "heroes-reforged/map-trigger.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:map-trigger:day30_reinforcements",
+  "name": "Day 30 Reinforcements",
+  "description": "On day 30, the player gains a one-time gold bonus.",
+  "when": { "kind": "on_day", "day": 30 },
+  "then": [
+    {
+      "kind": "resource_bonus",
+      "resource": "gold",
+      "amount": 5000,
+      "cadence": "once"
+    }
+  ],
+  "once": true
+}

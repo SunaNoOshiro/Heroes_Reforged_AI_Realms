@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/themed-week.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:themed-week:plenty",
+  "name": "Week of Plenty",
+  "weight": 6,
+  "descriptionLocalizationKey": "themed_week.plenty.description",
+  "effects": [
+    {
+      "kind": "growth_modifier",
+      "unitId": "*",
+      "multiplierNum": 3,
+      "multiplierDen": 2
+    }
+  ]
+}

@@ -41,11 +41,19 @@ sequenceDiagram
 
 ## Movement Costs
 
-Movement points consumed per tile depend on terrain:
-- Road: 0.75 MP
-- Grass: 1.0 MP
-- Sand: 1.5 MP
-- Snow: 2.0 MP
-- Swamp: 2.0 MP
+All values are MP-cost ×100 integers (no floats anywhere on the
+deterministic path):
 
-Hero stops if MP runs out. Pathfinding uses these costs.
+- Road: 75
+- Grass: 100
+- Sand: 150
+- Snow: 200
+- Swamp: 200
+- Water: 9999 (impassable)
+- Mountain: 9999 (impassable)
+
+Hero stops if MP runs out. Pathfinding uses these integer costs and
+breaks ties on equal-cost paths by axial coord ascending: `q` first,
+then `r`. See
+[`tasks/mvp/05-adventure-map/03-hero-movement.md`](../../../tasks/mvp/05-adventure-map/03-hero-movement.md)
+for the canonical table and tie-break rule.

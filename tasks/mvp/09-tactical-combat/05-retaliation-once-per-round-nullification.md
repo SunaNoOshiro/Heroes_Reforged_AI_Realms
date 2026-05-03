@@ -38,6 +38,10 @@ Acceptance Criteria:
 - Swordsmen attack does not trigger retaliation
 - Retaliation always uses melee attack (even for ranged units)
 - Retaliation flag resets at start of next round
+- **Simultaneous death**: a defender killed by the attacker's strike
+  (HP drops to 0 from the incoming damage) does **not** retaliate;
+  see [`docs/architecture/edge-case-policy.md` §2](../../../docs/architecture/edge-case-policy.md). `unlimited_retaliation` does not
+  override death.
 
 Verify:
 - npm run validate

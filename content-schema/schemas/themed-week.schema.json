@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/themed-week.schema.json",
+  "title": "ThemedWeek",
+  "description": "A themed-week record drawn at WEEK_START. Selection is weighted; the runtime uses rng(\"themed-week\", scenarioId, weekIndex).",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "weight", "effects", "descriptionLocalizationKey"],
+  "properties": {
+    "schemaVersion":             { "type": "integer", "minimum": 1 },
+    "id":                        { "type": "string", "minLength": 1 },
+    "name":                      { "type": "string", "minLength": 1 },
+    "weight":                    { "type": "integer", "minimum": 1 },
+    "descriptionLocalizationKey":{ "type": "string", "minLength": 1 },
+    "effects": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "heroes-reforged/effect.schema.json" }
+    }
+  },
+  "additionalProperties": false
+}

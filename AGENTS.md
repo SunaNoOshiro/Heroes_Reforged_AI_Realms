@@ -36,12 +36,14 @@ Read first if you want to understand the full project:
     — hotkey registry, focus order, tab-trap, focus restoration
 19. [docs/architecture/ui-input-modalities.md](docs/architecture/ui-input-modalities.md)
     — mouse / touch / keyboard / gamepad bridging
-20. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-21. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
+20. [docs/architecture/mechanics-coverage.md](docs/architecture/mechanics-coverage.md)
+    — mechanic scope SSOT (mvp / phase-2 / phase-3 / deferred / out-of-scope)
+21. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
+22. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
     Mermaid flows: game startup, race → castle rendering, battle attack
     sequence, asset loading per context, localization, save/load. Read
     a single `<id>.md` to understand one runtime behavior end-to-end.
-22. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
+23. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
     numbered per-screen UI packages. Each package contains
     `mockup.html` for visuals, `spec.md` for components and bindings,
     `interactions.md` for per-control behavior, `data-contracts.md` for

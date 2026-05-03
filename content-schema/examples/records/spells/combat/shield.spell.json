@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:shield",
+  "name": "Shield",
+  "school": "light",
+  "level": 1,
+  "scope": "combat",
+  "manaCost": 4,
+  "targeting": { "kind": "single_unit", "allegiance": "ally", "maxRange": 16 },
+  "tags": ["buff"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "shielded",
+          "duration": 3,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 15
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "shielded",
+          "duration": 5,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 25
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "shielded",
+          "duration": 7,
+          "durationUnit": "rounds",
+          "stacking": "highest_magnitude_refresh_duration",
+          "magnitude": 30
+        }
+      ]
+    }
+  }
+}

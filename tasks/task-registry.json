@@ -2210,7 +2210,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 287
+      "downstreamTransitiveCount": 292
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2271,7 +2271,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 286
+      "downstreamTransitiveCount": 291
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2328,7 +2328,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 184
+      "downstreamTransitiveCount": 188
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2384,7 +2384,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 204
+      "downstreamTransitiveCount": 209
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2511,8 +2511,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 22,
-      "downstreamTransitiveCount": 175
+      "downstreamDirectCount": 23,
+      "downstreamTransitiveCount": 179
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -2642,7 +2642,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -2763,7 +2763,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 49
+      "downstreamTransitiveCount": 50
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -2937,7 +2937,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 215
+      "downstreamTransitiveCount": 218
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -2995,7 +2995,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 136
+      "downstreamTransitiveCount": 137
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -3059,7 +3059,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 92
+      "downstreamTransitiveCount": 93
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -3117,7 +3117,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 97
+      "downstreamTransitiveCount": 98
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -3178,7 +3178,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 125
+      "downstreamTransitiveCount": 126
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -3239,7 +3239,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 184
+      "downstreamTransitiveCount": 187
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -3313,7 +3313,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 83
+      "downstreamTransitiveCount": 84
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -3398,7 +3398,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 57
+      "downstreamTransitiveCount": 58
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -3499,7 +3499,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -3603,7 +3603,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -3690,7 +3690,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 28
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "mvp.02-content-schemas.12-formula-dsl",
@@ -3759,7 +3759,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 103
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -3851,7 +3851,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -3921,7 +3921,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -3983,7 +3983,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 53
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -4055,7 +4055,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 15
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "mvp.02-content-schemas.17-campaign-schema",
@@ -4129,7 +4129,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "mvp.02-content-schemas.18-random-map-template-schema",
@@ -4203,7 +4203,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 17
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "mvp.02-content-schemas.19-tavern-and-marketplace-tables",
@@ -4281,7 +4281,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "mvp.02-content-schemas.20-university-skill-table",
@@ -4355,7 +4355,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 13
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.02-content-schemas.21-error-state-schema",
@@ -4436,7 +4436,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 15
     },
     {
       "id": "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
@@ -5173,8 +5173,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 145
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 148
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -5234,7 +5234,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 86
+      "downstreamTransitiveCount": 88
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -5289,7 +5289,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 126
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -5350,8 +5350,8 @@
         "mvp.03-map-system.03-layered-tile-storage"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 85
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 87
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -5408,7 +5408,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 15
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "mvp.03-map-system.06-map-serializer-deserializer",
@@ -5484,7 +5484,10 @@
         "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)"
       ],
       "ownedPaths": [
-        "src/engine/__tests__/pathfinder.test.ts"
+        "src/engine/__tests__/pathfinder.test.ts",
+        "tasks/mvp/05-adventure-map/03-hero-movement.md",
+        "src/engine/__tests__/fixtures/pathfinder-tiebreak.json",
+        "tasks/mvp/09-tactical-combat/04a-tactical-pathfinder.md"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
@@ -5840,7 +5843,9 @@
         "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
       ],
       "ownedPaths": [
-        "resources/packs/emberwild-faction/buildings/"
+        "resources/packs/emberwild-faction/buildings/",
+        "baseline.ruleset.json",
+        "ruleset.schema.json"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
@@ -5862,9 +5867,13 @@
       ],
       "estimatedTime": "- 3 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
       "taskDependencies": [
         "mvp.02-content-schemas.05-building-schema"
       ],
@@ -5874,7 +5883,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -6026,7 +6035,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 85
+      "downstreamTransitiveCount": 88
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -6139,7 +6148,9 @@
       "acceptanceCriteria": [
         "`AdventureState` fully serializes / deserializes via `serializer.ts` with identical hash",
         "No mutable references (all arrays are never mutated in place; use spread/structuredClone)",
-        "TypeScript strict types — no `any`"
+        "TypeScript strict types — no `any`",
+        "`hero.army` schema-enforces `maxItems: 7`; the runtime additionally rejects any reducer that would create an 8th stack with `STACK_CAP_EXCEEDED` (see [`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md))",
+        "`Town` shape carries optional `garrisonHeroId` and `visitingHeroId` for the two-hero-per-town protocol; SWAP_TOWN_HEROES command in [`18-transfer-stack-commands.md`](18-transfer-stack-commands.md)"
       ],
       "verifyCommands": [
         "npm run validate",
@@ -6158,8 +6169,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 29,
-      "downstreamTransitiveCount": 113
+      "downstreamDirectCount": 31,
+      "downstreamTransitiveCount": 117
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -6182,7 +6193,7 @@
         "Events emitted as event-log entries, not command kinds:",
         "`DAY_START` restores hero MP and notifies all players",
         "`DAY_END` collects daily resource income",
-        "`WEEK_START` triggers unit growth in towns"
+        "`WEEK_START` triggers unit growth in towns and rolls a themed-week record via the roller task [`phase-2.08-meta-systems.08-themed-week-roller`](../../phase-2/08-meta-systems/08-themed-week-roller.md) (the rolled id is captured on the scenario for the popup)"
       ],
       "readFirst": [
         "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
@@ -6232,8 +6243,8 @@
         "mvp.05-adventure-map.01-strategic-game-state-model"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 85
+      "downstreamDirectCount": 11,
+      "downstreamTransitiveCount": 88
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -6296,7 +6307,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 77
+      "downstreamTransitiveCount": 78
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -6362,7 +6373,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 57
+      "downstreamTransitiveCount": 58
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -6428,7 +6439,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 57
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -6560,8 +6571,8 @@
         "mvp.05-adventure-map.01-strategic-game-state-model"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 32
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 35
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -6837,7 +6848,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 5
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "mvp.05-adventure-map.11-hire-tavern-hero-command",
@@ -7180,7 +7191,8 @@
       ],
       "outputs": [
         "`src/engine/commands/calendar-commands.ts`",
-        "`ACKNOWLEDGE_CALENDAR_ANNOUNCEMENT` reducer and validator"
+        "`ACKNOWLEDGE_CALENDAR_ANNOUNCEMENT` reducer and validator",
+        "Acknowledgement payload includes the rolled themed-week id when the acknowledged event is a `WEEK_START` calendar entry; see [`phase-2.08-meta-systems.08-themed-week-roller`](../../phase-2/08-meta-systems/08-themed-week-roller.md)"
       ],
       "readFirst": [
         "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
@@ -7235,8 +7247,8 @@
         "mvp.05-adventure-map.02-turn-structure"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 3
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 4
     },
     {
       "id": "mvp.05-adventure-map.17-split-army-stack-command",
@@ -7338,6 +7350,7 @@
         "`TRANSFER_GARRISON_STACK` reducer and validator",
         "`TRANSFER_TOWN_ARMY_STACK` reducer and validator",
         "`TRANSFER_HERO_ARMY_STACK` reducer and validator",
+        "`SWAP_TOWN_HEROES` reducer and validator (`{ townId }` → swaps `town.garrisonHeroId` and `town.visitingHeroId`; see [`mvp.05-adventure-map.01-strategic-game-state-model`](01-strategic-game-state-model.md); token cost = 0; deterministic; rejected during active siege per [`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md))",
         "Shared pure helper for move, merge, split-transfer, and swap outcomes"
       ],
       "readFirst": [
@@ -7364,6 +7377,7 @@
         "`TRANSFER_TOWN_ARMY_STACK` moves stacks between a visiting hero and town garrison only when the hero is at that town",
         "`TRANSFER_HERO_ARMY_STACK` moves stacks between adjacent heroes and fails if either hero is missing, enemy-owned, or not adjacent",
         "Merge and swap outcomes preserve stable stack IDs deterministically and never leave an army with zero-count stacks",
+        "`SWAP_TOWN_HEROES` requires both `garrisonHeroId` and `visitingHeroId` to be set; rejects during active siege; reversible (swap → swap-back is byte-equal); replay-deterministic",
         "Screens 22, 24, and 49 dispatch live commands once this task is done"
       ],
       "verifyCommands": [
@@ -7622,7 +7636,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 36
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "mvp.05-adventure-map.22-obelisk-visits-and-grail-state",
@@ -10415,7 +10429,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -10703,7 +10717,8 @@
         "Attacker stacks placed in columns 1–2 (left side), defender in columns 13–14 (right side)",
         "Initiative queue orders all 14 stacks (7 per side) by speed descending",
         "Two stacks with same speed: attacker goes first",
-        "`initBattle` is deterministic for same inputs (same seed → same stack IDs, same queue)"
+        "`initBattle` is deterministic for same inputs (same seed → same stack IDs, same queue)",
+        "Battlefield stack cap = `ruleset.combat.battlefieldMaxStacks` (default 14); summon/raise effects rejected past the cap per [`docs/architecture/in-combat-stack-rules.md`](../../../docs/architecture/in-combat-stack-rules.md)"
       ],
       "verifyCommands": [
         "npm run validate",
@@ -10726,8 +10741,8 @@
         "mvp.04-faction-emberwild.04-baseline-ruleset"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 63
+      "downstreamDirectCount": 19,
+      "downstreamTransitiveCount": 66
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -10789,7 +10804,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -10933,8 +10948,8 @@
         "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 38
+      "downstreamDirectCount": 12,
+      "downstreamTransitiveCount": 41
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -10978,7 +10993,8 @@
         "Marksman at distance 15 deals ×0.5 damage",
         "Marksman adjacent to enemy deals ×0.5 (melee penalty)",
         "Monk at distance 15 adjacent to enemy deals ×0.5 (no melee penalty, but long range applies)",
-        "Shots property depletes by 1 per ranged attack; at 0, unit must use melee"
+        "Shots property depletes by 1 per ranged attack; at 0, unit must use melee",
+        "Shot blocked by a wall hex returns `BLOCKED`; shot blocked at edge tie selects the lower `(q, r)` hex per the algorithm spec"
       ],
       "verifyCommands": [
         "npm run validate",
@@ -10999,8 +11015,81 @@
         "mvp.09-tactical-combat.03-damage-formula"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 33
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 34
+    },
+    {
+      "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
+      "kind": "task",
+      "status": "planned",
+      "title": "Tactical-Combat Pathfinder",
+      "path": "tasks/mvp/09-tactical-combat/04a-tactical-pathfinder.md",
+      "moduleId": "mvp.09-tactical-combat",
+      "modulePath": "tasks/mvp/09-tactical-combat.md",
+      "description": "Implement the tactical pathfinder used by `BATTLE_MOVE`. Reuses the adventure A* and the axial-hex utilities, but enforces the tactical grid's specifics: obstacle hexes, flying bypass, wall-segment navigation (using line-of-sight), and the deterministic tie-break shared with the adventure pathfinder.",
+      "inputs": [
+        "`BattleState` from `mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order`",
+        "Source / destination hex",
+        "Stack abilities (flying, ground, fly-only)",
+        "Movement-points budget"
+      ],
+      "outputs": [
+        "`src/engine/battle-pathfinder.ts`",
+        "`findBattlePath(battle, src, dst, abilities, mp): Hex[] | null`",
+        "Reuses A* from the map-system pathfinder; only the cost / blocker table differs."
+      ],
+      "readFirst": [
+        "[`docs/architecture/line-of-sight.md`](../../../docs/architecture/line-of-sight.md)",
+        "[`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md)",
+        "[`tasks/mvp/03-map-system/01-axial-hex-coordinate-utilities.md`](../../mvp/03-map-system/01-axial-hex-coordinate-utilities.md)",
+        "[`tasks/mvp/03-map-system/04-a-pathfinder-with-terrain-cost-plus-zoc.md`](../../mvp/03-map-system/04-a-pathfinder-with-terrain-cost-plus-zoc.md)"
+      ],
+      "ownedPaths": [
+        "src/engine/battle-pathfinder.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.03-map-system.01-axial-hex-coordinate-utilities",
+        "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
+        "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order",
+        "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit"
+      ],
+      "acceptanceCriteria": [
+        "Path through a 1-hex gap chooses the lower-`(q, r)` divergent hex on a deliberate tie (consistent with adventure pathfinder)",
+        "Flying stack routes around a friendly stack but ignores obstacle hexes",
+        "Ground stack respects ZoC of adjacent enemy stacks (consistent with adventure A*)",
+        "Wall hexes block ground movement until the wall is destroyed (`hp == 0`)",
+        "Function is pure and deterministic: same `(battle, src, dst, abilities, mp)` → same `Hex[]` (or `null`)",
+        "Returns `null` if `mp` is insufficient for any reachable path"
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.03-map-system.01-axial-hex-coordinate-utilities",
+        "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
+        "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order",
+        "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.03-map-system.01-axial-hex-coordinate-utilities",
+        "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
+        "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order",
+        "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 13
     },
     {
       "id": "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
@@ -11040,7 +11129,8 @@
         "Griffins retaliate against every attacker this round",
         "Swordsmen attack does not trigger retaliation",
         "Retaliation always uses melee attack (even for ranged units)",
-        "Retaliation flag resets at start of next round"
+        "Retaliation flag resets at start of next round",
+        "**Simultaneous death**: a defender killed by the attacker's strike (HP drops to 0 from the incoming damage) does **not** retaliate; see [`docs/architecture/edge-case-policy.md` §2](../../../docs/architecture/edge-case-policy.md). `unlimited_retaliation` does not override death."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -11061,8 +11151,8 @@
         "mvp.09-tactical-combat.03-damage-formula"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 33
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 34
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -11125,7 +11215,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 38
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -11141,7 +11231,7 @@
       ],
       "outputs": [
         "`src/engine/abilities.ts`",
-        "Ability resolver called from `BATTLE_ATTACK` and `BATTLE_MOVE` command handlers Abilities to implement for MVP (Emberwild + any second faction): | Ability ID | Description | |---|---| | `flying` | Unit can move to any empty hex ignoring obstacles | | `double_shot` | Ranged unit fires twice per turn | | `no_melee_penalty` | Ranged unit has no melee penalty | | `no_enemy_retaliation` | Defender cannot retaliate | | `unlimited_retaliation` | Unit retaliates every attack, not just once | | `charge_bonus` | +5 % damage per tile moved this turn before attack | | `breath_attack` | Attacks primary target + adjacent hex in line (stub for future) | | `morale_aura` | All allied units in battle gain +1 morale | | `resurrection` | On kill, resurrects some allied units at start of next round (stub) | | `pack_hunt` | +1 damage per adjacent allied stack of the same unit (Emberwild signature) |"
+        "Ability resolver called from `BATTLE_ATTACK` and `BATTLE_MOVE` command handlers Abilities to implement for MVP (Emberwild + any second faction): | Ability ID | Description | |---|---| | `flying` | Unit can move to any empty hex ignoring obstacles | | `double_shot` | Ranged unit fires twice per turn | | `double_strike` | Melee unit attacks twice per turn; each strike resolves separately; **retaliation triggers on the first strike only**. The second strike resolves after retaliation. Companion of `double_shot` — they may not co-exist on the same unit. | | `no_melee_penalty` | Ranged unit has no melee penalty | | `no_enemy_retaliation` | Defender cannot retaliate | | `unlimited_retaliation` | Unit retaliates every attack, not just once | | `charge_bonus` | +5 % damage per tile moved this turn before attack | | `breath_attack` | Attacks primary target + adjacent hex in line. **Friendly-fire ON by default** (`targeting.allowFriendly = true`); an ally in the second hex of the line is damaged. See [`docs/architecture/effect-registry.md` §\"Friendly-fire Defaults\"](../../../docs/architecture/effect-registry.md#friendly-fire-defaults). | | `morale_aura` | All allied units in battle gain +1 morale | | `resurrection` | On kill, resurrects some allied units at start of next round (stub) | | `pack_hunt` | +1 damage per adjacent allied stack of the same unit (Emberwild signature) |"
       ],
       "readFirst": [
         "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)"
@@ -11164,6 +11254,8 @@
       "acceptanceCriteria": [
         "Flying units can jump over obstacle hexes to any empty target",
         "`double_shot` units shoot twice; second shot resolves before any retaliation",
+        "`double_strike` units attack twice; retaliation triggers between the strikes (after strike 1, before strike 2); a defender killed by strike 1 (simultaneous death) does not retaliate per [`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md)",
+        "A unit with both `double_shot` and `double_strike` is rejected at pack-load",
         "`charge_bonus` damage is computed from tiles moved this turn",
         "Morale auras are applied at `initBattle` time, before initiative ordering",
         "`pack_hunt` adjacency is re-evaluated each time the stack attacks"
@@ -11253,8 +11345,8 @@
         "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 24
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 26
     },
     {
       "id": "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
@@ -11559,6 +11651,77 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
       "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.09-tactical-combat.12-edge-case-fuzz-harness",
+      "kind": "task",
+      "status": "planned",
+      "title": "Edge-Case Fuzz Harness",
+      "path": "tasks/mvp/09-tactical-combat/12-edge-case-fuzz-harness.md",
+      "moduleId": "mvp.09-tactical-combat",
+      "modulePath": "tasks/mvp/09-tactical-combat.md",
+      "description": "Deterministic fuzz harness that triggers each rule pinned in [`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md) in isolation and as combinations. The harness is the canonical guard against any reducer drifting from the policy.",
+      "inputs": [
+        "Tactical-combat reducers (`BATTLE_ATTACK`, `BATTLE_RESOLVED`, retaliation, summon)",
+        "Strategic reducers (`MOVE_HERO`, `RECRUIT_UNITS`, `TRANSFER_HERO_ARMY_STACK`)",
+        "Scenario victory/defeat predicate evaluator",
+        "Seeded RNG harness"
+      ],
+      "outputs": [
+        "`src/engine/__tests__/edge-cases.fuzz.ts`",
+        "Per-rule fixtures under `src/engine/__tests__/fixtures/edge-cases/`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/edge-case-policy.md`](../../../docs/architecture/edge-case-policy.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "src/engine/__tests__/edge-cases.fuzz.ts",
+        "src/engine/__tests__/fixtures/edge-cases/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.05-adventure-map.01-strategic-game-state-model",
+        "mvp.05-adventure-map.07-victory-defeat-conditions",
+        "mvp.09-tactical-combat.03-damage-formula",
+        "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
+        "mvp.09-tactical-combat.08-battle-end-condition"
+      ],
+      "acceptanceCriteria": [
+        "Each fixture is a JSON file checked under `fixtures/edge-cases/<rule>.json` with input state, command sequence, and expected post-state hash.",
+        "The harness runs each fixture 3× and asserts byte-identical state hashes.",
+        "Adding a new rule to `edge-case-policy.md` requires adding a fixture; CI fails if a rule has no fixture."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.05-adventure-map.01-strategic-game-state-model",
+        "mvp.05-adventure-map.07-victory-defeat-conditions",
+        "mvp.09-tactical-combat.03-damage-formula",
+        "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
+        "mvp.09-tactical-combat.08-battle-end-condition"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.05-adventure-map.01-strategic-game-state-model",
+        "mvp.05-adventure-map.07-victory-defeat-conditions",
+        "mvp.09-tactical-combat.03-damage-formula",
+        "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
+        "mvp.09-tactical-combat.08-battle-end-condition"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 13
     },
     {
       "id": "mvp.09-tactical-combat.12-tactics-phase-engine",
@@ -12178,15 +12341,9 @@
         "`src/engine/commands/level-up.ts`",
         "`src/engine/hero-growth.ts`",
         "`assignExperience(hero: Hero, amount: number, ruleset: Ruleset, rng: Rng): { levelUpsTriggered: number, newLevel: number, newStats: PrimaryStats }`",
-        "`LEVEL_UP` command: `{ kind: \"LEVEL_UP\", heroId: string, newLevel: number, newPrimaryStats: PrimaryStats }` Reference Growth Mechanics: **Experience Table (cumulative):** ``` Level 1: 0 XP Level 2: 1,000 XP Level 3: 3,000 XP Level 4: 6,000 XP Level 5: 10,000 XP ... Level 20: 190,000 XP Level 30: 790,000 XP ``` Formula: `xpForLevel(n) = n × (n - 1) × 500` **Stat Growth (Probabilistic):** Each level-up rolls a \"bucket\" based on the hero's class role weights. For example, Warrior (ATK-heavy): ``` class: warrior weights: { attack: 35, defense: 35, power: 15, knowledge: 15 } ``` On level-up:",
-        "Roll a random int [0, 100) using RNG",
-        "Determine which stat gets +1 (cumulative bucket sum):",
-        "[0, 35) → attack +1",
-        "[35, 70) → defense +1",
-        "[70, 85) → power +1",
-        "[85, 100) → knowledge +1 **Post-Level-10 Shift:** After level 10, caster roles shift weights to favor power/knowledge:",
-        "Martial roles (Warrior, Ranger, Knight): 25/25/25/25 (balanced)",
-        "Caster roles (Mage, Druid, Necromancer): 10/10/40/40 (power/knowledge focus)"
+        "`LEVEL_UP` command: `{ kind: \"LEVEL_UP\", heroId: string, newLevel: number, newPrimaryStats: PrimaryStats }` Reference Growth Mechanics: **Experience Table (cumulative):** ``` Level 1: 0 XP Level 2: 1,000 XP Level 3: 3,000 XP Level 4: 6,000 XP Level 5: 10,000 XP ... Level 20: 190,000 XP Level 30: 790,000 XP ``` Formula: `xpForLevel(n) = n × (n - 1) × 500` **Stat Growth (Probabilistic):** Each level-up rolls a \"bucket\" based on the hero's class role weights sourced from `ruleset.heroLevelup.classWeights.<classId>` (see [`baseline.ruleset.json`](../../../content-schema/examples/records/rulesets/baseline.ruleset.json) and [`ruleset.schema.json` §`heroLevelup`](../../../content-schema/schemas/ruleset.schema.json)). Per-class weight tuples (`[attack, defense, power, knowledge]`, integer percentages summing to 100): | Class | Pre-10 | Post-10 | |---|---|---| | `knight` | `[35, 45, 10, 10]` | `[25, 30, 20, 25]` | | `cleric` | `[10, 10, 30, 50]` | `[10, 10, 40, 40]` | | `ranger` | `[30, 40, 15, 15]` | `[25, 25, 25, 25]` | | `druid` | `[15, 15, 40, 30]` | `[10, 10, 40, 40]` | | `necromancer` | `[15, 15, 35, 35]` | `[10, 10, 40, 40]` | Values are **placeholders pending a balance pass.** New classes ship through pack content by adding a row under `ruleset.heroLevelup.classWeights`; no engine change required. On level-up:",
+        "Roll a random int [0, 100) using `rng(\"hero-levelup\", heroId)`.",
+        "Determine which stat gets +1 (cumulative bucket sum from the active tuple). **Post-Level-10 shift** is applied automatically: at hero-level `> 10`, the runtime reads `post10` instead of `pre10`."
       ],
       "readFirst": [
         "[`research/deep-research-report.md` Section 4](../../../research/deep-research-report.md) (hero starting stats and growth weights)",
@@ -12208,6 +12365,8 @@
         "mvp.02-content-schemas.07-hero-schema"
       ],
       "acceptanceCriteria": [
+        "All five baseline classes (knight, cleric, ranger, druid, necromancer) have validated weight tuples in `ruleset.heroLevelup.classWeights`; each tuple sums to 100",
+        "Validation rejects any class entry whose tuple does not sum to 100",
         "Warrior gains 1000 XP → level 2 reaches",
         "LEVEL_UP command fires with new level 2 and new stats",
         "Level-up stat gain is deterministic (same seed → same rolls)",
@@ -12224,9 +12383,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
       "taskDependencies": [
         "mvp.02-content-schemas.07-hero-schema",
         "mvp.05-adventure-map.01-strategic-game-state-model"
@@ -12238,7 +12401,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 11
+      "downstreamTransitiveCount": 12
     },
     {
       "id": "phase-2.01-spells-artifacts.01a-hero-skill-assignment",
@@ -12341,7 +12504,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 9
+      "downstreamTransitiveCount": 10
     },
     {
       "id": "phase-2.01-spells-artifacts.01b-spell-school-loader-plus-mastery-scaling",
@@ -12400,7 +12563,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 9
+      "downstreamTransitiveCount": 10
     },
     {
       "id": "phase-2.01-spells-artifacts.02-combat-spells",
@@ -12538,7 +12701,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 3
+      "downstreamTransitiveCount": 4
     },
     {
       "id": "phase-2.01-spells-artifacts.04a-baseline-skill-pack",
@@ -12632,7 +12795,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 10
+      "downstreamTransitiveCount": 11
     },
     {
       "id": "phase-2.01-spells-artifacts.04b-mage-guild-content-level-15-random-selection",
@@ -12750,8 +12913,8 @@
         "mvp.02-content-schemas.04-artifact-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 20
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "phase-2.01-spells-artifacts.05a-equip-unequip-artifact-commands",
@@ -13058,8 +13221,8 @@
         "phase-2.01-spells-artifacts.04a-baseline-skill-pack"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "phase-2.01-spells-artifacts.07b-combat-skill-appliers",
@@ -13099,6 +13262,7 @@
         "mvp.09-tactical-combat.06-morale-and-luck-rolls"
       ],
       "acceptanceCriteria": [
+        "Combat appliers emit `{stat, value}` deltas that feed the canonical pipeline pinned in [`docs/architecture/stat-composition-order.md`](../../../docs/architecture/stat-composition-order.md); no applier mutates hero stats directly",
         "Leadership at Expert adds +3 morale through the combat applier before battle initialization finalizes stack stats",
         "Luck, Archery, Offense, Armorer, Defense, and Discipline each have deterministic basic/advanced/expert test vectors",
         "Combat appliers use only stable skill IDs and mastery values; no behavior branches on localized names or first-party faction IDs",
@@ -13128,8 +13292,8 @@
         "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 1
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
     },
     {
       "id": "phase-2.01-spells-artifacts.07c-adventure-skill-appliers",
@@ -13170,6 +13334,7 @@
         "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands"
       ],
       "acceptanceCriteria": [
+        "Adventure-skill stat deltas (e.g. capacity, sight) are emitted in the canonical pipeline shape pinned by [`docs/architecture/stat-composition-order.md`](../../../docs/architecture/stat-composition-order.md); no applier mutates hero stats directly",
         "Pathfinding and Navigation adjust movement cost deterministically before movement validation consumes MP",
         "Logistics adjusts adventure capacity through a stable, replayed derived-stat path",
         "Scouting updates sight radius without revealing hidden data outside deterministic fog rules",
@@ -13201,8 +13366,8 @@
         "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 1
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
     },
     {
       "id": "phase-2.01-spells-artifacts.07d-magic-economy-and-special-skill-appliers",
@@ -13244,6 +13409,7 @@
         "mvp.09-tactical-combat.08-battle-end-condition"
       ],
       "acceptanceCriteria": [
+        "Magic / economy stat deltas (mana cap, regeneration, market rate derived stats) are emitted in the canonical pipeline shape pinned by [`docs/architecture/stat-composition-order.md`](../../../docs/architecture/stat-composition-order.md); no applier mutates hero stats directly",
         "Wisdom school mastery gates spell learning and spell casting through `SPELL_CAST` / learn-spell validation, not through school-specific command kinds",
         "Mysticism and Sorcery alter mana pool, regeneration, or cost through deterministic derived-stat hooks",
         "Trading adjusts marketplace rates without changing resource IDs or command payload shapes",
@@ -13277,8 +13443,95 @@
         "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 1
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "phase-2.01-spells-artifacts.07e-stat-composition-pipeline",
+      "kind": "task",
+      "status": "planned",
+      "title": "Stat Composition Pipeline",
+      "path": "tasks/phase-2/01-spells-artifacts/07e-stat-composition-pipeline.md",
+      "moduleId": "phase-2.01-spells-artifacts",
+      "modulePath": "tasks/phase-2/01-spells-artifacts.md",
+      "description": "Implement the canonical stat composition pipeline: `applyStatPipeline(hero, ctx) → DerivedStats`. The function combines base, permanent (level-up), skill, specialty, artifact, and battlefield-aura inputs in a fixed order, clamping only at the end. It is the single function that produces the integers consumed by the combat damage formula.",
+      "inputs": [
+        "Hero record (base, permanent, skills, specialty, equipped artifacts)",
+        "Battlefield context (`ctx.auras: AuraDelta[]`)",
+        "Skill appliers from 07b / 07c / 07d",
+        "Specialty applier from `phase-2.01-spells-artifacts.16-hero-specialty-applier`"
+      ],
+      "outputs": [
+        "`src/rules/stat-pipeline.ts`",
+        "`applyStatPipeline(hero: Hero, ctx: PipelineContext): DerivedStats`",
+        "Pure function; no side effects.",
+        "Golden fixture: `src/rules/__tests__/stat-pipeline.golden.json`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/stat-composition-order.md`](../../../docs/architecture/stat-composition-order.md)",
+        "[`docs/architecture/status-effects.md`](../../../docs/architecture/status-effects.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`content-schema/schemas/hero.schema.json`](../../../content-schema/schemas/hero.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/rules/stat-pipeline.ts",
+        "src/rules/__tests__/stat-pipeline.golden.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization",
+        "phase-2.01-spells-artifacts.07b-combat-skill-appliers",
+        "phase-2.01-spells-artifacts.07c-adventure-skill-appliers",
+        "phase-2.01-spells-artifacts.07d-magic-economy-and-special-skill-appliers",
+        "phase-2.01-spells-artifacts.16-hero-specialty-applier",
+        "phase-2.01-spells-artifacts.05-artifact-paper-doll-system"
+      ],
+      "acceptanceCriteria": [
+        "Step order matches the doc: base → permanent → skill → specialty → artifact → aura → clamp",
+        "Source-id tie-break is alphabetical ascending; documented in tests",
+        "Clamps run only at the end (no mid-pipeline clamping)",
+        "All math is integer; no floats anywhere in the pipeline",
+        "Two artifacts contributing `+50 attack` to a base-1 hero produce final attack = 99 (clamp), not 51",
+        "Specialty `skill_bonus.levelOffset` replaces the skill step output for the named skill before the artifact step runs",
+        "Output is byte-equal across two engines for the golden fixture",
+        "Function is pure: same `(hero, ctx)` → same output bytes"
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/hero.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/hero.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-2.01-spells-artifacts.05-artifact-paper-doll-system",
+        "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization",
+        "phase-2.01-spells-artifacts.07b-combat-skill-appliers",
+        "phase-2.01-spells-artifacts.07c-adventure-skill-appliers",
+        "phase-2.01-spells-artifacts.07d-magic-economy-and-special-skill-appliers",
+        "phase-2.01-spells-artifacts.16-hero-specialty-applier"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-2.01-spells-artifacts.05-artifact-paper-doll-system",
+        "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization",
+        "phase-2.01-spells-artifacts.07b-combat-skill-appliers",
+        "phase-2.01-spells-artifacts.07c-adventure-skill-appliers",
+        "phase-2.01-spells-artifacts.07d-magic-economy-and-special-skill-appliers",
+        "phase-2.01-spells-artifacts.16-hero-specialty-applier"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "phase-2.01-spells-artifacts.08-spell-casting-in-combat-ui",
@@ -13720,6 +13973,7 @@
         "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs"
       ],
       "acceptanceCriteria": [
+        "All siege values come from `ruleset.siege.*` (wall HP, gate HP, moat damage / passability, tower damage / shots-per-round, drawbridge default rounds). Schema: [`ruleset.schema.json` §`siege`](../../../content-schema/schemas/ruleset.schema.json); baseline values: [`baseline.ruleset.json`](../../../content-schema/examples/records/rulesets/baseline.ruleset.json). Values land as **placeholders** pending a balance-pass task.",
         "Siege battle initialization creates wall, gate, moat, and tower state from content IDs and ruleset values",
         "Moat damage and passability rules apply when stacks enter moat cells through normal movement commands",
         "Tower auto-fire uses deterministic initiative/round timing and emits battle events for animation without using wall-clock time",
@@ -13734,7 +13988,9 @@
       "screenPackages": [
         "docs/architecture/wiki/screens/43-siege-combat"
       ],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/ruleset.schema.json"
+      ],
       "screenSchemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/asset-index.schema.json",
@@ -14016,8 +14272,8 @@
         "phase-2.01-spells-artifacts.07d-magic-economy-and-special-skill-appliers"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 0,
-      "downstreamTransitiveCount": 0
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
     },
     {
       "id": "phase-2.01-spells-artifacts.17-trade-artifact-command",
@@ -14726,7 +14982,8 @@
         "Necromancer with Expert Necromancy raises correct number of Skeleton Warriors",
         "Hero at 7-stack army limit: new skeletons added to existing Skeleton stack (if any) or discarded",
         "Non-undead enemies are raised; undead enemies are NOT raised",
-        "Skeletons raised are always Skeleton Warriors (not base Skeletons)"
+        "Skeletons raised are always Skeleton Warriors (not base Skeletons)",
+        "In-combat raise (mid-battle, not just post-battle) follows the merge rule pinned in [`docs/architecture/in-combat-stack-rules.md`](../../../docs/architecture/in-combat-stack-rules.md): prefer existing same-unit stack, else create new (subject to `ruleset.combat.battlefieldMaxStacks`)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -14763,7 +15020,7 @@
       ],
       "outputs": [
         "Update `morale-luck.ts` (`09-tactical-combat.md` Task 6): undead units return \"neutral\" always",
-        "Update `spell-targets.ts`: mind spells cannot target units with `undead` ability",
+        "Update `spell-targets.ts`: a spell whose `tags` array contains `\"mind\"` cannot target a unit with the `undead` ability. The `mind` tag is the canonical marker — the rule is data-driven, not a hard-coded ID list.",
         "`SPELL_CAST` validation rejects mind spells on undead targets with clear error message"
       ],
       "readFirst": [
@@ -14784,9 +15041,10 @@
         "mvp.09-tactical-combat.06-morale-and-luck-rolls"
       ],
       "acceptanceCriteria": [
-        "Blind cast on Skeletons returns `ValidationError: \"Undead units are immune to mind spells\"`",
+        "A spell with `tags` ⊇ `[\"mind\"]` cast on an `undead` unit returns `ValidationError: \"Undead units are immune to mind spells\"` (e.g. Blind, Forgetfulness, Hypnotize, Berserk in the baseline roster)",
         "Undead units in a mixed army do not reduce morale of other units",
-        "Undead units themselves always have 0 morale (no lucky strikes, no fumbles)"
+        "Undead units themselves always have 0 morale (no lucky strikes, no fumbles)",
+        "The `mind` tag is data-driven; adding a new mind-tagged spell through pack content auto-extends the rule without engine edits"
       ],
       "verifyCommands": [
         "npm run validate",
@@ -23176,6 +23434,81 @@
       "downstreamTransitiveCount": 1
     },
     {
+      "id": "phase-2.08-meta-systems.07-map-trigger-engine",
+      "kind": "task",
+      "status": "planned",
+      "title": "Map Trigger Engine",
+      "path": "tasks/phase-2/08-meta-systems/07-map-trigger-engine.md",
+      "moduleId": "phase-2.08-meta-systems",
+      "modulePath": "tasks/phase-2/08-meta-systems.md",
+      "description": "Implement the deterministic runtime evaluator for `MapTrigger` records authored against [`content-schema/schemas/map-trigger.schema.json`](../../../content-schema/schemas/map-trigger.schema.json). Triggers fire at command-loop boundaries; the evaluator uses the seeded RNG substream `rng(\"map-triggers\", scenarioId)`.",
+      "inputs": [
+        "`AdventureState`",
+        "`Scenario.triggers[]` from [`content-schema/schemas/scenario.schema.json`](../../../content-schema/schemas/scenario.schema.json)",
+        "Seeded RNG substream",
+        "Effect-handler registry"
+      ],
+      "outputs": [
+        "`src/engine/map-triggers.ts`",
+        "`evaluateMapTriggers(state, scenario, ctx) → TriggerFireRecord[]`",
+        "Trigger fires emit existing effect kinds — `spawn_army`, `set_flag`, `award_resources`, `resource_bonus`, etc. — through the standard effect-handler registry."
+      ],
+      "readFirst": [
+        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`content-schema/schemas/map-trigger.schema.json`](../../../content-schema/schemas/map-trigger.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/engine/map-triggers.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.05-adventure-map.01-strategic-game-state-model",
+        "mvp.05-adventure-map.02-turn-structure",
+        "mvp.01-engine-core.06-command-dispatcher"
+      ],
+      "acceptanceCriteria": [
+        "Triggers fire deterministically at command-loop boundaries; no trigger fires inside the middle of a reducer",
+        "`once: true` triggers fire exactly once per scenario",
+        "`repeatEveryDays: N` triggers fire every Nth day after first match, bounded by `once == false`",
+        "Each `when.kind` is supported: `on_day`, `on_week_index`, `on_tile_visit`, `on_army_defeat`, `on_resource_threshold`, `on_flag_set`, `on_object_owned`",
+        "The same scenario + same command log produces byte-equal trigger fire records across two engines",
+        "`set_flag` records persist on the scenario flag bag and are consulted by `on_flag_set` triggers in subsequent ticks"
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/map-trigger.schema.json",
+        "content-schema/schemas/scenario.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/map-trigger.schema.json",
+        "content-schema/schemas/scenario.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.05-adventure-map.01-strategic-game-state-model",
+        "mvp.05-adventure-map.02-turn-structure"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.05-adventure-map.01-strategic-game-state-model",
+        "mvp.05-adventure-map.02-turn-structure"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "phase-2.08-meta-systems.08-debug-overlay-screen",
       "kind": "task",
       "status": "planned",
@@ -23258,6 +23591,93 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "phase-2.08-meta-systems.08-themed-week-roller",
+      "kind": "task",
+      "status": "planned",
+      "title": "Themed-Week Roller",
+      "path": "tasks/phase-2/08-meta-systems/08-themed-week-roller.md",
+      "moduleId": "phase-2.08-meta-systems",
+      "modulePath": "tasks/phase-2/08-meta-systems.md",
+      "description": "Pick one themed-week record at every `WEEK_START` event using a weighted random draw seeded by `rng(\"themed-week\", scenarioId, weekIndex)`. Apply the chosen record's effects, expose its localized description to the `58-week-month-popup` screen, and decay the effects at the next `WEEK_START`.",
+      "inputs": [
+        "Themed-week records loaded from active packs",
+        "`WEEK_START` boundary in [`mvp.05-adventure-map.02-turn-structure`](../../mvp/05-adventure-map/02-turn-structure.md)",
+        "Scenario id + week index",
+        "Seeded RNG substream"
+      ],
+      "outputs": [
+        "`src/engine/themed-week-roller.ts`",
+        "`rollThemedWeek(packs, scenarioId, weekIndex, rng) → ThemedWeek`",
+        "WEEK_START reducer extension that captures the rolled themed-week id on the active scenario state and applies its effects",
+        "Acknowledgement payload extension: the `15-acknowledge-week-month-event-command` payload carries the rolled themed-week id"
+      ],
+      "readFirst": [
+        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`content-schema/schemas/themed-week.schema.json`](../../../content-schema/schemas/themed-week.schema.json)",
+        "`docs/architecture/wiki/screens/58-week-month-popup/interactions.md`"
+      ],
+      "ownedPaths": [
+        "src/engine/themed-week-roller.ts",
+        "content-schema/examples/records/themed-weeks/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.05-adventure-map.02-turn-structure",
+        "mvp.05-adventure-map.15-acknowledge-week-month-event-command"
+      ],
+      "acceptanceCriteria": [
+        "Same `(packs, scenarioId, weekIndex, seed)` → same themed-week id",
+        "Effects fire deterministically at WEEK_START via the standard effect handler registry (`growth_modifier`, `resource_bonus`, `set_flag`, `award_resources`)",
+        "Decayed effects do not leak past the next WEEK_START",
+        "≥6 baseline themed-week records ship in `content-schema/examples/records/themed-weeks/`",
+        "Replay determinism: 3 runs of the same scenario over 12 weeks produce identical themed-week sequences"
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/58-week-month-popup"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/themed-week.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/themed-week.schema.json",
+        "content-schema/schemas/unit.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.05-adventure-map.02-turn-structure",
+        "mvp.05-adventure-map.15-acknowledge-week-month-event-command"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.05-adventure-map.02-turn-structure",
+        "mvp.05-adventure-map.15-acknowledge-week-month-event-command"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "phase-2.08-meta-systems.09-animation-debug-overlay-screen",
@@ -24289,6 +24709,7 @@
         "mvp.09-tactical-combat.02a-defend-damage-reduction",
         "mvp.09-tactical-combat.03-damage-formula",
         "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
+        "mvp.09-tactical-combat.04a-tactical-pathfinder",
         "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
         "mvp.09-tactical-combat.06-morale-and-luck-rolls",
         "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -24296,6 +24717,7 @@
         "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
         "mvp.09-tactical-combat.10-replay-smoke-test-20-round-battle",
         "mvp.09-tactical-combat.11-combat-hud-overlay",
+        "mvp.09-tactical-combat.12-edge-case-fuzz-harness",
         "mvp.09-tactical-combat.12-tactics-phase-engine",
         "mvp.09-tactical-combat.13-retreat-and-surrender-commands",
         "mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients",
@@ -24739,6 +25161,7 @@
         "mvp.09-tactical-combat.02a-defend-damage-reduction",
         "mvp.09-tactical-combat.03-damage-formula",
         "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
+        "mvp.09-tactical-combat.04a-tactical-pathfinder",
         "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
         "mvp.09-tactical-combat.06-morale-and-luck-rolls",
         "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -24746,6 +25169,7 @@
         "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
         "mvp.09-tactical-combat.10-replay-smoke-test-20-round-battle",
         "mvp.09-tactical-combat.11-combat-hud-overlay",
+        "mvp.09-tactical-combat.12-edge-case-fuzz-harness",
         "mvp.09-tactical-combat.12-tactics-phase-engine",
         "mvp.09-tactical-combat.13-retreat-and-surrender-commands"
       ],
@@ -25652,6 +26076,7 @@
         "mvp.09-tactical-combat.02a-defend-damage-reduction",
         "mvp.09-tactical-combat.03-damage-formula",
         "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
+        "mvp.09-tactical-combat.04a-tactical-pathfinder",
         "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
         "mvp.09-tactical-combat.06-morale-and-luck-rolls",
         "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -25659,6 +26084,7 @@
         "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
         "mvp.09-tactical-combat.10-replay-smoke-test-20-round-battle",
         "mvp.09-tactical-combat.11-combat-hud-overlay",
+        "mvp.09-tactical-combat.12-edge-case-fuzz-harness",
         "mvp.09-tactical-combat.12-tactics-phase-engine",
         "mvp.09-tactical-combat.13-retreat-and-surrender-commands"
       ],

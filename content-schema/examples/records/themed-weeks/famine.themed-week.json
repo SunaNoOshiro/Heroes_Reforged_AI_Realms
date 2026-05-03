@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/themed-week.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:themed-week:famine",
+  "name": "Week of Famine",
+  "weight": 6,
+  "descriptionLocalizationKey": "themed_week.famine.description",
+  "effects": [
+    {
+      "kind": "resource_bonus",
+      "resource": "gold",
+      "amount": -250,
+      "cadence": "weekly"
+    }
+  ]
+}

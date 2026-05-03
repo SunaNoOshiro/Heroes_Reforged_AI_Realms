@@ -36,6 +36,9 @@ Adventure garrison transfer screen for moving stacks between visiting hero and s
 | selectedStack | state.ui.garrisonTransfer.selectedStackRef | Local drag/click selection. |
 | transferRules | selectors.armies.garrisonTransferRules | Ownership, lock, capacity, and merge legality. |
 | splitDraft | state.ui.garrisonTransfer.splitQuantity | Local split quantity before command. |
+| garrisonHeroId | state.towns.byId[townId].garrisonHeroId | Two-hero-per-town protocol — garrisoned hero (nullable). |
+| visitingHeroId | state.towns.byId[townId].visitingHeroId | Two-hero-per-town protocol — visiting hero (nullable). |
+| swapEnabled | selectors.towns.canSwapHeroes | True only when both slots are set and town is not under active siege. |
 
 ### Mechanics Mapping
 - Transfers validate ownership, locked garrison flags, stack compatibility, one-creature-left rules where applicable, and capacity before reducer updates both armies.

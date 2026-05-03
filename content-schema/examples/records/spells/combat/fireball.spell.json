@@ -1,0 +1,68 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:fireball",
+  "name": "Fireball",
+  "school": "fire",
+  "level": 3,
+  "scope": "combat",
+  "manaCost": 12,
+  "targeting": { "kind": "area", "radius": 1, "maxRange": 12, "allowFriendly": true },
+  "tags": ["damage", "aoe"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "fire",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 25 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 10 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "fire",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 35 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 10 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "damage",
+          "damageType": "fire",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 50 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 10 }
+              ]}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

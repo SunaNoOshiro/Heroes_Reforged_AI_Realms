@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:disguise",
+  "name": "Disguise",
+  "school": "water",
+  "level": 3,
+  "scope": "adventure",
+  "manaCost": 8,
+  "targeting": { "kind": "self" },
+  "tags": ["scry"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "disguised",
+          "duration": 1,
+          "durationUnit": "days",
+          "stacking": "refresh",
+          "magnitude": 1
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "disguised",
+          "duration": 2,
+          "durationUnit": "days",
+          "stacking": "refresh",
+          "magnitude": 2
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "disguised",
+          "duration": 3,
+          "durationUnit": "days",
+          "stacking": "refresh",
+          "magnitude": 3
+        }
+      ]
+    }
+  }
+}

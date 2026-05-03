@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/map-trigger.schema.json",
+  "title": "MapTrigger",
+  "description": "A scenario-scoped trigger record. Triggers fire deterministically at command-loop boundaries; runtime evaluator uses the seeded RNG substream rng(\"map-triggers\", scenarioId).",
+  "type": "object",
+  "required": ["schemaVersion", "id", "when", "then", "once"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id":            { "type": "string", "minLength": 1 },
+    "name":          { "type": "string", "minLength": 1 },
+    "description":   { "type": "string" },
+    "when": {
+      "type": "object",
+      "required": ["kind"],
+      "oneOf": [
+        {
+          "properties": {
+            "kind": { "const": "on_day" },
+            "day":  { "type": "integer", "minimum": 1 }
+          },
+          "required": ["kind", "day"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":      { "const": "on_week_index" },
+            "weekIndex": { "type": "integer", "minimum": 1 }
+          },
+          "required": ["kind", "weekIndex"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":   { "const": "on_tile_visit" },
+            "q":      { "type": "integer" },
+            "r":      { "type": "integer" },
+            "playerId": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["kind", "q", "r"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":   { "const": "on_army_defeat" },
+            "armyId": { "type": "string", "minLength": 1 }
+          },
+          "required": ["kind", "armyId"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":     { "const": "on_resource_threshold" },
+            "playerId": { "type": "integer", "minimum": 0 },
+            "resource": { "$ref": "heroes-reforged/resource-id.schema.json" },
+            "amount":   { "type": "integer", "minimum": 0 },
+            "comparator": { "type": "string", "enum": ["gte", "lte", "eq"] }
+          },
+          "required": ["kind", "playerId", "resource", "amount", "comparator"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":     { "const": "on_flag_set" },
+            "flagId":   { "type": "string", "minLength": 1 }
+          },
+          "required": ["kind", "flagId"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "kind":     { "const": "on_object_owned" },
+            "objectId": { "type": "string", "minLength": 1 },
+            "playerId": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["kind", "objectId"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "then": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "heroes-reforged/effect.schema.json" }
+    },
+    "once":              { "type": "boolean" },
+    "repeatEveryDays":   { "type": "integer", "minimum": 1 }
+  },
+  "additionalProperties": false
+}

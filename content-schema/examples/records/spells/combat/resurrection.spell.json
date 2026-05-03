@@ -1,0 +1,65 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:resurrection",
+  "name": "Resurrection",
+  "school": "light",
+  "level": 4,
+  "scope": "combat",
+  "manaCost": 20,
+  "targeting": { "kind": "single_unit", "allegiance": "ally", "maxRange": 16 },
+  "tags": ["heal", "resurrection", "stub"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "heal",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 40 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 10 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "heal",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 80 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 15 }
+              ]}
+            ]
+          }
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "heal",
+          "amount": {
+            "op": "add",
+            "args": [
+              { "op": "const", "value": 120 },
+              { "op": "mul", "args": [
+                { "op": "var", "path": "caster.power" },
+                { "op": "const", "value": 20 }
+              ]}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

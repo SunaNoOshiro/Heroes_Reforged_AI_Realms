@@ -39,6 +39,11 @@ Acceptance Criteria:
 - Hero at 7-stack army limit: new skeletons added to existing Skeleton stack (if any) or discarded
 - Non-undead enemies are raised; undead enemies are NOT raised
 - Skeletons raised are always Skeleton Warriors (not base Skeletons)
+- In-combat raise (mid-battle, not just post-battle) follows the merge
+  rule pinned in
+  [`docs/architecture/in-combat-stack-rules.md`](../../../docs/architecture/in-combat-stack-rules.md):
+  prefer existing same-unit stack, else create new (subject to
+  `ruleset.combat.battlefieldMaxStacks`).
 
 Verify:
 - npm run validate

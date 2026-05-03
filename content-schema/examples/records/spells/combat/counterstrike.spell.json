@@ -1,0 +1,50 @@
+{
+  "$schema": "heroes-reforged/spell.schema.json",
+  "schemaVersion": 1,
+  "id": "shared:spell:counterstrike",
+  "name": "Counterstrike",
+  "school": "light",
+  "level": 3,
+  "scope": "combat",
+  "manaCost": 10,
+  "targeting": { "kind": "single_unit", "allegiance": "ally", "maxRange": 16 },
+  "tags": ["buff"],
+  "masteryTiers": {
+    "basic": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "counterstrike",
+          "duration": 3,
+          "durationUnit": "rounds",
+          "stacking": "refresh",
+          "magnitude": 1
+        }
+      ]
+    },
+    "advanced": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "counterstrike",
+          "duration": 5,
+          "durationUnit": "rounds",
+          "stacking": "refresh",
+          "magnitude": 1
+        }
+      ]
+    },
+    "expert": {
+      "effects": [
+        {
+          "kind": "status",
+          "status": "counterstrike",
+          "duration": 7,
+          "durationUnit": "rounds",
+          "stacking": "refresh",
+          "magnitude": 2
+        }
+      ]
+    }
+  }
+}

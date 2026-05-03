@@ -131,6 +131,9 @@
       "$ref": "#/$defs/transferHeroArmyStack"
     },
     {
+      "$ref": "#/$defs/swapTownHeroes"
+    },
+    {
       "$ref": "#/$defs/splitArmyStack"
     },
     {
@@ -1526,6 +1529,27 @@
         "quantity": {
           "type": "integer",
           "minimum": 1
+        },
+        "metadata": {
+          "$ref": "#/$defs/commandMetadata"
+        }
+      },
+      "additionalProperties": false
+    },
+    "swapTownHeroes": {
+      "type": "object",
+      "description": "Swap a town's garrisoned hero and visiting hero. Both slots must be set; rejected during active siege. See docs/architecture/edge-case-policy.md and tasks/mvp/05-adventure-map/18-transfer-stack-commands.md.",
+      "required": [
+        "kind",
+        "townId",
+        "metadata"
+      ],
+      "properties": {
+        "kind": {
+          "const": "SWAP_TOWN_HEROES"
+        },
+        "townId": {
+          "$ref": "#/$defs/stringId"
         },
         "metadata": {
           "$ref": "#/$defs/commandMetadata"
