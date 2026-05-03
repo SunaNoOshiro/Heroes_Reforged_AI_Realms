@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>67. Animation Debug Overlay - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: rgba(0,0,0,0); }
+  body { color: #d8e6ff; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: rgba(0,0,0,0); }
+  .panel { fill: rgba(8,12,18,.78); stroke: #34a0ff; stroke-width: 1; }
+  .header { fill: #82c8ff; font: 700 11px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #d8e6ff; font: 10px ui-monospace, Menlo, monospace; }
+  .ok { fill: #7ce0a4; font: 700 10px ui-monospace, Menlo, monospace; }
+  .warn { fill: #ffd166; font: 700 10px ui-monospace, Menlo, monospace; }
+  .err { fill: #ff7373; font: 700 10px ui-monospace, Menlo, monospace; }
+  .button rect { fill: #163049; stroke: #34a0ff; }
+  .button text { fill: #d8e6ff; font: 700 10px ui-monospace, Menlo, monospace; }
+  .scrubber { fill: #08121a; stroke: #34a0ff; }
+  .scrubberFill { fill: #1f6dc4; }
+</style>
+</head>
+<body data-screen="67-animation-debug-overlay" data-archetype="diagnostics-overlay" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animation Debug Overlay mockup">
+  <g data-component="AnimationDebugOverlay">
+
+    <rect x="14" y="14" width="772" height="100" class="panel" data-component="PresentationControlsBar" data-i18n="ui.animation-debug-overlay.controls.title"/>
+    <text x="24" y="34" class="header">PRESENTATION CONTROLS</text>
+    <text x="24" y="54" class="row">eventLogIndex   14823 / 32178</text>
+    <text x="24" y="68" class="row">paused          true</text>
+    <text x="24" y="82" class="row">timelineSpeed   1.0x</text>
+    <text x="24" y="96" class="row">degradationTier Green</text>
+
+    <rect x="320" y="40" width="450" height="14" class="scrubber" data-component="ScrubBar"/>
+    <rect x="320" y="40" width="200" height="14" class="scrubberFill"/>
+    <g class="button" data-component="PauseToggle" data-action="animDebugOverlay.pause">
+      <rect x="320" y="64" width="48" height="22" rx="2"/>
+      <text x="344" y="79" text-anchor="middle">PAUSE</text>
+    </g>
+    <g class="button" data-component="StepBackButton" data-action="animDebugOverlay.stepBack">
+      <rect x="372" y="64" width="48" height="22" rx="2"/>
+      <text x="396" y="79" text-anchor="middle">&lt; STEP</text>
+    </g>
+    <g class="button" data-component="StepForwardButton" data-action="animDebugOverlay.stepForward">
+      <rect x="424" y="64" width="48" height="22" rx="2"/>
+      <text x="448" y="79" text-anchor="middle">STEP &gt;</text>
+    </g>
+    <g class="button" data-component="PlaybackSpeedSelect" data-action="animDebugOverlay.setSpeed">
+      <rect x="476" y="64" width="60" height="22" rx="2"/>
+      <text x="506" y="79" text-anchor="middle">SPEED</text>
+    </g>
+    <g class="button" data-action="animDebugOverlay.toggleVisibility">
+      <rect x="722" y="64" width="48" height="22" rx="2"/>
+      <text x="746" y="79" text-anchor="middle">HIDE</text>
+    </g>
+
+    <rect x="14" y="124" width="380" height="280" class="panel" data-component="PerStackAnimationInspector" data-i18n="ui.animation-debug-overlay.inspector.title"/>
+    <text x="24" y="144" class="header">PER-STACK TIMELINES</text>
+    <g data-component="PerStackTimelineRow">
+      <text x="24" y="166" class="row">stack:0  ash-hound  attack    body  fr 2/4   12fps</text>
+      <text x="24" y="180" class="row">  cue@2 damage primary    cue@2 sound swing</text>
+    </g>
+    <g data-component="PerStackTimelineRow">
+      <text x="24" y="200" class="row">stack:1  ash-hound  hurt      body  fr 0/2   10fps</text>
+    </g>
+    <g data-component="PerStackTimelineRow">
+      <text x="24" y="220" class="row">stack:2  cinder-dr  cast      body  fr 4/8   12fps</text>
+    </g>
+    <g data-component="PerStackTimelineRow">
+      <text x="24" y="240" class="row">stack:2  burn       burning   stat  fr 3/6    8fps  loop</text>
+    </g>
+    <g data-component="PerStackTimelineRow">
+      <text x="24" y="260" class="row">vfx:0    ember-lance projectile fx   t=0.42s</text>
+    </g>
+    <g data-component="PerStackTimelineRow">
+      <text x="24" y="280" class="row">camera   follow stack:2          t=0.42s</text>
+    </g>
+    <text x="24" y="320" class="warn">missingAnimRefs: 0</text>
+    <text x="24" y="340" class="row">use Step / Scrub to advance.</text>
+
+    <rect x="404" y="124" width="382" height="180" class="panel" data-component="EventLogTail" data-i18n="ui.animation-debug-overlay.events.title"/>
+    <text x="414" y="144" class="header">EVENT LOG TAIL</text>
+    <text x="414" y="164" class="row">14820  UNIT_ATTACKED   {att:0, def:1, dmg:47, ef:2}</text>
+    <text x="414" y="178" class="row">14821  UNIT_ATTACKED   {att:1, def:0, dmg:22, ef:2}</text>
+    <text x="414" y="192" class="row">14822  STATUS_APPLIED  {target:1, status:burn}</text>
+    <text x="414" y="206" class="row">14823  SPELL_CAST      {spellId:ember-lance, target:hex(7,4)}</text>
+    <text x="414" y="220" class="row">14824  UNIT_ATTACKED   {def:2, dmg:30, ef:4}</text>
+    <text x="414" y="234" class="row">14825  UNIT_ATTACKED   {def:3, dmg:30, ef:4}</text>
+    <text x="414" y="248" class="row">14826  UNIT_DIED       {target:3}</text>
+    <text x="414" y="262" class="row">14827  UNIT_DEFENDED   {att:2}</text>
+    <text x="414" y="276" class="row">14828  UNIT_MOVED      {att:0, to:hex(5,3)}</text>
+    <text x="414" y="290" class="row">14829  END_TURN_PHASE  {player:0}</text>
+
+    <rect x="404" y="314" width="382" height="90" class="panel" data-component="PerSequenceCueList" data-i18n="ui.animation-debug-overlay.cues.title"/>
+    <text x="414" y="334" class="header">CUES (current sequence)</text>
+    <text x="414" y="354" class="row">frame  kind     ref</text>
+    <text x="414" y="368" class="row">    2  damage   primary</text>
+    <text x="414" y="382" class="row">    2  sound    sound.combat.weapon.swing</text>
+    <text x="414" y="396" class="ok">all refs resolved</text>
+
+    <rect x="14" y="414" width="772" height="172" class="panel" data-component="DegradationTierIndicator" data-i18n="ui.animation-debug-overlay.degradation.title"/>
+    <text x="24" y="434" class="header">DEGRADATION TIER</text>
+    <text x="24" y="454" class="row">currentTier  Green</text>
+    <text x="24" y="468" class="row">tier 1: skip off-screen building idle anims      OFF</text>
+    <text x="24" y="482" class="row">tier 2: drop VFX particle counts to 50%          OFF</text>
+    <text x="24" y="496" class="row">tier 3: collapse status overlays to single track OFF</text>
+    <text x="24" y="510" class="row">tier 4: hold animation frame                     OFF</text>
+    <text x="24" y="540" class="warn">scrubbing reseeks the renderer cursor only — engine state never rewinds.</text>
+    <text x="24" y="560" class="warn">all controls dispatch presentation-only commands; gameplay state is untouched.</text>
+  </g>
+</svg>
+</body>
+</html>

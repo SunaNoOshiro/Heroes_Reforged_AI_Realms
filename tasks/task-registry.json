@@ -2210,7 +2210,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 286
+      "downstreamTransitiveCount": 287
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2271,7 +2271,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 285
+      "downstreamTransitiveCount": 286
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2328,7 +2328,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 183
+      "downstreamTransitiveCount": 184
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2384,7 +2384,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 203
+      "downstreamTransitiveCount": 204
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2442,7 +2442,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 77
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -2512,7 +2512,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 22,
-      "downstreamTransitiveCount": 174
+      "downstreamTransitiveCount": 175
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3419,10 +3419,12 @@
         "`src/content-schema/vfx.ts`",
         "`src/content-schema/sounds.ts`",
         "`src/content-schema/town-presentation.ts`",
+        "`src/content-schema/easing.ts`",
         "`content-schema/schemas/animation.schema.json`",
         "`content-schema/schemas/vfx.schema.json`",
         "`content-schema/schemas/sound-set.schema.json`",
         "`content-schema/schemas/town-presentation.schema.json`",
+        "`content-schema/schemas/easing.schema.json`",
         "canonical examples under `content-schema/examples/records/animations/`, `content-schema/examples/records/vfx/`, `content-schema/examples/records/sounds/`, and `content-schema/examples/records/town-presentations/`"
       ],
       "readFirst": [
@@ -3434,10 +3436,12 @@
         "src/content-schema/vfx.ts",
         "src/content-schema/sounds.ts",
         "src/content-schema/town-presentation.ts",
+        "src/content-schema/easing.ts",
         "content-schema/schemas/animation.schema.json",
         "content-schema/schemas/vfx.schema.json",
         "content-schema/schemas/sound-set.schema.json",
         "content-schema/schemas/town-presentation.schema.json",
+        "content-schema/schemas/easing.schema.json",
         "content-schema/examples/records/animations/",
         "content-schema/examples/records/vfx/",
         "content-schema/examples/records/sounds/",
@@ -3467,6 +3471,7 @@
       "screenPackages": [],
       "directSchemaPaths": [
         "content-schema/schemas/animation.schema.json",
+        "content-schema/schemas/easing.schema.json",
         "content-schema/schemas/sound-set.schema.json",
         "content-schema/schemas/town-presentation.schema.json",
         "content-schema/schemas/vfx.schema.json"
@@ -3474,6 +3479,7 @@
       "screenSchemaPaths": [],
       "schemaPaths": [
         "content-schema/schemas/animation.schema.json",
+        "content-schema/schemas/easing.schema.json",
         "content-schema/schemas/sound-set.schema.json",
         "content-schema/schemas/town-presentation.schema.json",
         "content-schema/schemas/vfx.schema.json"
@@ -7795,7 +7801,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 125
+      "downstreamTransitiveCount": 126
     },
     {
       "id": "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
@@ -8339,8 +8345,8 @@
         "mvp.06-renderer.01-webgl2-context-setup-plus-resize-handler"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 52,
-      "downstreamTransitiveCount": 92
+      "downstreamDirectCount": 53,
+      "downstreamTransitiveCount": 93
     },
     {
       "id": "mvp.07-ui-shell.02-zustand-store",
@@ -8428,8 +8434,8 @@
         "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 55,
-      "downstreamTransitiveCount": 65
+      "downstreamDirectCount": 56,
+      "downstreamTransitiveCount": 66
     },
     {
       "id": "mvp.07-ui-shell.03-hud-resource-bar-end-turn-button-mini-map-stub",
@@ -8839,8 +8845,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 50,
-      "downstreamTransitiveCount": 67
+      "downstreamDirectCount": 51,
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.07-ui-shell.07-main-menu-screen",
@@ -23248,6 +23254,94 @@
         "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
         "mvp.07-ui-shell.02-zustand-store",
         "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "phase-2.08-meta-systems.09-animation-debug-overlay-screen",
+      "kind": "task",
+      "status": "planned",
+      "title": "Animation Debug Overlay Screen",
+      "path": "tasks/phase-2/08-meta-systems/09-animation-debug-overlay-screen.md",
+      "moduleId": "phase-2.08-meta-systems",
+      "modulePath": "tasks/phase-2/08-meta-systems.md",
+      "description": "Implement the developer-only animation debug overlay (screen 67) as a post-MVP UI surface. The overlay surfaces the renderer's per-stack timelines, event-log tail, per-sequence cue list, degradation tier, and a presentation-only scrub bar. All controls dispatch presentation-only commands; the engine reducer is never invoked. Gated behind `import.meta.env.DEV` and `config.dev.enableDebugOverlay`; production builds tree-shake it.",
+      "inputs": [
+        "Screen package `docs/architecture/wiki/screens/67-animation-debug-overlay/`",
+        "Null renderer event-log consumer at `src/renderer/null/event-log-consumer.mjs`",
+        "UI app shell, Zustand store, command hook, resolver",
+        "`state.dev.*` slice (presentation-only, non-replayed, non-hashed)"
+      ],
+      "outputs": [
+        "`src/ui/screens/AnimationDebugOverlay.tsx`",
+        "`src/ui/components/animation-debug/*.tsx` (PresentationControlsBar, PauseToggle, StepBackButton, StepForwardButton, ScrubBar, PlaybackSpeedSelect, PerStackAnimationInspector, PerStackTimelineRow, EventLogTail, PerSequenceCueList, DegradationTierIndicator)",
+        "Build-flag gate via dynamic import, only mounted when `import.meta.env.DEV === true` and `config.dev.enableDebugOverlay === true`"
+      ],
+      "readFirst": [
+        "`docs/architecture/wiki/screens/67-animation-debug-overlay/spec.md`",
+        "`docs/architecture/wiki/screens/67-animation-debug-overlay/interactions.md`",
+        "`docs/architecture/wiki/screens/67-animation-debug-overlay/data-contracts.md`",
+        "`docs/architecture/wiki/screens/67-animation-debug-overlay/architecture.md`",
+        "`docs/architecture/wiki/screens/67-animation-debug-overlay/mockup.html`",
+        "[`docs/architecture/animation-contract.md`](../../../docs/architecture/animation-contract.md)",
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/screens/AnimationDebugOverlay.tsx",
+        "src/ui/components/animation-debug/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
+        "mvp.07-ui-shell.02-zustand-store",
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render",
+        "phase-2.08-meta-systems.08-debug-overlay-screen"
+      ],
+      "acceptanceCriteria": [
+        "Layout, bindings, and commands match `docs/architecture/wiki/screens/67-animation-debug-overlay/mockup.html`, `docs/architecture/wiki/screens/67-animation-debug-overlay/spec.md`, `docs/architecture/wiki/screens/67-animation-debug-overlay/interactions.md`, and `docs/architecture/wiki/screens/67-animation-debug-overlay/data-contracts.md`",
+        "Overlay is tree-shaken from production bundles; verified by inspecting the build output",
+        "Resolver mounts every component listed in the Component Tree via the registry resolver; missing-component fallback is exercised in a unit test",
+        "`PAUSE_PRESENTATION`, `STEP_PRESENTATION_FORWARD`, `STEP_PRESENTATION_BACK`, and `SCRUB_PRESENTATION_TO_INDEX` dispatch against the renderer driver, never the live engine reducer",
+        "`state.dev.*` is non-replayed and non-hashed; mutating it does not change the canonical state hash",
+        "Z-layer 9000 portal is non-input-blocking",
+        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/67-animation-debug-overlay"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/animation.schema.json",
+        "content-schema/schemas/ui-component-registry.schema.json",
+        "content-schema/schemas/vfx.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/animation.schema.json",
+        "content-schema/schemas/ui-component-registry.schema.json",
+        "content-schema/schemas/vfx.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
+        "mvp.07-ui-shell.02-zustand-store",
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render",
+        "phase-2.08-meta-systems.08-debug-overlay-screen"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
+        "mvp.07-ui-shell.02-zustand-store",
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render",
+        "phase-2.08-meta-systems.08-debug-overlay-screen"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,

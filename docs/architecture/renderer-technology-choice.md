@@ -86,6 +86,27 @@ Renderer does not depend on simulation code. Pure snapshot consumer. This enforc
 - 60 FPS during battle (animating 7 stacks × 5 frames per sprite)
 - 0.1 ms per-frame GPU time (leave headroom for UI)
 
+### Per-Animation Budget
+
+The global frame target is upheld by per-animation caps enforced at
+schema-validation time by
+[`scripts/validate-animation-budgets.mjs`](../../scripts/validate-animation-budgets.mjs)
+(wired into `npm run validate`). Pack records that exceed the caps
+fail validation, not visual integration.
+
+| Class | Cap |
+|---|---|
+| sprite frames per sequence | ≤ 32 |
+| concurrent VFX particles per phase | ≤ 200 |
+| concurrent VFX phases per battle | ≤ 16 |
+| atlas page size | ≤ 4096 × 4096 px |
+| sprite draw calls per stack per frame | ≤ 4 |
+| sprite draw calls per battle frame total | ≤ 200 |
+
+Animation-side degradation policy when budgets are exceeded at
+runtime is pinned in
+[`animation-contract.md` § Degradation](./animation-contract.md#degradation).
+
 ### Frame-Time Budget & Degradation
 
 60 FPS is aspirational, not absolute. The renderer monitors a
@@ -138,6 +159,9 @@ machine-actionable tier table.
 - ❌ Mutate game state from renderer (read-only rule)
 - ❌ Use `requestAnimationFrame` for game-logic timing (use explicit `dt`)
 - ❌ Hardcode asset paths (use pack manifests + asset index)
+- ❌ Let an animation timeline call back into deterministic rules; the
+  engine has already scheduled the result. See
+  [`animation-contract.md` § DAMAGE_FRAME Ownership](./animation-contract.md#damage_frame-ownership).
 
 ---
 
@@ -194,4 +218,5 @@ Canvas 2D fallback for older browsers: ship both codepaths, same animation logic
 - [`docs/architecture/screen-scaling.md`](./screen-scaling.md) — virtual stage, hi-DPI, aspect
 - [`docs/architecture/ui-frame-lag-contract.md`](./ui-frame-lag-contract.md) — UI lag bounds
 - [`docs/architecture/ui-input-modalities.md`](./ui-input-modalities.md) — touch / mouse / keyboard / gamepad bridging on top of the renderer surface
+- [`docs/architecture/animation-contract.md`](./animation-contract.md) — two-clock model, DAMAGE_FRAME ownership, conflict resolution, mid-anim destruction, degradation policy
 - `docs/architecture/determinism.md` — why replay must be bit-identical

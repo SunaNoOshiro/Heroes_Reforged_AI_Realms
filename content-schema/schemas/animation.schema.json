@@ -2,22 +2,184 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/animation.schema.json",
   "title": "AnimationSet",
+  "description": "Animation set for a unit, hero, building, or VFX-host. Single body track is implicit. Optional sibling tracks (status, fx) and per-frame events extend the contract additively. Sprite-sheet metadata supports both uniform grids (frameSize) and explicit per-frame metadata (frames[]) for TexturePacker-style atlases. See docs/architecture/animation-contract.md.",
   "type": "object",
   "required": [
     "schemaVersion",
     "id",
     "kind",
-    "spriteSheetAssetId",
     "sequences"
   ],
+  "additionalProperties": false,
   "properties": {
+    "$schema": { "type": "string" },
     "schemaVersion": { "type": "integer", "minimum": 1 },
     "id": { "type": "string" },
     "kind": { "type": "string" },
-    "spriteSheetAssetId": { "type": "string" },
-    "frameSize": { "type": "object", "additionalProperties": true },
-    "anchor": { "type": "object", "additionalProperties": true },
-    "sequences": { "type": "object", "additionalProperties": true }
+
+    "spriteSheetAssetId": {
+      "type": "string",
+      "description": "Single-page sprite sheet. Mutually exclusive with spriteSheetAssetIds."
+    },
+    "spriteSheetAssetIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Multi-page atlas. Each entry is one page; frames[] entries reference pages by index."
+    },
+
+    "frameSize": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width":  { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }
+      },
+      "description": "Uniform-grid frame size. Mutually exclusive with frames[]."
+    },
+
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 1 },
+        "y": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "description": "Default anchor for all frames. Per-frame anchors in frames[] override."
+    },
+
+    "frames": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/frameMeta" },
+      "minItems": 1,
+      "description": "Explicit per-frame metadata. Use when frames are non-uniform, padded, trimmed, or spread across multi-page atlases. Mutually exclusive with frameSize."
+    },
+
+    "frameOrder": {
+      "type": "string",
+      "enum": ["row-major", "column-major"],
+      "description": "Order in which uniform-grid frames are indexed. Defaults to row-major if omitted."
+    },
+
+    "sequences": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/sequence" },
+      "description": "Named sequences. Each sequence references frame indices and declares fps and loop policy."
+    },
+
+    "tracks": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional sibling tracks. The implicit body track lives at the top-level sequences{}; status and fx tracks declare their own sequences{} here.",
+      "properties": {
+        "status": { "$ref": "#/definitions/track" },
+        "fx":     { "$ref": "#/definitions/track" }
+      }
+    }
   },
-  "additionalProperties": true
+
+  "definitions": {
+    "frameMeta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "page":   { "type": "integer", "minimum": 0, "description": "Index into spriteSheetAssetIds; defaults to 0." },
+        "x":      { "type": "integer", "minimum": 0 },
+        "y":      { "type": "integer", "minimum": 0 },
+        "w":      { "type": "integer", "minimum": 1 },
+        "h":      { "type": "integer", "minimum": 1 },
+        "anchor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x", "y"],
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" }
+          }
+        },
+        "trim": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x", "y", "w", "h"],
+          "properties": {
+            "x": { "type": "integer" },
+            "y": { "type": "integer" },
+            "w": { "type": "integer", "minimum": 1 },
+            "h": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "rotated": { "type": "boolean" },
+        "flippedX": { "type": "boolean" },
+        "flippedY": { "type": "boolean" }
+      }
+    },
+
+    "sequence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frames", "fps"],
+      "properties": {
+        "frames": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "minItems": 1
+        },
+        "fps":   { "type": "integer", "minimum": 1 },
+        "loop":  { "type": "boolean" },
+
+        "eventFrame": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Single-event timeline. Zero-based index into this sequence's frames[] list. Forbidden when events[] is present."
+        },
+
+        "events": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/event" },
+          "description": "Multi-event timeline. Forbidden when eventFrame is present."
+        },
+
+        "channel": {
+          "type": "string",
+          "enum": ["body", "status", "fx"],
+          "description": "Optional channel override. Sequences nested under tracks.{status|fx}.sequences inherit their channel; sequences at the top level default to body."
+        },
+
+        "easing": { "$ref": "easing.schema.json" }
+      }
+    },
+
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame", "kind", "ref"],
+      "properties": {
+        "frame": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Zero-based index into the containing sequence's frames[] list."
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["damage", "sound", "vfx", "status"]
+        },
+        "ref": { "type": "string" }
+      }
+    },
+
+    "track": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequences"],
+      "properties": {
+        "sequences": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/sequence" }
+        }
+      }
+    }
+  }
 }

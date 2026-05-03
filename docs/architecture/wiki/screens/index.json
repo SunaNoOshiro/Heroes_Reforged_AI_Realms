@@ -119,7 +119,8 @@
       "id": "diagnostics",
       "title": "Diagnostics",
       "screens": [
-        "66-debug-overlay"
+        "66-debug-overlay",
+        "67-animation-debug-overlay"
       ]
     }
   ]

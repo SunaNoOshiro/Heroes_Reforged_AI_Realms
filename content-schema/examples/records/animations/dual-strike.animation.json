@@ -1,0 +1,28 @@
+{
+  "$schema": "heroes-reforged/animation.schema.json",
+  "schemaVersion": 1,
+  "id": "unit:dual_strike_demo:animset",
+  "kind": "unit-animation-set",
+  "spriteSheetAssetId": "unit:dual_strike_demo:sprite",
+  "frameSize": { "width": 96, "height": 96 },
+  "anchor": { "x": 0.5, "y": 0.82 },
+  "sequences": {
+    "idle":   { "frames": [0, 1, 2, 3], "fps": 6, "loop": true },
+    "move":   { "frames": [4, 5, 6, 7, 8, 9], "fps": 10, "loop": true },
+    "attack": {
+      "frames": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+      "fps": 12,
+      "loop": false,
+      "events": [
+        { "frame": 4,  "kind": "sound",  "ref": "sound.combat.weapon.swing" },
+        { "frame": 5,  "kind": "damage", "ref": "primary" },
+        { "frame": 5,  "kind": "vfx",    "ref": "vfx:dual_strike_demo:hit_a" },
+        { "frame": 9,  "kind": "sound",  "ref": "sound.combat.weapon.swing" },
+        { "frame": 10, "kind": "damage", "ref": "secondary" },
+        { "frame": 10, "kind": "vfx",    "ref": "vfx:dual_strike_demo:hit_b" }
+      ]
+    },
+    "hit":    { "frames": [22, 23], "fps": 10, "loop": false },
+    "death":  { "frames": [24, 25, 26, 27], "fps": 8, "loop": false }
+  }
+}

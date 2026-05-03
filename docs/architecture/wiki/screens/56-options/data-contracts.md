@@ -37,6 +37,15 @@
 - `config.audio.enabled`
 - `config.audio.uiVolume`
 - `config.render.pixelSnap`
+- `config.dev.placeholderSprites` — boolean, default `false`. When
+  `true`, the renderer substitutes the magenta-checker placeholder
+  for any sprite-sheet that fails to decode. Production builds force
+  `false` regardless of user value. See
+  [`pack-contract.md` § Asset Fallback And Placeholders](../../../pack-contract.md#asset-fallback-and-placeholders).
+- `config.dev.enableDebugOverlay` — boolean, default `false`. Gates
+  the screens 66 (debug overlay) and 67 (animation debug overlay).
+  Production builds tree-shake those screens; this flag is the
+  runtime safeguard for dev builds.
 
 ### Localization Keys
 - `ui.options.title`

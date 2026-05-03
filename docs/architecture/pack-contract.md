@@ -128,3 +128,49 @@ is explicitly revised to require it.
 
 `src/engine/` consumes resolved ids and registries. It does not own
 pack loading.
+
+## Asset Fallback And Placeholders
+
+Pack content can be incomplete (mid-development) or corrupt at
+runtime (mid-game asset loss, decode failure). The matrix below pins
+the rule per asset class. The animation contract
+([`animation-contract.md` § Asset Fallback`](./animation-contract.md#asset-fallback))
+references this table; do not duplicate the rules there.
+
+| Asset class | Missing-at-load | Missing-at-runtime |
+|---|---|---|
+| Required creature anim (`idle`, `walking`, `attacking`, `hurt`, `dying`) | fail loud (pack does not load) | n/a — would have failed at load |
+| Optional creature anim (`defending`, `casting`, `special`) | fall back to required substitute (`defending → idle`, `casting → idle`, `special → attacking`) | same |
+| Sprite-sheet PNG | fail loud | render dev-mode magenta-checker placeholder when `config.dev.placeholderSprites === true`; in production, log warning and hold last decoded frame |
+| Animation atlas page (multi-page) | fail loud if any declared page is missing | same |
+| VFX phase (`cast`, `projectile`, `impact`) | fall back to no-op (silent skip) | same |
+| Status icon | fall back to the generic `status:unknown` icon | same |
+| Sound-set event | use the existing `fallbacks[]` wildcard rule on the sound set | same |
+| Easing function | fall back to `linear` | same |
+
+### Dev-mode placeholders
+
+`config.dev.placeholderSprites` (boolean, default `false`) toggles
+the magenta-checker placeholder for missing sprite-sheets. Production
+builds default to `false` (fail loud); dev builds may set `true`.
+Pinned in
+[`wiki/screens/56-options/data-contracts.md`](./wiki/screens/56-options/data-contracts.md).
+
+The two canonical placeholder assets ship under
+[`resources/dev-assets/`](../../resources/dev-assets/):
+
+- `placeholder-sprite.png` — 64×64 magenta + black checker
+- `status-unknown.png` — 32×32 generic status icon
+
+Both are loaded only when the renderer would otherwise have logged a
+warning. They are never authored into a pack manifest.
+
+### Multi-page atlas manifests
+
+Animations that declare `spriteSheetAssetIds: [...]` (multi-page
+atlases per
+[`animation.schema.json`](../../content-schema/schemas/animation.schema.json))
+must list **every** page in the pack's `assets/index.json`. The
+content runtime fails loud if any declared page is unresolved at
+load — the renderer cannot recover from a missing atlas page because
+frame indices may reference any page.

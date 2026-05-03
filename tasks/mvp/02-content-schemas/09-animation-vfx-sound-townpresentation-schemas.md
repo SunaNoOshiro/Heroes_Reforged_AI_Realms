@@ -25,10 +25,12 @@ Outputs:
 - `src/content-schema/vfx.ts`
 - `src/content-schema/sounds.ts`
 - `src/content-schema/town-presentation.ts`
+- `src/content-schema/easing.ts`
 - `content-schema/schemas/animation.schema.json`
 - `content-schema/schemas/vfx.schema.json`
 - `content-schema/schemas/sound-set.schema.json`
 - `content-schema/schemas/town-presentation.schema.json`
+- `content-schema/schemas/easing.schema.json`
 - canonical examples under `content-schema/examples/records/animations/`,
   `content-schema/examples/records/vfx/`,
   `content-schema/examples/records/sounds/`, and
@@ -39,10 +41,12 @@ Owned Paths:
 - `src/content-schema/vfx.ts`
 - `src/content-schema/sounds.ts`
 - `src/content-schema/town-presentation.ts`
+- `src/content-schema/easing.ts`
 - `content-schema/schemas/animation.schema.json`
 - `content-schema/schemas/vfx.schema.json`
 - `content-schema/schemas/sound-set.schema.json`
 - `content-schema/schemas/town-presentation.schema.json`
+- `content-schema/schemas/easing.schema.json`
 - `content-schema/examples/records/animations/`
 - `content-schema/examples/records/vfx/`
 - `content-schema/examples/records/sounds/`

@@ -100,6 +100,14 @@
       ]
     },
     {
+      "componentId": "AnimationDebugOverlay",
+      "module": "src/ui/components/animation-debug/animation-debug-overlay.tsx",
+      "exportName": "AnimationDebugOverlay",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "ApplyCancelButtons",
       "module": "src/ui/components/apply-cancel-buttons.tsx",
       "exportName": "ApplyCancelButtons",
@@ -820,6 +828,14 @@
       ]
     },
     {
+      "componentId": "DegradationTierIndicator",
+      "module": "src/ui/components/animation-debug/degradation-tier-indicator.tsx",
+      "exportName": "DegradationTierIndicator",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "DeploymentZone",
       "module": "src/ui/components/deployment-zone.tsx",
       "exportName": "DeploymentZone",
@@ -978,6 +994,14 @@
       "exportName": "EventIcon",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "EventLogTail",
+      "module": "src/ui/components/animation-debug/event-log-tail.tsx",
+      "exportName": "EventLogTail",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -1933,6 +1957,38 @@
       ]
     },
     {
+      "componentId": "PauseToggle",
+      "module": "src/ui/components/animation-debug/pause-toggle.tsx",
+      "exportName": "PauseToggle",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "PerSequenceCueList",
+      "module": "src/ui/components/animation-debug/per-sequence-cue-list.tsx",
+      "exportName": "PerSequenceCueList",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "PerStackAnimationInspector",
+      "module": "src/ui/components/animation-debug/per-stack-animation-inspector.tsx",
+      "exportName": "PerStackAnimationInspector",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "PerStackTimelineRow",
+      "module": "src/ui/components/animation-debug/per-stack-timeline-row.tsx",
+      "exportName": "PerStackTimelineRow",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "PinnedMessage",
       "module": "src/ui/components/pinned-message.tsx",
       "exportName": "PinnedMessage",
@@ -1946,6 +2002,14 @@
       "exportName": "PinState",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "PlaybackSpeedSelect",
+      "module": "src/ui/components/animation-debug/playback-speed-select.tsx",
+      "exportName": "PlaybackSpeedSelect",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -2010,6 +2074,14 @@
       "exportName": "PrerequisiteLinks",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "PresentationControlsBar",
+      "module": "src/ui/components/animation-debug/presentation-controls-bar.tsx",
+      "exportName": "PresentationControlsBar",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -2485,6 +2557,14 @@
       ]
     },
     {
+      "componentId": "ScrubBar",
+      "module": "src/ui/components/animation-debug/scrub-bar.tsx",
+      "exportName": "ScrubBar",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "SecondarySkills",
       "module": "src/ui/components/secondary-skills.tsx",
       "exportName": "SecondarySkills",
@@ -2802,6 +2882,22 @@
       "exportName": "StatusLine",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "StepBackButton",
+      "module": "src/ui/components/animation-debug/step-back-button.tsx",
+      "exportName": "StepBackButton",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "StepForwardButton",
+      "module": "src/ui/components/animation-debug/step-forward-button.tsx",
+      "exportName": "StepForwardButton",
+      "tags": [
+        "debug"
       ]
     },
     {

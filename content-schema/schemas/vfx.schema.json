@@ -2,15 +2,57 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/vfx.schema.json",
   "title": "VfxSet",
+  "description": "Closed schema for visual-effect sets. Phases are limited to cast / projectile / impact. Missing phases fall back to no-op silently per docs/architecture/pack-contract.md (Asset Fallback And Placeholders).",
   "type": "object",
   "required": [
     "schemaVersion",
     "id"
   ],
+  "additionalProperties": false,
   "properties": {
+    "$schema": { "type": "string" },
     "schemaVersion": { "type": "integer", "minimum": 1 },
     "id": { "type": "string" },
-    "phases": { "type": "object", "additionalProperties": true }
+    "phases": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cast":       { "$ref": "#/definitions/phase" },
+        "projectile": { "$ref": "#/definitions/phase" },
+        "impact":     { "$ref": "#/definitions/phase" }
+      }
+    }
   },
-  "additionalProperties": true
+  "definitions": {
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "particleSystemIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "screenShake": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["strength", "durationMs"],
+          "properties": {
+            "strength": { "type": "number", "minimum": 0, "maximum": 1 },
+            "durationMs": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "lightFlash": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["color", "durationMs"],
+          "properties": {
+            "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "durationMs": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "durationMs": { "type": "integer", "minimum": 0 },
+        "easing": { "$ref": "easing.schema.json" }
+      }
+    }
+  }
 }

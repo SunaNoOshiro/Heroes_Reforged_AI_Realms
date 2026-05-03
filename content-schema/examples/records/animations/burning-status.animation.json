@@ -1,0 +1,30 @@
+{
+  "$schema": "heroes-reforged/animation.schema.json",
+  "schemaVersion": 1,
+  "id": "status:burn:overlay-animset",
+  "kind": "status-overlay-animation-set",
+  "spriteSheetAssetId": "status:burn:sprite",
+  "frameSize": { "width": 32, "height": 32 },
+  "anchor": { "x": 0.5, "y": 0.0 },
+  "sequences": {},
+  "tracks": {
+    "status": {
+      "sequences": {
+        "burning": {
+          "frames": [0, 1, 2, 3, 4, 5],
+          "fps": 8,
+          "loop": true,
+          "channel": "status",
+          "easing": "linear"
+        },
+        "burning-fade-in": {
+          "frames": [0, 1, 2],
+          "fps": 12,
+          "loop": false,
+          "channel": "status",
+          "easing": "easeOutCubic"
+        }
+      }
+    }
+  }
+}

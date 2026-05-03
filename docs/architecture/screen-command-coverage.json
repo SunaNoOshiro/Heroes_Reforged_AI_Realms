@@ -54,7 +54,11 @@
   "localUiTokens": [
     "REPLAY_PAUSE",
     "REPLAY_STEP",
-    "REPLAY_RESET"
+    "REPLAY_RESET",
+    "PAUSE_PRESENTATION",
+    "STEP_PRESENTATION_BACK",
+    "STEP_PRESENTATION_FORWARD",
+    "SCRUB_PRESENTATION_TO_INDEX"
   ],
   "outOfScope": {
     "COMPLETE_CINEMATIC": "phase-2.08-meta-systems.03-cinematic-playback-engine owns cinematic completion state.",

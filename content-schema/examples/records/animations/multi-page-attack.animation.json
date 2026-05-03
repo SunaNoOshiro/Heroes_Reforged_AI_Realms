@@ -1,0 +1,52 @@
+{
+  "$schema": "heroes-reforged/animation.schema.json",
+  "schemaVersion": 1,
+  "id": "unit:multi_page_demo:animset",
+  "kind": "unit-animation-set",
+  "spriteSheetAssetIds": [
+    "unit:multi_page_demo:sprite_page_0",
+    "unit:multi_page_demo:sprite_page_1"
+  ],
+  "anchor": { "x": 0.5, "y": 0.82 },
+  "frames": [
+    { "page": 0, "x": 0,   "y": 0,   "w": 96,  "h": 96 },
+    { "page": 0, "x": 96,  "y": 0,   "w": 96,  "h": 96 },
+    { "page": 0, "x": 192, "y": 0,   "w": 96,  "h": 96 },
+    { "page": 0, "x": 288, "y": 0,   "w": 96,  "h": 96 },
+    {
+      "page": 0, "x": 0,   "y": 96,  "w": 128, "h": 96,
+      "anchor": { "x": 0.62, "y": 0.85 },
+      "trim": { "x": 8, "y": 0, "w": 112, "h": 96 }
+    },
+    {
+      "page": 0, "x": 128, "y": 96,  "w": 128, "h": 96,
+      "anchor": { "x": 0.62, "y": 0.85 },
+      "trim": { "x": 8, "y": 0, "w": 112, "h": 96 }
+    },
+    {
+      "page": 1, "x": 0,   "y": 0,   "w": 144, "h": 112,
+      "anchor": { "x": 0.66, "y": 0.88 },
+      "trim": { "x": 12, "y": 8, "w": 120, "h": 96 },
+      "rotated": true
+    },
+    {
+      "page": 1, "x": 144, "y": 0,   "w": 144, "h": 112,
+      "anchor": { "x": 0.66, "y": 0.88 },
+      "trim": { "x": 12, "y": 8, "w": 120, "h": 96 },
+      "rotated": true
+    }
+  ],
+  "frameOrder": "row-major",
+  "sequences": {
+    "idle":   { "frames": [0, 1], "fps": 6, "loop": true },
+    "attack": {
+      "frames": [2, 3, 4, 5, 6, 7],
+      "fps": 12,
+      "loop": false,
+      "events": [
+        { "frame": 4, "kind": "damage", "ref": "primary" },
+        { "frame": 4, "kind": "sound",  "ref": "sound.combat.heavy.impact" }
+      ]
+    }
+  }
+}

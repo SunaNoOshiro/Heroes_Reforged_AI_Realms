@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/easing.schema.json",
+  "title": "Easing",
+  "description": "Closed enumeration of easing functions plus the Bezier shape, used by animation, vfx, and town-presentation schemas wherever a value is interpolated over time. Pure and deterministic in input -> output. See docs/architecture/animation-contract.md (Easing).",
+  "oneOf": [
+    {
+      "type": "string",
+      "enum": [
+        "linear",
+        "easeInQuad",
+        "easeOutQuad",
+        "easeInOutQuad",
+        "easeInCubic",
+        "easeOutCubic",
+        "easeInOutCubic",
+        "easeInOutSine",
+        "bezier"
+      ]
+    },
+    {
+      "type": "object",
+      "required": ["kind", "control"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "const": "bezier" },
+        "control": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["x", "y"],
+            "additionalProperties": false,
+            "properties": {
+              "x": { "type": "number", "minimum": 0, "maximum": 1 },
+              "y": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

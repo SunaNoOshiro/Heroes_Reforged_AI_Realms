@@ -22,7 +22,11 @@
       "properties": {
         "ambientAnimationSetId": { "type": "string" },
         "constructionAnimationSetId": { "type": "string" },
-        "soundSetId": { "type": "string" }
+        "soundSetId": { "type": "string" },
+        "flybyCameraEasing": {
+          "$ref": "easing.schema.json",
+          "description": "Easing curve applied to the town flyby camera path. See docs/architecture/animation-contract.md (Easing)."
+        }
       },
       "additionalProperties": true
     }

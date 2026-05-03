@@ -122,3 +122,4 @@ animations cannot lap the reducer.
 - [`ui-state-contract.md`](./ui-state-contract.md) — command lifecycle, selector purity, component-state matrix
 - [`ui-input-arbitration.md`](./ui-input-arbitration.md) — single-emit, Esc ladder, animation gates
 - [`ui-routing.md`](./ui-routing.md) — screen-router FSM and modal stack
+- [`animation-contract.md`](./animation-contract.md) — two-clock model, DAMAGE_FRAME ownership, gameplay-vs-visual state table
