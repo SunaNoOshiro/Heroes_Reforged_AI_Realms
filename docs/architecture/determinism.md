@@ -32,6 +32,62 @@ The engine must provide these, in this order:
 - `eval` / `new Function(...)` / runtime-parsed formula strings.
 - Map/Set iteration where order matters without an explicit sort.
 - Async timing (no `setTimeout`-based race decisions).
+- **Wall-clock-driven AI truncation.** AI search budgets are pure
+  functions of difficulty and game-state size (`maxNodes`,
+  `maxDepth`); a wall-clock timer may run as a warn-only watchdog
+  but MUST NOT truncate the search. See "AI Compute Budget" below
+  and [`performance.md` § 6](./performance.md#6-ai-compute-budget).
+
+## AI Compute Budget
+
+The AI search budget is part of the determinism contract. Two
+identically-seeded clients on different hardware MUST produce
+identical commands during AI turns.
+
+The budget is a deterministic iteration / node-count limit keyed
+by difficulty and map size:
+
+- AI workers stop when `nodesExpanded >= maxNodes(difficulty,
+  mapDims)` or `searchDepth >= maxDepth(difficulty)`, whichever
+  fires first.
+- The wall-clock timer remains, **only as a watchdog**, that logs
+  a warning if a single AI move exceeds 2 s on the current
+  machine. It never truncates the search. An over-budget
+  difficulty level is a bug, tuned against the bench harness's
+  Scenario C — not silently absorbed at runtime.
+- The per-difficulty `maxNodes` / `maxDepth` constants are owned
+  by
+  [`tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md`](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md).
+  The worker-side enforcement is owned by
+  [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md).
+
+The fuzz harness
+([`tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](../../tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md))
+includes a `searchBudget` determinism case: identical seed +
+state + budget on two simulated rate environments produces
+identical commands.
+
+## Pathfinder Cache Invariants
+
+Memoization of pure pathfinder results is determinism-safe:
+`findPath(...)` and `reachable(...)` are pure functions of
+`(map, terrain, src, mpBudget, zocTiles)`, so a cache hit returns
+the same value as a cache miss.
+
+The cache key includes `mapVersion` and `zocVersion`, which are
+fields on `GameState` (additive `number`, default `0`) bumped
+deterministically by the command dispatcher:
+
+- `mapVersion` increments on any command that mutates terrain
+  (terraform-effect, bridge-built).
+- `zocVersion` increments on any command that changes hero
+  occupancy of a tile (hero-move, hero-spawn, hero-defeat).
+
+The cache is flushed at every End-Day turn boundary as a
+belt-and-braces guard. Implementation is owned by
+[`tasks/mvp/03-map-system/11-pathfinder-cache.md`](../../tasks/mvp/03-map-system/11-pathfinder-cache.md);
+the version-bump invariants are owned by
+[`tasks/mvp/01-engine-core/06-command-dispatcher.md`](../../tasks/mvp/01-engine-core/06-command-dispatcher.md).
 
 ## Formulas Are Data
 

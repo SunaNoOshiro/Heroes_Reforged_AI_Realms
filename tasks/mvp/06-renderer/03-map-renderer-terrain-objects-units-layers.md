@@ -35,10 +35,27 @@ Dependencies:
 - mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform
 
 Acceptance Criteria:
-- 128×128 map renders at ≥ 60 fps on a mid-range laptop (GTX 1060 / M1 equivalent)
+- 128×128 map renders at ≥ 60 fps on the **Reference** tier
+  (GTX 1060 / Apple M1) per
+  [`docs/architecture/performance.md` § 1](../../../docs/architecture/performance.md#1-hardware-tiers);
+  ≥ 30 fps on the **Minimum-spec** tier on the same scene.
 - Fog of war visually correct (hidden tiles are black)
 - Heroes visible on their current tile
 - No visual artifacts at map edges
+- **Adventure-map animation ceilings** (per
+  [`performance.md` § 5](../../../docs/architecture/performance.md#5-entity-ceilings)):
+  - On-screen active animations ≤ 128 per frame.
+  - Total active animations (on-screen + off-screen) ≤ 256.
+  - Off-screen animations skip frame-advance entirely when over
+    budget per
+    [`diagrams/22-building-loop.md`](../../../docs/architecture/diagrams/22-building-loop.md).
+- **Renderer-side object pools** (per
+  [`performance.md` § Allocation Policy](../../../docs/architecture/performance.md#allocation-policy)):
+  - Per-frame culling pass uses the hex-coordinate vector pool
+    from `mvp.00-perf.05-object-pools`.
+  - Sprite draw-command construction uses the draw-command pool
+    from the same task. No per-frame `{ q, r }` or draw-command
+    allocations are observed by bench harness Scenario A.
 
 Verify:
 - npm run validate

@@ -23,7 +23,9 @@
     "idCounters",
     "contentHashes",
     "engineHash",
-    "seed"
+    "seed",
+    "mapVersion",
+    "zocVersion"
   ],
   "properties": {
     "schemaVersion": {
@@ -98,6 +100,16 @@
     },
     "seed": {
       "type": "integer"
+    },
+    "mapVersion": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonic counter bumped by reducers for terrain-mutating commands (terraform-effect, bridge-built). Used as a key in the per-turn pathfinder cache; see docs/architecture/determinism.md § Pathfinder Cache Invariants."
+    },
+    "zocVersion": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonic counter bumped by reducers for hero-tile-occupancy commands (hero-move, hero-spawn, hero-defeat). Used as a key in the per-turn pathfinder cache; see docs/architecture/determinism.md § Pathfinder Cache Invariants."
     }
   },
   "additionalProperties": false,

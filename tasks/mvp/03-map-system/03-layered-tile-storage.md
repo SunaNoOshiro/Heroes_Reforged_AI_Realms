@@ -43,6 +43,13 @@ Acceptance Criteria:
 - `clone()` returns a deep copy (modifying clone does not affect original)
 - Out-of-bounds `get` returns `0`, does not throw
 - A 128×128 map takes < 200KB in memory
+- Maps are held **fully in memory** for M1, bounded by the
+  entity-ceiling table in
+  [`docs/architecture/performance.md` § 5](../../../docs/architecture/performance.md#5-entity-ceilings).
+  Streaming / chunking is deferred per
+  [`performance.md` § 4 — Map Memory](../../../docs/architecture/performance.md#map-memory-in-memory-vs-streaming);
+  if a future tier needs it, the work is a content-runtime
+  change, not an engine change.
 
 Verify:
 - npm run validate

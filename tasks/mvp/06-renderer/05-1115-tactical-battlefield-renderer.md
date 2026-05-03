@@ -35,7 +35,13 @@ Acceptance Criteria:
 - 11×15 grid renders correctly with all unit stacks visible
 - Selected unit's reachable hexes highlighted in distinct color
 - Active unit has visual indicator (glow or outline)
-- Renders at ≥ 60 fps with 14 active unit stacks
+- Renders at ≥ 60 fps with 14 active unit stacks on the
+  **Reference** tier and ≥ 30 fps with 14 active unit stacks on
+  the **Minimum-spec** tier per
+  [`docs/architecture/performance.md` § 1](../../../docs/architecture/performance.md#1-hardware-tiers).
+- Renders at ≥ 60 fps on the Reference tier with 21 active
+  stacks (14 base + up to 7 summons) per
+  [`performance.md` § 5](../../../docs/architecture/performance.md#5-entity-ceilings).
 
 Verify:
 - npm run validate

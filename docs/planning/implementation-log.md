@@ -486,6 +486,108 @@ Closed the operational gaps from
   in-game chat reserved on a non-deterministic channel) and links
   the new tasks and security doc.
 
+### Performance Plan Implementation (2026-05-03)
+
+Closed the performance gaps from
+[`docs/implementation-plans/09-performance-plan.md`](../implementation-plans/09-performance-plan.md):
+
+- Authored
+  [`docs/architecture/performance.md`](../architecture/performance.md)
+  as the canonical performance doc: hardware tiers (Reference /
+  Minimum-spec / Mobile-deferred), per-frame CPU budget, GC
+  budget, allocation policy, memory budget with per-category
+  split, entity ceilings (incl. adventure-map animation
+  ceilings), AI compute budget, in-game profiling overlay
+  reference, enforcement-via-bench-harness contract.
+- Authored
+  [`docs/architecture/atlas-pipeline.md`](../architecture/atlas-pipeline.md)
+  pinning `free-tex-packer-cli` as the canonical packer, the
+  deterministic input-ordering / `--seed` invocation, the
+  per-frame input layout, the per-entity output layout, and the
+  publish-step ordering with `contentHash` integration.
+- Extended
+  [`docs/architecture/determinism.md`](../architecture/determinism.md)
+  with the AI Compute Budget section (deterministic
+  `searchBudget`, watchdog-only wall clock, ban on
+  wall-clock-driven AI truncation) and the Pathfinder Cache
+  Invariants section (`mapVersion` / `zocVersion` keys, explicit
+  invalidation, End-Day flush).
+- Updated
+  [`docs/architecture/renderer-technology-choice.md`](../architecture/renderer-technology-choice.md)
+  to defer numeric per-tier targets to `performance.md`.
+- Updated
+  [`docs/architecture/diagrams/17-cache-strategy.md`](../architecture/diagrams/17-cache-strategy.md)
+  to anchor the % thresholds to the absolute MB caps in
+  `performance.md`.
+- Updated
+  [`docs/architecture/ai-generation-pipeline.md`](../architecture/ai-generation-pipeline.md)
+  to declare AI output is per-frame; atlases are produced at the
+  pack-publish step using the same packer as first-party packs.
+- Added an "Atlas Generation" section to
+  [`docs/architecture/pack-contract.md`](../architecture/pack-contract.md).
+- Added the canonical atlas-manifest schema
+  [`content-schema/schemas/atlas.schema.json`](../../content-schema/schemas/atlas.schema.json).
+- Extended
+  [`content-schema/schemas/game-state.schema.json`](../../content-schema/schemas/game-state.schema.json)
+  with additive `mapVersion` and `zocVersion` integer fields
+  (default 0); updated the canonical example.
+- Added the new task module
+  [`tasks/mvp/00-perf/`](../../tasks/mvp/00-perf/) with five task
+  files: `01-bench-harness.md`,
+  `02-bench-baseline-and-ci-gate.md`,
+  `03-memory-regression-gate.md`, `04-profiling-overlay.md`, and
+  `05-object-pools.md`. Module index at
+  [`tasks/mvp/00-perf.md`](../../tasks/mvp/00-perf.md).
+- Added new task files
+  [`tasks/mvp/03-map-system/11-pathfinder-cache.md`](../../tasks/mvp/03-map-system/11-pathfinder-cache.md)
+  and
+  [`tasks/mvp/06-renderer/09-atlas-pipeline.md`](../../tasks/mvp/06-renderer/09-atlas-pipeline.md).
+- Extended existing task files with the new contracts:
+  - `mvp.10-heuristic-ai.06-run-ai-in-web-worker` —
+    deterministic `searchBudget`, wall clock demoted to
+    warn-only watchdog.
+  - `mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight` —
+    per-difficulty `maxNodes` / `maxDepth` constants and
+    `searchBudgetFor(...)` API.
+  - `mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients`
+    — consume the shared pathfinder cache and the AI search-node
+    pool.
+  - `mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc`
+    — Optional cache section pinning the per-turn cache
+    invariants.
+  - `mvp.03-map-system.03-layered-tile-storage` — link the
+    in-memory map decision.
+  - `mvp.01-engine-core.06-command-dispatcher` — declare
+    `mapVersion` / `zocVersion` increment invariants.
+  - `mvp.01-engine-core.09-fuzz-harness-…` — share fixtures with
+    bench Scenario C and add a `searchBudget` determinism case.
+  - `mvp.01-engine-core.10-github-actions-ci` — add the
+    perf-bench job and the memory-gate job.
+  - `mvp.06-renderer.03-map-renderer-…` — adventure-map
+    animation ceilings and renderer-side pool acceptance
+    criteria.
+  - `mvp.06-renderer.05-1115-tactical-battlefield-renderer` —
+    30 FPS Minimum-spec criterion and 21-stack budget.
+  - `mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation`
+    — link the metadata schema to the atlas-pipeline task.
+  - `mvp.06-renderer.08-presentation-loop-decoupled-from-sim` —
+    promote the no-handle-leak check to Scenario D and link the
+    per-frame budget envelope.
+- Added the new dev-only screen package
+  [`docs/architecture/wiki/screens/68-dev-profiler/`](../architecture/wiki/screens/68-dev-profiler/)
+  (mockup, spec, interactions, data-contracts, architecture) for
+  the in-app profiling overlay; registered under the
+  `diagnostics` group in `screens/index.json`.
+
+  Note: the implementation plan literally specified
+  `57-dev-profiler/`, but `57-high-scores/` already owns that
+  number. The next sequential number `68` is used; the screen
+  also lives in the existing `diagnostics` group rather than a
+  new "Dev tools" group, since `66-debug-overlay` and
+  `67-animation-debug-overlay` already group there.
+- Updated [`CLAUDE.md`](../../CLAUDE.md) "Read first" list to
+  include `performance.md` and `atlas-pipeline.md`.
+
 ## Recommended Next Steps
 
 Suggested order:

@@ -21,6 +21,14 @@ Outputs:
 - `src/ai/bots/difficulty.ts`
 - `DifficultyLevel`: `"pawn" | "knight"`
 - `applyDifficulty(action: Command, alternatives: Command[], difficulty: DifficultyLevel, rng: Rng): Command`
+- Per-difficulty deterministic search budget constants consumed
+  by `mvp.10-heuristic-ai.06-run-ai-in-web-worker`:
+  - `pawn`:  `maxNodes = 4 000`,  `maxDepth = 3`
+  - `knight`: `maxNodes = 16 000`, `maxDepth = 5`
+- `searchBudgetFor(difficulty: DifficultyLevel, mapDims: { width: number, height: number }): { maxNodes: number, maxDepth: number }`
+  scales `maxNodes` linearly with `width * height / (128*128)` so
+  budgets stay proportional on smaller maps. The function is pure
+  and deterministic.
 
 Owned Paths:
 - `src/ai/bots/difficulty.ts`
@@ -33,6 +41,12 @@ Acceptance Criteria:
 - Pawn AI makes a random action ~30% of the time (verified over 1000 turns)
 - Knight AI never makes random actions (0 random deviations over 1000 turns)
 - Difficulty is set at game start and not changeable mid-game (locked in `AdventureState`)
+- `searchBudgetFor("knight", { 200, 200 })` keeps every move in
+  bench-harness Scenario C under the **2 s wall-clock watchdog
+  threshold** on the Minimum-spec emulation profile (validated by
+  `mvp.00-perf.01-bench-harness`).
+- Budget constants are deterministic — same difficulty + map
+  dims yields identical `(maxNodes, maxDepth)` on every call.
 - **Quality Gate (Knight difficulty):** Run 10 independent games (different seeds) where Knight AI plays against "random AI" opponent. Knight must win ≥ 8 out of 10 games (80 % win rate minimum).
   - Random AI: picks a legal action uniformly at random (no heuristic)
   - Game length: max 50 turns per player (100 turns total), or until victory condition

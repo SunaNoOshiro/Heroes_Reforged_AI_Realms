@@ -37,6 +37,29 @@ Acceptance Criteria:
 - ZoC test: hero cannot pass diagonally adjacent to an enemy without entering enemy hex
 - Performance: path on a 128×128 map completes in < 5ms
 - All floating-point avoided (use integer costs ×100)
+- `findPath` and `reachable` are pure functions of
+  `(map, terrain, src, dst|mpBudget, zocTiles)`. This purity is
+  the precondition for the per-turn cache shipped by
+  `mvp.03-map-system.11-pathfinder-cache`.
+
+## Optional cache
+
+Memoization of pure pathfinder results is determinism-safe and
+ships in `mvp.03-map-system.11-pathfinder-cache`. The cache key
+is `(state.mapVersion, srcHex, mpBudget, state.zocVersion)`.
+Invalidation is **explicit, not time-based**:
+
+- `state.mapVersion` is bumped by any command that mutates terrain
+  (terraform spell, bridge built); pinned in
+  `mvp.01-engine-core.06-command-dispatcher`.
+- `state.zocVersion` is bumped on hero arrival/departure on a
+  tile; pinned in the same dispatcher contract.
+- The cache is flushed at every End-Day turn boundary.
+
+The pathfinder API itself does not change. Callers that want
+caching go through `cache.getOrCompute(key, () => findPath(...))`;
+direct `findPath(...)` calls stay valid for tests and one-shot
+queries.
 
 Verify:
 - npm run validate

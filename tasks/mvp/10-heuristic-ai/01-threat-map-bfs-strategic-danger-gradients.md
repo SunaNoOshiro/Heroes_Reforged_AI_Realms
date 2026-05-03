@@ -34,6 +34,13 @@ Acceptance Criteria:
 - Tile behind mountains (impassable) is unreachable (danger = ∞)
 - `buildThreatMap` completes in < 50ms on a 128×128 map
 - Own heroes' positions are excluded from threat calculation
+- BFS uses the shared pathfinder cache from
+  `mvp.03-map-system.11-pathfinder-cache` rather than introducing
+  a parallel cache. Cache hits skip pathfinder recomputation
+  without changing returned values.
+- Frontier nodes are drawn from the AI search-node pool owned by
+  `mvp.00-perf.05-object-pools`. No per-frontier-step allocation
+  measured by bench harness Scenario A.
 
 Verify:
 - npm run validate

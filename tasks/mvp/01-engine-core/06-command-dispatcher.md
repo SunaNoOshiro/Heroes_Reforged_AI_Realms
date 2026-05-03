@@ -45,6 +45,20 @@ Acceptance Criteria:
 - Command discriminants match `content-schema/schemas/command.schema.json`
 - `npm run validate:commands` passes so screen interaction tokens are
   schema-backed, aliased, UI-local, or explicitly out of scope
+- **`mapVersion` and `zocVersion` invariants** (consumed by the
+  pathfinder cache in
+  `mvp.03-map-system.11-pathfinder-cache`):
+  - Reducers for terrain-mutating commands (terraform-effect,
+    bridge-built) increment `state.mapVersion` by exactly 1 per
+    accepted command.
+  - Reducers for hero-tile-occupancy commands (hero-move,
+    hero-spawn, hero-defeat) increment `state.zocVersion` by
+    exactly 1 per accepted command.
+  - No-op commands (validation rejected, idempotent dedup hit)
+    do NOT bump either counter.
+  - The increments are deterministic on a fixture command
+    sequence — verified by a unit test that asserts the exact
+    `(mapVersion, zocVersion)` pair after each step.
 
 Verify:
 - npm run validate

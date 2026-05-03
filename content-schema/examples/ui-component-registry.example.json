@@ -76,11 +76,27 @@
       ]
     },
     {
+      "componentId": "AiComputePanel",
+      "module": "src/ui/dev/profiler/ai-compute-panel.tsx",
+      "exportName": "AiComputePanel",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "AiTurnIndicator",
       "module": "src/ui/components/ai-turn-indicator.tsx",
       "exportName": "AiTurnIndicator",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "AllocPanel",
+      "module": "src/ui/dev/profiler/alloc-panel.tsx",
+      "exportName": "AllocPanel",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -97,6 +113,14 @@
       "exportName": "AnimatedCrest",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "AnimationCountPanel",
+      "module": "src/ui/dev/profiler/animation-count-panel.tsx",
+      "exportName": "AnimationCountPanel",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -740,6 +764,14 @@
       ]
     },
     {
+      "componentId": "CpuBudgetPanel",
+      "module": "src/ui/dev/profiler/cpu-budget-panel.tsx",
+      "exportName": "CpuBudgetPanel",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "CreatureBankLootDialog",
       "module": "src/ui/components/creature-bank-loot-dialog.tsx",
       "exportName": "CreatureBankLootDialog",
@@ -889,6 +921,14 @@
       "exportName": "DestinationSlotPreview",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "DevProfilerOverlay",
+      "module": "src/ui/dev/profiler/dev-profiler-overlay.tsx",
+      "exportName": "DevProfilerOverlay",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -1101,6 +1141,14 @@
       ]
     },
     {
+      "componentId": "FpsPanel",
+      "module": "src/ui/dev/profiler/fps-panel.tsx",
+      "exportName": "FpsPanel",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "FragmentGrid",
       "module": "src/ui/components/fragment-grid.tsx",
       "exportName": "FragmentGrid",
@@ -1202,6 +1250,14 @@
       "exportName": "GuardSummary",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "HeapPanel",
+      "module": "src/ui/dev/profiler/heap-panel.tsx",
+      "exportName": "HeapPanel",
+      "tags": [
+        "debug"
       ]
     },
     {
@@ -2058,6 +2114,14 @@
       "exportName": "PlayerTeamMatrix",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "PoolOccupancyPanel",
+      "module": "src/ui/dev/profiler/pool-occupancy-panel.tsx",
+      "exportName": "PoolOccupancyPanel",
+      "tags": [
+        "debug"
       ]
     },
     {

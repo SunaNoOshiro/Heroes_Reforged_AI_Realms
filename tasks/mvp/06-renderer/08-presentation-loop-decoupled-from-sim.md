@@ -35,8 +35,18 @@ Dependencies:
 Acceptance Criteria:
 - Profiling shows zero calls into `src/engine` modules from inside the rAF callback
 - Renderer keeps running at 60 fps even if sim is paused (no AI move in progress)
-- Stopping the loop (page hide, component unmount) does not leak the animation frame handle
+- Stopping the loop (page hide, component unmount) does not leak
+  the animation frame handle. **This is automated by Scenario D
+  (memory churn) in
+  `mvp.00-perf.03-memory-regression-gate`** — the manual
+  acceptance becomes a CI assertion against a +5 % heap-delta
+  ceiling.
 - Snapshot reads are never blocking (no `await` inside rAF)
+- Per-frame render budget conforms to the per-system CPU table
+  in
+  [`docs/architecture/performance.md` § 2](../../../docs/architecture/performance.md#2-per-frame-cpu-budget):
+  `renderer.cull + draw` ≤ 4 ms,
+  `renderer.animationTick` ≤ 1 ms at the Reference tier.
 
 Verify:
 - npm run validate

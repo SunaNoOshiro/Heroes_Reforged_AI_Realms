@@ -121,10 +121,22 @@ Output: faction pack directory with:
 - `manifest.json` declaring dependencies and `contentHash`
 - records under `units/`, `heroes/`, `buildings/`, `abilities/`
 - `assets/index.json` with placeholder asset bindings
+- raw per-frame PNGs under `sprites/<entityId>/<frame>.png`
+- `atlas-manifest.json` listing each entity to be packed at
+  publish time
 
 The manifest declares `shared_abilities` and `shared_skills` as
 dependencies whenever the generated faction references shared IDs;
 the materializer never inlines a shared record.
+
+**AI output is per-frame, never atlased.** The pack-publish step
+(see [`atlas-pipeline.md`](./atlas-pipeline.md)) is the **only**
+step allowed to produce `<pack>/atlases/<entityId>.png` and
+`<pack>/atlases/<entityId>.atlas.json`. AI-generated and
+hand-authored packs share the same packer, the same flags, and the
+same lexicographic input ordering, so atlas bytes are byte-identical
+across machines for the same input set. This is what keeps
+deterministic UV sampling stable across pack origins.
 
 ## Failure modes
 

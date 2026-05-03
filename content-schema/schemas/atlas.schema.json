@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/atlas.schema.json",
+  "title": "AtlasManifest",
+  "description": "Atlas-pack manifest authored by content packs (and the AI generation pipeline). Lists every entity to be packed at publish time by `npm run pack:build`. Producer-side contract pinned in docs/architecture/atlas-pipeline.md. Renderer consumes the per-entity `<entityId>.atlas.json` files produced from this manifest, not this manifest itself.",
+  "type": "object",
+  "required": ["schemaVersion", "packId", "entities", "packerOptions"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Must match the `$id` form of the atlas schema. Editors and AI generators emit the canonical ID so validators can resolve the schema without filesystem walking.",
+      "pattern": "^heroes-reforged/atlas\\.schema\\.json$"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "packId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Pack identifier this manifest belongs to. Must match `id` from the pack's `manifest.json`."
+    },
+    "packerOptions": {
+      "type": "object",
+      "description": "Pinned packer flags applied to every entity in this pack. Identical inputs + identical flags must produce byte-identical outputs across machines.",
+      "required": ["seed", "maxPageSize", "padding"],
+      "additionalProperties": false,
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Pinned `--seed` value passed to free-tex-packer-cli."
+        },
+        "maxPageSize": {
+          "type": "object",
+          "required": ["width", "height"],
+          "additionalProperties": false,
+          "properties": {
+            "width":  { "type": "integer", "minimum": 32, "maximum": 4096 },
+            "height": { "type": "integer", "minimum": 32, "maximum": 4096 }
+          },
+          "description": "Atlas page-size cap. Must not exceed the renderer's per-animation cap (4096×4096) from renderer-technology-choice.md § Per-Animation Budget."
+        },
+        "padding": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32,
+          "description": "Pixel padding between sprites on the atlas page."
+        },
+        "trim": {
+          "type": "boolean",
+          "description": "Whether to trim transparent pixels around source frames. Default false; when true, frame metadata records the trim offsets."
+        },
+        "powerOfTwo": {
+          "type": "boolean",
+          "description": "Force atlas page dimensions to powers of two. Default true to match WebGL2 mipmap support."
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["entityId", "frameSourcesGlob"],
+        "additionalProperties": false,
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable entity identifier. Output files are written as `<pack>/atlases/<entityId>.png` and `<pack>/atlases/<entityId>.atlas.json`."
+          },
+          "frameSourcesGlob": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Pack-relative glob matching the per-frame PNGs to be packed for this entity. Conventionally `sprites/<entityId>/*.png`. Files are sorted lexicographically by absolute pack-relative path before packing for determinism."
+          },
+          "overrides": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Per-entity overrides for `packerOptions`. Optional. Any field omitted inherits from the manifest-level `packerOptions`.",
+            "properties": {
+              "maxPageSize": {
+                "type": "object",
+                "required": ["width", "height"],
+                "additionalProperties": false,
+                "properties": {
+                  "width":  { "type": "integer", "minimum": 32, "maximum": 4096 },
+                  "height": { "type": "integer", "minimum": 32, "maximum": 4096 }
+                }
+              },
+              "padding": { "type": "integer", "minimum": 0, "maximum": 32 },
+              "trim":    { "type": "boolean" },
+              "powerOfTwo": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

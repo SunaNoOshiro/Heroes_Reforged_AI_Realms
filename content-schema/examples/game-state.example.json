@@ -117,5 +117,7 @@
     "emberwild": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
   },
   "engineHash": "engine:1.0.0+abcd",
-  "seed": 42
+  "seed": 42,
+  "mapVersion": 0,
+  "zocVersion": 0
 }

@@ -82,9 +82,16 @@ Renderer does not depend on simulation code. Pure snapshot consumer. This enforc
 
 ### Performance Targets
 
-- 60 FPS on map (no stutter during pan/zoom)
-- 60 FPS during battle (animating 7 stacks × 5 frames per sprite)
-- 0.1 ms per-frame GPU time (leave headroom for UI)
+The numeric per-tier FPS targets, the per-system CPU budget,
+allocation budgets, memory ceilings, and entity ceilings live in
+[`performance.md`](./performance.md). The renderer task tree
+references that doc rather than inline numbers; this section keeps
+only the rendering-specific rationale below.
+
+- 0.1 ms per-frame GPU time (leave headroom for UI; rendering-side
+  rationale).
+- 60 FPS on the Reference tier and 30 FPS on the Minimum-spec tier
+  (per [`performance.md` § 1](./performance.md#1-hardware-tiers)).
 
 ### Per-Animation Budget
 
@@ -213,6 +220,10 @@ Canvas 2D fallback for older browsers: ship both codepaths, same animation logic
 - `tasks/mvp/06-renderer.md` — task breakdown
 - `src/renderer/` — implementation directory
 - `src/ui/` — UI shell (separate from renderer, no WebGL)
+- [`docs/architecture/performance.md`](./performance.md) — canonical
+  performance budgets (CPU, GC, memory, entities, AI compute)
+- [`docs/architecture/atlas-pipeline.md`](./atlas-pipeline.md) —
+  atlas-generation pipeline that feeds the sprite-sheet loader
 - [`docs/architecture/ui-technology-choice.md`](./ui-technology-choice.md) — DOM-side framework + state binding
 - [`docs/architecture/ui-renderer-seam.md`](./ui-renderer-seam.md) — DOM ↔ canvas seam
 - [`docs/architecture/screen-scaling.md`](./screen-scaling.md) — virtual stage, hi-DPI, aspect

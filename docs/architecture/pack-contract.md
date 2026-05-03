@@ -179,3 +179,31 @@ must list **every** page in the pack's `assets/index.json`. The
 content runtime fails loud if any declared page is unresolved at
 load — the renderer cannot recover from a missing atlas page because
 frame indices may reference any page.
+
+## Atlas Generation
+
+Packed atlases are produced at pack-publish time, not authored by
+hand and not produced by the AI generation step. The producer
+contract — pinned packer, deterministic invocation, byte-identical
+output across machines — is owned by
+[`docs/architecture/atlas-pipeline.md`](./atlas-pipeline.md).
+
+Authoring summary:
+
+- Authors and AI generators ship raw frames under
+  `<pack>/sprites/<entityId>/<frame>.png` and an
+  `<pack>/atlas-manifest.json` listing every entity to be packed.
+  The manifest schema is
+  [`content-schema/schemas/atlas.schema.json`](../../content-schema/schemas/atlas.schema.json).
+- The publish step runs `npm run pack:build`, which writes
+  `<pack>/atlases/<entityId>.png` and
+  `<pack>/atlases/<entityId>.atlas.json` from the raw frames.
+- Both the per-record canonical-JSON contents and every atlas page
+  byte contribute to the pack's `contentHash`, so the hash detects
+  any drift in either layer.
+- AI-generated packs MUST go through the same publish step. The
+  AI pipeline never writes to `<pack>/atlases/`.
+
+The renderer-side metadata schema (TexturePacker-compatible) and
+loader live in
+[`tasks/mvp/06-renderer/06-sprite-sheet-loader-plus-frame-animation.md`](../../tasks/mvp/06-renderer/06-sprite-sheet-loader-plus-frame-animation.md).

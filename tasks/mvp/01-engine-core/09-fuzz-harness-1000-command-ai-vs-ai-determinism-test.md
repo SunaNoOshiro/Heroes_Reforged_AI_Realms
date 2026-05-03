@@ -51,6 +51,17 @@ Acceptance Criteria:
 - Snapshot equivalence: replay from `(snapshot, log_since_snapshot)`
   is bit-identical to replay from `(seed, full_log)` for every
   verified snapshot in the fixture.
+- **AI `searchBudget` determinism case:** for each fixture, run
+  the AI worker (`mvp.10-heuristic-ai.06-run-ai-in-web-worker`)
+  twice with identical seed, state, and `searchBudget`, with two
+  different simulated `setTimeout` rate profiles ("fast" /
+  "slow"). The two runs MUST produce identical `Command`
+  outputs and identical `nodesExpanded` counts. Wall-clock-driven
+  truncation would break this case; that is the point.
+- **Bench harness Scenario C fixtures** are shared with this
+  harness. Adding a fixture here adds it to the bench
+  Scenario C scenario list (and vice versa) — a single fixture
+  source feeds both gates.
 
 Verify:
 - npm run validate

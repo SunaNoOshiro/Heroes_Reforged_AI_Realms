@@ -2,7 +2,7 @@
 
 This repo is mostly planning and contracts, not runtime code.
 
-Read first if you want to understand the full project:
+Read first if you need to understand the full project:
 
 1. [README.md](README.md)
 2. [docs/architecture/overview.md](docs/architecture/overview.md)
@@ -38,12 +38,18 @@ Read first if you want to understand the full project:
     — mouse / touch / keyboard / gamepad bridging
 20. [docs/architecture/mechanics-coverage.md](docs/architecture/mechanics-coverage.md)
     — mechanic scope SSOT (mvp / phase-2 / phase-3 / deferred / out-of-scope)
-21. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-22. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
+21. [docs/architecture/performance.md](docs/architecture/performance.md)
+    — hardware tiers, per-frame CPU budget, GC budget, memory budget,
+    entity ceilings, AI compute budget, allocation policy
+22. [docs/architecture/atlas-pipeline.md](docs/architecture/atlas-pipeline.md)
+    — atlas-generation pipeline (pinned packer, deterministic invocation,
+    publish step ordering)
+23. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
+24. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
     Mermaid flows: game startup, race → castle rendering, battle attack
     sequence, asset loading per context, localization, save/load. Read
     a single `<id>.md` to understand one runtime behavior end-to-end.
-23. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
+25. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
     numbered per-screen UI packages. Each package contains
     `mockup.html` for visuals, `spec.md` for components and bindings,
     `interactions.md` for per-control behavior, `data-contracts.md` for

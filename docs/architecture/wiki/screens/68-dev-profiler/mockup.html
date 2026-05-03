@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>68. Dev Profiler - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: rgba(0,0,0,0); }
+  body { color: #ffe7c2; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: rgba(0,0,0,0); }
+  .panel { fill: rgba(18,12,8,.78); stroke: #ffb547; stroke-width: 1; }
+  .header { fill: #ffd180; font: 700 11px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #ffe7c2; font: 10px ui-monospace, Menlo, monospace; }
+  .ok { fill: #7ce0a4; font: 700 10px ui-monospace, Menlo, monospace; }
+  .warn { fill: #ffd166; font: 700 10px ui-monospace, Menlo, monospace; }
+  .err { fill: #ff7373; font: 700 10px ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body data-screen="68-dev-profiler" data-archetype="diagnostics-overlay" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dev Profiler mockup">
+  <g data-component="DevProfilerOverlay">
+    <rect x="14" y="14" width="240" height="86" class="panel" data-component="FpsPanel" data-i18n="ui.dev-profiler.fps.title"/>
+    <text x="24" y="34" class="header">FPS / FRAME TIME</text>
+    <text x="24" y="54" class="row">fps        60.0    target  60</text>
+    <text x="24" y="68" class="row">frame ms   16.4    p99    18.1</text>
+    <text x="24" y="82" class="ok">budget: green</text>
+
+    <rect x="14" y="110" width="240" height="180" class="panel" data-component="CpuBudgetPanel" data-i18n="ui.dev-profiler.cpu.title"/>
+    <text x="24" y="130" class="header">CPU PER SYSTEM (ms)</text>
+    <text x="24" y="150" class="row">commandDispatch     1.6 / 2.0</text>
+    <text x="24" y="164" class="row">ai.tick (msg)       0.3 / 0.5</text>
+    <text x="24" y="178" class="row">fogOfWar.update     0.4 / 0.5</text>
+    <text x="24" y="192" class="row">snapshotDiff+xxh    0.8 / 1.0</text>
+    <text x="24" y="206" class="row">input.dispatch      0.2 / 0.5</text>
+    <text x="24" y="220" class="row">renderer.cull+draw  3.6 / 4.0</text>
+    <text x="24" y="234" class="row">renderer.animTick   0.7 / 1.0</text>
+    <text x="24" y="248" class="row">ui.render+reconcile 1.4 / 2.0</text>
+    <text x="24" y="262" class="ok">total              9.0 / 11.5 (head 5.1)</text>
+
+    <rect x="14" y="300" width="240" height="100" class="panel" data-component="AllocPanel" data-i18n="ui.dev-profiler.alloc.title"/>
+    <text x="24" y="320" class="header">ALLOCATIONS</text>
+    <text x="24" y="340" class="row">per frame    42 KB / 64 KB</text>
+    <text x="24" y="354" class="row">per turn    214 KB / 256 KB</text>
+    <text x="24" y="368" class="ok">gc pause max  2.8 ms / 4.0 ms</text>
+    <text x="24" y="382" class="row">--expose-gc: enabled</text>
+
+    <rect x="14" y="410" width="240" height="86" class="panel" data-component="HeapPanel" data-i18n="ui.dev-profiler.heap.title"/>
+    <text x="24" y="430" class="header">JS HEAP</text>
+    <text x="24" y="450" class="row">used    687 MB / 1024 MB</text>
+    <text x="24" y="464" class="row">textures 312 / 400  audio 88 / 150</text>
+    <text x="24" y="478" class="row">sim     104 / 150  ui    62 / 100</text>
+
+    <rect x="270" y="14" width="516" height="180" class="panel" data-component="AiComputePanel" data-i18n="ui.dev-profiler.ai.title"/>
+    <text x="282" y="34" class="header">AI COMPUTE (last move)</text>
+    <text x="282" y="54" class="row">difficulty       knight</text>
+    <text x="282" y="68" class="row">nodesExpanded   12 480 / 16 000</text>
+    <text x="282" y="82" class="row">depthReached     5 / 5</text>
+    <text x="282" y="96" class="row">wall-clock      0.9 s   watchdog 2.0 s</text>
+    <text x="282" y="110" class="ok">budget pure-fn: deterministic</text>
+    <text x="282" y="130" class="row">searchBudget = searchBudgetFor(knight, 200x200)</text>
+    <text x="282" y="144" class="row">last move:  MOVE_HERO {hero:kaelis, to:[12,8]}</text>
+    <text x="282" y="158" class="row">cache hits: 412 / 480 calls (85.8%)</text>
+    <text x="282" y="172" class="ok">no watchdog warning</text>
+
+    <rect x="270" y="204" width="516" height="180" class="panel" data-component="PoolOccupancyPanel" data-i18n="ui.dev-profiler.pools.title"/>
+    <text x="282" y="224" class="header">POOL OCCUPANCY</text>
+    <text x="282" y="244" class="row">vectors        428 / 1024 (cap 4096)</text>
+    <text x="282" y="258" class="row">drawCommands   118 /  256 (cap 1024)</text>
+    <text x="282" y="272" class="row">aiNodes       1942 / 2048 (cap 8192)</text>
+    <text x="282" y="286" class="row">vfxNodes        96 /  512 (cap 512)</text>
+    <text x="282" y="306" class="ok">no growth past cap this run</text>
+    <text x="282" y="326" class="row">refs: performance.md § Allocation Policy</text>
+
+    <rect x="270" y="394" width="516" height="120" class="panel" data-component="AnimationCountPanel" data-i18n="ui.dev-profiler.animations.title"/>
+    <text x="282" y="414" class="header">ACTIVE ANIMATIONS</text>
+    <text x="282" y="434" class="row">on-screen        86 / 128</text>
+    <text x="282" y="448" class="row">total           172 / 256</text>
+    <text x="282" y="462" class="row">spell VFX         4 / 32</text>
+    <text x="282" y="476" class="ok">budget green</text>
+    <text x="282" y="496" class="row">refs: performance.md § Entity Ceilings</text>
+
+    <text x="282" y="554" class="row">Toggle: Ctrl+Shift+P    Build flag: import.meta.env.DEV    URL: ?dev_profiler=1</text>
+  </g>
+</svg>
+</body>
+</html>

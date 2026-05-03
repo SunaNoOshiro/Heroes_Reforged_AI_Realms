@@ -7,6 +7,15 @@ short: "17. Cache Strategy"
 
 **Memory management.** Recently used assets stay cached. LRU eviction when memory tight. Critical assets (current hero, current town) pinned. Pre-fetch on transitions.
 
+The percentage thresholds below trigger eviction; the **meaning** of
+"total used" is the sum of the per-category memory budget pinned in
+[`docs/architecture/performance.md` § 4](../performance.md#4-memory-budget).
+
+- Reference tier total: **1 GB** (textures 400 MB, audio 150 MB,
+  sim state 150 MB, save snapshots 50 MB, UI 100 MB,
+  headroom 150 MB).
+- Minimum-spec tier total: **500 MB** (every category halved).
+
 ```mermaid
 flowchart LR
     A[Asset Cache] --> B[Pinned<br/>Current hero<br/>Current town<br/>UI elements]
@@ -15,9 +24,9 @@ flowchart LR
     A --> E[Cold<br/>Used > 5min ago]
 
     F[Memory pressure] --> G{Total used?}
-    G -->|< 70%| H[Keep all]
-    G -->|70-90%| I[Evict Cold]
-    G -->|> 90%| J[Evict Cold + Warm]
+    G -->|< 70% of cap| H[Keep all]
+    G -->|70-90% of cap| I[Evict Cold]
+    G -->|> 90% of cap| J[Evict Cold + Warm]
 
     K[New asset request] --> L{In cache?}
     L -->|YES| M[Promote to Hot]
@@ -35,5 +44,11 @@ flowchart LR
 |------|--------|-------------------|
 | Pinned | Yes | Never evicted |
 | Hot | No | Last to evict |
-| Warm | No | Evict at 90% memory |
-| Cold | No | Evict at 70% memory |
+| Warm | No | Evict at 90% of category cap |
+| Cold | No | Evict at 70% of category cap |
+
+"Category cap" is the per-category MB ceiling from
+[`performance.md` § 4](../performance.md#4-memory-budget). The
+texture / atlas cache sees the texture cap; the audio cache sees
+the audio cap; etc. Crossing **any** category cap triggers
+eviction within that category, independently of other categories.

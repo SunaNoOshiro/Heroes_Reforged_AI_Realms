@@ -7,6 +7,13 @@ Module: [Renderer (M1/M2)](../06-renderer.md)
 Description:
 Load sprite sheets with frame metadata (JSON format from TexturePacker or similar). Play frame sequences for unit idle, walk, attack, and death animations.
 
+The `<entityId>.atlas.json` files this loader consumes are
+produced by the atlas-generation pipeline pinned in
+[`docs/architecture/atlas-pipeline.md`](../../../docs/architecture/atlas-pipeline.md)
+and implemented by `mvp.06-renderer.09-atlas-pipeline`. The
+metadata schema lives at
+[`content-schema/schemas/atlas.schema.json`](../../../content-schema/schemas/atlas.schema.json).
+
 Read First:
 - [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
 - [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)

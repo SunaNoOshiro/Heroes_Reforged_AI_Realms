@@ -56,6 +56,39 @@
       ]
     },
     {
+      "id": "mvp.00-perf",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Performance Harness & Budgets (M1)",
+      "path": "tasks/mvp/00-perf.md",
+      "milestone": "M1 — performance-gated CI exit",
+      "totalEstimate": "~22 hours",
+      "exitCriteria": "`npm run bench` runs Scenarios A/B/C/D",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "01-bench-harness.md",
+          "link": "00-perf/01-bench-harness.md"
+        },
+        {
+          "label": "02-bench-baseline-and-ci-gate.md",
+          "link": "00-perf/02-bench-baseline-and-ci-gate.md"
+        },
+        {
+          "label": "03-memory-regression-gate.md",
+          "link": "00-perf/03-memory-regression-gate.md"
+        },
+        {
+          "label": "04-profiling-overlay.md",
+          "link": "00-perf/04-profiling-overlay.md"
+        },
+        {
+          "label": "05-object-pools.md",
+          "link": "00-perf/05-object-pools.md"
+        }
+      ]
+    },
+    {
       "id": "mvp.01-engine-core",
       "kind": "module",
       "status": "planned",
@@ -2181,6 +2214,345 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "mvp.00-perf.01-bench-harness",
+      "kind": "task",
+      "status": "planned",
+      "title": "Bench harness — Scenarios A/B/C runtime",
+      "path": "tasks/mvp/00-perf/01-bench-harness.md",
+      "moduleId": "mvp.00-perf",
+      "modulePath": "tasks/mvp/00-perf.md",
+      "description": "Build the headless performance bench harness that enforces every numerical contract in [`docs/architecture/performance.md`](../../../docs/architecture/performance.md). Three pinned scenarios run from a single `npm run bench` entry point and emit JSON reports under `bench/results/`. - **Scenario A — adventure-map stress.** 200×200 generated map, scripted camera pan at constant velocity for 30 s, full pan + zoom-in + zoom-out cycle. Measures CPU ms/frame per system, GPU ms/frame, allocations/frame, peak heap, active animation count. - **Scenario B — tactical battle stress.** 14 unit stacks (worst-case mix from balance task), AoE spell cast on turn 3, full retaliation chain, run for 50 turns or until victory. Measures combat-specific ms/frame and animation-count peak. Adds a 21-stack run to validate the summons absorbed budget. - **Scenario C — AI bot match.** 100-turn AI-vs-AI on the random map generator template, two `Knight`-difficulty workers with the deterministic `searchBudget`. Measures ms/AI-move and total wall-clock to verify the chosen `maxNodes` keeps moves under 2 s on Minimum-spec. Each scenario uses deterministic seeded fixtures so bench results are byte-stable across runs on the same hardware tier. All three scenarios share fixtures with the fuzz harness where useful (see `mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test`).",
+      "inputs": [
+        "Engine reducer + replay API (`mvp.01-engine-core.06-command-dispatcher`, `mvp.01-engine-core.08-replay-api`).",
+        "Renderer presentation loop (`mvp.06-renderer.08-presentation-loop-decoupled-from-sim`).",
+        "AI worker with deterministic `searchBudget` (`mvp.10-heuristic-ai.06-run-ai-in-web-worker`).",
+        "Random map generator (`mvp.03-map-system.09-random-map-generator-deterministic-runner`)."
+      ],
+      "outputs": [
+        "`bench/runner.ts` — entry point invoked by `npm run bench`.",
+        "`bench/scenarios/adventure-map-stress.ts` — Scenario A.",
+        "`bench/scenarios/battle-stress.ts` — Scenario B.",
+        "`bench/scenarios/ai-bot-match.ts` — Scenario C.",
+        "`bench/results/.gitkeep` — placeholder for per-run JSON reports (gitignored except the keepfile).",
+        "`npm run bench` script wired in `package.json`.",
+        "Per-scenario JSON report shape: `{ scenario, tier, frames: { ms, allocBytes, animCount }[], summary, hash }`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/implementation-plans/09-performance-plan.md`](../../../docs/implementation-plans/09-performance-plan.md)"
+      ],
+      "ownedPaths": [
+        "bench/runner.ts",
+        "bench/scenarios/",
+        "bench/results/.gitkeep"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.03-map-system.09-random-map-generator-deterministic-runner"
+      ],
+      "acceptanceCriteria": [
+        "`npm run bench` runs all three scenarios headless and writes JSON reports under `bench/results/<scenario>-<timestamp>.json`.",
+        "Two consecutive runs on the same hardware produce byte-identical fixture inputs and identical `summary.hash` values (the measurement values may vary; the simulation trace must not).",
+        "Scenario A asserts on-screen active animation count ≤ 128 and total active animation count ≤ 256 per [`performance.md` § 5](../../../docs/architecture/performance.md#5-entity-ceilings).",
+        "Scenario A asserts pool growth past the configured caps fails the run (consumed by `mvp.00-perf.05-object-pools`).",
+        "Scenario B validates 14-stack and 21-stack (with summons) frame budgets.",
+        "Scenario C asserts identical `Command` output across two runs with the same seed and `searchBudget`, and that no AI move exceeds the watchdog wall-clock budget on the Minimum-spec emulation profile.",
+        "Per-system CPU samples are emitted for every line of [`performance.md` § 2](../../../docs/architecture/performance.md#2-per-frame-cpu-budget)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm run bench"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.03-map-system.09-random-map-generator-deterministic-runner",
+        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.03-map-system.09-random-map-generator-deterministic-runner",
+        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.00-perf.02-bench-baseline-and-ci-gate",
+      "kind": "task",
+      "status": "planned",
+      "title": "Bench baseline + CI 10 % regression gate",
+      "path": "tasks/mvp/00-perf/02-bench-baseline-and-ci-gate.md",
+      "moduleId": "mvp.00-perf",
+      "modulePath": "tasks/mvp/00-perf.md",
+      "description": "Capture a checked-in performance baseline on the Reference tier and gate every PR against a **10 % regression** on any per-frame metric or summary value emitted by the bench harness. Without this gate, the bench harness is informational only. Coupling the gate to an explicit baseline file makes intentional regressions visible — they require updating `bench/baseline.json` in the same PR that introduces the slowdown, with reviewer sign-off.",
+      "inputs": [
+        "Bench harness (Task 1) and a clean run on the Reference tier."
+      ],
+      "outputs": [
+        "`bench/baseline.json` — per-scenario baseline values keyed by metric name. Format: `{ tier, scenarios: { <name>: { metrics: { <key>: { p50, p99 } } } } }`.",
+        "`.github/workflows/perf.yml` — GitHub Actions workflow that:",
+        "Runs `npm run bench` on `main` and on `perf/**` branches.",
+        "Compares the new run against `bench/baseline.json`.",
+        "Fails the job on any metric where the new p50 or p99 exceeds the baseline by more than **10 %**.",
+        "Uploads the report JSON as an artifact for trend visibility.",
+        "Runs as **advisory** (does not block) on PRs to a non-main branch — block-on-fail kicks in for `main`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`tasks/mvp/00-perf/01-bench-harness.md`](./01-bench-harness.md)",
+        "[`tasks/mvp/01-engine-core/10-github-actions-ci.md`](../01-engine-core/10-github-actions-ci.md)"
+      ],
+      "ownedPaths": [
+        "bench/baseline.json",
+        ".github/workflows/perf.yml"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-perf.01-bench-harness"
+      ],
+      "acceptanceCriteria": [
+        "Captured baseline on the Reference tier (one machine, one pinned Node + Chromium version, documented in the workflow).",
+        "`bench/baseline.json` is committed to the repo and reviewed as part of intentional perf changes.",
+        "Workflow fails when a deliberate 15 % regression is introduced to any scenario (verified with a synthetic test branch).",
+        "Workflow does **not** fail on noise within ±10 % of baseline.",
+        "README has a perf-bench badge linking to the latest workflow run."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm run bench"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-perf.01-bench-harness"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-perf.01-bench-harness"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-perf.03-memory-regression-gate",
+      "kind": "task",
+      "status": "planned",
+      "title": "Memory-churn Scenario D + 5 % heap-delta gate",
+      "path": "tasks/mvp/00-perf/03-memory-regression-gate.md",
+      "moduleId": "mvp.00-perf",
+      "modulePath": "tasks/mvp/00-perf.md",
+      "description": "Add **Scenario D — memory churn** to the bench harness and gate CI on the post-cycle heap delta. This catches event-listener leaks, stale animation-frame handles, detached DOM nodes, and any other growth that survives a screen-transition cycle. The scenario opens main menu → adventure map → enters battle → returns to map → enters town → exits to main menu, repeated **50 times** under a headless browser. A heap snapshot is captured before and after the cycle. Gates: - Post-cycle heap is within **+5 %** of the pre-cycle heap. - Detached DOM node count does not grow across the cycle. - A breach of either gate fails the workflow. This is the in-CI counterpart to the per-task \"no animation-frame handle leak\" line in [`tasks/mvp/06-renderer/08-presentation-loop-decoupled-from-sim.md`](../06-renderer/08-presentation-loop-decoupled-from-sim.md); that line is now an automated assertion, not a manual check.",
+      "inputs": [
+        "Bench harness runner (Task 1).",
+        "React UI shell + screen router so the cycle has real screen transitions to walk."
+      ],
+      "outputs": [
+        "`bench/scenarios/memory-churn.ts` — Scenario D implementation.",
+        "`.github/workflows/memory.yml` — workflow that runs Scenario D alongside the perf workflow and gates on the +5 % heap delta.",
+        "Baseline heap snapshot reference value committed to `bench/baseline.json` under `scenarios.memory-churn.metrics.heapDelta`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`tasks/mvp/00-perf/01-bench-harness.md`](./01-bench-harness.md)",
+        "[`tasks/mvp/06-renderer/08-presentation-loop-decoupled-from-sim.md`](../06-renderer/08-presentation-loop-decoupled-from-sim.md)"
+      ],
+      "ownedPaths": [
+        "bench/scenarios/memory-churn.ts",
+        ".github/workflows/memory.yml"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-perf.01-bench-harness"
+      ],
+      "acceptanceCriteria": [
+        "Scenario D completes 50 cycles of the screen-transition walk in a headless Chromium runner.",
+        "Workflow fails when post-cycle heap exceeds pre-cycle by > 5 %.",
+        "Workflow fails when detached-DOM-node count grows across the cycle (verified via `Memory.getAllTimeSamplingProfile` / `Performance.getDetachedDomNodes` or equivalent).",
+        "A deliberately-leaky branch (forget to unbind a listener) produces a failing workflow run.",
+        "The pre-existing manual \"no animation-frame handle leak\" line in [`tasks/mvp/06-renderer/08-presentation-loop-decoupled-from-sim.md`](../06-renderer/08-presentation-loop-decoupled-from-sim.md) is automated by this scenario."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm run bench"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-perf.01-bench-harness"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-perf.01-bench-harness"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-perf.04-profiling-overlay",
+      "kind": "task",
+      "status": "planned",
+      "title": "In-game profiling overlay (Ctrl+Shift+P)",
+      "path": "tasks/mvp/00-perf/04-profiling-overlay.md",
+      "moduleId": "mvp.00-perf",
+      "modulePath": "tasks/mvp/00-perf.md",
+      "description": "A dev-only profiling overlay toggled by `Ctrl+Shift+P` that surfaces FPS, per-system CPU samples, allocations/frame, JS heap usage, AI compute time and `nodesExpanded` for the last move, and pool occupancy. The overlay is the in-app counterpart to the bench harness — bench captures trends, the overlay localizes spikes to in-game actions. The overlay reads selectors only; it never writes engine state. It is gated behind a build flag so it does not ship in release bundles by default but **can** be enabled in production builds via a URL parameter for QA / alpha testers (e.g., `?dev_profiler=1`). Screen package: [`docs/architecture/wiki/screens/68-dev-profiler/`](../../../docs/architecture/wiki/screens/68-dev-profiler/). The five screen package files (mockup, spec, interactions, data-contracts, architecture) are the canonical UI contract for this task.",
+      "inputs": [
+        "Renderer presentation loop frame-time samples (`mvp.06-renderer.08-presentation-loop-decoupled-from-sim`).",
+        "AI worker compute time and `nodesExpanded` from `mvp.10-heuristic-ai.06-run-ai-in-web-worker`.",
+        "Pool occupancy selectors from `mvp.00-perf.05-object-pools`."
+      ],
+      "outputs": [
+        "`src/ui/dev/profiler/` — overlay component and selectors.",
+        "`src/ui/dev/profiler/ProfilerOverlay.tsx`",
+        "`src/ui/dev/profiler/selectors.ts`",
+        "`src/ui/dev/profiler/hotkey.ts`",
+        "Hotkey: `Ctrl+Shift+P` toggles visibility (registered via the hotkey registry; see [`ui-hotkeys.md`](../../../docs/architecture/ui-hotkeys.md)).",
+        "Build-flag gate: `import.meta.env.DEV === true` is the default on; `?dev_profiler=1` URL parameter forces the overlay on in PROD bundles."
+      ],
+      "readFirst": [
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/wiki/screens/68-dev-profiler/spec.md`](../../../docs/architecture/wiki/screens/68-dev-profiler/spec.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/dev/profiler/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
+        "mvp.00-perf.05-object-pools"
+      ],
+      "acceptanceCriteria": [
+        "Overlay toggles on/off with `Ctrl+Shift+P` without leaking the hotkey registration on unmount.",
+        "Overlay surfaces every readout listed in [`68-dev-profiler/spec.md`](../../../docs/architecture/wiki/screens/68-dev-profiler/spec.md): FPS, per-system CPU samples, allocations/frame, JS heap, AI compute time + `nodesExpanded`, pool occupancy, active animation count.",
+        "Overlay's own per-frame cost is **< 0.2 ms** at the Reference tier (verified via Scenario A bench harness with the overlay enabled vs disabled).",
+        "Overlay never dispatches gameplay commands; selectors only.",
+        "PROD bundle without `?dev_profiler=1` does not include the overlay (verified by bundle-analyzer or tree-shake snapshot)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/68-dev-profiler"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/ui-component-registry.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/ui-component-registry.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-perf.05-object-pools",
+        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-perf.05-object-pools",
+        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.10-heuristic-ai.06-run-ai-in-web-worker"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-perf.05-object-pools",
+      "kind": "task",
+      "status": "planned",
+      "title": "Object pools (vectors, draw commands, AI nodes, VFX)",
+      "path": "tasks/mvp/00-perf/05-object-pools.md",
+      "moduleId": "mvp.00-perf",
+      "modulePath": "tasks/mvp/00-perf.md",
+      "description": "Implement the four hot-path object pools declared in [`performance.md` § 3 — Allocation Policy](../../../docs/architecture/performance.md#allocation-policy). Each pool is a plain freelist with a fixed initial capacity and a growth limit. Growth past the limit is a **bench-harness failure** (Scenario A enforces this), not a silent allocation. Pools are created at engine init and never freed. The four pool kinds: - **Hex-coordinate vectors** — used by the renderer per-frame culling pass. Initial capacity sized to the on-screen hex count at max zoom × 2. - **Sprite draw-command objects** — one per visible animated tile. Initial capacity sized to the on-screen active animation ceiling (128 from the entity-ceiling table) × 2. - **AI search nodes** — used by the threat-map BFS frontier and any other AI graph search. Initial capacity sized to one 200×200 frontier scan. - **Particle / VFX nodes** — initial capacity sized to \"Active spells with persistent VFX\" × 16 (32 × 16 = 512 per performance.md § 5). The pool primitive lives in `src/engine/pool/` and is consumed by both renderer and AI code (the only place this is allowed to cross the `src/engine/` boundary in either direction is via a small public type signature; see [`module-graph.md`](../../../docs/architecture/module-graph.md)).",
+      "inputs": [
+        "Engine root workspace (`mvp.01-engine-core.01-initialize-root-workspace-and-module-layout`)."
+      ],
+      "outputs": [
+        "`src/engine/pool/index.ts` — `createPool<T>(opts)` primitive returning `{ acquire(): T, release(t: T): void, occupancy(): number }`.",
+        "`src/engine/pool/vectors.ts` — hex-coordinate vector pool factory.",
+        "`src/engine/pool/draw-commands.ts` — sprite draw-command pool factory.",
+        "`src/engine/pool/ai-nodes.ts` — AI search-node pool factory.",
+        "`src/engine/pool/vfx-nodes.ts` — particle / VFX pool factory.",
+        "Pool occupancy selectors exposed for the profiling overlay (Task 4)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`docs/architecture/module-graph.md`](../../../docs/architecture/module-graph.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+      ],
+      "ownedPaths": [
+        "src/engine/pool/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
+      ],
+      "acceptanceCriteria": [
+        "Each pool reaches steady-state occupancy on Scenario A without growing past its configured cap.",
+        "Renderer per-frame culling pass uses the vector pool; no per-frame `{ q, r }` allocations measured by bench harness.",
+        "AI threat-map BFS uses the AI-node pool; no per-frontier-step allocations.",
+        "Pool growth past the cap throws in dev builds and emits a bench-harness assertion failure in CI.",
+        "Pool primitive has no `Math.random()`, no `Date.now()`, no floats — passes the determinism lint."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
       "id": "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout",
       "kind": "task",
       "status": "planned",
@@ -2245,8 +2617,8 @@
       "moduleDependencies": [],
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 302
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 309
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2307,7 +2679,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 301
+      "downstreamTransitiveCount": 307
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2364,7 +2736,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 195
+      "downstreamTransitiveCount": 200
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2420,7 +2792,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 219
+      "downstreamTransitiveCount": 224
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2523,7 +2895,12 @@
         "State object is never mutated in place (referential equality check in tests)",
         "100% TypeScript coverage (no `any`, no `as unknown`)",
         "Command discriminants match `content-schema/schemas/command.schema.json`",
-        "`npm run validate:commands` passes so screen interaction tokens are schema-backed, aliased, UI-local, or explicitly out of scope"
+        "`npm run validate:commands` passes so screen interaction tokens are schema-backed, aliased, UI-local, or explicitly out of scope",
+        "**`mapVersion` and `zocVersion` invariants** (consumed by the pathfinder cache in `mvp.03-map-system.11-pathfinder-cache`):",
+        "Reducers for terrain-mutating commands (terraform-effect, bridge-built) increment `state.mapVersion` by exactly 1 per accepted command.",
+        "Reducers for hero-tile-occupancy commands (hero-move, hero-spawn, hero-defeat) increment `state.zocVersion` by exactly 1 per accepted command.",
+        "No-op commands (validation rejected, idempotent dedup hit) do NOT bump either counter.",
+        "The increments are deterministic on a fixture command sequence — verified by a unit test that asserts the exact `(mapVersion, zocVersion)` pair after each step."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -2548,8 +2925,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 24,
-      "downstreamTransitiveCount": 186
+      "downstreamDirectCount": 25,
+      "downstreamTransitiveCount": 191
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -2844,7 +3221,9 @@
         "CI reports the seed + command index on any failure for reproducibility",
         "Save/load round-trip: for each fixture, `load(save(state))` returns a state whose `stateHash` matches the pre-save `stateHash`.",
         "Re-save byte equivalence: two consecutive `save()` calls of the same session produce identical `canonicalContentHash`.",
-        "Snapshot equivalence: replay from `(snapshot, log_since_snapshot)` is bit-identical to replay from `(seed, full_log)` for every verified snapshot in the fixture."
+        "Snapshot equivalence: replay from `(snapshot, log_since_snapshot)` is bit-identical to replay from `(seed, full_log)` for every verified snapshot in the fixture.",
+        "**AI `searchBudget` determinism case:** for each fixture, run the AI worker (`mvp.10-heuristic-ai.06-run-ai-in-web-worker`) twice with identical seed, state, and `searchBudget`, with two different simulated `setTimeout` rate profiles (\"fast\" / \"slow\"). The two runs MUST produce identical `Command` outputs and identical `nodesExpanded` counts. Wall-clock-driven truncation would break this case; that is the point.",
+        "**Bench harness Scenario C fixtures** are shared with this harness. Adding a fixture here adds it to the bench Scenario C scenario list (and vice versa) — a single fixture source feeds both gates."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -2885,7 +3264,10 @@
       "outputs": [
         "`.github/workflows/ci.yml`",
         "Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz)",
-        "Badge in root `README.md`"
+        "Badge in root `README.md`",
+        "**Perf-bench job** (advisory on PRs, blocking on `main` and `perf/**` branches) — wired by `mvp.00-perf.02-bench-baseline-and-ci-gate` via `.github/workflows/perf.yml`.",
+        "**Memory-gate job** (blocking) — wired by `mvp.00-perf.03-memory-regression-gate` via `.github/workflows/memory.yml`.",
+        "Both perf jobs share the bench harness from `mvp.00-perf.01-bench-harness`."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -2893,12 +3275,17 @@
       ],
       "ownedPaths": [
         ".github/workflows/ci.yml",
-        "README.md"
+        "README.md",
+        ".github/workflows/perf.yml",
+        ".github/workflows/memory.yml"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
       "ownedPathsOptOutReason": "",
-      "sharedOwnedPaths": [],
+      "sharedOwnedPaths": [
+        ".github/workflows/perf.yml",
+        ".github/workflows/memory.yml"
+      ],
       "dependencies": [
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
       ],
@@ -2906,7 +3293,8 @@
         "CI passes on `main` after all M0 tasks are merged",
         "A deliberate `Math.random()` injection causes CI to fail at the lint step",
         "A deliberate state-mutation bug causes CI to fail at the fuzz step",
-        "Total CI runtime < 3 minutes"
+        "Total CI runtime < 3 minutes",
+        "The shared paths `.github/workflows/perf.yml` and `.github/workflows/memory.yml` are **additive** workflow files; they coexist with `.github/workflows/ci.yml` and must not rewrite or merge into it. The primary owner of `perf.yml` is `mvp.00-perf.02-bench-baseline-and-ci-gate`; the primary owner of `memory.yml` is `mvp.00-perf.03-memory-regression-gate`. This task only references those workflows; it does not author their gate logic."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -2985,7 +3373,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 224
+      "downstreamTransitiveCount": 230
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -3043,7 +3431,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 143
+      "downstreamTransitiveCount": 148
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -3107,7 +3495,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 96
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -3165,7 +3553,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 106
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -3226,7 +3614,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 132
+      "downstreamTransitiveCount": 137
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -3287,7 +3675,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 193
+      "downstreamTransitiveCount": 199
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -3361,7 +3749,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 87
+      "downstreamTransitiveCount": 92
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -3446,7 +3834,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 64
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -3547,7 +3935,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 58
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -3814,7 +4202,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 109
+      "downstreamTransitiveCount": 113
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -3906,7 +4294,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 65
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -4038,7 +4426,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 57
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -4258,7 +4646,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "mvp.02-content-schemas.19-tavern-and-marketplace-tables",
@@ -4944,7 +5332,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 24
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "mvp.02b-asset-pipeline.02-animation-definition-json-format",
@@ -5001,7 +5389,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "mvp.02b-asset-pipeline.03-sound-manifest-format",
@@ -5603,7 +5991,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 151
+      "downstreamTransitiveCount": 157
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -5663,7 +6051,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 91
+      "downstreamTransitiveCount": 96
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -5698,7 +6086,8 @@
         "`set` + `get` round-trips correctly",
         "`clone()` returns a deep copy (modifying clone does not affect original)",
         "Out-of-bounds `get` returns `0`, does not throw",
-        "A 128×128 map takes < 200KB in memory"
+        "A 128×128 map takes < 200KB in memory",
+        "Maps are held **fully in memory** for M1, bounded by the entity-ceiling table in [`docs/architecture/performance.md` § 5](../../../docs/architecture/performance.md#5-entity-ceilings). Streaming / chunking is deferred per [`performance.md` § 4 — Map Memory](../../../docs/architecture/performance.md#map-memory-in-memory-vs-streaming); if a future tier needs it, the work is a content-runtime change, not an engine change."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -5718,7 +6107,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 132
+      "downstreamTransitiveCount": 137
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -5758,7 +6147,8 @@
         "Returns `null` when destination is unreachable (obstacles or out of MP budget)",
         "ZoC test: hero cannot pass diagonally adjacent to an enemy without entering enemy hex",
         "Performance: path on a 128×128 map completes in < 5ms",
-        "All floating-point avoided (use integer costs ×100)"
+        "All floating-point avoided (use integer costs ×100)",
+        "`findPath` and `reachable` are pure functions of `(map, terrain, src, dst|mpBudget, zocTiles)`. This purity is the precondition for the per-turn cache shipped by `mvp.03-map-system.11-pathfinder-cache`."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -5779,8 +6169,8 @@
         "mvp.03-map-system.03-layered-tile-storage"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 90
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 95
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -5892,7 +6282,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "mvp.03-map-system.07-unit-test-suite-for-pathfinder-edge-cases",
@@ -6029,7 +6419,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 4
+      "downstreamTransitiveCount": 7
     },
     {
       "id": "mvp.03-map-system.09-random-map-generator-deterministic-runner",
@@ -6093,8 +6483,8 @@
         "mvp.03-map-system.08-random-map-generator-template-format"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 3
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "mvp.03-map-system.10-underground-layer-support",
@@ -6184,6 +6574,71 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
       "downstreamTransitiveCount": 11
+    },
+    {
+      "id": "mvp.03-map-system.11-pathfinder-cache",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pathfinder cache (per-turn, version-keyed)",
+      "path": "tasks/mvp/03-map-system/11-pathfinder-cache.md",
+      "moduleId": "mvp.03-map-system",
+      "modulePath": "tasks/mvp/03-map-system.md",
+      "description": "Add a per-turn pathfinder cache keyed by `(mapVersion, srcHex, mpBudget, zocVersion)`. The cache is a plain `Map<key, Result>`; lookups are O(1). Invalidation is **explicit, not time-based** — version fields on `GameState` drive it. Determinism contract: `findPath(...)` and `reachable(...)` are pure, so cache hits return the same value as cache misses. The cache is therefore safe to ship in the engine layer rather than only in AI code, and the AI threat-map BFS shares this single cache rather than introducing a parallel one (see `mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients`). Invalidation rules: - Any command that mutates terrain (terraform spell, bridge built) bumps `state.mapVersion`. - Any hero arrival or departure on a tile bumps `state.zocVersion`. - The cache is **flushed at every End-Day turn boundary** as a belt-and-braces guard. The version-bump invariants are owned by `mvp.01-engine-core.06-command-dispatcher`; this task owns the cache module that consumes them.",
+      "inputs": [
+        "Pathfinder API (`findPath`, `reachable`) from Task 4.",
+        "`state.mapVersion` and `state.zocVersion` (additive fields on `GameState`, default `0`)."
+      ],
+      "outputs": [
+        "`src/engine/pathfinder/cache.ts`",
+        "API: `getOrCompute(key, fn): Result` — sole public entry; the internal `Map` is not exported.",
+        "Cache flush on End-Day turn boundary wired into the turn reducer."
+      ],
+      "readFirst": [
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`tasks/mvp/03-map-system/04-a-pathfinder-with-terrain-cost-plus-zoc.md`](./04-a-pathfinder-with-terrain-cost-plus-zoc.md)",
+        "[`tasks/mvp/01-engine-core/06-command-dispatcher.md`](../01-engine-core/06-command-dispatcher.md)"
+      ],
+      "ownedPaths": [
+        "src/engine/pathfinder/cache.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
+        "mvp.01-engine-core.06-command-dispatcher"
+      ],
+      "acceptanceCriteria": [
+        "Cache hits and misses return the same value on a fixture map (verified by a unit test).",
+        "A command that bumps `mapVersion` invalidates entries that observed the previous version on the next lookup.",
+        "A command that bumps `zocVersion` invalidates entries that observed the previous version on the next lookup.",
+        "End-Day reducer flushes the cache; subsequent lookups recompute.",
+        "Bench-harness Scenario C (AI bot match) shows AI turn ms with the cache enabled is at least **30 % faster** than with the cache disabled, on a 200×200 fixture.",
+        "No floats, no `Math.random()`, no wall-clock reads — passes the determinism lint."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 2
     },
     {
       "id": "mvp.04-faction-emberwild.01-emberwild-units-7-units-plus-upgrades",
@@ -6312,7 +6767,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 63
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -6464,7 +6919,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 91
+      "downstreamTransitiveCount": 95
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -6599,7 +7054,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 31,
-      "downstreamTransitiveCount": 120
+      "downstreamTransitiveCount": 124
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -6673,7 +7128,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 91
+      "downstreamTransitiveCount": 95
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -6736,7 +7191,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 81
+      "downstreamTransitiveCount": 85
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -6802,7 +7257,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 65
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -6868,7 +7323,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 60
+      "downstreamTransitiveCount": 64
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -6946,7 +7401,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 38
+      "downstreamTransitiveCount": 42
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -7001,7 +7456,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 38
+      "downstreamTransitiveCount": 42
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -8244,7 +8699,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 126
+      "downstreamTransitiveCount": 131
     },
     {
       "id": "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
@@ -8308,8 +8763,8 @@
         "mvp.06-renderer.01-webgl2-context-setup-plus-resize-handler"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 40
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.06-renderer.03-map-renderer-terrain-objects-units-layers",
@@ -8347,10 +8802,17 @@
         "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform"
       ],
       "acceptanceCriteria": [
-        "128×128 map renders at ≥ 60 fps on a mid-range laptop (GTX 1060 / M1 equivalent)",
+        "128×128 map renders at ≥ 60 fps on the **Reference** tier (GTX 1060 / Apple M1) per [`docs/architecture/performance.md` § 1](../../../docs/architecture/performance.md#1-hardware-tiers); ≥ 30 fps on the **Minimum-spec** tier on the same scene.",
         "Fog of war visually correct (hidden tiles are black)",
         "Heroes visible on their current tile",
-        "No visual artifacts at map edges"
+        "No visual artifacts at map edges",
+        "**Adventure-map animation ceilings** (per [`performance.md` § 5](../../../docs/architecture/performance.md#5-entity-ceilings)):",
+        "On-screen active animations ≤ 128 per frame.",
+        "Total active animations (on-screen + off-screen) ≤ 256.",
+        "Off-screen animations skip frame-advance entirely when over budget per [`diagrams/22-building-loop.md`](../../../docs/architecture/diagrams/22-building-loop.md).",
+        "**Renderer-side object pools** (per [`performance.md` § Allocation Policy](../../../docs/architecture/performance.md#allocation-policy)):",
+        "Per-frame culling pass uses the hex-coordinate vector pool from `mvp.00-perf.05-object-pools`.",
+        "Sprite draw-command construction uses the draw-command pool from the same task. No per-frame `{ q, r }` or draw-command allocations are observed by bench harness Scenario A."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -8372,7 +8834,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 39
+      "downstreamTransitiveCount": 43
     },
     {
       "id": "mvp.06-renderer.04-camera-pan-zoom-clamp-to-map-bounds",
@@ -8435,7 +8897,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 33
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "mvp.06-renderer.05-1115-tactical-battlefield-renderer",
@@ -8478,7 +8940,8 @@
         "11×15 grid renders correctly with all unit stacks visible",
         "Selected unit's reachable hexes highlighted in distinct color",
         "Active unit has visual indicator (glow or outline)",
-        "Renders at ≥ 60 fps with 14 active unit stacks"
+        "Renders at ≥ 60 fps with 14 active unit stacks on the **Reference** tier and ≥ 30 fps with 14 active unit stacks on the **Minimum-spec** tier per [`docs/architecture/performance.md` § 1](../../../docs/architecture/performance.md#1-hardware-tiers).",
+        "Renders at ≥ 60 fps on the Reference tier with 21 active stacks (14 base + up to 7 summons) per [`performance.md` § 5](../../../docs/architecture/performance.md#5-entity-ceilings)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -8502,7 +8965,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 31
+      "downstreamTransitiveCount": 35
     },
     {
       "id": "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation",
@@ -8512,7 +8975,7 @@
       "path": "tasks/mvp/06-renderer/06-sprite-sheet-loader-plus-frame-animation.md",
       "moduleId": "mvp.06-renderer",
       "modulePath": "tasks/mvp/06-renderer.md",
-      "description": "Load sprite sheets with frame metadata (JSON format from TexturePacker or similar). Play frame sequences for unit idle, walk, attack, and death animations.",
+      "description": "Load sprite sheets with frame metadata (JSON format from TexturePacker or similar). Play frame sequences for unit idle, walk, attack, and death animations. The `<entityId>.atlas.json` files this loader consumes are produced by the atlas-generation pipeline pinned in [`docs/architecture/atlas-pipeline.md`](../../../docs/architecture/atlas-pipeline.md) and implemented by `mvp.06-renderer.09-atlas-pipeline`. The metadata schema lives at [`content-schema/schemas/atlas.schema.json`](../../../content-schema/schemas/atlas.schema.json).",
       "inputs": [
         "Sprite sheet PNG + JSON metadata (placeholder assets for MVP)"
       ],
@@ -8549,9 +9012,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/atlas.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/atlas.schema.json"
+      ],
       "taskDependencies": [
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.06-renderer.01-webgl2-context-setup-plus-resize-handler"
@@ -8562,8 +9029,8 @@
         "mvp.06-renderer.01-webgl2-context-setup-plus-resize-handler"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 8
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 13
     },
     {
       "id": "mvp.06-renderer.07-event-log-animation-timeline",
@@ -8626,7 +9093,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 7
+      "downstreamTransitiveCount": 11
     },
     {
       "id": "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
@@ -8667,8 +9134,9 @@
       "acceptanceCriteria": [
         "Profiling shows zero calls into `src/engine` modules from inside the rAF callback",
         "Renderer keeps running at 60 fps even if sim is paused (no AI move in progress)",
-        "Stopping the loop (page hide, component unmount) does not leak the animation frame handle",
-        "Snapshot reads are never blocking (no `await` inside rAF)"
+        "Stopping the loop (page hide, component unmount) does not leak the animation frame handle. **This is automated by Scenario D (memory churn) in `mvp.00-perf.03-memory-regression-gate`** — the manual acceptance becomes a CI assertion against a +5 % heap-delta ceiling.",
+        "Snapshot reads are never blocking (no `await` inside rAF)",
+        "Per-frame render budget conforms to the per-system CPU table in [`docs/architecture/performance.md` § 2](../../../docs/architecture/performance.md#2-per-frame-cpu-budget): `renderer.cull + draw` ≤ 4 ms, `renderer.animationTick` ≤ 1 ms at the Reference tier."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -8689,6 +9157,81 @@
         "mvp.06-renderer.03-map-renderer-terrain-objects-units-layers",
         "mvp.06-renderer.05-1115-tactical-battlefield-renderer",
         "mvp.06-renderer.07-event-log-animation-timeline"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 9
+    },
+    {
+      "id": "mvp.06-renderer.09-atlas-pipeline",
+      "kind": "task",
+      "status": "planned",
+      "title": "Atlas generation pipeline (deterministic packer)",
+      "path": "tasks/mvp/06-renderer/09-atlas-pipeline.md",
+      "moduleId": "mvp.06-renderer",
+      "modulePath": "tasks/mvp/06-renderer.md",
+      "description": "Implement the producer side of the sprite-atlas pipeline pinned in [`docs/architecture/atlas-pipeline.md`](../../../docs/architecture/atlas-pipeline.md). This task ships the build-time tool that turns per-frame PNGs under `<pack>/sprites/<entityId>/` into packed `<pack>/atlases/<entityId>.png` and `.atlas.json` files using a pinned, deterministic invocation of `free-tex-packer-cli`. The renderer's sprite-sheet loader (Task 6) is the consumer; this task is the producer. AI-generated packs and hand-authored packs share the same tool with the same flags, so atlas bytes are byte-identical across machines for the same input set.",
+      "inputs": [
+        "Hex tile atlas + sprite-sheet loader contract from Tasks 2 & 6.",
+        "`atlas.schema.json` (owned by the schemas module under `content-schema/schemas/atlas.schema.json`).",
+        "Example pack `content-schema/examples/packs/<example>/sprites/...`."
+      ],
+      "outputs": [
+        "`tools/atlas/pack.ts` — CLI invocation wrapper that:",
+        "sorts frames lexicographically by absolute pack-relative path,",
+        "invokes `free-tex-packer-cli` with the pinned `--seed` and flags taken from `<pack>/atlas-manifest.json`,",
+        "writes `<pack>/atlases/<entityId>.png` and `<pack>/atlases/<entityId>.atlas.json`.",
+        "`tools/atlas/README.md` — invocation docs and pinned tool version reference.",
+        "`npm run pack:build` script entry wired into `package.json`.",
+        "`content-schema/schemas/atlas.schema.json` — author-side metadata schema."
+      ],
+      "readFirst": [
+        "[`docs/architecture/atlas-pipeline.md`](../../../docs/architecture/atlas-pipeline.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)"
+      ],
+      "ownedPaths": [
+        "tools/atlas/",
+        "content-schema/schemas/atlas.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
+        "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation"
+      ],
+      "acceptanceCriteria": [
+        "`npm run pack:build` packs the example pack fixture and produces byte-identical `.png` and `.atlas.json` outputs on two CI runners (verified by a CI fixture run that compares `sha256` of every output byte).",
+        "Re-running `npm run pack:build` with the same inputs produces byte-identical outputs on the same machine.",
+        "A change to a single source frame changes the output `.png` and `.atlas.json` content hashes.",
+        "`atlas-manifest.json` files are validated against `atlas.schema.json` before packing; missing or unknown fields fail loud.",
+        "AI-generated packs use the same tool; no separate \"AI atlas\" code path exists in the repo.",
+        "The pack's `contentHash` includes every atlas page's bytes (verified by a unit test that compares the hash before and after a deliberate atlas mutation)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test",
+        "npm run pack:build"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/atlas.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/atlas.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
+        "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
+        "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
@@ -11567,7 +12110,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 69
+      "downstreamTransitiveCount": 73
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -11629,7 +12172,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 50
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -11774,7 +12317,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -11841,7 +12384,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 41
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -11977,7 +12520,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 41
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -12040,7 +12583,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 41
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -12113,7 +12656,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 35
+      "downstreamTransitiveCount": 39
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -12760,7 +13303,9 @@
         "Tile adjacent to strong enemy hero has high danger value",
         "Tile behind mountains (impassable) is unreachable (danger = ∞)",
         "`buildThreatMap` completes in < 50ms on a 128×128 map",
-        "Own heroes' positions are excluded from threat calculation"
+        "Own heroes' positions are excluded from threat calculation",
+        "BFS uses the shared pathfinder cache from `mvp.03-map-system.11-pathfinder-cache` rather than introducing a parallel cache. Cache hits skip pathfinder recomputation without changing returned values.",
+        "Frontier nodes are drawn from the AI search-node pool owned by `mvp.00-perf.05-object-pools`. No per-frontier-step allocation measured by bench harness Scenario A."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -12780,7 +13325,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 33
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -12866,7 +13411,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 32
+      "downstreamTransitiveCount": 36
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -12928,7 +13473,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 29
+      "downstreamTransitiveCount": 33
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -13009,7 +13554,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 28
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -13026,7 +13571,11 @@
       "outputs": [
         "`src/ai/bots/difficulty.ts`",
         "`DifficultyLevel`: `\"pawn\" | \"knight\"`",
-        "`applyDifficulty(action: Command, alternatives: Command[], difficulty: DifficultyLevel, rng: Rng): Command`"
+        "`applyDifficulty(action: Command, alternatives: Command[], difficulty: DifficultyLevel, rng: Rng): Command`",
+        "Per-difficulty deterministic search budget constants consumed by `mvp.10-heuristic-ai.06-run-ai-in-web-worker`:",
+        "`pawn`: `maxNodes = 4 000`, `maxDepth = 3`",
+        "`knight`: `maxNodes = 16 000`, `maxDepth = 5`",
+        "`searchBudgetFor(difficulty: DifficultyLevel, mapDims: { width: number, height: number }): { maxNodes: number, maxDepth: number }` scales `maxNodes` linearly with `width * height / (128*128)` so budgets stay proportional on smaller maps. The function is pure and deterministic."
       ],
       "readFirst": [
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
@@ -13047,6 +13596,8 @@
         "Pawn AI makes a random action ~30% of the time (verified over 1000 turns)",
         "Knight AI never makes random actions (0 random deviations over 1000 turns)",
         "Difficulty is set at game start and not changeable mid-game (locked in `AdventureState`)",
+        "`searchBudgetFor(\"knight\", { 200, 200 })` keeps every move in bench-harness Scenario C under the **2 s wall-clock watchdog threshold** on the Minimum-spec emulation profile (validated by `mvp.00-perf.01-bench-harness`).",
+        "Budget constants are deterministic — same difficulty + map dims yields identical `(maxNodes, maxDepth)` on every call.",
         "**Quality Gate (Knight difficulty):** Run 10 independent games (different seeds) where Knight AI plays against \"random AI\" opponent. Knight must win ≥ 8 out of 10 games (80 % win rate minimum).",
         "Random AI: picks a legal action uniformly at random (no heuristic)",
         "Game length: max 50 turns per player (100 turns total), or until victory condition",
@@ -13073,7 +13624,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -13083,20 +13634,22 @@
       "path": "tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md",
       "moduleId": "mvp.10-heuristic-ai",
       "modulePath": "tasks/mvp/10-heuristic-ai.md",
-      "description": "The AI can take up to 200ms to compute a move on complex states. Running it on the main thread would freeze the UI. Move all AI computation into a Web Worker with a simple message-passing interface.",
+      "description": "The AI can take up to 200ms to compute a move on complex states. Running it on the main thread would freeze the UI. Move all AI computation into a Web Worker with a simple message-passing interface. The worker runs under a **deterministic search budget**, not a wall-clock timeout. AI workers stop when `nodesExpanded >= maxNodes(difficulty, mapDims)` or `searchDepth >= maxDepth(difficulty)`, whichever fires first. The per-difficulty constants are pinned in [`05-difficulty-levels-pawn-and-knight.md`](./05-difficulty-levels-pawn-and-knight.md). A wall-clock timer is retained **only as a watchdog**: it logs a warning if a single move exceeds 2 s on the current machine but **never truncates** the search. Wall-clock-driven truncation is forbidden by [`determinism.md` § AI Compute Budget](../../../docs/architecture/determinism.md#ai-compute-budget).",
       "inputs": [
-        "All AI modules (Tasks 1–5)"
+        "All AI modules (Tasks 1–5)",
+        "`searchBudget = { maxNodes, maxDepth }` derived from difficulty + map dimensions (Task 5)."
       ],
       "outputs": [
         "`src/ai/bots/ai-worker.ts` (Web Worker entry point)",
-        "Message in: `{ type: \"COMPUTE_MOVE\", state: AdventureState, difficulty: DifficultyLevel }`",
-        "Message out: `{ type: \"MOVE_RESULT\", command: Command }`",
+        "Message in: `{ type: \"COMPUTE_MOVE\", state: AdventureState, difficulty: DifficultyLevel, searchBudget: { maxNodes: number, maxDepth: number } }`",
+        "Message out: `{ type: \"MOVE_RESULT\", command: Command, nodesExpanded: number, searchDepthReached: number }`",
         "`src/ai/bots/ai-client.ts` — thin wrapper used by the UI:",
         "`requestAIMove(state, difficulty): Promise<Command>`"
       ],
       "readFirst": [
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
-        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)"
       ],
       "ownedPaths": [
         "src/ai/bots/ai-worker.ts",
@@ -13116,7 +13669,8 @@
       "acceptanceCriteria": [
         "UI remains responsive (input events fire) while AI is computing",
         "AI worker terminates cleanly when the game ends or user navigates away",
-        "Timeout: if AI takes > 2 seconds, it returns the best action found so far (not a hang)",
+        "Worker stops on `searchBudget` (`maxNodes` or `maxDepth`), **not** on a wall-clock timer; identical seed + state + budget on two runs produces an identical `Command` (verified by a determinism unit test at two simulated `setTimeout` rates).",
+        "Wall-clock watchdog: if a single AI move exceeds 2 s, the worker logs a warning **and continues** to completion. A watchdog warning is treated as a difficulty-tuning bug, not a runtime fallback.",
         "Worker receives a serialized state copy (not a reference — workers cannot share memory)"
       ],
       "verifyCommands": [
@@ -13144,8 +13698,8 @@
         "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 17
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -26705,7 +27259,8 @@
         "mvp.06-renderer.05-1115-tactical-battlefield-renderer",
         "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation",
         "mvp.06-renderer.07-event-log-animation-timeline",
-        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim"
+        "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.06-renderer.09-atlas-pipeline"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -26773,6 +27328,7 @@
         "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation",
         "mvp.06-renderer.07-event-log-animation-timeline",
         "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.06-renderer.09-atlas-pipeline",
         "phase-3.04-polish.01a-renderer-capability-detection-and-adapter"
       ],
       "unresolvedDependencies": [],
@@ -27154,6 +27710,7 @@
         "mvp.03-map-system.08-random-map-generator-template-format",
         "mvp.03-map-system.09-random-map-generator-deterministic-runner",
         "mvp.03-map-system.10-underground-layer-support",
+        "mvp.03-map-system.11-pathfinder-cache",
         "mvp.05-adventure-map.01-strategic-game-state-model",
         "mvp.05-adventure-map.02-turn-structure",
         "mvp.05-adventure-map.03-hero-movement",
@@ -27269,6 +27826,7 @@
         "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation",
         "mvp.06-renderer.07-event-log-animation-timeline",
         "mvp.06-renderer.08-presentation-loop-decoupled-from-sim",
+        "mvp.06-renderer.09-atlas-pipeline",
         "phase-2.06-visual-fidelity.01-terrain-transition-tiles-blending-between-terrain-types",
         "phase-2.06-visual-fidelity.02-pseudo-isometric-depth-sorting-objects-overlap-correctly",
         "phase-2.06-visual-fidelity.03-decorative-scatter-objects-rocks-trees-mushrooms-campfires",
