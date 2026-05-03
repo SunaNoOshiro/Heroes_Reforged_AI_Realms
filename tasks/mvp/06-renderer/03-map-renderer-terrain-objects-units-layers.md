@@ -8,6 +8,8 @@ Description:
 Render the adventure map in three passes: terrain (bottom), objects (mines, towns, artifacts), units/heroes (top). Use instanced rendering — all tiles drawn in one or two draw calls.
 
 Read First:
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:

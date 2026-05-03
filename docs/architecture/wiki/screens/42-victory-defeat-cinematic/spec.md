@@ -16,6 +16,7 @@ Letterboxed campaign/scenario outcome screen with victory or defeat art, score s
 
 ### Visual Contract
 - Curation status: `curated-pass-2`.
+- Z-Layer: 1000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - A wide illustrated panel is framed by black letterbox bars; narration parchment and score medallions sit below the art.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

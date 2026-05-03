@@ -1297,6 +1297,10 @@
         {
           "label": "07-hotseat-turn-state-machine.md",
           "link": "08-meta-systems/07-hotseat-turn-state-machine.md"
+        },
+        {
+          "label": "08-debug-overlay-screen.md",
+          "link": "08-meta-systems/08-debug-overlay-screen.md"
         }
       ]
     },
@@ -2154,7 +2158,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 283
+      "downstreamTransitiveCount": 284
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2215,7 +2219,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 282
+      "downstreamTransitiveCount": 283
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2272,7 +2276,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 182
+      "downstreamTransitiveCount": 183
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2328,7 +2332,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 202
+      "downstreamTransitiveCount": 203
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2386,7 +2390,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -2456,7 +2460,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 22,
-      "downstreamTransitiveCount": 173
+      "downstreamTransitiveCount": 174
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -7620,7 +7624,10 @@
       ],
       "readFirst": [
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
-        "[`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)"
+        "[`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)",
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
+        "[`docs/architecture/ui-frame-lag-contract.md`](../../../docs/architecture/ui-frame-lag-contract.md)"
       ],
       "ownedPaths": [
         "src/renderer/gl-context.ts"
@@ -7655,7 +7662,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 124
+      "downstreamTransitiveCount": 125
     },
     {
       "id": "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
@@ -7679,6 +7686,8 @@
         "`pixelToAxial(x: number, y: number, hexSize: number): {q: number, r: number}` (for mouse picking)"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
       ],
       "ownedPaths": [
@@ -7740,6 +7749,8 @@
         "Fog rendering: `hidden` → fully dark, `explored` → 50% darkened, `visible` → full color"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
       ],
       "ownedPaths": [
@@ -7801,6 +7812,8 @@
         "Bounds clamping: camera center always within map bounds"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
       ],
       "ownedPaths": [
@@ -7863,6 +7876,8 @@
         "Reachable hexes highlighted when unit selected"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
       ],
       "ownedPaths": [
@@ -7925,6 +7940,8 @@
         "`Animator`: `{ play(clipName, loop): void, update(dt: number): FrameData, isFinished(): boolean }`"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
       ],
       "ownedPaths": [
@@ -7986,6 +8003,8 @@
         "`TimelinePlayer`: `{ update(dt): void, isFinished(): boolean }`"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
       ],
       "ownedPaths": [
@@ -8047,6 +8066,8 @@
         "Animation timeline ticked with delta time each frame Why this is risky: It's easy to accidentally call sim functions from inside rAF. Any such call breaks determinism and causes bugs that only appear at specific frame rates."
       ],
       "readFirst": [
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
       ],
       "ownedPaths": [
@@ -8113,6 +8134,11 @@
       ],
       "readFirst": [
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
+        "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
+        "[`docs/architecture/ui-frame-lag-contract.md`](../../../docs/architecture/ui-frame-lag-contract.md)",
         "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
         "`docs/architecture/wiki/screens/07-adventure-map/interactions.md`",
         "`docs/architecture/wiki/screens/07-adventure-map/data-contracts.md`",
@@ -8180,8 +8206,8 @@
         "mvp.06-renderer.01-webgl2-context-setup-plus-resize-handler"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 51,
-      "downstreamTransitiveCount": 91
+      "downstreamDirectCount": 52,
+      "downstreamTransitiveCount": 92
     },
     {
       "id": "mvp.07-ui-shell.02-zustand-store",
@@ -8200,6 +8226,8 @@
         "`src/ui/store.ts`"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
         "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
         "`docs/architecture/wiki/screens/07-adventure-map/interactions.md`",
@@ -8267,8 +8295,8 @@
         "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 54,
-      "downstreamTransitiveCount": 64
+      "downstreamDirectCount": 55,
+      "downstreamTransitiveCount": 65
     },
     {
       "id": "mvp.07-ui-shell.03-hud-resource-bar-end-turn-button-mini-map-stub",
@@ -8293,6 +8321,8 @@
         "Turn indicator: shows active player's color/name"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
         "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
         "`docs/architecture/wiki/screens/07-adventure-map/interactions.md`",
@@ -8396,6 +8426,8 @@
         "Close button returns to adventure map"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
         "`docs/architecture/wiki/screens/24-town-screen/spec.md`",
         "`docs/architecture/wiki/screens/24-town-screen/interactions.md`",
@@ -8497,6 +8529,8 @@
         "Skills tab: secondary skills (Basic/Advanced/Expert level badges) — empty for MVP heroes"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
         "`docs/architecture/wiki/screens/46-hero-screen/spec.md`",
         "`docs/architecture/wiki/screens/46-hero-screen/interactions.md`",
@@ -8590,6 +8624,8 @@
         "Hex click on map → `MOVE_HERO` if hero selected and hex is reachable"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
         "`docs/architecture/wiki/screens/07-adventure-map/spec.md`",
         "`docs/architecture/wiki/screens/07-adventure-map/interactions.md`",
@@ -8670,8 +8706,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 49,
-      "downstreamTransitiveCount": 66
+      "downstreamDirectCount": 50,
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.07-ui-shell.07-main-menu-screen",
@@ -8693,6 +8729,8 @@
         "All localization keys from data-contracts (`ui.main-menu.*`, `ui.common.ok|cancel|back|close`) read through a `t()` helper"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "`docs/architecture/wiki/screens/01-main-menu/spec.md`",
         "`docs/architecture/wiki/screens/01-main-menu/interactions.md`",
         "`docs/architecture/wiki/screens/01-main-menu/data-contracts.md`",
@@ -8772,6 +8810,8 @@
         "Confirm action that emits a serializable setup request for scenario loading"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "`docs/architecture/wiki/screens/02-new-game-setup/spec.md`",
         "`docs/architecture/wiki/screens/02-new-game-setup/interactions.md`",
         "`docs/architecture/wiki/screens/02-new-game-setup/data-contracts.md`",
@@ -8857,6 +8897,8 @@
         "Error state that routes back to setup with a clear failure reason"
       ],
       "readFirst": [
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
         "`docs/architecture/wiki/screens/59-loading-screen/spec.md`",
         "`docs/architecture/wiki/screens/59-loading-screen/interactions.md`",
         "`docs/architecture/wiki/screens/59-loading-screen/data-contracts.md`",
@@ -21793,6 +21835,90 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "phase-2.08-meta-systems.08-debug-overlay-screen",
+      "kind": "task",
+      "status": "planned",
+      "title": "Debug Overlay Screen",
+      "path": "tasks/phase-2/08-meta-systems/08-debug-overlay-screen.md",
+      "moduleId": "phase-2.08-meta-systems",
+      "modulePath": "tasks/phase-2/08-meta-systems.md",
+      "description": "Implement the developer-only debug overlay screen package as a post-MVP UI surface. The overlay surfaces FPS, frame-time tier, state hash, RNG substream tick counters, command-log tail, replay scrubber, content-pack hashes, and resolver-miss counter. The screen is gated behind `import.meta.env.DEV`; production builds tree-shake it.",
+      "inputs": [
+        "Screen package `docs/architecture/wiki/screens/66-debug-overlay/`",
+        "UI app shell, Zustand store, command hook, resolver",
+        "Replay driver from `mvp.01-engine-core` replay API",
+        "`state.debug.*` slice (presentation-only, non-replayed, non-hashed)"
+      ],
+      "outputs": [
+        "`src/ui/screens/DebugOverlay.tsx`",
+        "`src/ui/components/debug/*.tsx` (FpsCounter, StateHashReadout, CommandLogTail, ReplayScrubber, PackContentHashReadout, RngStreamCounters)",
+        "Build-flag gate via dynamic import, only mounted when `import.meta.env.DEV === true`"
+      ],
+      "readFirst": [
+        "`docs/architecture/wiki/screens/66-debug-overlay/spec.md`",
+        "`docs/architecture/wiki/screens/66-debug-overlay/interactions.md`",
+        "`docs/architecture/wiki/screens/66-debug-overlay/data-contracts.md`",
+        "`docs/architecture/wiki/screens/66-debug-overlay/architecture.md`",
+        "`docs/architecture/wiki/screens/66-debug-overlay/mockup.html`",
+        "[`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
+        "[`docs/architecture/ui-frame-lag-contract.md`](../../../docs/architecture/ui-frame-lag-contract.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/screens/DebugOverlay.tsx",
+        "src/ui/components/debug/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
+        "mvp.07-ui-shell.02-zustand-store",
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render"
+      ],
+      "acceptanceCriteria": [
+        "Layout, bindings, and commands match `docs/architecture/wiki/screens/66-debug-overlay/mockup.html`, `docs/architecture/wiki/screens/66-debug-overlay/spec.md`, `docs/architecture/wiki/screens/66-debug-overlay/interactions.md`, and `docs/architecture/wiki/screens/66-debug-overlay/data-contracts.md`",
+        "Overlay is tree-shaken from production bundles; verified by inspecting the build output",
+        "Resolver mounts every component listed in the Component Tree via the registry resolver; missing-component fallback is exercised in a unit test",
+        "Replay scrubber dispatches `REPLAY_PAUSE`, `REPLAY_STEP`, `REPLAY_RESET` against the replay driver, never the live engine reducer",
+        "`state.debug.*` is non-replayed and non-hashed; mutating it does not change the canonical state hash",
+        "Z-layer 9000 portal is non-input-blocking",
+        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/66-debug-overlay"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ui-component-registry.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ui-component-registry.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
+        "mvp.07-ui-shell.02-zustand-store",
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
+        "mvp.07-ui-shell.02-zustand-store",
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",

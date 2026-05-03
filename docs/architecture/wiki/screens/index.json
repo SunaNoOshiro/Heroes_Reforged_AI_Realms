@@ -114,6 +114,13 @@
       "screens": [
         "65-map-editor"
       ]
+    },
+    {
+      "id": "diagnostics",
+      "title": "Diagnostics",
+      "screens": [
+        "66-debug-overlay"
+      ]
     }
   ]
 }

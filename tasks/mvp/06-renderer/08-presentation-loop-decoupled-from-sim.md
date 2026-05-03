@@ -8,6 +8,8 @@ Description:
 The presentation loop runs at 60 fps via `requestAnimationFrame`. It must NEVER mutate sim state. It reads from a snapshot (immutable copy of the latest sim state) that the UI layer pushes into the renderer via a shared ref. The sim can update asynchronously; the renderer just draws whatever snapshot it currently holds.
 
 Read First:
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:

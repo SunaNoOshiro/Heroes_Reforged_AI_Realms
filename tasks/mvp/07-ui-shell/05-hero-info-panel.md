@@ -8,6 +8,8 @@ Description:
 Side panel shown when a hero is selected. Displays primary stats, army composition, and movement points remaining.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 - `docs/architecture/wiki/screens/46-hero-screen/spec.md`
 - `docs/architecture/wiki/screens/46-hero-screen/interactions.md`

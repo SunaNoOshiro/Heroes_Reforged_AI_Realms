@@ -72,6 +72,12 @@ sequenceDiagram
   UI->>VFX: Status line
 ```
 
+The UI Draft / authoritative-result split shown above is the
+single-screen instance of the global rule pinned in
+[`docs/architecture/ui-frame-lag-contract.md`](../../../ui-frame-lag-contract.md):
+drafts live under `state.ui.<screen>.draft.*`, are non-replayed and
+non-hashed, and clear when the matching command resolves.
+
 ## Outgoing Transitions
 ```mermaid
 flowchart LR

@@ -8,6 +8,8 @@ Description:
 Wire the UI to the sim via a `useDispatch` hook. Every UI action (button click, hex click, modal interaction) calls `dispatch(command)`, which runs the sim, then pushes the new state snapshot to Zustand.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 - `docs/architecture/wiki/screens/07-adventure-map/spec.md`
 - `docs/architecture/wiki/screens/07-adventure-map/interactions.md`

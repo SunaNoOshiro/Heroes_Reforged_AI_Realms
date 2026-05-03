@@ -446,6 +446,7 @@ function schemaForFile(filePath) {
   if (base.endsWith(".generation-request.json")) return "generation-request.schema.json";
   if (base.endsWith(".generated-faction.json")) return "generated-faction.schema.json";
   if (base === "game-state.example.json") return "game-state.schema.json";
+  if (base === "ui-component-registry.example.json") return "ui-component-registry.schema.json";
 
   return null;
 }

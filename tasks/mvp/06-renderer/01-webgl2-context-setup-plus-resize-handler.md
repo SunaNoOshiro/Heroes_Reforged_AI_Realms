@@ -10,6 +10,9 @@ Initialize a WebGL2 rendering context on a `<canvas>` element managed by React. 
 Read First:
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 - [`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
+- [`docs/architecture/ui-frame-lag-contract.md`](../../../docs/architecture/ui-frame-lag-contract.md)
 
 Inputs:
 - Canvas element ref from React

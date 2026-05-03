@@ -8,6 +8,8 @@ Description:
 Full-screen modal overlay when a hero visits a town (or player clicks a town). Shows the building list, recruit panel, and mage guild.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 - `docs/architecture/wiki/screens/24-town-screen/spec.md`
 - `docs/architecture/wiki/screens/24-town-screen/interactions.md`

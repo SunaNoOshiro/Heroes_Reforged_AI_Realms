@@ -8,6 +8,8 @@ Description:
 The persistent heads-up display visible during adventure map play. Shows current player resources, current day/week, and an end-turn button.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 - `docs/architecture/wiki/screens/07-adventure-map/spec.md`
 - `docs/architecture/wiki/screens/07-adventure-map/interactions.md`

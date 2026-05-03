@@ -31,3 +31,5 @@ across turns.
   🧠 Task 6: Caravan transfer command (~4h)
 - [07-hotseat-turn-state-machine.md](08-meta-systems/07-hotseat-turn-state-machine.md)
   🧠 Task 7: Hotseat turn state machine (~3h)
+- [08-debug-overlay-screen.md](08-meta-systems/08-debug-overlay-screen.md)
+  🤖 Task 8: Debug overlay screen (post-MVP, dev-only) (~4h)

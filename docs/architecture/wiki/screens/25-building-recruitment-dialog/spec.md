@@ -16,6 +16,7 @@ Town dwelling recruitment dialog with creature portrait, dwelling selection, ava
 
 ### Visual Contract
 - Curation status: `curated-pass-2`.
+- Z-Layer: 1000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Town panorama is dimmed behind a red-and-bronze service panel: dwelling list left, creature art and stats center, quantity/cost/army destination on the right.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

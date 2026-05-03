@@ -10,6 +10,8 @@ player into New Game setup, Load, High Scores, Credits or intro, and
 Quit confirmation. No deterministic gameplay state is created here.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - `docs/architecture/wiki/screens/01-main-menu/spec.md`
 - `docs/architecture/wiki/screens/01-main-menu/interactions.md`
 - `docs/architecture/wiki/screens/01-main-menu/data-contracts.md`

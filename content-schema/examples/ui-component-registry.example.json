@@ -1,0 +1,3256 @@
+{
+  "$schema": "heroes-reforged/ui-component-registry.schema.json",
+  "schemaVersion": 1,
+  "registryId": "core.ui",
+  "components": [
+    {
+      "componentId": "AbilityList",
+      "module": "src/ui/components/ability-list.tsx",
+      "exportName": "AbilityList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AcceptDeclineButtons",
+      "module": "src/ui/components/accept-decline-buttons.tsx",
+      "exportName": "AcceptDeclineButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ActionBar",
+      "module": "src/ui/components/action-bar.tsx",
+      "exportName": "ActionBar",
+      "tags": [
+        "hud"
+      ]
+    },
+    {
+      "componentId": "ActionButtons",
+      "module": "src/ui/components/action-buttons.tsx",
+      "exportName": "ActionButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ActiveStackHalo",
+      "module": "src/ui/components/active-stack-halo.tsx",
+      "exportName": "ActiveStackHalo",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ActivityText",
+      "module": "src/ui/components/activity-text.tsx",
+      "exportName": "ActivityText",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AdventureMapScreen",
+      "module": "src/ui/components/adventure-map-screen.tsx",
+      "exportName": "AdventureMapScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AdventureSpellTargeting",
+      "module": "src/ui/components/adventure-spell-targeting.tsx",
+      "exportName": "AdventureSpellTargeting",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AdventureStatusBar",
+      "module": "src/ui/components/adventure-status-bar.tsx",
+      "exportName": "AdventureStatusBar",
+      "tags": [
+        "hud"
+      ]
+    },
+    {
+      "componentId": "AiTurnIndicator",
+      "module": "src/ui/components/ai-turn-indicator.tsx",
+      "exportName": "AiTurnIndicator",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AmountStepper",
+      "module": "src/ui/components/amount-stepper.tsx",
+      "exportName": "AmountStepper",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AnimatedCrest",
+      "module": "src/ui/components/animated-crest.tsx",
+      "exportName": "AnimatedCrest",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ApplyCancelButtons",
+      "module": "src/ui/components/apply-cancel-buttons.tsx",
+      "exportName": "ApplyCancelButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "AreaOverlay",
+      "module": "src/ui/components/area-overlay.tsx",
+      "exportName": "AreaOverlay",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ArmyComparison",
+      "module": "src/ui/components/army-comparison.tsx",
+      "exportName": "ArmyComparison",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ArmyStacks",
+      "module": "src/ui/components/army-stacks.tsx",
+      "exportName": "ArmyStacks",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ArmyTransferRows",
+      "module": "src/ui/components/army-transfer-rows.tsx",
+      "exportName": "ArmyTransferRows",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ArtifactCombineDialog",
+      "module": "src/ui/components/artifact-combine-dialog.tsx",
+      "exportName": "ArtifactCombineDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "ArtifactMarket",
+      "module": "src/ui/components/artifact-market.tsx",
+      "exportName": "ArtifactMarket",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ArtifactShelfGrid",
+      "module": "src/ui/components/artifact-shelf-grid.tsx",
+      "exportName": "ArtifactShelfGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ArtifactSlots",
+      "module": "src/ui/components/artifact-slots.tsx",
+      "exportName": "ArtifactSlots",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ArtifactTransferStrips",
+      "module": "src/ui/components/artifact-transfer-strips.tsx",
+      "exportName": "ArtifactTransferStrips",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AssetWarmupProgress",
+      "module": "src/ui/components/asset-warmup-progress.tsx",
+      "exportName": "AssetWarmupProgress",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AttackerCasualties",
+      "module": "src/ui/components/attacker-casualties.tsx",
+      "exportName": "AttackerCasualties",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "AttackerPanel",
+      "module": "src/ui/components/attacker-panel.tsx",
+      "exportName": "AttackerPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "AvailableGold",
+      "module": "src/ui/components/available-gold.tsx",
+      "exportName": "AvailableGold",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BackButton",
+      "module": "src/ui/components/back-button.tsx",
+      "exportName": "BackButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "BackdropPainting",
+      "module": "src/ui/components/backdrop-painting.tsx",
+      "exportName": "BackdropPainting",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Backpack",
+      "module": "src/ui/components/backpack.tsx",
+      "exportName": "Backpack",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Battlefield",
+      "module": "src/ui/components/battlefield.tsx",
+      "exportName": "Battlefield",
+      "tags": [
+        "viewport"
+      ]
+    },
+    {
+      "componentId": "BattlefieldDimmer",
+      "module": "src/ui/components/battlefield-dimmer.tsx",
+      "exportName": "BattlefieldDimmer",
+      "tags": [
+        "viewport"
+      ]
+    },
+    {
+      "componentId": "BattleResultsDialog",
+      "module": "src/ui/components/battle-results-dialog.tsx",
+      "exportName": "BattleResultsDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "BeginBackButtons",
+      "module": "src/ui/components/begin-back-buttons.tsx",
+      "exportName": "BeginBackButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "BeginTurnButton",
+      "module": "src/ui/components/begin-turn-button.tsx",
+      "exportName": "BeginTurnButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "BlockedTileWarning",
+      "module": "src/ui/components/blocked-tile-warning.tsx",
+      "exportName": "BlockedTileWarning",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BoatSpawnTile",
+      "module": "src/ui/components/boat-spawn-tile.tsx",
+      "exportName": "BoatSpawnTile",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BonusChoiceSlots",
+      "module": "src/ui/components/bonus-choice-slots.tsx",
+      "exportName": "BonusChoiceSlots",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BookBackdrop",
+      "module": "src/ui/components/book-backdrop.tsx",
+      "exportName": "BookBackdrop",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BuildBoatButton",
+      "module": "src/ui/components/build-boat-button.tsx",
+      "exportName": "BuildBoatButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "BuildCloseButtons",
+      "module": "src/ui/components/build-close-buttons.tsx",
+      "exportName": "BuildCloseButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "BuildingGraph",
+      "module": "src/ui/components/building-graph.tsx",
+      "exportName": "BuildingGraph",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BuildingHotspots",
+      "module": "src/ui/components/building-hotspots.tsx",
+      "exportName": "BuildingHotspots",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BuildStatePlaque",
+      "module": "src/ui/components/build-state-plaque.tsx",
+      "exportName": "BuildStatePlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BuildTreeDialog",
+      "module": "src/ui/components/build-tree-dialog.tsx",
+      "exportName": "BuildTreeDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "BuiltTodayPlaque",
+      "module": "src/ui/components/built-today-plaque.tsx",
+      "exportName": "BuiltTodayPlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "BuyButton",
+      "module": "src/ui/components/buy-button.tsx",
+      "exportName": "BuyButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "BuySellButtons",
+      "module": "src/ui/components/buy-sell-buttons.tsx",
+      "exportName": "BuySellButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CalendarHeader",
+      "module": "src/ui/components/calendar-header.tsx",
+      "exportName": "CalendarHeader",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CampaignBook",
+      "module": "src/ui/components/campaign-book.tsx",
+      "exportName": "CampaignBook",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CampaignCarryoverSummary",
+      "module": "src/ui/components/campaign-carryover-summary.tsx",
+      "exportName": "CampaignCarryoverSummary",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CampaignMapPreview",
+      "module": "src/ui/components/campaign-map-preview.tsx",
+      "exportName": "CampaignMapPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CampaignNarrative",
+      "module": "src/ui/components/campaign-narrative.tsx",
+      "exportName": "CampaignNarrative",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CampaignSelection",
+      "module": "src/ui/components/campaign-selection.tsx",
+      "exportName": "CampaignSelection",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CampaignShieldList",
+      "module": "src/ui/components/campaign-shield-list.tsx",
+      "exportName": "CampaignShieldList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CancelButton",
+      "module": "src/ui/components/cancel-button.tsx",
+      "exportName": "CancelButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CastCloseButtons",
+      "module": "src/ui/components/cast-close-buttons.tsx",
+      "exportName": "CastCloseButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CastleWalls",
+      "module": "src/ui/components/castle-walls.tsx",
+      "exportName": "CastleWalls",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CasualtySummary",
+      "module": "src/ui/components/casualty-summary.tsx",
+      "exportName": "CasualtySummary",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CatapultTargetPreview",
+      "module": "src/ui/components/catapult-target-preview.tsx",
+      "exportName": "CatapultTargetPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CeremonyVfx",
+      "module": "src/ui/components/ceremony-vfx.tsx",
+      "exportName": "CeremonyVfx",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ChatPanel",
+      "module": "src/ui/components/chat-panel.tsx",
+      "exportName": "ChatPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "CinematicPlayer",
+      "module": "src/ui/components/cinematic-player.tsx",
+      "exportName": "CinematicPlayer",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ClaimLeaveButtons",
+      "module": "src/ui/components/claim-leave-buttons.tsx",
+      "exportName": "ClaimLeaveButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CloseButton",
+      "module": "src/ui/components/close-button.tsx",
+      "exportName": "CloseButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CloseHotspot",
+      "module": "src/ui/components/close-hotspot.tsx",
+      "exportName": "CloseHotspot",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CollectButton",
+      "module": "src/ui/components/collect-button.tsx",
+      "exportName": "CollectButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CombatLog",
+      "module": "src/ui/components/combat-log.tsx",
+      "exportName": "CombatLog",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CombatScreen",
+      "module": "src/ui/components/combat-screen.tsx",
+      "exportName": "CombatScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CombatSpellTargeting",
+      "module": "src/ui/components/combat-spell-targeting.tsx",
+      "exportName": "CombatSpellTargeting",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CombineButtons",
+      "module": "src/ui/components/combine-buttons.tsx",
+      "exportName": "CombineButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CommandButtons",
+      "module": "src/ui/components/command-buttons.tsx",
+      "exportName": "CommandButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CommandLogTail",
+      "module": "src/ui/components/debug/command-log-tail.tsx",
+      "exportName": "CommandLogTail",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "CommandStack",
+      "module": "src/ui/components/command-stack.tsx",
+      "exportName": "CommandStack",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CommandTablet",
+      "module": "src/ui/components/command-tablet.tsx",
+      "exportName": "CommandTablet",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CompatibilitySeal",
+      "module": "src/ui/components/compatibility-seal.tsx",
+      "exportName": "CompatibilitySeal",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CompletionRouter",
+      "module": "src/ui/components/completion-router.tsx",
+      "exportName": "CompletionRouter",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ComponentArtifactRing",
+      "module": "src/ui/components/component-artifact-ring.tsx",
+      "exportName": "ComponentArtifactRing",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ConfirmationDialog",
+      "module": "src/ui/components/confirmation-dialog.tsx",
+      "exportName": "ConfirmationDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "ConfirmBuildButton",
+      "module": "src/ui/components/confirm-build-button.tsx",
+      "exportName": "ConfirmBuildButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ConfirmButton",
+      "module": "src/ui/components/confirm-button.tsx",
+      "exportName": "ConfirmButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ConfirmCancelButtons",
+      "module": "src/ui/components/confirm-cancel-buttons.tsx",
+      "exportName": "ConfirmCancelButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ConfirmRoutes",
+      "module": "src/ui/components/confirm-routes.tsx",
+      "exportName": "ConfirmRoutes",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ConnectionTypeTabs",
+      "module": "src/ui/components/connection-type-tabs.tsx",
+      "exportName": "ConnectionTypeTabs",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ContentCompatibilityPanel",
+      "module": "src/ui/components/content-compatibility-panel.tsx",
+      "exportName": "ContentCompatibilityPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "ContentHashLock",
+      "module": "src/ui/components/content-hash-lock.tsx",
+      "exportName": "ContentHashLock",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ContinueButton",
+      "module": "src/ui/components/continue-button.tsx",
+      "exportName": "ContinueButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ContinueSkipButtons",
+      "module": "src/ui/components/continue-skip-buttons.tsx",
+      "exportName": "ContinueSkipButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "CostLedger",
+      "module": "src/ui/components/cost-ledger.tsx",
+      "exportName": "CostLedger",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CostPanel",
+      "module": "src/ui/components/cost-panel.tsx",
+      "exportName": "CostPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "CostPreview",
+      "module": "src/ui/components/cost-preview.tsx",
+      "exportName": "CostPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CoveredCells",
+      "module": "src/ui/components/covered-cells.tsx",
+      "exportName": "CoveredCells",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CreatureBankLootDialog",
+      "module": "src/ui/components/creature-bank-loot-dialog.tsx",
+      "exportName": "CreatureBankLootDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "CreatureInfoPanel",
+      "module": "src/ui/components/creature-info-panel.tsx",
+      "exportName": "CreatureInfoPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "CreatureOffer",
+      "module": "src/ui/components/creature-offer.tsx",
+      "exportName": "CreatureOffer",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CreaturePortrait",
+      "module": "src/ui/components/creature-portrait.tsx",
+      "exportName": "CreaturePortrait",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CreatureStats",
+      "module": "src/ui/components/creature-stats.tsx",
+      "exportName": "CreatureStats",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "CurrentArmySlots",
+      "module": "src/ui/components/current-army-slots.tsx",
+      "exportName": "CurrentArmySlots",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DailyIncomeStrip",
+      "module": "src/ui/components/daily-income-strip.tsx",
+      "exportName": "DailyIncomeStrip",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DebugOverlay",
+      "module": "src/ui/components/debug/debug-overlay.tsx",
+      "exportName": "DebugOverlay",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "DefeatedGuardPanel",
+      "module": "src/ui/components/defeated-guard-panel.tsx",
+      "exportName": "DefeatedGuardPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "DefenderCasualties",
+      "module": "src/ui/components/defender-casualties.tsx",
+      "exportName": "DefenderCasualties",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DefenderPanel",
+      "module": "src/ui/components/defender-panel.tsx",
+      "exportName": "DefenderPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "DeploymentZone",
+      "module": "src/ui/components/deployment-zone.tsx",
+      "exportName": "DeploymentZone",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Destination",
+      "module": "src/ui/components/destination.tsx",
+      "exportName": "Destination",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Destination Army",
+      "module": "src/ui/components/destination-army.tsx",
+      "exportName": "DestinationArmy",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DestinationArmyPreview",
+      "module": "src/ui/components/destination-army-preview.tsx",
+      "exportName": "DestinationArmyPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DestinationArmyRow",
+      "module": "src/ui/components/destination-army-row.tsx",
+      "exportName": "DestinationArmyRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DestinationPreview",
+      "module": "src/ui/components/destination-preview.tsx",
+      "exportName": "DestinationPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DestinationSlotPreview",
+      "module": "src/ui/components/destination-slot-preview.tsx",
+      "exportName": "DestinationSlotPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DialogButtons",
+      "module": "src/ui/components/dialog-buttons.tsx",
+      "exportName": "DialogButtons",
+      "tags": [
+        "modal",
+        "control"
+      ]
+    },
+    {
+      "componentId": "DifficultySelector",
+      "module": "src/ui/components/difficulty-selector.tsx",
+      "exportName": "DifficultySelector",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DimmedAdventureMap",
+      "module": "src/ui/components/dimmed-adventure-map.tsx",
+      "exportName": "DimmedAdventureMap",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DimmedCaller",
+      "module": "src/ui/components/dimmed-caller.tsx",
+      "exportName": "DimmedCaller",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DimmedGameplayBackdrop",
+      "module": "src/ui/components/dimmed-gameplay-backdrop.tsx",
+      "exportName": "DimmedGameplayBackdrop",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DockPreview",
+      "module": "src/ui/components/dock-preview.tsx",
+      "exportName": "DockPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DragLayer",
+      "module": "src/ui/components/drag-layer.tsx",
+      "exportName": "DragLayer",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DwellingList",
+      "module": "src/ui/components/dwelling-list.tsx",
+      "exportName": "DwellingList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DwellingPortrait",
+      "module": "src/ui/components/dwelling-portrait.tsx",
+      "exportName": "DwellingPortrait",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DwellingRecruitRows",
+      "module": "src/ui/components/dwelling-recruit-rows.tsx",
+      "exportName": "DwellingRecruitRows",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "EffectList",
+      "module": "src/ui/components/effect-list.tsx",
+      "exportName": "EffectList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "EnemyPreview",
+      "module": "src/ui/components/enemy-preview.tsx",
+      "exportName": "EnemyPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "EventIcon",
+      "module": "src/ui/components/event-icon.tsx",
+      "exportName": "EventIcon",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ExchangeRatePlaque",
+      "module": "src/ui/components/exchange-rate-plaque.tsx",
+      "exportName": "ExchangeRatePlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ExperienceBar",
+      "module": "src/ui/components/experience-bar.tsx",
+      "exportName": "ExperienceBar",
+      "tags": [
+        "hud"
+      ]
+    },
+    {
+      "componentId": "ExternalDwellingDialog",
+      "module": "src/ui/components/external-dwelling-dialog.tsx",
+      "exportName": "ExternalDwellingDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "FactionCrest",
+      "module": "src/ui/components/faction-crest.tsx",
+      "exportName": "FactionCrest",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FightRetreatButtons",
+      "module": "src/ui/components/fight-retreat-buttons.tsx",
+      "exportName": "FightRetreatButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "FilterTabs",
+      "module": "src/ui/components/filter-tabs.tsx",
+      "exportName": "FilterTabs",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FocusPlaque",
+      "module": "src/ui/components/focus-plaque.tsx",
+      "exportName": "FocusPlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FogMask",
+      "module": "src/ui/components/fog-mask.tsx",
+      "exportName": "FogMask",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FogMaskLegend",
+      "module": "src/ui/components/fog-mask-legend.tsx",
+      "exportName": "FogMaskLegend",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FortificationCutaway",
+      "module": "src/ui/components/fortification-cutaway.tsx",
+      "exportName": "FortificationCutaway",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FortView",
+      "module": "src/ui/components/fort-view.tsx",
+      "exportName": "FortView",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FpsCounter",
+      "module": "src/ui/components/debug/fps-counter.tsx",
+      "exportName": "FpsCounter",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "FragmentGrid",
+      "module": "src/ui/components/fragment-grid.tsx",
+      "exportName": "FragmentGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "FrameViewport",
+      "module": "src/ui/components/frame-viewport.tsx",
+      "exportName": "FrameViewport",
+      "tags": [
+        "viewport"
+      ]
+    },
+    {
+      "componentId": "FriendlyStacks",
+      "module": "src/ui/components/friendly-stacks.tsx",
+      "exportName": "FriendlyStacks",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Garrison Army",
+      "module": "src/ui/components/garrison-army.tsx",
+      "exportName": "GarrisonArmy",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "GarrisonArmyRow",
+      "module": "src/ui/components/garrison-army-row.tsx",
+      "exportName": "GarrisonArmyRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "GarrisonStructureScreen",
+      "module": "src/ui/components/garrison-structure-screen.tsx",
+      "exportName": "GarrisonStructureScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "GateAndMoat",
+      "module": "src/ui/components/gate-and-moat.tsx",
+      "exportName": "GateAndMoat",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "GateMarkerList",
+      "module": "src/ui/components/gate-marker-list.tsx",
+      "exportName": "GateMarkerList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "GenerateBackButtons",
+      "module": "src/ui/components/generate-back-buttons.tsx",
+      "exportName": "GenerateBackButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "GoldCostPlaque",
+      "module": "src/ui/components/gold-cost-plaque.tsx",
+      "exportName": "GoldCostPlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "GrailBuildingDialog",
+      "module": "src/ui/components/grail-building-dialog.tsx",
+      "exportName": "GrailBuildingDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "GrailHintPanel",
+      "module": "src/ui/components/grail-hint-panel.tsx",
+      "exportName": "GrailHintPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "GuardSummary",
+      "module": "src/ui/components/guard-summary.tsx",
+      "exportName": "GuardSummary",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Hero Army",
+      "module": "src/ui/components/hero-army.tsx",
+      "exportName": "HeroArmy",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroArmyPanel",
+      "module": "src/ui/components/hero-army-panel.tsx",
+      "exportName": "HeroArmyPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "HeroArmyRow",
+      "module": "src/ui/components/hero-army-row.tsx",
+      "exportName": "HeroArmyRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroArtifactGrid",
+      "module": "src/ui/components/hero-artifact-grid.tsx",
+      "exportName": "HeroArtifactGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroBackpackStrip",
+      "module": "src/ui/components/hero-backpack-strip.tsx",
+      "exportName": "HeroBackpackStrip",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroEligibilityPlaque",
+      "module": "src/ui/components/hero-eligibility-plaque.tsx",
+      "exportName": "HeroEligibilityPlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroLedger",
+      "module": "src/ui/components/hero-ledger.tsx",
+      "exportName": "HeroLedger",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroMachineRack",
+      "module": "src/ui/components/hero-machine-rack.tsx",
+      "exportName": "HeroMachineRack",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroMeetingScreen",
+      "module": "src/ui/components/hero-meeting-screen.tsx",
+      "exportName": "HeroMeetingScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroOfferCardA",
+      "module": "src/ui/components/hero-offer-card-a.tsx",
+      "exportName": "HeroOfferCardA",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroOfferCardB",
+      "module": "src/ui/components/hero-offer-card-b.tsx",
+      "exportName": "HeroOfferCardB",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroPortrait",
+      "module": "src/ui/components/hero-portrait.tsx",
+      "exportName": "HeroPortrait",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroPortraits",
+      "module": "src/ui/components/hero-portraits.tsx",
+      "exportName": "HeroPortraits",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroPrisonDialog",
+      "module": "src/ui/components/hero-prison-dialog.tsx",
+      "exportName": "HeroPrisonDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "HeroScreen",
+      "module": "src/ui/components/hero-screen.tsx",
+      "exportName": "HeroScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroSheet",
+      "module": "src/ui/components/hero-sheet.tsx",
+      "exportName": "HeroSheet",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HeroSkillRow",
+      "module": "src/ui/components/hero-skill-row.tsx",
+      "exportName": "HeroSkillRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HexOverlay",
+      "module": "src/ui/components/hex-overlay.tsx",
+      "exportName": "HexOverlay",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HighScores",
+      "module": "src/ui/components/high-scores.tsx",
+      "exportName": "HighScores",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "HillFortDialog",
+      "module": "src/ui/components/hill-fort-dialog.tsx",
+      "exportName": "HillFortDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "HireCostPanel",
+      "module": "src/ui/components/hire-cost-panel.tsx",
+      "exportName": "HireCostPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "HostJoinButtons",
+      "module": "src/ui/components/host-join-buttons.tsx",
+      "exportName": "HostJoinButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "HotseatTurnHandoff",
+      "module": "src/ui/components/hotseat-turn-handoff.tsx",
+      "exportName": "HotseatTurnHandoff",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "IllegalPlacementFeedback",
+      "module": "src/ui/components/illegal-placement-feedback.tsx",
+      "exportName": "IllegalPlacementFeedback",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ImmuneMarkers",
+      "module": "src/ui/components/immune-markers.tsx",
+      "exportName": "ImmuneMarkers",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ImprisonedHeroSummary",
+      "module": "src/ui/components/imprisoned-hero-summary.tsx",
+      "exportName": "ImprisonedHeroSummary",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "IncomePreview",
+      "module": "src/ui/components/income-preview.tsx",
+      "exportName": "IncomePreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "IntelligenceColumns",
+      "module": "src/ui/components/intelligence-columns.tsx",
+      "exportName": "IntelligenceColumns",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "InvalidTargetMarkers",
+      "module": "src/ui/components/invalid-target-markers.tsx",
+      "exportName": "InvalidTargetMarkers",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Kaelis Army",
+      "module": "src/ui/components/kaelis-army.tsx",
+      "exportName": "KaelisArmy",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "KingdomOverview",
+      "module": "src/ui/components/kingdom-overview.tsx",
+      "exportName": "KingdomOverview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "KnownSpellMarkers",
+      "module": "src/ui/components/known-spell-markers.tsx",
+      "exportName": "KnownSpellMarkers",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LaunchLeaveButtons",
+      "module": "src/ui/components/launch-leave-buttons.tsx",
+      "exportName": "LaunchLeaveButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "LayerLever",
+      "module": "src/ui/components/layer-lever.tsx",
+      "exportName": "LayerLever",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LayerTabs",
+      "module": "src/ui/components/layer-tabs.tsx",
+      "exportName": "LayerTabs",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LearnButton",
+      "module": "src/ui/components/learn-button.tsx",
+      "exportName": "LearnButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "LearnCloseButtons",
+      "module": "src/ui/components/learn-close-buttons.tsx",
+      "exportName": "LearnCloseButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "LeftHeroPanel",
+      "module": "src/ui/components/left-hero-panel.tsx",
+      "exportName": "LeftHeroPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "LeftPageSpellGrid",
+      "module": "src/ui/components/left-page-spell-grid.tsx",
+      "exportName": "LeftPageSpellGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LegalTargetOverlay",
+      "module": "src/ui/components/legal-target-overlay.tsx",
+      "exportName": "LegalTargetOverlay",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LetterboxArt",
+      "module": "src/ui/components/letterbox-art.tsx",
+      "exportName": "LetterboxArt",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LevelUpDialog",
+      "module": "src/ui/components/level-up-dialog.tsx",
+      "exportName": "LevelUpDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "LoadingArtwork",
+      "module": "src/ui/components/loading-artwork.tsx",
+      "exportName": "LoadingArtwork",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LoadingScreen",
+      "module": "src/ui/components/loading-screen.tsx",
+      "exportName": "LoadingScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "LogoTitle",
+      "module": "src/ui/components/logo-title.tsx",
+      "exportName": "LogoTitle",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MachineBayGrid",
+      "module": "src/ui/components/machine-bay-grid.tsx",
+      "exportName": "MachineBayGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MageGuildDialog",
+      "module": "src/ui/components/mage-guild-dialog.tsx",
+      "exportName": "MageGuildDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "MainMenuShell",
+      "module": "src/ui/components/main-menu-shell.tsx",
+      "exportName": "MainMenuShell",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ManaCost",
+      "module": "src/ui/components/mana-cost.tsx",
+      "exportName": "ManaCost",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ManaCostPanel",
+      "module": "src/ui/components/mana-cost-panel.tsx",
+      "exportName": "ManaCostPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "ManaFooter",
+      "module": "src/ui/components/mana-footer.tsx",
+      "exportName": "ManaFooter",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MapCanvas",
+      "module": "src/ui/components/map-canvas.tsx",
+      "exportName": "MapCanvas",
+      "tags": [
+        "viewport"
+      ]
+    },
+    {
+      "componentId": "MapEditor",
+      "module": "src/ui/components/map-editor.tsx",
+      "exportName": "MapEditor",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MapJumpButton",
+      "module": "src/ui/components/map-jump-button.tsx",
+      "exportName": "MapJumpButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "MapObjectDialog",
+      "module": "src/ui/components/map-object-dialog.tsx",
+      "exportName": "MapObjectDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "MapObjectTooltip",
+      "module": "src/ui/components/map-object-tooltip.tsx",
+      "exportName": "MapObjectTooltip",
+      "tags": [
+        "tooltip"
+      ]
+    },
+    {
+      "componentId": "MapPreview",
+      "module": "src/ui/components/map-preview.tsx",
+      "exportName": "MapPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MapViewport",
+      "module": "src/ui/components/map-viewport.tsx",
+      "exportName": "MapViewport",
+      "tags": [
+        "viewport"
+      ]
+    },
+    {
+      "componentId": "MarketplaceArtifactTrading",
+      "module": "src/ui/components/marketplace-artifact-trading.tsx",
+      "exportName": "MarketplaceArtifactTrading",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MarketplaceDialog",
+      "module": "src/ui/components/marketplace-dialog.tsx",
+      "exportName": "MarketplaceDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "MedalPlaques",
+      "module": "src/ui/components/medal-plaques.tsx",
+      "exportName": "MedalPlaques",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MessageHistoryDrawer",
+      "module": "src/ui/components/message-history-drawer.tsx",
+      "exportName": "MessageHistoryDrawer",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MessageTicker",
+      "module": "src/ui/components/message-ticker.tsx",
+      "exportName": "MessageTicker",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MinePortrait",
+      "module": "src/ui/components/mine-portrait.tsx",
+      "exportName": "MinePortrait",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MineVisitDialog",
+      "module": "src/ui/components/mine-visit-dialog.tsx",
+      "exportName": "MineVisitDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "MiniMap",
+      "module": "src/ui/components/mini-map.tsx",
+      "exportName": "MiniMap",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MissingPieceList",
+      "module": "src/ui/components/missing-piece-list.tsx",
+      "exportName": "MissingPieceList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ModeTabs",
+      "module": "src/ui/components/mode-tabs.tsx",
+      "exportName": "ModeTabs",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ModifierBreakdown",
+      "module": "src/ui/components/modifier-breakdown.tsx",
+      "exportName": "ModifierBreakdown",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MoveBudgetPlaque",
+      "module": "src/ui/components/move-budget-plaque.tsx",
+      "exportName": "MoveBudgetPlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "MultiplayerSetup",
+      "module": "src/ui/components/multiplayer-setup.tsx",
+      "exportName": "MultiplayerSetup",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "NarrationPanel",
+      "module": "src/ui/components/narration-panel.tsx",
+      "exportName": "NarrationPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "NetworkLobby",
+      "module": "src/ui/components/network-lobby.tsx",
+      "exportName": "NetworkLobby",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "NewGameSetup",
+      "module": "src/ui/components/new-game-setup.tsx",
+      "exportName": "NewGameSetup",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ObeliskProgress",
+      "module": "src/ui/components/obelisk-progress.tsx",
+      "exportName": "ObeliskProgress",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ObjectivePlaques",
+      "module": "src/ui/components/objective-plaques.tsx",
+      "exportName": "ObjectivePlaques",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ObjectLayer",
+      "module": "src/ui/components/object-layer.tsx",
+      "exportName": "ObjectLayer",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ObjectMessage",
+      "module": "src/ui/components/object-message.tsx",
+      "exportName": "ObjectMessage",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ObjectPalette",
+      "module": "src/ui/components/object-palette.tsx",
+      "exportName": "ObjectPalette",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ObjectPins",
+      "module": "src/ui/components/object-pins.tsx",
+      "exportName": "ObjectPins",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ObjectPortrait",
+      "module": "src/ui/components/object-portrait.tsx",
+      "exportName": "ObjectPortrait",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OfferResourceGrid",
+      "module": "src/ui/components/offer-resource-grid.tsx",
+      "exportName": "OfferResourceGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OkButton",
+      "module": "src/ui/components/ok-button.tsx",
+      "exportName": "OkButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "OptionsButton",
+      "module": "src/ui/components/options-button.tsx",
+      "exportName": "OptionsButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "OptionsScreen",
+      "module": "src/ui/components/options-screen.tsx",
+      "exportName": "OptionsScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OptionsTabs",
+      "module": "src/ui/components/options-tabs.tsx",
+      "exportName": "OptionsTabs",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OutcomeBanner",
+      "module": "src/ui/components/outcome-banner.tsx",
+      "exportName": "OutcomeBanner",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OutcomeCinematic",
+      "module": "src/ui/components/outcome-cinematic.tsx",
+      "exportName": "OutcomeCinematic",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OutcomeText",
+      "module": "src/ui/components/outcome-text.tsx",
+      "exportName": "OutcomeText",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OwnerFlag",
+      "module": "src/ui/components/owner-flag.tsx",
+      "exportName": "OwnerFlag",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PackContentHashReadout",
+      "module": "src/ui/components/debug/pack-content-hash-readout.tsx",
+      "exportName": "PackContentHashReadout",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "PanoramaCameraPath",
+      "module": "src/ui/components/panorama-camera-path.tsx",
+      "exportName": "PanoramaCameraPath",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PaperDoll",
+      "module": "src/ui/components/paper-doll.tsx",
+      "exportName": "PaperDoll",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PathPreview",
+      "module": "src/ui/components/path-preview.tsx",
+      "exportName": "PathPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PinnedMessage",
+      "module": "src/ui/components/pinned-message.tsx",
+      "exportName": "PinnedMessage",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PinState",
+      "module": "src/ui/components/pin-state.tsx",
+      "exportName": "PinState",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PlayerBannerRows",
+      "module": "src/ui/components/player-banner-rows.tsx",
+      "exportName": "PlayerBannerRows",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PlayerColorBanner",
+      "module": "src/ui/components/player-color-banner.tsx",
+      "exportName": "PlayerColorBanner",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PlayerCrest",
+      "module": "src/ui/components/player-crest.tsx",
+      "exportName": "PlayerCrest",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PlayerSlotList",
+      "module": "src/ui/components/player-slot-list.tsx",
+      "exportName": "PlayerSlotList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PlayerSlotTable",
+      "module": "src/ui/components/player-slot-table.tsx",
+      "exportName": "PlayerSlotTable",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PlayerTeamMatrix",
+      "module": "src/ui/components/player-team-matrix.tsx",
+      "exportName": "PlayerTeamMatrix",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PreBattleDialog",
+      "module": "src/ui/components/pre-battle-dialog.tsx",
+      "exportName": "PreBattleDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "PrerequisiteLinks",
+      "module": "src/ui/components/prerequisite-links.tsx",
+      "exportName": "PrerequisiteLinks",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PriceLedger",
+      "module": "src/ui/components/price-ledger.tsx",
+      "exportName": "PriceLedger",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PricePlaque",
+      "module": "src/ui/components/price-plaque.tsx",
+      "exportName": "PricePlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PriceTag",
+      "module": "src/ui/components/price-tag.tsx",
+      "exportName": "PriceTag",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PrimaryStatGain",
+      "module": "src/ui/components/primary-stat-gain.tsx",
+      "exportName": "PrimaryStatGain",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PrimaryStats",
+      "module": "src/ui/components/primary-stats.tsx",
+      "exportName": "PrimaryStats",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PrisonCellPortrait",
+      "module": "src/ui/components/prison-cell-portrait.tsx",
+      "exportName": "PrisonCellPortrait",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PrivacyCover",
+      "module": "src/ui/components/privacy-cover.tsx",
+      "exportName": "PrivacyCover",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ProgressBar",
+      "module": "src/ui/components/progress-bar.tsx",
+      "exportName": "ProgressBar",
+      "tags": [
+        "hud"
+      ]
+    },
+    {
+      "componentId": "ProgressBeads",
+      "module": "src/ui/components/progress-beads.tsx",
+      "exportName": "ProgressBeads",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ProgressMedals",
+      "module": "src/ui/components/progress-medals.tsx",
+      "exportName": "ProgressMedals",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PromptText",
+      "module": "src/ui/components/prompt-text.tsx",
+      "exportName": "PromptText",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PropertiesInspector",
+      "module": "src/ui/components/properties-inspector.tsx",
+      "exportName": "PropertiesInspector",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PublicInfoRows",
+      "module": "src/ui/components/public-info-rows.tsx",
+      "exportName": "PublicInfoRows",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PuzzleMapScreen",
+      "module": "src/ui/components/puzzle-map-screen.tsx",
+      "exportName": "PuzzleMapScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuantitySlider",
+      "module": "src/ui/components/quantity-slider.tsx",
+      "exportName": "QuantitySlider",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuantityStepper",
+      "module": "src/ui/components/quantity-stepper.tsx",
+      "exportName": "QuantityStepper",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuestDetails",
+      "module": "src/ui/components/quest-details.tsx",
+      "exportName": "QuestDetails",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuestList",
+      "module": "src/ui/components/quest-list.tsx",
+      "exportName": "QuestList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuestLog",
+      "module": "src/ui/components/quest-log.tsx",
+      "exportName": "QuestLog",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuestTabs",
+      "module": "src/ui/components/quest-tabs.tsx",
+      "exportName": "QuestTabs",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuickRecruitWindow",
+      "module": "src/ui/components/quick-recruit-window.tsx",
+      "exportName": "QuickRecruitWindow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "QuotePanel",
+      "module": "src/ui/components/quote-panel.tsx",
+      "exportName": "QuotePanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "RandomMapSetup",
+      "module": "src/ui/components/random-map-setup.tsx",
+      "exportName": "RandomMapSetup",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RankingTable",
+      "module": "src/ui/components/ranking-table.tsx",
+      "exportName": "RankingTable",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RankSortHeader",
+      "module": "src/ui/components/rank-sort-header.tsx",
+      "exportName": "RankSortHeader",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ReadyStateSeals",
+      "module": "src/ui/components/ready-state-seals.tsx",
+      "exportName": "ReadyStateSeals",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ReceiveResourceGrid",
+      "module": "src/ui/components/receive-resource-grid.tsx",
+      "exportName": "ReceiveResourceGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RecoverableErrorPanel",
+      "module": "src/ui/components/recoverable-error-panel.tsx",
+      "exportName": "RecoverableErrorPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "RecruitAllButton",
+      "module": "src/ui/components/recruit-all-button.tsx",
+      "exportName": "RecruitAllButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "RecruitmentDialog",
+      "module": "src/ui/components/recruitment-dialog.tsx",
+      "exportName": "RecruitmentDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "ReleaseLeaveButtons",
+      "module": "src/ui/components/release-leave-buttons.tsx",
+      "exportName": "ReleaseLeaveButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "RelicPedestal",
+      "module": "src/ui/components/relic-pedestal.tsx",
+      "exportName": "RelicPedestal",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ReplayScrubber",
+      "module": "src/ui/components/debug/replay-scrubber.tsx",
+      "exportName": "ReplayScrubber",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "RequirementChecklist",
+      "module": "src/ui/components/requirement-checklist.tsx",
+      "exportName": "RequirementChecklist",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RequirementPanel",
+      "module": "src/ui/components/requirement-panel.tsx",
+      "exportName": "RequirementPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "ResourceDateBar",
+      "module": "src/ui/components/resource-date-bar.tsx",
+      "exportName": "ResourceDateBar",
+      "tags": [
+        "hud"
+      ]
+    },
+    {
+      "componentId": "ResourceDeltaBadges",
+      "module": "src/ui/components/resource-delta-badges.tsx",
+      "exportName": "ResourceDeltaBadges",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ResourceLedger",
+      "module": "src/ui/components/resource-ledger.tsx",
+      "exportName": "ResourceLedger",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ResultArtifactCard",
+      "module": "src/ui/components/result-artifact-card.tsx",
+      "exportName": "ResultArtifactCard",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ResultPreview",
+      "module": "src/ui/components/result-preview.tsx",
+      "exportName": "ResultPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RewardBundleGrid",
+      "module": "src/ui/components/reward-bundle-grid.tsx",
+      "exportName": "RewardBundleGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RewardPreview",
+      "module": "src/ui/components/reward-preview.tsx",
+      "exportName": "RewardPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RewardSlots",
+      "module": "src/ui/components/reward-slots.tsx",
+      "exportName": "RewardSlots",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RightCommandPanel",
+      "module": "src/ui/components/right-command-panel.tsx",
+      "exportName": "RightCommandPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "RightHeroPanel",
+      "module": "src/ui/components/right-hero-panel.tsx",
+      "exportName": "RightHeroPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "RightPageSpellGrid",
+      "module": "src/ui/components/right-page-spell-grid.tsx",
+      "exportName": "RightPageSpellGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RngStreamCounters",
+      "module": "src/ui/components/debug/rng-stream-counters.tsx",
+      "exportName": "RngStreamCounters",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "RosterCapacityPanel",
+      "module": "src/ui/components/roster-capacity-panel.tsx",
+      "exportName": "RosterCapacityPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "RouteFadeOverlay",
+      "module": "src/ui/components/route-fade-overlay.tsx",
+      "exportName": "RouteFadeOverlay",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Rowan Army",
+      "module": "src/ui/components/rowan-army.tsx",
+      "exportName": "RowanArmy",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RumorParchment",
+      "module": "src/ui/components/rumor-parchment.tsx",
+      "exportName": "RumorParchment",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SaveExportButtons",
+      "module": "src/ui/components/save-export-buttons.tsx",
+      "exportName": "SaveExportButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "SaveLoadButtons",
+      "module": "src/ui/components/save-load-buttons.tsx",
+      "exportName": "SaveLoadButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "SaveLoadScreen",
+      "module": "src/ui/components/save-load-screen.tsx",
+      "exportName": "SaveLoadScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SaveSlotTable",
+      "module": "src/ui/components/save-slot-table.tsx",
+      "exportName": "SaveSlotTable",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ScenarioList",
+      "module": "src/ui/components/scenario-list.tsx",
+      "exportName": "ScenarioList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ScenarioPreview",
+      "module": "src/ui/components/scenario-preview.tsx",
+      "exportName": "ScenarioPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SchoolTabs",
+      "module": "src/ui/components/school-tabs.tsx",
+      "exportName": "SchoolTabs",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ScoreMedallions",
+      "module": "src/ui/components/score-medallions.tsx",
+      "exportName": "ScoreMedallions",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SecondarySkills",
+      "module": "src/ui/components/secondary-skills.tsx",
+      "exportName": "SecondarySkills",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SeedField",
+      "module": "src/ui/components/seed-field.tsx",
+      "exportName": "SeedField",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SegmentedControls",
+      "module": "src/ui/components/segmented-controls.tsx",
+      "exportName": "SegmentedControls",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SelectedArtifactDetails",
+      "module": "src/ui/components/selected-artifact-details.tsx",
+      "exportName": "SelectedArtifactDetails",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SelectedBuildingDetails",
+      "module": "src/ui/components/selected-building-details.tsx",
+      "exportName": "SelectedBuildingDetails",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SelectedScoreDetails",
+      "module": "src/ui/components/selected-score-details.tsx",
+      "exportName": "SelectedScoreDetails",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SelectedSpellDetails",
+      "module": "src/ui/components/selected-spell-details.tsx",
+      "exportName": "SelectedSpellDetails",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SelectionCheckboxes",
+      "module": "src/ui/components/selection-checkboxes.tsx",
+      "exportName": "SelectionCheckboxes",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ServiceButtons",
+      "module": "src/ui/components/service-buttons.tsx",
+      "exportName": "ServiceButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "SessionHeader",
+      "module": "src/ui/components/session-header.tsx",
+      "exportName": "SessionHeader",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ShipyardDialog",
+      "module": "src/ui/components/shipyard-dialog.tsx",
+      "exportName": "ShipyardDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "SidebarContext",
+      "module": "src/ui/components/sidebar-context.tsx",
+      "exportName": "SidebarContext",
+      "tags": [
+        "hud"
+      ]
+    },
+    {
+      "componentId": "SiegeBonusChecklist",
+      "module": "src/ui/components/siege-bonus-checklist.tsx",
+      "exportName": "SiegeBonusChecklist",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SiegeCombatScreen",
+      "module": "src/ui/components/siege-combat-screen.tsx",
+      "exportName": "SiegeCombatScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SizeDifficultyControls",
+      "module": "src/ui/components/size-difficulty-controls.tsx",
+      "exportName": "SizeDifficultyControls",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SkillChoiceCards",
+      "module": "src/ui/components/skill-choice-cards.tsx",
+      "exportName": "SkillChoiceCards",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SkillOfferCards",
+      "module": "src/ui/components/skill-offer-cards.tsx",
+      "exportName": "SkillOfferCards",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SkipButton",
+      "module": "src/ui/components/skip-button.tsx",
+      "exportName": "SkipButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "SliderRows",
+      "module": "src/ui/components/slider-rows.tsx",
+      "exportName": "SliderRows",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SlotPreview",
+      "module": "src/ui/components/slot-preview.tsx",
+      "exportName": "SlotPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SourceFocusButton",
+      "module": "src/ui/components/source-focus-button.tsx",
+      "exportName": "SourceFocusButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "SourceStackPreview",
+      "module": "src/ui/components/source-stack-preview.tsx",
+      "exportName": "SourceStackPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpeakerPortrait",
+      "module": "src/ui/components/speaker-portrait.tsx",
+      "exportName": "SpeakerPortrait",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpecialtyPanel",
+      "module": "src/ui/components/specialty-panel.tsx",
+      "exportName": "SpecialtyPanel",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
+      "componentId": "SpeedControls",
+      "module": "src/ui/components/speed-controls.tsx",
+      "exportName": "SpeedControls",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpellBanner",
+      "module": "src/ui/components/spell-banner.tsx",
+      "exportName": "SpellBanner",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpellBook",
+      "module": "src/ui/components/spell-book.tsx",
+      "exportName": "SpellBook",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpellBookScreen",
+      "module": "src/ui/components/spell-book-screen.tsx",
+      "exportName": "SpellBookScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpellCard",
+      "module": "src/ui/components/spell-card.tsx",
+      "exportName": "SpellCard",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpellIconGrid",
+      "module": "src/ui/components/spell-icon-grid.tsx",
+      "exportName": "SpellIconGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SpellLevelShelves",
+      "module": "src/ui/components/spell-level-shelves.tsx",
+      "exportName": "SpellLevelShelves",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SplitStackDialog",
+      "module": "src/ui/components/split-stack-dialog.tsx",
+      "exportName": "SplitStackDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "SpoilsRow",
+      "module": "src/ui/components/spoils-row.tsx",
+      "exportName": "SpoilsRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "StackDragLayer",
+      "module": "src/ui/components/stack-drag-layer.tsx",
+      "exportName": "StackDragLayer",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "StartBackButtons",
+      "module": "src/ui/components/start-back-buttons.tsx",
+      "exportName": "StartBackButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "StartBattleButton",
+      "module": "src/ui/components/start-battle-button.tsx",
+      "exportName": "StartBattleButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "StartMissionButton",
+      "module": "src/ui/components/start-mission-button.tsx",
+      "exportName": "StartMissionButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "StateHashReadout",
+      "module": "src/ui/components/debug/state-hash-readout.tsx",
+      "exportName": "StateHashReadout",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
+      "componentId": "StatGrid",
+      "module": "src/ui/components/stat-grid.tsx",
+      "exportName": "StatGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "StatusLine",
+      "module": "src/ui/components/status-line.tsx",
+      "exportName": "StatusLine",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "StepText",
+      "module": "src/ui/components/step-text.tsx",
+      "exportName": "StepText",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "StoryScroll",
+      "module": "src/ui/components/story-scroll.tsx",
+      "exportName": "StoryScroll",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "StrategicWarnings",
+      "module": "src/ui/components/strategic-warnings.tsx",
+      "exportName": "StrategicWarnings",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SubtitleStrip",
+      "module": "src/ui/components/subtitle-strip.tsx",
+      "exportName": "SubtitleStrip",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SurfacePreview",
+      "module": "src/ui/components/surface-preview.tsx",
+      "exportName": "SurfacePreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SurrenderCostDialog",
+      "module": "src/ui/components/surrender-cost-dialog.tsx",
+      "exportName": "SurrenderCostDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "SurvivorSummary",
+      "module": "src/ui/components/survivor-summary.tsx",
+      "exportName": "SurvivorSummary",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "SystemMenu",
+      "module": "src/ui/components/system-menu.tsx",
+      "exportName": "SystemMenu",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TacticsIndicator",
+      "module": "src/ui/components/tactics-indicator.tsx",
+      "exportName": "TacticsIndicator",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TacticsPhaseScreen",
+      "module": "src/ui/components/tactics-phase-screen.tsx",
+      "exportName": "TacticsPhaseScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TargetPreview",
+      "module": "src/ui/components/target-preview.tsx",
+      "exportName": "TargetPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TavernDialog",
+      "module": "src/ui/components/tavern-dialog.tsx",
+      "exportName": "TavernDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "TemplateList",
+      "module": "src/ui/components/template-list.tsx",
+      "exportName": "TemplateList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TerrainPalette",
+      "module": "src/ui/components/terrain-palette.tsx",
+      "exportName": "TerrainPalette",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TerrainPreview",
+      "module": "src/ui/components/terrain-preview.tsx",
+      "exportName": "TerrainPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ThievesGuildButton",
+      "module": "src/ui/components/thieves-guild-button.tsx",
+      "exportName": "ThievesGuildButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ThievesGuildDialog",
+      "module": "src/ui/components/thieves-guild-dialog.tsx",
+      "exportName": "ThievesGuildDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "TimelineBeads",
+      "module": "src/ui/components/timeline-beads.tsx",
+      "exportName": "TimelineBeads",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TimerOptions",
+      "module": "src/ui/components/timer-options.tsx",
+      "exportName": "TimerOptions",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ToggleRows",
+      "module": "src/ui/components/toggle-rows.tsx",
+      "exportName": "ToggleRows",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ToolRibbon",
+      "module": "src/ui/components/tool-ribbon.tsx",
+      "exportName": "ToolRibbon",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TooltipAnchor",
+      "module": "src/ui/components/tooltip-anchor.tsx",
+      "exportName": "TooltipAnchor",
+      "tags": [
+        "tooltip"
+      ]
+    },
+    {
+      "componentId": "TotalCostFooter",
+      "module": "src/ui/components/total-cost-footer.tsx",
+      "exportName": "TotalCostFooter",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TowerNodes",
+      "module": "src/ui/components/tower-nodes.tsx",
+      "exportName": "TowerNodes",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TowerSlots",
+      "module": "src/ui/components/tower-slots.tsx",
+      "exportName": "TowerSlots",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Town Garrison",
+      "module": "src/ui/components/town-garrison.tsx",
+      "exportName": "TownGarrison",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TownBonusList",
+      "module": "src/ui/components/town-bonus-list.tsx",
+      "exportName": "TownBonusList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TownFlyby",
+      "module": "src/ui/components/town-flyby.tsx",
+      "exportName": "TownFlyby",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TownGarrisonRow",
+      "module": "src/ui/components/town-garrison-row.tsx",
+      "exportName": "TownGarrisonRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TownHeader",
+      "module": "src/ui/components/town-header.tsx",
+      "exportName": "TownHeader",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TownLedger",
+      "module": "src/ui/components/town-ledger.tsx",
+      "exportName": "TownLedger",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TownPanorama",
+      "module": "src/ui/components/town-panorama.tsx",
+      "exportName": "TownPanorama",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TownScreen",
+      "module": "src/ui/components/town-screen.tsx",
+      "exportName": "TownScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TradeButtons",
+      "module": "src/ui/components/trade-buttons.tsx",
+      "exportName": "TradeButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "TradeOfferSlots",
+      "module": "src/ui/components/trade-offer-slots.tsx",
+      "exportName": "TradeOfferSlots",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TransferControls",
+      "module": "src/ui/components/transfer-controls.tsx",
+      "exportName": "TransferControls",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "TurnDatePlaque",
+      "module": "src/ui/components/turn-date-plaque.tsx",
+      "exportName": "TurnDatePlaque",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "UndergroundPreview",
+      "module": "src/ui/components/underground-preview.tsx",
+      "exportName": "UndergroundPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "UndergroundToggle",
+      "module": "src/ui/components/underground-toggle.tsx",
+      "exportName": "UndergroundToggle",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "UniversityDialog",
+      "module": "src/ui/components/university-dialog.tsx",
+      "exportName": "UniversityDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "UpgradeButtons",
+      "module": "src/ui/components/upgrade-buttons.tsx",
+      "exportName": "UpgradeButtons",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "UpgradePathList",
+      "module": "src/ui/components/upgrade-path-list.tsx",
+      "exportName": "UpgradePathList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "UpgradePathPreview",
+      "module": "src/ui/components/upgrade-path-preview.tsx",
+      "exportName": "UpgradePathPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ValidationDrawer",
+      "module": "src/ui/components/validation-drawer.tsx",
+      "exportName": "ValidationDrawer",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ValuationScales",
+      "module": "src/ui/components/valuation-scales.tsx",
+      "exportName": "ValuationScales",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "VersionLabel",
+      "module": "src/ui/components/version-label.tsx",
+      "exportName": "VersionLabel",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ViewWorldScreen",
+      "module": "src/ui/components/view-world-screen.tsx",
+      "exportName": "ViewWorldScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "Visiting Hero",
+      "module": "src/ui/components/visiting-hero.tsx",
+      "exportName": "VisitingHero",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "VisitingHeroRow",
+      "module": "src/ui/components/visiting-hero-row.tsx",
+      "exportName": "VisitingHeroRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "WallSegmentList",
+      "module": "src/ui/components/wall-segment-list.tsx",
+      "exportName": "WallSegmentList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "WarMachineFactory",
+      "module": "src/ui/components/war-machine-factory.tsx",
+      "exportName": "WarMachineFactory",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "WarningIcon",
+      "module": "src/ui/components/warning-icon.tsx",
+      "exportName": "WarningIcon",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "WeekMonthPopup",
+      "module": "src/ui/components/week-month-popup.tsx",
+      "exportName": "WeekMonthPopup",
+      "tags": [
+        "popup"
+      ]
+    },
+    {
+      "componentId": "WonderPreview",
+      "module": "src/ui/components/wonder-preview.tsx",
+      "exportName": "WonderPreview",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "WorldMapCanvas",
+      "module": "src/ui/components/world-map-canvas.tsx",
+      "exportName": "WorldMapCanvas",
+      "tags": [
+        "viewport"
+      ]
+    },
+    {
+      "componentId": "ZonePreview",
+      "module": "src/ui/components/zone-preview.tsx",
+      "exportName": "ZonePreview",
+      "tags": [
+        "ui"
+      ]
+    }
+  ]
+}

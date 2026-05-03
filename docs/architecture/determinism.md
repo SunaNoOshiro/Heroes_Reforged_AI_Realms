@@ -72,3 +72,13 @@ silent.
   no `Infinity`, no `NaN`.
 - String order is Unicode-codepoint ascending.
 - Map iteration uses explicit sorted keys where it affects state.
+
+## UI Draft Slice
+
+The UI may render optimistic placeholders bound to draft state under
+`state.ui.<screen>.draft.*`. Drafts are excluded from the canonical
+serializer input and never enter the command log. This rule is the
+sole exception to "every state shape is reducer-owned"; it is pinned
+in [`ui-frame-lag-contract.md` § Optimistic UI](./ui-frame-lag-contract.md#2-optimistic-ui).
+Drafts must clear when the matching command resolves; persisting a
+draft across save/load is a determinism leak.

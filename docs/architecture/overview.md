@@ -84,6 +84,17 @@ reads through selectors, keeps transient UI-only state outside
 deterministic gameplay state, and emits commands instead of mutating the
 engine directly.
 
+The DOM-side framework, state-binding model, z-stack, localization
+runtime, fonts, and build flags are pinned in
+[ui-technology-choice.md](ui-technology-choice.md). The DOM ↔ canvas
+seam (input routing, hit-tests, resize protocol) is in
+[ui-renderer-seam.md](ui-renderer-seam.md). Resolution, aspect, and
+hi-DPI rules live in [screen-scaling.md](screen-scaling.md). The
+`data-component` runtime resolver is in
+[ui-component-resolver.md](ui-component-resolver.md). UI lag bounds
+(single-player, optimistic UI, M5 lockstep, context loss, replay) are
+in [ui-frame-lag-contract.md](ui-frame-lag-contract.md).
+
 Future UI redesigns are allowed when the relevant screen package is
 updated first. The canonical policy lives in
 [wiki/README.md](wiki/README.md#ui-evolution-policy).

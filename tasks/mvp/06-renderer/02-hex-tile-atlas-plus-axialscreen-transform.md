@@ -8,6 +8,8 @@ Description:
 Load a tile atlas texture (PNG sprite sheet) and implement the pointy-top axial→screen coordinate transform. All tile rendering goes through this transform.
 
 Read First:
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:

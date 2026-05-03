@@ -51,7 +51,11 @@
     "TURN_",
     "VALIDATE_"
   ],
-  "localUiTokens": [],
+  "localUiTokens": [
+    "REPLAY_PAUSE",
+    "REPLAY_STEP",
+    "REPLAY_RESET"
+  ],
   "outOfScope": {
     "COMPLETE_CINEMATIC": "phase-2.08-meta-systems.03-cinematic-playback-engine owns cinematic completion state.",
     "HOST_MULTIPLAYER_SESSION": "phase-3.01-multiplayer owns network session commands.",

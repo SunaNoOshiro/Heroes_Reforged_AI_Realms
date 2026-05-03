@@ -8,6 +8,8 @@ Description:
 The tactical battle field is an 11×15 hex grid with distinct terrain (grass, dirt, obstacles). Render it with the same tile system but different atlas tiles and no camera pan (field always fits on screen).
 
 Read First:
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:

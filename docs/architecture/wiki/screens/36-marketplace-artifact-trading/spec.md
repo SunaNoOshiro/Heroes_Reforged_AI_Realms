@@ -16,6 +16,7 @@ Marketplace sub-service for exchanging artifacts between hero, backpack, market 
 
 ### Visual Contract
 - Curation status: `curated-pass-4`.
+- Z-Layer: 1000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Split counter layout: hero backpack grid left, market valuation scales center, target/sell slots right, with gold/resource quote at the bottom.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

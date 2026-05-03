@@ -12,12 +12,23 @@ Read first if you want to understand the full project:
 6. [docs/architecture/schema-matrix.md](docs/architecture/schema-matrix.md)
 7. [docs/architecture/effect-registry.md](docs/architecture/effect-registry.md)
 8. [docs/architecture/glossary.md](docs/architecture/glossary.md)
-9. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-10. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
+9. [docs/architecture/ui-technology-choice.md](docs/architecture/ui-technology-choice.md)
+   — DOM-side framework, state binding, z-stack, localization, fonts,
+   build flags
+10. [docs/architecture/ui-renderer-seam.md](docs/architecture/ui-renderer-seam.md)
+    — DOM ↔ canvas seam, input routing, hit-test API, resize protocol
+11. [docs/architecture/screen-scaling.md](docs/architecture/screen-scaling.md)
+    — virtual stage, aspect, hi-DPI, filter modes, breakpoints
+12. [docs/architecture/ui-component-resolver.md](docs/architecture/ui-component-resolver.md)
+    — `data-component` registry, reuse policy, missing-component fallback
+13. [docs/architecture/ui-frame-lag-contract.md](docs/architecture/ui-frame-lag-contract.md)
+    — single-player lag, optimistic UI, M5 lockstep, context loss, replay
+14. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
+15. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
     Mermaid flows: game startup, race → castle rendering, battle attack
     sequence, asset loading per context, localization, save/load. Read
     a single `<id>.md` to understand one runtime behavior end-to-end.
-11. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
+16. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
     numbered per-screen UI packages. Each package contains
     `mockup.html` for visuals, `spec.md` for components and bindings,
     `interactions.md` for per-control behavior, `data-contracts.md` for

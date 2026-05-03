@@ -8,6 +8,8 @@ Description:
 Implement a 2D camera with mouse drag to pan and scroll wheel to zoom. Camera view is clamped so it cannot scroll past map edges. Camera state lives entirely in the renderer (never in sim state).
 
 Read First:
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:

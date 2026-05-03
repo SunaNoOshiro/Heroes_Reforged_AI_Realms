@@ -10,6 +10,8 @@ and renderer assets are resolved. Loading progress is presentation
 state only. Gameplay starts after all required content IDs validate.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - `docs/architecture/wiki/screens/59-loading-screen/spec.md`
 - `docs/architecture/wiki/screens/59-loading-screen/interactions.md`
 - `docs/architecture/wiki/screens/59-loading-screen/data-contracts.md`

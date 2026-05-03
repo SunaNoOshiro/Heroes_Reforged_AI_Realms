@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/ui-component-registry.schema.json",
+  "title": "UI Component Registry",
+  "description": "Maps the canonical componentId values referenced by mockup data-component attributes and screen Component Tree entries to a runtime constructor. Consumed by the resolver documented in docs/architecture/ui-component-resolver.md.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "components"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "registryId": {
+      "type": "string",
+      "description": "Optional namespacing for pack-supplied registries."
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": [
+        "componentId",
+        "module",
+        "exportName"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "description": "Stable identifier referenced by mockup data-component attributes and screen Component Tree entries. Whitespace is preserved verbatim from the source.",
+          "minLength": 1
+        },
+        "module": {
+          "type": "string",
+          "description": "Repo-relative path or bare-specifier of the module that exports the component constructor.",
+          "minLength": 1
+        },
+        "exportName": {
+          "type": "string",
+          "description": "Named export inside the module. Use 'default' to reference the default export.",
+          "minLength": 1
+        },
+        "singleton": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, the resolver returns a single shared instance across mount points. Default is per-mount instantiation."
+        },
+        "requiredProps": {
+          "type": "array",
+          "description": "Prop names the host site must pass when mounting the component. Optional props are omitted; presentation-only components may omit this field entirely.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "owner": {
+          "type": "string",
+          "description": "Task slug or module that primarily owns the component implementation. Informational only.",
+          "minLength": 1
+        },
+        "tags": {
+          "type": "array",
+          "description": "Free-form classification tags (hud, modal, tooltip, popup, panel, viewport, dialog, debug). Informational only.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

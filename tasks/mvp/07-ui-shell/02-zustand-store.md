@@ -8,6 +8,8 @@ Description:
 Define the UI state store. The store holds presentation state only — selected entities, open modals, active panels. Game state lives in the sim; the store holds a snapshot for rendering.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 - `docs/architecture/wiki/screens/07-adventure-map/spec.md`
 - `docs/architecture/wiki/screens/07-adventure-map/interactions.md`

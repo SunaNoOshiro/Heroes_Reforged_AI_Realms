@@ -16,6 +16,7 @@ Mine capture or visit dialog showing resource type, current owner, guard state, 
 
 ### Visual Contract
 - Curation status: `curated-pass-3`.
+- Z-Layer: 1000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Mine entrance portrait and colored ownership flag sit beside resource yield text, guard/visited state, and Claim/Leave controls.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

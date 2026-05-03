@@ -12,6 +12,8 @@ mutate deterministic gameplay state until the scenario loader accepts
 the final setup record.
 
 Read First:
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
 - `docs/architecture/wiki/screens/02-new-game-setup/spec.md`
 - `docs/architecture/wiki/screens/02-new-game-setup/interactions.md`
 - `docs/architecture/wiki/screens/02-new-game-setup/data-contracts.md`

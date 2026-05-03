@@ -8,6 +8,8 @@ Description:
 Load sprite sheets with frame metadata (JSON format from TexturePacker or similar). Play frame sequences for unit idle, walk, attack, and death animations.
 
 Read First:
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:

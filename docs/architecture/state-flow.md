@@ -75,8 +75,36 @@ reducer. No other mutation path exists.
   that the tactical loop uses per strike. One ruleset edit, not two
   code paths.
 
+## Renderer + UI Subscription Cadence
+
+The reducer is event-driven; the renderer is frame-driven. Both
+subscribers read the same Zustand store but on different cadences.
+Pinned in [`ui-technology-choice.md` § State Binding](./ui-technology-choice.md#state-binding)
+and detailed at the WebGL/DOM seam in
+[`ui-renderer-seam.md`](./ui-renderer-seam.md).
+
+```mermaid
+flowchart LR
+    Cmd["Command dispatched"] --> Reducer["Engine reducer (pure)"]
+    Reducer --> Store["Zustand store: state'"]
+    Store --> DOM["DOM components<br/>(selector subscription)"]
+    Store -.read once per frame.-> RAF["renderer rAF loop"]
+    RAF --> GL["WebGL2 frame render"]
+    DOM --> Paint["Browser paint"]
+```
+
+- DOM components wake only when the slice they observe changed.
+  Selectors are pure; equality defaults to shallow.
+- WebGL viewport reads `store.getState()` once per `requestAnimationFrame`.
+  It never subscribes through React.
+- Lag bounds, optimistic UI, and lockstep behavior are pinned in
+  [`ui-frame-lag-contract.md`](./ui-frame-lag-contract.md).
+
 ## Related docs
 
 - [`determinism.md`](./determinism.md) — why this loop is pure
 - [`effect-registry.md`](./effect-registry.md) — what commands may produce
 - [`pack-contract.md`](./pack-contract.md) — how packs enter at step B
+- [`ui-technology-choice.md`](./ui-technology-choice.md) — DOM-side framework + selectors
+- [`ui-renderer-seam.md`](./ui-renderer-seam.md) — DOM/WebGL seam
+- [`ui-frame-lag-contract.md`](./ui-frame-lag-contract.md) — UI lag bounds

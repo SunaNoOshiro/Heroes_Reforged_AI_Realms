@@ -16,6 +16,7 @@ AI turn overlay showing active AI color, visible thinking/progress state, option
 
 ### Visual Contract
 - Curation status: `curated-pass-6`.
+- Z-Layer: 400 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Adventure map is dimmed behind a compact banner with player color crest, progress beads, current AI activity text, and speed/skip controls.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

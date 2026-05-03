@@ -9,6 +9,11 @@ Set up the React application root. The canvas (WebGL2) fills the full viewport. 
 
 Read First:
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
+- [`docs/architecture/ui-technology-choice.md`](../../../docs/architecture/ui-technology-choice.md)
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
+- [`docs/architecture/ui-frame-lag-contract.md`](../../../docs/architecture/ui-frame-lag-contract.md)
 - `docs/architecture/wiki/screens/07-adventure-map/spec.md`
 - `docs/architecture/wiki/screens/07-adventure-map/interactions.md`
 - `docs/architecture/wiki/screens/07-adventure-map/data-contracts.md`

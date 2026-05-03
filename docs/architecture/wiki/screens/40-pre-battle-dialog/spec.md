@@ -16,6 +16,7 @@ Encounter confirmation dialog comparing attacker and defender heroes/armies, ter
 
 ### Visual Contract
 - Curation status: `curated-pass-2`.
+- Z-Layer: 1000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Two opposing hero/army panels face each other over a battlefield preview, with terrain/siege information between them and action buttons along the bottom.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

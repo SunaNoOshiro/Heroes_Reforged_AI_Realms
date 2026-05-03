@@ -16,6 +16,7 @@ Loading/progress screen for scenario creation, save load, random map generation,
 
 ### Visual Contract
 - Curation status: `curated-pass-6`.
+- Z-Layer: 9700 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Full-screen illustrated loading plate with progress bar, current step text, small animated crest, and optional cancel/back on recoverable tasks.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.
@@ -58,3 +59,6 @@ Loading/progress screen for scenario creation, save load, random map generation,
 - Screen slug: `loading-screen`; system group: `system`; curation marker: `curated-pass-6`.
 - Build runtime components from the package contract, not from third-party captures or external product pixels.
 - Runtime code should resolve presentation through asset IDs/manifests; deterministic gameplay commands use stable IDs and scalar values.
+- Canvas lifecycle and warmup phase order are pinned in
+  [`architecture.md`](architecture.md#canvas-lifecycle-and-warmup-orchestration)
+  and [diagram 28](../../../diagrams/28-loading-orchestration.md).

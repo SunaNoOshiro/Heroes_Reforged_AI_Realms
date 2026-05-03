@@ -16,6 +16,7 @@ Right-click informational tooltip for adventure map objects, heroes, towns, reso
 
 ### Visual Contract
 - Curation status: `curated-pass-3`.
+- Z-Layer: 2000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Compact black-and-bronze tooltip floats near the hovered object with portrait, public name, ownership/guard hints, and no command buttons unless pinned.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

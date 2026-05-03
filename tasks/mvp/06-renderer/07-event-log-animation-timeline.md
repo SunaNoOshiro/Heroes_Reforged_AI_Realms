@@ -8,6 +8,8 @@ Description:
 Consume the event log emitted by the sim and build an animation timeline: each event becomes an animation clip (move path, attack swing, projectile, death). Clips are sequenced and played back in the presentation loop.
 
 Read First:
+- [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
+- [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:

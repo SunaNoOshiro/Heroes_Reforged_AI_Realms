@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>66. Debug Overlay - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: rgba(0,0,0,0); }
+  body { color: #d8e6ff; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: rgba(0,0,0,0); }
+  .panel { fill: rgba(8,12,18,.78); stroke: #34a0ff; stroke-width: 1; }
+  .header { fill: #82c8ff; font: 700 11px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #d8e6ff; font: 10px ui-monospace, Menlo, monospace; }
+  .ok { fill: #7ce0a4; font: 700 10px ui-monospace, Menlo, monospace; }
+  .warn { fill: #ffd166; font: 700 10px ui-monospace, Menlo, monospace; }
+  .err { fill: #ff7373; font: 700 10px ui-monospace, Menlo, monospace; }
+  .button rect { fill: #163049; stroke: #34a0ff; }
+  .button text { fill: #d8e6ff; font: 700 10px ui-monospace, Menlo, monospace; }
+  .scrubber { fill: #08121a; stroke: #34a0ff; }
+  .scrubberFill { fill: #1f6dc4; }
+</style>
+</head>
+<body data-screen="66-debug-overlay" data-archetype="diagnostics-overlay" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Debug Overlay mockup">
+  <g data-component="DebugOverlay">
+    <rect x="14" y="14" width="240" height="86" class="panel" data-component="FpsCounter" data-i18n="ui.debug-overlay.fps.title"/>
+    <text x="24" y="34" class="header">FPS / FRAME TIME</text>
+    <text x="24" y="54" class="row">fps        60.0   tier  Green</text>
+    <text x="24" y="68" class="row">frame ms    16.4   p99   18.1</text>
+    <text x="24" y="82" class="row">draws       312    state 1</text>
+
+    <rect x="14" y="110" width="240" height="120" class="panel" data-component="StateHashReadout" data-i18n="ui.debug-overlay.state-hash.title"/>
+    <text x="24" y="130" class="header">STATE HASH</text>
+    <text x="24" y="150" class="row">tick     14823</text>
+    <text x="24" y="164" class="row">hash     0xa1f5_2c80_7e44_91c9</text>
+    <text x="24" y="178" class="row">rng.world  0x9c2a_4b6e</text>
+    <text x="24" y="192" class="row">rng.combat 0x7d11_6b18</text>
+    <text x="24" y="206" class="row">rng.ai     0x52f9_aa14</text>
+    <text x="24" y="220" class="ok">desync probe: ok</text>
+
+    <rect x="14" y="240" width="240" height="180" class="panel" data-component="PackContentHashReadout" data-i18n="ui.debug-overlay.pack-hash.title"/>
+    <text x="24" y="260" class="header">CONTENT HASHES</text>
+    <text x="24" y="280" class="row">core.engine    9b40..b801</text>
+    <text x="24" y="294" class="row">faction.ember  4c11..e2af</text>
+    <text x="24" y="308" class="row">world.ember    7110..00d3</text>
+    <text x="24" y="322" class="row">ruleset.base   3aa9..51e1</text>
+    <text x="24" y="338" class="row">locale.en-US   c612..f04e</text>
+    <text x="24" y="354" class="warn">missing-component count: 0</text>
+    <text x="24" y="370" class="row">scaling: stage 800x600 dpr 2</text>
+    <text x="24" y="384" class="row">aspect: 16:9 letterbox</text>
+    <text x="24" y="398" class="row">locale: en-US dir ltr</text>
+    <text x="24" y="412" class="row">build: dev</text>
+
+    <rect x="270" y="14" width="516" height="180" class="panel" data-component="CommandLogTail" data-i18n="ui.debug-overlay.command-log.title"/>
+    <text x="282" y="34" class="header">COMMAND LOG (tail 20)</text>
+    <text x="282" y="54" class="row">14820  END_TURN_PHASE     {player:1}</text>
+    <text x="282" y="68" class="row">14821  MOVE_HERO          {hero:kaelis, to:[12,8]}</text>
+    <text x="282" y="82" class="row">14822  RECRUIT_UNITS      {dwelling:kennels, qty:5}</text>
+    <text x="282" y="96" class="row">14823  COLLECT_RESOURCES  {mine:cm-01}</text>
+    <text x="282" y="110" class="row">14824  CAST_SPELL         {spell:ember-lance}</text>
+    <text x="282" y="124" class="row">14825  ENGAGE_STACK       {stack:n-7}</text>
+    <text x="282" y="138" class="row">14826  AUTO_RESOLVE       {ratio:0.61}</text>
+    <text x="282" y="152" class="row">14827  BATTLE_RESOLVED    {winner:0}</text>
+    <text x="282" y="166" class="row">14828  END_TURN_PHASE     {player:0}</text>
+    <text x="282" y="180" class="row">14829  ADVANCE_DAY        {day:14}</text>
+
+    <rect x="270" y="204" width="516" height="84" class="panel" data-component="ReplayScrubber" data-i18n="ui.debug-overlay.replay.title"/>
+    <text x="282" y="224" class="header">REPLAY SCRUBBER</text>
+    <rect x="282" y="240" width="492" height="14" class="scrubber"/>
+    <rect x="282" y="240" width="220" height="14" class="scrubberFill"/>
+    <text x="282" y="270" class="row">tick: 14823 / 32178   speed: 1x   mode: live</text>
+    <g class="button" data-action="debugOverlay.replayPause">
+      <rect x="612" y="262" width="36" height="18" rx="2"/>
+      <text x="630" y="275" text-anchor="middle">PAUSE</text>
+    </g>
+    <g class="button" data-action="debugOverlay.replayStep">
+      <rect x="654" y="262" width="36" height="18" rx="2"/>
+      <text x="672" y="275" text-anchor="middle">STEP</text>
+    </g>
+    <g class="button" data-action="debugOverlay.replayReset">
+      <rect x="696" y="262" width="36" height="18" rx="2"/>
+      <text x="714" y="275" text-anchor="middle">RESET</text>
+    </g>
+    <g class="button" data-action="debugOverlay.toggleVisibility">
+      <rect x="738" y="262" width="36" height="18" rx="2"/>
+      <text x="756" y="275" text-anchor="middle">HIDE</text>
+    </g>
+
+    <rect x="270" y="298" width="516" height="124" class="panel" data-component="RngStreamCounters" data-i18n="ui.debug-overlay.rng.title"/>
+    <text x="282" y="318" class="header">RNG SUBSTREAM TICKS</text>
+    <text x="282" y="338" class="row">world      ticks 9120</text>
+    <text x="282" y="352" class="row">combat     ticks 4421</text>
+    <text x="282" y="366" class="row">ai         ticks 7714</text>
+    <text x="282" y="380" class="row">generation ticks 0</text>
+    <text x="282" y="394" class="row">audit      ticks 312</text>
+    <text x="282" y="408" class="ok">no out-of-stream rng usage detected</text>
+  </g>
+</svg>
+</body>
+</html>

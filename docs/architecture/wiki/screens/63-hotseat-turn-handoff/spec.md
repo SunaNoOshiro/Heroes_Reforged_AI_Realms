@@ -16,6 +16,7 @@ Privacy handoff screen between hotseat players, hiding the map until the next pl
 
 ### Visual Contract
 - Curation status: `curated-pass-6`.
+- Z-Layer: 1000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
 - Full-screen player color banner and shield over a covered map, with next player name, turn date, privacy warning, and Begin Turn button.
 - Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
 - `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.

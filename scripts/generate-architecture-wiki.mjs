@@ -262,7 +262,7 @@ function buildHtml({ docs, docOrder, diagramsIndex, diagrams, screens, screensIn
     .replace(/</g, "\\u003c")
     .replace(/\u2028/g, "\\u2028")
     .replace(/\u2029/g, "\\u2029");
-  return HTML_TEMPLATE.replace("__PAYLOAD_PLACEHOLDER__", embedded);
+  return HTML_TEMPLATE.replace("__PAYLOAD_PLACEHOLDER__", () => embedded);
 }
 
 const HTML_TEMPLATE = `<!DOCTYPE html>

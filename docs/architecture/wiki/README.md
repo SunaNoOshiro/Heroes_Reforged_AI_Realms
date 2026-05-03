@@ -68,6 +68,23 @@ gameplay records. If a better UI needs new gameplay data, add it through
 an explicit schema, selector, command, migration, or task-owned contract
 change.
 
+## Required Architecture Reading
+
+Screen-package authors and runtime implementers should read the
+DOM-side architecture contracts before authoring or implementing a
+package:
+
+- [`../ui-technology-choice.md`](../ui-technology-choice.md) —
+  framework, state binding, z-stack, localization, fonts, build flags.
+- [`../ui-renderer-seam.md`](../ui-renderer-seam.md) — DOM ↔ canvas
+  seam, input routing, hit-test API, resize protocol.
+- [`../screen-scaling.md`](../screen-scaling.md) — virtual 800×600
+  stage, aspect, hi-DPI, filter modes.
+- [`../ui-component-resolver.md`](../ui-component-resolver.md) —
+  `data-component` registry, reuse policy, missing-component fallback.
+- [`../ui-frame-lag-contract.md`](../ui-frame-lag-contract.md) — UI
+  lag bounds, optimistic UI, M5 lockstep, context loss, replay.
+
 ## Authoring Rules
 
 - Treat `screen-curation-plan.md` as the work queue for replacing

@@ -46,6 +46,7 @@ Canonical source files:
 | `GenerationRequest` | provider-neutral AI generation input (theme, tier bands, constraints) | none | [generation-request](../../content-schema/schemas/generation-request.schema.json) | [emberwild request](../../content-schema/examples/generation/emberwild.generation-request.json) |
 | `GeneratedFaction` | provider-neutral AI generation output — a draft faction pack shape | none | [generated-faction](../../content-schema/schemas/generated-faction.schema.json) | [emberwild generated faction](../../content-schema/examples/generation/emberwild.generated-faction.json) |
 | `GameState` | top-level deterministic engine state; closed shape, normalized collections, canonical-JSON serialized | none | [game-state](../../content-schema/schemas/game-state.schema.json) | [game-state example](../../content-schema/examples/game-state.example.json) |
+| `UIComponentRegistry` | none — UI presentation only | maps `data-component` IDs from screen mockups and `### Component Tree` entries to runtime constructors; resolved per [`ui-component-resolver.md`](./ui-component-resolver.md) | [ui-component-registry](../../content-schema/schemas/ui-component-registry.schema.json) | [ui-component-registry example](../../content-schema/examples/ui-component-registry.example.json) |
 
 ## Fast Dependency View
 
