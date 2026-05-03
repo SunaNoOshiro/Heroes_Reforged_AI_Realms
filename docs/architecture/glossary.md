@@ -166,6 +166,34 @@ it from a task body or schema description.
 - **M2** tactical combat — two factions can fight in real battles.
 - **M3** depth — spells, artifacts, skills, stronger AI.
 - **M4** platform authoring — packs and editor workflows usable.
-- **M5** multiplayer — two-machine lockstep match works.
+- **M5** multiplayer — two-machine lockstep match works. **Capped at
+  2 peers per room** (N-peer mesh deferred to M7); see scope notes
+  in [`tasks/phase-3/01-multiplayer.md`](../../tasks/phase-3/01-multiplayer.md)
+  and the security model in
+  [`multiplayer-security.md`](./multiplayer-security.md).
 - **M6** AI generation — generate and play new content.
-- **M7** polish — advanced AI, rendering, tournament quality.
+- **M7** polish — advanced AI, rendering, tournament quality. Carries
+  the multiplayer follow-on items below.
+
+## M7 Multiplayer Scope Sketches
+
+These items are explicit M7 scope. The preliminary contracts are
+captured here so M5 contributors do not regress the determinism or
+state-shape rules they depend on.
+
+- **Spectator** — a read-only peer that joins a separate room-code
+  shared by the players. Spectators receive the canonical command
+  log read-only over a separate `spectator` DataChannel and never
+  publish commands. State shape and reducer contracts MUST allow a
+  zero-publish peer; do not bake "every connected peer is a player"
+  into M5 selectors.
+- **N-peer mesh (>2)** — formally deferred. Full-mesh DataChannel
+  cost limits practical N to 4–8; per-bot RNG, per-peer log replay,
+  and the snapshot ring all generalize cleanly because everything
+  keys on `(playerId, seq)` (see
+  [`determinism.md` § Canonical Command Key](./determinism.md#canonical-command-key)).
+  M5 caps at 2 via `MAX_PEERS_PER_ROOM` (see
+  [Task 1](../../tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)).
+- **Tournament observer** — distinct from spectator; observers carry
+  authority bound to a tournament authority service. Out of P2P scope
+  by definition.

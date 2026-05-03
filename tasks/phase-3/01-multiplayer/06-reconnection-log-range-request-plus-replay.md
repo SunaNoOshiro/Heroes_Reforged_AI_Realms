@@ -33,6 +33,20 @@ Acceptance Criteria:
 - Catch-up replay is invisible to the other player (game continues during reconnection)
 - If disconnection exceeds 120 seconds: offer forfeit or wait option
 
+Idempotency Note:
+- The `LOG_RESPONSE { commands[] }` will overlap commands the
+  reconnecting peer already replayed. **Overlap is expected and
+  silently dropped** by the lockstep transport's `(playerId, seq)`
+  dedupe set; do not pre-trim the response.
+- See
+  [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Idempotency](./03-input-only-lockstep-command-serialization-plus-sequencing.md#idempotency)
+  and
+  [`docs/architecture/determinism.md` § Canonical Command Key](../../../docs/architecture/determinism.md#canonical-command-key).
+
+Network-Chaos Coverage:
+- This task is exercised by the consolidated network-chaos test matrix
+  ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)).
+
 Verify:
 - npm run validate
 - npm test

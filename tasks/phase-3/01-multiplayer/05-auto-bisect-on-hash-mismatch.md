@@ -31,6 +31,14 @@ Acceptance Criteria:
 - Given a log with a known-bad command at index 47: bisect finds index 47 in ≤ log₂(N) steps
 - Bisect completes in < 10 seconds for a 1000-command log
 - Output report is human-readable and suitable for filing a determinism bug
+- Bisect runs only after [Task 9 snapshot-resync](./09-snapshot-resync-fallback.md)
+  emits `SNAPSHOT_DISAGREE` for every entry in the snapshot ring;
+  see [`04-per-turn-hash-exchange-plus-desync-detection.md`](./04-per-turn-hash-exchange-plus-desync-detection.md)
+  for the full recovery state machine.
+
+Network-Chaos Coverage:
+- Exercised by the consolidated network-chaos test matrix
+  ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)).
 
 Verify:
 - npm run validate

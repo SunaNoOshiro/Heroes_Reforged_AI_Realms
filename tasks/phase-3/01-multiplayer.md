@@ -4,8 +4,25 @@ P2P multiplayer. Two players on different machines complete a real match using W
 
 **Milestone**: M5 — Multiplayer  
 **Prerequisite**: Fuzz harness (`01-engine-core.md` Task 9) must pass before this module starts. No exceptions.  
-**Total Estimate**: ~36 hours  
+**Total Estimate**: ~50 hours
 **Exit Criteria**: Two players on different networks complete a full match with no desync; disconnection and reconnection work.
+
+**M5 Scope Caps**
+
+- **2 peers per room.** N-peer mesh is M7 scope; the signaling
+  server enforces `MAX_PEERS_PER_ROOM = 2` at handshake (see
+  [Task 1](./01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)).
+- **Spectators are M7 scope, not M5.** Preliminary contract sketched
+  in [`docs/architecture/glossary.md`](../../docs/architecture/glossary.md);
+  no screen package, command, or DataChannel ships in M5.
+- **In-game chat ships in M5** on a dedicated `chat` DataChannel
+  (Task 2); screen package
+  [`docs/architecture/wiki/screens/65-in-game-chat/`](../../docs/architecture/wiki/screens/)
+  is optional for M5 and required before in-game chat is exposed in
+  the UI.
+
+Anti-cheat threat model and TLS / room-secret / TURN credentials
+contract live in [`docs/architecture/multiplayer-security.md`](../../docs/architecture/multiplayer-security.md).
 
 ---
 
@@ -27,3 +44,9 @@ P2P multiplayer. Two players on different machines complete a real match using W
   🤖 Task 7: Host migration — heartbeat election (~4h)
 - [08-multiplayer-ui-lobby-invite-link-in-game-status.md](01-multiplayer/08-multiplayer-ui-lobby-invite-link-in-game-status.md)
   🤖 Task 8: Multiplayer UI — lobby, invite link, in-game status (~5h)
+- [09-snapshot-resync-fallback.md](01-multiplayer/09-snapshot-resync-fallback.md)
+  🧠⚠️ Task 9: Snapshot-resync fallback (~6h)
+- [10-turn-fallback-and-credentials.md](01-multiplayer/10-turn-fallback-and-credentials.md)
+  🤖 Task 10: TURN fallback and credentials (~4h)
+- [11-network-chaos-test-matrix.md](01-multiplayer/11-network-chaos-test-matrix.md)
+  🧠⚠️ Task 11: Network-chaos test matrix (~6h)

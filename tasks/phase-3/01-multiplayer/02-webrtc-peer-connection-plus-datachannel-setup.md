@@ -16,11 +16,15 @@ Inputs:
 Outputs:
 - `src/net/webrtc/peer-connection.ts`
 - `createPeerConnection(signaling): PeerConn`
-- Two DataChannels:
-  - `commands`: `ordered: true, maxRetransmits: null` (reliable, ordered delivery)
+- Three DataChannels:
+  - `commands`: `ordered: true, maxRetransmits: null` (reliable, ordered delivery — deterministic command log)
   - `heartbeat`: `ordered: false, maxRetransmits: 0` (fire-and-forget)
+  - `chat`: `ordered: false, maxRetransmits: 0` (in-game chat; non-deterministic, never enters the reducer; sees `SEND_GAME_CHAT` payloads bound to `state.net.game.chat`)
 - STUN server: `stun.l.google.com:19302` (free, good global coverage)
-- Optional TURN server config (for corporate NAT fallback)
+- TURN fallback: STUN-only attempt for 4 s; on ICE-gather timeout,
+  Task 10 appends TURN URLs to `RTCConfiguration.iceServers`. Hook
+  for the 4 s timeout lives here; the URL builder lives in
+  `src/net/webrtc/ice-config.ts` (Task 10).
 
 Why this is risky: WebRTC connection setup has many failure modes (NAT traversal, ICE candidate race conditions, browser compatibility). Test on Chrome, Firefox, and Safari with different network topologies.
 
@@ -35,6 +39,17 @@ Acceptance Criteria:
 - Commands DataChannel delivers in order (test with 1000 sequential messages)
 - Connection failure (ICE timeout) triggers clean fallback to signaling error state
 - Works on Chrome 120+, Firefox 121+, Safari 17+
+- `chat` DataChannel exists alongside `commands` and `heartbeat`;
+  chat traffic does not appear in replay artifacts and chat
+  backpressure does not delay command delivery (synthetic test:
+  flood `chat` at 200 msg/s while running a 1000-command match — no
+  command-channel timeouts).
+- ICE-gather timeout fires at 4 s when no host/srflx pair emerges;
+  Task 10 wires the TURN-URL append on this signal.
+
+Network-Chaos Coverage:
+- Exercised by the consolidated network-chaos test matrix
+  ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)).
 
 Verify:
 - npm run validate

@@ -105,3 +105,111 @@ gesture starts at `pointerdown` / `keydown` and ends at `pointerup` /
 `keyup`, and emits at most one command per gesture. First-event-wins
 on click + hotkey races. The full rule lives in
 [`ui-input-arbitration.md`](./ui-input-arbitration.md).
+
+## Multiplayer Determinism Appendix
+
+The four sections below pin operational rules that the M5 lockstep
+transport, snapshot-resync recovery, bot scheduling, and
+non-deterministic time sources rely on. They are part of the
+determinism contract — a multiplayer match that violates any of them
+will desync.
+
+### Canonical Command Key
+
+Every command on the wire is keyed by `(playerId, seq)` where
+`playerId` is the multiplayer peer slot and `seq` is the per-peer
+monotonic sequence number assigned at emit time. The pair is the
+**primary key on the command log**: the lockstep transport drops
+duplicates silently before they reach the reducer and emits the
+counter `dup_command_dropped_total` to telemetry.
+
+This rule is what makes reconnection (Task 6) safe: the log-range
+response from the host will overlap commands the client already
+replayed, and the dedupe set is the single point that prevents
+double-application. Implementers MUST treat `(playerId, seq)` as a
+contract, not a hint.
+
+### Clock Policy
+
+Wall-clock readings (`Date.now()`, `performance.now()`,
+`crypto.randomUUID()`'s embedded timestamp, `Intl.DateTimeFormat()`
+with `now`) are forbidden in `state.*` (the deterministic slice that
+feeds the canonical serializer and the per-turn state hash). They
+are allowed only in:
+
+- `state.net.*` — the non-deterministic networking namespace
+  (heartbeat scheduling, last-seen-turn timestamps for the UI status
+  indicator, telemetry stamps).
+- Pure side-effect contexts that never enter the reducer or the
+  canonical hash: telemetry transports, UI debounces, animation
+  schedulers, log emitters.
+
+The lint that enforces this is the existing float-ban rule extended
+to flag any `Date.now()` / `performance.now()` import inside
+`src/engine/**`, `src/rules/**`, and `src/net/webrtc/**` (the M5
+lockstep, sync-check, bisect, reconnection, host-migration, and
+snapshot transports). UI selector purity (already pinned in
+[`ui-state-contract.md` § Selector Purity](./ui-state-contract.md#selector-purity))
+covers the same forbidden surface from the read side.
+
+The legacy "synchronized clocks" note in
+[`diagrams/26-multiplayer-sync.md`](./diagrams/26-multiplayer-sync.md)
+is wrong and has been removed in favor of this policy: M5 peers do
+not need synchronized wall clocks because nothing in `state.*`
+reads one.
+
+### Snapshot Cadence and Resync
+
+`DESYNC_DETECTED` (Task 4) does not abort the match by default.
+Both peers maintain a ring of the last **5 canonical state
+snapshots** taken every **20 turns** (configurable per match via the
+scenario record), keyed by command-log offset:
+
+```
+{ seqOffset, turn, contentHash, engineHash, canonicalState, stateHash }
+```
+
+On desync:
+
+1. Peers exchange `SNAPSHOT_TAKEN` digests for every snapshot in the
+   ring (compact: `(seqOffset, stateHash)` pairs only — no payload).
+2. Peers walk the ring newest-to-oldest and look for the first
+   `seqOffset` whose `stateHash` agrees on both sides.
+3. If a pair agrees, both peers emit `SNAPSHOT_AGREE { seqOffset }`,
+   restore that snapshot's `canonicalState`, and re-apply commands
+   from `seqOffset + 1` through the lockstep transport.
+4. If no pair agrees, fall through to the existing bisect-and-quit
+   path (Task 5).
+
+The snapshot artifact is hashed and serialized through the same
+canonical serializer used for the per-turn state hash. The ring is
+in-memory only; saves persist the full state, not the ring. Because
+each snapshot pins `contentHash` and `engineHash`, restoring across
+a pack or engine upgrade fails loudly the same way save-load does.
+
+### Bot RNG Sub-Streams
+
+Bots run on **every** peer using the shared match seed. Each bot
+draws from a dedicated PCG32 sub-stream named in
+[`rng-streams.md`](./rng-streams.md):
+
+```
+botRngStreamId = hash(matchSeed, botId)
+```
+
+This guarantees every peer computes bit-identical bot decisions, so
+no peer is privileged for bot logic and replay-bit-identity is
+preserved across a re-host.
+
+To avoid O(N) wire traffic per bot, the lockstep transport elects
+exactly one peer as the **broadcaster** (the first peer in the
+deterministic peer-priority order from Task 7's host-migration
+election). Only the broadcaster's emitted bot commands are accepted
+on the wire; non-broadcasters compute the same commands and verify
+them locally but do not transmit. The receiving side gates on
+`(playerId=botId, seq)` exactly like a human player, so the
+canonical command key (above) keeps the dedupe contract uniform.
+
+A re-election of the broadcaster (host migration) does not require
+restarting bot decision sequences — both peers are at the same RNG
+position because both have been computing in lockstep.

@@ -25,7 +25,16 @@ Multiplayer setup for hotseat, LAN/online lobby, player colors, teams, timers, m
 - `state.ui.multiplayer.scenarioId` refreshes `selectedScenario` after the owning reducer or local UI draft changes.
 - `state.ui.multiplayer.timer` refreshes `timerConfig` after the owning reducer or local UI draft changes.
 - `selectors.multiplayer.contentCompatibilityHash` refreshes `contentHash` after the owning reducer or local UI draft changes.
+- `state.net.statusThresholds` drives the Task 8 status indicator state machine (green ≤ 2 s, yellow 2 – 10 s, red 10 s+, action-buttons 30 s+, forfeit 120 s+).
 - UI-only hover, focus, selected row, open tab, target cursor, drag ghost, and animation frame stay outside deterministic gameplay state.
+
+### Stall Threshold Behavior
+- 0 – 2 s after expected response: status indicator green; "your
+  turn" badge unchanged.
+- 2 – 10 s: indicator yellow; badge swaps to "waiting on opponent."
+- 10 – 30 s: red overlay shows last-seen turn.
+- 30 s+: overlay reveals "wait" / "request resync" buttons.
+- 120 s+: overlay reveals "forfeit" button (cross-links Task 6 reconnect window).
 
 ### Navigation Outcomes
 - Host can route to `64-network-lobby` or `63-hotseat-turn-handoff` after guard approval and exit animation.

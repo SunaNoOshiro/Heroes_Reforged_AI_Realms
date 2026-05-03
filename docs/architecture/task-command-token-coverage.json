@@ -13,6 +13,10 @@
     "HOST_CHANGED": "Network host-migration event.",
     "LOG_REQUEST": "Network transport message type.",
     "LOG_RESPONSE": "Network transport message type.",
+    "SNAPSHOT_TAKEN": "Snapshot-resync exchange message type (Phase-3 multiplayer).",
+    "SNAPSHOT_AGREE": "Snapshot-resync exchange message type (Phase-3 multiplayer).",
+    "SNAPSHOT_DISAGREE": "Snapshot-resync exchange message type (Phase-3 multiplayer).",
+    "STALLED_PEER": "Lockstep transport event emitted on per-peer pending-queue overflow (Phase-3 multiplayer).",
     "MINE_CAPTURED": "Event emitted after CAPTURE_MINE succeeds.",
     "MOVE_RESULT": "AI worker response message type.",
     "PEER_CONNECTED": "Signaling event.",
@@ -33,12 +37,17 @@
     "CREATE_ROOM": "Signaling server message type.",
     "DEFEND_TOWN": "AI Want enum.",
     "FACTION_GUIDE": "Generated documentation artifact name.",
+    "HMAC_SHA1": "Cryptographic algorithm name used in TURN credential format.",
     "ICE_CANDIDATE": "WebRTC signaling message type.",
+    "INPUT_DELAY_BUDGETS": "Constants object exported from src/net/webrtc/constants.ts (Phase-3 multiplayer).",
+    "JOIN_HANDSHAKE": "Signaling server handshake message type (Phase-3 multiplayer).",
+    "JOIN_REJECTED": "Signaling server rejection message type (Phase-3 multiplayer).",
     "JOIN_ROOM": "Signaling server message type.",
     "KNIGHT_WIN": "AI benchmark label.",
     "PICK_RESOURCE": "AI Want enum.",
     "RANDOM_WIN": "AI benchmark label.",
     "SCOUT_FOG": "AI Want enum.",
+    "SEND_GAME_CHAT": "Reserved in-game chat payload type carried on the dedicated `chat` DataChannel (Phase-3 multiplayer); never enters the reducer (`state.net.game.chat`). Screen package and full registration land with the in-game chat UI post-M5.",
     "SPELL_EFFECT": "Spell animation/effect event name in task prose."
   }
 }

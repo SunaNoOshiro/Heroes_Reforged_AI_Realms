@@ -31,6 +31,15 @@ Acceptance Criteria:
 - Host closes browser tab → new host elected within 8 seconds
 - After migration, game continues from last consistent turn (no state loss)
 - New host correctly takes over log publication and hash exchange
+- Peer-priority order also drives the bot-broadcaster election
+  defined in [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Bot Commands](./03-input-only-lockstep-command-serialization-plus-sequencing.md#bot-commands);
+  re-electing the host re-elects the bot broadcaster atomically.
+
+Network-Chaos Coverage:
+- Exercised by the consolidated network-chaos test matrix
+  ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))
+  — the `simultaneous disconnect` failure-injection cell pins
+  regression protection for this task.
 
 Verify:
 - npm run validate

@@ -439,6 +439,53 @@ Closed the ten audit gaps from
   [`tasks/mvp/00-core-architecture/`](../../tasks/mvp/00-core-architecture/);
   registry now contains 294 tasks across 24 modules.
 
+### Multiplayer Plan Implementation (2026-05-03)
+
+Closed the operational gaps from
+[`docs/implementation-plans/07-multiplayer-plan.md`](../implementation-plans/07-multiplayer-plan.md):
+
+- Extended
+  [`docs/architecture/determinism.md`](../architecture/determinism.md)
+  with the Multiplayer Determinism Appendix (canonical
+  `(playerId, seq)` command key, clock policy, snapshot cadence and
+  resync, bot RNG sub-streams).
+- Authored
+  [`docs/architecture/multiplayer-security.md`](../architecture/multiplayer-security.md)
+  consolidating TLS mandate, room-secret + handshake, TURN
+  credentials, and the anti-cheat threat model.
+- Updated
+  [`docs/architecture/diagrams/26-multiplayer-sync.md`](../architecture/diagrams/26-multiplayer-sync.md)
+  to drop the misleading "synchronized clocks" line and surface the
+  three-step recovery ladder (snapshot-resync → bisect → report).
+- Added M7 scope sketches to
+  [`docs/architecture/glossary.md`](../architecture/glossary.md)
+  for spectators (preliminary read-only-peer contract) and N-peer
+  mesh (formal deferral — M5 capped at 2).
+- Registered `SEND_GAME_CHAT` in
+  [`docs/architecture/screen-command-coverage.json`](../architecture/screen-command-coverage.json).
+- Authored
+  [`services/multiplayer/turn-config.md`](../../services/multiplayer/turn-config.md)
+  pinning Cloudflare Calls TURN with a coturn fallback recipe.
+- Added three new task files under
+  [`tasks/phase-3/01-multiplayer/`](../../tasks/phase-3/01-multiplayer/):
+  - `09-snapshot-resync-fallback.md`
+  - `10-turn-fallback-and-credentials.md`
+  - `11-network-chaos-test-matrix.md`
+- Extended Tasks 1, 2, 3, 4, 6, and 8 with the operational contracts
+  (TLS + room secret on signaling, third `chat` DataChannel and
+  ICE-gather timeout on peer-connection, idempotency + queue cap +
+  input-delay budget + bot broadcaster on lockstep, snapshot-first
+  recovery on hash exchange, overlap-dropped note on reconnection,
+  stall thresholds on the lobby UI).
+- Updated screen packages 62-multiplayer-setup and 64-network-lobby
+  with the room-secret invite-URL contract, the 2-peer cap, and the
+  status threshold bindings.
+- Module README
+  [`tasks/phase-3/01-multiplayer.md`](../../tasks/phase-3/01-multiplayer.md)
+  now declares the M5 scope caps (2 peers, no spectators in M5,
+  in-game chat reserved on a non-deterministic channel) and links
+  the new tasks and security doc.
+
 ## Recommended Next Steps
 
 Suggested order:

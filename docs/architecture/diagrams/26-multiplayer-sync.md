@@ -32,7 +32,9 @@ sequenceDiagram
     else Hashes differ
         Net-->>P1: ✗ desync detected
         Net-->>P2: ✗ desync detected
-        Note over P1,P2: Resync from last good state
+        Note over P1,P2: 1. Try snapshot-resync<br/>(walk ring, restore<br/>last agreeing snapshot,<br/>re-apply log tail)
+        Note over P1,P2: 2. If no snapshot agrees:<br/>bisect (Task 5)
+        Note over P1,P2: 3. If bisect fails:<br/>report + quit
     end
 ```
 
@@ -44,6 +46,26 @@ For multiplayer to work, both clients MUST:
 - Use the same RNG seed (provided by host)
 - Apply commands in the same order
 - Use deterministic floating-point math (or fixed-point integers)
-- Have synchronized clocks (for timestamps)
 
-Any divergence is detected by hash comparison and triggers resync.
+Wall-clock readings are forbidden in the deterministic slice — see
+[`docs/architecture/determinism.md` § Clock Policy](../determinism.md#clock-policy).
+Synchronized clocks are not required because nothing in `state.*`
+reads one.
+
+## Recovery Flow
+
+`DESYNC_DETECTED` does not abort the match by default. Recovery
+runs as a three-step ladder:
+
+1. **Snapshot-resync** — both peers exchange a compact
+   `(seqOffset, stateHash)` digest of the in-memory snapshot ring
+   (last 5 snapshots, taken every 20 turns) and restore the newest
+   offset whose hash agrees on both sides. Defined in
+   [`docs/architecture/determinism.md` § Snapshot Cadence and Resync](../determinism.md#snapshot-cadence-and-resync)
+   and implemented by [Task 9](../../../tasks/phase-3/01-multiplayer/09-snapshot-resync-fallback.md).
+2. **Bisect** — if no snapshot agrees, fall through to
+   [Task 5](../../../tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md)'s
+   binary search to find the first diverging command for a bug
+   report.
+3. **Report + quit** — if bisect cannot recover, hand the player a
+   filed-ready desync report.

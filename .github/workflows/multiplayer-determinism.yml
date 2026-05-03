@@ -1,0 +1,79 @@
+name: Multiplayer Determinism
+
+# Path-filtered determinism gate for the M5 multiplayer module.
+# Re-runs the engine fuzz harness with the multiplayer chaos shim
+# whenever code that can drift the lockstep transport's per-turn
+# state hash changes. Catches non-determinism that the engine-only
+# fuzz harness never exercises (e.g., a reducer change inside
+# `src/net/webrtc/lockstep.ts`).
+#
+# Authoritative contract:
+# - docs/architecture/determinism.md § Clock Policy
+# - docs/architecture/multiplayer-security.md
+# - tasks/phase-3/01-multiplayer/11-network-chaos-test-matrix.md
+#
+# The full chaos matrix runs nightly under a separate workflow; this
+# file is the cheap subset that can run per-PR.
+
+on:
+  pull_request:
+    paths:
+      - 'src/net/webrtc/**'
+      - 'src/engine/**'
+      - 'src/rules/**'
+      - 'resources/**/pack.*'
+      - 'tests/multiplayer/chaos/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/net/webrtc/**'
+      - 'src/engine/**'
+      - 'src/rules/**'
+      - 'resources/**/pack.*'
+      - 'tests/multiplayer/chaos/**'
+
+concurrency:
+  group: multiplayer-determinism-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  multiplayer-determinism:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    env:
+      NPM_CONFIG_AUDIT: false
+      NPM_CONFIG_FUND: false
+      NPM_CONFIG_PREFER_OFFLINE: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install
+        run: npm ci --prefer-offline --no-audit --no-fund
+
+      # The fuzz harness + chaos shim land with phase-3 task 11
+      # (`tests/multiplayer/chaos/`). Until then this step succeeds
+      # with a no-op so the workflow can be merged ahead of the
+      # implementing tasks.
+      - name: Multiplayer chaos subset
+        run: |
+          if [ -d tests/multiplayer/chaos ]; then
+            npm test -- tests/multiplayer/chaos --tag=multiplayer-determinism
+          else
+            echo "tests/multiplayer/chaos/ not present yet — skipping (Task 11 owns the harness)."
+          fi

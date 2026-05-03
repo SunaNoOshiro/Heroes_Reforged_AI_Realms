@@ -22,10 +22,12 @@
 | UI Element | Selector | Notes |
 | --- | --- | --- |
 | `connectionType` | `state.ui.multiplayer.connectionType` | Hotseat, LAN, online, or direct. |
-| `playerSlots` | `state.ui.multiplayer.playerSlots` | Player colors, teams, control type, ready flags. |
+| `playerSlots` | `state.ui.multiplayer.playerSlots` | Player colors, teams, control type, ready flags. Capped at 2 for online (M5); N-peer mesh deferred to M7. |
 | `selectedScenario` | `state.ui.multiplayer.scenarioId` | Scenario/map draft. |
 | `timerConfig` | `state.ui.multiplayer.timer` | Turn timer draft. |
 | `contentHash` | `selectors.multiplayer.contentCompatibilityHash` | Pack/ruleset compatibility hash. |
+| `inviteUrl` | `selectors.multiplayer.inviteUrl` | Join URL — embeds `roomId` in path, `roomSecret` in URL fragment so the secret is never logged server-side. See [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../multiplayer-security.md#room-secret--handshake). |
+| `statusThresholds` | `state.net.statusThresholds` | Stall budgets surfaced by Task 8 — `{ softMs: 2000, hardMs: 10000, forfeitMs: 120000 }`. Sourced from `INPUT_DELAY_BUDGETS` in `src/net/webrtc/constants.ts`. |
 
 ### Commands And Events
 - `SET_MULTIPLAYER_CONNECTION_TYPE` from `mpSetup.connectionType`: Changes setup draft.

@@ -8,7 +8,7 @@
 - Architecture Diagrams: `architecture.md`
 
 ### Description
-Network lobby for hosted/joined multiplayer sessions, ready state, chat, content hash checks, slot assignment, and launch.
+Network lobby for hosted/joined multiplayer sessions, ready state, chat, content hash checks, slot assignment, and launch. Capped at 2 peers per room (M5); the host's invite copy reads "share invite link with secret embedded" so the room-secret in the URL fragment is preserved end-to-end.
 
 ### Visual Direction
 - Original internal UI contract. Do not use third-party captures,

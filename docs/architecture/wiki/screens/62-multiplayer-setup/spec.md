@@ -33,10 +33,12 @@ Multiplayer setup for hotseat, LAN/online lobby, player colors, teams, timers, m
 | Element | Bound To | Notes |
 | --- | --- | --- |
 | connectionType | state.ui.multiplayer.connectionType | Hotseat, LAN, online, or direct. |
-| playerSlots | state.ui.multiplayer.playerSlots | Player colors, teams, control type, ready flags. |
+| playerSlots | state.ui.multiplayer.playerSlots | Player colors, teams, control type, ready flags. Capped at 2 for online (M5); N-peer mesh deferred to M7. |
 | selectedScenario | state.ui.multiplayer.scenarioId | Scenario/map draft. |
 | timerConfig | state.ui.multiplayer.timer | Turn timer draft. |
 | contentHash | selectors.multiplayer.contentCompatibilityHash | Pack/ruleset compatibility hash. |
+| statusThresholds | state.net.statusThresholds | Stall budgets — `{ softMs: 2000, hardMs: 10000, forfeitMs: 120000 }` — sourced from `INPUT_DELAY_BUDGETS` (`src/net/webrtc/constants.ts`). Drives Task 8's status indicator state machine. |
+| inviteUrl | selectors.multiplayer.inviteUrl | Join URL with `roomSecret` in URL fragment per [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../multiplayer-security.md#room-secret--handshake). |
 
 ### Mechanics Mapping
 - Creates a multiplayer setup draft, validates identical content hashes/ruleset, assigns player slots, and routes to hotseat handoff or network lobby.
