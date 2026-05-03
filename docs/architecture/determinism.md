@@ -66,6 +66,56 @@ all records) and an `engineHash` (build digest). Saves, replays, and
 multiplayer pin both. Any mismatch fails loud at load time; never
 silent.
 
+## Save Artifact Byte Determinism
+
+The save artifact's gzip layer is pinned to **`pako` at level 6** so
+on-disk bytes are reproducible across machines for the same canonical
+input (see
+[`tasks/mvp/08-persistence/02-log-only-save-format.md`](../../tasks/mvp/08-persistence/02-log-only-save-format.md) §
+"Compression contract"). The pin applies to the save artifact only —
+it is **not** part of the determinism contract for engine state
+itself, which is owned by the canonical serializer + xxh64 hash above.
+
+Two saves of the same `stateHash` produce identical
+`canonicalContentHash` (xxh64 over the content-bearing subset of the
+record, excluding dynamic metadata: `id`, `name`, `createdAt`,
+`savedAt`, `mp`). Full on-disk byte equality across arbitrary saves
+is **not** a contract; canonical-content-hash equality is. The
+fuzz-harness CI gate
+([`tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](../../tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md))
+asserts this equivalence by re-saving and re-loading every fixture
+and comparing `canonicalContentHash` and post-replay `stateHash`.
+
+## Snapshot Rebase
+
+Saves bound their command log via snapshot-and-rebase
+([`tasks/mvp/08-persistence/07-snapshot-rebase.md`](../../tasks/mvp/08-persistence/07-snapshot-rebase.md)).
+The contract:
+
+> Replay from `(snapshot, log_since_snapshot)` is **bit-identical**
+> to replay from `(seed, full_log)` for any verified snapshot.
+
+A snapshot is a canonical-JSON serialization of `GameState` hashed
+with the same xxh64 used for `stateHash`. Restoring from a snapshot
+does **not** weaken the determinism guarantee — the canonical
+serializer and the reducer are the only sources of truth, and a
+snapshot is just a memoized prefix of the replay.
+
+## Tamper Detection vs. Forgery
+
+The xxh64 `stateHash` and `canonicalContentHash` detect **accidental**
+corruption and replay drift. They do **not** detect adversarial
+forgery: xxh64 is non-keyed, so a motivated user can re-author the
+command log and re-hash. This is acceptable for single-player and
+cooperative multiplayer (where per-turn state-hash exchange catches
+divergence), but any future ranked / leaderboard / tournament feature
+must add an HMAC over `canonicalContentHash` keyed by a server-issued
+match secret.
+
+That work is **deferred to the phase that introduces ranked mode**.
+The gap is documented here so the implementer of that phase does not
+have to design the scheme under shipping pressure.
+
 ## Cross-Platform Portability
 
 - All state numbers serialize as integer JSON literals. No exponents,

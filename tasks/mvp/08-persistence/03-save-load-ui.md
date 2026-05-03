@@ -43,6 +43,18 @@ Acceptance Criteria:
 - Each interaction token whose owning engine task is `done` MUST dispatch live
   (no stub fallback). Tokens whose owning task is still `planned` may render
   disabled with a localized reason that cites the planned task ID.
+- The slot list reads only manifest records: rendering N slots
+  issues N manifest reads and zero payload reads. Payload is
+  fetched only on Load confirmation.
+- Autosave slots (`auto-1`, `auto-2`, `auto-3`) are surfaced via
+  `selectors.persistence.autosaveSlots` and rendered distinguishably
+  from user slots (locked-name, autosave icon, last End-Day stamp).
+- The `ui.persistence.autosave.failed` toast is hooked up so a
+  second-attempt autosave failure surfaces a localized non-modal
+  toast without affecting game state.
+- `selectors.persistence.quotaUsage` drives a "Manage saves" CTA
+  above the slot list when `used / quota > 0.8`; the CTA recommends
+  exporting older saves before the next write fails.
 
 Verify:
 - npm run validate

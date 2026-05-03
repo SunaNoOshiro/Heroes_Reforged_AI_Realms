@@ -46,6 +46,13 @@
   the screens 66 (debug overlay) and 67 (animation debug overlay).
   Production builds tree-shake those screens; this flag is the
   runtime safeguard for dev builds.
+- `config.persistence.autosaveEnabled` — boolean, default `true`.
+  Controls the autosave cadence at every End-Day local turn boundary.
+  **Binary on/off only at MVP — there is no user-tunable interval.**
+  When `true`, three rotating slots (`auto-1`, `auto-2`, `auto-3`)
+  are written non-blockingly per [`tasks/mvp/08-persistence/06-autosave.md`](../../../../../tasks/mvp/08-persistence/06-autosave.md).
+  During a multiplayer match, this setting is honored only on the
+  host machine; peers do not autosave regardless of value.
 
 ### Localization Keys
 - `ui.options.title`

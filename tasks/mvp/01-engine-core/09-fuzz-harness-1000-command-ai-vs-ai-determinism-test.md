@@ -19,17 +19,38 @@ Outputs:
 - `src/engine/__tests__/fuzz.test.ts`
 - Test runs 1000 commands with 5 different seeds
 - Designed to run headless in Node (no browser APIs)
+- **Save / load round-trip step (shared owned-path extension owned by
+  `mvp.08-persistence.02-log-only-save-format`).** For every fixture
+  produced by the fuzz harness, the test additionally calls `save()`
+  to produce a `SaveRecord`, then `load()` on the result, and asserts
+  the post-replay `stateHash` matches the pre-save `stateHash`. Two
+  consecutive `save()` calls of the same session assert identical
+  `canonicalContentHash` (byte-equivalence of the canonical-content-
+  bearing subset of the record).
+- A snapshot-rebase determinism step asserts that replay from
+  `(snapshot, log_since_snapshot)` produces the same `stateHash` at
+  every checkpoint as replay from `(seed, full_log)` for any verified
+  snapshot.
 
 Owned Paths:
 - `src/engine/__tests__/fuzz.test.ts`
 
 Dependencies:
 - mvp.01-engine-core.08-replay-api
+- mvp.08-persistence.02-log-only-save-format
+- mvp.08-persistence.07-snapshot-rebase
 
 Acceptance Criteria:
 - All 5 seed/1000-command runs pass with zero hash divergences
 - Test completes in < 10 seconds (Node 20)
 - CI reports the seed + command index on any failure for reproducibility
+- Save/load round-trip: for each fixture, `load(save(state))` returns
+  a state whose `stateHash` matches the pre-save `stateHash`.
+- Re-save byte equivalence: two consecutive `save()` calls of the
+  same session produce identical `canonicalContentHash`.
+- Snapshot equivalence: replay from `(snapshot, log_since_snapshot)`
+  is bit-identical to replay from `(seed, full_log)` for every
+  verified snapshot in the fixture.
 
 Verify:
 - npm run validate

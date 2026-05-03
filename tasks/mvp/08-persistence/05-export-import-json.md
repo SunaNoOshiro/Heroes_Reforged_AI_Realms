@@ -20,14 +20,15 @@ Inputs:
 
 Outputs:
 - `src/persistence/export-import.ts`
-- `exportSave(saveId: string): Promise<void>` — triggers file download as `save-name.hrsa.json`
-- `importSave(file: File): Promise<SaveRecord>` — reads file, validates schema, adds to IndexedDB
-- `src/ui/components/SaveLoadImportExportControls.tsx` — adds "Export"
-  and "Import" controls consumed by the save/load screen
+- `exportSave(saveId: string): Promise<void>` — triggers file download as `save-{name}-{date}.hrsa.json`. The full JSON blob is finalized in memory before `URL.createObjectURL` + anchor-click is invoked in a single microtask. Streaming downloads are forbidden for `.hrsa.json` so a tab kill mid-export cannot produce a truncated file the player keeps as their only backup.
+- `exportReplay(saveId: string): Promise<void>` — same as `exportSave` but writes a replay envelope projection (`intent: "replay"`, PII stripped, hash-derived id) per [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md). The download filename convention is `replay-{shortHash}.hrsa.json`.
+- `importSave(file: File): Promise<SaveRecord>` — reads file, validates schema, runs the migration registry chain, adds to IndexedDB. `intent: "replay"` files route to the Replay viewer rather than the slot list.
+- `src/ui/components/SaveLoadImportExportControls.tsx` — adds "Export Save", "Export as Replay", and "Import" controls consumed by the save/load screen
 
 Owned Paths:
 - `src/persistence/export-import.ts`
-- `save-name.hrsa.json`
+- `save-{name}-{date}.hrsa.json`
+- `replay-{shortHash}.hrsa.json`
 - `src/ui/components/SaveLoadImportExportControls.tsx`
 
 Dependencies:
@@ -46,6 +47,17 @@ Acceptance Criteria:
 - Each interaction token whose owning engine task is `done` MUST dispatch live
   (no stub fallback). Tokens whose owning task is still `planned` may render
   disabled with a localized reason that cites the planned task ID.
+- **Export atomicity:** the entire JSON blob is finalized in memory
+  before the download is offered. A unit test that mocks
+  `URL.createObjectURL` asserts the blob is fully constructed before
+  the anchor click. Streaming download paths must not be used.
+- **Replay export PII contract:** `exportReplay(saveId)` produces a
+  JSON envelope with `intent: "replay"`, an empty `name`, zeroed
+  `createdAt` / `savedAt`, and a deterministic id derived from
+  `canonicalContentHash`; the `mp` block is stripped per
+  [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md).
+- An imported `intent: "replay"` file is routed to the Replay viewer
+  and does not appear in the user-save slot list.
 
 Verify:
 - npm run validate

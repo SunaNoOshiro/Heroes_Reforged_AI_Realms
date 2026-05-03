@@ -55,6 +55,26 @@ agents implement M5 end-to-end without inventing decisions.
   N-peer goes to M7 — see Q142).
 - Tournament/observer features.
 
+**Cross-plan: Persistence interaction (owned by M1).**
+The persistence plan
+[`docs/implementation-plans/08-persistence-save-system-plan.md`](08-persistence-save-system-plan.md)
+pins the save-side rules that this M5 runtime consumes:
+
+- Saving during a remote match is **host-only**; peer Save tabs are
+  read-only and render a "host saved" indicator.
+- Loading a save into a multiplayer lobby is host-driven; peers
+  receive the full agreed log over the signaling channel during join,
+  not a save file.
+- Saves include an optional `mp.{ matchId, participants, hostPlayerId }`
+  block so a re-loaded match recognizes itself.
+- Peers do **not** autosave during a remote match (avoids divergent
+  libraries).
+
+These rules are documented in
+[`docs/architecture/wiki/screens/55-save-load/interactions.md`](../architecture/wiki/screens/55-save-load/interactions.md) §
+"During multiplayer" and consumed by M5 lockstep / lobby tasks. Do
+not re-derive them here.
+
 ---
 
 ## 2. Critical Fixes (Must Do First)

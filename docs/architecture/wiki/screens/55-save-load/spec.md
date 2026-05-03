@@ -28,14 +28,25 @@ Save/load slot browser with save metadata, compatibility checks, overwrite confi
   - CompatibilitySeal
   - ActionButtons
 
+`SaveSlotTable` renders user slots and the three rotating autosave
+slots (`auto-1`, `auto-2`, `auto-3`) in a single list, with autosave
+rows distinguished by a locked name, autosave icon, and last End-Day
+stamp. It also renders a "Manage saves" CTA above the slot list when
+`quotaUsage.used / quota > 0.8`; the CTA recommends exporting older
+saves before the next write fails. No new component nodes are
+introduced — these affordances live inside the existing
+`SaveSlotTable` so component-registry coverage stays stable.
+
 ### State Bindings
 | Element | Bound To | Notes |
 | --- | --- | --- |
 | mode | state.ui.saveLoad.mode | Save or load mode. |
-| slots | selectors.persistence.saveSlotManifests | Save metadata list. |
+| slots | selectors.persistence.saveSlotManifests | User save metadata list. Manifest-only reads. |
+| autosaveSlots | selectors.persistence.autosaveSlots | Rotating `auto-1`/`-2`/`-3` slots; rendered distinguishably from user slots. |
 | selectedSlot | state.ui.saveLoad.selectedSlotId | Local selected slot. |
-| compatibility | selectors.persistence.selectedSaveCompatibility | Version/hash/migration result. |
+| compatibility | selectors.persistence.selectedSaveCompatibility | Version/hash/migration result. Computed against the migration registry; last 4 versions are migrated in-app. |
 | overwriteGuard | selectors.persistence.overwriteGuard | Overwrite availability and confirmation need. |
+| quotaUsage | selectors.persistence.quotaUsage | `{ used, quota }`. Drives the "Manage saves" CTA above the slot list when `used / quota > 0.8`. |
 
 ### Mechanics Mapping
 - Reads save manifests first. Loading validates schema version, content hashes, pack compatibility, ruleset version, and migration availability before hydrating state.

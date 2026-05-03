@@ -2246,7 +2246,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 299
+      "downstreamTransitiveCount": 302
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2307,7 +2307,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 298
+      "downstreamTransitiveCount": 301
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2364,7 +2364,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 192
+      "downstreamTransitiveCount": 195
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2420,7 +2420,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 216
+      "downstreamTransitiveCount": 219
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2549,7 +2549,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 24,
-      "downstreamTransitiveCount": 183
+      "downstreamTransitiveCount": 186
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -2678,8 +2678,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 53
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -2799,8 +2799,8 @@
         "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 51
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -2818,7 +2818,9 @@
       "outputs": [
         "`src/engine/__tests__/fuzz.test.ts`",
         "Test runs 1000 commands with 5 different seeds",
-        "Designed to run headless in Node (no browser APIs)"
+        "Designed to run headless in Node (no browser APIs)",
+        "**Save / load round-trip step (shared owned-path extension owned by `mvp.08-persistence.02-log-only-save-format`).** For every fixture produced by the fuzz harness, the test additionally calls `save()` to produce a `SaveRecord`, then `load()` on the result, and asserts the post-replay `stateHash` matches the pre-save `stateHash`. Two consecutive `save()` calls of the same session assert identical `canonicalContentHash` (byte-equivalence of the canonical-content- bearing subset of the record).",
+        "A snapshot-rebase determinism step asserts that replay from `(snapshot, log_since_snapshot)` produces the same `stateHash` at every checkpoint as replay from `(seed, full_log)` for any verified snapshot."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -2832,12 +2834,17 @@
       "ownedPathsOptOutReason": "",
       "sharedOwnedPaths": [],
       "dependencies": [
-        "mvp.01-engine-core.08-replay-api"
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.08-persistence.02-log-only-save-format",
+        "mvp.08-persistence.07-snapshot-rebase"
       ],
       "acceptanceCriteria": [
         "All 5 seed/1000-command runs pass with zero hash divergences",
         "Test completes in < 10 seconds (Node 20)",
-        "CI reports the seed + command index on any failure for reproducibility"
+        "CI reports the seed + command index on any failure for reproducibility",
+        "Save/load round-trip: for each fixture, `load(save(state))` returns a state whose `stateHash` matches the pre-save `stateHash`.",
+        "Re-save byte equivalence: two consecutive `save()` calls of the same session produce identical `canonicalContentHash`.",
+        "Snapshot equivalence: replay from `(snapshot, log_since_snapshot)` is bit-identical to replay from `(seed, full_log)` for every verified snapshot in the fixture."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -2849,11 +2856,15 @@
       "screenSchemaPaths": [],
       "schemaPaths": [],
       "taskDependencies": [
-        "mvp.01-engine-core.08-replay-api"
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.08-persistence.02-log-only-save-format",
+        "mvp.08-persistence.07-snapshot-rebase"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
-        "mvp.01-engine-core.08-replay-api"
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.08-persistence.02-log-only-save-format",
+        "mvp.08-persistence.07-snapshot-rebase"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
@@ -10867,7 +10878,7 @@
       "path": "tasks/mvp/08-persistence/01-indexeddb-wrapper.md",
       "moduleId": "mvp.08-persistence",
       "modulePath": "tasks/mvp/08-persistence.md",
-      "description": "Thin async wrapper around IndexedDB with three object stores: `saves`, `scenarios`, `content`. Handles open/upgrade/error lifecycle. Exposes simple get/set/delete/list operations per store.",
+      "description": "Thin async wrapper around IndexedDB with three object stores: `saves`, `scenarios`, `content`. Handles open/upgrade/error lifecycle. Exposes simple get/set/delete/list operations per store, plus an explicit transaction primitive used by the atomic save path and the autosave shadow-key swap.",
       "inputs": [
         "None (standalone module)"
       ],
@@ -10877,6 +10888,8 @@
         "`GameDB.saves`: `{ get(id), set(id, data), delete(id), list() }`",
         "`GameDB.scenarios`: same interface",
         "`GameDB.content`: same interface",
+        "`GameDB.transaction(stores, mode, fn)` — runs `fn` inside a single IDB transaction; commits if `fn` resolves, aborts otherwise.",
+        "`GameDB.getQuotaUsage(): Promise<{ used: number, quota: number }>`",
         "Auto-upgrades schema on version bump (current version: 1)"
       ],
       "readFirst": [
@@ -10897,13 +10910,18 @@
         "`openDB()` resolves in < 50ms on first open",
         "`set` + `get` round-trip preserves exact object",
         "`list()` returns all entries sorted by last modified date",
-        "Works in Chrome, Firefox, Safari (no fallbacks needed for MVP)"
+        "Works in Chrome, Firefox, Safari (no fallbacks needed for MVP)",
+        "`transaction([\"saves\"], \"readwrite\", fn)` writes manifest + payload atomically: aborting `fn` mid-write leaves zero records of the partial save.",
+        "A unit test that mocks an IDB abort mid-transaction asserts neither `${id}:manifest` nor `${id}:payload` is visible afterwards.",
+        "`list()` over a fixture of N saves issues exactly N manifest reads and zero payload reads (assert via mock counter).",
+        "`set()` on a quota-exceeded environment rejects with a typed `QuotaExceededError` (not a raw `DOMException`).",
+        "`getQuotaUsage()` returns a `{ used, quota }` reading consistent with `navigator.storage.estimate()`."
       ],
       "verifyCommands": [
         "npm run validate",
         "npm test"
       ],
-      "estimatedTime": "- 3 hours",
+      "estimatedTime": "- 4 hours",
       "screenPackages": [],
       "directSchemaPaths": [],
       "screenSchemaPaths": [],
@@ -10916,8 +10934,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 33
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 34
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -10927,7 +10945,7 @@
       "path": "tasks/mvp/08-persistence/02-log-only-save-format.md",
       "moduleId": "mvp.08-persistence",
       "modulePath": "tasks/mvp/08-persistence.md",
-      "description": "Implement the log-only save format. A save file contains only the metadata and command log — no game state. Loading a save replays all commands from the seed to reconstruct state. This means saves are typically < 50KB for a 7-day game and supports replay from any turn.",
+      "description": "Implement the log-only save format. A save file contains only the metadata and command log — no game state. Loading a save replays all commands from the seed (or the latest verified snapshot) to reconstruct state. This means saves are typically < 50KB for a 7-day game and supports replay from any turn.",
       "inputs": [
         "Replay API (`01-engine-core.md` Task 8)",
         "Command log from `AdventureState`"
@@ -10938,7 +10956,9 @@
       "readFirst": [
         "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
-        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)"
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md)",
+        "[`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md)"
       ],
       "ownedPaths": [
         "src/persistence/save-format.ts"
@@ -10955,7 +10975,11 @@
         "`save(state, \"My Save\")` writes correct `SaveRecord` to IndexedDB",
         "`load(saveId)` replays commands and returns `AdventureState` with identical hash to save time",
         "Loading with a mismatched content pack hash applies the row from [`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md) (`degrade` offline → toast \"Content pack changed since save\"; `refuse loud` in multiplayer/trusted-replay)",
-        "Save record for a 7-day game is < 50KB"
+        "Save record for a 7-day game is < 50KB",
+        "Compression is pinned: re-saving an unchanged session at the same `stateHash` produces identical post-compression bytes for the canonical-content-bearing subset of the record (the dynamic metadata header — `id`, `name`, `createdAt`, `savedAt` — is excluded from the byte-equality assertion).",
+        "`canonicalContentHash` is computed on save and verified on load; two saves of the same `stateHash` produce identical `canonicalContentHash`.",
+        "`intent: \"save\" | \"replay\"` is honored: an exported replay strips PII and substitutes a hash-derived id (see [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md)).",
+        "A compressed `SaveRecord` exceeding 1 MB triggers the rebase / cap path declared in [`07-snapshot-rebase.md`](./07-snapshot-rebase.md); it never silently writes an oversized blob."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -10976,8 +11000,8 @@
         "mvp.01-engine-core.08-replay-api"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 46
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 53
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -11025,7 +11049,11 @@
         "Attempting to load save from deleted content pack shows warning",
         "10 save slots minimum (no hard limit)",
         "Layout, bindings, and commands match `docs/architecture/wiki/screens/55-save-load/mockup.html`, `docs/architecture/wiki/screens/55-save-load/interactions.md`, and `docs/architecture/wiki/screens/55-save-load/data-contracts.md`.",
-        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID."
+        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID.",
+        "The slot list reads only manifest records: rendering N slots issues N manifest reads and zero payload reads. Payload is fetched only on Load confirmation.",
+        "Autosave slots (`auto-1`, `auto-2`, `auto-3`) are surfaced via `selectors.persistence.autosaveSlots` and rendered distinguishably from user slots (locked-name, autosave icon, last End-Day stamp).",
+        "The `ui.persistence.autosave.failed` toast is hooked up so a second-attempt autosave failure surfaces a localized non-modal toast without affecting game state.",
+        "`selectors.persistence.quotaUsage` drives a \"Manage saves\" CTA above the slot list when `used / quota > 0.8`; the CTA recommends exporting older saves before the next write fails."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -11064,8 +11092,8 @@
         "mvp.08-persistence.02-log-only-save-format"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 26
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 27
     },
     {
       "id": "mvp.08-persistence.04-scenario-loader",
@@ -11150,9 +11178,10 @@
       ],
       "outputs": [
         "`src/persistence/export-import.ts`",
-        "`exportSave(saveId: string): Promise<void>` — triggers file download as `save-name.hrsa.json`",
-        "`importSave(file: File): Promise<SaveRecord>` — reads file, validates schema, adds to IndexedDB",
-        "`src/ui/components/SaveLoadImportExportControls.tsx` — adds \"Export\" and \"Import\" controls consumed by the save/load screen"
+        "`exportSave(saveId: string): Promise<void>` — triggers file download as `save-{name}-{date}.hrsa.json`. The full JSON blob is finalized in memory before `URL.createObjectURL` + anchor-click is invoked in a single microtask. Streaming downloads are forbidden for `.hrsa.json` so a tab kill mid-export cannot produce a truncated file the player keeps as their only backup.",
+        "`exportReplay(saveId: string): Promise<void>` — same as `exportSave` but writes a replay envelope projection (`intent: \"replay\"`, PII stripped, hash-derived id) per [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md). The download filename convention is `replay-{shortHash}.hrsa.json`.",
+        "`importSave(file: File): Promise<SaveRecord>` — reads file, validates schema, runs the migration registry chain, adds to IndexedDB. `intent: \"replay\"` files route to the Replay viewer rather than the slot list.",
+        "`src/ui/components/SaveLoadImportExportControls.tsx` — adds \"Export Save\", \"Export as Replay\", and \"Import\" controls consumed by the save/load screen"
       ],
       "readFirst": [
         "`docs/architecture/wiki/screens/55-save-load/spec.md`",
@@ -11163,7 +11192,8 @@
       ],
       "ownedPaths": [
         "src/persistence/export-import.ts",
-        "save-name.hrsa.json",
+        "save-{name}-{date}.hrsa.json",
+        "replay-{shortHash}.hrsa.json",
         "src/ui/components/SaveLoadImportExportControls.tsx"
       ],
       "ownedPathsDeclared": true,
@@ -11182,7 +11212,10 @@
         "File name includes save name and date for easy identification",
         "Save/load UI composes the import/export controls without moving the existing `SaveLoadScreen.tsx` ownership from Task 3",
         "Layout, bindings, and commands match `docs/architecture/wiki/screens/55-save-load/mockup.html`, `docs/architecture/wiki/screens/55-save-load/interactions.md`, and `docs/architecture/wiki/screens/55-save-load/data-contracts.md`.",
-        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID."
+        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID.",
+        "**Export atomicity:** the entire JSON blob is finalized in memory before the download is offered. A unit test that mocks `URL.createObjectURL` asserts the blob is fully constructed before the anchor click. Streaming download paths must not be used.",
+        "**Replay export PII contract:** `exportReplay(saveId)` produces a JSON envelope with `intent: \"replay\"`, an empty `name`, zeroed `createdAt` / `savedAt`, and a deterministic id derived from `canonicalContentHash`; the `mp` block is stripped per [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md).",
+        "An imported `intent: \"replay\"` file is routed to the Replay viewer and does not appear in the user-save slot list."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -11225,6 +11258,250 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 24
+    },
+    {
+      "id": "mvp.08-persistence.06-autosave",
+      "kind": "task",
+      "status": "planned",
+      "title": "Autosave",
+      "path": "tasks/mvp/08-persistence/06-autosave.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement non-blocking autosave at every End-Day local turn boundary. Three rotating slots are maintained (`auto-1`, `auto-2`, `auto-3`). Writes never block the command pipeline; the next turn proceeds while the IDB transaction is in flight. Failures retry once with backoff and surface a localized toast on second failure. Multiplayer mode is host-only; peers do not autosave.",
+      "inputs": [
+        "IndexedDB wrapper transaction primitive (Task 1)",
+        "Snapshot + rebase entry points (Task 7)",
+        "Save format (Task 2)",
+        "End-Day boundary token from `mvp.01-engine-core.06-command-dispatcher` (or equivalent)",
+        "Options autosave on/off setting from screen 56"
+      ],
+      "outputs": [
+        "`src/persistence/autosave.ts`",
+        "`wireAutosave({ db, options, mp }): { dispose(): void }`"
+      ],
+      "readFirst": [
+        "[`tasks/mvp/08-persistence/01-indexeddb-wrapper.md`](./01-indexeddb-wrapper.md)",
+        "[`tasks/mvp/08-persistence/02-log-only-save-format.md`](./02-log-only-save-format.md)",
+        "[`tasks/mvp/08-persistence/07-snapshot-rebase.md`](./07-snapshot-rebase.md)",
+        "[`docs/architecture/wiki/screens/55-save-load/data-contracts.md`](../../../docs/architecture/wiki/screens/55-save-load/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/56-options/data-contracts.md`](../../../docs/architecture/wiki/screens/56-options/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/autosave.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.02-log-only-save-format",
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.07-snapshot-rebase"
+      ],
+      "acceptanceCriteria": [
+        "Autosave fires exactly once per End-Day boundary when the Options toggle is on; zero times when off.",
+        "A unit test asserts the next turn's first reducer call dispatches before the prior autosave transaction commits (non-blocking).",
+        "Three consecutive autosaves rotate `auto-1` → `auto-2` → `auto-3`, oldest overwritten on the fourth.",
+        "A simulated write failure does **not** crash the next turn; backoff retries fire and the failure toast is dispatched only on second failure.",
+        "In a mocked MP match, peer machines do **not** write autosave records; the host writes one per End-Day.",
+        "`selectors.persistence.autosaveSlots` exposes the three slots with manifest data (no payload reads).",
+        "The shadow-key swap pattern is exercised: aborting the rebase-and-write transaction mid-rotation leaves the previous live slot intact."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/55-save-load",
+        "docs/architecture/wiki/screens/56-options"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.02-log-only-save-format",
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.07-snapshot-rebase"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.02-log-only-save-format",
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.07-snapshot-rebase"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.08-persistence.07-snapshot-rebase",
+      "kind": "task",
+      "status": "planned",
+      "title": "Snapshot + Rebase",
+      "path": "tasks/mvp/08-persistence/07-snapshot-rebase.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement the snapshot-and-rebase policy that bounds command-log length, save size, and load latency. Every K turns (or every M commands), capture a verified canonical state snapshot. On the next save, drop commands prior to the latest snapshot and persist `(snapshot, log_since_snapshot)` instead of `(seed, full_log)`. The seed remains in metadata for archival.",
+      "inputs": [
+        "`SaveRecord` + `Checkpoint` from `02-log-only-save-format.md`",
+        "State serializer + xxh64 hash from `mvp.01-engine-core.07-state-serializer-plus-xxh64-hash`",
+        "Replay API from `mvp.01-engine-core.08-replay-api`"
+      ],
+      "outputs": [
+        "`src/persistence/snapshot.ts`",
+        "`captureSnapshot(state, logIndex): Checkpoint` — canonical-JSON serializes the live `GameState`, hashes it, and returns the new `Checkpoint { logIndex, stateHash, snapshot }`.",
+        "`rebaseLog(record): SaveRecord` — drops commands prior to the latest verified snapshot in `record.checkpoints` and returns a rebased `SaveRecord`. The seed and metadata are preserved.",
+        "`shouldRebase(record): boolean` — returns true when `turnsSinceLastSnapshot >= 50` OR `commandsSinceLastSnapshot >= 5000` OR the projected compressed size exceeds 1 MB."
+      ],
+      "readFirst": [
+        "[`tasks/mvp/08-persistence/02-log-only-save-format.md`](./02-log-only-save-format.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/diagrams/25-load-flow.md`](../../../docs/architecture/diagrams/25-load-flow.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/snapshot.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.08-persistence.02-log-only-save-format"
+      ],
+      "acceptanceCriteria": [
+        "`captureSnapshot(state, logIndex)` returns a `Checkpoint` whose `stateHash` matches the canonical state-hash of `state`.",
+        "`rebaseLog(record)` produces a `SaveRecord` whose replay yields the same final `stateHash` as replay of the unrebased record.",
+        "A determinism test asserts: for the fuzz-harness fixtures, replay from `(snapshot, log_since_snapshot)` produces the same `stateHash` at every checkpoint as replay from `(seed, full_log)`.",
+        "`shouldRebase(record)` returns true once the K-turn or M-command threshold is crossed; false otherwise.",
+        "A save that would exceed 1 MB compressed triggers the cap path (rebase, then dialog if still over) and never writes silently.",
+        "The Load flow consults the latest verified snapshot before falling back to seed (see [`docs/architecture/diagrams/25-load-flow.md`](../../../docs/architecture/diagrams/25-load-flow.md))."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.08-persistence.02-log-only-save-format"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.08-persistence.02-log-only-save-format"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.08-persistence.08-migration-registry",
+      "kind": "task",
+      "status": "planned",
+      "title": "Save Migration Registry",
+      "path": "tasks/mvp/08-persistence/08-migration-registry.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement the save-format migration registry. Each migrator handles exactly one version step `(prev: SaveRecord_vN) => SaveRecord_vN+1`. The loader composes migrators in order from the on-disk `saveVersion` to the current schema version before handing the record to replay. Authoring contract, support window, and pack-version boundary are canonical in [`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md).",
+      "inputs": [
+        "`SaveRecord` shape from `02-log-only-save-format.md`",
+        "The Save/Load compatibility selector in `docs/architecture/wiki/screens/55-save-load/data-contracts.md`"
+      ],
+      "outputs": [
+        "`src/persistence/migrations/` — module folder",
+        "`src/persistence/migrations/index.ts` — registry + `migrate(record)`",
+        "`src/persistence/migrations/template.ts` — authoring template a new migrator copies; documents the `(prev, ctx) => next` signature, the fixture-and-round-trip-test rule, and the version bump.",
+        "`src/persistence/migrations/v1.ts` — first registry entry (no-op for `saveVersion: 1`); exists so the wiring is exercised."
+      ],
+      "readFirst": [
+        "[`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md)",
+        "[`tasks/mvp/08-persistence/02-log-only-save-format.md`](./02-log-only-save-format.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/migrations/",
+        "src/persistence/migrations/index.ts",
+        "src/persistence/migrations/template.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.08-persistence.02-log-only-save-format"
+      ],
+      "acceptanceCriteria": [
+        "`migrate(record)` composes registered migrators in order from `record.saveVersion` to `current` and returns a `SaveRecord_current`.",
+        "An unknown / out-of-window `saveVersion` throws the canonical \"incompatible save migration needed\" error; the Save/Load screen renders the matching missing-state.",
+        "The `v1` no-op migrator exists in the registry so the wiring is exercised end-to-end.",
+        "A round-trip test loads `saves/migrations/v1/sample.json`, migrates, replays, and asserts the post-replay `stateHash` matches the fixture's `stateHash`.",
+        "Adding a new migrator requires adding a corresponding fixture and round-trip test (enforced by lint over `src/persistence/migrations/`).",
+        "`selectors.persistence.selectedSaveCompatibility` is computed against the registry's chain, not a stubbed boolean."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/55-save-load"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.02-log-only-save-format"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.02-log-only-save-format"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order",

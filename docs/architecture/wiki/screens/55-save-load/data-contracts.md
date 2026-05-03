@@ -23,10 +23,12 @@
 | UI Element | Selector | Notes |
 | --- | --- | --- |
 | `mode` | `state.ui.saveLoad.mode` | Save or load mode. |
-| `slots` | `selectors.persistence.saveSlotManifests` | Save metadata list. |
+| `slots` | `selectors.persistence.saveSlotManifests` | Save metadata list. Reads only `${id}:manifest` records — payload is fetched only on Load confirmation. |
+| `autosaveSlots` | `selectors.persistence.autosaveSlots` | Three rotating autosave slots (`auto-1`, `auto-2`, `auto-3`), newest-first. Rendered distinguishably from user slots. |
 | `selectedSlot` | `state.ui.saveLoad.selectedSlotId` | Local selected slot. |
-| `compatibility` | `selectors.persistence.selectedSaveCompatibility` | Version/hash/migration result. |
+| `compatibility` | `selectors.persistence.selectedSaveCompatibility` | Version/hash/migration result computed against the migration registry, not a stubbed boolean. Last 4 save versions are migrated in-app; older saves surface "incompatible save migration needed". |
 | `overwriteGuard` | `selectors.persistence.overwriteGuard` | Overwrite availability and confirmation need. |
+| `quotaUsage` | `selectors.persistence.quotaUsage` | `{ used, quota }` from the IDB wrapper. Drives a "Manage saves" CTA above the slot list when `used / quota > 0.8`. |
 
 ### Commands And Events
 - `SELECT_SAVE_SLOT` from `saveLoad.selectSlot`: Updates preview and compatibility.
@@ -66,3 +68,9 @@
 - Reads save manifests first. Loading validates schema version, content hashes, pack compatibility, ruleset version, and migration availability before hydrating state.
 - Missing presentation may fall back through asset resolver.
 - Missing gameplay records, invalid commands, and unresolved content IDs fail loudly before controls become enabled.
+- Migration support window: the **last 4 save versions** are migrated in-app via the registry owned by [`tasks/mvp/08-persistence/08-migration-registry.md`](../../../../../tasks/mvp/08-persistence/08-migration-registry.md). Older saves render the canonical "incompatible save migration needed" missing-state and the player is told to keep the file. Pack-hash mismatches continue to be handled by the load gate's warn-or-abort policy in [`docs/architecture/version-policy.md`](../../../version-policy.md), not by save migrators.
+
+### Autosave And Storage Layout
+- Autosave writes three rotating slots (`auto-1`, `auto-2`, `auto-3`); the slot list distinguishes them from user slots. Cadence and policy are owned by [`tasks/mvp/08-persistence/06-autosave.md`](../../../../../tasks/mvp/08-persistence/06-autosave.md).
+- Each save is stored as two sibling IDB records under `${id}:manifest` and `${id}:payload` written inside a single transaction (see [`tasks/mvp/08-persistence/01-indexeddb-wrapper.md`](../../../../../tasks/mvp/08-persistence/01-indexeddb-wrapper.md)). Slot list views read only manifest records.
+- During multiplayer, only the host autosaves; peer machines render the slot list read-only with a "host saved" indicator. See `interactions.md` § "During multiplayer".
