@@ -98,10 +98,12 @@ asset indexes and pack manifests, not embedded paths.
 2. [content-platform.md](content-platform.md)
 3. [pack-contract.md](pack-contract.md)
 4. [schema-matrix.md](schema-matrix.md)
-5. [ai-integration.md](ai-integration.md)
-6. [../planning/roadmap.md](../planning/roadmap.md)
-7. [../planning/implementation-log.md](../planning/implementation-log.md)
-8. [../../tasks/README.md](../../tasks/README.md)
+5. [command-schema.md](command-schema.md)
+6. [event-schema.md](event-schema.md) and [event-system.md](event-system.md)
+7. [ai-integration.md](ai-integration.md)
+8. [../planning/roadmap.md](../planning/roadmap.md)
+9. [../planning/implementation-log.md](../planning/implementation-log.md)
+10. [../../tasks/README.md](../../tasks/README.md)
 
 Use the task files for detailed implementation scope. This file should
 stay short and stable.

@@ -5,10 +5,14 @@ Status: planned
 Module: [Polish (M7)](../04-polish.md)
 
 Description:
-Play sound effects in response to game events. The sound system listens to the event log (same source as the animation timeline) and triggers audio clips. Uses Howler.js for cross-browser audio.
+Play sound effects in response to game events. The sound system is a **second independent consumer** of the per-dispatch `events: Event[]` log emitted by the dispatcher; it iterates the array in insertion order and triggers audio clips. There is no ordering guarantee relative to the animation-timeline consumer beyond per-consumer insertion order — audio onsets are keyed off the animation timeline's clip clock so cues line up with visible motion (per [`event-system.md` § 3](../../../docs/architecture/event-system.md#3-consumption-contract)). Uses Howler.js for cross-browser audio.
+
+Events validate against [`event.schema.json`](../../../content-schema/schemas/event.schema.json); per-kind payload, emitter, and consumer mapping live in [`event-schema.md`](../../../docs/architecture/event-schema.md). A throwing audio handler is caught by the audio scheduler, logged, and the next event is processed; the dispatcher is never re-entered from a catch block.
 
 Read First:
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
+- [`docs/architecture/event-system.md`](../../../docs/architecture/event-system.md)
+- [`docs/architecture/event-schema.md`](../../../docs/architecture/event-schema.md)
 
 Inputs:
 - Event log (`09-tactical-combat.md`, `05-adventure-map.md`)

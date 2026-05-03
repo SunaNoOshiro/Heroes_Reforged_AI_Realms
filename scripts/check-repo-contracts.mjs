@@ -454,6 +454,8 @@ function schemaForFile(filePath) {
   if (base.endsWith(".modal-entry.json")) return "modal-entry.schema.json";
   if (base.endsWith(".hotkey.json")) return "hotkey.schema.json";
   if (base.endsWith(".ai-profile.json")) return "ai-profile.schema.json";
+  if (base === "event-log.example.json") return "event.schema.json";
+  if (base.endsWith(".event.json")) return "event.schema.json";
 
   return null;
 }
@@ -490,6 +492,17 @@ async function collectExampleRecordViolations() {
       data = rest;
     }
     const schema = await loadSchema(schemaFile);
+    if (Array.isArray(data) && schemaFile === "event.schema.json") {
+      for (let index = 0; index < data.length; index += 1) {
+        const errors = await validate(data[index], schema, { root: schema, file: schemaFile }, `$[${index}]`);
+        for (const error of errors) {
+          violations.push(
+            `${path.relative(repoRoot, filePath)} [${schemaFile}]: ${error}`
+          );
+        }
+      }
+      continue;
+    }
     const errors = await validate(data, schema, { root: schema, file: schemaFile });
     for (const error of errors) {
       violations.push(

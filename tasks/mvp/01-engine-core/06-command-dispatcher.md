@@ -9,7 +9,7 @@ The command dispatcher is the only path through which sim state is mutated. It:
 1. Receives a typed `Command` (discriminated union)
 2. Validates it against current state (returns `ValidationError` if invalid)
 3. Applies it via the matching reducer
-4. Emits typed `Event` objects to a subscriber list
+4. Returns typed `Event` objects in `Result.events`; events are appended to a per-dispatch in-memory event log that consumers read on their own clock. There is no subscriber list, no callback registration, and no veto. See [`event-system.md`](../../../docs/architecture/event-system.md).
 5. Appends the command to the command log
 
 No code outside the dispatcher may call state mutators directly.
@@ -18,6 +18,8 @@ Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
+- [`docs/architecture/event-system.md`](../../../docs/architecture/event-system.md)
+- [`docs/architecture/event-schema.md`](../../../docs/architecture/event-schema.md)
 
 Inputs:
 - `GameState` (to be defined in `src/engine`)
@@ -40,6 +42,9 @@ Dependencies:
 Acceptance Criteria:
 - Dispatching an invalid command returns an error and does NOT mutate state
 - Dispatching a valid command returns new state + event list
+- Emitted `Event` objects validate against `content-schema/schemas/event.schema.json`; an event with an unknown `kind` or extra payload property is a `ValidationError` and the dispatch is rolled back
+- The dispatcher does NOT retain events globally; the per-dispatch `events: Event[]` is the canonical mechanism (see [`event-system.md`](../../../docs/architecture/event-system.md))
+- Sub-command chains (follow-up commands emitted by a command handler at the outer reducer level) are bounded by `MAX_COMMAND_CHAIN_DEPTH = 8` per outer command; a deeper chain raises `ValidationError` and rolls back the outer command
 - State object is never mutated in place (referential equality check in tests)
 - 100% TypeScript coverage (no `any`, no `as unknown`)
 - Command discriminants match `content-schema/schemas/command.schema.json`

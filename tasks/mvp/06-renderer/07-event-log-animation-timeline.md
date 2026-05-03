@@ -7,10 +7,14 @@ Module: [Renderer (M1/M2)](../06-renderer.md)
 Description:
 Consume the event log emitted by the sim and build an animation timeline: each event becomes an animation clip (move path, attack swing, projectile, death). Clips are sequenced and played back in the presentation loop.
 
+The timeline iterates the per-dispatch `events: Event[]` array in **insertion order** on `requestAnimationFrame` cadence. There is no callback-on-emit and no subscriber list — the timeline is one of two independent log consumers (see [`event-system.md`](../../../docs/architecture/event-system.md)). The timeline's queue is presentation-side only; it is NOT the source of truth and is NEVER serialized into a save record. Events validate against [`event.schema.json`](../../../content-schema/schemas/event.schema.json); per-kind payload, emitter, and consumer mapping live in [`event-schema.md`](../../../docs/architecture/event-schema.md).
+
 Read First:
 - [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
 - [`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
+- [`docs/architecture/event-system.md`](../../../docs/architecture/event-system.md)
+- [`docs/architecture/event-schema.md`](../../../docs/architecture/event-schema.md)
 
 Inputs:
 - Event log from sim (array of typed `Event` objects)

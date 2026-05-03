@@ -2642,7 +2642,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 315
+      "downstreamTransitiveCount": 316
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2703,7 +2703,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 313
+      "downstreamTransitiveCount": 314
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2760,7 +2760,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 205
+      "downstreamTransitiveCount": 206
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2816,7 +2816,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 230
+      "downstreamTransitiveCount": 231
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2885,7 +2885,7 @@
       "path": "tasks/mvp/01-engine-core/06-command-dispatcher.md",
       "moduleId": "mvp.01-engine-core",
       "modulePath": "tasks/mvp/01-engine-core.md",
-      "description": "The command dispatcher is the only path through which sim state is mutated. It: 1. Receives a typed `Command` (discriminated union) 2. Validates it against current state (returns `ValidationError` if invalid) 3. Applies it via the matching reducer 4. Emits typed `Event` objects to a subscriber list 5. Appends the command to the command log No code outside the dispatcher may call state mutators directly.",
+      "description": "The command dispatcher is the only path through which sim state is mutated. It: 1. Receives a typed `Command` (discriminated union) 2. Validates it against current state (returns `ValidationError` if invalid) 3. Applies it via the matching reducer 4. Returns typed `Event` objects in `Result.events`; events are appended to a per-dispatch in-memory event log that consumers read on their own clock. There is no subscriber list, no callback registration, and no veto. See [`event-system.md`](../../../docs/architecture/event-system.md). 5. Appends the command to the command log No code outside the dispatcher may call state mutators directly.",
       "inputs": [
         "`GameState` (to be defined in `src/engine`)",
         "`Command` union type",
@@ -2900,7 +2900,9 @@
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
         "[`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)",
-        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)"
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/event-system.md`](../../../docs/architecture/event-system.md)",
+        "[`docs/architecture/event-schema.md`](../../../docs/architecture/event-schema.md)"
       ],
       "ownedPaths": [
         "src/engine/dispatcher.ts"
@@ -2916,6 +2918,9 @@
       "acceptanceCriteria": [
         "Dispatching an invalid command returns an error and does NOT mutate state",
         "Dispatching a valid command returns new state + event list",
+        "Emitted `Event` objects validate against `content-schema/schemas/event.schema.json`; an event with an unknown `kind` or extra payload property is a `ValidationError` and the dispatch is rolled back",
+        "The dispatcher does NOT retain events globally; the per-dispatch `events: Event[]` is the canonical mechanism (see [`event-system.md`](../../../docs/architecture/event-system.md))",
+        "Sub-command chains (follow-up commands emitted by a command handler at the outer reducer level) are bounded by `MAX_COMMAND_CHAIN_DEPTH = 8` per outer command; a deeper chain raises `ValidationError` and rolls back the outer command",
         "State object is never mutated in place (referential equality check in tests)",
         "100% TypeScript coverage (no `any`, no `as unknown`)",
         "Command discriminants match `content-schema/schemas/command.schema.json`",
@@ -2933,11 +2938,13 @@
       "estimatedTime": "- 6 hours",
       "screenPackages": [],
       "directSchemaPaths": [
-        "content-schema/schemas/command.schema.json"
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json"
       ],
       "screenSchemaPaths": [],
       "schemaPaths": [
-        "content-schema/schemas/command.schema.json"
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json"
       ],
       "taskDependencies": [
         "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2949,8 +2956,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 26,
-      "downstreamTransitiveCount": 196
+      "downstreamDirectCount": 27,
+      "downstreamTransitiveCount": 197
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3021,8 +3028,87 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 18
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.01-engine-core.06c-event-golden-tests",
+      "kind": "task",
+      "status": "planned",
+      "title": "Event Golden Tests Harness",
+      "path": "tasks/mvp/01-engine-core/06c-event-golden-tests.md",
+      "moduleId": "mvp.01-engine-core",
+      "modulePath": "tasks/mvp/01-engine-core.md",
+      "description": "Pin the exact `events: Event[]` returned by `dispatch` for every command kind in `command.schema.json`. The dispatcher already asserts state correctness; this harness asserts event-shape correctness so that two implementers writing the same command handler cannot produce two different event payload shapes without CI catching it. Each command kind owns a fixture `tests/events/<command>.golden.json` that pins one canonical input plus the exact emitted event list. A diff is a test failure; updating a golden requires an explicit command-line flag so an implementer cannot silently overwrite the contract. Replays re-derive events from the command log per [`event-system.md` § 7](../../../docs/architecture/event-system.md#7-save--load), so byte-identical replay parity at the event level falls out of the golden suite automatically.",
+      "inputs": [
+        "`Command` union from `content-schema/schemas/command.schema.json`",
+        "`Event` union from `content-schema/schemas/event.schema.json`",
+        "Dispatcher signature `dispatch(state, cmd) → Result<{state, events: Event[]}, ValidationError>` from `mvp.01-engine-core.06-command-dispatcher`"
+      ],
+      "outputs": [
+        "`tests/events/` directory (one `<command>.golden.json` per command kind, populated alongside each command's implementing task)",
+        "`scripts/run-event-goldens.mjs` (Node test runner that loads each golden, dispatches the canonical command, and compares `Result.events` with the golden's `expectedEvents` array)",
+        "`npm test -- events` wires the runner into the existing test command",
+        "An `--update-goldens` flag on the runner that rewrites every fixture from current dispatcher output (must NOT be the default for `npm test`)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/event-system.md`](../../../docs/architecture/event-system.md)",
+        "[`docs/architecture/event-schema.md`](../../../docs/architecture/event-schema.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`content-schema/schemas/event.schema.json`](../../../content-schema/schemas/event.schema.json)"
+      ],
+      "ownedPaths": [
+        "tests/events/",
+        "scripts/run-event-goldens.mjs",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist"
+      ],
+      "acceptanceCriteria": [
+        "Each command kind in `content-schema/schemas/command.schema.json` has a corresponding `tests/events/<command>.golden.json` fixture by the time that command's implementing task is `done`; commands whose fixture is missing fail the harness with a clear `missing golden for kind <KIND>` message",
+        "Each fixture contains: `command` (a single canonical command envelope), `state` (input fixture state or a reference to one under `tests/fixtures/`), and `expectedEvents` (the exact `Event[]` the dispatcher must return)",
+        "Every event in `expectedEvents` validates against `content-schema/schemas/event.schema.json`",
+        "Running the harness against unchanged code produces zero diffs; any payload-shape change in a command handler that drifts from its golden is a test failure",
+        "The `--update-goldens` flag is gated: it only fires when the flag is passed on the command line; `npm test` runs it without the flag and never rewrites a fixture",
+        "`npm test -- events` exits non-zero on any diff, missing golden, or schema-validation failure",
+        "Fixtures use canonical-JSON byte ordering (sorted keys, integer literals only) so a passing fixture round-trips through `canonical-json.ts` byte-identically",
+        "Shared path work is additive only: extend `package.json`'s test scripts to wire in the event-golden runner without rewriting the primary `npm test` contract owned by `mvp.01-engine-core.10-github-actions-ci`. The golden harness is a sibling to the existing test surface, never a replacement."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
@@ -5269,6 +5355,7 @@
         "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
         "mvp.01-engine-core.06-command-dispatcher",
         "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
+        "mvp.01-engine-core.06c-event-golden-tests",
         "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
         "mvp.01-engine-core.07b-canonical-json",
         "mvp.01-engine-core.08-replay-api",
@@ -9169,7 +9256,7 @@
       "path": "tasks/mvp/06-renderer/07-event-log-animation-timeline.md",
       "moduleId": "mvp.06-renderer",
       "modulePath": "tasks/mvp/06-renderer.md",
-      "description": "Consume the event log emitted by the sim and build an animation timeline: each event becomes an animation clip (move path, attack swing, projectile, death). Clips are sequenced and played back in the presentation loop.",
+      "description": "Consume the event log emitted by the sim and build an animation timeline: each event becomes an animation clip (move path, attack swing, projectile, death). Clips are sequenced and played back in the presentation loop. The timeline iterates the per-dispatch `events: Event[]` array in **insertion order** on `requestAnimationFrame` cadence. There is no callback-on-emit and no subscriber list — the timeline is one of two independent log consumers (see [`event-system.md`](../../../docs/architecture/event-system.md)). The timeline's queue is presentation-side only; it is NOT the source of truth and is NEVER serialized into a save record. Events validate against [`event.schema.json`](../../../content-schema/schemas/event.schema.json); per-kind payload, emitter, and consumer mapping live in [`event-schema.md`](../../../docs/architecture/event-schema.md).",
       "inputs": [
         "Event log from sim (array of typed `Event` objects)",
         "`Animator` (Task 6)"
@@ -9183,7 +9270,9 @@
       "readFirst": [
         "[`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)",
         "[`docs/architecture/screen-scaling.md`](../../../docs/architecture/screen-scaling.md)",
-        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
+        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
+        "[`docs/architecture/event-system.md`](../../../docs/architecture/event-system.md)",
+        "[`docs/architecture/event-schema.md`](../../../docs/architecture/event-schema.md)"
       ],
       "ownedPaths": [
         "src/renderer/animation-timeline.ts"
@@ -9208,9 +9297,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/event.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/event.schema.json"
+      ],
       "taskDependencies": [
         "mvp.06-renderer.05-1115-tactical-battlefield-renderer",
         "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation"
@@ -11651,7 +11744,8 @@
         "Compression is pinned: re-saving an unchanged session at the same `stateHash` produces identical post-compression bytes for the canonical-content-bearing subset of the record (the dynamic metadata header — `id`, `name`, `createdAt`, `savedAt` — is excluded from the byte-equality assertion).",
         "`canonicalContentHash` is computed on save and verified on load; two saves of the same `stateHash` produce identical `canonicalContentHash`.",
         "`intent: \"save\" | \"replay\"` is honored: an exported replay strips PII and substitutes a hash-derived id (see [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md)).",
-        "A compressed `SaveRecord` exceeding 1 MB triggers the rebase / cap path declared in [`07-snapshot-rebase.md`](./07-snapshot-rebase.md); it never silently writes an oversized blob."
+        "A compressed `SaveRecord` exceeding 1 MB triggers the rebase / cap path declared in [`07-snapshot-rebase.md`](./07-snapshot-rebase.md); it never silently writes an oversized blob.",
+        "The save record MUST NOT contain any field whose key matches `events?` or `eventLog?`. Events are deterministic byproducts of replay, not state, and are never serialized; the per-battle `eventLog` returned by `AUTO_RESOLVE_BATTLE` is one-shot UI-bound and never enters the save record. See [`docs/architecture/event-system.md` § 7 Save & Load](../../../docs/architecture/event-system.md#7-save--load)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -27979,7 +28073,7 @@
       "path": "tasks/phase-3/04-polish/02-sound-system-event-log-driven.md",
       "moduleId": "phase-3.04-polish",
       "modulePath": "tasks/phase-3/04-polish.md",
-      "description": "Play sound effects in response to game events. The sound system listens to the event log (same source as the animation timeline) and triggers audio clips. Uses Howler.js for cross-browser audio.",
+      "description": "Play sound effects in response to game events. The sound system is a **second independent consumer** of the per-dispatch `events: Event[]` log emitted by the dispatcher; it iterates the array in insertion order and triggers audio clips. There is no ordering guarantee relative to the animation-timeline consumer beyond per-consumer insertion order — audio onsets are keyed off the animation timeline's clip clock so cues line up with visible motion (per [`event-system.md` § 3](../../../docs/architecture/event-system.md#3-consumption-contract)). Uses Howler.js for cross-browser audio. Events validate against [`event.schema.json`](../../../content-schema/schemas/event.schema.json); per-kind payload, emitter, and consumer mapping live in [`event-schema.md`](../../../docs/architecture/event-schema.md). A throwing audio handler is caught by the audio scheduler, logged, and the next event is processed; the dispatcher is never re-entered from a catch block.",
       "inputs": [
         "Event log (`09-tactical-combat.md`, `05-adventure-map.md`)",
         "Sound clip assets (stub with placeholder beeps for MVP)"
@@ -27999,7 +28093,9 @@
         "Sound plays synchronized with animation timeline (not raw event time)"
       ],
       "readFirst": [
-        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)"
+        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
+        "[`docs/architecture/event-system.md`](../../../docs/architecture/event-system.md)",
+        "[`docs/architecture/event-schema.md`](../../../docs/architecture/event-schema.md)"
       ],
       "ownedPaths": [
         "src/renderer/sound-system.ts"
@@ -28023,9 +28119,13 @@
       ],
       "estimatedTime": "- 5 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/event.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/event.schema.json"
+      ],
       "taskDependencies": [
         "mvp.06-renderer.07-event-log-animation-timeline"
       ],
@@ -28273,6 +28373,7 @@
         "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
         "mvp.01-engine-core.06-command-dispatcher",
         "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
+        "mvp.01-engine-core.06c-event-golden-tests",
         "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
         "mvp.01-engine-core.07b-canonical-json",
         "mvp.01-engine-core.08-replay-api",

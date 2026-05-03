@@ -1,0 +1,103 @@
+[
+  {
+    "kind": "UNIT_MOVED",
+    "payload": {
+      "unitId": "battle:0:1:1",
+      "fromHex": { "q": 2, "r": 4 },
+      "toHex": { "q": 5, "r": 3 },
+      "path": [
+        { "q": 3, "r": 4 },
+        { "q": 4, "r": 3 },
+        { "q": 5, "r": 3 }
+      ]
+    }
+  },
+  {
+    "kind": "UNIT_ATTACKED",
+    "payload": {
+      "attackerStackId": "battle:0:1:1",
+      "defenderStackId": "battle:0:1:2",
+      "damage": 47
+    }
+  },
+  {
+    "kind": "PROJECTILE_FIRED",
+    "payload": {
+      "attackerStackId": "battle:0:1:1",
+      "defenderStackId": "battle:0:1:2"
+    }
+  },
+  {
+    "kind": "UNIT_DIED",
+    "payload": {
+      "unitId": "battle:0:1:2"
+    }
+  },
+  {
+    "kind": "SPELL_CAST",
+    "payload": {
+      "casterId": "emberwild-hero-kaelis",
+      "spellId": "emberwild:spell:ember-lance",
+      "target": {
+        "stackId": "battle:0:1:2",
+        "position": { "q": 7, "r": 4 }
+      }
+    }
+  },
+  {
+    "kind": "MINE_CAPTURED",
+    "payload": {
+      "mineId": "shared:mine:gold-7",
+      "heroId": "emberwild-hero-kaelis",
+      "playerId": 0
+    }
+  },
+  {
+    "kind": "BATTLE_INITIATED",
+    "payload": {
+      "battleId": "battle:0:1",
+      "attackerId": "emberwild-hero-kaelis",
+      "defenderId": "neutral-stack:0:1:1"
+    }
+  },
+  {
+    "kind": "TOWN_VISITED",
+    "payload": {
+      "townId": "emberwild-town-cinderhold",
+      "heroId": "emberwild-hero-kaelis"
+    }
+  },
+  {
+    "kind": "BUILDING_BUILT",
+    "payload": {
+      "townId": "emberwild-town-cinderhold",
+      "buildingId": "emberwild:building:kennels"
+    }
+  },
+  {
+    "kind": "HERO_LEVEL_UP",
+    "payload": {
+      "heroId": "emberwild-hero-kaelis",
+      "newLevel": 2
+    }
+  },
+  {
+    "kind": "DAY_START",
+    "payload": {
+      "turn": 2
+    }
+  },
+  {
+    "kind": "DAY_END",
+    "payload": {
+      "turn": 1
+    }
+  },
+  {
+    "kind": "WEEK_START",
+    "payload": {
+      "week": 2,
+      "themedWeekId": "shared:themed-week:week-of-the-raven"
+    }
+  }
+]

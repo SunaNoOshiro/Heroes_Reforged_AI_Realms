@@ -2,7 +2,9 @@
 
 Canonical reference for all game commands. Commands are the only way to mutate game state. Every command is deterministic and serializable.
 
-**See also:** [`state-flow.md`](./state-flow.md) (how commands flow through the engine).
+**See also:** [`state-flow.md`](./state-flow.md) (how commands flow through the engine), [`event-schema.md`](./event-schema.md) (the read-only event vocabulary command handlers emit), and [`event-system.md`](./event-system.md) (the runtime contract events flow through).
+
+Events are the read-only flip-side of commands: a command handler computes the next state and the `events: Event[]` array together, and consumers (animation timeline, sound system) iterate the array on their own clock. Events never mutate state, never veto a command, and are never serialized into saves.
 
 ---
 

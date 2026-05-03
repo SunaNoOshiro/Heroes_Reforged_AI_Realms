@@ -45,7 +45,7 @@ Required order:
 
 1. seeded RNG
 2. fixed-point math
-3. command dispatcher
+3. command dispatcher (also returns the per-dispatch event log; see [event-system.md](event-system.md))
 4. canonical serializer + state hash
 5. replay API
 6. fuzz harness
@@ -130,6 +130,10 @@ rules, [pack-contract.md](pack-contract.md) for pack contract details,
 [ai-integration.md](ai-integration.md) for provider boundaries,
 [schema-matrix.md](schema-matrix.md) for record types,
 [effect-registry.md](effect-registry.md) for effect `kind` values,
+[command-schema.md](command-schema.md) for the closed command
+vocabulary, [event-schema.md](event-schema.md) for the closed event
+vocabulary, [event-system.md](event-system.md) for the event-log
+runtime contract,
 [determinism.md](determinism.md) for deterministic-path rules,
 [glossary.md](glossary.md) for domain terms, and
 [../planning/roadmap.md](../planning/roadmap.md) for milestones.

@@ -161,6 +161,12 @@ Acceptance Criteria:
 - A compressed `SaveRecord` exceeding 1 MB triggers the rebase /
   cap path declared in [`07-snapshot-rebase.md`](./07-snapshot-rebase.md);
   it never silently writes an oversized blob.
+- The save record MUST NOT contain any field whose key matches
+  `events?` or `eventLog?`. Events are deterministic byproducts of
+  replay, not state, and are never serialized; the per-battle
+  `eventLog` returned by `AUTO_RESOLVE_BATTLE` is one-shot UI-bound
+  and never enters the save record. See
+  [`docs/architecture/event-system.md` § 7 Save & Load](../../../docs/architecture/event-system.md#7-save--load).
 
 Verify:
 - npm run validate

@@ -55,6 +55,7 @@ Canonical source files:
 | `HotkeyRegistry` | none — UI presentation only | global registry of keyboard bindings, scopes, and rebindability per [`ui-hotkeys.md`](./ui-hotkeys.md) | [hotkey](../../content-schema/schemas/hotkey.schema.json) | [global-default](../../content-schema/examples/records/hotkey/global-default.hotkey.json) |
 | `ValidationError` | none — validator output only | canonical, transport-friendly error record produced by every validator (CI repo-contract checker, runtime Zod adapter, engine pre-dispatch validator, AI feedback loop). Pinned in [`validation-error.schema.json`](../../content-schema/schemas/validation-error.schema.json). | [validation-error](../../content-schema/schemas/validation-error.schema.json) | [missing-required](../../content-schema/examples/records/validation-error/missing-required.error.json), [unknown-enum](../../content-schema/examples/records/validation-error/unknown-enum.error.json) |
 | `AiProfile` | optional per-faction or per-hero AI personality (Want-weight overrides) | none | [ai-profile](../../content-schema/schemas/ai-profile.schema.json) | [default](../../content-schema/examples/records/ai-profiles/default.ai-profile.json) |
+| `Event` | none — read-only deterministic-engine output. Closed discriminated union of every event kind emitted by command handlers; consumed by animation timeline / sound system per [`event-system.md`](./event-system.md) | none — events carry no presentation fields; consumers translate kind+payload into clips and audio cues | [event](../../content-schema/schemas/event.schema.json) | [event-log](../../content-schema/examples/events/event-log.example.json) |
 
 ## Fast Dependency View
 
@@ -78,6 +79,12 @@ Canonical source files:
   pattern-checked `nonce` on every command kind. The dispatcher rejects
   duplicate nonces; see
   [`command-schema.md` § Deduplication](./command-schema.md#deduplication).
+- `event.schema.json` is the read-only flip-side of `command.schema.json`:
+  command handlers return `events: Event[]` alongside the next state.
+  Each event has a closed `kind` discriminator and a `payload` object
+  with `additionalProperties: false`. Per-kind payload, emitter, and
+  consumer mapping live in [`event-schema.md`](./event-schema.md);
+  the runtime contract lives in [`event-system.md`](./event-system.md).
 - `game-state.schema.json` is the closed top-level state shape consumed
   by the reducer; see
   [`state-shape.md`](./state-shape.md).

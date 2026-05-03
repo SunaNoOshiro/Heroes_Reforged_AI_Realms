@@ -58,7 +58,7 @@ contexts; this file does not duplicate the rules.
 | Multi-engine desync detection | [`src/engine/`](../../src/engine/) test harness | Two `createEngine()` instances apply the same log; hashes compared per step. See [`multi-engine-harness.md`](./multi-engine-harness.md). |
 | Formula evaluation | [`src/rules/`](../../src/rules/) | AST walker over the formula schema |
 | Tactical battle step | [`src/engine/`](../../src/engine/) | Nested reducer with its own command alphabet |
-| Rendering (read-only) | [`src/renderer/`](../../src/renderer/) | Subscribes to state; never mutates |
+| Rendering (read-only) | [`src/renderer/`](../../src/renderer/) | Subscribes to state; never mutates. Iterates the per-dispatch event log per [`event-system.md`](./event-system.md). |
 | UI shell | [`src/ui/`](../../src/ui/) | Emits commands; never mutates state directly |
 
 The arrow from `F → O` is the only path state changes take.
@@ -141,6 +141,8 @@ runs against full state.
 
 ## Related docs
 
+- [`event-system.md`](./event-system.md) — event-log runtime contract (emission, consumption, no-veto, retention, save/load, error isolation, re-entry guard rules)
+- [`event-schema.md`](./event-schema.md) — closed event vocabulary, payloads, emitters, consumers
 - [`version-policy.md`](./version-policy.md) — refuse / migrate / degrade matrix for save and pack mismatches
 - [`ai-contract.md`](./ai-contract.md) — gameplay-AI runtime contract (input view, worker protocol, budgets, cancellation, parallelism, decision log)
 - [`determinism.md`](./determinism.md) — why this loop is pure

@@ -56,6 +56,20 @@ introducing new jargon.
   frame time. Each tier prescribes which presentation features stay
   on. See
   [`renderer-technology-choice.md` § Frame-Time Budget &amp; Degradation](./renderer-technology-choice.md#frame-time-budget--degradation).
+- **Event** — a typed, serializable record of something that
+  happened in the deterministic engine. Returned alongside the
+  next state on every `dispatch` call (`events: Event[]`).
+  Consumers (animation timeline, sound system) iterate the array
+  read-only; events never mutate state and are never serialized.
+  Closed vocabulary in [`event-schema.md`](./event-schema.md).
+- **Event log** — the per-dispatch `events: Event[]` array. Not
+  a global, never persisted; consumers consume it on their own
+  clock. Retention and save/load rules in
+  [`event-system.md`](./event-system.md).
+- **Event consumer** — a presentation-side reader of the event
+  log (animation timeline, sound system). Iterates events in
+  insertion order, may not call `dispatch`, may not veto. Runtime
+  contract in [`event-system.md`](./event-system.md).
 
 ## Content Model
 

@@ -15,6 +15,13 @@ Canonical JSON Schema files live here.
 - shared embedded contracts:
   `effect`, `formula`, `targeting`, `condition`, `resource-id`,
   `stat-id`, `status-id`, `target-scope`
+- engine I/O contracts:
+  `command`, `event` (read-only flip-side of `command`; closed
+  discriminated union of every event kind emitted by the
+  deterministic engine — see
+  [`../../docs/architecture/event-system.md`](../../docs/architecture/event-system.md)
+  and
+  [`../../docs/architecture/event-schema.md`](../../docs/architecture/event-schema.md))
 - UI presentation contracts:
   `ui-component-registry`, `error-state`, `modal-entry`, `hotkey`
 - AI boundary:

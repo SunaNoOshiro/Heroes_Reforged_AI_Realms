@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/event.schema.json",
+  "title": "Event",
+  "description": "Closed discriminated union of every event kind emitted by the deterministic engine. Events are the read-only flip-side of commands: a command handler returns `events: Event[]` from `dispatch`; consumers (animation timeline, sound system) iterate the log on their own clock. See docs/architecture/event-system.md and docs/architecture/event-schema.md.",
+  "oneOf": [
+    { "$ref": "#/$defs/unitMoved" },
+    { "$ref": "#/$defs/unitAttacked" },
+    { "$ref": "#/$defs/unitDied" },
+    { "$ref": "#/$defs/projectileFired" },
+    { "$ref": "#/$defs/spellCast" },
+    { "$ref": "#/$defs/mineCaptured" },
+    { "$ref": "#/$defs/battleInitiated" },
+    { "$ref": "#/$defs/townVisited" },
+    { "$ref": "#/$defs/buildingBuilt" },
+    { "$ref": "#/$defs/heroLevelUp" },
+    { "$ref": "#/$defs/dayStart" },
+    { "$ref": "#/$defs/dayEnd" },
+    { "$ref": "#/$defs/weekStart" }
+  ],
+  "$defs": {
+    "stringId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hexCoord": {
+      "type": "object",
+      "required": ["q", "r"],
+      "properties": {
+        "q": { "type": "integer" },
+        "r": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "unitMoved": {
+      "type": "object",
+      "description": "Tactical-combat or adventure-map: a unit/stack moved from one hex to another. Consumer: animation timeline (walk animation along path). Emitted by BATTLE_MOVE and (for adventure presentation) by MOVE_HERO. See docs/architecture/event-schema.md#unit_moved.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "UNIT_MOVED" },
+        "payload": {
+          "type": "object",
+          "required": ["unitId", "fromHex", "toHex"],
+          "properties": {
+            "unitId": { "$ref": "#/$defs/stringId" },
+            "fromHex": { "$ref": "#/$defs/hexCoord" },
+            "toHex": { "$ref": "#/$defs/hexCoord" },
+            "path": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/hexCoord" }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "unitAttacked": {
+      "type": "object",
+      "description": "Tactical-combat: a stack performed a melee or ranged attack. Consumer: animation timeline (attack swing + hit/miss), sound system (sword_hit). Emitted by BATTLE_ATTACK and AUTO_RESOLVE_BATTLE. See docs/architecture/event-schema.md#unit_attacked.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "UNIT_ATTACKED" },
+        "payload": {
+          "type": "object",
+          "required": ["attackerStackId", "defenderStackId", "damage"],
+          "properties": {
+            "attackerStackId": { "$ref": "#/$defs/stringId" },
+            "defenderStackId": { "$ref": "#/$defs/stringId" },
+            "damage": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "unitDied": {
+      "type": "object",
+      "description": "Tactical-combat: a stack reached zero HP and is removed from the battlefield. Consumer: animation timeline (death animation), sound system (death_cry). Emitted by BATTLE_ATTACK, BATTLE_SPELL, and AUTO_RESOLVE_BATTLE. See docs/architecture/event-schema.md#unit_died.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "UNIT_DIED" },
+        "payload": {
+          "type": "object",
+          "required": ["unitId"],
+          "properties": {
+            "unitId": { "$ref": "#/$defs/stringId" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectileFired": {
+      "type": "object",
+      "description": "Tactical-combat: a ranged unit launched a projectile. Consumer: animation timeline (arrow / magic-bolt arc). Emitted by BATTLE_ATTACK for ranged stacks. See docs/architecture/event-schema.md#projectile_fired.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "PROJECTILE_FIRED" },
+        "payload": {
+          "type": "object",
+          "required": ["attackerStackId", "defenderStackId"],
+          "properties": {
+            "attackerStackId": { "$ref": "#/$defs/stringId" },
+            "defenderStackId": { "$ref": "#/$defs/stringId" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "spellCast": {
+      "type": "object",
+      "description": "Tactical-combat or adventure-map: a hero or stack cast a spell. Consumer: animation timeline (spell VFX at target hex / target stack), sound system (spell_cast_<school>). Emitted by SPELL_CAST. See docs/architecture/event-schema.md#spell_cast.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "SPELL_CAST" },
+        "payload": {
+          "type": "object",
+          "required": ["casterId", "spellId"],
+          "properties": {
+            "casterId": { "$ref": "#/$defs/stringId" },
+            "spellId": { "$ref": "#/$defs/stringId" },
+            "target": {
+              "type": "object",
+              "properties": {
+                "stackId": {
+                  "type": ["string", "null"]
+                },
+                "position": {
+                  "anyOf": [
+                    { "$ref": "#/$defs/hexCoord" },
+                    { "type": "null" }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "mineCaptured": {
+      "type": "object",
+      "description": "Adventure-map: a mine changed ownership after MOVE_HERO arrival triggered CAPTURE_MINE. Consumer: animation timeline (flag swap), sound system (mine_capture). See docs/architecture/event-schema.md#mine_captured.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "MINE_CAPTURED" },
+        "payload": {
+          "type": "object",
+          "required": ["mineId", "heroId", "playerId"],
+          "properties": {
+            "mineId": { "$ref": "#/$defs/stringId" },
+            "heroId": { "$ref": "#/$defs/stringId" },
+            "playerId": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "battleInitiated": {
+      "type": "object",
+      "description": "Adventure-map: an encounter created pending battle state after MOVE_HERO arrival triggered INITIATE_BATTLE. Consumer: animation timeline (encounter zoom / banner), sound system. See docs/architecture/event-schema.md#battle_initiated.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "BATTLE_INITIATED" },
+        "payload": {
+          "type": "object",
+          "required": ["attackerId", "defenderId"],
+          "properties": {
+            "battleId": { "$ref": "#/$defs/stringId" },
+            "attackerId": { "$ref": "#/$defs/stringId" },
+            "defenderId": { "$ref": "#/$defs/stringId" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "townVisited": {
+      "type": "object",
+      "description": "Adventure-map: a hero entered a town tile. Consumer: animation timeline (gate animation), sound system. Emitted as part of MOVE_HERO arrival or visit. See docs/architecture/event-schema.md#town_visited.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "TOWN_VISITED" },
+        "payload": {
+          "type": "object",
+          "required": ["townId", "heroId"],
+          "properties": {
+            "townId": { "$ref": "#/$defs/stringId" },
+            "heroId": { "$ref": "#/$defs/stringId" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "buildingBuilt": {
+      "type": "object",
+      "description": "Adventure-map: a town building completed construction. Consumer: animation timeline (build animation), sound system (construction). Emitted after BUILD_BUILDING succeeds. See docs/architecture/event-schema.md#building_built.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "BUILDING_BUILT" },
+        "payload": {
+          "type": "object",
+          "required": ["townId", "buildingId"],
+          "properties": {
+            "townId": { "$ref": "#/$defs/stringId" },
+            "buildingId": { "$ref": "#/$defs/stringId" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "heroLevelUp": {
+      "type": "object",
+      "description": "Adventure-map: a hero gained a level. Consumer: animation timeline (XP bar / primary-stat flash), sound system (level_up). Emitted after LEVEL_UP succeeds. See docs/architecture/event-schema.md#hero_level_up.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "HERO_LEVEL_UP" },
+        "payload": {
+          "type": "object",
+          "required": ["heroId", "newLevel"],
+          "properties": {
+            "heroId": { "$ref": "#/$defs/stringId" },
+            "newLevel": {
+              "type": "integer",
+              "minimum": 2
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "dayStart": {
+      "type": "object",
+      "description": "Calendar marker: the next strategic day began (hero MP restored, all-players notified). Consumer: animation timeline (banner), sound system. Emitted by END_DAY (advances calendar). See docs/architecture/event-schema.md#day_start.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "DAY_START" },
+        "payload": {
+          "type": "object",
+          "required": ["turn"],
+          "properties": {
+            "turn": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "dayEnd": {
+      "type": "object",
+      "description": "Calendar marker: the strategic day ended (daily resource income collected). Consumer: animation timeline, sound system (end_turn). Emitted by END_DAY before advancing to the next day. See docs/architecture/event-schema.md#day_end.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "DAY_END" },
+        "payload": {
+          "type": "object",
+          "required": ["turn"],
+          "properties": {
+            "turn": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "weekStart": {
+      "type": "object",
+      "description": "Calendar marker: a new week began (weekly unit growth + themed-week roll). Consumer: animation timeline, sound system. Emitted by END_DAY on day-7 rollover. See docs/architecture/event-schema.md#week_start.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "WEEK_START" },
+        "payload": {
+          "type": "object",
+          "required": ["week"],
+          "properties": {
+            "week": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "themedWeekId": { "$ref": "#/$defs/stringId" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

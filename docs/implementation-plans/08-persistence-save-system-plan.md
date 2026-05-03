@@ -546,6 +546,30 @@ contract above.
 
 ### Data Contracts
 
+#### Issue: Events are never serialized (cross-reference)
+
+**Source:** Cross-reference into the event-system plan
+([`11-event-system-plan.md`](./11-event-system-plan.md) § 3.C-2).
+
+**Rule:** Events are deterministic byproducts of replay, not state.
+Save records contain `(seed, content hashes, command log, state
+snapshot)` only — they MUST NOT contain any field whose key matches
+`events?` or `eventLog?`. Replays re-derive events from the command
+log; the per-battle `eventLog: Event[]` returned by
+`AUTO_RESOLVE_BATTLE` is one-shot UI-bound and never enters the save
+record. The runtime contract lives in
+[`docs/architecture/event-system.md` § 7 Save & Load](../architecture/event-system.md#7-save--load).
+
+**Files to Update:**
+- [tasks/mvp/08-persistence/02-log-only-save-format.md](../../tasks/mvp/08-persistence/02-log-only-save-format.md)
+  — add an acceptance criterion: "save record MUST NOT contain any
+  field whose key matches `events?` or `eventLog?`".
+
+**Complexity:** **S** (acceptance-criterion edit only; the runtime
+contract is owned by the event-system plan).
+
+---
+
 #### Issue: Byte-identical save guarantee is partial
 
 **Source:** Q151 (⚠ Partial); Missing Logic bullet 5.

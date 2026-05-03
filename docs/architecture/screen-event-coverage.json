@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "description": "Coverage map for ALL_CAPS event-shaped tokens found in docs/architecture/wiki/screens/*. Presentation-side bindings to the deterministic event log must either be declared in event.schema.json, mapped here to a canonical event kind, or marked out of scope with an owning backlog task. Prefix-listed tokens are presentation-only animation/audio cues that do not enter the deterministic event log. Pinned to docs/architecture/event-system.md and docs/architecture/event-schema.md.",
+  "eventAliases": {
+    "PLAY_DEATH_RATTLE": "UNIT_DIED",
+    "SHOW_DAMAGE_FLOAT": "UNIT_ATTACKED"
+  },
+  "localUiPrefixes": [
+    "ANIMATE_",
+    "PLAY_VFX_",
+    "SOUND_"
+  ],
+  "localUiTokens": [],
+  "outOfScope": {},
+  "coverage": {
+    "UNIT_MOVED": {
+      "screens": ["67-animation-debug-overlay"],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "UNIT_ATTACKED": {
+      "screens": ["67-animation-debug-overlay"],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "UNIT_DIED": {
+      "screens": ["67-animation-debug-overlay"],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "PROJECTILE_FIRED": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline"
+      ]
+    },
+    "SPELL_CAST": {
+      "screens": ["67-animation-debug-overlay"],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "MINE_CAPTURED": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "BATTLE_INITIATED": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "TOWN_VISITED": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "BUILDING_BUILT": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "HERO_LEVEL_UP": {
+      "screens": ["48-level-up-dialog"],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "DAY_START": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "DAY_END": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    },
+    "WEEK_START": {
+      "screens": [],
+      "consumerTasks": [
+        "mvp.06-renderer.07-event-log-animation-timeline",
+        "phase-3.04-polish.02-sound-system-event-log-driven"
+      ]
+    }
+  }
+}

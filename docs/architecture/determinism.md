@@ -201,6 +201,19 @@ A selector that consults the wall clock or local storage will
 diverge between M5 peers even when the state is identical, producing
 apparent UI desync invisible to the hash-based replay check.
 
+## Event-Log Re-entry Guard
+
+The dispatcher returns `events: Event[]` alongside the next state on
+every accepted command. Consumers (animation timeline, sound system)
+iterate the log read-only on their own clock; they MUST NOT call
+`dispatch` from inside log iteration. Chained gameplay behaviour
+(e.g. arrival → mine capture → battle) is modelled as a chain of
+**commands**, never as a chain of events, and is bounded by
+`MAX_COMMAND_CHAIN_DEPTH = 8` per outer command. The full contract,
+including retention, save/load, and error-isolation rules, lives in
+[`event-system.md`](./event-system.md). Replays re-derive events
+from the command log — events are never serialized into saves.
+
 ## Single-emit Per Input Gesture
 
 The reducer is synchronous; `requestAnimationFrame` and React
