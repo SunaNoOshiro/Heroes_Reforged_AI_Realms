@@ -1660,6 +1660,22 @@
         {
           "label": "12-network-chaos-harness.md",
           "link": "01-multiplayer/12-network-chaos-harness.md"
+        },
+        {
+          "label": "13-signaling-rate-limiting.md",
+          "link": "01-multiplayer/13-signaling-rate-limiting.md"
+        },
+        {
+          "label": "14-host-approval-and-moderation.md",
+          "link": "01-multiplayer/14-host-approval-and-moderation.md"
+        },
+        {
+          "label": "15-display-name-validation.md",
+          "link": "01-multiplayer/15-display-name-validation.md"
+        },
+        {
+          "label": "16-peer-keypair-and-denylist.md",
+          "link": "01-multiplayer/16-peer-keypair-and-denylist.md"
         }
       ]
     },
@@ -2856,7 +2872,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 344
+      "downstreamTransitiveCount": 347
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2918,7 +2934,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 342
+      "downstreamTransitiveCount": 345
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2975,7 +2991,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 223
+      "downstreamTransitiveCount": 226
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3031,7 +3047,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 254
+      "downstreamTransitiveCount": 257
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3178,7 +3194,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 212
+      "downstreamTransitiveCount": 215
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -4077,7 +4093,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 251
+      "downstreamTransitiveCount": 254
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4135,7 +4151,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 172
+      "downstreamTransitiveCount": 175
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4318,7 +4334,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 161
+      "downstreamTransitiveCount": 164
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4379,7 +4395,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 220
+      "downstreamTransitiveCount": 223
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4907,7 +4923,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 131
+      "downstreamTransitiveCount": 134
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -7573,7 +7589,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 164
+      "downstreamTransitiveCount": 167
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -7633,7 +7649,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 103
+      "downstreamTransitiveCount": 106
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -7689,7 +7705,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 144
+      "downstreamTransitiveCount": 147
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -7752,7 +7768,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 102
+      "downstreamTransitiveCount": 105
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -8349,7 +8365,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 77
+      "downstreamTransitiveCount": 80
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -8501,7 +8517,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 103
+      "downstreamTransitiveCount": 106
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -8636,7 +8652,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 138
+      "downstreamTransitiveCount": 141
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -8712,7 +8728,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 102
+      "downstreamTransitiveCount": 105
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -8775,7 +8791,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 92
+      "downstreamTransitiveCount": 95
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -8841,7 +8857,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 72
+      "downstreamTransitiveCount": 75
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -8907,7 +8923,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 74
+      "downstreamTransitiveCount": 77
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -8985,7 +9001,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 52
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -9040,7 +9056,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 50
+      "downstreamTransitiveCount": 53
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -13794,7 +13810,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 81
+      "downstreamTransitiveCount": 84
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -13856,7 +13872,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 62
+      "downstreamTransitiveCount": 65
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -14004,7 +14020,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -14071,7 +14087,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 49
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -14207,7 +14223,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 49
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -14270,7 +14286,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 53
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -14343,7 +14359,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 50
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -15017,7 +15033,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 49
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -15105,7 +15121,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -15168,7 +15184,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -15250,7 +15266,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -15324,7 +15340,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 41
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -15429,7 +15445,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 40
+      "downstreamTransitiveCount": 43
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -15499,7 +15515,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 41
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -15594,7 +15610,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -15677,7 +15693,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -15755,7 +15771,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 32
+      "downstreamTransitiveCount": 35
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -15826,7 +15842,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -28063,24 +28079,53 @@
       ],
       "outputs": [
         "`services/signaling/src/server.ts`",
-        "Messages: `CREATE_ROOM`, `JOIN_ROOM`, `JOIN_HANDSHAKE`, `JOIN_REJECTED`, `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `PEER_CONNECTED`, `PEER_DISCONNECTED`",
-        "Room ID: 6-character alphanumeric code",
-        "Room secret: 16 bytes, base64url-encoded — generated at `CREATE_ROOM`, embedded in invite URL fragment, rotated on empty-room",
-        "Server memory: only room → peer mapping (with secret); cleared when room is empty",
+        "Messages: `CREATE_ROOM`, `JOIN_ROOM`, `JOIN_HANDSHAKE`, `JOIN_REJECTED`, `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`, `KICK_PEER`, `PEER_KICKED`, `JOIN_ATTEMPT_REJECTED`, `CLOSE_ROOM`, `ROOM_EXPIRED`, `ROOM_CLOSED`, `RATE_LIMITED`, `PEER_CONNECTED`, `PEER_DISCONNECTED`",
+        "Room ID: 8-character upper-case Crockford-Base32 code per [`lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
+        "Room secret: 16 bytes, base64url-encoded — generated at `CREATE_ROOM`, embedded in invite URL fragment, rotated on empty-room (see [`multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake))",
+        "Server memory: only room → peer mapping (with secret), room cool-down table, rate-limit buckets, and the per-room `peerDenylist` keyed on peer public keys",
         "HTTP route: `GET /turn-credential` (issued by Task 10; this task reserves the route surface)",
-        "Deploy target: any stateless container (Fly.io, Railway) — TLS terminated at the edge"
+        "HTTP route: `GET /healthz` (returns aggregate rate-limit / active-room counters per [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md))",
+        "Deploy target: any stateless container (Fly.io, Railway) — TLS terminated at the edge Allowed Payloads:",
+        "The only payloads that traverse the signaling server are the protocol messages listed above. Pack hash, save hash, display names, chat content, and `typ host` / `typ srflx` ICE candidates destined for a pending peer MUST NOT traverse the signaling server. See [`signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md) for the canonical allow / deny list. Pre-Consent ICE Filtering:",
+        "ICE candidates destined for a peer that has not yet been approved by the host (see Task 10) are filtered down to `typ relay` candidates only. Post-`APPROVE_PEER`, the full candidate set flows. See [`ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md). Rate Limiting:",
+        "Per-IP, per-code, and global token-bucket throttles — full table in [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md).",
+        "On exceed, server replies `RATE_LIMITED { retryAfterMs }` and the client back-offs exponentially (1 s → 30 s).",
+        "Per-code failures emit a `JOIN_ATTEMPT_REJECTED { count, sinceMs }` notice to the host every 30 s when count > 0. Room Cleanup:",
+        "Idle TTL: 30 minutes since last protocol message → server emits `ROOM_EXPIRED { reason: \"idle\" }` and drops the room.",
+        "Max lifetime: 4 hours wall-clock since `CREATE_ROOM` → server emits `ROOM_EXPIRED { reason: \"max_lifetime\" }` and drops the room.",
+        "Host `CLOSE_ROOM` command: server emits `ROOM_CLOSED { reason: \"host_closed\" }`, drops the room, and MAY skip the 10-minute cool-down at the host's discretion.",
+        "Cool-down: 10 minutes after a code becomes free, before reuse. See [`lobby-identifiers.md` § 6](../../../docs/architecture/lobby-identifiers.md#6-reuse-policy-cool-down).",
+        "TTL sweep loop runs every 60 s. Logging:",
+        "Structured JSON to stdout per [`signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md).",
+        "Always logged: room creation/destruction, rate-limit triggers, `JOIN_ATTEMPT_REJECTED` counts, `ROOM_EXPIRED` reasons.",
+        "Never logged: display names, chat content, raw IPs, or any content hash."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
-        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)"
+        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)",
+        "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
+        "[`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)",
+        "[`docs/architecture/signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md)",
+        "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)",
+        "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)",
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)"
       ],
       "ownedPaths": [
-        "services/signaling/src/server.ts"
+        "services/signaling/src/server.ts",
+        "13-signaling-rate-limiting.md",
+        "services/signaling/rate-limit.ts",
+        "14-host-approval-and-moderation.md",
+        "services/signaling/approval.ts"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
       "ownedPathsOptOutReason": "",
-      "sharedOwnedPaths": [],
+      "sharedOwnedPaths": [
+        "13-signaling-rate-limiting.md",
+        "services/signaling/rate-limit.ts",
+        "14-host-approval-and-moderation.md",
+        "services/signaling/approval.ts"
+      ],
       "dependencies": [
         "module:mvp.10-heuristic-ai"
       ],
@@ -28089,9 +28134,20 @@
         "Server handles up to 100 concurrent rooms without memory leak",
         "Server restarts do not corrupt in-progress games (it's stateless — clients reconnect and re-handshake)",
         "**TLS mandate**: production + staging deploys serve `wss://`; `ws://` is rejected unless `host == \"localhost\"` (dev loop only).",
-        "**Room secret + handshake**: every `CREATE_ROOM` mints a 16-byte base64url secret. The first frame after WebSocket upgrade MUST be `JOIN_HANDSHAKE { roomId, peerId, secret, sigSchemaVersion }`; mismatches receive `JOIN_REJECTED { reason }` and the connection is dropped. Load-balancer health checks bypass the handshake.",
+        "**Room secret + handshake**: every `CREATE_ROOM` mints a 16-byte base64url secret. The first frame after WebSocket upgrade MUST be `JOIN_HANDSHAKE { roomId, peerId, peerPubKey, secret, sigSchemaVersion }`; mismatches receive `JOIN_REJECTED { reason }` and the connection is dropped. Load-balancer health checks bypass the handshake.",
         "**2-peer cap**: `MAX_PEERS_PER_ROOM = 2` enforced at handshake; a third `JOIN_HANDSHAKE` for the same room receives `JOIN_REJECTED { reason: \"room_full\" }`. N-peer mesh is M7 scope (see [`docs/architecture/glossary.md`](../../../docs/architecture/glossary.md)).",
-        "**HTTP `/turn-credential`** route reserved here (returns `501 not_implemented` until Task 10 wires the body). Network-Chaos Coverage:",
+        "**Room-code contract**: `CREATE_ROOM` mints an 8-character upper-case Crockford-Base32 code per [`lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md). Inbound codes are NFC-normalized + upper-cased before lookup. Up to 5 collision-retries; on the 5th, server replies `room.code.allocation_exhausted` (HTTP 503).",
+        "**Cool-down**: a freed code is unallocatable for 10 minutes; host-initiated `CLOSE_ROOM` MAY skip the cool-down.",
+        "**TTL sweep**: a room with no protocol message in 30 minutes is removed; a room older than 4 hours wall-clock is removed; both emit `ROOM_EXPIRED` to surviving peers.",
+        "**`CLOSE_ROOM`**: only the host's peerId may issue it; non-host peers receive `JOIN_REJECTED { reason: \"not_host\" }` (the same rejection envelope is reused for all host-only commands).",
+        "**Pre-consent ICE relay-only**: SDP `a=candidate:` lines that are not `typ relay` MUST be dropped from any `ICE_CANDIDATE` message destined for a peer that has not been `APPROVE_PEER`-ed by the host. Post-approval, the full candidate set is forwarded.",
+        "**Allowed-payload allowlist**: the server module references no display name, no chat payload, and no content hash. A grep gate on `services/signaling/` enforces this.",
+        "**Rate limiting**: a 1 000-RPS join flood from one IP triggers a 60 s ban; 5 wrong codes against the same room locks the code for 60 s and emits `JOIN_ATTEMPT_REJECTED` to the host.",
+        "**`JOIN_ATTEMPT_REJECTED`**: emitted as `{ count, sinceMs }` per host every 30 s when there has been at least one rejected join for that host's room since the last emission.",
+        "**HTTP `/turn-credential`** route reserved here (returns `501 not_implemented` until Task 10 wires the body).",
+        "**HTTP `/healthz`** returns `{ activeRooms, rateLimitTriggersLast60s }`.",
+        "**Determinism carve-out**: the implementation imports no PCG32 RNG and no `src/engine/rng/*` module. CSPRNG-only per [`determinism.md` § Signaling and lobby identifiers — CSPRNG mandate](../../../docs/architecture/determinism.md#signaling-and-lobby-identifiers--csprng-mandate).",
+        "**Shared-ownership split with Tasks 13 and 14**: this task is the **primary owner** of `services/signaling/src/server.ts`. Tasks 13 and 14 add **additive** call sites only (rate-limit hooks, pending-queue dispatch); they MUST NOT rewrite the request-handler entrypoint, the message-envelope shape, or the in-memory room-table layout owned by this task. Network-Chaos Coverage:",
         "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)) — the `signaling restart mid-match` failure-injection cell pins regression protection for this task."
       ],
       "verifyCommands": [
@@ -28121,8 +28177,8 @@
         "mvp.10-heuristic-ai.11-ai-bench-harness"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 16
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -28147,7 +28203,8 @@
         "TURN fallback: STUN-only attempt for 4 s; on ICE-gather timeout, Task 10 appends TURN URLs to `RTCConfiguration.iceServers`. Hook for the 4 s timeout lives here; the URL builder lives in `src/net/webrtc/ice-config.ts` (Task 10). Why this is risky: WebRTC connection setup has many failure modes (NAT traversal, ICE candidate race conditions, browser compatibility). Test on Chrome, Firefox, and Safari with different network topologies."
       ],
       "readFirst": [
-        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/peer-connection.ts"
@@ -28165,7 +28222,9 @@
         "Connection failure (ICE timeout) triggers clean fallback to signaling error state",
         "Works on Chrome 120+, Firefox 121+, Safari 17+",
         "`chat` DataChannel exists alongside `commands` and `heartbeat`; chat traffic does not appear in replay artifacts and chat backpressure does not delay command delivery (synthetic test: flood `chat` at 200 msg/s while running a 1000-command match — no command-channel timeouts).",
-        "ICE-gather timeout fires at 4 s when no host/srflx pair emerges; Task 10 wires the TURN-URL append on this signal. Network-Chaos Coverage:",
+        "ICE-gather timeout fires at 4 s when no host/srflx pair emerges; Task 10 wires the TURN-URL append on this signal.",
+        "**Pre-consent ICE policy = relay-only**. The host's `RTCPeerConnection` MUST be created with `iceTransportPolicy: 'relay'` while the joiner is pre-consent (i.e. before Task 14's `APPROVE_PEER` fires). On `APPROVE_PEER` the host renegotiates with the default policy and `createOffer({ iceRestart: true })`. Per [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md).",
+        "**mDNS expectation table**: the implementation does not depend on mDNS masking, but the per-browser behavior is documented for operators in [`ice-disclosure-policy.md` § 3](../../../docs/architecture/ice-disclosure-policy.md#3-mdns-expectation-matrix) (Chrome 120+, Firefox 121+, Safari 17+). Network-Chaos Coverage:",
         "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
       ],
       "verifyCommands": [
@@ -28186,7 +28245,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 15
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -28528,7 +28587,11 @@
       ],
       "outputs": [
         "`src/ui/components/MultiplayerLobby.tsx`",
-        "Create room → show invite link (copy button) + QR code (URL fragment carries the room secret per [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake))",
+        "Create room → show invite link (copy button) + QR code.",
+        "**URL shape**: `https://heroes.example/lobby#r=<code>&s=<secret>`. The room code per [`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md) and the room secret per [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake) both live in the URL **fragment**, never in the path or query string. The QR code encodes the full URL including the fragment.",
+        "**Response header**: the lobby page response sets `Referrer-Policy: no-referrer` so outbound links never leak the fragment via `Referer`.",
+        "**History scrub**: after the fragment is consumed, the client calls `history.replaceState(null, \"\", location.pathname)` to drop the code/secret from `location.hash` and from the in-session history entry.",
+        "**Clipboard warning**: the share dialog renders a one-line localized note (`ui.network-lobby.copy.clipboardWarning`) indicating the code may sync via OS clipboard surfaces.",
         "Join room → paste code or follow link → show \"Waiting for host…\"",
         "Connection status indicator (green/yellow/red) driven by the thresholds below",
         "\"Disconnected\" banner when peer drops, with reconnect timer Stall Thresholds: The status-indicator state machine reads `INPUT_DELAY_BUDGETS` from `src/net/webrtc/constants.ts` (Task 3): | Elapsed since expected response | Indicator | UI | | --- | --- | --- | | 0 – 2 s | green | normal | | 2 – 10 s | yellow | \"your turn\" badge swaps to \"waiting on opponent\" | | 10 – 30 s | red | overlay with last-seen turn | | 30 s+ | red | overlay reveals \"wait\" / \"request resync\" buttons | | 120 s+ | red | overlay reveals \"forfeit\" button (cross-links Task 6) | The same thresholds drive the lockstep `STALLED_PEER` UX (Task 3 pending-queue overflow surfaces the same overlay as the 30 s wait threshold)."
@@ -28562,7 +28625,12 @@
         "Connection indicator updates in real time",
         "Disconnection banner shows within 7 seconds of peer dropping",
         "Artificial 12 s pause after expected opponent response: overlay appears with \"waiting on opponent\" copy and the last-seen turn",
-        "Artificial 35 s pause: overlay reveals \"wait\" / \"request resync\" buttons Network-Chaos Coverage:",
+        "Artificial 35 s pause: overlay reveals \"wait\" / \"request resync\" buttons",
+        "**Invite-URL fragment**: the generated invite URL places the room code and secret in the URL fragment (`#r=<code>&s=<secret>`), never in the path or query.",
+        "**Referrer hygiene**: the lobby page response sets `Referrer-Policy: no-referrer`. A test asserts the header is present on a real fetch.",
+        "**History scrub**: opening the lobby with `#r=...&s=...`, joining the room, and asserting `location.hash === \"\"` and the history entry has been replaced (no growth in `history.length`).",
+        "**Clipboard warning copy**: the share dialog renders the localized warning via `ui.network-lobby.copy.clipboardWarning`.",
+        "**QR encoding**: the QR code encodes the full URL (fragment included). QR is not subject to `Referer` hygiene; this is the documented divergence from the URL fragment rule. Network-Chaos Coverage:",
         "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)) — the stall-threshold UI states are asserted on every cell with a non-zero RTT or packet-loss value.",
         "Layout, bindings, and commands match `docs/architecture/wiki/screens/62-multiplayer-setup/mockup.html`, `docs/architecture/wiki/screens/62-multiplayer-setup/interactions.md`, and `docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md`.",
         "Layout, bindings, and commands match `docs/architecture/wiki/screens/64-network-lobby/mockup.html`, `docs/architecture/wiki/screens/64-network-lobby/interactions.md`, and `docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`.",
@@ -28604,8 +28672,8 @@
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "phase-3.01-multiplayer.09-snapshot-resync-fallback",
@@ -28918,6 +28986,325 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.13-signaling-rate-limiting",
+      "kind": "task",
+      "status": "planned",
+      "title": "Signaling Rate Limiting",
+      "path": "tasks/phase-3/01-multiplayer/13-signaling-rate-limiting.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Three-tier token-bucket throttle for the M5 signaling server: per-IP `JOIN_ROOM`, per-IP `CREATE_ROOM`, per-code failed `JOIN_ROOM`, plus a global rolling-window failure counter. Closes Q303 / Q308 / Q310-Q312 enumeration and squat risks.",
+      "inputs": [
+        "Node.js 20 wall-clock (`Date.now()` is permitted in the signaling server per [`determinism.md` § Wall-clock readers](../../../docs/architecture/determinism.md#wall-clock-readers))",
+        "Canonical room-code form from Task 01"
+      ],
+      "outputs": [
+        "`services/signaling/rate-limit.ts` — `TokenBucket` class, `RateLimiter` aggregator with three tier methods (`checkJoinRoom`, `checkCreateRoom`, `checkPerCode`), and the `RATE_LIMITED` reply builder.",
+        "`services/signaling/__tests__/rate-limit.test.ts` — bucket refill, burst, eviction, and tier-interaction tests.",
+        "`services/signaling/__tests__/rate-limit.integration.test.ts` — integration test exercising the bucket through a fake request handler."
+      ],
+      "readFirst": [
+        "[`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)",
+        "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
+        "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)"
+      ],
+      "ownedPaths": [
+        "services/signaling/rate-limit.ts",
+        "services/signaling/__tests__/rate-limit.test.ts",
+        "services/signaling/__tests__/rate-limit.integration.test.ts",
+        "services/signaling/src/server.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/src/server.ts"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "acceptanceCriteria": [
+        "All four buckets in [`signaling-rate-limits.md` § 1](../../../docs/architecture/signaling-rate-limits.md#1-bucket-table) enforce the documented refill / burst / action.",
+        "1 000-RPS join flood from one IP triggers a 60 s ban; the next message from that IP receives `RATE_LIMITED { tier: \"per_ip\", retryAfterMs }`.",
+        "5 wrong codes against the same room locks the code for 60 s; the host receives `JOIN_ATTEMPT_REJECTED { count, sinceMs }`.",
+        "Global rolling-window counter at ≥ 200 / minute enters accept-only-known-IPs mode for 5 minutes; the `/healthz` route reports `globalFloodMode: true`.",
+        "Bucket map evicts entries after 10 minutes of inactivity; a 10 000-distinct-IP soak test does not retain entries beyond the cap.",
+        "`RATE_LIMITED` reply payload matches [`signaling-rate-limits.md` § 3](../../../docs/architecture/signaling-rate-limits.md#3-rate_limited-reply).",
+        "The IP key is sha256-truncated per [`signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md); no raw IP is held in the bucket map.",
+        "The implementation imports no PCG32 RNG; refill is a pure `(now - lastRefillMs) * rate` calculation.",
+        "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The rate-limit wiring is **additive**: it MUST NOT rewrite Task 01's request-handler entrypoint, the message envelope, or the room-table shape; new call sites slot in alongside existing handlers."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.14-host-approval-and-moderation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Host Approval & Moderation",
+      "path": "tasks/phase-3/01-multiplayer/14-host-approval-and-moderation.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Insert a pending-peer queue between `JOIN_ROOM` and ICE-candidate forwarding. Adds host approval (`APPROVE_PEER` / `REJECT_PEER`), kick (`KICK_PEER`), per-room peer denylist, and the lobby UI modal that surfaces pending peers. Closes Q317 / Q318 / Q320 / Q332 and the missing-moderation-primitives risk.",
+      "inputs": [
+        "`peerPubKey` from Task 16 (peer keypair)",
+        "ICE filter contract from [`ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)"
+      ],
+      "outputs": [
+        "`services/signaling/approval.ts` — pending-peer queue, `APPROVE_PEER` / `REJECT_PEER` / `KICK_PEER` handlers, `typ relay`-only ICE filter, 30 s pending-timeout sweeper.",
+        "`src/ui/network-lobby/PendingPeerModal.tsx` — host-side modal with approve / reject / details affordances; per-row kick / mute / report dots-menu in the slot list.",
+        "`services/signaling/__tests__/approval.test.ts` — buffered ICE exchange, denylist key match, 30 s timeout, `typ host`/`typ srflx` drop.",
+        "New protocol messages on Task 01: `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`, `KICK_PEER`, `PEER_KICKED`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
+        "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)",
+        "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`](../../../docs/architecture/wiki/screens/64-network-lobby/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/architecture.md`](../../../docs/architecture/wiki/screens/64-network-lobby/architecture.md)"
+      ],
+      "ownedPaths": [
+        "services/signaling/approval.ts",
+        "src/ui/network-lobby/PendingPeerModal.tsx",
+        "services/signaling/__tests__/approval.test.ts",
+        "services/signaling/src/server.ts",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/src/server.ts",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "acceptanceCriteria": [
+        "Pending-peer queue: a `JOIN_ROOM` from a non-host peer is held in a per-room queue until the host emits `APPROVE_PEER` or `REJECT_PEER`. Multiple simultaneous pending peers are queued in arrival order.",
+        "`PEER_PENDING { peerPubKey, displayNameDraft, joinNonceMs }` is forwarded to the host on every queue arrival.",
+        "`APPROVE_PEER` and `REJECT_PEER` are accepted only from the room's host peer; non-host invocations receive `JOIN_REJECTED { reason: \"not_host\" }`.",
+        "30 s pending timeout: an unanswered `PEER_PENDING` auto-rejects with `PEER_REJECTED { reason: \"timeout\" }`.",
+        "`KICK_PEER`: the host emits it on an approved peer; the signaling server emits `PEER_KICKED` to the kicked peer, drops the WebSocket, and adds the peer's `peerPubKey` to `peerDenylist[]`. Subsequent `JOIN_ROOM` from the same key receives `PEER_REJECTED { reason: \"denied\" }` immediately.",
+        "A kicked peer that mints a fresh display name with the **same keypair** still cannot rejoin (denylist keys on `peerPubKey`, not on the name).",
+        "ICE filter: an `ICE_CANDIDATE` payload destined for a pending peer has every non-`typ relay` candidate stripped. A capture of the pending-peer SDP exchange asserts no `typ host` / `typ srflx` candidate appears. Post-`APPROVE_PEER`, the full candidate set flows after `iceRestart`.",
+        "The pending-peer modal surfaces the joiner's display name draft, `peerPubKey` short fingerprint, and approve / reject buttons. Approve and reject dispatch the matching server command and clear the modal.",
+        "**Shared-ownership splits**:",
+        "Task 01 is the **primary owner** of `services/signaling/src/server.ts`. This task's contribution is **additive**: it MUST NOT rewrite the request-handler entrypoint, the room-table layout, or the message envelope; only the pending-queue dispatch and ICE filter call sites are added.",
+        "Task 08 is the **primary owner** of `src/ui/components/MultiplayerLobby.tsx`. This task's contribution is **additive**: it MUST NOT rewrite the slot list, ready-state seal, or chat panel layout owned by Task 08; only the pending-peer modal mount point and the per-row dots-menu are added.",
+        "**Screen package coverage**: this task implements the network-lobby moderation surface defined in [`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md) and [`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md). The PendingPeerModal mount point and per-row dots-menu match the screen-package contract; mockup geometry, bindings, and commands are not invented locally."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.15-display-name-validation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Display-Name Validation",
+      "path": "tasks/phase-3/01-multiplayer/15-display-name-validation.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Pure validator for any human-entered `displayName` field that crosses an M5 lobby surface (multiplayer setup, lobby chat, in-game chat). NFC normalization, grapheme-cluster length bounds, category rejection, reserved-name list, UTS #39 confusable collision detection.",
+      "inputs": [
+        "`Intl.Segmenter` for grapheme-cluster counting",
+        "`unicode-confusables` package (UTS #39 data); pinned version per [`docs/architecture/dependency-policy.md`](../../../docs/architecture/dependency-policy.md)"
+      ],
+      "outputs": [
+        "`src/profile/displayName.ts` — `validateDisplayName(input, { existingNames }): ValidationOutcome`. Pure; no I/O, no clock, no random.",
+        "Unit tests under `src/profile/__tests__/displayName.test.ts` exercising every test vector in [`display-name-policy.md` § 8](../../../docs/architecture/display-name-policy.md#8-test-vectors)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/display-name-policy.md`](../../../docs/architecture/display-name-policy.md)",
+        "[`docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md`](../../../docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`](../../../docs/architecture/wiki/screens/64-network-lobby/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "src/profile/displayName.ts",
+        "08-multiplayer-ui-lobby-invite-link-in-game-status.md",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "08-multiplayer-ui-lobby-invite-link-in-game-status.md",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "Every test vector in [`display-name-policy.md` § 8](../../../docs/architecture/display-name-policy.md#8-test-vectors) passes — including the fullwidth `Ｈｏｓｔ` NFKC case and the Cyrillic-А confusable case.",
+        "`validateDisplayName(input, { existingNames: [...] })` returns one of `{ ok: true, value }` or `{ ok: false, reason }` where `reason` is one of the stable strings in [`display-name-policy.md` § 7](../../../docs/architecture/display-name-policy.md#7-rejection-reasons).",
+        "The validator is a **pure function**; the unit-test suite asserts no `Math.random()`, `Date.now()`, async, or I/O is invoked during validation.",
+        "Length bound is **grapheme clusters**, not codepoints — the test suite includes `👨‍👩‍👧‍👦` (one grapheme cluster, multiple codepoints).",
+        "Confusable check uses the same skeleton table on Chrome, Firefox, and Safari (Playwright cross-engine job).",
+        "Multiplayer-setup form and lobby-chat send path both invoke the validator before dispatching `CREATE_ROOM`, `JOIN_ROOM`, or `SEND_LOBBY_CHAT`. Rejected input renders the localized error inline; no command is dispatched.",
+        "**Screen package coverage**: validation call sites match the bindings declared in [`docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md`](../../../docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md) and [`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`](../../../docs/architecture/wiki/screens/64-network-lobby/data-contracts.md); no validator is invoked outside those packages.",
+        "**Shared-ownership split with Task 08**: Task 08 is the **primary owner** of `src/ui/components/MultiplayerLobby.tsx`. This task's contribution is **additive**: it MUST NOT rewrite the existing form layout, slot list, or chat panel; only the validator-call site is added."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/62-multiplayer-setup",
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
+      "kind": "task",
+      "status": "planned",
+      "title": "Peer Keypair & Denylist",
+      "path": "tasks/phase-3/01-multiplayer/16-peer-keypair-and-denylist.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Mint and persist a per-profile Ed25519 peer keypair, sign `JOIN_ROOM` payloads with it, and key the per-room host-side denylist on the public key half. Closes Q332 (peer identity model) and unblocks Task 10's host approval / kick flow.",
+      "inputs": [
+        "WebCrypto Ed25519 (Chrome 120+, Firefox 121+, Safari 17+)",
+        "Profile storage layer (IndexedDB)",
+        "`JOIN_ROOM` envelope shape from [`peer-identity.md` § 6](../../../docs/architecture/peer-identity.md#6-join_room-envelope)"
+      ],
+      "outputs": [
+        "`src/profile/peerKeypair.ts` — `mintPeerKeypair()`, `loadPeerKeypair()`, `signJoinRoom(payload, key)`, `verifyJoinRoom(payload, pubKey, sig)`.",
+        "`src/multiplayer/peerDenylist.ts` — `PeerDenylist` class: `add(entry)`, `has(pubKey)`, `clear()`, `entries()`.",
+        "Unit tests under `src/profile/__tests__/peerKeypair.test.ts` and `src/multiplayer/__tests__/peerDenylist.test.ts`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
+        "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
+        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)"
+      ],
+      "ownedPaths": [
+        "src/profile/peerKeypair.ts",
+        "src/multiplayer/peerDenylist.ts",
+        "services/signaling/src/server.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/src/server.ts"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "acceptanceCriteria": [
+        "`mintPeerKeypair()` returns a fresh Ed25519 keypair via WebCrypto; the private key never enters logs, telemetry, or any structured payload outside IndexedDB.",
+        "`loadPeerKeypair()` lazily generates a keypair on first profile load and persists it in IndexedDB under `profile.peerKeypair`; subsequent loads return the same key.",
+        "`signJoinRoom({ roomId, roomSecret, peerPubKey, joinNonceMs }, key)` returns a base64url Ed25519 signature; `verifyJoinRoom` returns `false` for a tampered envelope.",
+        "`PeerDenylist.add(entry)` is **additive** — adding the same public key twice does not rewrite the existing entry; the first `bannedAtMs` wins. The class **must not** rewrite Task 01's in-memory room state shape; Task 01 is the **primary owner** of the room table and consumes a `PeerDenylist` reference by composition.",
+        "`PeerDenylist.has(pubKey)` returns true after `add` and false after `clear`.",
+        "A kicked peer (re-emitting the same `peerPubKey`) is rejected by the signaling server before any ICE candidate exchange — no TURN-relay candidate flows after the second join attempt.",
+        "A kicked peer that mints a fresh display name **with the same keypair** still cannot rejoin — the denylist keys on the public key, not on the name.",
+        "Cross-environment test: the same `(privateKey, payload)` pair produces a signature accepted by `verifyJoinRoom` on Chrome, Firefox, and Safari (Playwright cross-engine job).",
+        "The peer keypair surface contains no PCG32 / `Math.random()` / `Date.now()` reads inside any deterministic-engine path; only WebCrypto + IndexedDB."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "phase-3.02-ai-generation.00-generation-io-schemas",
@@ -30968,7 +31355,11 @@
         "phase-3.01-multiplayer.09-snapshot-resync-fallback",
         "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
         "phase-3.01-multiplayer.11-network-chaos-test-matrix",
-        "phase-3.01-multiplayer.12-network-chaos-harness"
+        "phase-3.01-multiplayer.12-network-chaos-harness",
+        "phase-3.01-multiplayer.13-signaling-rate-limiting",
+        "phase-3.01-multiplayer.14-host-approval-and-moderation",
+        "phase-3.01-multiplayer.15-display-name-validation",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,

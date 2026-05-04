@@ -74,9 +74,44 @@ flowchart LR
   Current --> T1["62-multiplayer-setup"]
 ```
 
+## Pending-Peer Flow
+```mermaid
+sequenceDiagram
+  participant Joiner
+  participant Signaling
+  participant Host as Host (this screen)
+  Joiner->>Signaling: JOIN_ROOM { peerPubKey, sig }
+  Signaling->>Host: PEER_PENDING { peerPubKey, displayNameDraft }
+  Note over Signaling,Host: ICE candidates from Joiner are buffered;<br/>only typ relay flows pre-consent
+  Host->>Signaling: APPROVE_PEER | REJECT_PEER
+  alt approved
+    Signaling-->>Joiner: PEER_CONNECTED
+    Note over Host,Joiner: Host renegotiates with iceRestart;<br/>full ICE candidate set flows
+  else rejected
+    Signaling-->>Joiner: PEER_REJECTED { reason }
+  else timeout (30 s)
+    Signaling-->>Joiner: PEER_REJECTED { reason: "timeout" }
+  end
+```
+
+## Moderation Flow
+```mermaid
+flowchart TD
+  M0["Host opens slot dots-menu"] --> M1{action}
+  M1 -- kick --> M2["KICK_PEER"]
+  M1 -- mute --> M3["MUTE_PEER (local)"]
+  M1 -- report --> M4["REPORT_PEER (local audit)"]
+  M2 --> M5["peerDenylist += peerPubKey"]
+  M5 --> M6["PEER_KICKED → joiner; WS dropped"]
+```
+
 ## State Inputs
 - sessionId -> state.net.sessionId
 - players -> state.net.lobby.players
+- pendingPeers -> state.net.lobby.pendingPeers
+- peerApproval -> state.net.lobby.peerApproval
+- peerDenylist -> state.net.lobby.peerDenylist
+- joinAttemptToast -> state.net.lobby.joinAttemptToast
 - chatMessages -> state.net.lobby.chat
 - compatibility -> selectors.net.lobbyCompatibility
 - launchGuard -> selectors.net.canLaunchSession

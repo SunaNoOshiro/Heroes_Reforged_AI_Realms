@@ -83,6 +83,17 @@
     "SEND_LOBBY_CHAT": "phase-3.01-multiplayer owns lobby chat transport.",
     "SET_LOBBY_READY": "phase-3.01-multiplayer owns lobby readiness state.",
     "SET_MULTIPLAYER_CONNECTION_TYPE": "phase-3.01-multiplayer owns multiplayer connection setup.",
+    "APPROVE_PEER": "phase-3.01-multiplayer.14-host-approval-and-moderation owns the host approval gate per docs/architecture/peer-identity.md.",
+    "REJECT_PEER": "phase-3.01-multiplayer.14-host-approval-and-moderation owns the host rejection gate per docs/architecture/peer-identity.md.",
+    "KICK_PEER": "phase-3.01-multiplayer.14-host-approval-and-moderation owns the host-side kick + denylist append per docs/architecture/peer-identity.md.",
+    "MUTE_PEER": "phase-3.01-multiplayer.14-host-approval-and-moderation owns the local-only chat suppression command per the docs/architecture/wiki/screens/64-network-lobby/ interactions table.",
+    "REPORT_PEER": "phase-3.01-multiplayer.14-host-approval-and-moderation owns the local audit-log writer per docs/architecture/signaling-audit-log.md § 7.",
+    "CLOSE_ROOM": "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby owns the host-initiated room close command per docs/architecture/lobby-identifiers.md § 7.",
+    "PEER_PENDING": "Signaling server-to-host event surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.14-host-approval-and-moderation.",
+    "PEER_REJECTED": "Signaling server-to-joiner event surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.14-host-approval-and-moderation.",
+    "PEER_KICKED": "Signaling server-to-joiner event surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.14-host-approval-and-moderation.",
+    "JOIN_ATTEMPT_REJECTED": "Signaling server-to-host aggregated rejection event surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.13-signaling-rate-limiting.",
+    "ROOM_CLOSED": "Signaling server-to-all event on host CLOSE_ROOM surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby.",
     "START_CAMPAIGN_MISSION": "phase-2.08-meta-systems.02-campaign-runner owns campaign mission launch."
   }
 }

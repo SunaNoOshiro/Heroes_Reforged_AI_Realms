@@ -22,17 +22,40 @@
 | UI Element | Selector | Notes |
 | --- | --- | --- |
 | `sessionId` | `state.net.sessionId` | Network session identifier. |
-| `players` | `state.net.lobby.players` | Connected players and slot assignment. |
-| `chatMessages` | `state.net.lobby.chat` | Lobby chat log. |
+| `players` | `state.net.lobby.players` | Connected players and slot assignment. Each row carries `peerPubKey` per [`docs/architecture/peer-identity.md`](../../../peer-identity.md). |
+| `pendingPeers` | `state.net.lobby.pendingPeers` | Pending-peer queue surfaced from `PEER_PENDING`; entries `{ peerPubKey, displayNameDraft, joinNonceMs }`. |
+| `peerApproval` | `state.net.lobby.peerApproval` | Host-side approval modal binding (open / closed / approving / rejecting). |
+| `peerDenylist` | `state.net.lobby.peerDenylist` | Per-room denylist; entries `{ peerPubKey, reason, bannedAtMs }` per [`docs/architecture/peer-identity.md` § 3](../../../peer-identity.md#3-peerdenylist-shape). |
+| `joinAttemptToast` | `state.net.lobby.joinAttemptToast` | Aggregated rejected-attempt counter; surfaces the toast at thresholds 1, 5, 20. |
+| `chatMessages` | `state.net.lobby.chat` | Lobby chat log. Display-name validation per [`docs/architecture/display-name-policy.md`](../../../display-name-policy.md). |
 | `compatibility` | `selectors.net.lobbyCompatibility` | Hash/version/ruleset match result. |
 | `launchGuard` | `selectors.net.canLaunchSession` | All ready and compatible. |
+
+### Display Name Validation
+- Every `displayName` and `displayNameDraft` field on this screen MUST be validated through `validateDisplayName(...)` per [`docs/architecture/display-name-policy.md`](../../../display-name-policy.md). NFC normalization, 1–24 grapheme cluster bound, category rejection (Cf, Cc, Co, zero-width, bidi overrides), reserved-name list, UTS #39 confusable collision check.
+- The signaling server **never** sees a display name (per [`docs/architecture/signaling-payload-policy.md`](../../../signaling-payload-policy.md)); names are exchanged over the WebRTC DataChannel after host approval.
 
 ### Commands And Events
 - `SET_LOBBY_READY` from `network.ready`: Sends ready state to host/session.
 - `SEND_LOBBY_CHAT` from `network.chat`: Sends chat message.
 - `REQUEST_LOBBY_SLOT_CHANGE` from `network.slot`: Requests color/team/control slot change.
+- `APPROVE_PEER` from `network.approvePeer`: Host approves a pending peer; clears the `PEER_PENDING` envelope.
+- `REJECT_PEER` from `network.rejectPeer`: Host rejects a pending peer.
+- `KICK_PEER` from `network.kickPeer`: Host kicks an approved peer; appends `peerPubKey` to `peerDenylist[]`.
+- `MUTE_PEER` from `network.mutePeer`: Local-only; suppresses chat from a peer.
+- `REPORT_PEER` from `network.reportPeer`: Local audit-log write; no central server in M5.
+- `CLOSE_ROOM` from `network.closeRoom`: Host-initiated room close; signaling server emits `ROOM_CLOSED`.
 - `LAUNCH_NETWORK_GAME` from `network.launch`: Host starts deterministic session.
 - `LEAVE_NETWORK_LOBBY` from `network.leave`: Disconnects or leaves lobby.
+
+### Server-Side Notifications
+- `PEER_PENDING { peerPubKey, displayNameDraft, joinNonceMs }` — populates `pendingPeers`.
+- `PEER_REJECTED { reason }` — surfaces to the joiner that was rejected.
+- `PEER_KICKED { reason }` — surfaces to the kicked peer; client closes the lobby.
+- `JOIN_ATTEMPT_REJECTED { count, sinceMs }` — populates `joinAttemptToast`; emitted at most once per 30 s per host.
+- `ROOM_EXPIRED { reason: "idle" | "max_lifetime" }` — server-initiated TTL expiry; client routes back to `62-multiplayer-setup`.
+- `ROOM_CLOSED { reason: "host_closed" }` — host-initiated close; client routes back to `62-multiplayer-setup`.
+- `RATE_LIMITED { tier, retryAfterMs, reason }` — throttle reply per [`docs/architecture/signaling-rate-limits.md`](../../../signaling-rate-limits.md).
 
 ### Config Keys
 - `config.ui.locale`
@@ -47,6 +70,11 @@
 - `ui.network-lobby.actions.*`
 - `ui.network-lobby.status.*`
 - `ui.network-lobby.errors.*`
+- `ui.network-lobby.toast.joinAttemptRejected`
+- `ui.network-lobby.modal.pendingPeer.*`
+- `ui.network-lobby.dots.kick`
+- `ui.network-lobby.dots.mute`
+- `ui.network-lobby.dots.report`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs
@@ -59,6 +87,7 @@
 ### Save And Replay Fields
 - Persist reducer-approved gameplay state, setup records, content hashes, command inputs, and explicit draft records only when named by the owning system.
 - Do not persist hover, focus, tooltip, scroll, drag ghost, cursor blink, animation frame, or transient visual effects.
+- Do not persist the `peerDenylist`, `pendingPeers`, or `joinAttemptToast` slices — they are per-room ephemeral state and are dropped when the room expires or closes.
 - Replays use stable IDs and scalar command inputs, never raw paths, localized labels, rendered positions, or wall-clock timestamps.
 
 ### Validation And Fallback

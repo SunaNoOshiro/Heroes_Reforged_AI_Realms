@@ -9,6 +9,7 @@ Establish a direct peer-to-peer WebRTC connection between two players. Use two D
 
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
+- [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)
 
 Inputs:
 - Signaling server (Task 1)
@@ -46,6 +47,18 @@ Acceptance Criteria:
   command-channel timeouts).
 - ICE-gather timeout fires at 4 s when no host/srflx pair emerges;
   Task 10 wires the TURN-URL append on this signal.
+- **Pre-consent ICE policy = relay-only**. The host's
+  `RTCPeerConnection` MUST be created with
+  `iceTransportPolicy: 'relay'` while the joiner is pre-consent
+  (i.e. before Task 14's `APPROVE_PEER` fires). On `APPROVE_PEER`
+  the host renegotiates with the default policy and
+  `createOffer({ iceRestart: true })`. Per
+  [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md).
+- **mDNS expectation table**: the implementation does not depend
+  on mDNS masking, but the per-browser behavior is documented for
+  operators in
+  [`ice-disclosure-policy.md` § 3](../../../docs/architecture/ice-disclosure-policy.md#3-mdns-expectation-matrix)
+  (Chrome 120+, Firefox 121+, Safari 17+).
 
 Network-Chaos Coverage:
 - Exercised by the consolidated network-chaos test matrix

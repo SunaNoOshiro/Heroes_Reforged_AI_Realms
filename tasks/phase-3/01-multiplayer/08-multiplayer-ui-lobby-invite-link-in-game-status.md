@@ -27,8 +27,24 @@ Inputs:
 
 Outputs:
 - `src/ui/components/MultiplayerLobby.tsx`
-- Create room → show invite link (copy button) + QR code (URL fragment carries the room secret per
-  [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake))
+- Create room → show invite link (copy button) + QR code.
+  - **URL shape**: `https://heroes.example/lobby#r=<code>&s=<secret>`.
+    The room code per
+    [`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)
+    and the room secret per
+    [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake)
+    both live in the URL **fragment**, never in the path or query
+    string. The QR code encodes the full URL including the fragment.
+  - **Response header**: the lobby page response sets
+    `Referrer-Policy: no-referrer` so outbound links never leak the
+    fragment via `Referer`.
+  - **History scrub**: after the fragment is consumed, the client
+    calls `history.replaceState(null, "", location.pathname)` to
+    drop the code/secret from `location.hash` and from the
+    in-session history entry.
+  - **Clipboard warning**: the share dialog renders a one-line
+    localized note (`ui.network-lobby.copy.clipboardWarning`)
+    indicating the code may sync via OS clipboard surfaces.
 - Join room → paste code or follow link → show "Waiting for host…"
 - Connection status indicator (green/yellow/red) driven by the
   thresholds below
@@ -65,6 +81,20 @@ Acceptance Criteria:
   appears with "waiting on opponent" copy and the last-seen turn
 - Artificial 35 s pause: overlay reveals "wait" / "request resync"
   buttons
+- **Invite-URL fragment**: the generated invite URL places the
+  room code and secret in the URL fragment
+  (`#r=<code>&s=<secret>`), never in the path or query.
+- **Referrer hygiene**: the lobby page response sets
+  `Referrer-Policy: no-referrer`. A test asserts the header is
+  present on a real fetch.
+- **History scrub**: opening the lobby with `#r=...&s=...`,
+  joining the room, and asserting `location.hash === ""` and the
+  history entry has been replaced (no growth in `history.length`).
+- **Clipboard warning copy**: the share dialog renders the
+  localized warning via `ui.network-lobby.copy.clipboardWarning`.
+- **QR encoding**: the QR code encodes the full URL (fragment
+  included). QR is not subject to `Referer` hygiene; this is the
+  documented divergence from the URL fragment rule.
 
 Network-Chaos Coverage:
 - Exercised by the consolidated network-chaos test matrix

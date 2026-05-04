@@ -55,6 +55,16 @@ The engine must provide these, in this order:
   been validated. See
   [`ai-generation-pipeline.md` § Determinism boundary`](./ai-generation-pipeline.md#determinism-boundary).
 
+### Signaling and lobby identifiers — CSPRNG mandate
+
+Signaling-server room codes, room secrets, and any other
+lobby-identifier surface MUST use a cryptographically-secure RNG
+(`crypto.randomBytes` server-side). The deterministic engine PRNG
+(PCG32) is forbidden in `services/signaling/`. Lobby identifiers do
+not enter `state.*` and are therefore outside the determinism
+contract; they are governed by
+[`lobby-identifiers.md`](./lobby-identifiers.md).
+
 ## AI Compute Budget
 
 The AI search budget is part of the determinism contract. Two

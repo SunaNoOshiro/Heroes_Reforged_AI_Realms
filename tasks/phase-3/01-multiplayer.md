@@ -14,7 +14,13 @@ P2P multiplayer. Two players on different machines complete a real match using W
   [Task 1](./01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)).
 - **Spectators are M7 scope, not M5.** Preliminary contract sketched
   in [`docs/architecture/glossary.md`](../../docs/architecture/glossary.md);
-  no screen package, command, or DataChannel ships in M5.
+  no screen package, command, or DataChannel ships in M5. The
+  deferral is registered as
+  [`DEF-002`](../../docs/planning/deferred.md). The
+  [`network-lobby`](../../docs/architecture/wiki/screens/64-network-lobby/spec.md)
+  screen package mirrors this rule; do not add spectator slots,
+  observer roles, or "watch the match" affordances to that screen
+  until a future plan closes `DEF-002`.
 - **In-game chat ships in M5** on a dedicated `chat` DataChannel
   (Task 2); screen package
   [`docs/architecture/wiki/screens/65-in-game-chat/`](../../docs/architecture/wiki/screens/)
@@ -52,6 +58,14 @@ contract live in [`docs/architecture/multiplayer-security.md`](../../docs/archit
   🧠⚠️ Task 11: Network-chaos test matrix (~6h)
 - [12-network-chaos-harness.md](01-multiplayer/12-network-chaos-harness.md)
   🧠⚠️ Task 12: Network-chaos harness — NetSim transport (~6h)
+- [13-signaling-rate-limiting.md](01-multiplayer/13-signaling-rate-limiting.md)
+  🤖 Task 13: Signaling rate limiting — per-IP / per-code / global (~4h)
+- [14-host-approval-and-moderation.md](01-multiplayer/14-host-approval-and-moderation.md)
+  🤖 Task 14: Host approval & moderation — pending queue + denylist (~6h)
+- [15-display-name-validation.md](01-multiplayer/15-display-name-validation.md)
+  🤖 Task 15: Display-name validation — NFC + reserved + confusable (~4h)
+- [16-peer-keypair-and-denylist.md](01-multiplayer/16-peer-keypair-and-denylist.md)
+  🤖 Task 16: Peer Ed25519 keypair + per-room denylist (~4h)
 
 ## Chaos Test Contract
 

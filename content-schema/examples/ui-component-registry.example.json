@@ -1453,6 +1453,14 @@
       ]
     },
     {
+      "componentId": "HostCloseRoomButton",
+      "module": "src/ui/network-lobby/host-close-room-button.tsx",
+      "exportName": "HostCloseRoomButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "HostJoinButtons",
       "module": "src/ui/components/host-join-buttons.tsx",
       "exportName": "HostJoinButtons",
@@ -1512,6 +1520,14 @@
       "componentId": "InvalidTargetMarkers",
       "module": "src/ui/components/invalid-target-markers.tsx",
       "exportName": "InvalidTargetMarkers",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "JoinAttemptToast",
+      "module": "src/ui/network-lobby/join-attempt-toast.tsx",
+      "exportName": "JoinAttemptToast",
       "tags": [
         "ui"
       ]
@@ -2045,6 +2061,14 @@
       ]
     },
     {
+      "componentId": "PendingPeerModal",
+      "module": "src/ui/network-lobby/pending-peer-modal.tsx",
+      "exportName": "PendingPeerModal",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
       "componentId": "PerSequenceCueList",
       "module": "src/ui/components/animation-debug/per-sequence-cue-list.tsx",
       "exportName": "PerSequenceCueList",
@@ -2122,6 +2146,14 @@
       "exportName": "PlayerSlotList",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "PlayerSlotRowDotsMenu",
+      "module": "src/ui/network-lobby/player-slot-row-dots-menu.tsx",
+      "exportName": "PlayerSlotRowDotsMenu",
+      "tags": [
+        "control"
       ]
     },
     {
