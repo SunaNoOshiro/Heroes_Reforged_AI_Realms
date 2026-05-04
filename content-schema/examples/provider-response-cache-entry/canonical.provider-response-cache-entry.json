@@ -1,0 +1,18 @@
+{
+  "$schema": "heroes-reforged/provider-response-cache-entry.schema.json",
+  "schemaVersion": 1,
+  "key": {
+    "promptHash": "abcdef0123456789abcdef0123456789",
+    "seed": "demo-emberwild-001",
+    "providerId": "example-provider",
+    "modelHint": "example-model-2026"
+  },
+  "payload": {
+    "kind": "faction",
+    "structured": {
+      "faction": { "id": "demo:faction:example", "name": "Example" }
+    }
+  },
+  "createdAt": "2026-05-01T10:00:00Z",
+  "lastReadAt": "2026-05-04T09:30:00Z"
+}

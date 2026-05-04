@@ -46,7 +46,7 @@
     },
     "seed": {
       "type": "string",
-      "description": "Deterministic seed passed to providers that support reproducible output.",
+      "description": "Best-effort reproducibility hint passed to providers that support seeded output. NOT a determinism guarantee — provider output may be non-deterministic regardless (temperature drift, model version rotation). Determinism in this pipeline begins at Stage 4 onward, once content is shape- and coherence-validated. See `docs/architecture/ai-generation-pipeline.md` § Determinism boundary.",
       "pattern": "^[a-zA-Z0-9_-]+$"
     },
     "providerHints": {

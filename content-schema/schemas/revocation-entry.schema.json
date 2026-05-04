@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/revocation-entry.schema.json",
+  "title": "Revocation Entry",
+  "description": "One row in the maintainer-signed revocation registry. Identifies a pack by `contentHash`, names the reason it was revoked, and records when. Replays referencing a revoked pack remain playable in a `revoked content present` mode (see `docs/architecture/revocation.md`), so old replays do not silently break.",
+  "type": "object",
+  "required": [
+    "contentHash",
+    "reasonCode",
+    "revokedAt",
+    "signature"
+  ],
+  "properties": {
+    "contentHash": {
+      "type": "string",
+      "description": "Hex digest of the canonical pack contents — same field shape as `manifest.contentHash`.",
+      "pattern": "^[a-f0-9]{16,128}$"
+    },
+    "reasonCode": {
+      "type": "string",
+      "description": "Stable namespaced reason id, e.g. `revocation.ip.likeness` or `revocation.safety.nsfw`.",
+      "minLength": 1
+    },
+    "revokedAt": {
+      "type": "string",
+      "description": "ISO-8601 timestamp at which the entry was added to the registry.",
+      "minLength": 1
+    },
+    "signature": {
+      "type": "object",
+      "required": ["scheme", "keyId", "value"],
+      "properties": {
+        "scheme": { "type": "string", "enum": ["ed25519"] },
+        "keyId":  { "type": "string", "minLength": 1 },
+        "value":  { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

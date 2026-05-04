@@ -26,11 +26,21 @@ Owned Paths:
 
 Dependencies:
 - phase-3.02-ai-generation.02-schema-validation-plus-coherence-check
+- phase-3.02-ai-generation.06b-image-moderation
 
 Acceptance Criteria:
 - Stub generates a distinct colored placeholder per unit (color derived from unit name hash)
 - Placeholder renders correctly in the unit card preview
 - Real API can be wired in by replacing one function without changing callers
+- The stub MUST NOT skip the
+  `ModerationProvider.moderateImage` hook even though placeholder
+  SVGs always pass; the hook is the integration seam for the real
+  imagegen path. See
+  [`06b-image-moderation.md`](./06b-image-moderation.md).
+- Future-work: when a real imagegen API is wired in, asset
+  normalization per
+  [`05b-asset-normalization.md`](./05b-asset-normalization.md) runs
+  between moderation (Stage 5.5) and pack materialize (Stage 6).
 
 Verify:
 - npm run validate

@@ -7,6 +7,19 @@ a running pipeline: which schemas cross each boundary, what validates
 at each step, and where a run can fail. The pipeline is
 provider-neutral — no vendor name appears in any record.
 
+## Determinism boundary
+
+`GenerationRequest.seed` is a **best-effort reproducibility hint** —
+not a determinism guarantee. Provider output may be non-deterministic
+even with the same seed (temperature drift, model version rotation),
+so callers must not depend on bit-identical re-runs from the provider
+call alone. **Determinism in this pipeline begins at Stage 4 onward,
+once content is shape- and coherence-validated.** Stages 4–6 are
+pure functions of their typed inputs; saves, replays, and multiplayer
+load `GeneratedFaction` records that have already crossed that
+boundary, so they remain reproducible. See
+[`determinism.md`](./determinism.md) for the engine-side contract.
+
 ## Stages
 
 ```
@@ -37,6 +50,16 @@ user prompt / theme
 │ 5. Auto-balance gate │   Wilson 95 % CI ∈ [35 %, 65 %]
 └──────────┬───────────┘
            │                   fail → return BalanceReport
+           ▼
+┌──────────────────────┐   ModerationProvider.moderateImage(asset)
+│ 5.5 Image moderation │   NSFW / IP-likeness / style conformance
+└──────────┬───────────┘   → ImageModerationReport
+           │                   fail → return ImageModerationReport
+           ▼
+┌──────────────────────┐   per-role dimension/palette/frame normalization
+│ 5.6 Asset normalize  │   (asset-normalization.md)
+└──────────┬───────────┘
+           │
            ▼
 ┌──────────────────────┐   writes faction pack on disk
 │ 6. Pack materialize  │   (manifest + records + assets/index.json)
@@ -83,6 +106,13 @@ Implemented via Zod (see
 Discriminated-union failures (unknown effect kind, cross-kind
 specialty fields) surface at this stage with human-readable paths.
 
+Shape validation also fails on numeric-cap violations from
+[`balance-constraints.schema.json`](../../content-schema/schemas/balance-constraints.schema.json)
+(HP, ATK, abilities-per-unit). The constraints schema is the single
+source of truth so any non-orchestrator producer of `GeneratedFaction`
+(community editor, hand-edited pack) is gated by the same numbers
+the orchestrator uses.
+
 ### 4. Coherence check
 
 Input: validated `GeneratedFaction`.
@@ -114,11 +144,51 @@ may accept or route to a stat optimizer for narrowing.
 This stage exists as a standalone task in
 [`tasks/phase-3/02-ai-generation/03-auto-balancer-headless-battle-baseline.md`](../../tasks/phase-3/02-ai-generation/03-auto-balancer-headless-battle-baseline.md).
 
+### 5.5 Image moderation
+
+Input: each AI-generated asset (sprite, portrait, building, ability
+icon).
+Output: an
+[`ImageModerationReport`](../../content-schema/schemas/image-moderation-report.schema.json)
+per asset, carrying three independent verdicts (NSFW,
+copyright/likeness, style conformance). A non-pass on any verdict
+blocks pack materialize. The provider-neutral
+`ModerationProvider.moderateImage(asset)` adapter is defined in
+[`ai-integration.md`](./ai-integration.md). Even Task 5's placeholder
+SVG path MUST call the hook so the integration seam never falls out
+of the pipeline.
+
+### 5.6 Asset normalize
+
+Input: moderated asset bytes.
+Output: dimension-, palette-, and frame-count-normalized assets
+ready for pack materialize. The four normalization rules
+(dimension, palette, frame counts, atlas binding) live in
+[`asset-normalization.md`](./asset-normalization.md). Normalization
+runs **after** moderation and **before** pack materialize so the
+renderer sees uniform sprite dimensions, per-faction palette
+consistency, and uniform inputs into the deterministic atlas
+packer (see [`pack-contract.md` § Atlas Generation`](./pack-contract.md#atlas-generation)).
+
 ### 6. Pack materialize
 
 Input: accepted `GeneratedFaction`.
 Output: faction pack directory with:
 - `manifest.json` declaring dependencies and `contentHash`
+- **Normalize before bind**: assets are written from the normalized
+  bytes produced at Stage 5.6 (see
+  [`asset-normalization.md`](./asset-normalization.md)) — the
+  materializer never accepts raw provider output without
+  normalization.
+- **Version pin**: `manifest.generation` carries the orchestrator
+  semver, prompt-template hash, and ruleset hash per
+  [`generation-config.schema.json`](../../content-schema/schemas/generation-config.schema.json).
+  Failure to populate fails Stage 6.
+- **Sandbox metadata**: `sandboxed: true` and
+  `sandboxedReason: "ai-generated"` are auto-set; the
+  sandbox-enforcement layer (see
+  [`pack-contract.md` § Sandbox enforcement`](./pack-contract.md#sandbox-enforcement))
+  reads both fields.
 - records under `units/`, `heroes/`, `buildings/`, `abilities/`
 - `assets/index.json` with placeholder asset bindings
 - raw per-frame PNGs under `sprites/<entityId>/<frame>.png`
@@ -140,13 +210,33 @@ deterministic UV sampling stable across pack origins.
 
 ## Failure modes
 
+Outer-loop retry behavior for shape, coherence, and balance failures
+is pinned in
+[`retry-policy.schema.json`](../../content-schema/schemas/retry-policy.schema.json)
+(canonical example
+[`retry-policy/canonical.retry-policy.json`](../../content-schema/examples/retry-policy/canonical.retry-policy.json)).
+Each policy entry carries `maxAttempts`, `onExhaust`
+(`fail` / `degrade` / `escalate-to-user`), and `backoff`. The
+optimizer's 10-iteration cap is the inner loop and is unchanged.
+
 | Stage | Failure | Response |
 |---|---|---|
-| 3 | Unknown effect `kind` | Return `ValidationReport`; do not retry; surface to user |
-| 4 | Unresolved ability ID | Return `CoherenceReport`; ask provider to regenerate with resolved IDs listed, or drop the referencing unit |
-| 4 | Stat outside corridor | Return `CoherenceReport`; optionally route to stat optimizer (task 02-ai-generation/04) |
-| 5 | CI below 35 % or above 65 % | Return `BalanceReport`; route to optimizer or reject |
-| 6 | `contentHash` collision with existing pack | Fail pack write; require rename |
+| 3 | Unknown effect `kind` | Return `ValidationReport`; consume `RetryPolicy.shape` (max 2 re-prompts with the validation report attached as a fix-this instruction); on exhaust, surface to user. |
+| 3 | Numeric cap violation (`balance-constraints.schema.json`) | Return `ValidationReport`; treated as shape failure under `RetryPolicy.shape`. |
+| 4 | Unresolved ability ID | Return `CoherenceReport`; consume `RetryPolicy.coherence` (max 1 re-prompt with resolved-ID hints); on exhaust, drop the referencing record (`onExhaust: degrade`). |
+| 4 | Stat outside corridor | Return `CoherenceReport`; optionally route to stat optimizer (task 02-ai-generation/04). |
+| 5 | CI below 35 % or above 65 % | Return `BalanceReport`; consume `RetryPolicy.balance` (no re-prompt); route to optimizer or reject. |
+| 5.5 | NSFW / IP-likeness / style verdict failure | Return `ImageModerationReport`; block pack materialize; surface per-verdict UI recovery. |
+| 6 | `contentHash` collision with existing pack | Fail pack write; require rename. |
+| 6 | Missing `manifest.generation` block | Fail Stage 6 (the version pin is mandatory at materialize time). |
+
+Provider transport-layer failures (timeout, rate-limit, auth,
+content-policy refusal) form a separate axis from the
+shape/coherence/balance classes above and are pinned in
+[`provider-failure.schema.json`](../../content-schema/schemas/provider-failure.schema.json);
+the four classes (`transport`, `auth`, `quota`, `content-policy`)
+each map to a distinct UI recovery action — see
+[`ai-integration.md`](./ai-integration.md).
 
 ## Gameplay vs Presentation Boundary
 
@@ -164,6 +254,27 @@ gameplay and must travel through the validated record path. Pixels
 that decorate those frames travel through the streamed asset path
 and obey the fallback chain in
 [`docs/architecture/edge-cases-policy.md` § 12](./edge-cases-policy.md#12-asset-load-failure-q215).
+
+## Lifecycle
+
+Provider-response caching, sandbox-pack disk quotas, GC, and
+ownership of the lifecycle layer (launcher vs generator UI) live in
+[`pack-lifecycle.md`](./pack-lifecycle.md). The four policies that
+file pins:
+
+1. **Provider-response cache** keyed by
+   `(promptHash, seed, providerId, modelHint)` with a 30-day TTL
+   and a "force regenerate" bypass exposed in the generator UI.
+2. **Disk-quota policy** for sandboxed packs (per-user soft / hard
+   cap, LRU-by-last-loaded eviction).
+3. **GC rule** invoked on launch and on the explicit "Manage AI
+   content" action.
+4. **Lifecycle ownership** — the launcher owns the cache and GC;
+   the generator UI owns the force-regenerate override.
+
+GC distinguishes AI-generated packs from user-edited packs by
+reading `manifest.sandboxedReason` (set to `"ai-generated"` at
+Stage 6).
 
 ## What the pipeline does not do
 

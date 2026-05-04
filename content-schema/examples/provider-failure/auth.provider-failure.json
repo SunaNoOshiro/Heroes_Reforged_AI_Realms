@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/provider-failure.schema.json",
+  "kind": "auth",
+  "providerId": "example-provider",
+  "message": "API key expired or invalid",
+  "reauthUrl": "https://example.invalid/reauth"
+}

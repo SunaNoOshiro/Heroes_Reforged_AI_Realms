@@ -1131,6 +1131,14 @@
         {
           "label": "09-canonical-packs-registry.md",
           "link": "05-mod-system/09-canonical-packs-registry.md"
+        },
+        {
+          "label": "10-sandbox-enforcement-contract.md",
+          "link": "05-mod-system/10-sandbox-enforcement-contract.md"
+        },
+        {
+          "label": "11-revocation-registry.md",
+          "link": "05-mod-system/11-revocation-registry.md"
         }
       ]
     },
@@ -1567,12 +1575,24 @@
           "link": "02-ai-generation/00-generation-io-schemas.md"
         },
         {
+          "label": "00b-balance-constraints-schema.md",
+          "link": "02-ai-generation/00b-balance-constraints-schema.md"
+        },
+        {
+          "label": "00c-generation-config-schema.md",
+          "link": "02-ai-generation/00c-generation-config-schema.md"
+        },
+        {
           "label": "01-prompt-provider-structured-output-raw-json.md",
           "link": "02-ai-generation/01-prompt-provider-structured-output-raw-json.md"
         },
         {
           "label": "02-schema-validation-plus-coherence-check.md",
           "link": "02-ai-generation/02-schema-validation-plus-coherence-check.md"
+        },
+        {
+          "label": "02b-retry-policy.md",
+          "link": "02-ai-generation/02b-retry-policy.md"
         },
         {
           "label": "03-auto-balancer-headless-battle-baseline.md",
@@ -1587,16 +1607,32 @@
           "link": "02-ai-generation/05-asset-generation-stub-imagegen-api.md"
         },
         {
+          "label": "05b-asset-normalization.md",
+          "link": "02-ai-generation/05b-asset-normalization.md"
+        },
+        {
           "label": "06-content-moderation-plus-hard-caps.md",
           "link": "02-ai-generation/06-content-moderation-plus-hard-caps.md"
+        },
+        {
+          "label": "06b-image-moderation.md",
+          "link": "02-ai-generation/06b-image-moderation.md"
         },
         {
           "label": "07-generation-ui-prompt-preview-download.md",
           "link": "02-ai-generation/07-generation-ui-prompt-preview-download.md"
         },
         {
+          "label": "07b-provider-failure-taxonomy.md",
+          "link": "02-ai-generation/07b-provider-failure-taxonomy.md"
+        },
+        {
           "label": "08-evaluation-generate-plus-play-5-new-factions.md",
           "link": "02-ai-generation/08-evaluation-generate-plus-play-5-new-factions.md"
+        },
+        {
+          "label": "09-pack-lifecycle-cache-and-gc.md",
+          "link": "02-ai-generation/09-pack-lifecycle-cache-and-gc.md"
         }
       ]
     },
@@ -2699,7 +2735,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 324
+      "downstreamTransitiveCount": 333
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2760,7 +2796,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 322
+      "downstreamTransitiveCount": 331
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2817,7 +2853,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 211
+      "downstreamTransitiveCount": 214
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2873,7 +2909,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 236
+      "downstreamTransitiveCount": 245
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2932,7 +2968,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 91
+      "downstreamTransitiveCount": 92
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -3020,7 +3056,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 28,
-      "downstreamTransitiveCount": 200
+      "downstreamTransitiveCount": 203
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3230,7 +3266,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3351,7 +3387,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 57
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -3607,7 +3643,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 240
+      "downstreamTransitiveCount": 249
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -3665,7 +3701,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 161
+      "downstreamTransitiveCount": 170
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -3729,7 +3765,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 107
+      "downstreamTransitiveCount": 116
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -3787,7 +3823,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 112
+      "downstreamTransitiveCount": 121
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -3848,7 +3884,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 150
+      "downstreamTransitiveCount": 159
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -3909,7 +3945,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 209
+      "downstreamTransitiveCount": 218
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -3983,7 +4019,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 98
+      "downstreamTransitiveCount": 107
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4068,7 +4104,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4169,7 +4205,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 64
+      "downstreamTransitiveCount": 73
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -4277,7 +4313,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 53
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -4437,7 +4473,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 120
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -4529,7 +4565,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 80
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -4600,7 +4636,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 62
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -4662,7 +4698,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 63
+      "downstreamTransitiveCount": 72
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -6756,7 +6792,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 161
+      "downstreamTransitiveCount": 162
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -6816,7 +6852,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -6872,7 +6908,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 141
+      "downstreamTransitiveCount": 142
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -6935,7 +6971,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 99
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -7532,7 +7568,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 74
+      "downstreamTransitiveCount": 75
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -7684,7 +7720,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -7819,7 +7855,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 130
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -7895,7 +7931,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 99
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -7958,7 +7994,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 89
+      "downstreamTransitiveCount": 90
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -8024,7 +8060,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 69
+      "downstreamTransitiveCount": 70
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -8090,7 +8126,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 72
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -8168,7 +8204,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 49
+      "downstreamTransitiveCount": 50
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -8223,7 +8259,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -9292,7 +9328,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 38
     },
     {
       "id": "mvp.05-adventure-map.22-obelisk-visits-and-grail-state",
@@ -9471,7 +9507,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 133
+      "downstreamTransitiveCount": 136
     },
     {
       "id": "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
@@ -9536,7 +9572,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.06-renderer.03-map-renderer-terrain-objects-units-layers",
@@ -9606,7 +9642,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 43
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "mvp.06-renderer.04-camera-pan-zoom-clamp-to-map-bounds",
@@ -9669,7 +9705,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 38
     },
     {
       "id": "mvp.06-renderer.05-1115-tactical-battlefield-renderer",
@@ -9737,7 +9773,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 35
+      "downstreamTransitiveCount": 36
     },
     {
       "id": "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation",
@@ -10110,7 +10146,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 53,
-      "downstreamTransitiveCount": 95
+      "downstreamTransitiveCount": 97
     },
     {
       "id": "mvp.07-ui-shell.02-zustand-store",
@@ -10610,7 +10646,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 51,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.07-ui-shell.07-main-menu-screen",
@@ -12261,7 +12297,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 39
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -12332,7 +12368,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 58
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -12424,7 +12460,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 29
+      "downstreamTransitiveCount": 31
     },
     {
       "id": "mvp.08-persistence.04-scenario-loader",
@@ -12588,7 +12624,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 26
+      "downstreamTransitiveCount": 28
     },
     {
       "id": "mvp.08-persistence.06-autosave",
@@ -12975,7 +13011,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 78
+      "downstreamTransitiveCount": 79
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -13037,7 +13073,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -13110,7 +13146,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 13
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.09-tactical-combat.03-damage-formula",
@@ -13182,7 +13218,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 53
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -13249,7 +13285,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -13322,7 +13358,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 13
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification",
@@ -13385,7 +13421,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -13448,7 +13484,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 50
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -13521,7 +13557,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -13579,7 +13615,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 26
+      "downstreamTransitiveCount": 27
     },
     {
       "id": "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle",
@@ -13701,7 +13737,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 15
     },
     {
       "id": "mvp.09-tactical-combat.10-replay-smoke-test-20-round-battle",
@@ -13785,7 +13821,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 13
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.09-tactical-combat.11-combat-hud-overlay",
@@ -13888,7 +13924,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "mvp.09-tactical-combat.12-edge-case-fuzz-harness",
@@ -13959,7 +13995,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 13
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.09-tactical-combat.12-tactics-phase-engine",
@@ -14043,7 +14079,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 15
     },
     {
       "id": "mvp.09-tactical-combat.13-retreat-and-surrender-commands",
@@ -14132,7 +14168,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 13
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients",
@@ -14195,7 +14231,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -14283,7 +14319,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -14346,7 +14382,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 42
+      "downstreamTransitiveCount": 43
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -14428,7 +14464,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 42
+      "downstreamTransitiveCount": 43
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -14502,7 +14538,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 38
+      "downstreamTransitiveCount": 39
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -14607,7 +14643,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 38
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -14677,7 +14713,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 38
+      "downstreamTransitiveCount": 39
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -14933,7 +14969,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 29
+      "downstreamTransitiveCount": 30
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -17922,7 +17958,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 31
+      "downstreamTransitiveCount": 33
     },
     {
       "id": "phase-2.04-content-editor.02-unit-editor-form",
@@ -18027,7 +18063,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 29
+      "downstreamTransitiveCount": 31
     },
     {
       "id": "phase-2.04-content-editor.03-faction-editor-form",
@@ -18133,7 +18169,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 27
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "phase-2.04-content-editor.04-schema-validation-with-inline-error-display",
@@ -18237,7 +18273,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 26
+      "downstreamTransitiveCount": 28
     },
     {
       "id": "phase-2.04-content-editor.05-live-preview-panel-unit-card",
@@ -18438,7 +18474,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 25
+      "downstreamTransitiveCount": 27
     },
     {
       "id": "phase-2.04-content-editor.07-editor-integration-test",
@@ -18856,7 +18892,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 22
+      "downstreamTransitiveCount": 24
     },
     {
       "id": "phase-2.05-mod-system.02-ed25519-signature-verification",
@@ -18915,7 +18951,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 20
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs",
@@ -18976,8 +19012,8 @@
         "phase-2.05-mod-system.02-ed25519-signature-verification"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 19
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "phase-2.05-mod-system.04-mod-manager-ui-install-enable-disable",
@@ -19797,6 +19833,146 @@
         "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs",
         "phase-2.05-mod-system.05b-sylvan-and-stormspire-reference-packs",
         "phase-2.05-mod-system.05c-ashlord-and-deepway-reference-packs"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-2.05-mod-system.10-sandbox-enforcement-contract",
+      "kind": "task",
+      "status": "planned",
+      "title": "Sandbox Enforcement Contract (predicate + four-consumer matrix)",
+      "path": "tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md",
+      "moduleId": "phase-2.05-mod-system",
+      "modulePath": "tasks/phase-2/05-mod-system.md",
+      "description": "Every AI-generated pack writes `sandboxed: true`, but today nothing reads it: there is no rule in [`pack-contract.md`](../../../docs/architecture/pack-contract.md) or [`content-platform.md`](../../../docs/architecture/content-platform.md) saying \"ranked matchmaking refuses sandboxed packs,\" \"shared lobbies gate sandboxed content behind explicit opt-in,\" or \"replay validation rejects sandboxed packs in canonical replays.\" Quarantine is a label, not a fence. This task is the **contract** (not the implementation) that future matchmaker, lobby, and replay-validator tasks must satisfy. The contract pins: 1. A new \"Sandbox enforcement\" section in [`pack-contract.md`](../../../docs/architecture/pack-contract.md) with a four-row table (consumer, required behavior, default, override mechanism). 2. A new optional `sandboxedReason` string field on [`manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json) so consumers can render *why* a pack is sandboxed (`ai-generated`, `user-edited`, `unsigned`). 3. A single shared `isSandboxAllowed(context, manifest): boolean` predicate that every consumer must use as the gate. 4. A single-line cross-reference from [`content-platform.md`](../../../docs/architecture/content-platform.md) into the new section.",
+      "inputs": [
+        "The `sandboxed` flag already enforced as auto-set on AI-generated packs (see [`tasks/phase-2/05-mod-system/03-sandbox-mode-for-ai-generated-packs.md`](./03-sandbox-mode-for-ai-generated-packs.md) and [`tasks/phase-3/02-ai-generation/06-content-moderation-plus-hard-caps.md`](../../phase-3/02-ai-generation/06-content-moderation-plus-hard-caps.md))."
+      ],
+      "outputs": [
+        "A \"Sandbox enforcement\" section in [`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md) with a four-row consumer/behavior/default/override table.",
+        "An additive optional `sandboxedReason` field on [`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json).",
+        "A single-line cross-reference under \"Sandbox enforcement\" in [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md).",
+        "A one-line entry in [`docs/planning/implementation-log.md`](../../../docs/planning/implementation-log.md) noting that runtime enforcement is now contractual rather than discretionary."
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
+        "[`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/pack-contract.md",
+        "content-schema/schemas/manifest.schema.json",
+        "docs/architecture/content-platform.md",
+        "docs/planning/implementation-log.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "dependencies": [
+        "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs"
+      ],
+      "acceptanceCriteria": [
+        "The \"Sandbox enforcement\" section in `pack-contract.md` lists exactly four consumers — Ranked matchmaker, Shared lobby, Replay validator, Editor — each with required behavior, default, and override mechanism.",
+        "`manifest.schema.json` accepts the additive `sandboxedReason` string without breaking existing first-party packs.",
+        "`content-platform.md` carries the single-line cross-reference.",
+        "`additionalProperties: false` on the manifest object remains intact (the field is added under `properties`).",
+        "The shared-ownership claim on `manifest.schema.json` is purely additive — this task must not rewrite existing manifest fields, must not change existing field shapes, and must not change `manifest.schema.json`'s primary owner. The primary contract for `manifest.schema.json` is owned by the baseline schema task; this task adds only the optional `sandboxedReason` property."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "phase-2.05-mod-system.11-revocation-registry",
+      "kind": "task",
+      "status": "planned",
+      "title": "Revocation Registry (signed list + client check + replay fallback)",
+      "path": "tasks/phase-2/05-mod-system/11-revocation-registry.md",
+      "moduleId": "phase-2.05-mod-system",
+      "modulePath": "tasks/phase-2/05-mod-system.md",
+      "description": "Pre-publication moderation already exists (text moderation, hard caps, sandboxed flag). After a pack is shared (exported, posted to a forum, eventually a marketplace), there is **no path** to revoke it: no community report flow, no reviewer queue, no hash-based block list, no pack-revocation propagation, no replay-compatibility handling for revoked packs. This task pins the contract: a maintainer-signed registry, a client-side check at pack load, and a replay-fallback rule. The matching schemas are [`content-schema/schemas/revocation-registry.schema.json`](../../../content-schema/schemas/revocation-registry.schema.json) and [`content-schema/schemas/revocation-entry.schema.json`](../../../content-schema/schemas/revocation-entry.schema.json). The full contract lives in [`docs/architecture/revocation.md`](../../../docs/architecture/revocation.md). The maintainer-side signing-key operationalization (key custody, rotation, publication endpoint) is deferred until a sharing layer is actually being built.",
+      "inputs": [
+        "The `manifest.contentHash` field already produced by every pack (see [`pack-contract.md`](../../../docs/architecture/pack-contract.md)).",
+        "Sandbox-enforcement contract (sibling task 10) — this task extends it."
+      ],
+      "outputs": [
+        "`content-schema/schemas/revocation-registry.schema.json`",
+        "`content-schema/schemas/revocation-entry.schema.json`",
+        "`content-schema/examples/revocation-registry/canonical.revocation-registry.json`",
+        "`docs/architecture/revocation.md`",
+        "A new \"Revocation\" section under \"Sandbox enforcement\" in [`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md).",
+        "A single-line cross-reference in [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md).",
+        "Schema-matrix rows in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/revocation-registry.schema.json",
+        "content-schema/schemas/revocation-entry.schema.json",
+        "content-schema/examples/revocation-registry/canonical.revocation-registry.json",
+        "docs/architecture/revocation.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-2.05-mod-system.10-sandbox-enforcement-contract"
+      ],
+      "acceptanceCriteria": [
+        "Schemas validate the canonical example with zero errors.",
+        "`additionalProperties: false` on every named object.",
+        "Three components are pinned: signed list (registry + entry schemas), client-side check (load-time gate), replay fallback (revoked content present mode).",
+        "`pack-contract.md` carries the new \"Revocation\" section.",
+        "`content-platform.md` carries the single-line cross-reference.",
+        "Schema-matrix rows exist."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/revocation-entry.schema.json",
+        "content-schema/schemas/revocation-registry.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/revocation-entry.schema.json",
+        "content-schema/schemas/revocation-registry.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-2.05-mod-system.10-sandbox-enforcement-contract"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-2.05-mod-system.10-sandbox-enforcement-contract"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -27626,7 +27802,8 @@
         "`GenerationProvider` is the only exported shape coupling the UI to model backends — vendor-specific identifiers appear only inside `src/ai/providers/`, never in `src/ai/generation/` or in the UI layer",
         "A minimal `InMemoryEchoProvider` test double implements the interface and is used in unit tests",
         "Schema validation errors surface field paths (e.g. `draft.units[3].stats.attack`) so the UI can highlight the offending field",
-        "`scripts/check-repo-contracts.mjs` passes — no file under `tasks/` or `docs/` references `src/generation/`"
+        "`scripts/check-repo-contracts.mjs` passes — no file under `tasks/` or `docs/` references `src/generation/`",
+        "The `seed.description` text on [`generation-request.schema.json`](../../../content-schema/schemas/generation-request.schema.json) is part of the schema contract (calls out that seed is a best-effort reproducibility hint, not a determinism guarantee). Implementations must not relax that wording when porting Zod types, because downstream code reads the description as the contract."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -27651,8 +27828,139 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 0,
-      "downstreamTransitiveCount": 0
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 14
+    },
+    {
+      "id": "phase-3.02-ai-generation.00b-balance-constraints-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Balance Constraints Schema (single source of truth for caps)",
+      "path": "tasks/phase-3/02-ai-generation/00b-balance-constraints-schema.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Author the canonical [`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json) that owns the numeric caps (HP, ATK, DEF, abilities-per-unit) and tier corridors used across the AI generation pipeline. Hard caps used to live only in moderation-task prose; that meant a non-orchestrator producer of `GeneratedFaction` (community editor, hand-edited pack) could write caps-violating content that round-tripped through shape validation. This schema makes the caps shape-validatable at every entry point — orchestrator, pack loader, editor import — and becomes the single source of truth that the moderation task and the optimizer task both consume rather than re-defining. Tier corridors mirror the values already pinned in [`content-schema/balance/corridor.json`](../../../content-schema/balance/corridor.json) (consumed by `npm run validate:balance`). The two files stay in lockstep; this schema makes those values reachable from the AI generation entry points.",
+      "inputs": [
+        "Hard-cap values from [`tasks/phase-3/02-ai-generation/06-content-moderation-plus-hard-caps.md`](./06-content-moderation-plus-hard-caps.md) (HP ≤ 500, ATK ≤ 50, abilities per unit ≤ 5)",
+        "Tier corridors from [`research/deep-research-report.md`](../../../research/deep-research-report.md) § 1"
+      ],
+      "outputs": [
+        "`content-schema/schemas/balance-constraints.schema.json`",
+        "`content-schema/examples/balance-constraints/canonical.balance-constraints.json`",
+        "A schema-matrix row in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`research/deep-research-report.md`](../../../research/deep-research-report.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/balance-constraints.schema.json",
+        "content-schema/examples/balance-constraints/canonical.balance-constraints.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example with zero errors.",
+        "`additionalProperties: false` on every object.",
+        "The canonical example carries every hard cap currently named in [`tasks/phase-3/02-ai-generation/06-content-moderation-plus-hard-caps.md`](./06-content-moderation-plus-hard-caps.md).",
+        "Schema-matrix row exists."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 10
+    },
+    {
+      "id": "phase-3.02-ai-generation.00c-generation-config-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Generation Config Schema (orchestrator + prompt-template + ruleset pin)",
+      "path": "tasks/phase-3/02-ai-generation/00c-generation-config-schema.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Author the canonical [`content-schema/schemas/generation-config.schema.json`](../../../content-schema/schemas/generation-config.schema.json) that captures the orchestrator semver, prompt-template hash, and ruleset hash a materialized AI-generated pack was produced with. Pre-this-task, reproducibility depended on `GenerationRequest.seed` plus `GeneratedFaction.notes.providerId`/`promptHash`/`modelHint` — none of which captured the orchestrator/prompt-template/ruleset triple. Two regenerations from the same prompt+seed can diverge if the orchestrator was upgraded between runs and nothing in the pack reveals which version produced it. This schema is the authoritative version pin; the materializer (Stage 6) writes it into `manifest.generation`.",
+      "inputs": [
+        "Stage 6 of the pipeline (pack materialize) is the only producer."
+      ],
+      "outputs": [
+        "`content-schema/schemas/generation-config.schema.json`",
+        "`content-schema/examples/generation-config/canonical.generation-config.json`",
+        "A new optional `generation` block on [`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json) whose shape is `GenerationConfig`.",
+        "A schema-matrix row in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/generation-config.schema.json",
+        "content-schema/examples/generation-config/canonical.generation-config.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "dependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example with zero errors.",
+        "`additionalProperties: false`.",
+        "`orchestratorVersion` matches a semver pattern.",
+        "`promptTemplateHash` and `rulesetHash` are sha256 hex digests (64 lowercase hex chars).",
+        "The manifest claim is purely additive: this task must not rewrite existing manifest fields and does not change `manifest.schema.json`'s primary owner. The primary contract for `manifest.schema.json` lives elsewhere; the optional `manifest.generation` block is the only addition here.",
+        "Schema-matrix row exists."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/generation-config.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/generation-config.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 9
     },
     {
       "id": "phase-3.02-ai-generation.01-prompt-provider-structured-output-raw-json",
@@ -27708,6 +28016,7 @@
         "Returns complete `RawFactionData` with 14 units, buildings, heroes",
         "Structured output — no need to parse free text",
         "Handles provider rate-limit errors with retry + backoff",
+        "Shape failures consume the `RetryPolicy` from [`content-schema/schemas/retry-policy.schema.json`](../../../content-schema/schemas/retry-policy.schema.json) (see [`02b-retry-policy.md`](./02b-retry-policy.md)) — adapter retries follow `policy.shape.maxAttempts` and respect `policy.shape.backoff`.",
         "No UI component or browser-only code holds provider secrets directly",
         "Total generation time < 30 seconds"
       ],
@@ -27717,9 +28026,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/retry-policy.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/retry-policy.schema.json"
+      ],
       "taskDependencies": [
         "mvp.02-content-schemas.01-unit-schema",
         "mvp.02-content-schemas.02-faction-schema",
@@ -27751,7 +28064,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 9
+      "downstreamTransitiveCount": 12
     },
     {
       "id": "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
@@ -27798,7 +28111,8 @@
         "Faction with `dmgMin > dmgMax` is rejected with specific unit + field in error",
         "Auto-repair fills missing `weeklyGrowth` with tier-appropriate default",
         "Coherence report distinguishes blocking errors from warnings",
-        "Coherence check runs in < 500ms"
+        "Coherence check runs in < 500ms",
+        "Coherence failures route through the `RetryPolicy` from [`content-schema/schemas/retry-policy.schema.json`](../../../content-schema/schemas/retry-policy.schema.json) (see [`02b-retry-policy.md`](./02b-retry-policy.md)) — `coherence` retries respect `maxAttempts` and the `degrade` exhaustion action drops the referencing record instead of failing the whole pack."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -27806,9 +28120,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/retry-policy.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/retry-policy.schema.json"
+      ],
       "taskDependencies": [
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
         "phase-3.02-ai-generation.01-prompt-provider-structured-output-raw-json"
@@ -27820,7 +28138,71 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 8
+      "downstreamTransitiveCount": 11
+    },
+    {
+      "id": "phase-3.02-ai-generation.02b-retry-policy",
+      "kind": "task",
+      "status": "planned",
+      "title": "Retry Policy (shape / coherence / balance)",
+      "path": "tasks/phase-3/02-ai-generation/02b-retry-policy.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Author the canonical [`content-schema/schemas/retry-policy.schema.json`](../../../content-schema/schemas/retry-policy.schema.json) that codifies how the orchestrator retries on shape, coherence, and balance failures. The pipeline doc's failure-modes table currently says coherence errors *may* route to \"regenerate with resolved IDs\" and balance failures *may* route to the optimizer — informal prose that lets two implementers ship two different policies and produce divergent UX. The schema pins maxAttempts, onExhaust, and backoff per failure class so cost-per-generation is bounded and \"why did my generation succeed yesterday but fail today?\" has a documented answer. The optimizer's hard cap of 10 iterations stays — that is the inner loop. This schema is the **outer** loop and never re-prompts on balance failures.",
+      "inputs": [
+        "The failure-modes table in [`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "Task 1 (provider call) and Task 2 (shape + coherence) are the consumers."
+      ],
+      "outputs": [
+        "`content-schema/schemas/retry-policy.schema.json`",
+        "`content-schema/examples/retry-policy/canonical.retry-policy.json`",
+        "A revised failure-modes table in [`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md) citing the schema.",
+        "A schema-matrix row in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/retry-policy.schema.json",
+        "content-schema/examples/retry-policy/canonical.retry-policy.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example with zero errors.",
+        "`additionalProperties: false` on every object.",
+        "Three failure classes pinned: `shape`, `coherence`, `balance`.",
+        "Each entry carries `maxAttempts`, `onExhaust`, `backoff`.",
+        "Failure-modes table in `ai-generation-pipeline.md` cites the schema.",
+        "Schema-matrix row exists."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/retry-policy.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/retry-policy.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "phase-3.02-ai-generation.03-auto-balancer-headless-battle-baseline",
@@ -27917,7 +28299,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 5
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "phase-3.02-ai-generation.04-gradient-free-stat-optimizer",
@@ -27936,7 +28318,7 @@
         "`src/ai/generation/optimizer.ts`",
         "`optimizeStats(faction, balanceResult, targetWinRate: [0.45, 0.55]): Faction`",
         "Optimization loop: up to 10 iterations of coordinate descent",
-        "Constraints: no stat goes below 1 or above hard caps (HP ≤ 500, ATK ≤ 50)",
+        "Constraints: no stat goes below 1 or above hard caps. Hard-cap values are read from [`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json) (HP ≤ 500, ATK ≤ 50) — the optimizer does not duplicate or re-decide the numbers; the constraints schema is the single source of truth (see [`00b-balance-constraints-schema.md`](./00b-balance-constraints-schema.md)).",
         "Change log: record each adjustment made"
       ],
       "readFirst": [
@@ -27950,6 +28332,7 @@
       "ownedPathsOptOutReason": "",
       "sharedOwnedPaths": [],
       "dependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema",
         "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
         "phase-3.02-ai-generation.03-auto-balancer-headless-battle-baseline"
       ],
@@ -27965,21 +28348,27 @@
       ],
       "estimatedTime": "- 5 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json"
+      ],
       "taskDependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema",
         "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
         "phase-3.02-ai-generation.03-auto-balancer-headless-battle-baseline"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema",
         "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
         "phase-3.02-ai-generation.03-auto-balancer-headless-battle-baseline"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 4
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
@@ -28012,12 +28401,15 @@
       "ownedPathsOptOutReason": "",
       "sharedOwnedPaths": [],
       "dependencies": [
-        "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check"
+        "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
+        "phase-3.02-ai-generation.06b-image-moderation"
       ],
       "acceptanceCriteria": [
         "Stub generates a distinct colored placeholder per unit (color derived from unit name hash)",
         "Placeholder renders correctly in the unit card preview",
-        "Real API can be wired in by replacing one function without changing callers"
+        "Real API can be wired in by replacing one function without changing callers",
+        "The stub MUST NOT skip the `ModerationProvider.moderateImage` hook even though placeholder SVGs always pass; the hook is the integration seam for the real imagegen path. See [`06b-image-moderation.md`](./06b-image-moderation.md).",
+        "Future-work: when a real imagegen API is wired in, asset normalization per [`05b-asset-normalization.md`](./05b-asset-normalization.md) runs between moderation (Stage 5.5) and pack materialize (Stage 6)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -28029,15 +28421,89 @@
       "screenSchemaPaths": [],
       "schemaPaths": [],
       "taskDependencies": [
-        "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check"
+        "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
+        "phase-3.02-ai-generation.06b-image-moderation"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
-        "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check"
+        "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
+        "phase-3.02-ai-generation.06b-image-moderation"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "phase-3.02-ai-generation.05b-asset-normalization",
+      "kind": "task",
+      "status": "planned",
+      "title": "Asset Normalization (dimensions / palette / frame counts / atlas)",
+      "path": "tasks/phase-3/02-ai-generation/05b-asset-normalization.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Author the canonical [`docs/architecture/asset-normalization.md`](../../../docs/architecture/asset-normalization.md) spec and the matching [`content-schema/schemas/asset-normalization-spec.schema.json`](../../../content-schema/schemas/asset-normalization-spec.schema.json) that pin the four normalization contracts (dimensions, palette, frame counts, atlas binding) applied to AI-generated images before pack materialize. Today, Task 5 produces a single colored placeholder SVG with no dimension constraint; once it is upgraded to a real image-gen call, generated sprites would arrive at whatever resolution or palette the provider returned, breaking renderer assumptions about sprite size and faction palette consistency. This task closes that gap as a deterministic stage transformation that runs **after** image moderation (Stage 5.5) and **before** pack materialize (Stage 6).",
+      "inputs": [
+        "Moderated AI image bytes from Stage 5.5 ([`06b-image-moderation.md`](./06b-image-moderation.md)).",
+        "Per-asset-role normalization rule from the new schema."
+      ],
+      "outputs": [
+        "`docs/architecture/asset-normalization.md`",
+        "`content-schema/schemas/asset-normalization-spec.schema.json`",
+        "`content-schema/examples/asset-normalization-spec/canonical.asset-normalization-spec.json`",
+        "A \"Normalize before bind\" bullet in Stage 6 of [`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md).",
+        "A schema-matrix row in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`docs/architecture/animation-contract.md`](../../../docs/architecture/animation-contract.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/atlas-pipeline.md`](../../../docs/architecture/atlas-pipeline.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/asset-normalization.md",
+        "content-schema/schemas/asset-normalization-spec.schema.json",
+        "content-schema/examples/asset-normalization-spec/canonical.asset-normalization-spec.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
+        "phase-3.02-ai-generation.06b-image-moderation"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example with zero errors.",
+        "`additionalProperties: false` on every object.",
+        "Four asset roles are pinned: `creature-sprite`, `hero-portrait`, `building`, `ability-icon`.",
+        "Each role declares `width`, `height`, `frames.required`, `frames.fallback`, and `palette.source`.",
+        "The spec doc lists four numbered rules (dimension, palette, frame-count, atlas binding).",
+        "Schema-matrix row exists."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/asset-normalization-spec.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/asset-normalization-spec.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
+        "phase-3.02-ai-generation.06b-image-moderation"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
+        "phase-3.02-ai-generation.06b-image-moderation"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps",
@@ -28047,20 +28513,25 @@
       "path": "tasks/phase-3/02-ai-generation/06-content-moderation-plus-hard-caps.md",
       "moduleId": "phase-3.02-ai-generation",
       "modulePath": "tasks/phase-3/02-ai-generation.md",
-      "description": "Before any generated content reaches the player, run moderation checks: no offensive names/lore, no stat values exceeding hard caps, sandbox flag set automatically.",
+      "description": "Before any generated content reaches the player, run moderation checks: no offensive names/lore, no stat values exceeding hard caps, sandbox flag set automatically. Hard caps themselves are no longer re-decided here — they are loaded from [`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json) (see sibling task [`00b-balance-constraints-schema.md`](./00b-balance-constraints-schema.md)) so any non-orchestrator producer of `GeneratedFaction` (community editor, hand-edited pack) is gated by the same numbers. This task also writes the version pin into the materialized manifest (`manifest.generation` per [`00c-generation-config-schema.md`](./00c-generation-config-schema.md)) and writes `sandboxedReason: \"ai-generated\"` alongside the existing `sandboxed: true` flag (per the new field added by [`tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md`](../../phase-2/05-mod-system/10-sandbox-enforcement-contract.md)). Image moderation lives in the sibling task [`06b-image-moderation.md`](./06b-image-moderation.md); this task does not own image-moderation calls but MUST call the `ModerationProvider.moderateImage` hook between Stage 5 and Stage 6 even for the placeholder SVG output of Task 5.",
       "inputs": [
-        "Generated faction data (Task 1), moderation provider adapter or local policy layer"
+        "Generated faction data (Task 1), moderation provider adapter or local policy layer",
+        "Hard caps loaded from [`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json)"
       ],
       "outputs": [
         "`src/ai/contracts/moderation-provider.ts`",
         "`src/ai/generation/moderation.ts`",
         "`moderateContent(faction): ModerationResult`",
-        "Hard caps (enforced regardless of optimizer output): HP ≤ 500, ATK ≤ 50, abilities per unit ≤ 5",
+        "Hard caps consumed (not re-decided) from [`balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json): HP ≤ 500, ATK ≤ 50, abilities per unit ≤ 5",
         "Offensive content: use `ModerationProvider` or explicit policy rules behind a provider-neutral contract",
-        "Auto-set: `sandboxed: true` on all AI-generated packs (cannot be overridden)"
+        "Auto-set: `sandboxed: true` on all AI-generated packs (cannot be overridden)",
+        "Auto-set: `sandboxedReason: \"ai-generated\"` on all AI-generated packs",
+        "Auto-set: `manifest.generation` block populated with the orchestrator semver, prompt-template hash, and ruleset hash per [`generation-config.schema.json`](../../../content-schema/schemas/generation-config.schema.json)"
       ],
       "readFirst": [
-        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)"
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json)",
+        "[`content-schema/schemas/generation-config.schema.json`](../../../content-schema/schemas/generation-config.schema.json)"
       ],
       "ownedPaths": [
         "src/ai/contracts/moderation-provider.ts",
@@ -28071,35 +28542,121 @@
       "ownedPathsOptOutReason": "",
       "sharedOwnedPaths": [],
       "dependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema",
+        "phase-3.02-ai-generation.00c-generation-config-schema",
         "phase-3.02-ai-generation.01-prompt-provider-structured-output-raw-json",
         "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check"
       ],
       "acceptanceCriteria": [
         "A unit named with a slur is blocked with `ModerationResult.blocked = true`",
-        "Unit with HP=1000 is hard-capped to HP=500 with a warning in the result",
-        "All AI-generated packs have `sandboxed: true` in their manifest"
+        "Unit with HP=1000 is hard-capped to HP=500 with a warning in the result (the cap value is read from `balance-constraints.schema.json`, not hard-coded here).",
+        "All AI-generated packs have `sandboxed: true` in their manifest",
+        "All AI-generated packs have `sandboxedReason: \"ai-generated\"` in their manifest",
+        "All AI-generated packs have a populated `manifest.generation` block (`orchestratorVersion`, `promptTemplateHash`, `rulesetHash`); failure to populate fails Stage 6 of the pipeline.",
+        "Stage 5.5 image-moderation hook is called for every asset present in the materialized pack, even SVG placeholders from Task 5."
       ],
       "verifyCommands": [
         "npm run validate",
         "npm test"
       ],
-      "estimatedTime": "- 3 hours",
+      "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json",
+        "content-schema/schemas/generation-config.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json",
+        "content-schema/schemas/generation-config.schema.json"
+      ],
       "taskDependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema",
+        "phase-3.02-ai-generation.00c-generation-config-schema",
         "phase-3.02-ai-generation.01-prompt-provider-structured-output-raw-json",
         "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema",
+        "phase-3.02-ai-generation.00c-generation-config-schema",
         "phase-3.02-ai-generation.01-prompt-provider-structured-output-raw-json",
         "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check"
       ],
       "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 8
+    },
+    {
+      "id": "phase-3.02-ai-generation.06b-image-moderation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Image Moderation (NSFW + IP-likeness + style conformance)",
+      "path": "tasks/phase-3/02-ai-generation/06b-image-moderation.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "The current `ModerationProvider` contract moderates **text only** (faction names, lore, ability descriptions). Task 5 (asset-generation stub) is a colored-SVG placeholder that does not call image moderation; the moment Task 5 is upgraded to a real image-gen call, sprites would flow into materialized packs with no NSFW, copyright/likeness, or style-conformance gating. This task closes that gap by extending the moderation contract from text-only to structured image-moderation calls invoked between Stage 5 (asset generation) and Stage 6 (pack materialize). The schema [`content-schema/schemas/image-moderation-report.schema.json`](../../../content-schema/schemas/image-moderation-report.schema.json) captures three independent verdicts (NSFW, copyright/likeness, style conformance) so each can fail independently and route to a distinct UI recovery action. A non-pass on any verdict blocks pack materialize. Vendor selection (which hosted moderation API to use) is operational and not pinned by this task — the contract is provider-neutral, just like `GenerationProvider` and the existing text `ModerationProvider`.",
+      "inputs": [
+        "Asset bytes produced by Task 5 (per-asset).",
+        "The provider-neutral `ModerationProvider` interface from [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)."
+      ],
+      "outputs": [
+        "`content-schema/schemas/image-moderation-report.schema.json`",
+        "`content-schema/examples/image-moderation-report/pass.image-moderation-report.json`",
+        "`content-schema/examples/image-moderation-report/fail-nsfw.image-moderation-report.json`",
+        "A new \"Stage 5.5 — Image moderation\" row in [`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md) stage table and the failure-modes table.",
+        "An extended `ModerationProvider` interface signature in [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md) that includes `moderateImage(asset): Promise<ImageModerationReport>`.",
+        "A schema-matrix row in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/image-moderation-report.schema.json",
+        "content-schema/examples/image-moderation-report/pass.image-moderation-report.json",
+        "content-schema/examples/image-moderation-report/fail-nsfw.image-moderation-report.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates each canonical example with zero errors.",
+        "`additionalProperties: false` on every object.",
+        "Three independent verdicts are present: `nsfw`, `ipLikeness`, `styleConformance`.",
+        "Each verdict carries `pass`, `score`, `reasonCode`, `message`.",
+        "Stage 5.5 appears in the pipeline doc's stage table.",
+        "The pipeline failure-modes table lists each verdict failure with its UI recovery action.",
+        "`ai-integration.md` `ModerationProvider` interface lists `moderateImage` alongside the existing text method.",
+        "Stage 5 (`05-asset-generation-stub-imagegen-api.md`) cites this task and notes that the moderation hook MUST be called even though placeholder SVGs always pass.",
+        "Schema-matrix row exists."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/image-moderation-report.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/image-moderation-report.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps"
+      ],
+      "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 4
+      "downstreamTransitiveCount": 7
     },
     {
       "id": "phase-3.02-ai-generation.07-generation-ui-prompt-preview-download",
@@ -28152,7 +28709,9 @@
         "User can cancel generation at any stage",
         "Download produces a valid `.hrmod` file that loads in the mod manager",
         "Layout, bindings, and commands match `docs/architecture/wiki/screens/65-map-editor/mockup.html`, `docs/architecture/wiki/screens/65-map-editor/interactions.md`, and `docs/architecture/wiki/screens/65-map-editor/data-contracts.md`.",
-        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID."
+        "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID.",
+        "Each `ProviderFailure` class from [`content-schema/schemas/provider-failure.schema.json`](../../../content-schema/schemas/provider-failure.schema.json) (see [`07b-provider-failure-taxonomy.md`](./07b-provider-failure-taxonomy.md)) is rendered with a distinct UI state: `transport` shows a retry-now affordance with backoff; `auth` opens a re-auth flow and disables retry until re-auth completes; `quota` shows a countdown timer using `cooldownMs`; `content-policy` opens a re-prompt UX that nudges the user to rephrase the prompt.",
+        "A \"Force regenerate\" affordance bypasses the provider-response cache from [`docs/architecture/pack-lifecycle.md`](../../../docs/architecture/pack-lifecycle.md)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -28162,7 +28721,9 @@
       "screenPackages": [
         "docs/architecture/wiki/screens/65-map-editor"
       ],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/provider-failure.schema.json"
+      ],
       "screenSchemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
@@ -28192,6 +28753,7 @@
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/provider-failure.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -28217,8 +28779,77 @@
         "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 3
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.02-ai-generation.07b-provider-failure-taxonomy",
+      "kind": "task",
+      "status": "planned",
+      "title": "Provider Failure Taxonomy (transport / auth / quota / content-policy)",
+      "path": "tasks/phase-3/02-ai-generation/07b-provider-failure-taxonomy.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Author the canonical [`content-schema/schemas/provider-failure.schema.json`](../../../content-schema/schemas/provider-failure.schema.json) that pins a closed four-class taxonomy of provider transport-layer failures. The Generation UI today (Task 7) specifies recovery only for *balance* results; transport, auth, quota, and content-policy failures have no documented UX. Each requires a different user action (retry-now, retry-after-cooldown, sign-in-again, change-prompt), and naming them as a closed shape lets the UI render distinct affordances and lets telemetry distinguish a transient network blip from a systemic rate-limit issue. This taxonomy is **independent** of the shape/coherence/balance retry classes from [`02b-retry-policy.md`](./02b-retry-policy.md) — both can fire on the same generation.",
+      "inputs": [
+        "The four failure modes a provider adapter can surface above the network/auth boundary."
+      ],
+      "outputs": [
+        "`content-schema/schemas/provider-failure.schema.json`",
+        "`content-schema/examples/provider-failure/transport.provider-failure.json`",
+        "`content-schema/examples/provider-failure/auth.provider-failure.json`",
+        "`content-schema/examples/provider-failure/quota.provider-failure.json`",
+        "`content-schema/examples/provider-failure/content-policy.provider-failure.json`",
+        "A \"Provider failure taxonomy\" section in [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md).",
+        "A schema-matrix row in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/provider-failure.schema.json",
+        "content-schema/examples/provider-failure/transport.provider-failure.json",
+        "content-schema/examples/provider-failure/auth.provider-failure.json",
+        "content-schema/examples/provider-failure/quota.provider-failure.json",
+        "content-schema/examples/provider-failure/content-policy.provider-failure.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates each canonical example with zero errors.",
+        "`additionalProperties: false` on every branch.",
+        "Closed `oneOf` over four `kind` constants: `transport`, `auth`, `quota`, `content-policy`.",
+        "`ai-integration.md` carries the new taxonomy section.",
+        "Schema-matrix row exists."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/provider-failure.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/provider-failure.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.02-ai-generation.00-generation-io-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "phase-3.02-ai-generation.08-evaluation-generate-plus-play-5-new-factions",
@@ -28285,6 +28916,81 @@
         "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check",
         "phase-3.02-ai-generation.03-auto-balancer-headless-battle-baseline",
         "phase-3.02-ai-generation.04-gradient-free-stat-optimizer",
+        "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
+        "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps",
+        "phase-3.02-ai-generation.07-generation-ui-prompt-preview-download"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "phase-3.02-ai-generation.09-pack-lifecycle-cache-and-gc",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pack Lifecycle (cache + disk quota + GC + ownership)",
+      "path": "tasks/phase-3/02-ai-generation/09-pack-lifecycle-cache-and-gc.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Author the canonical [`docs/architecture/pack-lifecycle.md`](../../../docs/architecture/pack-lifecycle.md) that pins four lifecycle policies for AI-generated and sandboxed packs: provider-response cache (keyed by `(promptHash, seed, providerId, modelHint)`), disk-quota policy (per-user soft and hard caps for sandboxed packs), GC rule (on launch + on explicit \"Manage AI content\" action), and lifecycle ownership (launcher owns the cache and GC; generator UI owns the force-regenerate override). The matching cache-entry schema [`content-schema/schemas/provider-response-cache-entry.schema.json`](../../../content-schema/schemas/provider-response-cache-entry.schema.json) lets the lifecycle layer validate its own on-disk records. Pre-this-task, pack identity collisions were caught at Stage 6 (byte-identical packs are rejected) but everything else in the lifecycle was undefined: no cache, no quota, no GC rule, no ownership. Disk usage grew monotonically and provider cost was paid on every regenerate. This task pins the contract; the launcher and generator-UI implementations remain future work. GC distinguishes AI-generated packs from user-edited packs by reading `manifest.sandboxedReason` (set to `\"ai-generated\"` by Stage 6 — see Task 6).",
+      "inputs": [
+        "Pack-shape produced by Task 6 (`sandboxed: true`, `sandboxedReason`, `manifest.generation`).",
+        "Generator UI from Task 7 (carries the \"Force regenerate\" override and the \"Manage AI content\" surface)."
+      ],
+      "outputs": [
+        "`docs/architecture/pack-lifecycle.md`",
+        "`content-schema/schemas/provider-response-cache-entry.schema.json`",
+        "`content-schema/examples/provider-response-cache-entry/canonical.provider-response-cache-entry.json`",
+        "A \"Lifecycle\" subsection in [`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md).",
+        "A single-line cross-reference in [`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md) under \"Sandbox enforcement\".",
+        "A schema-matrix row in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/pack-lifecycle.md",
+        "content-schema/schemas/provider-response-cache-entry.schema.json",
+        "content-schema/examples/provider-response-cache-entry/canonical.provider-response-cache-entry.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
+        "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps",
+        "phase-3.02-ai-generation.07-generation-ui-prompt-preview-download"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example with zero errors.",
+        "`additionalProperties: false` on every named object.",
+        "The doc lists four numbered policies (cache, disk-quota, GC, ownership) with concrete defaults (30-day TTL, 2 GB soft / 5 GB hard quota, LRU-by-last-loaded eviction).",
+        "Cache key carries `(promptHash, seed, providerId, modelHint)` exactly.",
+        "Pipeline doc carries the lifecycle subsection.",
+        "pack-contract.md references the lifecycle doc under sandbox enforcement.",
+        "Schema-matrix row exists."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/provider-response-cache-entry.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/provider-response-cache-entry.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
+        "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps",
+        "phase-3.02-ai-generation.07-generation-ui-prompt-preview-download"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
         "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api",
         "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps",
         "phase-3.02-ai-generation.07-generation-ui-prompt-preview-download"
@@ -29067,6 +29773,8 @@
         "phase-2.05-mod-system.07-build-grail-structure-command",
         "phase-2.05-mod-system.08-override-precedence-and-patch-merge",
         "phase-2.05-mod-system.09-canonical-packs-registry",
+        "phase-2.05-mod-system.10-sandbox-enforcement-contract",
+        "phase-2.05-mod-system.11-revocation-registry",
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
         "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -29610,7 +30318,9 @@
         "phase-2.05-mod-system.06-build-boat-command-and-shipyard",
         "phase-2.05-mod-system.07-build-grail-structure-command",
         "phase-2.05-mod-system.08-override-precedence-and-patch-merge",
-        "phase-2.05-mod-system.09-canonical-packs-registry"
+        "phase-2.05-mod-system.09-canonical-packs-registry",
+        "phase-2.05-mod-system.10-sandbox-enforcement-contract",
+        "phase-2.05-mod-system.11-revocation-registry"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,

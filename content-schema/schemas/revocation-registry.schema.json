@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/revocation-registry.schema.json",
+  "title": "Revocation Registry",
+  "description": "Maintainer-signed list of revoked packs. Pre-publication moderation is defined (text moderation, hard caps, sandboxed: true), but post-publication a pack that turns out to violate IP or safety must be revocable from clients without manual user action. Clients fetch the registry on launch and consult it at pack load time. The contract is in `docs/architecture/revocation.md`.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "version",
+    "entries",
+    "signature"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonic registry-revision counter. Clients refuse a registry whose `version` is lower than the cached one to defeat rollback attacks."
+    },
+    "entries": {
+      "type": "array",
+      "description": "Per-pack revocation entries.",
+      "items": { "$ref": "heroes-reforged/revocation-entry.schema.json" }
+    },
+    "signature": {
+      "type": "object",
+      "description": "Maintainer signature over the canonical-JSON serialization of `version` + `entries`.",
+      "required": ["scheme", "keyId", "value"],
+      "properties": {
+        "scheme": { "type": "string", "enum": ["ed25519"] },
+        "keyId":  { "type": "string", "minLength": 1 },
+        "value":  { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/provider-failure.schema.json",
+  "kind": "quota",
+  "providerId": "example-provider",
+  "message": "rate limit exceeded; retry after cooldown",
+  "cooldownMs": 60000
+}

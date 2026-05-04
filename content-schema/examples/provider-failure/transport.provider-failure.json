@@ -1,0 +1,8 @@
+{
+  "$schema": "heroes-reforged/provider-failure.schema.json",
+  "kind": "transport",
+  "providerId": "example-provider",
+  "message": "request timed out after 30s",
+  "httpStatus": 504,
+  "retryAfterMs": 1000
+}

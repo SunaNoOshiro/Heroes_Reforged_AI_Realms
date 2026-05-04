@@ -50,6 +50,17 @@ Acceptance Criteria:
 - Each interaction token whose owning engine task is `done` MUST dispatch live
   (no stub fallback). Tokens whose owning task is still `planned` may render
   disabled with a localized reason that cites the planned task ID.
+- Each `ProviderFailure` class from
+  [`content-schema/schemas/provider-failure.schema.json`](../../../content-schema/schemas/provider-failure.schema.json)
+  (see [`07b-provider-failure-taxonomy.md`](./07b-provider-failure-taxonomy.md))
+  is rendered with a distinct UI state: `transport` shows a
+  retry-now affordance with backoff; `auth` opens a re-auth flow
+  and disables retry until re-auth completes; `quota` shows a
+  countdown timer using `cooldownMs`; `content-policy` opens a
+  re-prompt UX that nudges the user to rephrase the prompt.
+- A "Force regenerate" affordance bypasses the provider-response
+  cache from
+  [`docs/architecture/pack-lifecycle.md`](../../../docs/architecture/pack-lifecycle.md).
 
 Verify:
 - npm run validate

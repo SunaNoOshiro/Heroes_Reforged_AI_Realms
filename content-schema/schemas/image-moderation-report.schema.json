@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/image-moderation-report.schema.json",
+  "title": "Image Moderation Report",
+  "description": "Result of `ModerationProvider.moderateImage(asset)` on a single AI-generated sprite or portrait. Three independent verdicts (NSFW, copyright/likeness, style conformance) so each can fail independently and route to a distinct UI recovery action. Returned at the boundary between Stage 5 (asset generation) and Stage 6 (pack materialize); a non-pass on any verdict blocks pack materialize.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "assetId",
+    "nsfw",
+    "ipLikeness",
+    "styleConformance"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "assetId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable id of the asset under review (matches the asset id used in `assets/index.json`)."
+    },
+    "nsfw":             { "$ref": "#/$defs/verdict" },
+    "ipLikeness":       { "$ref": "#/$defs/verdict" },
+    "styleConformance": { "$ref": "#/$defs/verdict" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "verdict": {
+      "type": "object",
+      "required": ["pass", "score", "reasonCode", "message"],
+      "properties": {
+        "pass":       { "type": "boolean" },
+        "score":      { "type": "number", "minimum": 0, "maximum": 1 },
+        "reasonCode": { "type": "string", "minLength": 1 },
+        "message":    { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

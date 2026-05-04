@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/balance-constraints.schema.json",
+  "title": "Balance Constraints",
+  "description": "Single source of truth for the numeric caps and tier corridors that every AI-generation entry point must enforce. Hard caps used to live in moderation-task prose only, which let any non-orchestrator producer of `GeneratedFaction` (community editor, hand-edited pack) bypass them. This schema makes the caps shape-validatable at every entry point — orchestrator, pack loader, editor import. Tier corridors mirror the values in `content-schema/balance/corridor.json` (consumed by `npm run validate:balance`); the moderation and optimizer tasks read this schema as the canonical contract.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "maxHp",
+    "maxAtk",
+    "maxDef",
+    "maxAbilitiesPerUnit",
+    "tierCorridors"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "maxHp": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Hard upper bound on a single unit's HP. Enforced regardless of optimizer output."
+    },
+    "maxAtk": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Hard upper bound on a single unit's attack. Enforced regardless of optimizer output."
+    },
+    "maxDef": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Hard upper bound on a single unit's defense. Enforced regardless of optimizer output."
+    },
+    "maxAbilitiesPerUnit": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Hard upper bound on the number of abilities attached to a single unit."
+    },
+    "tierCorridors": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "description": "Per-tier stat corridors — low/high band a unit must land inside unless an ability justifies the outlier. Mirrors content-schema/balance/corridor.json.",
+      "items": {
+        "type": "object",
+        "required": ["tier", "hp", "attack", "defense", "damageMin", "damageMax", "speed"],
+        "properties": {
+          "tier":      { "type": "integer", "minimum": 1, "maximum": 7 },
+          "hp":        { "$ref": "#/$defs/range" },
+          "attack":    { "$ref": "#/$defs/range" },
+          "defense":   { "$ref": "#/$defs/range" },
+          "damageMin": { "$ref": "#/$defs/range" },
+          "damageMax": { "$ref": "#/$defs/range" },
+          "speed":     { "$ref": "#/$defs/range" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "range": {
+      "type": "object",
+      "required": ["lo", "hi"],
+      "properties": {
+        "lo": { "type": "integer", "minimum": 0 },
+        "hi": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

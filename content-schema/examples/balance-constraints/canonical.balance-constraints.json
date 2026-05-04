@@ -1,0 +1,17 @@
+{
+  "$schema": "heroes-reforged/balance-constraints.schema.json",
+  "schemaVersion": 1,
+  "maxHp": 500,
+  "maxAtk": 50,
+  "maxDef": 50,
+  "maxAbilitiesPerUnit": 5,
+  "tierCorridors": [
+    { "tier": 1, "hp": { "lo":   4, "hi":   9 }, "attack": { "lo":  2, "hi":  6 }, "defense": { "lo":  2, "hi":  5 }, "damageMin": { "lo": 1, "hi": 1 }, "damageMax": { "lo":  2, "hi":  2 }, "speed": { "lo": 3, "hi":  5 } },
+    { "tier": 2, "hp": { "lo":  10, "hi":  20 }, "attack": { "lo":  5, "hi":  8 }, "defense": { "lo":  4, "hi":  7 }, "damageMin": { "lo": 2, "hi": 2 }, "damageMax": { "lo":  3, "hi":  3 }, "speed": { "lo": 4, "hi":  6 } },
+    { "tier": 3, "hp": { "lo":  18, "hi":  35 }, "attack": { "lo":  6, "hi": 10 }, "defense": { "lo":  5, "hi":  9 }, "damageMin": { "lo": 3, "hi": 3 }, "damageMax": { "lo":  5, "hi":  5 }, "speed": { "lo": 4, "hi":  7 } },
+    { "tier": 4, "hp": { "lo":  30, "hi":  55 }, "attack": { "lo":  9, "hi": 14 }, "defense": { "lo":  8, "hi": 12 }, "damageMin": { "lo": 5, "hi": 5 }, "damageMax": { "lo":  8, "hi":  8 }, "speed": { "lo": 5, "hi":  7 } },
+    { "tier": 5, "hp": { "lo":  45, "hi":  80 }, "attack": { "lo": 11, "hi": 17 }, "defense": { "lo": 10, "hi": 15 }, "damageMin": { "lo": 7, "hi": 7 }, "damageMax": { "lo": 11, "hi": 11 }, "speed": { "lo": 6, "hi":  9 } },
+    { "tier": 6, "hp": { "lo":  80, "hi": 140 }, "attack": { "lo": 14, "hi": 20 }, "defense": { "lo": 13, "hi": 18 }, "damageMin": { "lo": 10, "hi": 10 }, "damageMax": { "lo": 16, "hi": 16 }, "speed": { "lo": 6, "hi": 10 } },
+    { "tier": 7, "hp": { "lo": 140, "hi": 250 }, "attack": { "lo": 18, "hi": 27 }, "defense": { "lo": 17, "hi": 24 }, "damageMin": { "lo": 18, "hi": 18 }, "damageMax": { "lo": 30, "hi": 30 }, "speed": { "lo": 7, "hi": 11 } }
+  ]
+}

@@ -239,6 +239,18 @@ Applied after
   paths and narrower subsystem dependencies.
 - Re-scoped the accessibility and launch polish tasks away from broad
   module-level dependency gates toward direct UI/polish dependencies.
+- Pinned AI-generated-content lifecycle as **contractual** rather
+  than discretionary: sandbox enforcement now lists four named
+  consumers (matchmaker, lobby, replay validator, editor) in
+  [`pack-contract.md` § Sandbox enforcement`](../architecture/pack-contract.md#sandbox-enforcement),
+  hard caps live in
+  [`balance-constraints.schema.json`](../../content-schema/schemas/balance-constraints.schema.json)
+  (so non-orchestrator producers cannot bypass them), the materialized
+  manifest carries a `manifest.generation` version pin, image
+  moderation has a typed report shape, the retry policy and
+  provider-failure taxonomy are closed schemas, asset normalization
+  has a four-rule contract, and post-publication revocation has a
+  signed-list / client-check / replay-fallback contract.
 
 ## Not Implemented Yet
 

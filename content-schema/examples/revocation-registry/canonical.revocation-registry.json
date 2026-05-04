@@ -1,0 +1,11 @@
+{
+  "$schema": "heroes-reforged/revocation-registry.schema.json",
+  "schemaVersion": 1,
+  "version": 1,
+  "entries": [],
+  "signature": {
+    "scheme": "ed25519",
+    "keyId": "maintainer-revocation-key-001",
+    "value": "MEUCIQDexampleSignaturePlaceholderForCanonicalEmptyRegistryEntry"
+  }
+}

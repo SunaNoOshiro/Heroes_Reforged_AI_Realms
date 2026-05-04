@@ -1,0 +1,23 @@
+{
+  "$schema": "heroes-reforged/image-moderation-report.schema.json",
+  "schemaVersion": 1,
+  "assetId": "ash-hound:sprite",
+  "nsfw": {
+    "pass": true,
+    "score": 0.01,
+    "reasonCode": "ok",
+    "message": "no NSFW signal detected"
+  },
+  "ipLikeness": {
+    "pass": true,
+    "score": 0.05,
+    "reasonCode": "ok",
+    "message": "no recognizable IP likeness detected"
+  },
+  "styleConformance": {
+    "pass": true,
+    "score": 0.92,
+    "reasonCode": "ok",
+    "message": "matches faction palette and pixel-art style"
+  }
+}

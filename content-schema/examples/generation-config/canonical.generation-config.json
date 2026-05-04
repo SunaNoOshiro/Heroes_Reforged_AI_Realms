@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/generation-config.schema.json",
+  "schemaVersion": 1,
+  "orchestratorVersion": "0.1.0",
+  "promptTemplateHash": "1f0c0d6e0a4f4d3c8b2a9f7e6d5c4b3a2918273645546372819000abcdef0123",
+  "rulesetHash": "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"
+}

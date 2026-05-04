@@ -1,0 +1,19 @@
+{
+  "$schema": "heroes-reforged/retry-policy.schema.json",
+  "schemaVersion": 1,
+  "shape": {
+    "maxAttempts": 2,
+    "onExhaust": "fail",
+    "backoff": { "kind": "fixed", "delayMs": 1000 }
+  },
+  "coherence": {
+    "maxAttempts": 1,
+    "onExhaust": "degrade",
+    "backoff": { "kind": "none" }
+  },
+  "balance": {
+    "maxAttempts": 0,
+    "onExhaust": "fail",
+    "backoff": { "kind": "none" }
+  }
+}

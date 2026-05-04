@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/provider-failure.schema.json",
+  "kind": "content-policy",
+  "providerId": "example-provider",
+  "message": "request refused by provider safety filter; please rephrase the prompt",
+  "policyCode": "safety.refused"
+}

@@ -43,6 +43,11 @@ Acceptance Criteria:
 - Auto-repair fills missing `weeklyGrowth` with tier-appropriate default
 - Coherence report distinguishes blocking errors from warnings
 - Coherence check runs in < 500ms
+- Coherence failures route through the `RetryPolicy` from
+  [`content-schema/schemas/retry-policy.schema.json`](../../../content-schema/schemas/retry-policy.schema.json)
+  (see [`02b-retry-policy.md`](./02b-retry-policy.md)) — `coherence`
+  retries respect `maxAttempts` and the `degrade` exhaustion action
+  drops the referencing record instead of failing the whole pack.
 
 Verify:
 - npm run validate

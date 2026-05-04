@@ -67,9 +67,53 @@ every example pack against its schema.
 
 - `signature` — optional object with `scheme`, `keyId`, and `value`.
 - `sandboxed` — boolean trust flag enforced by runtime policy.
+- `sandboxedReason` — optional string identifying why the pack is
+  sandboxed (`ai-generated`, `user-edited`, `unsigned`). Consumed
+  by the sandbox-enforcement layer below to render the reason and
+  by the lifecycle layer (see
+  [`pack-lifecycle.md`](./pack-lifecycle.md)) to scope GC.
 
 Use `sandboxed: true` for AI-generated or otherwise restricted content
 that cannot participate in ranked or trusted flows.
+
+## Sandbox enforcement
+
+`sandboxed: true` is enforced — not just labeled — by the four
+consumers below. Without these rules, the moment a multiplayer
+matchmaker ships, sandboxed packs could enter ranked matches and
+ranked integrity would collapse on day one. Each consumer must use
+the shared `isSandboxAllowed(context, manifest)` predicate as the
+gate.
+
+| Consumer | Required behavior | Default | Override mechanism |
+|---|---|---|---|
+| Ranked matchmaker | Refuse any session containing a `sandboxed: true` pack. | refuse | none — ranked is canonical only. |
+| Shared lobby | Allow only if every player has explicitly opted into sandbox content for the lobby. | refuse | per-lobby opt-in toggle, surfaced in the lobby UI. |
+| Replay validator | Refuse for canonical replay (multiplayer / trusted leaderboard); allow for sandbox replay. | refuse for canonical | replay surface flags revoked-or-sandboxed packs (see [Revocation](#revocation)). |
+| Editor | Allow with a visible `SANDBOX` badge and `sandboxedReason`. | allow | none — author can clear the flag only by re-publishing through a non-sandbox pipeline. |
+
+The owning contract is
+[`tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md`](../../tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md).
+Cache, GC, and disk-quota policy for sandboxed packs live in
+[`pack-lifecycle.md`](./pack-lifecycle.md).
+
+## Revocation
+
+Pre-publication moderation is defined (text moderation, hard caps,
+sandbox flag). After distribution, a pack found to violate IP or
+safety must still be removable from clients. The contract is in
+[`revocation.md`](./revocation.md); three components:
+
+1. A maintainer-signed
+   [`revocation-registry.schema.json`](../../content-schema/schemas/revocation-registry.schema.json)
+   listing revoked `contentHash`es with reason codes and
+   monotonic `version`.
+2. A client-side check at pack load: if `manifest.contentHash`
+   matches a registry entry, the pack is rejected from canonical
+   contexts (ranked matchmaker, signed marketplace listing).
+3. A replay-fallback rule: replays referencing a revoked pack
+   remain playable in a "revoked content present" mode so old
+   replays do not silently break.
 
 ## Capabilities
 

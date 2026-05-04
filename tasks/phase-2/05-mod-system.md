@@ -39,3 +39,7 @@ proves the full pack surface.
   🧠 Task 8: Override precedence + patch merge (~5h)
 - [09-canonical-packs-registry.md](05-mod-system/09-canonical-packs-registry.md)
   🧠 Task 9: Canonical-packs registry + bundle verifier (~4h)
+- [10-sandbox-enforcement-contract.md](05-mod-system/10-sandbox-enforcement-contract.md)
+  🤖 Task 10: Sandbox enforcement contract — predicate + four-consumer matrix (~3h)
+- [11-revocation-registry.md](05-mod-system/11-revocation-registry.md)
+  🤖 Task 11: Revocation registry — signed list + client check + replay fallback (~5h)

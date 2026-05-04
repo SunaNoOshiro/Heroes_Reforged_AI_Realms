@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/asset-normalization-spec.schema.json",
+  "title": "Asset Normalization Spec",
+  "description": "Per-asset-role dimension, palette, and frame-count constraints applied to AI-generated images between moderation (Stage 5.5) and pack materialize (Stage 6). The full pipeline contract lives in `docs/architecture/asset-normalization.md`. Without this spec, real image-gen output would arrive at whatever resolution and palette the provider returned, breaking renderer assumptions about sprite size, faction palette consistency, and atlas-packing uniformity.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "roles"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Per-role normalization rule. Roles correspond to renderer asset slots (creature sprite, hero portrait, building, ability icon).",
+      "items": {
+        "type": "object",
+        "required": ["role", "width", "height", "frames"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "creature-sprite",
+              "hero-portrait",
+              "building",
+              "ability-icon"
+            ]
+          },
+          "width":  { "type": "integer", "minimum": 1 },
+          "height": { "type": "integer", "minimum": 1 },
+          "frames": {
+            "type": "object",
+            "required": ["required", "fallback"],
+            "properties": {
+              "required": {
+                "type": "array",
+                "minItems": 0,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": ["idle", "attack", "death", "hurt", "walking", "casting", "defending", "special"]
+                },
+                "description": "Frame events that must be present after normalization."
+              },
+              "fallback": {
+                "type": "string",
+                "enum": ["idle", "attack", "death", "hurt", "walking", "none"],
+                "description": "Frame event used when an optional event is missing. `none` means render no animation for that event."
+              }
+            },
+            "additionalProperties": false
+          },
+          "palette": {
+            "type": "object",
+            "required": ["source", "maxColors"],
+            "properties": {
+              "source": {
+                "type": "string",
+                "enum": ["faction", "shared", "uncolored"],
+                "description": "Where the per-faction palette is sourced. `faction` reads the active faction's metadata; `shared` uses the shared library palette; `uncolored` skips quantization."
+              },
+              "maxColors": { "type": "integer", "minimum": 1, "maximum": 256 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "heroes-reforged/asset-normalization-spec.schema.json",
+  "schemaVersion": 1,
+  "roles": [
+    {
+      "role": "creature-sprite",
+      "width": 96,
+      "height": 96,
+      "frames": {
+        "required": ["idle", "attack", "death", "hurt", "walking"],
+        "fallback": "idle"
+      },
+      "palette": { "source": "faction", "maxColors": 64 }
+    },
+    {
+      "role": "hero-portrait",
+      "width": 256,
+      "height": 256,
+      "frames": {
+        "required": [],
+        "fallback": "none"
+      },
+      "palette": { "source": "faction", "maxColors": 128 }
+    },
+    {
+      "role": "building",
+      "width": 192,
+      "height": 192,
+      "frames": {
+        "required": ["idle"],
+        "fallback": "idle"
+      },
+      "palette": { "source": "faction", "maxColors": 96 }
+    },
+    {
+      "role": "ability-icon",
+      "width": 64,
+      "height": 64,
+      "frames": {
+        "required": [],
+        "fallback": "none"
+      },
+      "palette": { "source": "uncolored", "maxColors": 256 }
+    }
+  ]
+}

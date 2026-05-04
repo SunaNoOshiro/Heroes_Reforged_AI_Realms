@@ -447,6 +447,15 @@ function schemaForFile(filePath) {
   if (base.endsWith(".themed-week.json")) return "themed-week.schema.json";
   if (base.endsWith(".generation-request.json")) return "generation-request.schema.json";
   if (base.endsWith(".generated-faction.json")) return "generated-faction.schema.json";
+  if (base.endsWith(".balance-constraints.json")) return "balance-constraints.schema.json";
+  if (base.endsWith(".generation-config.json")) return "generation-config.schema.json";
+  if (base.endsWith(".retry-policy.json")) return "retry-policy.schema.json";
+  if (base.endsWith(".image-moderation-report.json")) return "image-moderation-report.schema.json";
+  if (base.endsWith(".asset-normalization-spec.json")) return "asset-normalization-spec.schema.json";
+  if (base.endsWith(".provider-failure.json")) return "provider-failure.schema.json";
+  if (base.endsWith(".provider-response-cache-entry.json")) return "provider-response-cache-entry.schema.json";
+  if (base.endsWith(".revocation-registry.json")) return "revocation-registry.schema.json";
+  if (base.endsWith(".revocation-entry.json")) return "revocation-entry.schema.json";
   if (base === "game-state.example.json") return "game-state.schema.json";
   if (base === "ui-component-registry.example.json") return "ui-component-registry.schema.json";
   if (base.endsWith(".error-state.json")) return "error-state.schema.json";

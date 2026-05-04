@@ -125,6 +125,15 @@
       "additionalProperties": false
     },
     "sandboxed": { "type": "boolean" },
+    "sandboxedReason": {
+      "type": "string",
+      "description": "Optional reason this pack is sandboxed; consumed by the sandbox-enforcement layer (matchmaker, lobby, replay validator, editor) to render *why* a pack is quarantined. See pack-contract.md § Sandbox enforcement.",
+      "enum": ["ai-generated", "user-edited", "unsigned"]
+    },
+    "generation": {
+      "$ref": "heroes-reforged/generation-config.schema.json",
+      "description": "Optional version pin written by the AI-generation pipeline at Stage 6 (pack materialize). Authoritative for reproducibility — `notes.providerId` on the GeneratedFaction record is best-effort metadata only. See `generation-config.schema.json` and `ai-generation-pipeline.md`."
+    },
     "provides": {
       "type": "object",
       "additionalProperties": {

@@ -37,6 +37,12 @@ The engine must provide these, in this order:
   `maxDepth`); a wall-clock timer may run as a warn-only watchdog
   but MUST NOT truncate the search. See "AI Compute Budget" below
   and [`performance.md` § 6](./performance.md#6-ai-compute-budget).
+- **Hosted AI-provider calls.** `GenerationRequest.seed` is a
+  best-effort reproducibility hint only — provider output is not
+  guaranteed deterministic. Determinism in the AI generation
+  pipeline begins at Stage 4 onward, once shape and coherence have
+  been validated. See
+  [`ai-generation-pipeline.md` § Determinism boundary`](./ai-generation-pipeline.md#determinism-boundary).
 
 ## AI Compute Budget
 

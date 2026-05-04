@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/retry-policy.schema.json",
+  "title": "Retry Policy",
+  "description": "Codifies the per-failure-class retry policy for the AI-generation pipeline so two implementers cannot ship two different policies. Three failure classes are pinned: shape (re-prompt with the validation report attached as a fix-this instruction), coherence (re-prompt with resolved-ID hints, then drop the referencing record), and balance (route to the optimizer; no re-prompt). Each entry carries a `maxAttempts`, an `onExhaust` action, and a `backoff` strategy.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "shape",
+    "coherence",
+    "balance"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "shape":     { "$ref": "#/$defs/policyEntry" },
+    "coherence": { "$ref": "#/$defs/policyEntry" },
+    "balance":   { "$ref": "#/$defs/policyEntry" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "policyEntry": {
+      "type": "object",
+      "required": ["maxAttempts", "onExhaust", "backoff"],
+      "properties": {
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of retry attempts after the first failure. 0 means do not retry."
+        },
+        "onExhaust": {
+          "type": "string",
+          "enum": ["fail", "degrade", "escalate-to-user"],
+          "description": "Action to take after `maxAttempts` is exhausted. `fail` returns the failure report up the stack; `degrade` drops the offending record and proceeds; `escalate-to-user` surfaces a UI prompt for human direction."
+        },
+        "backoff": {
+          "type": "object",
+          "required": ["kind"],
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["kind"],
+              "properties": {
+                "kind": { "const": "none" }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": ["kind", "delayMs"],
+              "properties": {
+                "kind":    { "const": "fixed" },
+                "delayMs": { "type": "integer", "minimum": 0 }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

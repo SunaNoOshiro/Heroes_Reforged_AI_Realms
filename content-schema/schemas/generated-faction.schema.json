@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/generated-faction.schema.json",
   "title": "Generated Faction",
-  "description": "Raw, pre-validation output of `GenerationProvider.generateStructured` for kind='faction'. Before this becomes a loadable pack the pipeline: (1) validates against record schemas, (2) runs the coherence check, (3) runs the auto-balancer, (4) writes manifest and contentHash.",
+  "description": "Raw, pre-validation output of `GenerationProvider.generateStructured` for kind='faction'. Before this becomes a loadable pack the pipeline: (1) validates against record schemas, (2) runs the coherence check, (3) runs the auto-balancer, (4) writes manifest and contentHash. Numeric caps (HP, ATK, abilities-per-unit) are not duplicated here — the single source of truth is `balance-constraints.schema.json`, consumed by both the orchestrator-side moderation step and any non-orchestrator producer (community editor, hand-edited pack).",
   "type": "object",
   "required": [
     "schemaVersion",
@@ -51,7 +51,7 @@
     },
     "notes": {
       "type": "object",
-      "description": "Generator-reported metadata (e.g. provider id, prompt hash, estimated power). Never load-bearing for gameplay.",
+      "description": "Generator-reported metadata (e.g. provider id, prompt hash, estimated power). Never load-bearing for gameplay. `notes.providerId` is best-effort metadata only; the authoritative version pin baked into the materialized pack is `manifest.generation` per `generation-config.schema.json`.",
       "properties": {
         "providerId":  { "type": "string" },
         "promptHash":  { "type": "string" },

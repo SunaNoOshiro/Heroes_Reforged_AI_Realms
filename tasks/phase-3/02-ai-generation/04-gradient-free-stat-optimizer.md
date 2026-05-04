@@ -18,13 +18,20 @@ Outputs:
 - `src/ai/generation/optimizer.ts`
 - `optimizeStats(faction, balanceResult, targetWinRate: [0.45, 0.55]): Faction`
 - Optimization loop: up to 10 iterations of coordinate descent
-- Constraints: no stat goes below 1 or above hard caps (HP ≤ 500, ATK ≤ 50)
+- Constraints: no stat goes below 1 or above hard caps. Hard-cap
+  values are read from
+  [`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json)
+  (HP ≤ 500, ATK ≤ 50) — the optimizer does not duplicate or
+  re-decide the numbers; the constraints schema is the single
+  source of truth (see
+  [`00b-balance-constraints-schema.md`](./00b-balance-constraints-schema.md)).
 - Change log: record each adjustment made
 
 Owned Paths:
 - `src/ai/generation/optimizer.ts`
 
 Dependencies:
+- phase-3.02-ai-generation.00b-balance-constraints-schema
 - phase-3.02-ai-generation.02-schema-validation-plus-coherence-check
 - phase-3.02-ai-generation.03-auto-balancer-headless-battle-baseline
 

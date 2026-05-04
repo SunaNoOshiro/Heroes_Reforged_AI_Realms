@@ -34,9 +34,45 @@ vendor.
 
 - `GenerationProvider.generateStructured(input): Promise<RawFactionData>`
 - `ModerationProvider.moderate(input): Promise<ModerationResult>`
+- `ModerationProvider.moderateImage(asset): Promise<ImageModerationReport>`
 
 The exact interface can evolve, but orchestration code should accept the
-contract, not a vendor client.
+contract, not a vendor client. Vendor selection for image moderation
+is operational (which hosted moderation API to use), not a contract
+decision — the same rule that applies to `GenerationProvider`.
+
+The image-moderation report shape is pinned in
+[`image-moderation-report.schema.json`](../../content-schema/schemas/image-moderation-report.schema.json):
+three independent verdicts (NSFW, copyright/likeness, style
+conformance) so each can fail independently and route to a distinct
+UI recovery action.
+
+## Provider failure taxonomy
+
+Provider transport-layer failures form a closed four-class union
+(see
+[`provider-failure.schema.json`](../../content-schema/schemas/provider-failure.schema.json))
+so the Generation UI can render distinct recovery actions instead of
+a generic "failed" message:
+
+- **`transport`** — timeout, network blip, 5xx response. Auto-retry
+  with backoff up to N attempts; `retryAfterMs` carries the
+  suggested delay.
+- **`auth`** — invalid or expired credentials. Open a re-auth flow;
+  do not auto-retry.
+- **`quota`** — rate limit or per-period cap. Show a cooldown timer
+  using `cooldownMs`; retry after expiry.
+- **`content-policy`** — provider safety filter refused the request.
+  Open a re-prompt UX nudging the user to rephrase; do not
+  auto-retry.
+
+This taxonomy is **independent** of the shape/coherence/balance
+classes from
+[`retry-policy.schema.json`](../../content-schema/schemas/retry-policy.schema.json) —
+both can fire on the same generation. Adapters under
+`src/ai/providers/` translate vendor-specific error shapes into one
+of these four classes; orchestration and UI code never read
+vendor-specific identifiers.
 
 ## Why This Matters
 

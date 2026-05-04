@@ -120,7 +120,13 @@ Summary:
 - **AI-pipeline records:** the pre-ingest validation in
   [`ai-generation-pipeline.md`](./ai-generation-pipeline.md)
   remains the fail-loud gate for AI-generated *gameplay* records;
-  runtime never accepts one bypassing that gate.
+  runtime never accepts one bypassing that gate. Sandbox enforcement
+  for AI-generated packs (matchmaker / lobby / replay / editor) is
+  pinned in
+  [`pack-contract.md` § Sandbox enforcement`](./pack-contract.md#sandbox-enforcement);
+  cache, GC, and disk-quota policy live in
+  [`pack-lifecycle.md`](./pack-lifecycle.md); post-publication
+  takedown lives in [`revocation.md`](./revocation.md).
 
 The migration cycle, schema-version bump procedure, and worked example
 live in

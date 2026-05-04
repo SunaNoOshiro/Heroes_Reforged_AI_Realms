@@ -61,6 +61,11 @@ Acceptance Criteria:
 - Returns complete `RawFactionData` with 14 units, buildings, heroes
 - Structured output — no need to parse free text
 - Handles provider rate-limit errors with retry + backoff
+- Shape failures consume the `RetryPolicy` from
+  [`content-schema/schemas/retry-policy.schema.json`](../../../content-schema/schemas/retry-policy.schema.json)
+  (see [`02b-retry-policy.md`](./02b-retry-policy.md)) — adapter
+  retries follow `policy.shape.maxAttempts` and respect
+  `policy.shape.backoff`.
 - No UI component or browser-only code holds provider secrets directly
 - Total generation time < 30 seconds
 

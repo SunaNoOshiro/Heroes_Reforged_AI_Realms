@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/generation-config.schema.json",
+  "title": "Generation Config",
+  "description": "Authoritative version pin baked into a materialized AI-generated pack's manifest under `manifest.generation`. Reproducibility today depends on `GenerationRequest.seed` plus `GeneratedFaction.notes.providerId`/`promptHash`/`modelHint` — but the orchestrator semver, prompt-template version, and ruleset-version pin are not recorded. Two regenerations from the same prompt+seed can diverge if the orchestrator was upgraded between runs. This record fixes that: every materialized pack now carries the orchestrator/prompt-template/ruleset triple it was produced with, so bug reports can be tied to a specific combination and regression tests can detect drift caused by orchestrator updates.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "orchestratorVersion",
+    "promptTemplateHash",
+    "rulesetHash"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "orchestratorVersion": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Semver of the AI-generation orchestrator that produced this pack. Stable across releases.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-z0-9.-]+)?$"
+    },
+    "promptTemplateHash": {
+      "type": "string",
+      "description": "sha256 hex digest of the prompt-template file the orchestrator used at build time. The system prompt is a templated artifact, not free input — pinning its hash captures the contract the model was trained against.",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "rulesetHash": {
+      "type": "string",
+      "description": "sha256 hex digest of `research/deep-research-report.md` at orchestrator-build time. Captures the corridor and balance contract the orchestrator targeted.",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

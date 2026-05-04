@@ -73,6 +73,13 @@ Acceptance Criteria:
   offending field
 - `scripts/check-repo-contracts.mjs` passes — no file under
   `tasks/` or `docs/` references `src/generation/`
+- The `seed.description` text on
+  [`generation-request.schema.json`](../../../content-schema/schemas/generation-request.schema.json)
+  is part of the schema contract (calls out that seed is a
+  best-effort reproducibility hint, not a determinism guarantee).
+  Implementations must not relax that wording when porting Zod
+  types, because downstream code reads the description as the
+  contract.
 
 Verify:
 - npm run validate
