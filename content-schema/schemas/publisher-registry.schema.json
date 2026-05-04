@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/publisher-registry.schema.json",
+  "title": "Publisher Registry",
+  "description": "Client-local list of known publisher signing keys. Backs the `tier=signed-known` ribbon on the pack-trust prompt (screen 72) per `pack-trust.md` § Trust Anchors. Shipped as a content artifact under `resources/registries/`; not fetched at runtime.",
+  "type": "object",
+  "required": ["schemaVersion", "registryVersion", "publishers"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "pattern": "^heroes-reforged/publisher-registry\\.schema\\.json$"
+    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "registryVersion": { "const": 1 },
+    "publishers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["keyId", "name", "scheme", "publicKey"],
+        "additionalProperties": false,
+        "properties": {
+          "keyId":     { "type": "string", "pattern": "^[a-z0-9-]{4,64}$" },
+          "name":      { "type": "string", "maxLength": 80 },
+          "scheme":    { "const": "ed25519" },
+          "publicKey": { "type": "string", "pattern": "^[A-Za-z0-9+/=]{40,128}$" },
+          "addedAt":   { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

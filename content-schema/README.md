@@ -51,6 +51,10 @@ generation payloads. They currently cover:
 - AI generation request / generated faction
 - chat message envelope (lobby chat)
 - report bundle (peer-behavior / AI-UGC reports)
+- save record (exportable save consumed by save-import flow)
+- publisher registry (known-publisher signing-key list)
+- pack revocation list (client-local user-decision revocations)
+- trust store (per-installation user pack-trust decisions)
 
 ## Relationship To Other Folders
 

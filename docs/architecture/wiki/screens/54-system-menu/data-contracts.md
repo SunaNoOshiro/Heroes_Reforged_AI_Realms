@@ -30,6 +30,8 @@
 - `OPEN_OPTIONS` from `system.options`: Routes to settings.
 - `REQUEST_RETURN_TO_MAIN_MENU` from `system.mainMenu`: Requires confirmation.
 - `CLOSE_SYSTEM_MENU` from `system.resume`: Returns to gameplay.
+- `OPEN_PACK_MANAGER` from `system.managePacks`: Routes to screen [`71-pack-manager`](../71-pack-manager/) per [`pack-trust.md`](../../../pack-trust.md).
+- `ENTER_SAFE_MODE` from `system.safeMode`: Routes through screen [`60-confirmation-dialog`](../60-confirmation-dialog/) per [`pack-trust.md` § Safe Mode](../../../pack-trust.md#5-safe-mode).
 
 ### Config Keys
 - `config.ui.locale`

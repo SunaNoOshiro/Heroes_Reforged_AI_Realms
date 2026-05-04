@@ -26,6 +26,7 @@
 | `messageHistory` | `state.ui.messages.history` | Client-side message history, not replay authoritative. |
 | `resourceDeltas` | `selectors.economy.lastVisibleDeltas` | Recent command-result deltas. |
 | `drawerOpen` | `state.ui.statusBar.drawerOpen` | Local expanded/collapsed state. |
+| `moddedIndicator` | `selectors.session.moddedIndicator` | `off \| trusted \| sandboxed \| mixed` per [`pack-trust.md` § Modded Indicator](../../../pack-trust.md#6-modded-indicator). |
 
 ### Commands And Events
 - `EXPAND_STATUS_HISTORY` from `status.expand`: Shows recent UI feedback.
@@ -46,6 +47,10 @@
 - `ui.status-bar.actions.*`
 - `ui.status-bar.status.*`
 - `ui.status-bar.errors.*`
+- `ui.status-bar.modded.off`
+- `ui.status-bar.modded.trusted`
+- `ui.status-bar.modded.sandboxed`
+- `ui.status-bar.modded.mixed`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs

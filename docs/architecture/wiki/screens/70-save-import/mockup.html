@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>70. Save Import - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #1a1410; }
+  body { color: #e8d8b8; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: #1a1410; }
+  .frame { fill: #2b1f15; stroke: #c9a14e; stroke-width: 2; }
+  .panel { fill: #1f1610; stroke: #6b4f2a; stroke-width: 1; }
+  .header { fill: #f0d590; font: 700 13px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #d8c4a0; font: 11px ui-monospace, Menlo, monospace; }
+  .ok { fill: #7ce0a4; font: 700 11px ui-monospace, Menlo, monospace; }
+  .warn { fill: #ffd166; font: 700 11px ui-monospace, Menlo, monospace; }
+  .err { fill: #ff7373; font: 700 11px ui-monospace, Menlo, monospace; }
+  .button rect { fill: #4a3520; stroke: #c9a14e; }
+  .button text { fill: #f0d590; font: 700 11px ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body data-screen="70-save-import" data-archetype="system-import-dialog" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Save Import mockup">
+  <rect x="14" y="14" width="772" height="572" class="frame"/>
+
+  <text x="40" y="44" class="header">IMPORT SAVE</text>
+
+  <rect x="32" y="60" width="736" height="64" class="panel"/>
+  <text x="48" y="82" class="header" data-i18n="ui.save-import.source.title">SOURCE</text>
+  <text x="48" y="104" class="row">[Local file] [URL] [Share link]</text>
+  <text x="48" y="118" class="row">selected: ember_run.hrsa.json (38 KB)</text>
+
+  <rect x="32" y="136" width="736" height="80" class="panel"/>
+  <text x="48" y="158" class="header" data-i18n="ui.save-import.validation.title">VALIDATION</text>
+  <text x="48" y="180" class="ok">schema valid; saveVersion 1 (in range)</text>
+  <text x="48" y="196" class="ok">migration: not needed</text>
+  <text x="48" y="210" class="row">staged in quarantine — no slot or pack write yet</text>
+
+  <rect x="32" y="228" width="736" height="120" class="panel"/>
+  <text x="48" y="250" class="header" data-i18n="ui.save-import.packs.title">REFERENCED PACKS</text>
+  <text x="48" y="272" class="row">core_baseline   v1.0.0  9b40..b801   installed</text>
+  <text x="48" y="288" class="row">emberwild       v1.2.1  4c11..e2af   missing  [ ] consent</text>
+  <text x="48" y="304" class="row">shared_skills   v0.9.0  7110..00d3   mismatched (skew)</text>
+  <text x="48" y="324" class="warn" data-i18n="ui.save-import.warn.untrusted-packs">untrusted packs: review before continuing</text>
+
+  <rect x="32" y="360" width="368" height="80" class="panel"/>
+  <text x="48" y="382" class="header" data-i18n="ui.save-import.compatibility.title">COMPATIBILITY SEAL</text>
+  <text x="48" y="404" class="warn" data-i18n="ui.save-import.seal.version-skew">SKEW — replay may diverge</text>
+  <text x="48" y="420" class="row">[ ] continue anyway (acknowledge skew)</text>
+
+  <rect x="416" y="360" width="352" height="80" class="panel"/>
+  <text x="432" y="382" class="header" data-i18n="ui.save-import.target.title">TARGET SLOT</text>
+  <text x="432" y="404" class="row">slot 03 (Castle Run, day 14)</text>
+  <text x="432" y="420" class="row">overwrite: routes through confirmation</text>
+
+  <rect x="32" y="452" width="736" height="48" class="panel"/>
+  <text x="48" y="476" class="header" data-i18n="ui.save-import.notice.title">NOTICE</text>
+  <text x="48" y="492" class="row">imports stop on size, ratio, or schema-version refusal — see pack-trust.md</text>
+
+  <g class="button" data-action="saveImport.review">
+    <rect x="40" y="520" width="160" height="32" rx="4"/>
+    <text x="120" y="540" text-anchor="middle">REVIEW PACK TRUST</text>
+  </g>
+  <g class="button" data-action="saveImport.confirm">
+    <rect x="220" y="520" width="160" height="32" rx="4"/>
+    <text x="300" y="540" text-anchor="middle">CONFIRM IMPORT</text>
+  </g>
+  <g class="button" data-action="saveImport.cancel">
+    <rect x="608" y="520" width="160" height="32" rx="4"/>
+    <text x="688" y="540" text-anchor="middle">CANCEL</text>
+  </g>
+</svg>
+</body>
+</html>

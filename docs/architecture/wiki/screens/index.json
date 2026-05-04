@@ -96,7 +96,10 @@
         "58-week-month-popup",
         "59-loading-screen",
         "60-confirmation-dialog",
-        "61-ai-turn-indicator"
+        "61-ai-turn-indicator",
+        "70-save-import",
+        "71-pack-manager",
+        "72-pack-trust-prompt"
       ]
     },
     {

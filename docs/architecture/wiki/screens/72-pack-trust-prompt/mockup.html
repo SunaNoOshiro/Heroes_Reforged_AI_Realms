@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>72. Pack Trust Prompt - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #1a1410; }
+  body { color: #e8d8b8; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: #1a1410; }
+  .frame { fill: #2b1f15; stroke: #c9a14e; stroke-width: 2; }
+  .panel { fill: #1f1610; stroke: #6b4f2a; stroke-width: 1; }
+  .ribbon-known { fill: #2f5d3a; stroke: #7ce0a4; }
+  .ribbon-unknown { fill: #5d4920; stroke: #ffd166; }
+  .ribbon-unsigned { fill: #5d2020; stroke: #ff7373; }
+  .ribbon-failed { fill: #1a0a0a; stroke: #ff7373; }
+  .header { fill: #f0d590; font: 700 13px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #d8c4a0; font: 11px ui-monospace, Menlo, monospace; }
+  .ok { fill: #7ce0a4; font: 700 11px ui-monospace, Menlo, monospace; }
+  .warn { fill: #ffd166; font: 700 11px ui-monospace, Menlo, monospace; }
+  .err { fill: #ff7373; font: 700 11px ui-monospace, Menlo, monospace; }
+  .button rect { fill: #4a3520; stroke: #c9a14e; }
+  .button text { fill: #f0d590; font: 700 11px ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body data-screen="72-pack-trust-prompt" data-archetype="system-trust-dialog" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pack Trust Prompt mockup">
+  <rect x="14" y="14" width="772" height="572" class="frame"/>
+
+  <text x="40" y="44" class="header">REVIEW PACK TRUST</text>
+
+  <rect x="32" y="60" width="736" height="52" class="panel"/>
+  <text x="48" y="80" class="header" data-i18n="ui.pack-trust.identity.title">PACK IDENTITY</text>
+  <text x="48" y="100" class="row">emberwild  v1.2.1  Crimson Studios   id: emberwild_faction   hash: 4c11..e2af</text>
+
+  <rect x="32" y="124" width="736" height="40" class="ribbon-unknown"/>
+  <text x="48" y="150" class="warn" data-i18n="ui.pack-trust.tier.signed-unknown">SIGNED BY UNKNOWN PUBLISHER — keyId: pub-ckey-2024</text>
+
+  <rect x="32" y="176" width="736" height="120" class="panel"/>
+  <text x="48" y="196" class="header" data-i18n="ui.pack-trust.capabilities.title">CAPABILITIES</text>
+  <text x="48" y="218" class="row" data-i18n="ui.pack-trust.capability.formulas">CAN CHANGE GAME FORMULAS</text>
+  <text x="48" y="234" class="row" data-i18n="ui.pack-trust.capability.spells">CAN ADD NEW SPELL KINDS</text>
+  <text x="48" y="250" class="row" data-i18n="ui.pack-trust.capability.assets">LOADS CUSTOM IMAGES AND SOUNDS</text>
+  <text x="48" y="266" class="row" data-i18n="ui.pack-trust.capability.no-scripts">NO CODE EXECUTION</text>
+  <text x="48" y="284" class="row">Author-declared content: violence: mild | language: none | sexual: none | themes: none</text>
+
+  <rect x="32" y="308" width="736" height="100" class="panel"/>
+  <text x="48" y="328" class="header" data-i18n="ui.pack-trust.transitive.title">TRANSITIVE PACKS</text>
+  <text x="48" y="350" class="row">[ ] shared_skills  v0.9.0  trusted-known  formulas       (per-pack consent required)</text>
+  <text x="48" y="366" class="row">[ ] sound_pack     v1.0.0  unsigned       assets         (per-pack consent required)</text>
+  <text x="48" y="384" class="warn">No "Trust all" button — each pack reviewed individually.</text>
+
+  <rect x="32" y="420" width="736" height="80" class="panel"/>
+  <text x="48" y="440" class="header" data-i18n="ui.pack-trust.scope.title">SCOPE</text>
+  <text x="48" y="462" class="row">(•) Just this session   ( ) For this save   ( ) Always (until I revoke)</text>
+  <text x="48" y="482" class="row">Reference: pack-trust.md § Trust Anchors / persistence-scope picker.</text>
+
+  <g class="button" data-action="packTrust.trust">
+    <rect x="40" y="520" width="160" height="32" rx="4"/>
+    <text x="120" y="540" text-anchor="middle">TRUST THIS PACK</text>
+  </g>
+  <g class="button" data-action="packTrust.sandboxed">
+    <rect x="220" y="520" width="200" height="32" rx="4"/>
+    <text x="320" y="540" text-anchor="middle">RUN SANDBOXED (LIMITED)</text>
+  </g>
+  <g class="button" data-action="packTrust.deny">
+    <rect x="440" y="520" width="160" height="32" rx="4"/>
+    <text x="520" y="540" text-anchor="middle">DENY</text>
+  </g>
+  <g class="button" data-action="packTrust.cancel">
+    <rect x="620" y="520" width="148" height="32" rx="4"/>
+    <text x="694" y="540" text-anchor="middle">CANCEL</text>
+  </g>
+</svg>
+</body>
+</html>

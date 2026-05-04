@@ -125,6 +125,18 @@
       "additionalProperties": false
     },
     "sandboxed": { "type": "boolean" },
+    "contentRating": {
+      "type": "object",
+      "description": "Optional author-asserted content rating. Advisory only; not consumed by gameplay or matchmaking gates in v1. Surfaced by screen 72 (pack-trust prompt) under \"Author-declared content\" per `pack-trust.md` § Content Rating.",
+      "additionalProperties": false,
+      "properties": {
+        "violence": { "enum": ["none", "mild", "moderate", "intense"] },
+        "language": { "enum": ["none", "mild", "strong"] },
+        "sexual":   { "enum": ["none", "mild", "explicit"] },
+        "themes":   { "enum": ["none", "mature"] },
+        "selfRated": { "type": "boolean", "default": true }
+      }
+    },
     "sandboxedReason": {
       "type": "string",
       "description": "Optional reason this pack is sandboxed; consumed by the sandbox-enforcement layer (matchmaker, lobby, replay validator, editor) to render *why* a pack is quarantined. See pack-contract.md § Sandbox enforcement.",

@@ -13,6 +13,8 @@ Read First:
 - `docs/architecture/wiki/screens/55-save-load/data-contracts.md`
 - `docs/architecture/wiki/screens/55-save-load/architecture.md`
 - `docs/architecture/wiki/screens/55-save-load/mockup.html`
+- `docs/architecture/wiki/screens/70-save-import/spec.md`
+- `docs/architecture/pack-trust.md`
 
 Inputs:
 - Save format (Task 2)
@@ -35,6 +37,8 @@ Dependencies:
 - mvp.08-persistence.01-indexeddb-wrapper
 - mvp.08-persistence.02-log-only-save-format
 - mvp.08-persistence.03-save-load-ui
+- mvp.08-persistence.10-save-schema-and-validator
+- mvp.08-persistence.11-save-import-screen-and-quarantine
 
 Acceptance Criteria:
 - Exported file is valid JSON that can be re-imported
@@ -58,6 +62,12 @@ Acceptance Criteria:
   [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md).
 - An imported `intent: "replay"` file is routed to the Replay viewer
   and does not appear in the user-save slot list.
+- The import path itself is owned by
+  [`tasks/mvp/08-persistence/11-save-import-screen-and-quarantine.md`](./11-save-import-screen-and-quarantine.md)
+  and routes through screen
+  [`70-save-import`](../../../docs/architecture/wiki/screens/70-save-import/);
+  this task narrows scope to the export side and the validator
+  hand-off (Task 10) for re-import shape checks.
 
 Verify:
 - npm run validate

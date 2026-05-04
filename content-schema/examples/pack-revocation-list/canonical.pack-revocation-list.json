@@ -1,0 +1,6 @@
+{
+  "$schema": "heroes-reforged/pack-revocation-list.schema.json",
+  "schemaVersion": 1,
+  "listVersion": 1,
+  "revoked": []
+}

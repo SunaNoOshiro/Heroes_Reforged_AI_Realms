@@ -81,3 +81,17 @@ under sibling keys `${id}:manifest` and `${id}:payload`
 "Atomic save transaction"). On commit, both appear; on abort, neither
 does. Autosave additionally uses a verify-then-swap shadow key
 (`${slot}.tmp`) so a tab kill mid-rotation cannot poison a live slot.
+
+## Pre-Decompression Caps (Imports)
+
+When a save is being **imported** (not created locally), the
+importer enforces size, decompression-ratio, and wall-time caps
+**before** the gzip step above. The caps and failure copy are pinned
+in [`pack-trust.md` § Resource Limits](../pack-trust.md#1-resource-limits);
+the pre-validate ordering (size → ratio → schema validate →
+quarantine) lives in
+[`25-load-flow.md`](./25-load-flow.md) and is the canonical
+import contract. The exportable shape is also pinned by
+[`save.schema.json`](../../../content-schema/schemas/save.schema.json),
+with `minRuntimeSaveVersion` / `maxRuntimeSaveVersion` driving the
+"reject newer / older without migration" terminals.

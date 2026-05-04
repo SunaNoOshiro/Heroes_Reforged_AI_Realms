@@ -1,0 +1,14 @@
+{
+  "$schema": "heroes-reforged/publisher-registry.schema.json",
+  "schemaVersion": 1,
+  "registryVersion": 1,
+  "publishers": [
+    {
+      "keyId": "heroes-reforged-canonical",
+      "name": "Heroes Reforged Maintainers",
+      "scheme": "ed25519",
+      "publicKey": "MEUCIQDexamplePublicKeyForCanonicalEmpty40CharsAtMinimumPaddedToPass",
+      "addedAt": 1700000000
+    }
+  ]
+}

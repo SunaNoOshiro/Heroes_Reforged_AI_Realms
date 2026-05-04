@@ -283,6 +283,22 @@
         {
           "label": "27-reserve-ai-profile-schema.md",
           "link": "02-content-schemas/27-reserve-ai-profile-schema.md"
+        },
+        {
+          "label": "28-save-schema.md",
+          "link": "02-content-schemas/28-save-schema.md"
+        },
+        {
+          "label": "29-publisher-registry-schema.md",
+          "link": "02-content-schemas/29-publisher-registry-schema.md"
+        },
+        {
+          "label": "30-pack-revocation-list-schema.md",
+          "link": "02-content-schemas/30-pack-revocation-list-schema.md"
+        },
+        {
+          "label": "31-trust-store-schema.md",
+          "link": "02-content-schemas/31-trust-store-schema.md"
         }
       ]
     },
@@ -753,6 +769,18 @@
         {
           "label": "09-quota-handling.md",
           "link": "08-persistence/09-quota-handling.md"
+        },
+        {
+          "label": "10-save-schema-and-validator.md",
+          "link": "08-persistence/10-save-schema-and-validator.md"
+        },
+        {
+          "label": "11-save-import-screen-and-quarantine.md",
+          "link": "08-persistence/11-save-import-screen-and-quarantine.md"
+        },
+        {
+          "label": "12-pack-trust-prompt-and-manager.md",
+          "link": "08-persistence/12-pack-trust-prompt-and-manager.md"
         }
       ]
     },
@@ -2872,7 +2900,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 350
+      "downstreamTransitiveCount": 357
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2934,7 +2962,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 348
+      "downstreamTransitiveCount": 355
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2991,7 +3019,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 229
+      "downstreamTransitiveCount": 230
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3047,7 +3075,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 260
+      "downstreamTransitiveCount": 267
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3194,7 +3222,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 218
+      "downstreamTransitiveCount": 219
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3405,7 +3433,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 72
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3528,7 +3556,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -4093,7 +4121,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 257
+      "downstreamTransitiveCount": 265
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4151,7 +4179,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 178
+      "downstreamTransitiveCount": 186
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4215,7 +4243,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 116
+      "downstreamTransitiveCount": 126
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4273,7 +4301,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 121
+      "downstreamTransitiveCount": 131
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4334,7 +4362,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 167
+      "downstreamTransitiveCount": 177
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4395,7 +4423,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 226
+      "downstreamTransitiveCount": 236
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4469,7 +4497,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 107
+      "downstreamTransitiveCount": 117
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4554,7 +4582,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 86
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4655,7 +4683,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 73
+      "downstreamTransitiveCount": 83
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -4762,8 +4790,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 62
+      "downstreamDirectCount": 19,
+      "downstreamTransitiveCount": 73
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -4923,7 +4951,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 137
+      "downstreamTransitiveCount": 147
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5015,7 +5043,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 80
+      "downstreamTransitiveCount": 90
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5086,7 +5114,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 82
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5148,7 +5176,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 72
+      "downstreamTransitiveCount": 82
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -6080,6 +6108,290 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
       "downstreamTransitiveCount": 14
+    },
+    {
+      "id": "mvp.02-content-schemas.28-save-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Save Schema",
+      "path": "tasks/mvp/02-content-schemas/28-save-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Pin the closed shape of an exportable save record. Imports validate against this schema **before** any pack mount, asset fetch, or IndexedDB write per [`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md). The Zod counterpart and runtime validator live in the persistence module.",
+      "inputs": [
+        "Existing on-disk shape from [`tasks/mvp/08-persistence/02-log-only-save-format.md`](../08-persistence/02-log-only-save-format.md)"
+      ],
+      "outputs": [
+        "`content-schema/schemas/save.schema.json`",
+        "Canonical example `content-schema/examples/save/canonical.save.json`",
+        "Negative example `content-schema/examples/save/pack-skew.save.json`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)",
+        "[`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)",
+        "[`docs/architecture/diagrams/24-save-flow.md`](../../../docs/architecture/diagrams/24-save-flow.md)",
+        "[`docs/architecture/diagrams/25-load-flow.md`](../../../docs/architecture/diagrams/25-load-flow.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/save.schema.json",
+        "content-schema/examples/save/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example.",
+        "Schema rejects each negative example.",
+        "`saveVersion`, `engineHash`, `packHashes`, and `stateHash` are all pattern-checked.",
+        "The schema is referenced from [`pack-trust.md` § Save Version Bounds](../../../docs/architecture/pack-trust.md#3-save-version-bounds)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/save.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/save.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 43
+    },
+    {
+      "id": "mvp.02-content-schemas.29-publisher-registry-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Publisher Registry Schema",
+      "path": "tasks/mvp/02-content-schemas/29-publisher-registry-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Client-local list of known publisher signing keys. Backs the `tier=signed-known` ribbon on screen 72 (pack-trust prompt) per [`pack-trust.md` § Trust Anchors](../../../docs/architecture/pack-trust.md#4-trust-anchors). Shipped as a content artifact under `resources/registries/`; not fetched at runtime.",
+      "inputs": [
+        "Trust-anchor lookup precedence in `pack-trust.md`"
+      ],
+      "outputs": [
+        "`content-schema/schemas/publisher-registry.schema.json`",
+        "Canonical example `content-schema/examples/publisher-registry/canonical.publisher-registry.json`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)",
+        "[`docs/architecture/wiki/screens/72-pack-trust-prompt/data-contracts.md`](../../../docs/architecture/wiki/screens/72-pack-trust-prompt/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/examples/publisher-registry/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example.",
+        "`keyId` follows the documented `^[a-z0-9-]{4,64}$` pattern.",
+        "`scheme` is the closed enum `[\"ed25519\"]`.",
+        "The schema is referenced from [`pack-trust.md` § Trust Anchors](../../../docs/architecture/pack-trust.md#4-trust-anchors)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/72-pack-trust-prompt"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/publisher-registry.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 15
+    },
+    {
+      "id": "mvp.02-content-schemas.30-pack-revocation-list-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pack Revocation List Schema",
+      "path": "tasks/mvp/02-content-schemas/30-pack-revocation-list-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Client-local user-decision revocation surface consulted by the trust pipeline before mounting a pack. Distinct from the maintainer-signed [`revocation-registry`](../../../content-schema/schemas/revocation-registry.schema.json). A revoked entry blocks `GRANT_PACK_TRUST` and forces sandboxed at most.",
+      "inputs": [
+        "Trust-anchor lookup precedence in `pack-trust.md`"
+      ],
+      "outputs": [
+        "`content-schema/schemas/pack-revocation-list.schema.json`",
+        "Canonical example `content-schema/examples/pack-revocation-list/canonical.pack-revocation-list.json`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)",
+        "[`docs/architecture/wiki/screens/71-pack-manager/data-contracts.md`](../../../docs/architecture/wiki/screens/71-pack-manager/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/examples/pack-revocation-list/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example.",
+        "`reason` is the closed enum `[\"malware\", \"tampered\", \"deprecated\", \"user-revoked\"]`.",
+        "`contentHash` follows the documented `^[a-f0-9]{16}$` pattern."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/71-pack-manager"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/revocation-registry.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/revocation-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 15
+    },
+    {
+      "id": "mvp.02-content-schemas.31-trust-store-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Trust Store Schema",
+      "path": "tasks/mvp/02-content-schemas/31-trust-store-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Per-installation persisted record of user pack-trust decisions. Persisted in IndexedDB under a dedicated object store; not embedded in any save record. Lookups key on `(packId, contentHash)` so a content change re-prompts.",
+      "inputs": [
+        "Trust-anchor lookup precedence in `pack-trust.md`"
+      ],
+      "outputs": [
+        "`content-schema/schemas/trust-store.schema.json`",
+        "Canonical example `content-schema/examples/trust-store/canonical.trust-store.json`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)",
+        "[`docs/architecture/wiki/screens/72-pack-trust-prompt/data-contracts.md`](../../../docs/architecture/wiki/screens/72-pack-trust-prompt/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/trust-store.schema.json",
+        "content-schema/examples/trust-store/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example.",
+        "`decision` is the closed enum `[\"trust\", \"sandboxed\", \"deny\"]`.",
+        "`scope` is the closed enum `[\"session\", \"save\", \"global\"]`.",
+        "The schema is referenced from [`pack-trust.md` § Trust Anchors](../../../docs/architecture/pack-trust.md#4-trust-anchors)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/72-pack-trust-prompt"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 15
     },
     {
       "id": "mvp.02-tooling.01-ui-smoke-harness",
@@ -13095,8 +13407,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 56
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 57
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -13167,7 +13479,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -13258,8 +13570,8 @@
         "mvp.08-persistence.02-log-only-save-format"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 31
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "mvp.08-persistence.04-scenario-loader",
@@ -13354,7 +13666,9 @@
         "`docs/architecture/wiki/screens/55-save-load/interactions.md`",
         "`docs/architecture/wiki/screens/55-save-load/data-contracts.md`",
         "`docs/architecture/wiki/screens/55-save-load/architecture.md`",
-        "`docs/architecture/wiki/screens/55-save-load/mockup.html`"
+        "`docs/architecture/wiki/screens/55-save-load/mockup.html`",
+        "`docs/architecture/wiki/screens/70-save-import/spec.md`",
+        "`docs/architecture/pack-trust.md`"
       ],
       "ownedPaths": [
         "src/persistence/export-import.ts",
@@ -13369,7 +13683,9 @@
       "dependencies": [
         "mvp.08-persistence.01-indexeddb-wrapper",
         "mvp.08-persistence.02-log-only-save-format",
-        "mvp.08-persistence.03-save-load-ui"
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.10-save-schema-and-validator",
+        "mvp.08-persistence.11-save-import-screen-and-quarantine"
       ],
       "acceptanceCriteria": [
         "Exported file is valid JSON that can be re-imported",
@@ -13381,7 +13697,8 @@
         "Each interaction token whose owning engine task is `done` MUST dispatch live (no stub fallback). Tokens whose owning task is still `planned` may render disabled with a localized reason that cites the planned task ID.",
         "**Export atomicity:** the entire JSON blob is finalized in memory before the download is offered. A unit test that mocks `URL.createObjectURL` asserts the blob is fully constructed before the anchor click. Streaming download paths must not be used.",
         "**Replay export PII contract:** `exportReplay(saveId)` produces a JSON envelope with `intent: \"replay\"`, an empty `name`, zeroed `createdAt` / `savedAt`, and a deterministic id derived from `canonicalContentHash`; the `mp` block is stripped per [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md).",
-        "An imported `intent: \"replay\"` file is routed to the Replay viewer and does not appear in the user-save slot list."
+        "An imported `intent: \"replay\"` file is routed to the Replay viewer and does not appear in the user-save slot list.",
+        "The import path itself is owned by [`tasks/mvp/08-persistence/11-save-import-screen-and-quarantine.md`](./11-save-import-screen-and-quarantine.md) and routes through screen [`70-save-import`](../../../docs/architecture/wiki/screens/70-save-import/); this task narrows scope to the export side and the validator hand-off (Task 10) for re-import shape checks."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -13389,7 +13706,8 @@
       ],
       "estimatedTime": "- 3 hours",
       "screenPackages": [
-        "docs/architecture/wiki/screens/55-save-load"
+        "docs/architecture/wiki/screens/55-save-load",
+        "docs/architecture/wiki/screens/70-save-import"
       ],
       "directSchemaPaths": [],
       "screenSchemaPaths": [
@@ -13398,6 +13716,7 @@
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/manifest.schema.json",
         "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/save.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
@@ -13407,19 +13726,24 @@
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/manifest.schema.json",
         "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/save.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [
         "mvp.08-persistence.01-indexeddb-wrapper",
         "mvp.08-persistence.02-log-only-save-format",
-        "mvp.08-persistence.03-save-load-ui"
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.10-save-schema-and-validator",
+        "mvp.08-persistence.11-save-import-screen-and-quarantine"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
         "mvp.08-persistence.01-indexeddb-wrapper",
         "mvp.08-persistence.02-log-only-save-format",
-        "mvp.08-persistence.03-save-load-ui"
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.10-save-schema-and-validator",
+        "mvp.08-persistence.11-save-import-screen-and-quarantine"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -13741,6 +14065,264 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.08-persistence.10-save-schema-and-validator",
+      "kind": "task",
+      "status": "planned",
+      "title": "Save Schema Runtime Validator",
+      "path": "tasks/mvp/08-persistence/10-save-schema-and-validator.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Author the runtime validator that consumes [`save.schema.json`](../../../content-schema/schemas/save.schema.json) and binds the version-bound rules from [`pack-trust.md` § Save Version Bounds](../../../docs/architecture/pack-trust.md#3-save-version-bounds). Returns a discriminated `Compatibility` record so the import flow distinguishes `ok | skew | tamper | unsupported`.",
+      "inputs": [
+        "Schema artifact from [`tasks/mvp/02-content-schemas/28-save-schema.md`](../02-content-schemas/28-save-schema.md)",
+        "State serializer + xxh64 hash for `stateHash` recomputation"
+      ],
+      "outputs": [
+        "`src/persistence/validate-save.ts` exporting `validateSave(blob: Uint8Array, runtime: { minSaveVersion, maxSaveVersion, engineHash, packs }): Compatibility`"
+      ],
+      "readFirst": [
+        "[`content-schema/schemas/save.schema.json`](../../../content-schema/schemas/save.schema.json)",
+        "[`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)",
+        "[`docs/architecture/diagrams/25-load-flow.md`](../../../docs/architecture/diagrams/25-load-flow.md)",
+        "[`docs/architecture/wiki/screens/70-save-import/data-contracts.md`](../../../docs/architecture/wiki/screens/70-save-import/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/validate-save.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Round-trips the canonical example through Zod without loss.",
+        "Rejects `saveVersion > runtimeMaxSaveVersion` with `compatibility.status = \"unsupported\"`, `reason = \"too-new\"`.",
+        "Rejects `saveVersion < runtimeMinSaveVersion` AND no migration with `compatibility.status = \"unsupported\"`, `reason = \"no-migration\"`.",
+        "Returns `compatibility.status = \"skew\"` with the per-pack mismatched array on `packHashes` divergence for any `required: true` entry.",
+        "Returns `compatibility.status = \"tamper\"` (terminal) when the recomputed `stateHash` differs from the file's.",
+        "Aborts before decompression on the size cap and on the ratio cap per [`pack-trust.md` § Resource Limits](../../../docs/architecture/pack-trust.md#1-resource-limits)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/70-save-import"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/save.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/save.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/save.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.28-save-schema"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.28-save-schema"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 30
+    },
+    {
+      "id": "mvp.08-persistence.11-save-import-screen-and-quarantine",
+      "kind": "task",
+      "status": "planned",
+      "title": "Save Import Screen + Quarantine",
+      "path": "tasks/mvp/08-persistence/11-save-import-screen-and-quarantine.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement the quarantined save-import flow as screen 70. Owns the in-memory staging selector, the size/ratio caps, the per-pack consent rows, the compatibility seal (ok / skew / tamper / unsupported), and the rolling overwrite ring used by `RESTORE_OVERWRITTEN_SAVE`.",
+      "inputs": [
+        "Save schema validator from Task 10",
+        "Trust prompt screen from Task 12"
+      ],
+      "outputs": [
+        "`src/ui/screens/save-import-screen.tsx` (and supporting components named under the screen package's Component Tree)",
+        "`src/persistence/save-import.ts` orchestrating the staging area, caps, validate, and slot promote",
+        "Selectors: `selectors.persistence.import.staging`, `selectors.persistence.recycle.savedSlots`, `selectors.persistence.selectedSaveCompatibility`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/70-save-import/spec.md`](../../../docs/architecture/wiki/screens/70-save-import/spec.md)",
+        "[`docs/architecture/wiki/screens/70-save-import/interactions.md`](../../../docs/architecture/wiki/screens/70-save-import/interactions.md)",
+        "[`docs/architecture/wiki/screens/70-save-import/data-contracts.md`](../../../docs/architecture/wiki/screens/70-save-import/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/70-save-import/architecture.md`](../../../docs/architecture/wiki/screens/70-save-import/architecture.md)",
+        "[`docs/architecture/wiki/screens/70-save-import/mockup.html`](../../../docs/architecture/wiki/screens/70-save-import/mockup.html)",
+        "[`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/screens/save-import-screen.tsx",
+        "src/persistence/save-import.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.08-persistence.10-save-schema-and-validator",
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.03-save-load-ui"
+      ],
+      "acceptanceCriteria": [
+        "Layout, bindings, and commands match [`docs/architecture/wiki/screens/70-save-import/spec.md`](../../../docs/architecture/wiki/screens/70-save-import/spec.md), [`docs/architecture/wiki/screens/70-save-import/interactions.md`](../../../docs/architecture/wiki/screens/70-save-import/interactions.md), and [`docs/architecture/wiki/screens/70-save-import/data-contracts.md`](../../../docs/architecture/wiki/screens/70-save-import/data-contracts.md).",
+        "Imports rejected before decompression when over 4 MiB (`ui.save-import.reject.too-large`).",
+        "Imports aborted on >200x decompression ratio (`ui.save-import.reject.bomb`).",
+        "Schema-validate failures terminate without a click-through path: `ui.save-import.reject.too-new`, `ui.save-import.reject.no-migration`.",
+        "`compatibility.status = \"tamper\"` is terminal — there is no `Continue anyway` button.",
+        "Quarantine staging is in-memory only; cleared on `CANCEL_SAVE_IMPORT`, on tab unload, and on import completion.",
+        "Overwrite promotes the previous slot contents into the rolling ring (cap 3 entries per slot, 7-day TTL) consumed by `RESTORE_OVERWRITTEN_SAVE`.",
+        "A safe-mode session refuses imports referencing non-canonical packs with `ui.save-import.reject.safe-mode-blocks-pack`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/70-save-import"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/save.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/save.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.10-save-schema-and-validator"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.03-save-load-ui",
+        "mvp.08-persistence.10-save-schema-and-validator"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 29
+    },
+    {
+      "id": "mvp.08-persistence.12-pack-trust-prompt-and-manager",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pack Trust Prompt + Manager + Safe Mode",
+      "path": "tasks/mvp/08-persistence/12-pack-trust-prompt-and-manager.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement screens 71 (pack manager) and 72 (pack trust prompt), the trust-store IndexedDB object store, the publisher-registry and revocation-list loaders, the signature-verification path (Web Crypto API), the safe-mode toggle, and the modded-indicator selector.",
+      "inputs": [
+        "Trust-store schema (Task [`mvp.02-content-schemas.31-trust-store-schema`](../02-content-schemas/31-trust-store-schema.md))",
+        "Publisher registry schema (Task [`mvp.02-content-schemas.29-publisher-registry-schema`](../02-content-schemas/29-publisher-registry-schema.md))",
+        "Pack revocation list schema (Task [`mvp.02-content-schemas.30-pack-revocation-list-schema`](../02-content-schemas/30-pack-revocation-list-schema.md))"
+      ],
+      "outputs": [
+        "`src/ui/screens/pack-manager-screen.tsx`",
+        "`src/ui/screens/pack-trust-prompt-screen.tsx`",
+        "`src/persistence/trust-store.ts` — IndexedDB object store + reader/writer.",
+        "`src/content-runtime/trust-anchors.ts` — lookup precedence (revocation deny > trust-store deny > registry > trust-store allow > prompt).",
+        "`src/content-runtime/signature.ts` — Web Crypto ed25519 verify with `signature-failed` mapping.",
+        "Selectors: `selectors.packs.installed`, `selectors.packs.trustStore`, `selectors.packs.pendingTrustRequest`, `selectors.packs.signatureTier`, `selectors.session.moddedIndicator`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/71-pack-manager/spec.md`](../../../docs/architecture/wiki/screens/71-pack-manager/spec.md)",
+        "[`docs/architecture/wiki/screens/71-pack-manager/interactions.md`](../../../docs/architecture/wiki/screens/71-pack-manager/interactions.md)",
+        "[`docs/architecture/wiki/screens/71-pack-manager/data-contracts.md`](../../../docs/architecture/wiki/screens/71-pack-manager/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/72-pack-trust-prompt/spec.md`](../../../docs/architecture/wiki/screens/72-pack-trust-prompt/spec.md)",
+        "[`docs/architecture/wiki/screens/72-pack-trust-prompt/interactions.md`](../../../docs/architecture/wiki/screens/72-pack-trust-prompt/interactions.md)",
+        "[`docs/architecture/wiki/screens/72-pack-trust-prompt/data-contracts.md`](../../../docs/architecture/wiki/screens/72-pack-trust-prompt/data-contracts.md)",
+        "[`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/screens/pack-manager-screen.tsx",
+        "src/ui/screens/pack-trust-prompt-screen.tsx",
+        "src/persistence/trust-store.ts",
+        "src/content-runtime/trust-anchors.ts",
+        "src/content-runtime/signature.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema"
+      ],
+      "acceptanceCriteria": [
+        "Layout, bindings, and commands match [`docs/architecture/wiki/screens/71-pack-manager/spec.md`](../../../docs/architecture/wiki/screens/71-pack-manager/spec.md), [`docs/architecture/wiki/screens/71-pack-manager/interactions.md`](../../../docs/architecture/wiki/screens/71-pack-manager/interactions.md), [`docs/architecture/wiki/screens/72-pack-trust-prompt/spec.md`](../../../docs/architecture/wiki/screens/72-pack-trust-prompt/spec.md), and [`docs/architecture/wiki/screens/72-pack-trust-prompt/interactions.md`](../../../docs/architecture/wiki/screens/72-pack-trust-prompt/interactions.md).",
+        "Trust-store entries key on `(packId, contentHash)`; a content-hash change re-prompts.",
+        "`tier=signature-failed` removes the trust button entirely; only Cancel and Deny remain enabled.",
+        "Revocation list entries with `reason in [malware, tampered]` block `GRANT_PACK_TRUST` and force `REMOVE_PACK` only.",
+        "`ENTER_SAFE_MODE` unmounts non-canonical packs at the next session start without clearing the trust store; `EXIT_SAFE_MODE` re-arms.",
+        "`selectors.session.moddedIndicator` returns `off | trusted | sandboxed | mixed` and drives the status-bar badge in screen 19.",
+        "Per-transitive consent is enforced — there is no `Trust all` path.",
+        "ZIP path-traversal sanitizer rejects the entire pack on the first unsafe entry per [`pack-trust.md` § Resource Limits](../../../docs/architecture/pack-trust.md#1-resource-limits)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/71-pack-manager",
+        "docs/architecture/wiki/screens/72-pack-trust-prompt"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,
@@ -16319,7 +16901,11 @@
         "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate",
         "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
         "mvp.02-content-schemas.26-m2-engine-hash-backfill",
-        "mvp.02-content-schemas.27-reserve-ai-profile-schema"
+        "mvp.02-content-schemas.27-reserve-ai-profile-schema",
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -32211,6 +32797,10 @@
         "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
         "mvp.02-content-schemas.26-m2-engine-hash-backfill",
         "mvp.02-content-schemas.27-reserve-ai-profile-schema",
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",

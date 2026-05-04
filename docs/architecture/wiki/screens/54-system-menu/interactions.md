@@ -18,6 +18,8 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
 | Options | `system.options` | navigation | `56-options` | `OPEN_OPTIONS` | Routes to settings. | Current screen darkens, tablet drops in, hovered command glows, and route buttons crossfade into child dialogs. |
 | Main Menu | `system.mainMenu` | navigation | `60-confirmation-dialog` | `REQUEST_RETURN_TO_MAIN_MENU` | Requires confirmation. | Current screen darkens, tablet drops in, hovered command glows, and route buttons crossfade into child dialogs. |
 | Resume | `system.resume` | navigation | Caller screen | `CLOSE_SYSTEM_MENU` | Returns to gameplay. | Current screen darkens, tablet drops in, hovered command glows, and route buttons crossfade into child dialogs. |
+| Manage packs… | `system.managePacks` | navigation | `71-pack-manager` | `OPEN_PACK_MANAGER` | Routes to the pack manager. | Tablet darkens, manager fades in. |
+| Safe mode (disable all packs) | `system.safeMode` | navigation | `60-confirmation-dialog` | `ENTER_SAFE_MODE` | Routes through confirmation per [`pack-trust.md` § Safe Mode](../../../pack-trust.md#5-safe-mode). | Confirmation modal mounts; safe-mode banner appears on accept. |
 
 ### State Changes
 - `state.ui.systemMenu.callerRoute` refreshes `callerRoute` after the owning reducer or local UI draft changes.
@@ -33,6 +35,8 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
 - Options can route to `56-options` after guard approval and exit animation.
 - Main Menu can route to `60-confirmation-dialog` after guard approval and exit animation.
 - Resume can route to Caller screen after guard approval and exit animation.
+- Manage packs can route to `71-pack-manager` after guard approval and exit animation.
+- Safe mode can route to `60-confirmation-dialog` after guard approval and exit animation.
 
 ### Disabled And Error Cases
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.

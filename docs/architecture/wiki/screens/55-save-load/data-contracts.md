@@ -29,6 +29,8 @@
 | `compatibility` | `selectors.persistence.selectedSaveCompatibility` | Version/hash/migration result computed against the migration registry, not a stubbed boolean. Last 4 save versions are migrated in-app; older saves surface "incompatible save migration needed". |
 | `overwriteGuard` | `selectors.persistence.overwriteGuard` | Overwrite availability and confirmation need. |
 | `quotaUsage` | `selectors.persistence.quotaUsage` | `{ used, quota }` from the IDB wrapper. Drives a "Manage saves" CTA above the slot list when `used / quota > 0.8`. |
+| `recycleRing` | `selectors.persistence.recycle.savedSlots` | Per-slot rolling overwrite ring (cap 3, 7-day TTL) per [`pack-trust.md` § Save Quarantine](../../../pack-trust.md#2-save-quarantine). |
+| `importStaging` | `selectors.persistence.import.staging` | In-memory staged save during import, owned by screen [`70-save-import`](../70-save-import/). |
 
 ### Commands And Events
 - `SELECT_SAVE_SLOT` from `saveLoad.selectSlot`: Updates preview and compatibility.
@@ -36,6 +38,8 @@
 - `LOAD_GAME_SLOT` from `saveLoad.load`: Validates and loads selected save.
 - `REQUEST_DELETE_SAVE_SLOT` from `saveLoad.delete`: Requires confirmation.
 - `CLOSE_SAVE_LOAD` from `saveLoad.back`: Returns to caller.
+- `OPEN_SAVE_IMPORT` from `saveLoad.import`: Routes to the quarantined import flow on screen [`70-save-import`](../70-save-import/).
+- `RESTORE_OVERWRITTEN_SAVE` from `saveLoad.restoreOverwritten`: Restores from the rolling overwrite ring per [`pack-trust.md` § Save Quarantine](../../../pack-trust.md#2-save-quarantine).
 
 ### Config Keys
 - `config.ui.locale`

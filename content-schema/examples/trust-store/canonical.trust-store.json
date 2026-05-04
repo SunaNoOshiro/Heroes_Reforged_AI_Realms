@@ -1,0 +1,6 @@
+{
+  "$schema": "heroes-reforged/trust-store.schema.json",
+  "schemaVersion": 1,
+  "storeVersion": 1,
+  "entries": []
+}

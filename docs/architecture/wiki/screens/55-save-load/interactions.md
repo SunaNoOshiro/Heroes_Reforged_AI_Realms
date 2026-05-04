@@ -18,6 +18,8 @@ Save/load slot browser with save metadata, compatibility checks, overwrite confi
 | Load | `saveLoad.load` | navigation | `59-loading-screen` | `LOAD_GAME_SLOT` | Validates and loads selected save. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
 | Delete | `saveLoad.delete` | navigation | `60-confirmation-dialog` | `REQUEST_DELETE_SAVE_SLOT` | Requires confirmation. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
 | Back | `saveLoad.back` | navigation | `54-system-menu` or `01-main-menu` | `CLOSE_SAVE_LOAD` | Returns to caller. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
+| Import… | `saveLoad.import` | navigation | `70-save-import` | `OPEN_SAVE_IMPORT` | Opens the quarantined save-import flow per [`pack-trust.md`](../../../pack-trust.md). | Import button highlight; exit animation routes to screen 70. |
+| Restore overwritten | `saveLoad.restoreOverwritten` | command | Current screen | `RESTORE_OVERWRITTEN_SAVE` | Restores from `selectors.persistence.recycle.savedSlots`. | Slot row pulses, restored thumbnail resolves. |
 
 ### State Changes
 - `state.ui.saveLoad.mode` refreshes `mode` after the owning reducer or local UI draft changes.

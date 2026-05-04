@@ -1,6 +1,9 @@
 # Heroes Reforged: AI Realms
 
 Browser-first turn-based strategy engine plus creator platform.
+Save-import and pack-trust posture (browser-only at v1, desktop
+wrapper deferred) is pinned in
+[`docs/architecture/pack-trust.md` § Platform Posture](docs/architecture/pack-trust.md#9-platform-posture).
 
 This project builds new strategy systems informed by turn-based
 strategy genre baselines.

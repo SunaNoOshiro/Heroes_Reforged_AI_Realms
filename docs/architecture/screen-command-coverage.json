@@ -97,6 +97,14 @@
     "PEER_KICKED": "Signaling server-to-joiner event surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.14-host-approval-and-moderation.",
     "JOIN_ATTEMPT_REJECTED": "Signaling server-to-host aggregated rejection event surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.13-signaling-rate-limiting.",
     "ROOM_CLOSED": "Signaling server-to-all event on host CLOSE_ROOM surfaced in screens/64-network-lobby; not a UI command. Owned by phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby.",
-    "START_CAMPAIGN_MISSION": "phase-2.08-meta-systems.02-campaign-runner owns campaign mission launch."
+    "START_CAMPAIGN_MISSION": "phase-2.08-meta-systems.02-campaign-runner owns campaign mission launch.",
+    "RESTORE_OVERWRITTEN_SAVE": "mvp.08-persistence.11-save-import-screen-and-quarantine owns the rolling overwrite-ring restore command per docs/architecture/pack-trust.md § Save Quarantine.",
+    "GRANT_PACK_TRUST": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the trust-store write per docs/architecture/pack-trust.md § Trust Anchors.",
+    "DENY_PACK_TRUST": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the trust-store deny write per docs/architecture/pack-trust.md § Trust Anchors.",
+    "RUN_PACK_SANDBOXED": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the sandboxed-decision write per docs/architecture/pack-trust.md § Trust Anchors.",
+    "REVOKE_PACK_TRUST": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns trust-store revocation per docs/architecture/pack-trust.md § Trust Anchors.",
+    "INSTALL_PACK_FROM_FILE": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the pack-install entry point per docs/architecture/pack-trust.md § Resource Limits.",
+    "REMOVE_PACK": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns pack uninstall and trust-store cleanup per docs/architecture/pack-trust.md.",
+    "ENTER_SAFE_MODE": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the safe-mode toggle per docs/architecture/pack-trust.md § Safe Mode."
   }
 }

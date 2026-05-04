@@ -512,6 +512,50 @@ Battle has ended; return to adventure layer.
 
 ---
 
+## Save-Import & Pack-Trust Commands
+
+Commands surfaced by screens
+[`70-save-import`](./wiki/screens/70-save-import/),
+[`71-pack-manager`](./wiki/screens/71-pack-manager/), and
+[`72-pack-trust-prompt`](./wiki/screens/72-pack-trust-prompt/) per
+[`pack-trust.md`](./pack-trust.md). These tokens drive UI flow and
+persistence-side state but do not enter the deterministic engine
+command log; they are dispatched against the persistence/content-runtime
+adapter, never the engine reducer.
+
+- `OPEN_SAVE_IMPORT` — opens screen 70 from screen 55. local-ui.
+- `BEGIN_SAVE_IMPORT` — kick off the schema-validate / quarantine
+  pipeline against the source string. Owned by
+  `tasks/mvp/08-persistence/11-save-import-screen-and-quarantine.md`.
+- `CONFIRM_SAVE_IMPORT` — promote a staged save into a slot after
+  trust review. Owned by
+  `tasks/mvp/08-persistence/11-save-import-screen-and-quarantine.md`.
+- `CANCEL_SAVE_IMPORT` — drop the staged save and clear the
+  in-memory quarantine. local-ui.
+- `RESTORE_OVERWRITTEN_SAVE` — restore from the rolling overwrite
+  ring (`selectors.persistence.recycle.savedSlots`). Owned by
+  `tasks/mvp/08-persistence/11-save-import-screen-and-quarantine.md`.
+- `OPEN_PACK_TRUST_PROMPT` — opens screen 72. local-ui.
+- `GRANT_PACK_TRUST` — write a `decision = "trust"` entry into the
+  trust store. Owned by
+  `tasks/mvp/08-persistence/12-pack-trust-prompt-and-manager.md`.
+- `DENY_PACK_TRUST` — write a `decision = "deny"` entry. Owned by
+  the same task.
+- `RUN_PACK_SANDBOXED` — write `decision = "sandboxed"`. Owned by
+  the same task.
+- `REVOKE_PACK_TRUST` — clear or replace prior trust-store entries.
+  Owned by the same task.
+- `OPEN_PACK_MANAGER` — opens screen 71. local-ui.
+- `INSTALL_PACK_FROM_FILE` — file-picker → traversal sanitizer →
+  screen 72. Owned by
+  `tasks/mvp/08-persistence/12-pack-trust-prompt-and-manager.md`.
+- `REMOVE_PACK` — uninstall a pack and drop trust-store entries.
+  Owned by the same task.
+- `ENTER_SAFE_MODE` / `EXIT_SAFE_MODE` — toggle session-wide safe
+  mode per [`pack-trust.md` § Safe Mode](./pack-trust.md#5-safe-mode).
+  Owned by
+  `tasks/mvp/08-persistence/12-pack-trust-prompt-and-manager.md`.
+
 ## Future Commands (Phase 2+)
 
 These are documented for reference but not implemented in MVP:

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>71. Pack Manager - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #1a1410; }
+  body { color: #e8d8b8; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: #1a1410; }
+  .frame { fill: #2b1f15; stroke: #c9a14e; stroke-width: 2; }
+  .panel { fill: #1f1610; stroke: #6b4f2a; stroke-width: 1; }
+  .header { fill: #f0d590; font: 700 13px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #d8c4a0; font: 11px ui-monospace, Menlo, monospace; }
+  .ok { fill: #7ce0a4; font: 700 11px ui-monospace, Menlo, monospace; }
+  .warn { fill: #ffd166; font: 700 11px ui-monospace, Menlo, monospace; }
+  .err { fill: #ff7373; font: 700 11px ui-monospace, Menlo, monospace; }
+  .button rect { fill: #4a3520; stroke: #c9a14e; }
+  .button text { fill: #f0d590; font: 700 11px ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body data-screen="71-pack-manager" data-archetype="system-list-dialog" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pack Manager mockup">
+  <rect x="14" y="14" width="772" height="572" class="frame"/>
+
+  <text x="40" y="44" class="header">PACK MANAGER</text>
+
+  <rect x="32" y="60" width="736" height="40" class="panel"/>
+  <text x="48" y="84" class="row" data-i18n="ui.pack-manager.filter.title">FILTERS:  All  |  Canonical  |  Third-party  |  Sandboxed  |  Denied</text>
+
+  <rect x="32" y="112" width="736" height="380" class="panel"/>
+  <text x="48" y="134" class="header" data-i18n="ui.pack-manager.list.title">INSTALLED PACKS</text>
+  <text x="48" y="156" class="row">core_baseline    v1.0.0  Heroes Reforged   trusted   formulas    9b40..b801</text>
+  <text x="48" y="172" class="ok">  signed-known | trusted | global</text>
+  <text x="48" y="194" class="row">emberwild        v1.2.1  Crimson Studios   trusted   assets      4c11..e2af</text>
+  <text x="48" y="210" class="ok">  signed-unknown | trusted | session</text>
+  <text x="48" y="232" class="row">aether_pulse     v0.4.0  Generated         sandboxed assets       7110..00d3</text>
+  <text x="48" y="248" class="warn">  unsigned | sandboxed | save</text>
+  <text x="48" y="270" class="row">ironroot_legacy  v0.1.0  Unknown           denied                deadbeef0001</text>
+  <text x="48" y="286" class="err">  signature-failed | denied | global</text>
+  <text x="48" y="308" class="row">empty-state: only canonical content is installed.</text>
+
+  <rect x="32" y="504" width="736" height="64" class="panel"/>
+  <text x="48" y="526" class="header" data-i18n="ui.pack-manager.actions.title">ACTIONS</text>
+
+  <g class="button" data-action="packManager.install">
+    <rect x="48" y="538" width="120" height="22" rx="3"/>
+    <text x="108" y="554" text-anchor="middle">INSTALL PACK…</text>
+  </g>
+  <g class="button" data-action="packManager.trust">
+    <rect x="180" y="538" width="80" height="22" rx="3"/>
+    <text x="220" y="554" text-anchor="middle">TRUST</text>
+  </g>
+  <g class="button" data-action="packManager.sandboxed">
+    <rect x="272" y="538" width="120" height="22" rx="3"/>
+    <text x="332" y="554" text-anchor="middle">SANDBOXED</text>
+  </g>
+  <g class="button" data-action="packManager.revoke">
+    <rect x="404" y="538" width="120" height="22" rx="3"/>
+    <text x="464" y="554" text-anchor="middle">REVOKE TRUST</text>
+  </g>
+  <g class="button" data-action="packManager.remove">
+    <rect x="536" y="538" width="100" height="22" rx="3"/>
+    <text x="586" y="554" text-anchor="middle">REMOVE</text>
+  </g>
+  <g class="button" data-action="packManager.close">
+    <rect x="660" y="538" width="100" height="22" rx="3"/>
+    <text x="710" y="554" text-anchor="middle">CLOSE</text>
+  </g>
+</svg>
+</body>
+</html>

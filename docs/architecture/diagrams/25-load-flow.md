@@ -12,16 +12,24 @@ snapshot or seed. Verify state hash matches. Resume play.
 
 ```mermaid
 flowchart TD
-    A[Player: Load Game] --> B[Read save file]
-    B --> C[Decompress]
-    C --> D{Valid format?}
-    D -->|NO| E[Show error]
-    D -->|YES| Mig{saveVersion<br/>current?}
-    Mig -->|NO| MigA[Run migration registry chain<br/>see 08-migration-registry]
-    Mig -->|YES| F
-    MigA --> F[Check pack hashes]
+    A[Player: Load Game] --> Sz{Size <= 4 MiB?}
+    Sz -->|NO| Stl[Reject: too large]
+    Sz -->|YES| B[Read save file]
+    B --> Bm{Ratio <= 1:200?<br/>see pack-trust.md § Resource Limits}
+    Bm -->|NO| Sbomb[Reject: bomb]
+    Bm -->|YES| C[Decompress]
+    C --> D{Schema valid?<br/>save.schema.json}
+    D -->|NO| E[Show error: invalid]
+    D -->|YES| Vrange{Schema version<br/>in range?}
+    Vrange -->|too-new| Vnew[Reject: ui.save-import.reject.too-new]
+    Vrange -->|in-range| Mig{Migration<br/>available?}
+    Vrange -->|below-min| Mig
+    Mig -->|NO| Vnomig[Reject: ui.save-import.reject.no-migration]
+    Mig -->|YES| MigA[Run migration registry chain<br/>see 08-migration-registry]
+    MigA --> Q1[Quarantine staging<br/>see pack-trust.md § Save Quarantine]
+    Q1 --> F[Check pack hashes]
     F --> G{All packs match?}
-    G -->|NO| H[Warn: pack mismatch<br/>continue or abort?]
+    G -->|NO| H[Warn: pack-skew<br/>continue or abort?]
     G -->|YES| I[Load required packs]
     I --> J{Latest verified<br/>snapshot present?}
     J -->|YES| J1[Hydrate from snapshot<br/>see 07-snapshot-rebase]
@@ -31,14 +39,25 @@ flowchart TD
     K --> O[Verify state hash]
     K2 --> O
     O --> P{Hash matches?}
-    P -->|NO| Q[Save corrupt!]
+    P -->|NO| Qtam[Tamper: terminal,<br/>no continue]
     P -->|YES| R[Switch to game view]
     R --> S[Resume play]
     style A fill:#bbdefb
     style S fill:#a5d6a7
     style E fill:#ef5350,color:#fff
-    style Q fill:#ef5350,color:#fff
+    style Stl fill:#ef5350,color:#fff
+    style Sbomb fill:#ef5350,color:#fff
+    style Vnew fill:#ef5350,color:#fff
+    style Vnomig fill:#ef5350,color:#fff
+    style Qtam fill:#ef5350,color:#fff
 ```
+
+The size and ratio pre-checks, the four schema-validate terminals
+(`schema_invalid`, `too-new`, `no-migration`, `tamper`), and the
+quarantine staging step are all owned by
+[`pack-trust.md`](../pack-trust.md). Compatibility is reported as a
+discriminated union (`ok | skew | tamper | unsupported`) so screen
+55 and screen 70 surface skew vs. tamper distinctly.
 
 ## Why Replay Commands?
 

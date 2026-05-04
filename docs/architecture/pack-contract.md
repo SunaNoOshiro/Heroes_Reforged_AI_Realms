@@ -72,9 +72,35 @@ every example pack against its schema.
   by the sandbox-enforcement layer below to render the reason and
   by the lifecycle layer (see
   [`pack-lifecycle.md`](./pack-lifecycle.md)) to scope GC.
+- `contentRating` — optional, author-asserted, advisory only.
+  Surfaced under "Author-declared content" by screen 72 per
+  [`pack-trust.md` § Content Rating](./pack-trust.md#8-content-rating).
+  Not consumed by gameplay or matchmaking gates in v1.
 
 Use `sandboxed: true` for AI-generated or otherwise restricted content
 that cannot participate in ranked or trusted flows.
+
+### Trust UX
+
+The user-facing trust prompt, capability disclosure, signature-tier
+ribbon, and per-transitive-pack consent flow live in
+[`pack-trust.md`](./pack-trust.md) and screen package
+[`72-pack-trust-prompt`](./wiki/screens/72-pack-trust-prompt/).
+
+### Trust Anchors
+
+Three companion schemas back the trust pipeline:
+
+- [`publisher-registry.schema.json`](../../content-schema/schemas/publisher-registry.schema.json)
+  — known-publisher key list driving `tier=signed-known`.
+- [`pack-revocation-list.schema.json`](../../content-schema/schemas/pack-revocation-list.schema.json)
+  — client-local user-decision revocation surface (orthogonal to
+  the maintainer-signed [`revocation-registry`](./revocation.md)).
+- [`trust-store.schema.json`](../../content-schema/schemas/trust-store.schema.json)
+  — persisted user trust decisions keyed on `(packId, contentHash)`.
+
+Lookup precedence is pinned in
+[`pack-trust.md` § Trust Anchors](./pack-trust.md#4-trust-anchors).
 
 ## Sandbox enforcement
 
@@ -163,6 +189,15 @@ Rules:
 - `locales/<locale>.localization.json` carries the per-pack
   localization bundle; merge order in
   [`content-system-policy.md` § 6](./content-system-policy.md#6-localization-bundling)
+
+## Resource Limits
+
+`.hrmod` packs and imported saves are subject to size, decompression
+ratio, and entry caps enforced **before** schema parsing so a hostile
+file cannot exhaust memory inside the validator. The full table —
+including the ZIP path-traversal sanitizer rule — is pinned in
+[`pack-trust.md` § Resource Limits](./pack-trust.md#1-resource-limits).
+Pack loaders and the trust UI MUST consult the same constants table.
 
 ## Archive Rule
 

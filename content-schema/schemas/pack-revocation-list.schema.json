@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/pack-revocation-list.schema.json",
+  "title": "Pack Revocation List",
+  "description": "Client-local list of revoked packs consulted by the trust pipeline before mounting any pack. Distinct from `revocation-registry.schema.json` (which carries maintainer-signed authority for canonical packs); this list is the user-decision side: a revoked entry blocks GRANT_PACK_TRUST and forces sandboxed at most. Per `pack-trust.md` § Trust Anchors.",
+  "type": "object",
+  "required": ["schemaVersion", "listVersion", "revoked"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "pattern": "^heroes-reforged/pack-revocation-list\\.schema\\.json$"
+    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "listVersion": { "type": "integer", "minimum": 1 },
+    "revoked": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["packId", "contentHash", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "packId":      { "type": "string", "minLength": 1 },
+          "contentHash": { "type": "string", "pattern": "^[a-f0-9]{16}$" },
+          "reason":      { "enum": ["malware", "tampered", "deprecated", "user-revoked"] },
+          "revokedAt":   { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

@@ -35,6 +35,7 @@ Adventure status line and message history strip showing hover descriptions, comm
 | messageHistory | state.ui.messages.history | Client-side message history, not replay authoritative. |
 | resourceDeltas | selectors.economy.lastVisibleDeltas | Recent command-result deltas. |
 | drawerOpen | state.ui.statusBar.drawerOpen | Local expanded/collapsed state. |
+| moddedIndicator | selectors.session.moddedIndicator | `off \| trusted \| sandboxed \| mixed` per [`pack-trust.md` § Modded Indicator](../../../pack-trust.md#6-modded-indicator). Always visible when not `off`; no dismiss control. Replays inherit the badge from `packHashes`. |
 
 ### Mechanics Mapping
 - Status messages are UI feedback derived from hover context, command results, and localized errors. They do not control reducers or alter replay state.

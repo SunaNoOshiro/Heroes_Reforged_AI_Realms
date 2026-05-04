@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/trust-store.schema.json",
+  "title": "User Trust Store",
+  "description": "Per-installation record of user pack-trust decisions. Persisted in IndexedDB under a dedicated object store; not embedded in any save record. Cleared by REVOKE_PACK_TRUST or bypassed by safe mode. Lookups key on (packId + contentHash); a content-hash change re-prompts. Per `pack-trust.md` § Trust Anchors.",
+  "type": "object",
+  "required": ["schemaVersion", "storeVersion", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "pattern": "^heroes-reforged/trust-store\\.schema\\.json$"
+    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "storeVersion": { "const": 1 },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["packId", "contentHash", "decision", "scope", "decidedAt"],
+        "additionalProperties": false,
+        "properties": {
+          "packId":      { "type": "string", "minLength": 1 },
+          "contentHash": { "type": "string", "pattern": "^[a-f0-9]{16}$" },
+          "decision":    { "enum": ["trust", "sandboxed", "deny"] },
+          "scope":       { "enum": ["session", "save", "global"] },
+          "saveId":      { "type": "string" },
+          "decidedAt":   { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

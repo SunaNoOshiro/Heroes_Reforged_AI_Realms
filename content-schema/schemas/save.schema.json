@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/save.schema.json",
+  "title": "Save Record",
+  "description": "Closed shape for an exportable save record. Pinned by `pack-trust.md` § Save Version Bounds. Imports validate against this schema BEFORE any pack mount, asset fetch, or IndexedDB write — see `docs/architecture/wiki/screens/70-save-import/`. The runtime contract is owned by `tasks/mvp/08-persistence/10-save-schema-and-validator.md`.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "saveVersion",
+    "engineHash",
+    "rulesetId",
+    "seed",
+    "packHashes",
+    "commandLog",
+    "stateHash",
+    "metadata"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "pattern": "^heroes-reforged/save\\.schema\\.json$"
+    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "saveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonic save-format revision counter. Imports compare to runtimeMin/Max bounds; out-of-range values terminate without a click-through path."
+    },
+    "minRuntimeSaveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Minimum runtime save-format the file expects. If runtime > max, importer surfaces ui.save-import.reject.too-new."
+    },
+    "maxRuntimeSaveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum runtime save-format the file expects. Used to gate forward-version refusal."
+    },
+    "engineHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$",
+      "description": "16-hex-char xxh64 digest of the engine build that authored the save. Pinned by saves/replays/multiplayer per `engine-hash.md`."
+    },
+    "rulesetId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable ruleset id referenced by the save."
+    },
+    "seed": {
+      "type": "string",
+      "pattern": "^[0-9]+$",
+      "description": "PCG32 seed serialized as a decimal string to avoid Number-precision drift across JS engines."
+    },
+    "packHashes": {
+      "type": "array",
+      "description": "Per-referenced-pack identity record. Mismatch on a `required: true` entry surfaces compatibility=skew (warn, gateable). Used by screens 70 and 72 for disclosure.",
+      "items": {
+        "type": "object",
+        "required": ["id", "version", "contentHash"],
+        "additionalProperties": false,
+        "properties": {
+          "id":          { "type": "string", "minLength": 1 },
+          "version":     { "type": "string", "minLength": 1 },
+          "contentHash": { "type": "string", "pattern": "^[a-f0-9]{16}$" },
+          "required":    { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "commandLog": {
+      "type": "array",
+      "description": "Sequence of canonical commands replayed against rulesetId at seed.",
+      "items": { "type": "object" }
+    },
+    "stateHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$",
+      "description": "16-hex-char xxh64 digest of the canonical-JSON serialization of GameState after replay completes. Mismatch surfaces compatibility=tamper (terminal, no continue)."
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["name", "savedAt", "turnNumber"],
+      "additionalProperties": true,
+      "properties": {
+        "name":       { "type": "string", "maxLength": 120 },
+        "savedAt":    { "type": "integer", "minimum": 0 },
+        "turnNumber": { "type": "integer", "minimum": 0 },
+        "thumbnail":  { "type": "string", "pattern": "^data:image/(png|webp);base64," }
+      }
+    }
+  },
+  "additionalProperties": false
+}

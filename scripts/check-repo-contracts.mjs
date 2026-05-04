@@ -554,6 +554,10 @@ function schemaForFile(filePath) {
   if (base.endsWith(".provider-response-cache-entry.json")) return "provider-response-cache-entry.schema.json";
   if (base.endsWith(".revocation-registry.json")) return "revocation-registry.schema.json";
   if (base.endsWith(".revocation-entry.json")) return "revocation-entry.schema.json";
+  if (base.endsWith(".save.json")) return "save.schema.json";
+  if (base.endsWith(".publisher-registry.json")) return "publisher-registry.schema.json";
+  if (base.endsWith(".pack-revocation-list.json")) return "pack-revocation-list.schema.json";
+  if (base.endsWith(".trust-store.json")) return "trust-store.schema.json";
   if (base.endsWith(".golden-fixture.json")) return "golden-fixture.schema.json";
   if (base.endsWith(".tournament-result.json")) return "tournament-result.schema.json";
   if (base === "game-state.example.json") return "game-state.schema.json";
