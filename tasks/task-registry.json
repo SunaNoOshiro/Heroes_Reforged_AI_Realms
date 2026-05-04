@@ -2872,7 +2872,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 347
+      "downstreamTransitiveCount": 350
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2934,7 +2934,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 345
+      "downstreamTransitiveCount": 348
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2991,7 +2991,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 226
+      "downstreamTransitiveCount": 229
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3047,7 +3047,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 257
+      "downstreamTransitiveCount": 260
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3194,7 +3194,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 215
+      "downstreamTransitiveCount": 218
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -4093,7 +4093,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 254
+      "downstreamTransitiveCount": 257
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4151,7 +4151,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 175
+      "downstreamTransitiveCount": 178
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4334,7 +4334,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 164
+      "downstreamTransitiveCount": 167
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4395,7 +4395,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 223
+      "downstreamTransitiveCount": 226
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4923,7 +4923,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 134
+      "downstreamTransitiveCount": 137
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -7589,7 +7589,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 167
+      "downstreamTransitiveCount": 170
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -7649,7 +7649,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 106
+      "downstreamTransitiveCount": 109
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -7705,7 +7705,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 147
+      "downstreamTransitiveCount": 150
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -7768,7 +7768,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 105
+      "downstreamTransitiveCount": 108
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -8365,7 +8365,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 80
+      "downstreamTransitiveCount": 83
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -8517,7 +8517,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 106
+      "downstreamTransitiveCount": 109
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -8652,7 +8652,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 141
+      "downstreamTransitiveCount": 144
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -8728,7 +8728,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 105
+      "downstreamTransitiveCount": 108
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -8791,7 +8791,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 95
+      "downstreamTransitiveCount": 98
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -8857,7 +8857,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 78
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -8923,7 +8923,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 77
+      "downstreamTransitiveCount": 80
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -9001,7 +9001,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 58
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -9056,7 +9056,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 53
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -13810,7 +13810,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 84
+      "downstreamTransitiveCount": 87
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -13872,7 +13872,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 65
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -14020,7 +14020,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -14087,7 +14087,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 52
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -14223,7 +14223,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 52
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -14286,7 +14286,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -14359,7 +14359,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 50
+      "downstreamTransitiveCount": 53
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -15033,7 +15033,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 52
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -15121,7 +15121,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -15184,7 +15184,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -15266,7 +15266,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -15340,7 +15340,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -15445,7 +15445,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 43
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -15515,7 +15515,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -15610,7 +15610,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 21
+      "downstreamTransitiveCount": 24
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -15693,7 +15693,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 22
+      "downstreamTransitiveCount": 25
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -15771,7 +15771,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 35
+      "downstreamTransitiveCount": 38
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -15842,7 +15842,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 21
+      "downstreamTransitiveCount": 24
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -28178,7 +28178,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -28196,9 +28196,10 @@
         "`src/net/webrtc/peer-connection.ts`",
         "`createPeerConnection(signaling): PeerConn`",
         "Three DataChannels:",
-        "`commands`: `ordered: true, maxRetransmits: null` (reliable, ordered delivery — deterministic command log)",
+        "`commands`: `ordered: true, maxRetransmits: null`, `negotiated: true, id: 1` (reliable, ordered delivery — deterministic command log)",
         "`heartbeat`: `ordered: false, maxRetransmits: 0` (fire-and-forget)",
-        "`chat`: `ordered: false, maxRetransmits: 0` (in-game chat; non-deterministic, never enters the reducer; sees `SEND_GAME_CHAT` payloads bound to `state.net.game.chat`)",
+        "`chat`: `ordered: true, maxRetransmits: 3`, `negotiated: true, id: 2` (best-effort lobby chat envelope per [`docs/architecture/chat-safety.md` § 2](../../../docs/architecture/chat-safety.md#2-channel-reservation); never enters the deterministic reducer; carries [`chat-message.schema.json`](../../../content-schema/schemas/chat-message.schema.json) envelopes only)",
+        "The `chat` channel reserves `id: 2`; ids `3–7` are reserved for future channels per the channel-reservation table in [`chat-safety.md` § 2](../../../docs/architecture/chat-safety.md#2-channel-reservation). `maxMessageSize` is enforced application-side at 1 KiB per envelope; the receive-side validator drops anything larger and increments a per-peer abuse counter.",
         "STUN server: `stun.l.google.com:19302` (free, good global coverage)",
         "TURN fallback: STUN-only attempt for 4 s; on ICE-gather timeout, Task 10 appends TURN URLs to `RTCConfiguration.iceServers`. Hook for the 4 s timeout lives here; the URL builder lives in `src/net/webrtc/ice-config.ts` (Task 10). Why this is risky: WebRTC connection setup has many failure modes (NAT traversal, ICE candidate race conditions, browser compatibility). Test on Chrome, Firefox, and Safari with different network topologies."
       ],
@@ -28221,7 +28222,8 @@
         "Commands DataChannel delivers in order (test with 1000 sequential messages)",
         "Connection failure (ICE timeout) triggers clean fallback to signaling error state",
         "Works on Chrome 120+, Firefox 121+, Safari 17+",
-        "`chat` DataChannel exists alongside `commands` and `heartbeat`; chat traffic does not appear in replay artifacts and chat backpressure does not delay command delivery (synthetic test: flood `chat` at 200 msg/s while running a 1000-command match — no command-channel timeouts).",
+        "`chat` DataChannel exists alongside `commands` and `heartbeat` on `negotiated` ids `1` and `2`; chat traffic does not appear in replay artifacts and chat backpressure does not delay command delivery (synthetic test: flood `chat` at 200 msg/s while running a 1000-command match — no command-channel timeouts).",
+        "Crossing payloads is rejected: a chat envelope sent on `commands` is rejected by the command-channel validator and a command-shaped payload sent on `chat` is rejected by the chat-channel validator. Per [`chat-safety.md` § 2](../../../docs/architecture/chat-safety.md#2-channel-reservation).",
         "ICE-gather timeout fires at 4 s when no host/srflx pair emerges; Task 10 wires the TURN-URL append on this signal.",
         "**Pre-consent ICE policy = relay-only**. The host's `RTCPeerConnection` MUST be created with `iceTransportPolicy: 'relay'` while the joiner is pre-consent (i.e. before Task 14's `APPROVE_PEER` fires). On `APPROVE_PEER` the host renegotiates with the default policy and `createOffer({ iceRestart: true })`. Per [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md).",
         "**mDNS expectation table**: the implementation does not depend on mDNS masking, but the per-browser behavior is documented for operators in [`ice-disclosure-policy.md` § 3](../../../docs/architecture/ice-disclosure-policy.md#3-mdns-expectation-matrix) (Chrome 120+, Firefox 121+, Safari 17+). Network-Chaos Coverage:",
@@ -28233,9 +28235,13 @@
       ],
       "estimatedTime": "- 5 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/chat-message.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/chat-message.schema.json"
+      ],
       "taskDependencies": [
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
@@ -28244,8 +28250,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 16
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -28594,7 +28600,8 @@
         "**Clipboard warning**: the share dialog renders a one-line localized note (`ui.network-lobby.copy.clipboardWarning`) indicating the code may sync via OS clipboard surfaces.",
         "Join room → paste code or follow link → show \"Waiting for host…\"",
         "Connection status indicator (green/yellow/red) driven by the thresholds below",
-        "\"Disconnected\" banner when peer drops, with reconnect timer Stall Thresholds: The status-indicator state machine reads `INPUT_DELAY_BUDGETS` from `src/net/webrtc/constants.ts` (Task 3): | Elapsed since expected response | Indicator | UI | | --- | --- | --- | | 0 – 2 s | green | normal | | 2 – 10 s | yellow | \"your turn\" badge swaps to \"waiting on opponent\" | | 10 – 30 s | red | overlay with last-seen turn | | 30 s+ | red | overlay reveals \"wait\" / \"request resync\" buttons | | 120 s+ | red | overlay reveals \"forfeit\" button (cross-links Task 6) | The same thresholds drive the lockstep `STALLED_PEER` UX (Task 3 pending-queue overflow surfaces the same overlay as the 30 s wait threshold)."
+        "\"Disconnected\" banner when peer drops, with reconnect timer",
+        "Chat-safety surface bindings on the network-lobby chat panel and player roster: `MUTE_PEER`, `BLOCK_PEER`, `REPORT_PEER`, `EXPORT_CHAT_LOG`, `ACKNOWLEDGE_CHAT_TRUST_BANNER`, plus `MutedBadge`, `ChatTrustBanner`, `ChatPanelOverflowMenu`, and `ReportPeerDialog`. The reducer slices, schemas, validators, and dialog logic are owned by `phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit`, `phase-3.01-multiplayer.18-mute-block-and-trust-banner`, and `phase-3.01-multiplayer.19-report-bundle-and-export`; this task mounts the components and binds them to the [`64-network-lobby`](../../../docs/architecture/wiki/screens/64-network-lobby/) package per [`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md). Stall Thresholds: The status-indicator state machine reads `INPUT_DELAY_BUDGETS` from `src/net/webrtc/constants.ts` (Task 3): | Elapsed since expected response | Indicator | UI | | --- | --- | --- | | 0 – 2 s | green | normal | | 2 – 10 s | yellow | \"your turn\" badge swaps to \"waiting on opponent\" | | 10 – 30 s | red | overlay with last-seen turn | | 30 s+ | red | overlay reveals \"wait\" / \"request resync\" buttons | | 120 s+ | red | overlay reveals \"forfeit\" button (cross-links Task 6) | The same thresholds drive the lockstep `STALLED_PEER` UX (Task 3 pending-queue overflow surfaces the same overlay as the 30 s wait threshold)."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -28648,16 +28655,20 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
@@ -28672,8 +28683,8 @@
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 6
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 8
     },
     {
       "id": "phase-3.01-multiplayer.09-snapshot-resync-fallback",
@@ -29128,16 +29139,20 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
@@ -29216,16 +29231,20 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
@@ -29305,6 +29324,322 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
       "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
+      "kind": "task",
+      "status": "planned",
+      "title": "Chat Envelope, Channel Validators & Rate Limit",
+      "path": "tasks/phase-3/01-multiplayer/17-chat-envelope-channel-and-rate-limit.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Author the lobby-chat envelope schema, the dedicated `chat` DataChannel send/receive validators, the `normalizeChatText` pipeline (NFKC + control + bidi strip + length cap), and the per-peer token-bucket rate limit. Closes Q333–Q336, Q342–Q343 and the chat-DoS / identity-spoofing risks documented in [`docs/readiness-audit/19-chat-safety-and-user-reporting.md`](../../../docs/readiness-audit/19-chat-safety-and-user-reporting.md).",
+      "inputs": [
+        "`chat` DataChannel reservation from Task 02 (`id: 2`, `ordered: true`, `maxRetransmits: 3`, `negotiated: true`).",
+        "`peerId` shape from [`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md) and the lobby-discovery plan."
+      ],
+      "outputs": [
+        "`src/multiplayer/chat/normalizeChatText.ts` — pure function: NFKC normalize, strip C0/C1 controls (including `\\n`), strip `U+200B–U+200F`, `U+202A–U+202E`, `U+2066–U+2069`, collapse runs of whitespace, enforce 240 UTF-16 code-unit cap. Idempotent.",
+        "`src/multiplayer/chat/validateChatEnvelope.ts` — receive-side validator: drops on payload > 1 KiB, runs `normalizeChatText`, validates against [`chat-message.schema.json`](../../../content-schema/schemas/chat-message.schema.json), rewrites `senderId` to the transport peer's canonical id, applies the per-peer token bucket. Exposes a per-peer abuse counter for telemetry.",
+        "`src/multiplayer/chat/chatRateBucket.ts` — pure reducer slice: capacity 5, refill 1 token / 1 s, 10 s soft-mute on exhaustion, 3-strikes-in-5-min escalation to session-mute. Reset on lobby leave/join.",
+        "Reducer integration: ingress on `state.net.lobby.chat[]` appends only after the validator returns ok. The `chat` DataChannel never feeds the deterministic command channel.",
+        "Unit tests under `src/multiplayer/chat/__tests__/`:",
+        "`normalizeChatText.test.ts` — NFKC compose case, zero-width strip, bidi-override strip, control-char strip, idempotence, length truncation.",
+        "`validateChatEnvelope.test.ts` — accepts well-formed; drops oversize (uses [`content-schema/examples/chat-message/__rejected__/oversized.chat-message.json`](../../../content-schema/examples/chat-message/__rejected__/oversized.chat-message.json) as fixture); drops malformed `nonce`; rewrites spoofed `senderId` to transport peer.",
+        "`chatRateBucket.test.ts` — 6th send within 1 s drops; refill after 1 s; 10 s soft-mute; 3-strikes session-mute."
+      ],
+      "readFirst": [
+        "[`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md)",
+        "[`content-schema/schemas/chat-message.schema.json`](../../../content-schema/schemas/chat-message.schema.json)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`](../../../docs/architecture/wiki/screens/64-network-lobby/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "src/multiplayer/chat/normalizeChatText.ts",
+        "src/multiplayer/chat/validateChatEnvelope.ts",
+        "src/multiplayer/chat/chatRateBucket.ts",
+        "src/multiplayer/chat/__tests__/normalizeChatText.test.ts",
+        "src/multiplayer/chat/__tests__/validateChatEnvelope.test.ts",
+        "src/multiplayer/chat/__tests__/chatRateBucket.test.ts",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/examples/chat-message/canonical.chat-message.json",
+        "content-schema/examples/chat-message/__rejected__/oversized.chat-message.json",
+        "docs/architecture/chat-safety.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
+      ],
+      "acceptanceCriteria": [
+        "A well-formed envelope accepted by the receive-side validator is appended to `state.net.lobby.chat[]`. Schema validation runs **before** reducer ingest.",
+        "An oversized envelope (text > 240 chars after normalization) is dropped and the per-peer abuse counter increments.",
+        "A spoofed `senderId` (claim mismatched against transport peer) is **rewritten** to the transport peer's canonical id; the envelope is not dropped on the rewrite alone.",
+        "A malformed `nonce` (regex miss) is dropped.",
+        "`normalizeChatText` is idempotent: `f(f(x)) === f(x)` for the full test-vector set.",
+        "Rate limit: a 6th send in 1 s drops; the bucket refills after 1 s; on 3 soft-mutes within 5 minutes the peer is session-muted and `ui.network-lobby.chat.peer-rate-limited` is surfaced.",
+        "Send-side mirror: `SEND_LOBBY_CHAT` refuses to enqueue when the local bucket is empty; `ui.network-lobby.chat.send.rate-limited` is shown next to the input.",
+        "The `chat` DataChannel never feeds the command channel, and a command-shaped payload received on `chat` is rejected.",
+        "**Screen package coverage**: the contract matches [`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`](../../../docs/architecture/wiki/screens/64-network-lobby/data-contracts.md) and [`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md); no validator is invoked outside those packages."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/chat-message.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "phase-3.01-multiplayer.18-mute-block-and-trust-banner",
+      "kind": "task",
+      "status": "planned",
+      "title": "Mute / Block & Trust Banner",
+      "path": "tasks/phase-3/01-multiplayer/18-mute-block-and-trust-banner.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Add `MUTE_PEER`, `BLOCK_PEER`, the `state.net.lobby.muted` and `state.net.lobby.blocked` slices, the per-roster-row Mute / Block overflow menu, the `MutedBadge` indicator, and the `ChatTrustBanner` (one-line \"P2P chat — no server moderation\" banner with `localStorage` dismissal). Closes Q340–Q341, Q347 and the harassment-without-recourse risk documented in [`docs/readiness-audit/19-chat-safety-and-user-reporting.md`](../../../docs/readiness-audit/19-chat-safety-and-user-reporting.md).",
+      "inputs": [
+        "Validated chat ingress from Task 17.",
+        "`peerId` shape from Task 16 (peer keypair). The persistent variant of `MUTE_PEER` is gated on the long-lived peer key — until that lands, the option renders disabled with the localized reason `ui.network-lobby.chat.mute.persistent-disabled`."
+      ],
+      "outputs": [
+        "`src/multiplayer/chat/muteBlock.ts` — reducer slices `state.net.lobby.muted: Record<peerId, MuteEntry>` and `state.net.lobby.blocked: Record<peerId, BlockEntry>`. Both are presentation-only and never enter saves, replays, or the canonical state hash. `BLOCK_PEER` is a superset of `MUTE_PEER` and additionally strips the peer's existing envelopes from the rendered chat log.",
+        "`src/ui/network-lobby/MutedBadge.tsx` — per-row indicator.",
+        "`src/ui/network-lobby/ChatTrustBanner.tsx` — first-session banner; localized via `ui.network-lobby.chat.trust-banner`; dismissal persists to `localStorage` under `hr.ui.lobby.chat.trust-banner.dismissed = true`.",
+        "Per-row roster overflow menu extended to `Mute / Block / Report` (Report is wired by Task 19).",
+        "Unit tests under `src/multiplayer/chat/__tests__/muteBlock.test.ts`: mute / block round-trip; block strips existing envelopes; persistent variant gated when peer-key flag is off.",
+        "UI smoke test stubs covering Mute / Block menu render and banner dismissal."
+      ],
+      "readFirst": [
+        "[`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`](../../../docs/architecture/wiki/screens/64-network-lobby/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/architecture.md`](../../../docs/architecture/wiki/screens/64-network-lobby/architecture.md)"
+      ],
+      "ownedPaths": [
+        "src/multiplayer/chat/muteBlock.ts",
+        "src/ui/network-lobby/MutedBadge.tsx",
+        "src/ui/network-lobby/ChatTrustBanner.tsx",
+        "src/multiplayer/chat/__tests__/muteBlock.test.ts",
+        "08-multiplayer-ui-lobby-invite-link-in-game-status.md",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "08-multiplayer-ui-lobby-invite-link-in-game-status.md",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
+        "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit"
+      ],
+      "acceptanceCriteria": [
+        "`MUTE_PEER { peerId, scope: 'session' | 'persistent' }` adds an entry to `state.net.lobby.muted`. Inbound chat from that peer is filtered before render. Session scope clears on lobby leave; persistent scope persists to `localStorage` keyed on the long-lived peer key.",
+        "`BLOCK_PEER { peerId }` adds an entry to `state.net.lobby.blocked` and additionally strips the peer's existing envelopes from the rendered chat history.",
+        "The persistent `MUTE_PEER` variant renders disabled with the reason `ui.network-lobby.chat.mute.persistent-disabled` when the peer-key flag (Task 16) is off.",
+        "`ChatTrustBanner` mounts on first lobby session of a given install; clicking dismiss persists `hr.ui.lobby.chat.trust-banner.dismissed = true` and the banner does not remount.",
+        "Accessibility: the banner announces on first show via a live region; focus-trap is not required.",
+        "**Screen package coverage**: components, bindings, and commands match [`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md) and [`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md); mockup geometry is not invented locally.",
+        "**Shared-ownership split with Task 08**: Task 08 is the **primary owner** of `src/ui/components/MultiplayerLobby.tsx`. This task's contribution is **additive**: it MUST NOT rewrite the slot list, ready-state seal, or existing chat panel layout — only the per-row overflow-menu mount points and the `ChatTrustBanner` mount above the chat input are added."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
+        "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
+        "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-3.01-multiplayer.19-report-bundle-and-export",
+      "kind": "task",
+      "status": "planned",
+      "title": "Report Bundle & Chat Export",
+      "path": "tasks/phase-3/01-multiplayer/19-report-bundle-and-export.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Add `REPORT_PEER`, `EXPORT_CHAT_LOG`, the `ReportPeerDialog`, the local-download blob-URL pipeline, and the `report-bundle.schema.json` evidence bundle. The MVP intake is local-only — bundles are saved to the user's downloads folder; there is no network upload. Closes Q348–Q350, Q355 and the no-evidence-for-harassment risk documented in [`docs/readiness-audit/19-chat-safety-and-user-reporting.md`](../../../docs/readiness-audit/19-chat-safety-and-user-reporting.md).",
+      "inputs": [
+        "Validated chat ingress from Task 17 (the report bundle quotes `state.net.lobby.chat[]`).",
+        "Per-roster-row overflow menu mount point from Task 18 (Report is the third entry alongside Mute and Block)."
+      ],
+      "outputs": [
+        "`content-schema/schemas/report-bundle.schema.json`",
+        "`content-schema/examples/report-bundle/canonical-peer-behavior.report-bundle.json`",
+        "`content-schema/examples/report-bundle/canonical-ai-ugc.report-bundle.json`",
+        "`src/multiplayer/chat/buildReportBundle.ts` — pure function: `(state, { reporter, subject, reasonCode, freeText? }) → ReportBundle`. `evidence.chatExcerpt` includes up to 50 messages from the subject with a ±2-message context window of reporter messages around each subject message; reporter-only chatter outside that window is excluded.",
+        "`src/multiplayer/chat/exportChatLog.ts` — pure serializer for `EXPORT_CHAT_LOG`; produces a JSON or TXT blob from `state.net.lobby.chat[]`. JSON entries conform to `chat-message.schema.json`.",
+        "`src/ui/network-lobby/ReportPeerDialog.tsx` — modal dialog; renders reason codes (closed enum, locale-bound), optional free text (≤ 500 chars, NFKC-normalized via Task 17's `normalizeChatText`), and a single confirm action that generates the bundle and triggers a browser download via blob URL. The blob URL is revoked immediately after the download is dispatched.",
+        "`ChatPanelOverflowMenu` overflow-menu entry for \"Save chat log\" wired to `EXPORT_CHAT_LOG`.",
+        "Unit tests under `src/multiplayer/chat/__tests__/`:",
+        "`buildReportBundle.test.ts` — round-trips through the `report-bundle.schema.json` validator; ±2-message context window honored; reporter-only chatter excluded; `ai-ugc` branch sets the distinct filename prefix.",
+        "`exportChatLog.test.ts` — JSON output validates against `chat-message.schema.json`; TXT output is round-trip safe."
+      ],
+      "readFirst": [
+        "[`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md)",
+        "[`content-schema/schemas/report-bundle.schema.json`](../../../content-schema/schemas/report-bundle.schema.json)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`](../../../docs/architecture/wiki/screens/64-network-lobby/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/examples/report-bundle/canonical-peer-behavior.report-bundle.json",
+        "content-schema/examples/report-bundle/canonical-ai-ugc.report-bundle.json",
+        "src/multiplayer/chat/buildReportBundle.ts",
+        "src/multiplayer/chat/exportChatLog.ts",
+        "src/ui/network-lobby/ReportPeerDialog.tsx",
+        "src/multiplayer/chat/__tests__/buildReportBundle.test.ts",
+        "src/multiplayer/chat/__tests__/exportChatLog.test.ts",
+        "18-mute-block-and-trust-banner.md",
+        "08-multiplayer-ui-lobby-invite-link-in-game-status.md",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "18-mute-block-and-trust-banner.md",
+        "08-multiplayer-ui-lobby-invite-link-in-game-status.md",
+        "src/ui/components/MultiplayerLobby.tsx"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
+        "phase-3.01-multiplayer.18-mute-block-and-trust-banner"
+      ],
+      "acceptanceCriteria": [
+        "`REPORT_PEER { peerId, reasonCode, freeText? }` opens `ReportPeerDialog`; reason codes are restricted to `harassment`, `slurs-or-hate`, `cheating-suspected`, `unsafe-ai-content`, `other`.",
+        "On confirm, a `ReportBundle` is built, validated against `report-bundle.schema.json`, and offered for download via a blob URL. The URL is revoked immediately after dispatch.",
+        "`peer-behavior` bundles use filename `heroes-reforged-report-<sessionId>-<ISO>.json`; `ai-ugc` bundles use `heroes-reforged-report-ai-ugc-<sessionId>-<ISO>.json` so a future AI-content intake can branch on filename.",
+        "`evidence.chatExcerpt` honors the ±2-message reporter context window; reporter-only chatter outside that window is excluded.",
+        "`evidence.deviceCapture` is an empty object in v1.",
+        "`EXPORT_CHAT_LOG { format: 'json' | 'txt' }` triggers a blob download; JSON output entries conform to `chat-message.schema.json`.",
+        "No network call is made on `REPORT_PEER` or `EXPORT_CHAT_LOG` in MVP — both flows are local-only.",
+        "**Screen package coverage**: dialog, command, and overflow menu match [`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md) and [`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md); mockup geometry is not invented locally.",
+        "**Shared-ownership split with Task 18**: Task 18 is the **primary owner** of the per-row overflow-menu mount point. This task's contribution is **additive**: it MUST NOT rewrite the Mute / Block entries; only the Report entry and the `ReportPeerDialog` mount are added.",
+        "**Shared-ownership split with Task 08**: Task 08 is the **primary owner** of `src/ui/components/MultiplayerLobby.tsx`. This task's contribution is **additive**: it MUST NOT rewrite the slot list, ready-state seal, or chat panel layout — only the `ChatPanelOverflowMenu` \"Save chat log\" entry and the `ReportPeerDialog` mount are added."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/report-bundle.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
+        "phase-3.01-multiplayer.18-mute-block-and-trust-banner"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
+        "phase-3.01-multiplayer.18-mute-block-and-trust-banner"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
     },
     {
       "id": "phase-3.02-ai-generation.00-generation-io-schemas",
@@ -31359,7 +31694,10 @@
         "phase-3.01-multiplayer.13-signaling-rate-limiting",
         "phase-3.01-multiplayer.14-host-approval-and-moderation",
         "phase-3.01-multiplayer.15-display-name-validation",
-        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
+        "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
+        "phase-3.01-multiplayer.18-mute-block-and-trust-banner",
+        "phase-3.01-multiplayer.19-report-bundle-and-export"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -31422,16 +31760,20 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"

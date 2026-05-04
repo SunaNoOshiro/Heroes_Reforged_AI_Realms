@@ -532,6 +532,22 @@
       ]
     },
     {
+      "componentId": "ChatPanelOverflowMenu",
+      "module": "src/ui/network-lobby/chat-panel-overflow-menu.tsx",
+      "exportName": "ChatPanelOverflowMenu",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ChatTrustBanner",
+      "module": "src/ui/network-lobby/ChatTrustBanner.tsx",
+      "exportName": "ChatTrustBanner",
+      "tags": [
+        "panel"
+      ]
+    },
+    {
       "componentId": "ChosenCommandPanel",
       "module": "src/ui/dev/ai-inspector/chosen-command-panel.tsx",
       "exportName": "ChosenCommandPanel",
@@ -1865,6 +1881,14 @@
       "module": "src/ui/components/multiplayer-setup.tsx",
       "exportName": "MultiplayerSetup",
       "tags": [
+        "screen"
+      ]
+    },
+    {
+      "componentId": "MutedBadge",
+      "module": "src/ui/network-lobby/MutedBadge.tsx",
+      "exportName": "MutedBadge",
+      "tags": [
         "ui"
       ]
     },
@@ -2474,6 +2498,14 @@
       "exportName": "RelicPedestal",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "ReportPeerDialog",
+      "module": "src/ui/network-lobby/ReportPeerDialog.tsx",
+      "exportName": "ReportPeerDialog",
+      "tags": [
+        "modal"
       ]
     },
     {

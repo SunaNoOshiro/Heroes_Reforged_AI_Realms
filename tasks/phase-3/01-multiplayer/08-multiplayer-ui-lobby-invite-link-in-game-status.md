@@ -49,6 +49,18 @@ Outputs:
 - Connection status indicator (green/yellow/red) driven by the
   thresholds below
 - "Disconnected" banner when peer drops, with reconnect timer
+- Chat-safety surface bindings on the network-lobby chat panel and
+  player roster: `MUTE_PEER`, `BLOCK_PEER`, `REPORT_PEER`,
+  `EXPORT_CHAT_LOG`, `ACKNOWLEDGE_CHAT_TRUST_BANNER`, plus
+  `MutedBadge`, `ChatTrustBanner`, `ChatPanelOverflowMenu`, and
+  `ReportPeerDialog`. The reducer slices, schemas, validators,
+  and dialog logic are owned by
+  `phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit`,
+  `phase-3.01-multiplayer.18-mute-block-and-trust-banner`, and
+  `phase-3.01-multiplayer.19-report-bundle-and-export`; this task
+  mounts the components and binds them to the
+  [`64-network-lobby`](../../../docs/architecture/wiki/screens/64-network-lobby/)
+  package per [`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md).
 
 Stall Thresholds:
 The status-indicator state machine reads `INPUT_DELAY_BUDGETS` from

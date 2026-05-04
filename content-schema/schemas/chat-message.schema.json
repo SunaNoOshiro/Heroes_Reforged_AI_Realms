@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/chat-message.schema.json",
+  "title": "ChatMessage",
+  "description": "Lobby chat envelope. Authored by docs/architecture/chat-safety.md. Carried over a dedicated WebRTC `chat` DataChannel (id=2) — never on the deterministic command channel. Receive-side validators MUST run NFKC normalization, control/bidi strip, and length cap (240) BEFORE schema check, and MUST rewrite `senderId` to the transport peer's canonical id at ingress. The optional `sig` field is reserved for the long-lived peer-key signature contract introduced by the TLS / WebRTC authentication plan.",
+  "type": "object",
+  "required": ["v", "scope", "senderId", "t", "nonce", "text"],
+  "additionalProperties": false,
+  "properties": {
+    "v": {
+      "const": 1,
+      "description": "Envelope version. Bumped only on a breaking shape change."
+    },
+    "scope": {
+      "enum": ["lobby"],
+      "description": "Where the message originates. `ingame` is reserved for a future in-game chat (currently out of scope per docs/architecture/chat-safety.md § Scope)."
+    },
+    "senderId": {
+      "type": "string",
+      "pattern": "^peer:[a-z0-9-]{8,64}$",
+      "description": "Stable peer identifier in the `peer:<id>` shape. Rewritten by the receiver to the transport peer's canonical id; see chat-safety.md § Envelope."
+    },
+    "t": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Milliseconds since session start on the sending peer. Presentation-only; deterministic gameplay never reads this field."
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{12,16}$",
+      "description": "Per-message nonce. Used for client-side deduplication and dropping duplicate envelopes; never reused inside the same session."
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "description": "Plain-text body, NFKC-normalized, control/bidi-stripped, single-line. Length is measured in UTF-16 code units to match runtime String.length."
+    },
+    "sig": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "description": "Reserved. Optional in v1. Becomes a mandatory signature over the canonical-JSON envelope under the long-lived peer key once the TLS / WebRTC authentication plan lands."
+    }
+  }
+}

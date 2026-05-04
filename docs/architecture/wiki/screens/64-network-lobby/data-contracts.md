@@ -16,6 +16,8 @@
 | `scenario.schema.json` | Scenario setup, starting state, victory/loss conditions, and save/load metadata. | `content-schema/schemas/scenario.schema.json` |
 | `world.schema.json` | World terrain, biome, underground, generator, and map setup records. | `content-schema/schemas/world.schema.json` |
 | `faction.schema.json` | Faction identity, town roster, hero/unit references, and player-facing faction metadata. | `content-schema/schemas/faction.schema.json` |
+| `chat-message.schema.json` | Lobby chat envelope; carried over the dedicated `chat` DataChannel; receive-side validation contract per [`chat-safety.md` § 3](../../../chat-safety.md#3-envelope-schema). | `content-schema/schemas/chat-message.schema.json` |
+| `report-bundle.schema.json` | Local-only evidence bundle produced by `REPORT_PEER` per [`chat-safety.md` § 8](../../../chat-safety.md#8-report). | `content-schema/schemas/report-bundle.schema.json` |
 | Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, or shell state as listed below. | Loaded content/runtime registries. |
 
 ### Runtime State Selectors
@@ -27,7 +29,10 @@
 | `peerApproval` | `state.net.lobby.peerApproval` | Host-side approval modal binding (open / closed / approving / rejecting). |
 | `peerDenylist` | `state.net.lobby.peerDenylist` | Per-room denylist; entries `{ peerPubKey, reason, bannedAtMs }` per [`docs/architecture/peer-identity.md` § 3](../../../peer-identity.md#3-peerdenylist-shape). |
 | `joinAttemptToast` | `state.net.lobby.joinAttemptToast` | Aggregated rejected-attempt counter; surfaces the toast at thresholds 1, 5, 20. |
-| `chatMessages` | `state.net.lobby.chat` | Lobby chat log. Display-name validation per [`docs/architecture/display-name-policy.md`](../../../display-name-policy.md). |
+| `chatMessages` | `state.net.lobby.chat` | Lobby chat log. Items conform to [`chat-message.schema.json`](../../../../../content-schema/schemas/chat-message.schema.json) after receive-side normalization, schema validation, and `senderId` rewrite per [`chat-safety.md` § 3](../../../chat-safety.md#3-envelope-schema). Display-name validation per [`docs/architecture/display-name-policy.md`](../../../display-name-policy.md). |
+| `muted` | `state.net.lobby.muted` | Local-only mute slice keyed by `peerId`; entries `{ peerId, scope: 'session' \| 'persistent', mutedAtMs }` per [`chat-safety.md` § 7](../../../chat-safety.md#7-mute--block). Never enters saves, replays, or the canonical state hash. |
+| `blocked` | `state.net.lobby.blocked` | Local-only block slice keyed by `peerId`; superset of mute. Never enters saves, replays, or the canonical state hash. |
+| `chatRateBucket` | `state.net.lobby.chatRateBucket` | Per-peer token-bucket slice (capacity 5, refill 1/s). Reset on lobby leave/join. Never enters saves, replays, or the canonical state hash. |
 | `compatibility` | `selectors.net.lobbyCompatibility` | Hash/version/ruleset match result. |
 | `launchGuard` | `selectors.net.canLaunchSession` | All ready and compatible. |
 
@@ -42,8 +47,11 @@
 - `APPROVE_PEER` from `network.approvePeer`: Host approves a pending peer; clears the `PEER_PENDING` envelope.
 - `REJECT_PEER` from `network.rejectPeer`: Host rejects a pending peer.
 - `KICK_PEER` from `network.kickPeer`: Host kicks an approved peer; appends `peerPubKey` to `peerDenylist[]`.
-- `MUTE_PEER` from `network.mutePeer`: Local-only; suppresses chat from a peer.
-- `REPORT_PEER` from `network.reportPeer`: Local audit-log write; no central server in M5.
+- `MUTE_PEER` from `network.mutePeer`: Local-only; suppresses chat from a peer. Args `{ peerId, scope: 'session' \| 'persistent' }`. Persistent variant gated on the long-lived peer key from the TLS / WebRTC authentication plan.
+- `BLOCK_PEER` from `network.blockPeer`: Local-only; superset of mute. Args `{ peerId }`.
+- `REPORT_PEER` from `network.reportPeer`: Opens `ReportPeerDialog`. Generates a [`report-bundle.schema.json`](../../../../../content-schema/schemas/report-bundle.schema.json)-conformant download; no central server in M5. Also writes a `signaling.report.*` audit-log record.
+- `EXPORT_CHAT_LOG` from `network.exportChatLog`: Serializes `state.net.lobby.chat` to a single-file download. Args `{ format: 'json' \| 'txt' }`.
+- `ACKNOWLEDGE_CHAT_TRUST_BANNER` from `network.dismissChatTrustBanner`: Persists the banner-dismiss flag in `localStorage`.
 - `CLOSE_ROOM` from `network.closeRoom`: Host-initiated room close; signaling server emits `ROOM_CLOSED`.
 - `LAUNCH_NETWORK_GAME` from `network.launch`: Host starts deterministic session.
 - `LEAVE_NETWORK_LOBBY` from `network.leave`: Disconnects or leaves lobby.
@@ -74,7 +82,19 @@
 - `ui.network-lobby.modal.pendingPeer.*`
 - `ui.network-lobby.dots.kick`
 - `ui.network-lobby.dots.mute`
+- `ui.network-lobby.dots.block`
 - `ui.network-lobby.dots.report`
+- `ui.network-lobby.chat.trust-banner`
+- `ui.network-lobby.chat.peer-rate-limited`
+- `ui.network-lobby.chat.send.rate-limited`
+- `ui.network-lobby.chat.mute.persistent-disabled`
+- `ui.network-lobby.chat.export`
+- `ui.network-lobby.report.dialog.*`
+- `ui.network-lobby.report.reason.harassment`
+- `ui.network-lobby.report.reason.slurs-or-hate`
+- `ui.network-lobby.report.reason.cheating-suspected`
+- `ui.network-lobby.report.reason.unsafe-ai-content`
+- `ui.network-lobby.report.reason.other`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs
@@ -87,7 +107,8 @@
 ### Save And Replay Fields
 - Persist reducer-approved gameplay state, setup records, content hashes, command inputs, and explicit draft records only when named by the owning system.
 - Do not persist hover, focus, tooltip, scroll, drag ghost, cursor blink, animation frame, or transient visual effects.
-- Do not persist the `peerDenylist`, `pendingPeers`, or `joinAttemptToast` slices — they are per-room ephemeral state and are dropped when the room expires or closes.
+- Do not persist the `peerDenylist`, `pendingPeers`, `joinAttemptToast`, `chat`, `muted`, `blocked`, or `chatRateBucket` slices — they are per-room or per-session ephemeral state and are dropped on `LEAVE_NETWORK_LOBBY` and on session end per [`chat-safety.md` § 9](../../../chat-safety.md#9-retention).
+- Files produced by `EXPORT_CHAT_LOG` and `REPORT_PEER` are user-owned; they are not auto-deleted by the "forget me" flow. The flow surfaces a notice and an "Open downloads folder" affordance per [`chat-safety.md` § 9](../../../chat-safety.md#9-retention).
 - Replays use stable IDs and scalar command inputs, never raw paths, localized labels, rendered positions, or wall-clock timestamps.
 
 ### Validation And Fallback

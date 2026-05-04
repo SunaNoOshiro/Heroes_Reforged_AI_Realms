@@ -100,10 +100,36 @@ flowchart TD
   M0["Host opens slot dots-menu"] --> M1{action}
   M1 -- kick --> M2["KICK_PEER"]
   M1 -- mute --> M3["MUTE_PEER (local)"]
-  M1 -- report --> M4["REPORT_PEER (local audit)"]
+  M1 -- block --> M3b["BLOCK_PEER (local)"]
+  M1 -- report --> M4["REPORT_PEER → ReportPeerDialog"]
   M2 --> M5["peerDenylist += peerPubKey"]
   M5 --> M6["PEER_KICKED → joiner; WS dropped"]
+  M3 --> M7["state.net.lobby.muted[peerId]"]
+  M3b --> M8["state.net.lobby.blocked[peerId]"]
+  M4 --> M9["report-bundle.schema.json blob"]
+  M9 --> M10["browser download (no upload)"]
 ```
+
+## Chat Receive Pipeline
+```mermaid
+flowchart LR
+  R0["chat DataChannel (id=2)"] --> R1["payload ≤ 1 KiB?"]
+  R1 -- no --> RX["drop + abuse counter"]
+  R1 -- yes --> R2["normalizeChatText"]
+  R2 --> R3["chat-message.schema.json validate"]
+  R3 -- miss --> RX
+  R3 -- ok --> R4["rewrite senderId → transport peer"]
+  R4 --> R5["token bucket per senderId"]
+  R5 -- empty --> R6["soft-mute 10 s"]
+  R5 -- ok --> R7["state.net.lobby.chat append"]
+  R7 --> R8["muted/blocked filter"]
+  R8 --> R9["ChatPanel render (plain-text only)"]
+```
+
+Per [`chat-safety.md` §§ 2–6](../../../chat-safety.md). The full
+contract for channel reservation, normalization, schema, rate
+limit, mute/block, report, retention, and trust-model disclosure
+lives in that doc; this diagram summarizes the runtime steps.
 
 ## State Inputs
 - sessionId -> state.net.sessionId
@@ -113,6 +139,10 @@ flowchart TD
 - peerDenylist -> state.net.lobby.peerDenylist
 - joinAttemptToast -> state.net.lobby.joinAttemptToast
 - chatMessages -> state.net.lobby.chat
+- muted -> state.net.lobby.muted
+- blocked -> state.net.lobby.blocked
+- chatRateBucket -> state.net.lobby.chatRateBucket
+- chatTrustBannerDismissed -> localStorage `hr.ui.lobby.chat.trust-banner.dismissed`
 - compatibility -> selectors.net.lobbyCompatibility
 - launchGuard -> selectors.net.canLaunchSession
 

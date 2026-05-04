@@ -83,6 +83,14 @@ gameplay records. If a better UI needs new gameplay data, add it through
 an explicit schema, selector, command, migration, or task-owned contract
 change.
 
+Chat-related screen edits (e.g. on
+[`screens/64-network-lobby/`](./screens/64-network-lobby/)) MUST
+update [`../chat-safety.md`](../chat-safety.md) first when the change
+touches channel reservation, envelope shape, normalization,
+sanitization, rate limit, mute / block, report flow, retention, or
+the trust-model disclosure. The screen package mirrors that contract;
+it does not re-author it.
+
 ## Required Architecture Reading
 
 Screen-package authors and runtime implementers should read the

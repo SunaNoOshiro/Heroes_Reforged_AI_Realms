@@ -25,15 +25,25 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
   - SessionHeader
   - PlayerSlotList
     - PlayerSlotRowDotsMenu
+    - MutedBadge
   - ReadyStateSeals
   - ChatPanel
+    - ChatTrustBanner
+    - ChatPanelOverflowMenu
   - ContentCompatibilityPanel
   - LaunchLeaveButtons
   - HostCloseRoomButton
   - PendingPeerModal
   - JoinAttemptToast
+  - ReportPeerDialog
 
-`PlayerSlotRowDotsMenu`, `HostCloseRoomButton`, and the per-slot moderation row are host-only — they render disabled (or hide entirely) for non-host peers. `PendingPeerModal` mounts when `state.net.lobby.pendingPeers.length > 0`. `JoinAttemptToast` is non-modal and surfaces aggregated `JOIN_ATTEMPT_REJECTED` counts at thresholds 1, 5, 20.
+`PlayerSlotRowDotsMenu`, `HostCloseRoomButton`, and the per-slot moderation row are host-only — they render disabled (or hide entirely) for non-host peers. `PendingPeerModal` mounts when `state.net.lobby.pendingPeers.length > 0`. `JoinAttemptToast` is non-modal and surfaces aggregated `JOIN_ATTEMPT_REJECTED` counts at thresholds 1, 5, 20. `MutedBadge` renders next to a roster row when the local user has muted or blocked that peer. `ChatTrustBanner` mounts above the chat input on first lobby session and dismisses to `localStorage` per [`chat-safety.md` § 10](../../../chat-safety.md#10-trust-model-disclosure). `ChatPanelOverflowMenu` exposes "Save chat log" (`EXPORT_CHAT_LOG`). `ReportPeerDialog` mounts on `network.reportPeer` and produces a `report-bundle.schema.json`-conformant download.
+
+### Rendering Safety
+- `ChatPanel` renders chat `text` via `{text}` JSX binding only. **No `dangerouslySetInnerHTML`. No markdown library. No link auto-detector.** A CI / lint rule fails the build on any `dangerouslySetInnerHTML` usage under the lobby chat surface.
+- Inbound chat envelopes are normalized (NFKC, control + bidi strip, length cap 240) and schema-validated against [`chat-message.schema.json`](../../../../../content-schema/schemas/chat-message.schema.json) **before** they reach the reducer or the renderer.
+- Inbound `senderId` is rewritten to the transport peer's canonical id at ingress so peers cannot inject envelopes claiming to be other peers.
+- The full rendering, normalization, channel-reservation, rate-limit, mute / block, and report contracts live in [`docs/architecture/chat-safety.md`](../../../chat-safety.md).
 
 ### State Bindings
 | Element | Bound To | Notes |
@@ -44,7 +54,10 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
 | peerApproval | state.net.lobby.peerApproval | Host-side approval modal lifecycle. |
 | peerDenylist | state.net.lobby.peerDenylist | Per-room kick denylist; ephemeral. |
 | joinAttemptToast | state.net.lobby.joinAttemptToast | Aggregated rejected-join counter from `JOIN_ATTEMPT_REJECTED`. |
-| chatMessages | state.net.lobby.chat | Lobby chat log. |
+| chatMessages | state.net.lobby.chat | Lobby chat log. Items conform to `chat-message.schema.json` after receive-side normalization, schema validation, and `senderId` rewrite per [`chat-safety.md` § 3](../../../chat-safety.md#3-envelope-schema). |
+| muted | state.net.lobby.muted | Local-only mute slice keyed by `peerId`. Drives `MutedBadge` and the `ChatPanel` filter. Never enters saves, replays, or the canonical state hash. |
+| blocked | state.net.lobby.blocked | Local-only block slice keyed by `peerId`. Superset of mute; also strips the peer's history from the rendered chat log. |
+| chatTrustBannerDismissed | localStorage `hr.ui.lobby.chat.trust-banner.dismissed` | Persisted boolean; suppresses `ChatTrustBanner` after first dismissal. |
 | compatibility | selectors.net.lobbyCompatibility | Hash/version/ruleset match result. |
 | launchGuard | selectors.net.canLaunchSession | All ready and compatible. |
 

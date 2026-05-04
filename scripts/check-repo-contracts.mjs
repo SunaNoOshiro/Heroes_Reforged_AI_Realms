@@ -572,6 +572,8 @@ function schemaForFile(filePath) {
   if (base.endsWith(".validation-report.json")) return "validation-report.schema.json";
   if (base.endsWith(".coherence-report.json")) return "coherence-report.schema.json";
   if (base.endsWith(".balance-report.json")) return "balance-report.schema.json";
+  if (base.endsWith(".chat-message.json")) return "chat-message.schema.json";
+  if (base.endsWith(".report-bundle.json")) return "report-bundle.schema.json";
   if (base.endsWith(".localization.json")) return "localization.schema.json";
 
   return null;
@@ -583,6 +585,9 @@ async function collectExampleRecordViolations() {
   const violations = [];
 
   for (const filePath of files) {
+    if (filePath.split(path.sep).includes("__rejected__")) {
+      continue;
+    }
     const schemaFile = schemaForFile(filePath);
     if (!schemaFile) {
       violations.push(

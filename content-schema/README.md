@@ -49,6 +49,8 @@ generation payloads. They currently cover:
 - vfx
 - sound set
 - AI generation request / generated faction
+- chat message envelope (lobby chat)
+- report bundle (peer-behavior / AI-UGC reports)
 
 ## Relationship To Other Folders
 

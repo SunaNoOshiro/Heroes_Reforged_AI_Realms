@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/report-bundle.schema.json",
+  "title": "ReportBundle",
+  "description": "Locally-saved evidence bundle produced by `REPORT_PEER` (peer-behavior) or by the AI-UGC report intake. Authored by docs/architecture/chat-safety.md § Report. v1 has no backend: bundles are written to the user's downloads folder via blob URL and never uploaded. `deviceCapture` is reserved-empty in v1; activating any field requires a privacy / retention policy update plus an explicit user-consent step.",
+  "type": "object",
+  "required": ["v", "kind", "createdAt", "reporter", "subject", "evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "v": {
+      "const": 1,
+      "description": "Bundle version. Bumped only on a breaking shape change."
+    },
+    "kind": {
+      "enum": ["peer-behavior", "ai-ugc"],
+      "description": "Report category. `peer-behavior` is the default chat / lobby flow; `ai-ugc` routes to the AI-content intake (owned by the personal-data plan)."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp captured at click. Wall-clock; never enters deterministic state."
+    },
+    "reporter": {
+      "type": "object",
+      "required": ["peerId"],
+      "additionalProperties": false,
+      "properties": {
+        "peerId": {
+          "type": "string",
+          "pattern": "^peer:[a-z0-9-]{8,64}$",
+          "description": "Reporter's session-scoped peer identifier."
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Reporter's display name at click. Optional; reporter may submit anonymously."
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "required": ["peerId", "reasonCode"],
+      "additionalProperties": false,
+      "properties": {
+        "peerId": {
+          "type": "string",
+          "pattern": "^peer:[a-z0-9-]{8,64}$",
+          "description": "Subject (reported peer) identifier at click."
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Subject's display name at click. Optional."
+        },
+        "reasonCode": {
+          "enum": [
+            "harassment",
+            "slurs-or-hate",
+            "cheating-suspected",
+            "unsafe-ai-content",
+            "other"
+          ],
+          "description": "Closed reason set; locale-bound labels live in the network-lobby localization keys."
+        },
+        "freeText": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Optional reporter-supplied prose, NFKC-normalized and plain-text only."
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "chatExcerpt": {
+          "type": "array",
+          "maxItems": 50,
+          "items": { "$ref": "chat-message.schema.json" },
+          "description": "Up to 50 messages from the subject (with a ±2-message context window around each subject message) preceding the report click. Reporter-only chatter outside that window is excluded to limit reporter self-incrimination data."
+        },
+        "saveHash": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{64}$",
+          "description": "Deterministic save-state hash at click. Lets a future backend correlate to a cheating claim."
+        },
+        "scenarioId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Scenario id at click."
+        },
+        "rulesetHash": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Ruleset content hash at click."
+        },
+        "sessionStartedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Session start wall-clock timestamp."
+        }
+      }
+    },
+    "deviceCapture": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Reserved. v1 emits an empty object. No IP, no UA, no fingerprint until a backend exists and the privacy / retention plan adds an explicit user-consent step."
+    }
+  }
+}

@@ -18,9 +18,10 @@ Outputs:
 - `src/net/webrtc/peer-connection.ts`
 - `createPeerConnection(signaling): PeerConn`
 - Three DataChannels:
-  - `commands`: `ordered: true, maxRetransmits: null` (reliable, ordered delivery — deterministic command log)
+  - `commands`: `ordered: true, maxRetransmits: null`, `negotiated: true, id: 1` (reliable, ordered delivery — deterministic command log)
   - `heartbeat`: `ordered: false, maxRetransmits: 0` (fire-and-forget)
-  - `chat`: `ordered: false, maxRetransmits: 0` (in-game chat; non-deterministic, never enters the reducer; sees `SEND_GAME_CHAT` payloads bound to `state.net.game.chat`)
+  - `chat`: `ordered: true, maxRetransmits: 3`, `negotiated: true, id: 2` (best-effort lobby chat envelope per [`docs/architecture/chat-safety.md` § 2](../../../docs/architecture/chat-safety.md#2-channel-reservation); never enters the deterministic reducer; carries [`chat-message.schema.json`](../../../content-schema/schemas/chat-message.schema.json) envelopes only)
+- The `chat` channel reserves `id: 2`; ids `3–7` are reserved for future channels per the channel-reservation table in [`chat-safety.md` § 2](../../../docs/architecture/chat-safety.md#2-channel-reservation). `maxMessageSize` is enforced application-side at 1 KiB per envelope; the receive-side validator drops anything larger and increments a per-peer abuse counter.
 - STUN server: `stun.l.google.com:19302` (free, good global coverage)
 - TURN fallback: STUN-only attempt for 4 s; on ICE-gather timeout,
   Task 10 appends TURN URLs to `RTCConfiguration.iceServers`. Hook
@@ -32,6 +33,17 @@ Why this is risky: WebRTC connection setup has many failure modes (NAT traversal
 Owned Paths:
 - `src/net/webrtc/peer-connection.ts`
 
+Owned Paths (shared):
+- `chat` DataChannel reservation (`id: 2`, `ordered: true`,
+  `maxRetransmits: 3`, `negotiated: true`). This task **opens** the
+  channel and enforces no cross-channel traffic; the
+  envelope schema, send/receive validators, normalization,
+  rate limit, and reducer wiring are owned by
+  `phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit`.
+  The split is **additive**: this task does not implement the
+  envelope or filter contents — only the channel
+  pair lives here.
+
 Dependencies:
 - phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby
 
@@ -40,11 +52,15 @@ Acceptance Criteria:
 - Commands DataChannel delivers in order (test with 1000 sequential messages)
 - Connection failure (ICE timeout) triggers clean fallback to signaling error state
 - Works on Chrome 120+, Firefox 121+, Safari 17+
-- `chat` DataChannel exists alongside `commands` and `heartbeat`;
-  chat traffic does not appear in replay artifacts and chat
-  backpressure does not delay command delivery (synthetic test:
-  flood `chat` at 200 msg/s while running a 1000-command match — no
-  command-channel timeouts).
+- `chat` DataChannel exists alongside `commands` and `heartbeat`
+  on `negotiated` ids `1` and `2`; chat traffic does not appear in
+  replay artifacts and chat backpressure does not delay command
+  delivery (synthetic test: flood `chat` at 200 msg/s while
+  running a 1000-command match — no command-channel timeouts).
+- Crossing payloads is rejected: a chat envelope sent on
+  `commands` is rejected by the command-channel validator and a
+  command-shaped payload sent on `chat` is rejected by the
+  chat-channel validator. Per [`chat-safety.md` § 2](../../../docs/architecture/chat-safety.md#2-channel-reservation).
 - ICE-gather timeout fires at 4 s when no host/srflx pair emerges;
   Task 10 wires the TURN-URL append on this signal.
 - **Pre-consent ICE policy = relay-only**. The host's

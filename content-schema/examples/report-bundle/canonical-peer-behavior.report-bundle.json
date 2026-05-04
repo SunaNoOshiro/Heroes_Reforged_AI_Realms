@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schemas/report-bundle.schema.json",
+  "v": 1,
+  "kind": "peer-behavior",
+  "createdAt": "2026-05-04T12:34:56.000Z",
+  "reporter": {
+    "peerId": "peer:a1b2c3d4e5f6",
+    "displayName": "Suna"
+  },
+  "subject": {
+    "peerId": "peer:9z8y7x6w5v4u",
+    "displayName": "Mira",
+    "reasonCode": "harassment",
+    "freeText": "repeated targeted slurs after I declined a rematch"
+  },
+  "evidence": {
+    "chatExcerpt": [
+      {
+        "v": 1,
+        "scope": "lobby",
+        "senderId": "peer:9z8y7x6w5v4u",
+        "t": 12345,
+        "nonce": "k3xZ_q9-Lp7mN",
+        "text": "you are bad at this game"
+      },
+      {
+        "v": 1,
+        "scope": "lobby",
+        "senderId": "peer:9z8y7x6w5v4u",
+        "t": 13500,
+        "nonce": "Mn0PqR2sT3uV4",
+        "text": "stop wasting my time"
+      }
+    ],
+    "scenarioId": "scenario:emberwild-1v1",
+    "rulesetHash": "sha256:0f1e2d3c4b5a6978",
+    "sessionStartedAt": "2026-05-04T12:00:00.000Z"
+  },
+  "deviceCapture": {}
+}

@@ -67,6 +67,12 @@ creator platform.
   telemetry rule. The error *shape* (validation-error /
   dispatcher-error / storage-error schemas) is owned by
   `error-taxonomy.md`; this doc owns the surface.
+- `chat-safety.md`
+  Single source of truth for lobby-chat safety: dedicated
+  DataChannel reservation, envelope schema, NFKC + control + bidi
+  normalization, plain-text rendering contract, per-peer
+  rate limit, mute / block, report bundle, retention, and the
+  trust-model disclosure banner.
 - `../operations/rollback-playbook.md`
   Operations-side runbook for content / engine / save rollback,
   kill-switch policy, hot-fix migration, and the incident-response
