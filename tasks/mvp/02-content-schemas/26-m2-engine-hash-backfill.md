@@ -62,8 +62,9 @@ Acceptance Criteria:
   or unrelated log entries. Each pack's primary contract remains
   owned by its authoring faction/world/scenario task; this task must
   not rewrite their gameplay records.
-- `scripts/hash-pack.mjs --check` (the M2 hash tool, name TBD)
-  reports zero missing or stale `engineHash` fields.
+- `scripts/hash-pack.mjs --check` (the M2 hash tool; final script
+  name confirmed when M2 lands) reports zero missing or stale
+  `engineHash` fields.
 - Every shipped manifest has a non-empty `engineHash` matching the
   pattern in
   [`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json).

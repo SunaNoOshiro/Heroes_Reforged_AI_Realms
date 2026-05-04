@@ -14,6 +14,24 @@ M2 tasks below implement that contract; they do not redefine it.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Heuristic CPU opponent (strategic + tactical),
+  Web-Worker isolated, deterministic per the AI contract.
+- **Public surface**: contract in
+  [`docs/architecture/ai-contract.md`](../../docs/architecture/ai-contract.md);
+  consumed engine seam in [`src/contracts/`](../../src/contracts/);
+  AI-profile records validated by
+  [`ai-profile.schema.json`](../../content-schema/schemas/ai-profile.schema.json).
+- **Side effects**: row "src/ai/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (boundary: Web-Worker; never mutates engine state directly).
+- **NFR**: NFR-AI-01, NFR-AI-03 in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-threat-map-bfs-strategic-danger-gradients.md](10-heuristic-ai/01-threat-map-bfs-strategic-danger-gradients.md)

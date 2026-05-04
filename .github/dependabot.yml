@@ -1,0 +1,41 @@
+version: 2
+
+# Implementation Plan 16 (T3): supply-chain hygiene per
+# docs/architecture/dependency-policy.md.
+#
+# - npm: weekly cadence, group minor + patch updates so review burden
+#   stays bounded; majors land as individual PRs for explicit review.
+# - github-actions: weekly, single-PR group (low-risk CI updates).
+
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    versioning-strategy: "increase"
+    groups:
+      npm-minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    labels:
+      - "dependencies"
+      - "npm"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    groups:
+      gha-all:
+        update-types:
+          - "minor"
+          - "patch"
+          - "major"
+    labels:
+      - "dependencies"
+      - "github-actions"

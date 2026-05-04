@@ -14,6 +14,25 @@ errors.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Pack manifest, dependency resolution, asset index,
+  and atlas pipeline. The single boundary that turns "files on
+  disk" into "logical IDs the engine can resolve".
+- **Public surface**: [`src/contracts/pack-registry.ts`](../../src/contracts/pack-registry.ts),
+  [`src/contracts/asset-loader.ts`](../../src/contracts/asset-loader.ts).
+- **Side effects**: row "src/content-runtime/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md).
+  Hot-reload procedure pinned in
+  [`docs/architecture/hot-reload-flow.md`](../../docs/architecture/hot-reload-flow.md);
+  no-raw-paths rule in
+  [`docs/architecture/asset-path-resolution.md`](../../docs/architecture/asset-path-resolution.md).
+- **NFR**: NFR-PERF-05, NFR-START-04 in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Platform Pack Layers
 
 The runtime supports multiple pack kinds, not only faction packs. The

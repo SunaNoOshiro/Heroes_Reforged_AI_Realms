@@ -8,6 +8,25 @@ The WebGL2 hex renderer. Displays the adventure map and tactical battlefield. Th
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Read-only WebGL2 hex renderer for adventure map and
+  tactical battlefield; emits presentation events across the
+  renderer ↔ UI seam.
+- **Public surface**: [`src/contracts/renderer-event.ts`](../../src/contracts/renderer-event.ts)
+  (regenerated from [`renderer-event.schema.json`](../../content-schema/schemas/renderer-event.schema.json));
+  consumes [`src/contracts/asset-loader.ts`](../../src/contracts/asset-loader.ts)
+  for resolved assets.
+- **Side effects**: row "src/renderer/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (impure: WebGL calls, rAF; never mutates engine state).
+- **NFR**: NFR-PERF-01 / NFR-PERF-02 / NFR-PERF-03,
+  NFR-MEM-01 / NFR-MEM-02 / NFR-MEM-03, NFR-CAP-05 in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-webgl2-context-setup-plus-resize-handler.md](06-renderer/01-webgl2-context-setup-plus-resize-handler.md)

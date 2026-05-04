@@ -13,6 +13,25 @@ three independent runs with the same seed.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Hex-based tactical battle system: initiative queue,
+  damage formula, DEFEND, retaliation, morale, luck, abilities,
+  battle-end condition, replay.
+- **Public surface**: command kinds in
+  [`docs/architecture/command-schema.md`](../../docs/architecture/command-schema.md);
+  formulas in [`docs/architecture/effect-registry.md`](../../docs/architecture/effect-registry.md);
+  consumed via the engine seam in [`src/contracts/`](../../src/contracts/).
+- **Side effects**: row "src/engine/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (pure nested reducer).
+- **NFR**: NFR-PERF-03 (battle frame time), NFR-CAP-04 (≤ 14
+  base / 21 with summons stacks) in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-battlestate-init-army-placement-plus-speed-order.md](09-tactical-combat/01-battlestate-init-army-placement-plus-speed-order.md)

@@ -3,6 +3,12 @@
 Hard constraint: the same seed, the same commands, and the same content
 hashes produce the same state on any machine, any time.
 
+> Companion docs: this file enumerates what is **forbidden** in the
+> deterministic core. The per-module ledger of *permitted* side effects
+> lives in [`side-effect-matrix.md`](./side-effect-matrix.md), and the
+> data-flow boundaries that protect determinism live in
+> [`state-flow.md`](./state-flow.md).
+
 ## Non-Negotiable Stack
 
 The engine must provide these, in this order:

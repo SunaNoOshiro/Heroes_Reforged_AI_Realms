@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schemas/validation-report.schema.json",
+  "stage": "validate",
+  "inputId": "generated:faction:emberwild-rev-12",
+  "verdict": "pass",
+  "findings": [],
+  "metrics": {
+    "recordCount": 18
+  }
+}

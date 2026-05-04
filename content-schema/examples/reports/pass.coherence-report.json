@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schemas/coherence-report.schema.json",
+  "stage": "coherence",
+  "inputId": "generated:faction:emberwild-rev-12",
+  "verdict": "pass",
+  "findings": [
+    {
+      "code": "COHERENCE_THEME_DRIFT_ACCEPTABLE",
+      "severity": "info",
+      "message": "Faction theme cosine similarity 0.78 (target 0.70+); within tolerance.",
+      "context": { "cosineSimilarity": 0.78 }
+    }
+  ],
+  "metrics": {
+    "themeSimilarity": 0.78,
+    "unresolvedIdCount": 0,
+    "outOfCorridorStatCount": 0
+  }
+}

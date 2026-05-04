@@ -391,6 +391,104 @@ async function collectForbiddenPatternViolations() {
   return violations;
 }
 
+async function collectTbdMarkerViolations() {
+  // Implementation Plan 16 (T1): keep canonical sources free of bare
+  // placeholder markers. AI agents reading these paths must never have
+  // to invent a value or guess a missing decision.
+  //
+  // The check fires on **bare** markers only — references that appear
+  // inside backtick code spans (`TBD`), HTML-style quotes ("TBD"), or
+  // forward-slash compounds (TBD/TODO) are policy-doc references to
+  // the gate itself and are kept legible.
+  const pattern = /\bTBD\b|\bTODO\b|\bFIXME\b|\?\?\?/g;
+  const roots = [
+    path.join(repoRoot, "docs", "architecture"),
+    path.join(repoRoot, "tasks", "mvp")
+  ];
+  const violations = [];
+
+  const predicate = (filePath) => {
+    if (!filePath.endsWith(".md")) return false;
+    const relative = path.relative(repoRoot, filePath);
+    if (relative.startsWith(".git")) return false;
+    if (relative.startsWith("node_modules")) return false;
+    // Wiki templates intentionally describe placeholder workflow ("mark
+    // gaps with TODO(...)") — they are meta-instructions, not specs.
+    if (relative.startsWith(path.join("docs", "architecture", "wiki", "_templates"))) {
+      return false;
+    }
+    return true;
+  };
+
+  const stripCodeSpans = (line) =>
+    line
+      .replace(/`[^`]*`/g, "")
+      .replace(/"[^"]*"/g, "")
+      .replace(/'[^']*'/g, "");
+
+  for (const root of roots) {
+    if (!(await pathExists(root))) continue;
+    const files = await walkFiles(root, predicate);
+    for (const filePath of files) {
+      const contents = await readUtf8(filePath);
+      const lines = contents.split("\n");
+      for (let i = 0; i < lines.length; i += 1) {
+        pattern.lastIndex = 0;
+        const stripped = stripCodeSpans(lines[i]);
+        if (pattern.test(stripped)) {
+          violations.push(
+            `${path.relative(repoRoot, filePath)}:${i + 1}: bare placeholder marker (TBD/TODO/FIXME/???) is not allowed in canonical sources`
+          );
+        }
+      }
+    }
+  }
+
+  return violations;
+}
+
+async function collectScreenDataContractViolations() {
+  // Implementation Plan 16 (T4): screen-data-contract presence gate.
+  //
+  // Each per-screen package under docs/architecture/wiki/screens/<n>-<id>/
+  // must ship a data-contracts.md file. The full schema-landing pass
+  // (one .schema.json per screen) is owned by
+  // docs/implementation-plans/06-data-contracts-and-schema-plan.md;
+  // this gate only confirms the prose contract is present so that
+  // schema-landing has a canonical seed to work from.
+  //
+  // Once 06's plan begins landing schemas, extend this check with a
+  // strict "every data-contracts.md must include a `Schema:` link"
+  // assertion.
+
+  const screensRoot = path.join(repoRoot, "docs", "architecture", "wiki", "screens");
+  const violations = [];
+
+  if (!(await pathExists(screensRoot))) return violations;
+
+  const { readdir } = await import("node:fs/promises");
+  let entries;
+  try {
+    entries = await readdir(screensRoot, { withFileTypes: true });
+  } catch {
+    return violations;
+  }
+
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    if (entry.name.startsWith("_")) continue;
+    if (entry.name === "screens") continue;
+    const dataContractsPath = path.join(screensRoot, entry.name, "data-contracts.md");
+    if (!(await pathExists(dataContractsPath))) {
+      violations.push(
+        `docs/architecture/wiki/screens/${entry.name}: missing data-contracts.md (T4 screen-data-contract presence gate)`
+      );
+    }
+  }
+
+  return violations;
+}
+
 async function collectRequiredPathViolations() {
   const requiredPaths = [
     "docs/architecture/pack-contract.md",
@@ -469,6 +567,10 @@ function schemaForFile(filePath) {
   if (base.endsWith(".ai-profile.json")) return "ai-profile.schema.json";
   if (base === "event-log.example.json") return "event.schema.json";
   if (base.endsWith(".event.json")) return "event.schema.json";
+  if (base.endsWith(".renderer-event.json")) return "renderer-event.schema.json";
+  if (base.endsWith(".validation-report.json")) return "validation-report.schema.json";
+  if (base.endsWith(".coherence-report.json")) return "coherence-report.schema.json";
+  if (base.endsWith(".balance-report.json")) return "balance-report.schema.json";
   if (base.endsWith(".localization.json")) return "localization.schema.json";
 
   return null;
@@ -572,11 +674,15 @@ async function collectTaskDocViolations() {
 export async function collectContractViolations() {
   const [
     forbiddenPatternViolations,
+    tbdMarkerViolations,
+    screenDataContractViolations,
     requiredPathViolations,
     exampleRecordViolations,
     taskDocViolations
   ] = await Promise.all([
     collectForbiddenPatternViolations(),
+    collectTbdMarkerViolations(),
+    collectScreenDataContractViolations(),
     collectRequiredPathViolations(),
     collectExampleRecordViolations(),
     collectTaskDocViolations()
@@ -584,6 +690,8 @@ export async function collectContractViolations() {
 
   return [
     ...forbiddenPatternViolations,
+    ...tbdMarkerViolations,
+    ...screenDataContractViolations,
     ...requiredPathViolations,
     ...exampleRecordViolations,
     ...taskDocViolations

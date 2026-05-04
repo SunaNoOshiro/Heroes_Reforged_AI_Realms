@@ -26,6 +26,26 @@ content loader rejects malformed JSON with clear error messages.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Canonical JSON schemas + matching Zod validators for
+  every content record loaded at runtime; the source of truth that
+  engine, renderer, and AI all agree on.
+- **Public surface**: schema files in
+  [`content-schema/schemas/`](../../content-schema/schemas/);
+  TypeScript shapes derived in
+  [`src/contracts/`](../../src/contracts/) (e.g.
+  [`reports.ts`](../../src/contracts/reports.ts),
+  [`renderer-event.ts`](../../src/contracts/renderer-event.ts)).
+- **Side effects**: row "src/content-schema/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (pure validators; no I/O).
+- **NFR**: enforces NFR-CAP-01 / NFR-CAP-03 / NFR-CAP-04 schema
+  caps in [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-unit-schema.md](02-content-schemas/01-unit-schema.md)

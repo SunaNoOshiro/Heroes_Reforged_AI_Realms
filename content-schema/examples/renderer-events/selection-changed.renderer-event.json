@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schemas/renderer-event.schema.json",
+  "kind": "SELECTION_CHANGED",
+  "payload": {
+    "target": {
+      "kind": "hero",
+      "id": "hero:emberwild:lyra"
+    }
+  }
+}

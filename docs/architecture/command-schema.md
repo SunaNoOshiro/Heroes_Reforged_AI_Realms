@@ -347,7 +347,9 @@ Stack takes a defensive stance, reducing damage taken.
 
 **Effects:**
 - Sets stack's DEFENDING status flag
-- Incoming damage this round is reduced by formula (TBD: exact reduction)
+- Incoming damage while flag is set is reduced by `defendDamageReductionPermille` (locked at 250 permille = 25% reduction): `damageAfterDefend = damage × (1000 - 250) // 1000 = damage × 750 // 1000`
+  - Worked example: `damage = 100` → `damageAfterDefend = 100 × 750 // 1000 = 75`
+  - The constant lives in `resources/packs/baseline-ruleset/ruleset.json` and is consumed by `src/engine/defend.ts` (see [`tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md`](../../tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md)).
 - Advances to next stack's turn
 
 ---

@@ -10,6 +10,23 @@ every PR in CI.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: The pure deterministic core: state, commands,
+  reducers, replay, map, battle, and validation logic.
+- **Public surface**: [`src/contracts/rng.ts`](../../src/contracts/rng.ts),
+  [`src/contracts/clock.ts`](../../src/contracts/clock.ts),
+  [`src/contracts/id-allocator.ts`](../../src/contracts/id-allocator.ts),
+  [`src/contracts/command-bus.ts`](../../src/contracts/command-bus.ts).
+- **Side effects**: row "src/engine/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (pure reducer; no wall-clock, no I/O, no DOM).
+- **NFR**: NFR-PERF-04, NFR-LAT-03, NFR-MEM-04 in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-initialize-root-workspace-and-module-layout.md](01-engine-core/01-initialize-root-workspace-and-module-layout.md)

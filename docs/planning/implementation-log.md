@@ -755,6 +755,130 @@ Closed the ten audit gaps from
 Implementation report:
 [`docs/implementation-plans/15-testability-report.md`](../implementation-plans/15-testability-report.md).
 
+### Implementation-Readiness Plan Implementation (2026-05-04)
+
+Closed the 11 ❌/⚠ findings from
+[`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md):
+
+- **T1** — Ratified DEFEND damage-reduction at `250 permille`
+  (25 % reduction) in
+  [`docs/architecture/command-schema.md`](../architecture/command-schema.md)
+  and
+  [`tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md`](../../tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md);
+  removed the dead `defendCapDEF` alternative; added a worked
+  example. Cleared remaining `TBD` markers from `mechanics-coverage.md`
+  and `26-m2-engine-hash-backfill.md`. Extended
+  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
+  with a placeholder-marker gate: any bare `TBD`, `TODO`, `FIXME`,
+  or `???` in `docs/architecture/` or `tasks/mvp/` (outside backtick
+  code spans, quoted refs, and the wiki `_templates/` instructional
+  folder) fails CI. Regenerated `tasks/task-registry.json`.
+- **T2** — Added [`LICENSE`](../../LICENSE) (MIT placeholder) and
+  `package.json#license` SPDX identifier.
+- **T3** — Authored
+  [`docs/architecture/dependency-policy.md`](../architecture/dependency-policy.md)
+  (allowed/denied SPDX list, dependency-add rubric, CVE-response
+  windows, lockfile policy, audit cadence). Added
+  [`.github/dependabot.yml`](../../.github/dependabot.yml) with
+  weekly `npm` + `github-actions` grouped updates. Added an
+  `npm audit --omit=dev --audit-level=high` step to
+  [`.github/workflows/validate.yml`](../../.github/workflows/validate.yml)
+  so the gate exists before the first runtime dep lands.
+- **T4** — Added a screen-data-contract presence gate to
+  `check-repo-contracts.mjs`: every
+  `docs/architecture/wiki/screens/<n>-<id>/` package must ship a
+  `data-contracts.md` file. Schema-landing per screen remains owned
+  by [`06-data-contracts-and-schema-plan.md`](../implementation-plans/06-data-contracts-and-schema-plan.md).
+- **T5** — Authored
+  [`content-schema/schemas/renderer-event.schema.json`](../../content-schema/schemas/renderer-event.schema.json)
+  (closed discriminated union: `SELECTION_CHANGED`, `CAMERA_FOCUSED`,
+  `ANIMATION_STARTED`, `ANIMATION_FINISHED`, `DAMAGE_NUMBER`,
+  `TILE_REVEALED`, `EFFECT_TRIGGERED`, `CONTEXT_LOST`,
+  `CONTEXT_RESTORED`). Three canonical examples under
+  [`content-schema/examples/renderer-events/`](../../content-schema/examples/renderer-events/);
+  suffix-mapping wired in `check-repo-contracts.mjs`; new row in
+  [`schema-matrix.md`](../architecture/schema-matrix.md);
+  cross-link from
+  [`renderer-technology-choice.md`](../architecture/renderer-technology-choice.md);
+  06-renderer task 07 updated to cite the new schema.
+- **T6** — Authored
+  [`content-schema/schemas/report-base.schema.json`](../../content-schema/schemas/report-base.schema.json)
+  (shared findings/severity shape) +
+  [`validation-report.schema.json`](../../content-schema/schemas/validation-report.schema.json),
+  [`coherence-report.schema.json`](../../content-schema/schemas/coherence-report.schema.json),
+  and
+  [`balance-report.schema.json`](../../content-schema/schemas/balance-report.schema.json)
+  (Wilson 95 % CI metrics block). Four canonical examples under
+  [`content-schema/examples/reports/`](../../content-schema/examples/reports/).
+  Suffix mappings wired; three rows added to `schema-matrix.md`.
+  Cross-link from
+  [`ai-generation-pipeline.md`](../architecture/ai-generation-pipeline.md);
+  phase-3 generation tasks 02 and 03 updated to cite the schemas.
+- **T7** — Stood up the
+  [`src/contracts/`](../../src/contracts/) workspace package
+  (`@hr/contracts`, zero-runtime, `sideEffects: false`). Hand-
+  authored contracts for `Rng`, `Clock`, `IdAllocator`,
+  `PackRegistry`, `AssetLoader`, `CommandBus`, `NetTransport`;
+  schema-derived TS for `RendererEvent` and the three reports.
+  Added [`src/contracts/index.ts`](../../src/contracts/index.ts)
+  re-export surface,
+  [`src/contracts/fakes/`](../../src/contracts/fakes/) placeholder
+  (catalogue landed by 15-testability-plan), and
+  [`scripts/generate-contracts-from-schemas.mjs`](../../scripts/generate-contracts-from-schemas.mjs)
+  (alignment-check stub until M0 ships
+  `json-schema-to-typescript`). Wired `validate:contracts-ts` into
+  `npm run validate`. Added the workspace to the root
+  `package.json#workspaces` array. Updated
+  [`module-graph.md`](../architecture/module-graph.md) to declare
+  `src/contracts/` a leaf every module may `import type` from. The
+  follow-up sweep that walks each `tasks/mvp/` task body and
+  replaces inline interface blocks with `import type` references is
+  not done in this commit — it is a planning-first repo and the
+  inline blocks are the only place those interfaces currently live.
+- **T8** — Authored
+  [`docs/architecture/side-effect-matrix.md`](../architecture/side-effect-matrix.md)
+  (one row per `src/<module>` with purity / permitted /
+  forbidden / enforced-by columns). Cross-linked from
+  [`determinism.md`](../architecture/determinism.md) and
+  [`state-flow.md`](../architecture/state-flow.md).
+- **T9** — Authored
+  [`docs/architecture/non-functional-requirements.md`](../architecture/non-functional-requirements.md)
+  (29 NFR rows across performance, memory, latency, capacity,
+  startup, AI compute, CI). Each row carries metric, target,
+  tolerance, owning module, and verification harness. Numbers
+  pinned against [`performance.md`](../architecture/performance.md).
+- **T10** — Authored
+  [`docs/architecture/testing-conventions.md`](../architecture/testing-conventions.md)
+  (DI convention, shared-fake catalogue location, mocking policy
+  matrix, per-module test rubric, fuzz/property targets). Concrete
+  fake bodies are landed by
+  [`15-testability-plan.md`](../implementation-plans/15-testability-plan.md).
+- **T11** — Added a `## Self-Contained Brief` section to every
+  `tasks/mvp/<n>-<module>.md` index (Purpose / Public surface /
+  Side effects / NFR / Exit criteria). Extended
+  [`scripts/tasks.mjs`](../../scripts/tasks.mjs) `lintRegistry` so
+  any MVP module index missing the section fails
+  `npm run validate:tasks`.
+- **T12** — Added staged-activation runtime CI in
+  [`.github/workflows/runtime.yml`](../../.github/workflows/runtime.yml).
+  A probe step gates lint / typecheck / unit / fuzz on file
+  existence so the workflow is a no-op while the repo is
+  planning-first and activates automatically once the first
+  `src/<module>/*.ts` runtime file lands.
+- **T13** — Authored three cross-cutting docs:
+  [`error-taxonomy.md`](../architecture/error-taxonomy.md)
+  (severities, code prefixes, error-record shape, user-facing vs
+  internal split),
+  [`hot-reload-flow.md`](../architecture/hot-reload-flow.md)
+  (manifest → asset-index → schema-validate → registry-rebuild →
+  engine-reload order with NFR-START-04 tie-in),
+  [`asset-path-resolution.md`](../architecture/asset-path-resolution.md)
+  (editor-time string lookups vs runtime registry resolution).
+  Cross-linked from `AGENTS.md` (read-first list, items 29–34).
+
+Implementation report:
+[`docs/implementation-plans/16-implementation-readiness-report.md`](../implementation-plans/16-implementation-readiness-report.md).
+
 ## Recommended Next Steps
 
 Suggested order:

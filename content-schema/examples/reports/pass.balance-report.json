@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schemas/balance-report.schema.json",
+  "stage": "balance",
+  "inputId": "generated:faction:emberwild-rev-12",
+  "verdict": "pass",
+  "findings": [],
+  "metrics": {
+    "matches": 200,
+    "winRatePermille": 512,
+    "ciLowPermille": 471,
+    "ciHighPermille": 553,
+    "powerScore": 1.04,
+    "corridorLowPermille": 350,
+    "corridorHighPermille": 650
+  }
+}

@@ -99,10 +99,13 @@ rate-limiting lives here and must not leak into later stages.
 
 Input: raw JSON from stage 2.
 Output: a typed [`GeneratedFaction`](../../content-schema/schemas/generated-faction.schema.json)
-or a `ValidationReport` with field-path errors.
+or a [`ValidationReport`](../../content-schema/schemas/validation-report.schema.json)
+with field-path errors.
 
 Implemented via Zod (see
 [`src/content-schema/README.md`](../../src/content-schema/README.md)).
+The report shape is shared with the coherence and balance stages
+through [`report-base.schema.json`](../../content-schema/schemas/report-base.schema.json).
 Discriminated-union failures (unknown effect kind, cross-kind
 specialty fields) surface at this stage with human-readable paths.
 
@@ -116,7 +119,8 @@ the orchestrator uses.
 ### 4. Coherence check
 
 Input: validated `GeneratedFaction`.
-Output: `{ ok, warnings, errors }`.
+Output: a [`CoherenceReport`](../../content-schema/schemas/coherence-report.schema.json)
+(closed shape; carries cross-record consistency findings).
 
 Checks performed:
 - Every referenced `unitId`, `abilityId`, `buildingId`, `skillId` is
@@ -133,8 +137,9 @@ Checks performed:
 ### 5. Auto-balance gate
 
 Input: validated `GeneratedFaction`.
-Output: `BalanceReport` with Wilson 95 % confidence interval over N
-headless auto-resolves against first-party factions.
+Output: a [`BalanceReport`](../../content-schema/schemas/balance-report.schema.json)
+with Wilson 95 % confidence interval over N headless auto-resolves
+against first-party factions.
 
 Gate: the generated faction's win rate CI must overlap
 `[35 %, 65 %]` against every first-party faction. Below 35 % → too

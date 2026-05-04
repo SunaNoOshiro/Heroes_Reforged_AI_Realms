@@ -24,6 +24,25 @@ metric or on a > 5 % heap-delta over the memory-churn cycle.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Convert every numeric ceiling in
+  [`docs/architecture/performance.md`](../../docs/architecture/performance.md)
+  into enforced CI gates and runtime instrumentation.
+- **Public surface**: bench harness scripts; in-app overlay (no
+  cross-module TS contract — the harness imports every module
+  under test through its declared contracts in
+  [`src/contracts/`](../../src/contracts/)).
+- **Side effects**: bench harness is a Node-side runner (file I/O
+  for fixtures only); profiling overlay is a `src/ui/` consumer.
+  Cross-reference [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md).
+- **NFR**: every NFR-PERF-* and NFR-MEM-* row in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md)
+  is verified by a task in this module.
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-bench-harness.md](00-perf/01-bench-harness.md)

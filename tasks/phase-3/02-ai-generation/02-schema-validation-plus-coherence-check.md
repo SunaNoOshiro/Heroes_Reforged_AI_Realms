@@ -21,6 +21,13 @@ Outputs:
 - `src/ai/generation/validate-generated.ts`
 - `src/ai/generation/check-generated-coherence.ts`
 - `validateGenerated(raw: RawFactionData): Result<ValidatedFaction, ValidationReport>`
+  whose error shape matches
+  [`content-schema/schemas/validation-report.schema.json`](../../../content-schema/schemas/validation-report.schema.json)
+  (sharing the closed `findings[]` shape with
+  [`content-schema/schemas/report-base.schema.json`](../../../content-schema/schemas/report-base.schema.json)).
+- `checkCoherence(faction: ValidatedFaction): CoherenceReport`
+  whose output shape matches
+  [`content-schema/schemas/coherence-report.schema.json`](../../../content-schema/schemas/coherence-report.schema.json).
 - Coherence checks:
   - No unit ID collision with any existing pack that ships in the default load-order
   - `dmgMin ≤ dmgMax` for all units

@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schemas/validation-report.schema.json",
+  "stage": "validate",
+  "inputId": "generated:faction:emberwild-rev-13",
+  "verdict": "fail",
+  "findings": [
+    {
+      "code": "VALIDATION_UNKNOWN_EFFECT_KIND",
+      "severity": "error",
+      "message": "Unknown effect kind \"BURN_FOREST\" on unit emberwild.fire-elemental.attack.",
+      "path": "$.units[3].abilities[1].effects[0].kind"
+    },
+    {
+      "code": "VALIDATION_NUMERIC_CAP_VIOLATION",
+      "severity": "error",
+      "message": "Hero starting attack 14 exceeds balance-constraints cap of 12.",
+      "path": "$.heroes[0].primaryStats.attack",
+      "context": { "max": 12, "actual": 14 }
+    }
+  ],
+  "metrics": {
+    "recordCount": 18,
+    "errorCount": 2
+  }
+}

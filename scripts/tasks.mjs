@@ -637,6 +637,26 @@ async function lintRegistry(registry) {
     problems.push(`dependency cycle: ${paths.join(" -> ")}`);
   }
 
+  // Implementation Plan 16 (T11): every MVP module index must declare a
+  // `Self-Contained Brief:` heading so an AI agent can pick up the whole
+  // module from one file plus the four canonical refs (contracts,
+  // side-effect matrix, NFR matrix, exit criteria).
+  for (const mod of registry.modules) {
+    if (!mod.path) continue;
+    if (!mod.path.startsWith("tasks/mvp/")) continue;
+    let body;
+    try {
+      body = await readUtf8(path.join(repoRoot, mod.path));
+    } catch {
+      continue;
+    }
+    if (!/^##\s+Self-Contained Brief\b/m.test(body)) {
+      problems.push(
+        `${mod.path}: module index must include a "## Self-Contained Brief" section (T11 of implementation-plans/16-implementation-readiness-plan.md)`
+      );
+    }
+  }
+
   for (const schemaPath of schemaPaths) {
     if (!schemaMentions.has(schemaPath)) {
       problems.push(`${schemaPath}: no task references this schema by canonical path`);

@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schemas/renderer-event.schema.json",
+  "kind": "CAMERA_FOCUSED",
+  "payload": {
+    "target": { "q": 12, "r": -4 },
+    "zoom": 1.5,
+    "reason": "snap-to-active"
+  }
+}

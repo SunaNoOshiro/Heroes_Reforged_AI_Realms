@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/balance-report.schema.json",
+  "title": "BalanceReport",
+  "description": "Output of the AI-generation pipeline `balance` stage. Carries Wilson 95% confidence interval over N AI-vs-AI mirror matches per docs/architecture/ai-generation-pipeline.md. Verdict pass when CI sits inside the 35–65% balance corridor. See report-base.schema.json.",
+  "type": "object",
+  "required": ["stage", "inputId", "verdict", "findings", "metrics"],
+  "properties": {
+    "stage": { "const": "balance" },
+    "inputId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verdict": {
+      "enum": ["pass", "fail", "warn"]
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "report-base.schema.json#/$defs/finding" }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["matches", "winRatePermille", "ciLowPermille", "ciHighPermille"],
+      "properties": {
+        "matches": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "winRatePermille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "ciLowPermille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "ciHighPermille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "powerScore": {
+          "type": "number"
+        },
+        "corridorLowPermille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "corridorHighPermille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "additionalProperties": {
+        "type": "number"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/coherence-report.schema.json",
+  "title": "CoherenceReport",
+  "description": "Output of the AI-generation pipeline `coherence` stage. Reports cross-record consistency: unresolved IDs, stat-corridor violations, theme drift, faction-archetype divergence. One report per generated record (or per batch). See docs/architecture/ai-generation-pipeline.md and report-base.schema.json.",
+  "type": "object",
+  "required": ["stage", "inputId", "verdict", "findings"],
+  "properties": {
+    "stage": { "const": "coherence" },
+    "inputId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verdict": {
+      "enum": ["pass", "fail", "warn"]
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "report-base.schema.json#/$defs/finding" }
+    },
+    "metrics": { "$ref": "report-base.schema.json#/$defs/metrics" }
+  },
+  "additionalProperties": false
+}

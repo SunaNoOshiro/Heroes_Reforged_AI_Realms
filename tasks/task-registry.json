@@ -5794,7 +5794,7 @@
       ],
       "acceptanceCriteria": [
         "The shared edits to `resources/packs/`, `content-schema/examples/packs/`, and the implementation log are **additive**: this task fills in the existing optional `engineHash` field and recomputes `contentHash` only because the manifest itself changed; it does not rewrite manifest schemas, pack folder layout, or unrelated log entries. Each pack's primary contract remains owned by its authoring faction/world/scenario task; this task must not rewrite their gameplay records.",
-        "`scripts/hash-pack.mjs --check` (the M2 hash tool, name TBD) reports zero missing or stale `engineHash` fields.",
+        "`scripts/hash-pack.mjs --check` (the M2 hash tool; final script name confirmed when M2 lands) reports zero missing or stale `engineHash` fields.",
         "Every shipped manifest has a non-empty `engineHash` matching the pattern in [`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json).",
         "Every modified manifest has a recomputed `contentHash` that matches its canonical-JSON content.",
         "`npm run validate:contracts` passes.",
@@ -10503,7 +10503,7 @@
       "path": "tasks/mvp/06-renderer/07-event-log-animation-timeline.md",
       "moduleId": "mvp.06-renderer",
       "modulePath": "tasks/mvp/06-renderer.md",
-      "description": "Consume the event log emitted by the sim and build an animation timeline: each event becomes an animation clip (move path, attack swing, projectile, death). Clips are sequenced and played back in the presentation loop. The timeline iterates the per-dispatch `events: Event[]` array in **insertion order** on `requestAnimationFrame` cadence. There is no callback-on-emit and no subscriber list — the timeline is one of two independent log consumers (see [`event-system.md`](../../../docs/architecture/event-system.md)). The timeline's queue is presentation-side only; it is NOT the source of truth and is NEVER serialized into a save record. Events validate against [`event.schema.json`](../../../content-schema/schemas/event.schema.json); per-kind payload, emitter, and consumer mapping live in [`event-schema.md`](../../../docs/architecture/event-schema.md).",
+      "description": "Consume the event log emitted by the sim and build an animation timeline: each event becomes an animation clip (move path, attack swing, projectile, death). Clips are sequenced and played back in the presentation loop. The timeline iterates the per-dispatch `events: Event[]` array in **insertion order** on `requestAnimationFrame` cadence. There is no callback-on-emit and no subscriber list — the timeline is one of two independent log consumers (see [`event-system.md`](../../../docs/architecture/event-system.md)). The timeline's queue is presentation-side only; it is NOT the source of truth and is NEVER serialized into a save record. Inbound engine events validate against [`event.schema.json`](../../../content-schema/schemas/event.schema.json); the renderer's own outbound events to the UI shell (selection / camera / animation lifecycle / damage numbers / fog reveal / context loss) validate against [`renderer-event.schema.json`](../../../content-schema/schemas/renderer-event.schema.json). Per-kind payload, emitter, and consumer mapping live in [`event-schema.md`](../../../docs/architecture/event-schema.md).",
       "inputs": [
         "Event log from sim (array of typed `Event` objects)",
         "`Animator` (Task 6)"
@@ -10545,11 +10545,13 @@
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
       "directSchemaPaths": [
-        "content-schema/schemas/event.schema.json"
+        "content-schema/schemas/event.schema.json",
+        "content-schema/schemas/renderer-event.schema.json"
       ],
       "screenSchemaPaths": [],
       "schemaPaths": [
-        "content-schema/schemas/event.schema.json"
+        "content-schema/schemas/event.schema.json",
+        "content-schema/schemas/renderer-event.schema.json"
       ],
       "taskDependencies": [
         "mvp.06-renderer.05-1115-tactical-battlefield-renderer",
@@ -13738,7 +13740,7 @@
       "path": "tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md",
       "moduleId": "mvp.09-tactical-combat",
       "modulePath": "tasks/mvp/09-tactical-combat.md",
-      "description": "Implement the DEFEND command. When a stack defends, incoming damage this round is reduced by a fixed percentage (formula TBD based on DEF stat). The reduction is calculated deterministically using fixed-point integer math.",
+      "description": "Implement the DEFEND command. When a stack defends, incoming damage while the DEFENDING flag is set is reduced by a locked constant `defendDamageReductionPermille = 250` (25% reduction). The reduction is calculated deterministically using fixed-point integer math: `damageAfterDefend = damage × (1000 - 250) // 1000 = damage × 750 // 1000`.",
       "inputs": [
         "Defending stack's DEF stat",
         "Ruleset constants (defend reduction factor, caps)",
@@ -13747,7 +13749,10 @@
       "outputs": [
         "`src/engine/defend.ts`",
         "`applyDefend(damage: number, defenseValue: number, ruleset: Ruleset): number`",
-        "Reduction factor: `-25 %` (reduced damage multiplier = 0.75 = 750 permille) Reference Formula (Fixed-Point Integer): ``` defenseReduction = 250 permille (25 % damage reduction) // Alternative: scale with DEF stat // defensePenalty = clamp(defenseValue * 10, 0, defendCap) // defenseReduction = defensePenalty * defendReductionPerPoint damageAfterDefend = damage × (1000 - defenseReduction) // 1000 ``` The first implementation uses a fixed 25 % reduction (simplest for MVP). If DEF scaling is added later, it must match the cap in the ruleset. Ruleset Constants (to be added): ```json { \"defendDamageReductionPermille\": 250, \"defendCapDEF\": 40 } ``` When a DEFEND stack takes damage:",
+        "Reduction factor: `-25 %` (reduced damage multiplier = 0.75 = 750 permille) Reference Formula (Fixed-Point Integer): ``` defenseReduction = 250 permille (locked: 25% damage reduction) damageAfterDefend = damage × (1000 - defenseReduction) // 1000 = damage × 750 // 1000 ``` Worked example (must hold as a unit test):",
+        "`damage = 100` → `damageAfterDefend = 75`",
+        "`damage = 7` → `damageAfterDefend = 5` (integer-floor division)",
+        "`damage = 0` → `damageAfterDefend = 0` This formula is locked for MVP. Any future DEF-scaled variant lands as a separate task and a new ruleset constant; it does not modify `defendDamageReductionPermille`. Ruleset Constants (locked for MVP): ```json { \"defendDamageReductionPermille\": 250 } ``` When a DEFEND stack takes damage:",
         "Normal damage is calculated (task 09-03)",
         "DEFEND flag is checked in `canApplyDefend(stack)`",
         "If defending: `damageAfterDefend = damage × 750 // 1000`",
@@ -28918,7 +28923,8 @@
       "outputs": [
         "`src/ai/generation/validate-generated.ts`",
         "`src/ai/generation/check-generated-coherence.ts`",
-        "`validateGenerated(raw: RawFactionData): Result<ValidatedFaction, ValidationReport>`",
+        "`validateGenerated(raw: RawFactionData): Result<ValidatedFaction, ValidationReport>` whose error shape matches [`content-schema/schemas/validation-report.schema.json`](../../../content-schema/schemas/validation-report.schema.json) (sharing the closed `findings[]` shape with [`content-schema/schemas/report-base.schema.json`](../../../content-schema/schemas/report-base.schema.json)).",
+        "`checkCoherence(faction: ValidatedFaction): CoherenceReport` whose output shape matches [`content-schema/schemas/coherence-report.schema.json`](../../../content-schema/schemas/coherence-report.schema.json).",
         "Coherence checks:",
         "No unit ID collision with any existing pack that ships in the default load-order",
         "`dmgMin ≤ dmgMax` for all units",
@@ -28957,11 +28963,17 @@
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
       "directSchemaPaths": [
-        "content-schema/schemas/retry-policy.schema.json"
+        "content-schema/schemas/coherence-report.schema.json",
+        "content-schema/schemas/report-base.schema.json",
+        "content-schema/schemas/retry-policy.schema.json",
+        "content-schema/schemas/validation-report.schema.json"
       ],
       "screenSchemaPaths": [],
       "schemaPaths": [
-        "content-schema/schemas/retry-policy.schema.json"
+        "content-schema/schemas/coherence-report.schema.json",
+        "content-schema/schemas/report-base.schema.json",
+        "content-schema/schemas/retry-policy.schema.json",
+        "content-schema/schemas/validation-report.schema.json"
       ],
       "taskDependencies": [
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -29063,6 +29075,7 @@
         "`wilsonLow`, `wilsonHigh` (95 % CI, integer permille)",
         "`avgGameLength`",
         "`battleReports[]`",
+        "The serialized output shape matches [`content-schema/schemas/balance-report.schema.json`](../../../content-schema/schemas/balance-report.schema.json) (closed verdict + findings + numeric metrics; sister schemas [`validation-report.schema.json`](../../../content-schema/schemas/validation-report.schema.json) and [`coherence-report.schema.json`](../../../content-schema/schemas/coherence-report.schema.json) share the same `findings[]` base in [`report-base.schema.json`](../../../content-schema/schemas/report-base.schema.json)).",
         "1 000 battles by default, each seeded from `seed + battleIndex`",
         "Both sides use the default heuristic AI at \"Knight\" difficulty",
         "Track: win rate, Wilson CI, average HP remaining, fastest victory, which unit most often survives last"
@@ -29097,9 +29110,19 @@
       ],
       "estimatedTime": "- 6 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/balance-report.schema.json",
+        "content-schema/schemas/coherence-report.schema.json",
+        "content-schema/schemas/report-base.schema.json",
+        "content-schema/schemas/validation-report.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/balance-report.schema.json",
+        "content-schema/schemas/coherence-report.schema.json",
+        "content-schema/schemas/report-base.schema.json",
+        "content-schema/schemas/validation-report.schema.json"
+      ],
       "taskDependencies": [
         "mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients",
         "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",

@@ -25,8 +25,10 @@ in two formats.
 | `src/net/**` | `src/engine/**`, `src/content-schema/**` | Multiplayer wraps the engine via `createEngine()` |
 | `src/persistence/**` | `src/engine/**`, `src/content-schema/**` | Saves serialize engine state |
 | `src/editor/**` | `src/content-runtime/**`, `src/content-schema/**`, `src/renderer/**` | Editor authors content; it never mutates engine state |
+| any module | `src/contracts/**` | `src/contracts/` is a zero-runtime types-only workspace package (`@hr/contracts`). Every module may `import type { … } from "@hr/contracts/<file>"`. See [`testing-conventions.md`](./testing-conventions.md) and [`side-effect-matrix.md`](./side-effect-matrix.md). |
 
 `src/content-schema/` is a leaf: it has no imports outside itself.
+`src/contracts/` is also a leaf: it imports nothing from outside its own directory and ships no runtime values.
 
 ## Forbidden Edges
 

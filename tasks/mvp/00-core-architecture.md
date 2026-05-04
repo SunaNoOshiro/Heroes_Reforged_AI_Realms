@@ -19,6 +19,24 @@ in docs / schemas / CI; `npm run validate` passes including the new
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Formalize the cross-module contracts (state shape,
+  RNG streams, ID allocator, command dispatcher, multi-engine
+  harness) every other deterministic module hands off to.
+- **Public surface**: [`src/contracts/rng.ts`](../../src/contracts/rng.ts),
+  [`src/contracts/clock.ts`](../../src/contracts/clock.ts),
+  [`src/contracts/id-allocator.ts`](../../src/contracts/id-allocator.ts),
+  [`src/contracts/command-bus.ts`](../../src/contracts/command-bus.ts).
+- **Side effects**: row "src/contracts/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (pure, types-only).
+- **NFR**: NFR-LAT-03, NFR-PERF-04 in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [arch-state-shape.md](00-core-architecture/arch-state-shape.md)

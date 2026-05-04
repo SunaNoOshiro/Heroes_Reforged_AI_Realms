@@ -8,6 +8,23 @@ The strategic game loop: heroes move across the map, capture resources, visit to
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: The strategic game loop — heroes, towns, resources,
+  daily income, two-hero-per-town protocol, auto-resolve trigger.
+- **Public surface**: command kinds in
+  [`docs/architecture/command-schema.md`](../../docs/architecture/command-schema.md);
+  state shape in [`docs/architecture/state-shape.md`](../../docs/architecture/state-shape.md);
+  cross-module dispatch via [`src/contracts/command-bus.ts`](../../src/contracts/command-bus.ts).
+- **Side effects**: row "src/engine/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (pure reducer additions).
+- **NFR**: NFR-CAP-02 (≤ 64 heroes), NFR-PERF-01 (frame budget
+  on 200×200) in [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-strategic-game-state-model.md](05-adventure-map/01-strategic-game-state-model.md)

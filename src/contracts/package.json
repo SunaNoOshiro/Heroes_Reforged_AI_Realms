@@ -1,0 +1,16 @@
+{
+  "name": "@hr/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Zero-runtime TypeScript contracts that describe every cross-module boundary in the Heroes Reforged: AI Realms repo. See docs/implementation-plans/16-implementation-readiness-plan.md (T7).",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./fakes": "./fakes/index.ts",
+    "./*": "./*.ts"
+  },
+  "sideEffects": false
+}

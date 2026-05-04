@@ -5,7 +5,7 @@ Status: planned
 Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 
 Description:
-Implement the DEFEND command. When a stack defends, incoming damage this round is reduced by a fixed percentage (formula TBD based on DEF stat). The reduction is calculated deterministically using fixed-point integer math.
+Implement the DEFEND command. When a stack defends, incoming damage while the DEFENDING flag is set is reduced by a locked constant `defendDamageReductionPermille = 250` (25% reduction). The reduction is calculated deterministically using fixed-point integer math: `damageAfterDefend = damage × (1000 - 250) // 1000 = damage × 750 // 1000`.
 
 Read First:
 - [`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)
@@ -23,20 +23,24 @@ Outputs:
 
 Reference Formula (Fixed-Point Integer):
 ```
-defenseReduction = 250 permille (25 % damage reduction)
-// Alternative: scale with DEF stat
-// defensePenalty = clamp(defenseValue * 10, 0, defendCap)
-// defenseReduction = defensePenalty * defendReductionPerPoint
+defenseReduction = 250 permille (locked: 25% damage reduction)
 damageAfterDefend = damage × (1000 - defenseReduction) // 1000
+                  = damage × 750 // 1000
 ```
 
-The first implementation uses a fixed 25 % reduction (simplest for MVP). If DEF scaling is added later, it must match the cap in the ruleset.
+Worked example (must hold as a unit test):
+- `damage = 100` → `damageAfterDefend = 75`
+- `damage = 7`   → `damageAfterDefend = 5`  (integer-floor division)
+- `damage = 0`   → `damageAfterDefend = 0`
 
-Ruleset Constants (to be added):
+This formula is locked for MVP. Any future DEF-scaled variant lands as
+a separate task and a new ruleset constant; it does not modify
+`defendDamageReductionPermille`.
+
+Ruleset Constants (locked for MVP):
 ```json
 {
-  "defendDamageReductionPermille": 250,
-  "defendCapDEF": 40
+  "defendDamageReductionPermille": 250
 }
 ```
 

@@ -9,6 +9,25 @@ The React layer: app shell, HUD, town screen, hero panel. The UI never reads fro
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: React shell, HUD, screen routing, modal stack,
+  hotkeys; emits user gestures as commands and consumes engine
+  state through the Zustand store.
+- **Public surface**: [`src/contracts/command-bus.ts`](../../src/contracts/command-bus.ts)
+  (single emit-per-gesture); [`src/contracts/renderer-event.ts`](../../src/contracts/renderer-event.ts)
+  (consumes selection / camera / animation events from the
+  renderer); per-screen contracts in
+  [`docs/architecture/wiki/screens/<n>-<id>/data-contracts.md`](../../docs/architecture/wiki/screens/).
+- **Side effects**: row "src/ui/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (impure: DOM, audio, prefs storage; never mutates engine).
+- **NFR**: NFR-LAT-04, NFR-START-01 in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-react-18-app-shell-with-canvas-overlay.md](07-ui-shell/01-react-18-app-shell-with-canvas-overlay.md)

@@ -26,6 +26,23 @@ or AI eval task lands.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Cross-cutting test infrastructure that pins the
+  conventions every other module's tests must satisfy.
+- **Public surface**: shared fakes under
+  [`src/contracts/fakes/`](../../src/contracts/fakes/) (catalogue
+  in [`docs/architecture/testing-conventions.md`](../../docs/architecture/testing-conventions.md));
+  no per-task TS interfaces — this module ships runners and docs.
+- **Side effects**: tests are Node-side runners (file I/O for
+  fixtures only); see
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md).
+- **NFR**: NFR-CI-01 / NFR-CI-02 in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-ui-smoke-harness.md](02-tooling/01-ui-smoke-harness.md)

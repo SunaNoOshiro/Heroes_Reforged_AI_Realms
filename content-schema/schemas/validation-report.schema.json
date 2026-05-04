@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/validation-report.schema.json",
+  "title": "ValidationReport",
+  "description": "Output of the AI-generation pipeline `validate` stage. Reports schema-shape, numeric-cap, and effect-vocabulary failures for one generated record (or a batch's worth of records, one report per record). See docs/architecture/ai-generation-pipeline.md and report-base.schema.json.",
+  "type": "object",
+  "required": ["stage", "inputId", "verdict", "findings"],
+  "properties": {
+    "stage": { "const": "validate" },
+    "inputId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verdict": {
+      "enum": ["pass", "fail", "warn"]
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "report-base.schema.json#/$defs/finding" }
+    },
+    "metrics": { "$ref": "report-base.schema.json#/$defs/metrics" }
+  },
+  "additionalProperties": false
+}

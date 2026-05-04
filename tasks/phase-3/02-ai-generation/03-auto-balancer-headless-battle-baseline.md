@@ -27,6 +27,13 @@ Outputs:
   - `wilsonLow`, `wilsonHigh` (95 % CI, integer permille)
   - `avgGameLength`
   - `battleReports[]`
+- The serialized output shape matches
+  [`content-schema/schemas/balance-report.schema.json`](../../../content-schema/schemas/balance-report.schema.json)
+  (closed verdict + findings + numeric metrics; sister schemas
+  [`validation-report.schema.json`](../../../content-schema/schemas/validation-report.schema.json)
+  and [`coherence-report.schema.json`](../../../content-schema/schemas/coherence-report.schema.json)
+  share the same `findings[]` base in
+  [`report-base.schema.json`](../../../content-schema/schemas/report-base.schema.json)).
 - 1 000 battles by default, each seeded from `seed + battleIndex`
 - Both sides use the default heuristic AI at "Knight" difficulty
 - Track: win rate, Wilson CI, average HP remaining, fastest victory,

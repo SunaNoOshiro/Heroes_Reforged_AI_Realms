@@ -230,4 +230,5 @@ Canvas 2D fallback for older browsers: ship both codepaths, same animation logic
 - [`docs/architecture/ui-frame-lag-contract.md`](./ui-frame-lag-contract.md) — UI lag bounds
 - [`docs/architecture/ui-input-modalities.md`](./ui-input-modalities.md) — touch / mouse / keyboard / gamepad bridging on top of the renderer surface
 - [`docs/architecture/animation-contract.md`](./animation-contract.md) — two-clock model, DAMAGE_FRAME ownership, conflict resolution, mid-anim destruction, degradation policy
+- [`content-schema/schemas/renderer-event.schema.json`](../../content-schema/schemas/renderer-event.schema.json) — closed discriminated union of every event the renderer emits across the renderer ↔ UI seam (selection, camera, animation lifecycle, damage numbers, tile reveal, context loss / restore)
 - `docs/architecture/determinism.md` — why replay must be bit-identical

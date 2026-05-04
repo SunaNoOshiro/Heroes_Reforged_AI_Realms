@@ -75,6 +75,25 @@ Read first if you need to understand the full project:
     package numbers follow that group order, and the wiki sidebar renders
     those groups directly. Read all five package files together when
     implementing a UI component.
+29. [docs/architecture/side-effect-matrix.md](docs/architecture/side-effect-matrix.md)
+    — per-`src/<module>` ledger of permitted vs. forbidden side
+    effects. Read with [determinism.md](docs/architecture/determinism.md)
+    and [state-flow.md](docs/architecture/state-flow.md).
+30. [docs/architecture/non-functional-requirements.md](docs/architecture/non-functional-requirements.md)
+    — global NFR matrix: frame budget, RAM ceiling, latency budgets,
+    save/load latency, cold-start time, target FPS, owning module per
+    metric, verification harness per metric.
+31. [docs/architecture/testing-conventions.md](docs/architecture/testing-conventions.md)
+    — DI convention, fake catalogue location, deterministic-engine
+    mock policy, per-module unit-test rubric, fuzz/property targets.
+32. [docs/architecture/error-taxonomy.md](docs/architecture/error-taxonomy.md)
+    — error codes, severities, user-facing vs internal split, schema
+    for error records.
+33. [docs/architecture/hot-reload-flow.md](docs/architecture/hot-reload-flow.md)
+    — exact re-validation order in dev hot-reload (manifest →
+    asset-index → schema-validate → registry-rebuild → engine-reload).
+34. [docs/architecture/asset-path-resolution.md](docs/architecture/asset-path-resolution.md)
+    — editor-time string lookups vs runtime registry resolution.
 
 For a single browseable view of architecture docs, general flow diagrams,
 and numbered UI screen packages, open
@@ -206,6 +225,24 @@ Preferred stack when implementation starts:
   Never run `generate:enum-snapshot` to "fix" a failing
   `validate:enums` without first checking whether the failing removal
   was intentional
+- if you edited any schema under `content-schema/schemas/` that has
+  a generated TypeScript counterpart in
+  [`src/contracts/`](src/contracts/) (currently
+  `renderer-event.schema.json` →
+  [`src/contracts/renderer-event.ts`](src/contracts/renderer-event.ts),
+  and `report-base.schema.json` /
+  `validation-report.schema.json` /
+  `coherence-report.schema.json` /
+  `balance-report.schema.json` →
+  [`src/contracts/reports.ts`](src/contracts/reports.ts)),
+  run `npm run generate:contracts` and commit the resulting
+  `src/contracts/` diff in the same change. The cross-module TS
+  contract surface is the single source of truth that engine,
+  renderer, AI, and UI all `import type` from; drift between schema
+  and TS produces silently divergent boundaries. CI catches drift
+  via `npm run validate:contracts-ts`. The `MAPPINGS` table inside
+  [`scripts/generate-contracts-from-schemas.mjs`](scripts/generate-contracts-from-schemas.mjs)
+  is the canonical list of schema → TS pairs
 - implement the smallest coherent unit, staying within the task's
   `ownedPaths`
 - treat `Owned Paths`, `Owned Paths (shared)`, and `Dependencies` as
@@ -218,6 +255,11 @@ Preferred stack when implementation starts:
     grant permission to edit the dependency task's files
 - update docs only where the source of truth changes
 - preserve easy future extension over quick local hacks
+- before adding any third-party package or GitHub Action, read
+  [`docs/architecture/dependency-policy.md`](docs/architecture/dependency-policy.md):
+  it owns the SPDX allow/deny list, the dependency-add rubric, and
+  the CVE-response window. The repo's own license is `MIT`; see
+  [`LICENSE`](LICENSE).
 
 ### Task-System Script Map
 
@@ -256,6 +298,16 @@ Preferred stack when implementation starts:
   Manual writer that rebuilds `content-schema/enums.snapshot.json`
   from the current schemas. Run **only** after an intentional enum
   change; commit the diff in the same PR.
+- `npm run validate:contracts-ts`
+  Read-only alignment check between schemas under
+  `content-schema/schemas/` and their generated TypeScript
+  counterparts in `src/contracts/`. Wired into `npm run validate`.
+- `npm run generate:contracts`
+  Manual writer that regenerates the schema-derived files in
+  `src/contracts/` from their source schemas. Run after editing any
+  schema listed in the `MAPPINGS` table inside
+  `scripts/generate-contracts-from-schemas.mjs`; commit the diff in
+  the same PR.
 - `npm run validate`
   Full repo validation; use this before handoff.
 

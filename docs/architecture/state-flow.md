@@ -49,6 +49,11 @@ contexts; this file does not duplicate the rules.
 
 ## Boundary Responsibilities
 
+> The boundaries below describe **who can mutate what**. The
+> per-module ledger of which concrete side effects each boundary
+> may use lives in [`side-effect-matrix.md`](./side-effect-matrix.md).
+
+
 | Boundary | Owned by | Notes |
 |---|---|---|
 | Content load + validation | [`src/content-runtime/`](../../src/content-runtime/) | Manifest resolution, dependency graph, pack-hash pin |

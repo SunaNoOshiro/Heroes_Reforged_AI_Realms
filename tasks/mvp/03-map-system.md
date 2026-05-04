@@ -8,6 +8,25 @@ The hex coordinate system, tile storage, pathfinding, and fog of war that underp
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: Hex coordinates, tile storage, A* pathfinding, fog
+  of war, random-map generator runner.
+- **Public surface**: lives inside [`src/engine/`](../../src/engine/);
+  exposed to AI/renderer through engine snapshots — no separate
+  cross-module type contract beyond the engine seam in
+  [`src/contracts/`](../../src/contracts/).
+- **Side effects**: row "src/engine/" in
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  (pure pathfinder; cache invariants in
+  [`docs/architecture/determinism.md`](../../docs/architecture/determinism.md)).
+- **NFR**: NFR-CAP-01 (200×200 hex hard cap),
+  NFR-PERF-01 (frame-time impact of pathfinding)
+  in [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-axial-hex-coordinate-utilities.md](03-map-system/01-axial-hex-coordinate-utilities.md)

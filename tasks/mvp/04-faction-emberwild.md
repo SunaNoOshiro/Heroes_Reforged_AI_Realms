@@ -13,6 +13,28 @@ against every schema, and all 7 units appear correctly in combat.
 
 ---
 
+## Self-Contained Brief
+
+- **Purpose**: First playable faction; canonical reference pack.
+  Every content authoring pattern proven here becomes the template
+  for future factions (including AI-generated ones).
+- **Public surface**: pack records consumed through
+  [`src/contracts/pack-registry.ts`](../../src/contracts/pack-registry.ts);
+  ruleset values consumed through
+  [`02-content-schemas`](02-content-schemas.md) schemas.
+- **Side effects**: this module ships content (no `src/<module>/`
+  of its own); see
+  [`docs/architecture/side-effect-matrix.md`](../../docs/architecture/side-effect-matrix.md)
+  rows for `src/content-runtime/` (loader) and `src/content-schema/`
+  (validators).
+- **NFR**: balance-corridor compliance per
+  [`docs/architecture/content-system-policy.md`](../../docs/architecture/content-system-policy.md)
+  and the `BalanceReport` corridor in
+  [`docs/architecture/non-functional-requirements.md`](../../docs/architecture/non-functional-requirements.md).
+- **Exit criteria**: see header.
+
+---
+
 ## Task Files
 
 - [01-emberwild-units-7-units-plus-upgrades.md](04-faction-emberwild/01-emberwild-units-7-units-plus-upgrades.md)

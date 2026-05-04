@@ -2,12 +2,18 @@
   "name": "heroes-reforged-ai-realms",
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "src/contracts"
+  ],
   "scripts": {
     "generate:task-registry": "node scripts/generate-task-registry.mjs",
     "generate:task-system-report": "node scripts/generate-task-system-report.mjs",
     "generate:wiki": "node scripts/generate-architecture-wiki.mjs",
+    "generate:contracts": "node scripts/generate-contracts-from-schemas.mjs",
     "validate:links": "node scripts/check-markdown-links.mjs",
     "validate:contracts": "node scripts/check-repo-contracts.mjs",
+    "validate:contracts-ts": "node scripts/generate-contracts-from-schemas.mjs",
     "validate:cross-refs": "node scripts/check-cross-references.mjs",
     "validate:commands": "node scripts/check-command-coverage.mjs",
     "validate:task-commands": "node scripts/check-task-command-literals.mjs",
@@ -20,7 +26,7 @@
     "validate:error-codes": "node scripts/check-pack-error-codes.mjs",
     "build:asset-index": "node scripts/build-asset-index.mjs",
     "generate:enum-snapshot": "node scripts/snapshot-enums.mjs",
-    "validate": "npm run generate:task-registry && npm run validate:links && npm run validate:contracts && npm run validate:cross-refs && npm run validate:commands && npm run validate:tasks && npm run validate:arch && npm run validate:ui-components && npm run validate:animation-budgets && npm run validate:enums && npm run validate:balance && npm run validate:error-codes && npm run build:asset-index -- --check",
+    "validate": "npm run generate:task-registry && npm run validate:links && npm run validate:contracts && npm run validate:contracts-ts && npm run validate:cross-refs && npm run validate:commands && npm run validate:tasks && npm run validate:arch && npm run validate:ui-components && npm run validate:animation-budgets && npm run validate:enums && npm run validate:balance && npm run validate:error-codes && npm run build:asset-index -- --check",
     "test": "node --test scripts/__tests__/*.test.mjs",
     "test:ui-smoke": "vitest --browser run -- src/ui/**/*.smoke.test.ts",
     "test:golden": "vitest run src/engine/__tests__/golden.test.ts",

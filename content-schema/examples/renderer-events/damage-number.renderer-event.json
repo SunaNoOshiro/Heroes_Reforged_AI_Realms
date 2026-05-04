@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schemas/renderer-event.schema.json",
+  "kind": "DAMAGE_NUMBER",
+  "payload": {
+    "amount": 75,
+    "anchor": { "q": 4, "r": 2 },
+    "screen": { "x": 612, "y": 384 },
+    "variant": "damage"
+  }
+}

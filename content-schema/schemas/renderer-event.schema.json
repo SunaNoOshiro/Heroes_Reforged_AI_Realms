@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/renderer-event.schema.json",
+  "title": "RendererEvent",
+  "description": "Closed discriminated union of every event the renderer emits across the renderer ↔ UI seam. Distinct from event.schema.json (which is the engine's event log read-only by the renderer): a RendererEvent is *produced by* the renderer to notify the UI shell of presentation-side state changes (selection, camera focus, animation start/finish, damage numbers, fog reveal). See docs/architecture/ui-renderer-seam.md and docs/implementation-plans/16-implementation-readiness-plan.md (T5).",
+  "oneOf": [
+    { "$ref": "#/$defs/selectionChanged" },
+    { "$ref": "#/$defs/cameraFocused" },
+    { "$ref": "#/$defs/animationStarted" },
+    { "$ref": "#/$defs/animationFinished" },
+    { "$ref": "#/$defs/damageNumber" },
+    { "$ref": "#/$defs/tileRevealed" },
+    { "$ref": "#/$defs/effectTriggered" },
+    { "$ref": "#/$defs/contextLost" },
+    { "$ref": "#/$defs/contextRestored" }
+  ],
+  "$defs": {
+    "stringId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hexCoord": {
+      "type": "object",
+      "required": ["q", "r"],
+      "properties": {
+        "q": { "type": "integer" },
+        "r": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "screenPoint": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "integer" },
+        "y": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "selectionChanged": {
+      "type": "object",
+      "description": "User selection changed (hero, stack, building, tile, or none). Emitted whenever the renderer's selection model resolves a click/tap or programmatic selection.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "SELECTION_CHANGED" },
+        "payload": {
+          "type": "object",
+          "required": ["target"],
+          "properties": {
+            "target": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": ["kind", "id"],
+                  "properties": {
+                    "kind": { "enum": ["hero", "stack", "building", "tile"] },
+                    "id": { "$ref": "#/$defs/stringId" }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": ["kind"],
+                  "properties": {
+                    "kind": { "const": "none" }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "cameraFocused": {
+      "type": "object",
+      "description": "Camera completed a programmatic move (pan, zoom, focus-on-event). Emitted after the camera animation settles.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "CAMERA_FOCUSED" },
+        "payload": {
+          "type": "object",
+          "required": ["target", "zoom"],
+          "properties": {
+            "target": { "$ref": "#/$defs/hexCoord" },
+            "zoom": {
+              "type": "number",
+              "minimum": 0
+            },
+            "reason": {
+              "enum": ["user", "engine-event", "init", "snap-to-active"]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "animationStarted": {
+      "type": "object",
+      "description": "An animation timeline began playing (drives the dispatcher animation gate per ui-input-arbitration.md). The activeTimelineId in state.ui.animations is set when this fires.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "ANIMATION_STARTED" },
+        "payload": {
+          "type": "object",
+          "required": ["timelineId", "sourceEventKind"],
+          "properties": {
+            "timelineId": { "$ref": "#/$defs/stringId" },
+            "sourceEventKind": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "animationFinished": {
+      "type": "object",
+      "description": "An animation timeline finished playing. The activeTimelineId in state.ui.animations is cleared when this fires.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "ANIMATION_FINISHED" },
+        "payload": {
+          "type": "object",
+          "required": ["timelineId"],
+          "properties": {
+            "timelineId": { "$ref": "#/$defs/stringId" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "damageNumber": {
+      "type": "object",
+      "description": "Floating damage / heal number to display at a screen position. Emitted in response to UNIT_ATTACKED and SPELL_CAST engine events.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "DAMAGE_NUMBER" },
+        "payload": {
+          "type": "object",
+          "required": ["amount", "anchor"],
+          "properties": {
+            "amount": { "type": "integer" },
+            "anchor": { "$ref": "#/$defs/hexCoord" },
+            "screen": { "$ref": "#/$defs/screenPoint" },
+            "variant": {
+              "enum": ["damage", "heal", "miss", "block", "crit"]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "tileRevealed": {
+      "type": "object",
+      "description": "A tile (or set of tiles) emerged from fog of war for the local player. Emitted as part of MOVE_HERO arrival or scout abilities.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "TILE_REVEALED" },
+        "payload": {
+          "type": "object",
+          "required": ["tiles"],
+          "properties": {
+            "tiles": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/hexCoord" }
+            },
+            "playerId": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "effectTriggered": {
+      "type": "object",
+      "description": "A presentation-side VFX began at a target. Distinct from SPELL_CAST in event.schema.json: this is the renderer's confirmation that the VFX timeline started, not the engine's effect-application event.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "EFFECT_TRIGGERED" },
+        "payload": {
+          "type": "object",
+          "required": ["effectId", "anchor"],
+          "properties": {
+            "effectId": { "$ref": "#/$defs/stringId" },
+            "anchor": { "$ref": "#/$defs/hexCoord" },
+            "durationMs": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "contextLost": {
+      "type": "object",
+      "description": "WebGL context was lost (browser tab background, GPU reset). The UI must show the recovery banner per ui-frame-lag-contract.md.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "CONTEXT_LOST" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "reason": {
+              "enum": ["tab-backgrounded", "gpu-reset", "out-of-memory", "unknown"]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "contextRestored": {
+      "type": "object",
+      "description": "WebGL context was restored after a CONTEXT_LOST event. Atlases were rebound from the asset registry.",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": { "const": "CONTEXT_RESTORED" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "rebindMs": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

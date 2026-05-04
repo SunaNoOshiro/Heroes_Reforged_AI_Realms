@@ -1,0 +1,92 @@
+name: Runtime Quality Gates
+
+# Implementation Plan 16 (T12): staged-activation runtime CI.
+#
+# This workflow exists *now* so the day the first .ts file lands in
+# src/, lint / typecheck / unit / fuzz steps activate automatically
+# without further infra work. Each step runs only when its trigger
+# files exist (file-existence guard via a small shell probe), so the
+# workflow is a no-op while the repo is planning-first.
+#
+# The full game CI (engine fuzz, multiplayer determinism, etc.) is
+# specified in tasks/mvp/01-engine-core/10-github-actions-ci.md;
+# this file is the staged-activation companion to that task.
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: runtime-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    env:
+      NPM_CONFIG_AUDIT: false
+      NPM_CONFIG_FUND: false
+      NPM_CONFIG_PREFER_OFFLINE: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Detect runtime code
+        id: probe
+        shell: bash
+        run: |
+          if find src -type f \( -name "*.ts" -o -name "*.tsx" \) 2>/dev/null | grep -v -E "/(constants\.ts|smoke\.template\.test\.ts)$" | grep -q .; then
+            echo "runtime_present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "runtime_present=false" >> "$GITHUB_OUTPUT"
+          fi
+          if [ -f tsconfig.json ] || [ -f src/contracts/tsconfig.json ]; then
+            echo "ts_project=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ts_project=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node
+        if: steps.probe.outputs.runtime_present == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install
+        if: steps.probe.outputs.runtime_present == 'true'
+        run: npm ci --prefer-offline --no-audit --no-fund
+
+      - name: Lint
+        if: steps.probe.outputs.runtime_present == 'true' && hashFiles('.eslintrc*', 'eslint.config.*') != ''
+        run: npm run lint --if-present
+
+      - name: Typecheck
+        if: steps.probe.outputs.runtime_present == 'true' && steps.probe.outputs.ts_project == 'true'
+        run: npm run typecheck --if-present
+
+      - name: Unit tests (workspaces)
+        if: steps.probe.outputs.runtime_present == 'true'
+        run: npm test --workspaces --if-present
+
+      - name: Engine fuzz harness
+        if: steps.probe.outputs.runtime_present == 'true' && hashFiles('src/engine/__tests__/fuzz.test.ts') != ''
+        run: npm run test:fuzz --if-present
+
+      - name: Inactive workflow notice
+        if: steps.probe.outputs.runtime_present != 'true'
+        shell: bash
+        run: |
+          echo "No runtime .ts files in src/ — runtime CI is intentionally a no-op."
+          echo "Activated automatically once mvp.01-engine-core lands."

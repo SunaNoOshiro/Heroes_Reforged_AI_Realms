@@ -39,6 +39,13 @@ jobs:
       - name: Install
         run: npm ci --prefer-offline --no-audit --no-fund
 
+      - name: Audit production dependencies
+        # Implementation Plan 16 (T3): supply-chain hygiene gate.
+        # No-op while package-lock.json carries no production deps, but
+        # activates the moment runtime deps land per
+        # docs/architecture/dependency-policy.md.
+        run: npm audit --omit=dev --audit-level=high
+
       - name: Validate
         run: npm run validate
 
