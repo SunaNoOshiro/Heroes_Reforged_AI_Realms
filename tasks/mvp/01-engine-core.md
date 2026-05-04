@@ -34,3 +34,5 @@ The non-negotiable foundation. Everything else in the project depends on the det
   🤖 Task 9: Fuzz harness — 1000-command AI-vs-AI determinism test (~4h)
 - [10-github-actions-ci.md](01-engine-core/10-github-actions-ci.md)
   🤖 Task 10: GitHub Actions CI — lint + type-check + fuzz on every PR (~2h)
+- [11-no-wall-clock-lint.md](01-engine-core/11-no-wall-clock-lint.md)
+  🤖 Task 11: ESLint rule — `no-wall-clock` in deterministic paths (~2h)

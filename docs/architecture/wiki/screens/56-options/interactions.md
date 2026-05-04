@@ -34,6 +34,13 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
 
+### Locale Swap
+- Switching `language` is **presentation-only** — never a deterministic command, never a command-log entry.
+- Apply triggers a `LOCALE_CHANGED` UI event on a side-channel observable. All subscribed selectors re-render.
+- Open transient surfaces (tooltips, popovers, hover cards) are dismissed; modals that require a player choice re-render in-place with new strings.
+- The body element's `dir` attribute toggles for RTL locales; layout uses logical CSS properties (`margin-inline-start` etc.) so no renderer reset is required.
+- Save metadata captures `localeAtSave`; loading under a different locale shows no warning (display strings re-resolve normally). See [`docs/architecture/edge-cases-policy.md` § 10](../../../edge-cases-policy.md#10-locale-swap-mid-game-q214).
+
 ### AI Implementation Notes
 - This file owns behavior and timing.
 - `spec.md` owns static regions and state bindings.

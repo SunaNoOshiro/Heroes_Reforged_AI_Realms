@@ -1,0 +1,6 @@
+{
+  "code": "NOT_CURRENT_ACTOR",
+  "expectedPlayerId": 1,
+  "actualPlayerId": 0,
+  "message": "Command rejected: not your turn."
+}

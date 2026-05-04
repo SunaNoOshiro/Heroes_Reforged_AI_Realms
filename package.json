@@ -33,6 +33,7 @@
     "tasks:start": "node scripts/tasks.mjs start",
     "tasks:done": "node scripts/tasks.mjs done",
     "tasks:blocked": "node scripts/tasks.mjs blocked",
-    "tasks:lint": "node scripts/tasks.mjs lint"
+    "tasks:lint": "node scripts/tasks.mjs lint",
+    "all": "npm run validate && npm run generate:wiki && npm run generate:task-system-report"
   }
 }

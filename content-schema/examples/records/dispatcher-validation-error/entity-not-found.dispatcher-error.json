@@ -1,0 +1,10 @@
+{
+  "code": "ENTITY_NOT_FOUND",
+  "details": {
+    "entityKind": "hero",
+    "id": "hero:emberwild.jenova",
+    "lastKnownState": "died"
+  },
+  "path": "/heroId",
+  "message": "Hero hero:emberwild.jenova was killed last turn."
+}

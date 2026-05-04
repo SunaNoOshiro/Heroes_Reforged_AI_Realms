@@ -115,6 +115,69 @@ keeps determinism portable across languages.
   is the single source of truth; update it first and re-run
   `npm test` before editing this prose.
 
+## Saturation policy
+
+Cross-cutting overflow handling is pinned in
+[`edge-cases-policy.md` § 6](./edge-cases-policy.md#6-overflow--saturation-q210).
+The rule is `clamp` saturates at the cap; never wraps.
+
+| Constant | Value | Scope |
+|---|---|---|
+| `MAX_RESOURCE` | `2_000_000_000` | per resource per player |
+| `MAX_UNIT_COUNT` | `1_000_000` | per stack |
+| `MAX_HERO_STAT` | ruleset-pack-driven (default `99`) | per primary stat |
+| `MAX_INTERMEDIATE` | `2 ** 53 - 1` | every formula step |
+
+- Dev builds raise `OverflowError` when an intermediate result
+  exceeds `MAX_INTERMEDIATE`.
+- Prod builds saturate to the documented cap and emit a
+  warn-level telemetry counter; never wrap.
+- The constants themselves live in `src/engine/constants.ts`.
+  Schemas reference the maxima via `content-schema/schemas/numeric.json`
+  (see [`command-schema.md` § Numeric invariants](./command-schema.md#numeric-invariants)).
+- The fuzz target `tests/fuzz/overflow.fuzz.ts` is owned by
+  [`tasks/phase-2/09-quality/01-overflow-fuzz.md`](../../tasks/phase-2/09-quality/01-overflow-fuzz.md)
+  and asserts the saturation policy under near-`MAX_INTERMEDIATE`
+  inputs.
+
+## State-shape invariants
+
+The canonical state serializer asserts the following after every
+accepted dispatch; cross-cutting policy lives in
+[`edge-cases-policy.md` § 7](./edge-cases-policy.md#7-negative-resources-q211).
+
+- `state.players[*].resources[k] ≥ 0` for every `k`.
+- Every `unit.count ≥ 0` everywhere a stack is stored.
+- Drain-against-zero floors at `0`; no debt accumulates (see
+  [`effect-registry.md` § Drain semantics](./effect-registry.md#drain-semantics)).
+
+Dev builds raise `InvariantViolation`; prod builds clamp to `0` and
+emit a warn-level telemetry counter. The serializer is the single
+chokepoint, so a future reducer bug or malformed pack cannot leak a
+negative balance to UI render code.
+
+## Wall-clock readers
+
+`Date.now()` and wall-clock time are forbidden in deterministic paths
+(see "Forbidden In Deterministic Paths" above and the lint rule in
+[`tasks/mvp/01-engine-core/11-no-wall-clock-lint.md`](../../tasks/mvp/01-engine-core/11-no-wall-clock-lint.md)).
+The exhaustive list of subsystems allowed to read wall-clock and
+their behavior on a backward / DST jump:
+
+| Subsystem | Reads | On jump |
+|---|---|---|
+| `SaveRecord.metadata.createdAt` | wall-clock at save time | captures the jumped value; sort uses `max(savedAt, createdAt)` for stability |
+| `SaveRecord.metadata.savedAt` | wall-clock at save time | as above |
+| Save-list "modified N minutes ago" | `Date.now() - savedAt` | display only; negative values render as "just now" |
+| Signaling-server room TTL | wall-clock | server-side; client reads server time; immune to client clock |
+| Renderer rAF delta-time | `performance.now()` (monotonic) | immune |
+| Audio scheduling | `audioContext.currentTime` (monotonic) | immune |
+
+No other subsystem may read wall-clock. The lint rule scopes the ban
+to `src/engine/`, `src/rules/`, `src/content-runtime/`,
+`src/net/webrtc/` (the M5 lockstep transports already covered by the
+existing rule).
+
 ## Content Hash + Engine Hash
 
 Every pack manifest carries a `contentHash` (canonical-JSON digest of

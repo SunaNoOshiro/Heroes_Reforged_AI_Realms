@@ -38,6 +38,8 @@ Save/load slot browser with save metadata, compatibility checks, overwrite confi
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
 - Save loaded with `saveVersion` outside the migration support window (last 4) renders the canonical "incompatible save migration needed" missing-state; the player is told to keep the file. Load is disabled, Delete remains enabled.
 - A `QuotaExceededError` from the IDB wrapper does not retry; the "Manage saves" CTA is the remediation surface and the failure toast cites it.
+- The Save tab follows the `canSaveNow(state)` predicate from [`content-schema/save-eligibility.md`](../../../../../content-schema/save-eligibility.md). Disabled reasons surface as localized strings: "Finish battle to save" (`save.disabled.in_battle`), "Wait for your turn to save" (`save.disabled.not_your_turn`), "Resolve the open prompt to save" (`save.disabled.modal_open`), "Wait for end-of-day to finish" (`save.disabled.animating`).
+- Storage budget warning toasts ("Storage nearly full — consider exporting saves." at 90% quota, once per session) and quota-exhaustion toast ("Storage full — manage saves.") are emitted from the persistence layer per [`docs/architecture/storage-policy.md`](../../../storage-policy.md). The Save Load screen is the canonical surface for both.
 
 ### During Multiplayer
 - **Saving during MP is host-only.** The host's save captures the full agreed log. Peers may not save mid-match: the Save tab is read-only on peer machines and displays a localized "host saved" indicator after each host autosave / manual save.

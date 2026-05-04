@@ -34,6 +34,15 @@ Acceptance Criteria:
 - Peer-priority order also drives the bot-broadcaster election
   defined in [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Bot Commands](./03-input-only-lockstep-command-serialization-plus-sequencing.md#bot-commands);
   re-electing the host re-elects the bot broadcaster atomically.
+- **`WILL_BACKGROUND` extension protocol (Q217).** When a peer
+  emits `visibilitychange:hidden`, it sends a `WILL_BACKGROUND`
+  transport message to its peers. Receiving peers extend that
+  side's heartbeat tolerance from 6 s to **30 s** for the next
+  **60 s**. After 60 s of continuous backgrounding the normal
+  6 s threshold resumes (mobile sleep ≈ disconnect). On
+  `:visible`, the peer emits a `STATE_HASH_PROBE` and the standard
+  desync / reconnection flow takes over. See
+  [`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md).
 
 Network-Chaos Coverage:
 - Exercised by the consolidated network-chaos test matrix

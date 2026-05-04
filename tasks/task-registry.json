@@ -146,6 +146,10 @@
         {
           "label": "10-github-actions-ci.md",
           "link": "01-engine-core/10-github-actions-ci.md"
+        },
+        {
+          "label": "11-no-wall-clock-lint.md",
+          "link": "01-engine-core/11-no-wall-clock-lint.md"
         }
       ]
     },
@@ -676,6 +680,10 @@
         {
           "label": "05-export-import-json.md",
           "link": "08-persistence/05-export-import-json.md"
+        },
+        {
+          "label": "09-quota-handling.md",
+          "link": "08-persistence/09-quota-handling.md"
         }
       ]
     },
@@ -1434,6 +1442,23 @@
         {
           "label": "09-map-editor-undo-redo.md",
           "link": "08-meta-systems/09-map-editor-undo-redo.md"
+        }
+      ]
+    },
+    {
+      "id": "phase-2.09-quality",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Quality (M-Quality)",
+      "path": "tasks/phase-2/09-quality.md",
+      "milestone": "Phase 2 — Depth quality gates",
+      "totalEstimate": "~3 hours",
+      "exitCriteria": "Saturation, overflow, and drain-clamp invariants",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "01-overflow-fuzz.md",
+          "link": "09-quality/01-overflow-fuzz.md"
         }
       ]
     },
@@ -2642,7 +2667,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 316
+      "downstreamTransitiveCount": 319
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2703,7 +2728,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 314
+      "downstreamTransitiveCount": 317
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2760,7 +2785,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 206
+      "downstreamTransitiveCount": 208
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2816,7 +2841,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 231
+      "downstreamTransitiveCount": 233
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2874,8 +2899,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 89
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 90
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -2925,6 +2950,10 @@
         "100% TypeScript coverage (no `any`, no `as unknown`)",
         "Command discriminants match `content-schema/schemas/command.schema.json`",
         "`npm run validate:commands` passes so screen interaction tokens are schema-backed, aliased, UI-local, or explicitly out of scope",
+        "**Gate 0 (current-actor) check (Q205).** A command with `metadata.playerId !== state.currentPlayerId` returns `Result.err({ code: 'NOT_CURRENT_ACTOR' })` *before* any per-command validator runs. Unit test: dispatch `MOVE_HERO` with `playerId=0` while `currentPlayerId=1` → error returned, state unchanged, no command appended to log. Exempt commands (none in MVP) are listed in [`command-schema.md` § Validation Framework](../../../docs/architecture/command-schema.md#validation-framework).",
+        "**Validation error taxonomy (Q206).** Every rejection returns a structured error matching `content-schema/schemas/dispatcher-validation-error.schema.json`. Each existence-check failure returns `code: 'ENTITY_NOT_FOUND'` with `details.{ entityKind, id, lastKnownState? }`. The closed enum and per-code shape are owned by [`docs/architecture/command-schema.md` § ValidationError taxonomy](../../../docs/architecture/command-schema.md#validationerror-taxonomy) and [`docs/architecture/edge-cases-policy.md` § 11](../../../docs/architecture/edge-cases-policy.md#11-validation-error-taxonomy).",
+        "**Single-flight gate (Q207).** Dispatching the same `END_DAY`, `END_BATTLE_TURN`, or `START_BATTLE` twice within one logical tick returns `code: 'DUPLICATE_INTENT'` on the second call; state unchanged. Single-flight is keyed by `(playerId, kind)` and resets at tick boundary. See [`docs/architecture/command-schema.md` § Single-flight commands](../../../docs/architecture/command-schema.md#single-flight-commands).",
+        "**State-shape invariants (Q211).** Post-dispatch state passes the canonical state-shape invariant assertion (every `resources[k] ≥ 0`, every `unit.count ≥ 0`). A reducer producing a negative balance raises `InvariantViolation` in dev / clamps to 0 in prod and records a warn-level telemetry counter. See [`docs/architecture/determinism.md` § State-shape invariants](../../../docs/architecture/determinism.md#state-shape-invariants).",
         "**`mapVersion` and `zocVersion` invariants** (consumed by the pathfinder cache in `mvp.03-map-system.11-pathfinder-cache`):",
         "Reducers for terrain-mutating commands (terraform-effect, bridge-built) increment `state.mapVersion` by exactly 1 per accepted command.",
         "Reducers for hero-tile-occupancy commands (hero-move, hero-spawn, hero-defeat) increment `state.zocVersion` by exactly 1 per accepted command.",
@@ -2939,11 +2968,13 @@
       "screenPackages": [],
       "directSchemaPaths": [
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/dispatcher-validation-error.schema.json",
         "content-schema/schemas/event.schema.json"
       ],
       "screenSchemaPaths": [],
       "schemaPaths": [
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/dispatcher-validation-error.schema.json",
         "content-schema/schemas/event.schema.json"
       ],
       "taskDependencies": [
@@ -2956,8 +2987,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 27,
-      "downstreamTransitiveCount": 197
+      "downstreamDirectCount": 28,
+      "downstreamTransitiveCount": 198
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3005,7 +3036,8 @@
         "A new screen command fails validation unless it is schema-backed, aliased, UI-local, or out-of-scope with an owning task ID",
         "`command.schema.json` remains the canonical closed gameplay command union",
         "UI tasks may not add reducer behavior for out-of-scope commands",
-        "Shared path work is additive only: extend command-schema coverage and npm wiring without rewriting the primary command contract owned by `docs/architecture/command-schema.md` and `mvp.01-engine-core.06-command-dispatcher`"
+        "Shared path work is additive only: extend command-schema coverage and npm wiring without rewriting the primary command contract owned by `docs/architecture/command-schema.md` and `mvp.01-engine-core.06-command-dispatcher`",
+        "**Numeric invariants (Q209).** Every integer `quantity` field in `command.schema.json` `$ref`s `numeric.json#/$defs/positiveInteger` (`minimum: 1`); every integer `cost` / `amount` field `$ref`s `numeric.json#/$defs/nonNegativeInteger` (`minimum: 0`). Free actions remain expressible via the rules formula, never via a zero-quantity payload. See [`docs/architecture/edge-cases-policy.md` § 5](../../../docs/architecture/edge-cases-policy.md#5-zero-resource-transactions-q209)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -3166,7 +3198,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 57
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3287,7 +3319,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -3356,8 +3388,8 @@
         "mvp.08-persistence.07-snapshot-rebase"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 17
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "mvp.01-engine-core.10-github-actions-ci",
@@ -3421,6 +3453,66 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
+    },
+    {
+      "id": "mvp.01-engine-core.11-no-wall-clock-lint",
+      "kind": "task",
+      "status": "planned",
+      "title": "ESLint rule — `no-wall-clock` (deterministic paths)",
+      "path": "tasks/mvp/01-engine-core/11-no-wall-clock-lint.md",
+      "moduleId": "mvp.01-engine-core",
+      "modulePath": "tasks/mvp/01-engine-core.md",
+      "description": "Add an ESLint rule that bans wall-clock readers (`Date.now()`, `Date()`, `performance.now()`, `crypto.randomUUID()`, `Intl.DateTimeFormat()` with `now`) inside the deterministic paths listed in [`docs/architecture/determinism.md` § Wall-clock readers](../../../docs/architecture/determinism.md#wall-clock-readers). The full inventory of subsystems allowed to read wall-clock and their backward / DST-jump behavior is canonical there; this task makes the rule machine-enforceable.",
+      "inputs": [
+        "`eslint.config.js` (host config)"
+      ],
+      "outputs": [
+        "`eslint-rules/no-wall-clock.js`",
+        "ESLint host wired so the rule runs against `src/engine/**`, `src/rules/**`, `src/content-runtime/**`, `src/net/webrtc/**`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/edge-cases-policy.md`](../../../docs/architecture/edge-cases-policy.md)"
+      ],
+      "ownedPaths": [
+        "eslint-rules/no-wall-clock.js",
+        "eslint.config.js"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "eslint.config.js"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine"
+      ],
+      "acceptanceCriteria": [
+        "`Date.now()`, `new Date()`, `performance.now()`, `crypto.randomUUID()` and `Intl.DateTimeFormat(..., { now: ... })` inside any of the in-scope folders raise an ESLint error citing this rule.",
+        "A test fixture asserts the rule fires on each of the banned forms and stays silent inside `src/persistence/**`, `src/renderer/**`, and other allowed read sites.",
+        "`npm run lint` exits non-zero on any violation.",
+        "The rule message links to [`docs/architecture/determinism.md` § Wall-clock readers](../../../docs/architecture/determinism.md#wall-clock-readers).",
+        "Shared path work on `eslint.config.js` is **additive only**: this task appends the new rule registration and the path-scoped override without rewriting the existing host config. The primary contract for `eslint.config.js` remains owned by `mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine`. Reordering or removing existing rule entries from that file is out of scope here."
+      ],
+      "verifyCommands": [
+        "npm run lint",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -4286,7 +4378,8 @@
         "An evaluator test file exercises every op at least twice",
         "Evaluating the damage AST from [`09-tactical-combat/03-damage-formula.md`](../09-tactical-combat/03-damage-formula.md) at ATK−DEF = 10 returns the integer pair `{num: 1500, den: 1000}` (i.e. ×1.5)",
         "`grep -rE \"new Function|eval\\\\(\" src/rules/` returns zero hits",
-        "Every formula in `resources/packs/baseline-ruleset/ruleset.json` validates against `formula.schema.json`"
+        "Every formula in `resources/packs/baseline-ruleset/ruleset.json` validates against `formula.schema.json`",
+        "**Saturation policy (Q210).** Any intermediate result exceeding `MAX_INTERMEDIATE` (`Number.MAX_SAFE_INTEGER`) triggers `OverflowError` in dev builds; in prod builds the evaluator saturates to the documented cap and emits a warn-level telemetry counter. Never wraps. Constants live in `src/engine/constants.ts`; cross-cutting policy in [`docs/architecture/edge-cases-policy.md` § 6](../../../docs/architecture/edge-cases-policy.md#6-overflow--saturation-q210)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -5360,7 +5453,8 @@
         "mvp.01-engine-core.07b-canonical-json",
         "mvp.01-engine-core.08-replay-api",
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
-        "mvp.01-engine-core.10-github-actions-ci"
+        "mvp.01-engine-core.10-github-actions-ci",
+        "mvp.01-engine-core.11-no-wall-clock-lint"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -5693,7 +5787,11 @@
         "`resolveSprite(\"emberwild/ash-hound\")` returns the correct URL after the Emberwild pack is loaded",
         "Unloading the Emberwild pack → `resolveSprite(\"emberwild/ash-hound\")` returns a shared placeholder",
         "ESLint rule: no relative asset path imports inside `src/renderer/` or `src/ui/` modules",
-        "All existing renderer and UI code migrated to use `AssetRegistry` (no hardcoded paths)"
+        "All existing renderer and UI code migrated to use `AssetRegistry` (no hardcoded paths)",
+        "**Fallback chain order (Q215).** `locale variant → faction default → generic placeholder`. The generic placeholder is bundled with the app and is never absent.",
+        "**Retry policy.** On `404` / fetch failure, the resolver retries exactly once with 500 ms backoff. Subsequent failures within the same session use the placeholder without further retry.",
+        "**User notification.** A non-modal toast \"Some visuals couldn't load\" is emitted at most once per session, not per asset.",
+        "**Gameplay vs presentation boundary.** The resolver returns *pixels / audio* only. Frame timing, hitbox geometry, and projectile speed are gameplay records loaded pre-session — never streamed assets. Cross-cutting policy in [`docs/architecture/edge-cases-policy.md` § 12](../../../docs/architecture/edge-cases-policy.md#12-asset-load-failure-q215)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -11679,8 +11777,9 @@
         "`transaction([\"saves\"], \"readwrite\", fn)` writes manifest + payload atomically: aborting `fn` mid-write leaves zero records of the partial save.",
         "A unit test that mocks an IDB abort mid-transaction asserts neither `${id}:manifest` nor `${id}:payload` is visible afterwards.",
         "`list()` over a fixture of N saves issues exactly N manifest reads and zero payload reads (assert via mock counter).",
-        "`set()` on a quota-exceeded environment rejects with a typed `QuotaExceededError` (not a raw `DOMException`).",
-        "`getQuotaUsage()` returns a `{ used, quota }` reading consistent with `navigator.storage.estimate()`."
+        "`set()` on a quota-exceeded environment returns `Result.err(StorageError { code: 'QUOTA_EXCEEDED' })` only after the eviction module has walked the documented order without freeing enough space; raw `DOMException`s never escape.",
+        "`getQuotaUsage()` returns a `{ used, quota }` reading consistent with `navigator.storage.estimate()`.",
+        "The wrapper depends on the eviction module ([`09-quota-handling.md`](./09-quota-handling.md)) for the LRU walk and toast emission. Per-store byte budgets and the eviction order are pinned in [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -11688,9 +11787,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/storage-error.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/storage-error.schema.json"
+      ],
       "taskDependencies": [
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
@@ -11699,8 +11802,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 34
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 35
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -11745,7 +11848,11 @@
         "`canonicalContentHash` is computed on save and verified on load; two saves of the same `stateHash` produce identical `canonicalContentHash`.",
         "`intent: \"save\" | \"replay\"` is honored: an exported replay strips PII and substitutes a hash-derived id (see [`docs/architecture/replay-format.md`](../../../docs/architecture/replay-format.md)).",
         "A compressed `SaveRecord` exceeding 1 MB triggers the rebase / cap path declared in [`07-snapshot-rebase.md`](./07-snapshot-rebase.md); it never silently writes an oversized blob.",
-        "The save record MUST NOT contain any field whose key matches `events?` or `eventLog?`. Events are deterministic byproducts of replay, not state, and are never serialized; the per-battle `eventLog` returned by `AUTO_RESOLVE_BATTLE` is one-shot UI-bound and never enters the save record. See [`docs/architecture/event-system.md` § 7 Save & Load](../../../docs/architecture/event-system.md#7-save--load)."
+        "The save record MUST NOT contain any field whose key matches `events?` or `eventLog?`. Events are deterministic byproducts of replay, not state, and are never serialized; the per-battle `eventLog` returned by `AUTO_RESOLVE_BATTLE` is one-shot UI-bound and never enters the save record. See [`docs/architecture/event-system.md` § 7 Save & Load](../../../docs/architecture/event-system.md#7-save--load).",
+        "**Save eligibility (Q212).** `save()` is rejected when the pure predicate `canSaveNow(state)` from [`content-schema/save-eligibility.md`](../../../content-schema/save-eligibility.md) returns `false` (active battle, multiplayer turn lock, open choice modal, mid-end-of-day animation).",
+        "**Animation rehydration (Q212).** `load()` replays the command log silently; the animation timeline starts empty (no in-flight animations). Re-emitted events from replay execute synchronously without scheduling. The first post-load command schedules animations normally. See [`docs/architecture/edge-cases-policy.md` § 8](../../../docs/architecture/edge-cases-policy.md#8-save-gating-q212).",
+        "**Locale metadata (Q214).** Save metadata captures `localeAtSave`. Load shows no warning when the active locale differs; display strings re-resolve normally. See [`docs/architecture/edge-cases-policy.md` § 10](../../../docs/architecture/edge-cases-policy.md#10-locale-swap-mid-game-q214).",
+        "**Tab-resume autosave (Q217).** On `visibilitychange:hidden`, the persistence layer fires a best-effort tab-resume autosave (synchronous IDB write where possible, wrapped in a 50 ms timeout; falls back to no-save if the budget is exceeded). The full visibility policy lives in [`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -11767,7 +11874,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 53
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -12186,7 +12293,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "mvp.08-persistence.08-migration-registry",
@@ -12264,6 +12371,83 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "mvp.08-persistence.02-log-only-save-format"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.08-persistence.09-quota-handling",
+      "kind": "task",
+      "status": "planned",
+      "title": "Quota Handling and LRU Eviction",
+      "path": "tasks/mvp/08-persistence/09-quota-handling.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement the per-store byte-budget tracker, LRU eviction module, and 90 %-quota warning toast hook described in [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md). Every IndexedDB write goes through this layer; on `QuotaExceededError` it walks the documented eviction order before surfacing failure.",
+      "inputs": [
+        "`GameDB` from [`01-indexeddb-wrapper.md`](./01-indexeddb-wrapper.md)",
+        "`content-schema/schemas/storage-error.schema.json`",
+        "`navigator.storage.estimate()`"
+      ],
+      "outputs": [
+        "`src/persistence/quota.ts` — per-store budget tracker, soft caps, and quota-warning toast emitter.",
+        "`src/persistence/eviction.ts` — LRU eviction worker; called from the wrapper on `QuotaExceededError` and from the budget tracker on soft-cap crossings."
+      ],
+      "readFirst": [
+        "[`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md)",
+        "[`docs/architecture/edge-cases-policy.md`](../../../docs/architecture/edge-cases-policy.md)",
+        "[`tasks/mvp/08-persistence/01-indexeddb-wrapper.md`](./01-indexeddb-wrapper.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/quota.ts",
+        "src/persistence/eviction.ts",
+        "src/persistence/db.ts",
+        "01-indexeddb-wrapper.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/persistence/db.ts",
+        "01-indexeddb-wrapper.md"
+      ],
+      "dependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "acceptanceCriteria": [
+        "A `QuotaExceededError` from any wrapper `set()` walks the documented eviction order:",
+        "Evict `ai-cache` LRU until 50 MB free.",
+        "Evict `content` LRU until 50 MB free.",
+        "Prune oldest `auto-N` autosave slot (if any).",
+        "Emit non-modal toast \"Storage full — manage saves.\"",
+        "Throw `StorageExhausted` to the caller (manual save) so the UI can render an actionable modal. Autosave callers swallow and emit a telemetry counter.",
+        "Per-store soft caps trigger LRU eviction at the documented watermark (90 MB for `content`, 180 MB for `ai-cache`) before any `QuotaExceededError` is observed. Unit test: write 95 MB into `content`, observe eviction, total `content` byte size after drops to ≤ 90 MB.",
+        "A `getQuotaUsage()` reading of `used / quota >= 0.9` emits the one-time per-session toast \"Storage nearly full — consider exporting saves.\" The toast suppression key resets on tab refresh.",
+        "Every wrapper write returns `Result<void, StorageError>`; raw `DOMException`s never escape this layer.",
+        "A test fixture mocks an IDB blocked / version-error / data-corruption case and asserts the matching `StorageError.code`.",
+        "The dev-mode debug overlay (`screen 66 — debug-overlay`) reads `state.persistence.budgets` (in-memory, non-deterministic) and renders per-store byte counts plus the latest `getQuotaUsage()` ratio.",
+        "Shared path work on `src/persistence/db.ts` is **additive only**: this task wraps existing `set()` calls with the catch-and-evict path; it must not rewrite the wrapper's manifest/payload split, atomic transaction primitive, autosave shadow-key swap, or any other contract owned by `mvp.08-persistence.01-indexeddb-wrapper`. The primary contract for `src/persistence/db.ts` remains owned by that task; the eviction module here is the only new behavior introduced into the wrapper file."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/storage-error.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/storage-error.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,
@@ -25937,6 +26121,69 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "phase-2.09-quality.01-overflow-fuzz",
+      "kind": "task",
+      "status": "planned",
+      "title": "Overflow / saturation fuzz target",
+      "path": "tasks/phase-2/09-quality/01-overflow-fuzz.md",
+      "moduleId": "phase-2.09-quality",
+      "modulePath": "tasks/phase-2/09-quality.md",
+      "description": "Property-test the saturation policy declared in [`docs/architecture/determinism.md` § Saturation policy](../../../docs/architecture/determinism.md#saturation-policy) and [`docs/architecture/edge-cases-policy.md` § 6](../../../docs/architecture/edge-cases-policy.md#6-overflow--saturation-q210). Generate near-`MAX_INTERMEDIATE` inputs to every formula step and assert that: 1. Every intermediate stays at or below `MAX_INTERMEDIATE` (`Number.MAX_SAFE_INTEGER`). 2. Resource scalars saturate at `MAX_RESOURCE` and never wrap. 3. Stack counts saturate at `MAX_UNIT_COUNT` and never wrap. 4. Drain effects floor at `0` (no negative-debt accumulation). 5. Dev-build `OverflowError` and `InvariantViolation` are raised on any reducer that would breach the cap.",
+      "inputs": [
+        "`src/engine/constants.ts`",
+        "`src/rules/` formula evaluator",
+        "`content-schema/schemas/numeric.json`"
+      ],
+      "outputs": [
+        "`tests/fuzz/overflow.fuzz.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/edge-cases-policy.md`](../../../docs/architecture/edge-cases-policy.md)",
+        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)",
+        "[`content-schema/schemas/numeric.json`](../../../content-schema/schemas/numeric.json)"
+      ],
+      "ownedPaths": [
+        "tests/fuzz/overflow.fuzz.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
+      ],
+      "acceptanceCriteria": [
+        "Property generator covers integer values in `[MAX_INTERMEDIATE - 1024, MAX_INTERMEDIATE]` and replays the formula evaluator across every operator (`add`, `sub`, `mul`, `divFloor`, `ratio`, `min`, `max`, `clamp`, `neg`, `abs`).",
+        "Saturation invariants asserted on every step: never wrap, always saturate at the named cap.",
+        "Drain-against-zero fuzz: random sequence of drain effects against a `0` balance never produces a negative resource or unit count.",
+        "A deliberate \"wrap\" injection (e.g. removing the cap before a multiply) causes the test to fail with the seed and step index.",
+        "Test runs headless in Node 20."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
       "kind": "task",
       "status": "planned",
@@ -26309,8 +26556,7 @@
         "Catch-up replay is invisible to the other player (game continues during reconnection)",
         "If disconnection exceeds 120 seconds: offer forfeit or wait option Idempotency Note:",
         "The `LOG_RESPONSE { commands[] }` will overlap commands the reconnecting peer already replayed. **Overlap is expected and silently dropped** by the lockstep transport's `(playerId, seq)` dedupe set; do not pre-trim the response.",
-        "See [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Idempotency](./03-input-only-lockstep-command-serialization-plus-sequencing.md#idempotency) and [`docs/architecture/determinism.md` § Canonical Command Key](../../../docs/architecture/determinism.md#canonical-command-key). Network-Chaos Coverage:",
-        "This task is exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
+        "See [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Idempotency](./03-input-only-lockstep-command-serialization-plus-sequencing.md#idempotency) and [`docs/architecture/determinism.md` § Canonical Command Key](../../../docs/architecture/determinism.md#canonical-command-key)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -26371,7 +26617,8 @@
         "Host closes browser tab → new host elected within 8 seconds",
         "After migration, game continues from last consistent turn (no state loss)",
         "New host correctly takes over log publication and hash exchange",
-        "Peer-priority order also drives the bot-broadcaster election defined in [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Bot Commands](./03-input-only-lockstep-command-serialization-plus-sequencing.md#bot-commands); re-electing the host re-elects the bot broadcaster atomically. Network-Chaos Coverage:",
+        "Peer-priority order also drives the bot-broadcaster election defined in [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Bot Commands](./03-input-only-lockstep-command-serialization-plus-sequencing.md#bot-commands); re-electing the host re-elects the bot broadcaster atomically.",
+        "**`WILL_BACKGROUND` extension protocol (Q217).** When a peer emits `visibilitychange:hidden`, it sends a `WILL_BACKGROUND` transport message to its peers. Receiving peers extend that side's heartbeat tolerance from 6 s to **30 s** for the next **60 s**. After 60 s of continuous backgrounding the normal 6 s threshold resumes (mobile sleep ≈ disconnect). On `:visible`, the peer emits a `STATE_HASH_PROBE` and the standard desync / reconnection flow takes over. See [`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md). Network-Chaos Coverage:",
         "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)) — the `simultaneous disconnect` failure-injection cell pins regression protection for this task."
       ],
       "verifyCommands": [
@@ -28379,6 +28626,7 @@
         "mvp.01-engine-core.08-replay-api",
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
         "mvp.01-engine-core.10-github-actions-ci",
+        "mvp.01-engine-core.11-no-wall-clock-lint",
         "mvp.03-map-system.01-axial-hex-coordinate-utilities",
         "mvp.03-map-system.02-tile-type-registry",
         "mvp.03-map-system.03-layered-tile-storage",

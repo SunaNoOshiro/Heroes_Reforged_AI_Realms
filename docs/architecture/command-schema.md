@@ -656,16 +656,113 @@ without any special case.
 
 ## Validation Framework
 
-Commands are validated before dispatch:
+Commands are validated before dispatch through four ordered gates.
+Cross-cutting failure semantics (typed reasons, save gating, asset
+fallback, storage quota) live in
+[`edge-cases-policy.md`](./edge-cases-policy.md).
 
 ```
 validate(command: unknown): { valid: true, command: Command } | { valid: false, error: ValidationError }
 ```
 
-Each command kind has:
-1. Closed-schema validation (no `additionalProperties`)
-2. Semantic validation (hero exists, resources available, etc.)
-3. State validation (transition is legal for current phase)
+### Gate 0 — Current-actor check
+
+Before any per-command validator runs, the dispatcher rejects any
+command whose `metadata.playerId` does not match
+`state.currentPlayerId`. The result is
+`ValidationError { code: "NOT_CURRENT_ACTOR" }`; state, command log,
+and event log are unchanged. This single check prevents the entire
+class of "forgot to encode ownership in this new command" bugs from
+leaking past the dispatcher and into multiplayer lockstep.
+
+#### Exempt commands
+
+| Command | Rationale |
+|---|---|
+| _(none in MVP)_ | Every MVP command goes through Gate 0. |
+
+Future engine-emitted bookkeeping (`SCENARIO_LOAD`, `BATTLE_RESOLVED`,
+end-of-day commands minted under actor `"system"`) is exempt only
+when the actor segment of `nonce` is literally `system`. Any
+addition to this table must cite a rationale.
+
+### Gate 1 — Closed-schema validation
+
+JSON-Schema in
+[`content-schema/schemas/command.schema.json`](../../content-schema/schemas/command.schema.json).
+`additionalProperties: false`, `oneOf` over `kind`, shared numeric
+`$defs` (see [Numeric invariants](#numeric-invariants)). A failure
+returns `ValidationError { code: "MALFORMED_PAYLOAD", path }`.
+
+### Gate 2 — Semantic validation
+
+Per-command precondition checks (hero exists, resources available,
+target reachable, …). Each cause maps to a typed code from
+[ValidationError taxonomy](#validationerror-taxonomy) so the UI can
+localize precise reasons.
+
+### Gate 3 — Phase / state-transition legality
+
+The transition is legal for the current `state.phase` (e.g.
+`BATTLE_ATTACK` only inside `phase === "battle"`). Failure code:
+`ILLEGAL_PHASE`.
+
+## ValidationError taxonomy
+
+Closed enum. Schema:
+[`content-schema/schemas/dispatcher-validation-error.schema.json`](../../content-schema/schemas/dispatcher-validation-error.schema.json).
+
+| Code | Meaning |
+|---|---|
+| `MALFORMED_PAYLOAD` | JSON-Schema / Zod failure (Gate 1). |
+| `NOT_CURRENT_ACTOR` | Gate 0 rejection. |
+| `ENTITY_NOT_FOUND` | Stale reference; carries `{ entityKind, id, lastKnownState? }`. |
+| `INSUFFICIENT_RESOURCES` | Per-command resource precondition. |
+| `ILLEGAL_PHASE` | Command dispatched outside its valid phase. |
+| `OWNERSHIP_VIOLATION` | Per-command ownership precondition. |
+| `UNREACHABLE_TARGET` | Pathfinder / range / line-of-sight failure. |
+| `DUPLICATE_INTENT` | Single-flight rejection (see below). |
+
+Each error carries a structured `path` (RFC 6901 JSON-pointer into
+payload) when applicable.
+
+## Single-flight commands
+
+Two browser events can fire inside one logical tick (a click + a
+hotkey both emitting `END_DAY`). The reducer is single-threaded by
+contract, so engine-level concurrency is impossible — but a
+non-idempotent kind dispatched twice will both be applied unless the
+dispatcher gates it.
+
+The following kinds are protected by a per-`(playerId, kind)`
+single-flight gate; the second arrival within the same tick is
+rejected with `DUPLICATE_INTENT`:
+
+- `END_DAY`
+- `END_BATTLE_TURN`
+- `START_BATTLE`
+
+UI-side debounce (250 ms trailing edge) on the corresponding
+buttons / hotkeys reduces noise; dispatcher single-flight is the
+safety net that survives any UI bug.
+
+## Numeric invariants
+
+Integer fields default to:
+
+| Pattern | Constraint | Shared `$def` |
+|---|---|---|
+| `quantity` (recruit, transfer, split, upgrade) | `minimum: 1` | `positiveInteger` |
+| `cost`, `amount` (resource deltas) | `minimum: 0` | `nonNegativeInteger` |
+| Resource scalar | `minimum: 0`, `maximum: MAX_RESOURCE` | `resourceAmount` |
+
+Free actions remain expressible (a Mysticism-discounted spell may
+have `cost = 0` via the rules formula), but the *command payload*
+never encodes a zero-quantity intent. Shared `$defs` live in
+[`content-schema/schemas/numeric.json`](../../content-schema/schemas/numeric.json).
+Every command schema `$ref`s these — see
+[`edge-cases-policy.md` § 5](./edge-cases-policy.md#5-zero-resource-transactions-q209)
+for rationale.
 
 ---
 

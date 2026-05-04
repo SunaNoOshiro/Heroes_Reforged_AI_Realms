@@ -1,0 +1,9 @@
+{
+  "code": "INSUFFICIENT_RESOURCES",
+  "details": {
+    "required": { "gold": 2500, "wood": 5 },
+    "available": { "gold": 1200, "wood": 5 }
+  },
+  "path": "",
+  "message": "Need 2500 gold; have 1200."
+}

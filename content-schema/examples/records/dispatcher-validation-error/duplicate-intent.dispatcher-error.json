@@ -1,0 +1,8 @@
+{
+  "code": "DUPLICATE_INTENT",
+  "details": {
+    "kind": "END_DAY",
+    "playerId": 0
+  },
+  "message": "END_DAY already in flight this tick."
+}

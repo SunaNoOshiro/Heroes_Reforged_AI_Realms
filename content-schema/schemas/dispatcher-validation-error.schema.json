@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/dispatcher-validation-error.schema.json",
+  "title": "DispatcherValidationError",
+  "description": "Closed taxonomy of structured errors returned by the runtime command dispatcher (oneOf over `code`). Distinct from heroes-reforged/validation-error.schema.json which covers JSON-Schema/Zod record validation surfaced by the CI repo-contract checker. Codes here are the typed reasons commands are rejected pre-dispatch (Gate 0–3) and post-dispatch (single-flight). See docs/architecture/edge-cases-policy.md § 11 and docs/architecture/command-schema.md § Validation Framework.",
+  "type": "object",
+  "required": ["code"],
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "MALFORMED_PAYLOAD" },
+        "path": {
+          "type": "string",
+          "description": "RFC 6901 JSON Pointer into the offending payload field."
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "NOT_CURRENT_ACTOR" },
+        "expectedPlayerId": { "type": "integer", "minimum": 0 },
+        "actualPlayerId": { "type": "integer", "minimum": 0 },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code", "details"],
+      "properties": {
+        "code": { "const": "ENTITY_NOT_FOUND" },
+        "details": {
+          "type": "object",
+          "required": ["entityKind", "id"],
+          "properties": {
+            "entityKind": {
+              "enum": ["hero", "town", "mine", "stack", "artifact", "spell", "scenario", "battle", "object"]
+            },
+            "id": { "type": "string", "minLength": 1 },
+            "lastKnownState": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Optional hint for UI ('died', 'captured', 'reverted-to-neutral')."
+            }
+          },
+          "additionalProperties": false
+        },
+        "path": { "type": "string" },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "INSUFFICIENT_RESOURCES" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "required": {
+              "type": "object",
+              "additionalProperties": { "type": "integer", "minimum": 0 }
+            },
+            "available": {
+              "type": "object",
+              "additionalProperties": { "type": "integer", "minimum": 0 }
+            }
+          },
+          "additionalProperties": false
+        },
+        "path": { "type": "string" },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "ILLEGAL_PHASE" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "expectedPhase": { "type": "string" },
+            "actualPhase": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "OWNERSHIP_VIOLATION" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "entityKind": {
+              "enum": ["hero", "town", "mine", "stack", "artifact", "object"]
+            },
+            "id": { "type": "string", "minLength": 1 },
+            "ownerPlayerId": { "type": "integer", "minimum": 0 },
+            "actorPlayerId": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "UNREACHABLE_TARGET" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "object",
+              "required": ["q", "r"],
+              "properties": {
+                "q": { "type": "integer" },
+                "r": { "type": "integer" }
+              },
+              "additionalProperties": false
+            },
+            "to": {
+              "type": "object",
+              "required": ["q", "r"],
+              "properties": {
+                "q": { "type": "integer" },
+                "r": { "type": "integer" }
+              },
+              "additionalProperties": false
+            },
+            "reason": {
+              "enum": ["impassable", "out-of-range", "blocked-by-zoc", "los-blocked", "no-path"]
+            }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "DUPLICATE_INTENT" },
+        "details": {
+          "type": "object",
+          "required": ["kind", "playerId"],
+          "properties": {
+            "kind": { "type": "string", "minLength": 1 },
+            "playerId": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

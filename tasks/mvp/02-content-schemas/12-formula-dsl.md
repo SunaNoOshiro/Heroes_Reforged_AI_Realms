@@ -59,6 +59,13 @@ Acceptance Criteria:
 - `grep -rE "new Function|eval\\(" src/rules/` returns zero hits
 - Every formula in `resources/packs/baseline-ruleset/ruleset.json`
   validates against `formula.schema.json`
+- **Saturation policy (Q210).** Any intermediate result exceeding
+  `MAX_INTERMEDIATE` (`Number.MAX_SAFE_INTEGER`) triggers
+  `OverflowError` in dev builds; in prod builds the evaluator
+  saturates to the documented cap and emits a warn-level telemetry
+  counter. Never wraps. Constants live in `src/engine/constants.ts`;
+  cross-cutting policy in
+  [`docs/architecture/edge-cases-policy.md` § 6](../../../docs/architecture/edge-cases-policy.md#6-overflow--saturation-q210).
 
 Verify:
 - npm run validate

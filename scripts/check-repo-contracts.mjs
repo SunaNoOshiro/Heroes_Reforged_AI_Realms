@@ -450,6 +450,8 @@ function schemaForFile(filePath) {
   if (base === "game-state.example.json") return "game-state.schema.json";
   if (base === "ui-component-registry.example.json") return "ui-component-registry.schema.json";
   if (base.endsWith(".error-state.json")) return "error-state.schema.json";
+  if (base.endsWith(".dispatcher-error.json")) return "dispatcher-validation-error.schema.json";
+  if (base.endsWith(".storage-error.json")) return "storage-error.schema.json";
   if (base.endsWith(".error.json")) return "validation-error.schema.json";
   if (base.endsWith(".modal-entry.json")) return "modal-entry.schema.json";
   if (base.endsWith(".hotkey.json")) return "hotkey.schema.json";

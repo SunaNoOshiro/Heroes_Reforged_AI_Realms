@@ -622,6 +622,22 @@
       "type": "string",
       "minLength": 1
     },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Quantity field where zero is meaningless. Mirrors heroes-reforged/numeric.json#/$defs/positiveInteger."
+    },
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Cost / amount field where zero is a legal but explicit value. Mirrors heroes-reforged/numeric.json#/$defs/nonNegativeInteger."
+    },
+    "resourceAmount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2000000000,
+      "description": "Resource scalar bounded by MAX_RESOURCE. Mirrors heroes-reforged/numeric.json#/$defs/resourceAmount."
+    },
     "hexCoord": {
       "type": "object",
       "required": [

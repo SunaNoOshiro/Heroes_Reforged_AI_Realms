@@ -86,12 +86,24 @@ implement autosave rotation outside of `transaction()`.
 Browsers cap IndexedDB at ~50 MB to ~unbounded. The wrapper detects
 quota exhaustion and exposes it in two shapes:
 
-- `set()` rejects with a typed `QuotaExceededError` that the
-  Save/Load screen surfaces via `selectors.persistence.quotaUsage`
-  and a "Manage saves" CTA.
-- `getQuotaUsage(): Promise<{ used: number, quota: number }>` returns
-  the live `navigator.storage.estimate()` reading; the screen renders
-  a warning row when `used / quota > 0.8`.
+- `set()` returns `Result<void, StorageError>`. On
+  `QuotaExceededError` the wrapper hands off to the eviction
+  module (owned by
+  [`09-quota-handling.md`](./09-quota-handling.md)) which walks the
+  per-store budget table, evicts LRU, and either succeeds (returns
+  `Ok`) or surfaces `StorageError { code: 'QUOTA_EXCEEDED' }` after
+  the documented eviction order is exhausted.
+- `getQuotaUsage(): Promise<{ used: number, quota: number }>`
+  returns the live `navigator.storage.estimate()` reading; the
+  Save/Load screen renders a warning row when
+  `used / quota >= 0.8`, and the eviction module emits the
+  one-time per-session "Storage nearly full" toast at
+  `>= 0.9`.
+
+`StorageError` shapes are pinned in
+[`content-schema/schemas/storage-error.schema.json`](../../../content-schema/schemas/storage-error.schema.json);
+the full eviction policy and per-store byte budgets live in
+[`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md).
 
 Dependencies:
 - mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module
@@ -108,10 +120,17 @@ Acceptance Criteria:
   `${id}:manifest` nor `${id}:payload` is visible afterwards.
 - `list()` over a fixture of N saves issues exactly N manifest reads
   and zero payload reads (assert via mock counter).
-- `set()` on a quota-exceeded environment rejects with a typed
-  `QuotaExceededError` (not a raw `DOMException`).
+- `set()` on a quota-exceeded environment returns
+  `Result.err(StorageError { code: 'QUOTA_EXCEEDED' })` only after
+  the eviction module has walked the documented order without
+  freeing enough space; raw `DOMException`s never escape.
 - `getQuotaUsage()` returns a `{ used, quota }` reading consistent
   with `navigator.storage.estimate()`.
+- The wrapper depends on the eviction module
+  ([`09-quota-handling.md`](./09-quota-handling.md)) for the LRU
+  walk and toast emission. Per-store byte budgets and the
+  eviction order are pinned in
+  [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md).
 
 Verify:
 - npm run validate

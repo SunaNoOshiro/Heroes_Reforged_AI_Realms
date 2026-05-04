@@ -7,54 +7,60 @@ Read first if you need to understand the full project:
 1. [README.md](README.md)
 2. [docs/architecture/overview.md](docs/architecture/overview.md)
 3. [docs/architecture/determinism.md](docs/architecture/determinism.md)
-4. [docs/architecture/content-platform.md](docs/architecture/content-platform.md)
-5. [docs/architecture/pack-contract.md](docs/architecture/pack-contract.md)
-6. [docs/architecture/schema-matrix.md](docs/architecture/schema-matrix.md)
-7. [docs/architecture/effect-registry.md](docs/architecture/effect-registry.md)
-8. [docs/architecture/glossary.md](docs/architecture/glossary.md)
-9. [docs/architecture/ui-technology-choice.md](docs/architecture/ui-technology-choice.md)
-   — DOM-side framework, state binding, z-stack, localization, fonts,
-   build flags
-10. [docs/architecture/ui-renderer-seam.md](docs/architecture/ui-renderer-seam.md)
+4. [docs/architecture/edge-cases-policy.md](docs/architecture/edge-cases-policy.md)
+   — cross-cutting policy for invalid commands, current-actor gate,
+   stale references, input conflicts, zero-resource transactions,
+   overflow & saturation, negative resources, save gating,
+   mid-combat disconnect, locale swap, asset-load failure,
+   wall-clock readers, tab backgrounding, storage quota
+5. [docs/architecture/content-platform.md](docs/architecture/content-platform.md)
+6. [docs/architecture/pack-contract.md](docs/architecture/pack-contract.md)
+7. [docs/architecture/schema-matrix.md](docs/architecture/schema-matrix.md)
+8. [docs/architecture/effect-registry.md](docs/architecture/effect-registry.md)
+9. [docs/architecture/glossary.md](docs/architecture/glossary.md)
+10. [docs/architecture/ui-technology-choice.md](docs/architecture/ui-technology-choice.md)
+    — DOM-side framework, state binding, z-stack, localization, fonts,
+    build flags
+11. [docs/architecture/ui-renderer-seam.md](docs/architecture/ui-renderer-seam.md)
     — DOM ↔ canvas seam, input routing, hit-test API, resize protocol
-11. [docs/architecture/screen-scaling.md](docs/architecture/screen-scaling.md)
+12. [docs/architecture/screen-scaling.md](docs/architecture/screen-scaling.md)
     — virtual stage, aspect, hi-DPI, filter modes, breakpoints
-12. [docs/architecture/ui-component-resolver.md](docs/architecture/ui-component-resolver.md)
+13. [docs/architecture/ui-component-resolver.md](docs/architecture/ui-component-resolver.md)
     — `data-component` registry, reuse policy, missing-component fallback
-13. [docs/architecture/ui-frame-lag-contract.md](docs/architecture/ui-frame-lag-contract.md)
+14. [docs/architecture/ui-frame-lag-contract.md](docs/architecture/ui-frame-lag-contract.md)
     — single-player lag, optimistic UI, M5 lockstep, context loss, replay
-14. [docs/architecture/ui-state-contract.md](docs/architecture/ui-state-contract.md)
+15. [docs/architecture/ui-state-contract.md](docs/architecture/ui-state-contract.md)
     — component-state matrix, selector purity, tooltip lifecycle,
     command lifecycle, undo/redo (map editor)
-15. [docs/architecture/ui-routing.md](docs/architecture/ui-routing.md)
+16. [docs/architecture/ui-routing.md](docs/architecture/ui-routing.md)
     — screen-router FSM, transition graph, modal stack, dismissal policy
-16. [docs/architecture/ui-input-arbitration.md](docs/architecture/ui-input-arbitration.md)
+17. [docs/architecture/ui-input-arbitration.md](docs/architecture/ui-input-arbitration.md)
     — single-emit per gesture, Esc precedence ladder, animation gates
-17. [docs/architecture/ui-gestures.md](docs/architecture/ui-gestures.md)
+18. [docs/architecture/ui-gestures.md](docs/architecture/ui-gestures.md)
     — gesture taxonomy, drag contract, drop acceptance
-18. [docs/architecture/ui-hotkeys.md](docs/architecture/ui-hotkeys.md)
+19. [docs/architecture/ui-hotkeys.md](docs/architecture/ui-hotkeys.md)
     — hotkey registry, focus order, tab-trap, focus restoration
-19. [docs/architecture/ui-input-modalities.md](docs/architecture/ui-input-modalities.md)
+20. [docs/architecture/ui-input-modalities.md](docs/architecture/ui-input-modalities.md)
     — mouse / touch / keyboard / gamepad bridging
-20. [docs/architecture/mechanics-coverage.md](docs/architecture/mechanics-coverage.md)
+21. [docs/architecture/mechanics-coverage.md](docs/architecture/mechanics-coverage.md)
     — mechanic scope SSOT (mvp / phase-2 / phase-3 / deferred / out-of-scope)
-21. [docs/architecture/performance.md](docs/architecture/performance.md)
+22. [docs/architecture/performance.md](docs/architecture/performance.md)
     — hardware tiers, per-frame CPU budget, GC budget, memory budget,
     entity ceilings, AI compute budget, allocation policy
-22. [docs/architecture/atlas-pipeline.md](docs/architecture/atlas-pipeline.md)
+23. [docs/architecture/atlas-pipeline.md](docs/architecture/atlas-pipeline.md)
     — atlas-generation pipeline (pinned packer, deterministic invocation,
     publish step ordering)
-23. [docs/architecture/ai-contract.md](docs/architecture/ai-contract.md)
+24. [docs/architecture/ai-contract.md](docs/architecture/ai-contract.md)
     — gameplay-AI runtime contract: input view projection, worker
     protocol, per-turn budget table, cancellation, parallelism,
     decision log, BotProvider, cheats. Provider-backed content
     generation lives in `ai-integration.md`.
-24. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-25. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
+25. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
+26. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
     Mermaid flows: game startup, race → castle rendering, battle attack
     sequence, asset loading per context, localization, save/load. Read
     a single `<id>.md` to understand one runtime behavior end-to-end.
-26. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
+27. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
     numbered per-screen UI packages. Each package contains
     `mockup.html` for visuals, `spec.md` for components and bindings,
     `interactions.md` for per-control behavior, `data-contracts.md` for

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/storage-error.schema.json",
+  "title": "StorageError",
+  "description": "Closed taxonomy of structured errors returned by the IndexedDB wrapper boundary. Every wrapper write returns Result<void, StorageError>. See docs/architecture/storage-policy.md and docs/architecture/edge-cases-policy.md § 15.",
+  "type": "object",
+  "required": ["code"],
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "QUOTA_EXCEEDED" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "store": {
+              "enum": ["saves", "scenarios", "content", "ai-cache"]
+            },
+            "key": { "type": "string", "minLength": 1 },
+            "byteLength": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "IDB_VERSION_ERROR" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "expectedVersion": { "type": "integer", "minimum": 1 },
+            "actualVersion": { "type": "integer", "minimum": 1 }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "IDB_BLOCKED" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "reason": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": { "const": "IDB_DATA_CORRUPTION" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "store": {
+              "enum": ["saves", "scenarios", "content", "ai-cache"]
+            },
+            "key": { "type": "string", "minLength": 1 },
+            "expectedHash": { "type": "string", "minLength": 1 },
+            "actualHash": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

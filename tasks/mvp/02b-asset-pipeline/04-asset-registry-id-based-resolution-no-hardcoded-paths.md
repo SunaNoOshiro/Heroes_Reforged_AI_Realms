@@ -55,6 +55,10 @@ Acceptance Criteria:
 - Unloading the Emberwild pack → `resolveSprite("emberwild/ash-hound")` returns a shared placeholder
 - ESLint rule: no relative asset path imports inside `src/renderer/` or `src/ui/` modules
 - All existing renderer and UI code migrated to use `AssetRegistry` (no hardcoded paths)
+- **Fallback chain order (Q215).** `locale variant → faction default → generic placeholder`. The generic placeholder is bundled with the app and is never absent.
+- **Retry policy.** On `404` / fetch failure, the resolver retries exactly once with 500 ms backoff. Subsequent failures within the same session use the placeholder without further retry.
+- **User notification.** A non-modal toast "Some visuals couldn't load" is emitted at most once per session, not per asset.
+- **Gameplay vs presentation boundary.** The resolver returns *pixels / audio* only. Frame timing, hitbox geometry, and projectile speed are gameplay records loaded pre-session — never streamed assets. Cross-cutting policy in [`docs/architecture/edge-cases-policy.md` § 12](../../../docs/architecture/edge-cases-policy.md#12-asset-load-failure-q215).
 
 Verify:
 - npm run validate

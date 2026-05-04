@@ -1,0 +1,9 @@
+{
+  "code": "UNREACHABLE_TARGET",
+  "details": {
+    "from": { "q": 4, "r": 6 },
+    "to": { "q": 12, "r": 9 },
+    "reason": "out-of-range"
+  },
+  "message": "Target is outside hero movement range."
+}

@@ -1,0 +1,5 @@
+{
+  "code": "MALFORMED_PAYLOAD",
+  "path": "/quantity",
+  "message": "Expected positive integer; got 0."
+}

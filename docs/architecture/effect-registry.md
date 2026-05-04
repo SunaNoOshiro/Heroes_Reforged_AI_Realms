@@ -148,3 +148,20 @@ Decision Log and § 8 BotProvider.
 - ❌ Free-form `type: string` for new effects — hides typos.
 - ❌ Storing formulas as strings — breaks determinism.
 - ❌ Embedding asset paths in effect records — presentation is separate.
+
+## Drain semantics
+
+Drain effects (resource drain, mana drain, hit-point drain) **floor
+at `0` per tick**; no debt accumulates.
+
+- A curse / status that drains 5 mana per round against a stack with
+  3 mana drains 3 mana, leaves the stack at 0, and never produces a
+  negative balance.
+- The reducer post-condition runs the canonical state-shape
+  invariant assertion (`resources[k] ≥ 0`, `unit.count ≥ 0`); any
+  drain that would breach the floor clamps before the assertion
+  evaluates.
+- Cross-cutting framing in
+  [`docs/architecture/edge-cases-policy.md` § 7](./edge-cases-policy.md#7-negative-resources-q211)
+  and the state-shape invariant in
+  [`determinism.md` § State-shape invariants](./determinism.md#state-shape-invariants).

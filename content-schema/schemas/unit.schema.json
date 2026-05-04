@@ -50,9 +50,10 @@
     },
     "cost": {
       "type": "object",
+      "description": "Per-resource cost. Integer scalar bounded by MAX_RESOURCE (2_000_000_000) per docs/architecture/edge-cases-policy.md § 6.",
       "minProperties": 1,
       "propertyNames": { "$ref": "heroes-reforged/resource-id.schema.json" },
-      "additionalProperties": { "type": "integer", "minimum": 0 }
+      "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 2000000000 }
     },
     "growth": {
       "type": "object",

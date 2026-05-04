@@ -117,6 +117,22 @@ Turn-affecting commands are gated by
 the dispatcher rejects them while the slot is non-null so renderer
 animations cannot lap the reducer.
 
+## Save eligibility
+
+`canSaveNow(state): { allowed: boolean, reason?: string }` is the
+pure predicate the system menu and Save/Load screens consult before
+enabling Save. It returns `false` during active battle, multiplayer
+turn lock, an open choice modal, or mid-end-of-day animation. The
+canonical predicate enumeration and reason IDs live in
+[`content-schema/save-eligibility.md`](../../content-schema/save-eligibility.md);
+cross-cutting framing is in
+[`edge-cases-policy.md` § 8](./edge-cases-policy.md#8-save-gating-q212).
+
+On load, the command log replays silently to the saved offset; the
+animation timeline starts empty (no in-flight animations) and re-emitted
+events execute synchronously. The first post-load command schedules
+animations normally.
+
 ## AI Side Channels
 
 Gameplay-AI workers emit one `Command` per `requestAIMove` call;

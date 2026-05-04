@@ -48,6 +48,39 @@ Acceptance Criteria:
   `renderer.cull + draw` ≤ 4 ms,
   `renderer.animationTick` ≤ 1 ms at the Reference tier.
 
+### Rehydration Mode (Q212, save / load)
+
+When a save loads, the engine replays the command log silently to
+the saved offset. During replay-time event emission the animation
+scheduler is skipped:
+
+- Re-emitted events from replay execute synchronously and do not
+  enqueue animation timeline entries.
+- The animation timeline starts empty after `load()` completes
+  (no in-flight animations).
+- The first *post*-load command schedules animations normally.
+
+Cross-cutting framing in
+[`docs/architecture/edge-cases-policy.md` § 8](../../../docs/architecture/edge-cases-policy.md#8-save-gating-q212).
+
+### Visibility Hooks (Q217)
+
+The render loop participates in the canonical visibility policy
+([`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md)):
+
+- **Audio mute hook.** On `visibilitychange:hidden`, mute audio;
+  on `:visible`, restore audio gain.
+- **Autosave flush hook.** On `:hidden`, fire a best-effort
+  tab-resume autosave (synchronous IDB write where possible,
+  wrapped in a 50 ms timeout). The persistence task owns the
+  actual write; this loop owns the dispatch hook.
+- **rAF cleanup.** The existing rAF cleanup remains; restart only
+  on `:visible`.
+- **Resume reconciliation.** On `:visible`, request the peer
+  state-hash comparison from the multiplayer transport; if
+  hashes match, resume normally; otherwise treat as desync and
+  trigger the reconnection flow.
+
 Verify:
 - npm run validate
 - npm test

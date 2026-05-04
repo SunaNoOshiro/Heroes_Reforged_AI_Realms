@@ -1,0 +1,10 @@
+{
+  "code": "OWNERSHIP_VIOLATION",
+  "details": {
+    "entityKind": "town",
+    "id": "town:emberwild.kindle-keep",
+    "ownerPlayerId": 1,
+    "actorPlayerId": 0
+  },
+  "message": "Cannot recruit from a town owned by another player."
+}

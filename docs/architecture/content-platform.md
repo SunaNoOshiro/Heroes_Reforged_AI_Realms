@@ -86,6 +86,31 @@ To stay easy to extend:
 - allow missing visuals to fall back
 - reject missing gameplay requirements loudly
 
+## Asset-Load Failure Policy
+
+"Missing visuals fall back" is the principle; the chain order,
+retry, and notification rules are pinned canonically in
+[`edge-cases-policy.md` § 12](./edge-cases-policy.md#12-asset-load-failure-q215).
+Summary:
+
+- **Fallback chain order:** `locale variant → faction default →
+  generic placeholder`. The generic placeholder is bundled with the
+  app and is never absent.
+- **Retry:** 1× retry with 500 ms backoff on first failure;
+  subsequent failures within the session use the placeholder
+  without further retry.
+- **User notification:** non-modal toast "Some visuals couldn't
+  load" once per session, not per asset.
+- **Gameplay-vs-presentation boundary:** any field that affects
+  deterministic state (frame timing, hitbox geometry, projectile
+  speed) is **gameplay**, lives in the gameplay record, and is
+  loaded pre-session. Streamed assets carry only pixels / audio
+  waveforms.
+- **AI-pipeline records:** the pre-ingest validation in
+  [`ai-generation-pipeline.md`](./ai-generation-pipeline.md)
+  remains the fail-loud gate for AI-generated *gameplay* records;
+  runtime never accepts one bypassing that gate.
+
 The migration cycle, schema-version bump procedure, and worked example
 live in
 [`schema-migration-policy.md`](./schema-migration-policy.md).

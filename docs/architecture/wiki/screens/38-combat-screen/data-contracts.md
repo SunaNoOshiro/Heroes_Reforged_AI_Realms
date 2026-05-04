@@ -32,6 +32,7 @@
 | `legalHexes` | `state.battle.legalTargets` | Reducer/combat rules output. |
 | `combatLog` | `state.battle.log` | Localized event log from deterministic outcomes. |
 | `pendingAnimation` | `state.ui.battle.pendingAnimation` | Presentation-only timeline from reducer result. |
+| `opponentDisconnect` | `state.net.opponentDisconnect` | `OpponentDisconnect { peerId: string, secondsRemaining: number } \| null`. Drives the multiplayer disconnect banner and forfeit modal. Non-deterministic (`state.net.*` namespace per [`docs/architecture/determinism.md` § Clock Policy](../../../determinism.md#clock-policy)). |
 
 ### Commands And Events
 - `PREVIEW_COMBAT_TARGET` from `combat.selectTarget`: Highlights legal movement/attack/cast target.
@@ -55,6 +56,8 @@
 - `ui.combat-screen.status.*`
 - `ui.combat-screen.errors.*`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
+- `mp.combat.disconnect_banner` — banner shown to the still-connected player during the 30 s reconnect window
+- `mp.combat.forfeit_modal` — forfeit modal shown after 120 s of continuous disconnect
 
 ### Asset, Sound, And VFX IDs
 - `ui.combat-screen.background`

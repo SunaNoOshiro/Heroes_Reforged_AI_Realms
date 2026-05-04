@@ -38,6 +38,7 @@ Primary strategic map with terrain viewport, fog of war, object interaction, her
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- **End-day debounce.** End turn buttons and hotkeys are debounced 250 ms (trailing edge). Dispatcher single-flight on `(playerId, END_DAY)` is the safety net; the second arrival within the same tick returns `DUPLICATE_INTENT`. See [`docs/architecture/command-schema.md` § Single-flight commands](../../../command-schema.md#single-flight-commands).
 
 ### AI Implementation Notes
 - This file owns behavior and timing.

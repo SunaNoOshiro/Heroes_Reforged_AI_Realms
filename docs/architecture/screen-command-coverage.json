@@ -61,10 +61,13 @@
     "SCRUB_PRESENTATION_TO_INDEX",
     "AI_TRACE_REQUEST",
     "AI_TRACE_RESULT",
-    "COMPUTE_MOVE"
+    "COMPUTE_MOVE",
+    "DUPLICATE_INTENT",
+    "LOCALE_CHANGED"
   ],
   "outOfScope": {
     "COMPLETE_CINEMATIC": "phase-2.08-meta-systems.03-cinematic-playback-engine owns cinematic completion state.",
+    "END_BATTLE_TURN": "mvp.09-tactical-combat owns the per-stack turn-end command; reserved single-flight kind referenced from the dispatcher policy in docs/architecture/command-schema.md § Single-flight commands.",
     "HOST_MULTIPLAYER_SESSION": "phase-3.01-multiplayer owns network session commands.",
     "JOIN_MULTIPLAYER_SESSION": "phase-3.01-multiplayer owns network session commands.",
     "LAUNCH_NETWORK_GAME": "phase-3.01-multiplayer owns network lobby launch commands.",

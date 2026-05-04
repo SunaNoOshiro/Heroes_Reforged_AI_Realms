@@ -1,0 +1,8 @@
+{
+  "code": "ILLEGAL_PHASE",
+  "details": {
+    "expectedPhase": "battle",
+    "actualPhase": "adventure"
+  },
+  "message": "BATTLE_ATTACK is only legal during phase=battle."
+}

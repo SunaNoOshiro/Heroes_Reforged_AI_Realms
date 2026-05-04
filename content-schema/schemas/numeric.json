@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/numeric.json",
+  "title": "Numeric invariants",
+  "description": "Shared numeric `$defs` reused by every command schema, the dispatcher validation pipeline, and state-shape minima. The constants encode the rules pinned in docs/architecture/edge-cases-policy.md § 5 (zero-resource transactions) and § 6 (overflow & saturation), and the saturation table in docs/architecture/determinism.md § Saturation policy.",
+  "$defs": {
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Quantity / amount fields where zero is meaningless (RECRUIT_UNITS quantity, SPLIT_ARMY_STACK quantity, TRADE_RESOURCES amount, ...). Encoding zero in the command payload is rejected at schema time."
+    },
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Cost / delta fields where zero is a legal but explicit value (a Mysticism-discounted spell cost; an empty resource bundle entry). State-shape resource and unit-count fields also reuse this floor."
+    },
+    "resourceAmount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2000000000,
+      "description": "Player-side resource scalar. Maximum equals MAX_RESOURCE (2_000_000_000). Saturation policy: clamp at the cap; never wrap. See docs/architecture/determinism.md § Saturation policy."
+    },
+    "unitCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000,
+      "description": "Stack-count scalar. Maximum equals MAX_UNIT_COUNT (1_000_000). Same clamp-not-wrap policy as resourceAmount."
+    },
+    "intermediate": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991,
+      "description": "Formula-step intermediate. Maximum equals MAX_INTERMEDIATE (2^53 - 1). Dev builds raise OverflowError when an intermediate exceeds the bound; prod builds saturate."
+    }
+  }
+}

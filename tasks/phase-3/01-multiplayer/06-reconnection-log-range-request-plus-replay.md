@@ -43,6 +43,30 @@ Idempotency Note:
   and
   [`docs/architecture/determinism.md` § Canonical Command Key](../../../docs/architecture/determinism.md#canonical-command-key).
 
+## Combat-Specific Behaviour (Q213)
+
+The 30 s reconnect / 120 s forfeit window applies during combat
+with these refinements (full framing in
+[`docs/architecture/edge-cases-policy.md` § 9](../../../docs/architecture/edge-cases-policy.md#9-mid-combat-disconnect-q213)):
+
+- **Combat clock pauses** during the reconnect window. The
+  still-connected player sees a banner localized via
+  `mp.combat.disconnect_banner` ("Opponent disconnected — 0:30 to
+  reconnect"). The combat reducer emits no auto-advance.
+- **AI does not take over** the absent player's stack during the
+  reconnect window. Fairness is preferred over throughput; this
+  matches the audit Q146 deferral.
+- **At 120 s**, defender wins by forfeit (or attacker, if the
+  defender is the disconnected party — the still-present player
+  wins the combat). Combat resolves; the absent player's hero is
+  treated as defeated; the still-present player resumes the
+  adventure-map turn. The forfeit modal is localized via
+  `mp.combat.forfeit_modal`.
+- **No per-combat checkpoint** in MVP. The reconnecting peer
+  replays the full pre-combat state plus commands; the
+  deterministic reducer guarantees identical state. Phase-3 may
+  revisit if reconnect time becomes problematic.
+
 Network-Chaos Coverage:
 - This task is exercised by the consolidated network-chaos test matrix
   ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)).

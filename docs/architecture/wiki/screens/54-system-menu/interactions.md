@@ -38,6 +38,8 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- **Save / load debounce.** All command-emitting buttons and hotkeys here are debounced 250 ms (trailing edge); dispatcher single-flight is the safety net. See [`docs/architecture/command-schema.md` § Single-flight commands](../../../command-schema.md#single-flight-commands).
+- **Save eligibility.** The Save Game item is disabled per the `canSaveNow(state)` predicate enumerated in [`content-schema/save-eligibility.md`](../../../../../content-schema/save-eligibility.md). Reasons surface as localized strings: `save.disabled.in_battle`, `save.disabled.not_your_turn`, `save.disabled.modal_open`, `save.disabled.animating`.
 
 ### AI Implementation Notes
 - This file owns behavior and timing.

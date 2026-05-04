@@ -20,3 +20,5 @@ Save and load game state via IndexedDB. Saves use a log-only format — only the
   🤖 Task 4: Scenario loader (~3h)
 - [05-export-import-json.md](08-persistence/05-export-import-json.md)
   🤖 Task 5: Export / import JSON (~3h)
+- [09-quota-handling.md](08-persistence/09-quota-handling.md)
+  🤖 Task 9: Quota handling and LRU eviction (~6h)

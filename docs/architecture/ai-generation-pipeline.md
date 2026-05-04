@@ -148,6 +148,23 @@ deterministic UV sampling stable across pack origins.
 | 5 | CI below 35 % or above 65 % | Return `BalanceReport`; route to optimizer or reject |
 | 6 | `contentHash` collision with existing pack | Fail pack write; require rename |
 
+## Gameplay vs Presentation Boundary
+
+AI-generated assets carry **pixels and audio waveforms only**. Any
+field that affects deterministic state — frame timing, hitbox
+geometry, projectile speed, attack-frame index — is a **gameplay
+record**, gated by the pre-ingest validator (stage 3 above) and
+loaded pre-session via the gameplay-record path. The streamed
+asset path never accepts an AI-generated *gameplay* record at
+runtime.
+
+This rule is enforced because animation manifests (which encode
+attack-frame *timing*) sit on the boundary: timing data is
+gameplay and must travel through the validated record path. Pixels
+that decorate those frames travel through the streamed asset path
+and obey the fallback chain in
+[`docs/architecture/edge-cases-policy.md` § 12](./edge-cases-policy.md#12-asset-load-failure-q215).
+
 ## What the pipeline does not do
 
 - **No determinism guarantee on provider output.** Provider calls
