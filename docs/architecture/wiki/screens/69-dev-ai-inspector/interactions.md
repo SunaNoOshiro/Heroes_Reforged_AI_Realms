@@ -52,6 +52,11 @@ turn against the same `(view, rngSeed)`.
   records the divergence for QA capture; it does not interrupt
   gameplay.
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behaviour and timing.
 - Hotkey registration is done through the central hotkey

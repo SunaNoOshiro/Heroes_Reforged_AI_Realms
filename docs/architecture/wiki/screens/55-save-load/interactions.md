@@ -38,6 +38,7 @@ Save/load slot browser with save metadata, compatibility checks, overwrite confi
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
 - Save loaded with `saveVersion` outside the migration support window (last 4) renders the canonical "incompatible save migration needed" missing-state; the player is told to keep the file. Load is disabled, Delete remains enabled.
 - A `QuotaExceededError` from the IDB wrapper does not retry; the "Manage saves" CTA is the remediation surface and the failure toast cites it.
 - The Save tab follows the `canSaveNow(state)` predicate from [`content-schema/save-eligibility.md`](../../../../../content-schema/save-eligibility.md). Disabled reasons surface as localized strings: "Finish battle to save" (`save.disabled.in_battle`), "Wait for your turn to save" (`save.disabled.not_your_turn`), "Resolve the open prompt to save" (`save.disabled.modal_open`), "Wait for end-of-day to finish" (`save.disabled.animating`).

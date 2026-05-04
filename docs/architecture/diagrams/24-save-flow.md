@@ -83,6 +83,44 @@ under sibling keys `${id}:manifest` and `${id}:payload`
 does. Autosave additionally uses a verify-then-swap shadow key
 (`${slot}.tmp`) so a tab kill mid-rotation cannot poison a live slot.
 
+## Replay Export Sanitization
+
+When a save is **exported** (crosses a peer / account boundary as a
+shareable replay), an additional sanitizer runs after the canonical
+JSON step and before the gzip step:
+
+```text
+serialize → canonical JSON
+        ↓
+   replay-export sanitizer
+        ↓
+        gzip
+```
+
+The sanitizer:
+
+1. Reads `state.privacy.replayShareConsent.mode` (default
+   `playerHashOnly`; declared in
+   [`state-flow.md` § Privacy Slice](../state-flow.md#privacy-slice)).
+2. Replaces `metadata.playerName` and every
+   `state.players.byId.*.displayName` with the corresponding
+   `playerHash` if `playerHashOnly`.
+3. Surfaces a confirmation modal listing every PII field that
+   *will* travel and a per-field "include / redact" toggle. The
+   user must explicitly choose `playerNameCleartext` to ship raw
+   names.
+4. Routes the command log through the desync redactor declared in
+   [`desync-redaction.md`](../desync-redaction.md) when
+   `displayNameMode: 'hash'` is set: hidden fields are replaced
+   with their truncated hash + length-class label.
+5. Writes a row to the local audit-log
+   ([`audit-log-entry.schema.json`](../../../content-schema/schemas/audit-log-entry.schema.json))
+   with `type: 'REPLAY_EXPORT'`, the chosen `mode`, and the
+   digest of the exported file.
+
+The save-import side (Plan 20) does **not** un-redact; once a hash
+leaves, it stays a hash.
+
 ## Pre-Decompression Caps (Imports)
 
 When a save is being **imported** (not created locally), the

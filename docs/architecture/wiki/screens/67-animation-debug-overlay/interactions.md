@@ -52,6 +52,11 @@ state. Engine reducers are not invoked by any control here.
   surfaces a recoverable error per
   [`ui-state-contract.md` § Error State](../../../ui-state-contract.md#error-state).
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behaviour and timing.
 - `spec.md` owns static regions and state bindings.

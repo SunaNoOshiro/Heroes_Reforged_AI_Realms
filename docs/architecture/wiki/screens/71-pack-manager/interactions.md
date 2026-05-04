@@ -56,6 +56,11 @@ revoke trust, or remove packs.
 - Missing presentation assets may use resolver fallback. Missing
   manifest fields fail loudly.
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behavior and timing.
 - `spec.md` owns static regions and state bindings.

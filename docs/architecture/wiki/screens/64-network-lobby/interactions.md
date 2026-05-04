@@ -63,6 +63,9 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
 - `APPROVE_PEER`, `REJECT_PEER`, `KICK_PEER`, `CLOSE_ROOM` are disabled for non-host peers; the per-row dots-menu hides them entirely.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+- Peer-connection failures render only `peerLabel` and the closed `peerFailureReason` enum (`TIMEOUT` / `REFUSED` / `NETWORK_ERROR` / `PROTOCOL_MISMATCH`); raw IPs and ICE addresses never reach UI or the on-device crash log per the contract in [`spec.md` § Peer-Failure Error Contract](./spec.md#peer-failure-error-contract).
+- Signaling join failures collapse to `errors.network.joinFailed` per the closed wire enum in [`services/signaling/error-codes.md`](../../../../../services/signaling/error-codes.md); the `OWNER_NOTICE` channel surfaces a richer reason to the host only.
 
 ### Out of M5 Scope
 - **Spectator slots are not in M5.** The lobby renders only the 2 active player slots (per the M5 cap in [`tasks/phase-3/01-multiplayer.md`](../../../../../tasks/phase-3/01-multiplayer.md)). Spectator UI, slot acquisition, and observer-mode commands are deferred under [`DEF-002`](../../../../planning/deferred.md). Implementers MUST NOT add spectator slots, observer roles, or "watch the match" affordances to this screen until that deferral is closed by a future plan.

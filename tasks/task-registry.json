@@ -1906,6 +1906,262 @@
   ],
   "tasks": [
     {
+      "id": "mvp.00-core-architecture.22-01-error-formatter-contract",
+      "kind": "task",
+      "status": "planned",
+      "title": "Error Formatter Contract and `errors.*` Namespace",
+      "path": "tasks/mvp/00-core-architecture/22-01-error-formatter-contract.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Author [`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md) declaring `formatUserError` and `formatDevError` as the only sinks that produce text bound into UI / developer surfaces. Add the closed `errors.*` namespace to [`localization.schema.json`](../../../content-schema/schemas/localization.schema.json). Reserve `src/errors/format.ts` and `src/errors/redact.ts` as the implementation paths plus a fixture-driven lint test `tests/lint/no-raw-error-message-in-ui.test.ts` that bans raw `err.message`, `err.stack`, `String(err)`, `${err}`, and `JSON.stringify(err)` outside `src/errors/`. Sweep the 70+ screen `interactions.md` files to append the rule \"errors are produced by `formatUserError(err, locale)`; never construct error toast text inline.\" Plan 22 § 2 — Centralized error-formatter and lint contract.",
+      "inputs": [
+        "The closed surface mapping in `error-ux.md`.",
+        "The closed `errors.*` localization keys listed in the plan."
+      ],
+      "outputs": [
+        "`docs/architecture/error-formatter.md`",
+        "`content-schema/schemas/localization.schema.json` (additive `errors.*`).",
+        "`src/errors/format.ts` (reserved path; lint test gates implementation).",
+        "`src/errors/redact.ts` (reserved path).",
+        "`tests/lint/no-raw-error-message-in-ui.test.ts` (reserved path).",
+        "Append-edit on every `docs/architecture/wiki/screens/*/interactions.md` to register the formatter rule."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/error-ux.md`](../../../docs/architecture/error-ux.md)",
+        "[`docs/architecture/error-taxonomy.md`](../../../docs/architecture/error-taxonomy.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/error-formatter.md",
+        "tests/lint/no-raw-error-message-in-ui.test.ts",
+        "content-schema/schemas/localization.schema.json",
+        "docs/architecture/wiki/screens/*/interactions.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/localization.schema.json",
+        "docs/architecture/wiki/screens/*/interactions.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`docs/architecture/error-formatter.md` declares the two API signatures, the redaction allowlist, the `errorId` UUID v4 rule, prod / dev branching, and § Schema-validation errors.",
+        "`grep -L \"formatUserError\" docs/architecture/wiki/screens/*/interactions.md | wc -l` equals `0`.",
+        "`tests/lint/no-raw-error-message-in-ui.test.ts` ships a fixture table covering every banned pattern. Owned Paths (shared) acceptance:",
+        "`content-schema/schemas/localization.schema.json` is **owned by** `mvp.02-content-schemas.10-zod-validators-for-all-schemas` (the primary contract). This task is **additive**: a new closed `errors.*` namespace is appended; the existing `entries` property, required list, and per-key interpolation block must not be rewritten.",
+        "Each `docs/architecture/wiki/screens/*/interactions.md` is **owned by** the screen-package-contract-sweep tasks under `mvp.07-ui-shell` (the primary owner of every screen package). This task is **additive**: it appends one sentence registering the `formatUserError` rule; existing action rows, error surfaces, and navigation outcomes must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 11
+    },
+    {
+      "id": "mvp.00-core-architecture.22-02-production-build-policy",
+      "kind": "task",
+      "status": "planned",
+      "title": "Production-Build Error & Bundle Policy",
+      "path": "tasks/mvp/00-core-architecture/22-02-production-build-policy.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Author [`docs/architecture/production-build.md`](../../../docs/architecture/production-build.md) declaring the five rules the build pipeline (Plan 30) must satisfy before any production bundle ships: `__DEV__` constant-folding, public source-map strip, `formatUserError` as the only UI error sink, console sinks routed through `formatDevError`, and a bundle-size CI check against dev-only constants. Cross-link from [`state-flow.md`](../../../docs/architecture/state-flow.md) and the error-formatter doc. Plan 22 § 2 — Production-build error policy.",
+      "inputs": [
+        "The five rules listed in Plan 22 § Critical Fixes — Production-build error policy."
+      ],
+      "outputs": [
+        "`docs/architecture/production-build.md`"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/production-build.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "acceptanceCriteria": [
+        "The doc names all five rules and references [`error-formatter.md`](../../../docs/architecture/error-formatter.md) + [`crypto-rules.md`](../../../docs/architecture/crypto-rules.md).",
+        "The bundle-size CI check is reserved as a Plan 30 acceptance criterion; this task does not implement the toolchain.",
+        "`state-flow.md` cross-links the doc."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.22-03-crypto-rules-and-signature-error",
+      "kind": "task",
+      "status": "planned",
+      "title": "Crypto Rules and Signature-Error Vocabulary",
+      "path": "tasks/mvp/00-core-architecture/22-03-crypto-rules-and-signature-error.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Author [`docs/architecture/crypto-rules.md`](../../../docs/architecture/crypto-rules.md) with three mandatory rules: constant-time secret compare, uniform throw with `redact: true`, and dev-only `errorId` log. Add the closed [`signature-error.schema.json`](../../../content-schema/schemas/signature-error.schema.json) enum (`INVALID_SIGNATURE`, `SIGNATURE_DISABLED`). Cross-link from [`pack-contract.md` § Trust Fields](../../../docs/architecture/pack-contract.md#trust-fields). Reserve the `no-raw-eq-on-secret` lint rule for a Phase-2 task. Plan 22 § 2 — Crypto-rules + constant-time compare.",
+      "inputs": [
+        "Plan 22's three crypto rules (Compare / Throw / Log).",
+        "Plan 27's prospective save-MAC and pack-signing surfaces."
+      ],
+      "outputs": [
+        "`docs/architecture/crypto-rules.md`",
+        "`content-schema/schemas/signature-error.schema.json`",
+        "Canonical example `content-schema/examples/signature-error/canonical.signature-error.json`",
+        "Cross-link sentence in `pack-contract.md` § Trust Fields."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/crypto-rules.md",
+        "content-schema/schemas/signature-error.schema.json",
+        "content-schema/examples/signature-error/",
+        "docs/architecture/pack-contract.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/pack-contract.md"
+      ],
+      "dependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "acceptanceCriteria": [
+        "The schema validates the canonical example.",
+        "The schema's `code` enum is exactly `[\"INVALID_SIGNATURE\", \"SIGNATURE_DISABLED\"]`.",
+        "The doc names all three rules and references the formatter's `redact: true` tag.",
+        "A Phase-2 task slot is reserved for the `no-raw-eq-on-secret` lint integration. Owned Paths (shared) acceptance:",
+        "`docs/architecture/pack-contract.md` is **owned by** the pack-loading task family (the primary owner of trust-field rules). This task is **additive**: a single cross-link sentence is added under § Trust Fields naming `crypto-rules.md` and the closed `signatureErrorCode` enum; the existing trust-field, sandbox, and revocation rules must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/signature-error.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/signature-error.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.22-06-command-field-visibility-and-desync-redaction",
+      "kind": "task",
+      "status": "planned",
+      "title": "Command Field Visibility and Desync Redaction",
+      "path": "tasks/mvp/00-core-architecture/22-06-command-field-visibility-and-desync-redaction.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Author [`docs/architecture/desync-redaction.md`](../../../docs/architecture/desync-redaction.md) declaring the redactor that runs on every desync report and every auto-bisect round before any UI / log / peer sink. Add a per-field `visibility: 'public' | 'hidden'` tag to [`command-schema.md`](../../../docs/architecture/command-schema.md) with worked examples for `MOVE_HERO`, `INITIATE_BATTLE`, `BATTLE_ATTACK`, `CAST_SPELL`, `TRANSFER_ARTIFACT`, `RECRUIT_UNIT`, and `SET_GUARD`. The redactor replaces `hidden` fields with `sha256(canonical(field))` truncated to 12 hex chars + length-class. Plan 22 § 3 — Command-schema field-visibility tag.",
+      "inputs": [
+        "The closed two-value visibility enum (`public` / `hidden`).",
+        "The four-bucket length-class labels (`<8`, `<32`, `<128`, `>=128`)."
+      ],
+      "outputs": [
+        "`docs/architecture/desync-redaction.md`",
+        "Field-visibility section + worked-example table appended to `command-schema.md`."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/desync-redaction.md",
+        "docs/architecture/command-schema.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/command-schema.md"
+      ],
+      "dependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "acceptanceCriteria": [
+        "The redaction doc declares the closed visibility enum, the four-bucket length-class labels, and the pipeline placement (redactor runs **before** any sink).",
+        "Worked-example rows cover at least the seven kinds named above.",
+        "The redactor reuses the formatter's `redact: true` allowlist. Owned Paths (shared) acceptance:",
+        "`docs/architecture/command-schema.md` is **owned by** the dispatcher task family (`mvp.00-core-architecture.cmd-dispatcher-queue` is the primary owner of the command envelope). This task is **additive**: one new \"Field Visibility (Desync Redaction)\" section is appended; the existing command envelope, per-command validation rules, deduplication rules, cross-actor ordering, and serialization contract must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 5
+    },
+    {
       "id": "mvp.00-core-architecture.arch-module-graph",
       "kind": "task",
       "status": "done",
@@ -2900,7 +3156,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 375
+      "downstreamTransitiveCount": 387
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2962,7 +3218,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 373
+      "downstreamTransitiveCount": 385
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3075,7 +3331,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 285
+      "downstreamTransitiveCount": 297
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -4121,7 +4377,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 283
+      "downstreamTransitiveCount": 295
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4179,7 +4435,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 204
+      "downstreamTransitiveCount": 216
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4243,7 +4499,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 144
+      "downstreamTransitiveCount": 156
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4301,7 +4557,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 149
+      "downstreamTransitiveCount": 161
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4362,7 +4618,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 195
+      "downstreamTransitiveCount": 207
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4423,7 +4679,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 254
+      "downstreamTransitiveCount": 266
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4497,7 +4753,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 135
+      "downstreamTransitiveCount": 147
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4582,7 +4838,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 104
+      "downstreamTransitiveCount": 116
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4683,7 +4939,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 113
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -4790,8 +5046,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 27,
-      "downstreamTransitiveCount": 91
+      "downstreamDirectCount": 29,
+      "downstreamTransitiveCount": 103
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -4951,7 +5207,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 165
+      "downstreamTransitiveCount": 177
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5043,7 +5299,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 108
+      "downstreamTransitiveCount": 120
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5114,7 +5370,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 112
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5176,7 +5432,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 112
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -6171,7 +6427,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 50
     },
     {
       "id": "mvp.02-content-schemas.29-publisher-registry-schema",
@@ -6511,8 +6767,8 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 17
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 26
     },
     {
       "id": "mvp.02-content-schemas.34-content-report-schema",
@@ -6656,7 +6912,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist",
@@ -6913,6 +7169,148 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
       "downstreamTransitiveCount": 18
+    },
+    {
+      "id": "mvp.02-content-schemas.40-privacy-and-legal-docs",
+      "kind": "task",
+      "status": "planned",
+      "title": "Privacy Artifact and Legal Docs",
+      "path": "tasks/mvp/02-content-schemas/40-privacy-and-legal-docs.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Author the canonical privacy artifact at [`docs/architecture/privacy.md`](../../../docs/architecture/privacy.md) plus four legal docs under `docs/legal/`: compliance posture, third-party processor list, DPA checklist, and the manual erasure-process fallback. Add the `state.privacy.acceptedPolicyVersion` / `state.privacy.currentDisclosureVersion` slice declaration to [`state-flow.md`](../../../docs/architecture/state-flow.md). Plan 22 § 1 — Privacy artifact + Service-side observability + retention.",
+      "inputs": [
+        "Plan 21's data-inventory rows (medium / sensitivity / TTL / wipe scope).",
+        "Plan 18 / Plan 19 / Plan 20 chat / lobby / pack contracts."
+      ],
+      "outputs": [
+        "`docs/architecture/privacy.md` (versioned `policyVersion: 1`).",
+        "`docs/legal/compliance.md` — GDPR / CCPA / COPPA scope, Art. 6 lawful basis, data-subject rights mapping, breach response.",
+        "`docs/legal/processors.md` — third-party processor list with procurement gate; reserved categories with constraints.",
+        "`docs/legal/dpa-checklist.md` — vendor-add rubric.",
+        "`docs/legal/erasure-process.md` — manual server-side erasure fallback (email, 30-day SLA) until backend lands."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/privacy.md",
+        "docs/legal/compliance.md",
+        "docs/legal/processors.md",
+        "docs/legal/dpa-checklist.md",
+        "docs/legal/erasure-process.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy"
+      ],
+      "acceptanceCriteria": [
+        "`docs/architecture/privacy.md` carries `policyVersion: 1` at the top and links every legal doc.",
+        "The retention TTL matrix names a TTL per surface (signaling logs, AI gateway prompts, AI gateway responses, crash log, audit log, save metadata).",
+        "The four legal docs exist under `docs/legal/` and are linked from `privacy.md`.",
+        "`state-flow.md` declares the `state.privacy.acceptedPolicyVersion` and `state.privacy.currentDisclosureVersion` fields."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 22
+    },
+    {
+      "id": "mvp.02-content-schemas.41-error-and-audit-schemas",
+      "kind": "task",
+      "status": "planned",
+      "title": "Error and Audit Schemas",
+      "path": "tasks/mvp/02-content-schemas/41-error-and-audit-schemas.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Add the four schemas Plan 22 needs and that have no existing surface: [`signaling-error.schema.json`](../../../content-schema/schemas/signaling-error.schema.json), [`audit-log-entry.schema.json`](../../../content-schema/schemas/audit-log-entry.schema.json), and [`erasure-receipt.schema.json`](../../../content-schema/schemas/erasure-receipt.schema.json) (plus `signature-error.schema.json` if not already shipped by 22-03). Author canonical examples per schema, register the schemas in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md) and [`content-schema/README.md`](../../../content-schema/README.md), and extend `scripts/check-repo-contracts.mjs` with the suffix mapping rows. Plan 22 § 3 — Closed signaling-error / signature-error / audit-log / erasure-receipt schemas.",
+      "inputs": [
+        "The closed wire enum (three values) for signaling.",
+        "The closed `OwnerNotice` reason enum.",
+        "The audit-log type enum (`ERASURE`, `REPLAY_EXPORT`, `POLICY_ACCEPTED`, `OPT_IN_TOGGLED`).",
+        "The erasure-receipt fields named in Plan 22 § Erasure-receipt UX."
+      ],
+      "outputs": [
+        "`content-schema/schemas/signaling-error.schema.json`",
+        "`content-schema/schemas/audit-log-entry.schema.json`",
+        "`content-schema/schemas/erasure-receipt.schema.json`",
+        "Canonical examples for each under `content-schema/examples/`.",
+        "Registration rows in `schema-matrix.md` and `content-schema/README.md`.",
+        "Schema-mapping suffix rows in `scripts/check-repo-contracts.mjs`."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
+        "content-schema/examples/signaling-error/",
+        "content-schema/examples/audit-log-entry/",
+        "content-schema/examples/erasure-receipt/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Each schema validates its canonical example(s).",
+        "Each schema declares `additionalProperties: false`.",
+        "The signaling-error schema's `wireCode` enum is exactly `[\"JOIN_FAILED\", \"RATE_LIMITED\", \"SERVER_ERROR\"]`.",
+        "The audit-log-entry schema's `type` enum is exactly `[\"ERASURE\", \"REPLAY_EXPORT\", \"POLICY_ACCEPTED\", \"OPT_IN_TOGGLED\"]`.",
+        "The erasure-receipt schema requires `erasureRequestId`, `scope`, `performedAt`, `contentHash`, `policyVersion`.",
+        "`npm run validate:contracts` passes.",
+        "`npm run validate:enums` and `npm run generate:enum-snapshot` agree (snapshot updated)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
+        "content-schema/schemas/signaling-error.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
+        "content-schema/schemas/signaling-error.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "mvp.02-tooling.01-ui-smoke-harness",
@@ -12753,9 +13151,11 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -12776,9 +13176,11 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -13012,9 +13414,11 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/hero-class.schema.json",
         "content-schema/schemas/hero.schema.json",
@@ -13036,9 +13440,11 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/error-state.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/hero-class.schema.json",
@@ -13150,8 +13556,10 @@
       ],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -13159,8 +13567,10 @@
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -13527,8 +13937,10 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/hero-class.schema.json",
         "content-schema/schemas/hero.schema.json",
@@ -13548,8 +13960,10 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/hero-class.schema.json",
         "content-schema/schemas/hero.schema.json",
@@ -13999,8 +14413,8 @@
         "mvp.08-persistence.14-wipe-local-data-handler"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 1
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 2
     },
     {
       "id": "mvp.07-ui-shell.23-high-scores-player-label",
@@ -14142,6 +14556,174 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "mvp.07-ui-shell.25-privacy-footer-and-disclosure-modal",
+      "kind": "task",
+      "status": "planned",
+      "title": "Privacy Footer and Disclosure Modal",
+      "path": "tasks/mvp/07-ui-shell/25-privacy-footer-and-disclosure-modal.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Add the privacy footer link to screen [`01-main-menu`](../../../docs/architecture/wiki/screens/01-main-menu/) that opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../docs/architecture/privacy.md) via the `OPEN_PRIVACY_POLICY` command. Add the `PrivacyDisclosureModal` to screen [`56-options`](../../../docs/architecture/wiki/screens/56-options/) that opens automatically when `state.privacy.disclosureSeenVersion < state.privacy.currentDisclosureVersion`. Wire the load-gate so no analytics SDK loads while `state.privacy.options.analyticsOptIn === false`. Plan 22 § 3 — Privacy footer link + Privacy disclosure modal.",
+      "inputs": [
+        "`OPEN_PRIVACY_POLICY` and `ACKNOWLEDGE_PRIVACY_DISCLOSURE` tokens.",
+        "The `PrivacyDisclosureModal` and `PrivacyFooter` UI components registered in [`ui-component-registry.example.json`](../../../content-schema/examples/ui-component-registry.example.json)."
+      ],
+      "outputs": [
+        "Mockup edits on screen 01 (footer row).",
+        "`mockup.html` / `spec.md` / `interactions.md` / `data-contracts.md` updates on screen 56 declaring the disclosure modal and the acknowledge command."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/privacy.md`](../../../docs/architecture/privacy.md)",
+        "[`docs/architecture/wiki/screens/56-options/`](../../../docs/architecture/wiki/screens/56-options/)",
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/wiki/screens/01-main-menu/",
+        "docs/architecture/wiki/screens/56-options/",
+        "docs/architecture/command-schema.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/wiki/screens/56-options/",
+        "docs/architecture/command-schema.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.07-ui-shell.22-privacy-pane-in-options"
+      ],
+      "acceptanceCriteria": [
+        "Screen 01 mockup renders a footer row with `Privacy · Credits · Version` and binds `OPEN_PRIVACY_POLICY` to the privacy entry.",
+        "Screen 56 declares `state.privacy.disclosureSeenVersion` and `state.privacy.currentDisclosureVersion` in `data-contracts.md`.",
+        "The disclosure modal renders every row of `data-inventory.md` with retention TTL.",
+        "`npm run validate:ui-components` and `npm run validate:commands` pass. Owned Paths (shared) acceptance:",
+        "`docs/architecture/wiki/screens/56-options/` is **owned by** `mvp.07-ui-shell.22-privacy-pane-in-options` (the primary owner of the Privacy pane and its toggle commands). This task is **additive**: one new modal (`PrivacyDisclosureModal`) is added plus two acknowledgement state bindings; the existing toggle rows, the salt-fingerprint readout, and the \"Forget me\" entry must not rewrite anything else.",
+        "`docs/architecture/command-schema.md` is **owned by** the dispatcher task family (the primary contract). This task is **additive**: it adds the `OPEN_PRIVACY_POLICY` and `ACKNOWLEDGE_PRIVACY_DISCLOSURE` rows under § UGC, Privacy & Content-Report Commands; existing command rows must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/01-main-menu",
+        "docs/architecture/wiki/screens/56-options"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.07-ui-shell.22-privacy-pane-in-options"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.07-ui-shell.22-privacy-pane-in-options"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.07-ui-shell.26-erasure-receipt-modal",
+      "kind": "task",
+      "status": "planned",
+      "title": "Erasure Receipt Modal",
+      "path": "tasks/mvp/07-ui-shell/26-erasure-receipt-modal.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Add the `ErasureReceiptModal` to screen [`54-system-menu`](../../../docs/architecture/wiki/screens/54-system-menu/) and bind the new `REQUEST_ERASURE_RECEIPT` command. The modal renders the receipt JSON ([`erasure-receipt.schema.json`](../../../content-schema/schemas/erasure-receipt.schema.json)) and offers \"Copy to clipboard.\" When the user is in an active multiplayer session, the modal also offers \"Request server-side erasure\" that envelopes the receipt for the local outbound `erasure-queue`. Cross-link [`docs/legal/erasure-process.md`](../../../docs/legal/erasure-process.md) for the manual fallback. Plan 22 § 3 — Erasure-receipt UX on system menu.",
+      "inputs": [
+        "`REQUEST_ERASURE_RECEIPT` command tokens.",
+        "The four schemas authored by `mvp.02-content-schemas.41-error-and-audit-schemas`.",
+        "Plan 21's `WIPE_LOCAL_DATA` handler."
+      ],
+      "outputs": [
+        "Updates to the screen-54 package: `spec.md`, `interactions.md`, `data-contracts.md`, `mockup.html` (receipt modal frame).",
+        "New `ErasureReceiptModal` UI-component-registry row."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/privacy.md`](../../../docs/architecture/privacy.md)",
+        "[`docs/architecture/wiki/screens/54-system-menu/`](../../../docs/architecture/wiki/screens/54-system-menu/)",
+        "[`docs/legal/erasure-process.md`](../../../docs/legal/erasure-process.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/wiki/screens/54-system-menu/",
+        "docs/architecture/command-schema.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/wiki/screens/54-system-menu/",
+        "docs/architecture/command-schema.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas",
+        "mvp.08-persistence.14-wipe-local-data-handler"
+      ],
+      "acceptanceCriteria": [
+        "The screen-54 `data-contracts.md` references both `audit-log-entry.schema.json` and `erasure-receipt.schema.json`.",
+        "`interactions.md` adds an \"Erasure receipt\" row binding `REQUEST_ERASURE_RECEIPT`.",
+        "The receipt modal carries `signalingSessionId` only when the user is in an active multiplayer session.",
+        "`npm run validate:ui-components` and `npm run validate:commands` pass. Owned Paths (shared) acceptance:",
+        "`docs/architecture/wiki/screens/54-system-menu/` is **owned by** the screen-package-contract-sweep task family under `mvp.07-ui-shell` (the primary owner of the system-menu package). This task is **additive**: one new modal (`ErasureReceiptModal`) is added plus an \"Erasure receipt\" action row, an \"Account & Data\" footer link group, and two new schema references; Plan 21's \"Forget me\" entry, the Save / Load / Options / Resume / Manage packs / Safe mode rows, and the caller-route logic must not rewrite anything else.",
+        "`docs/architecture/command-schema.md` is **owned by** the dispatcher task family (the primary contract). This task is **additive**: it adds the `REQUEST_ERASURE_RECEIPT` row under § UGC, Privacy & Content-Report Commands; existing command rows must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/54-system-menu"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/erasure-receipt.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas",
+        "mvp.08-persistence.14-wipe-local-data-handler"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas",
+        "mvp.08-persistence.14-wipe-local-data-handler"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "mvp.08-persistence.01-indexeddb-wrapper",
@@ -14952,7 +15534,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 35
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "mvp.08-persistence.11-save-import-screen-and-quarantine",
@@ -15195,7 +15777,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 3
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "mvp.08-persistence.14-wipe-local-data-handler",
@@ -15251,12 +15833,16 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
@@ -15271,8 +15857,8 @@
         "mvp.08-persistence.13-display-name-hash-and-salt"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 2
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 4
     },
     {
       "id": "mvp.08-persistence.15-content-report-queue",
@@ -17933,7 +18519,9 @@
         "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist",
         "mvp.02-content-schemas.37-localization-interpolation-block",
         "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
-        "mvp.02-content-schemas.39-generated-faction-player-inspectable"
+        "mvp.02-content-schemas.39-generated-faction-player-inspectable",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -21605,11 +22193,15 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
@@ -27915,11 +28507,15 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
@@ -30538,6 +31134,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
@@ -30548,6 +31145,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [
@@ -31022,6 +31620,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
@@ -31032,6 +31631,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [
@@ -31114,6 +31714,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
@@ -31124,6 +31725,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [],
@@ -31281,6 +31883,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
@@ -31291,6 +31894,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [
@@ -31378,6 +31982,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
@@ -31388,6 +31993,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [
@@ -31493,6 +32099,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
@@ -31503,6 +32110,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [
@@ -31513,6 +32121,229 @@
       "resolvedDependencies": [
         "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
         "phase-3.01-multiplayer.18-mute-block-and-trust-banner"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary",
+      "kind": "task",
+      "status": "planned",
+      "title": "Signaling Observability and Error Vocabulary",
+      "path": "tasks/phase-3/01-multiplayer/20-signaling-observability-and-error-vocabulary.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Author [`services/signaling/observability.md`](../../../services/signaling/observability.md) and [`services/signaling/error-codes.md`](../../../services/signaling/error-codes.md) plus the cross-service index doc [`docs/architecture/error-codes.md`](../../../docs/architecture/error-codes.md). The wire-visible signaling enum collapses to `JOIN_FAILED`, `RATE_LIMITED`, and `SERVER_ERROR`; richer reasons surface only via `OWNER_NOTICE` on the room owner's authenticated channel. The deploy step disables platform access-log persistence beyond 24 h. Plan 22 § 2 — Closed signaling error vocabulary (uniform JOIN_FAILED).",
+      "inputs": [
+        "The closed three-value wire enum.",
+        "The closed seven-value `OwnerNotice` reason enum.",
+        "Plan 18's room-code rate limit (consumed, not redesigned)."
+      ],
+      "outputs": [
+        "`services/signaling/observability.md`",
+        "`services/signaling/error-codes.md`",
+        "`docs/architecture/error-codes.md`",
+        "Acceptance criterion appended to [`tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md`](./01-signaling-server-node-js-websocket-lobby.md): \"join failures return uniform `JOIN_FAILED`; reasons surfaced only via `OWNER_NOTICE`. Deploy step disables platform access-log persistence beyond 24 h.\""
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md)",
+        "[`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)",
+        "[`content-schema/schemas/signaling-error.schema.json`](../../../content-schema/schemas/signaling-error.schema.json)"
+      ],
+      "ownedPaths": [
+        "services/signaling/observability.md",
+        "services/signaling/error-codes.md",
+        "docs/architecture/error-codes.md",
+        "tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md"
+      ],
+      "dependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "acceptanceCriteria": [
+        "The two service docs declare the per-row \"do not log\" / \"log as hash\" / \"TTL\" rules.",
+        "`docs/architecture/error-codes.md` cross-references both service tables and pins the UI-grade key mapping.",
+        "The deploy step's platform access-log retention is named ≤ 24 h. Owned Paths (shared) acceptance:",
+        "`tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md` is **owned by** the signaling task family (the primary owner of the signaling service). This task is **additive**: one new acceptance criterion is appended naming the uniform-error vocabulary and the deploy-side log retention; the existing wire-message list (`CREATE_ROOM`, `JOIN_ROOM`, `OFFER`, etc.), the rate-limit table, the room-cool-down rules, and the TLS-handshake gate must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/signaling-error.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/signaling-error.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-3.01-multiplayer.21-peer-failure-ui-contract",
+      "kind": "task",
+      "status": "planned",
+      "title": "Peer-Failure UI Contract",
+      "path": "tasks/phase-3/01-multiplayer/21-peer-failure-ui-contract.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Add the peer-failure error contract to screen [`64-network-lobby`](../../../docs/architecture/wiki/screens/64-network-lobby/): the only fields rendered to UI on a peer-connection failure are `peerLabel` (the display name the user already saw) and a closed `peerFailureReason: 'TIMEOUT' | 'REFUSED' | 'NETWORK_ERROR' | 'PROTOCOL_MISMATCH'`. Peer IPs and ICE candidate addresses never appear in any user-visible string and never appear in the on-device crash log; the formatter's IP-pattern allowlist strips them. A `__DEV__`-gated debug surface MAY render the raw candidate list. Plan 22 § 3 — Peer-failure UI contract on network lobby.",
+      "inputs": [
+        "The closed four-value `peerFailureReason` enum.",
+        "Plan 22's redaction allowlist on `error-formatter.md`."
+      ],
+      "outputs": [
+        "Updates to the screen-64 package: `spec.md` (Peer-Failure Error Contract section), `interactions.md`, `data-contracts.md`.",
+        "Acceptance criterion appended to [`tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md`](./02-webrtc-peer-connection-plus-datachannel-setup.md): \"peer connection failures throw a structured error tagged `redact: true` carrying only `{ peerLabel, peerFailureReason }`.\""
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/`](../../../docs/architecture/wiki/screens/64-network-lobby/)",
+        "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/wiki/screens/64-network-lobby/",
+        "tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/wiki/screens/64-network-lobby/",
+        "tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md"
+      ],
+      "dependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary"
+      ],
+      "acceptanceCriteria": [
+        "The screen-64 spec declares the closed `peerFailureReason` enum and the IP-pattern redaction rule.",
+        "The interactions doc adds the rule \"peer-connection failures render only `peerLabel` and the closed reason; raw IPs / ICE addresses never reach UI or the on-device crash log.\"",
+        "`npm run validate` passes. Owned Paths (shared) acceptance:",
+        "`docs/architecture/wiki/screens/64-network-lobby/` is **owned by** the multiplayer task family (the primary owner of the network lobby package). This task is **additive**: one new \"Peer-Failure Error Contract\" subsection is added to `spec.md` plus matching error-handling lines in `interactions.md` and `data-contracts.md`; the existing chat, ready-state, slot-list, approval-modal, and content-compatibility rules must not be rewritten.",
+        "`tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md` is **owned by** task 02 (the primary owner of the WebRTC peer connection). This task is **additive**: one new acceptance criterion is appended requiring the structured-error tag; the existing data-channel setup, ICE-candidate handling, and connection-state-machine rules must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.22-desync-redaction-acceptance",
+      "kind": "task",
+      "status": "planned",
+      "title": "Desync Redaction Acceptance",
+      "path": "tasks/phase-3/01-multiplayer/22-desync-redaction-acceptance.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Update tasks [`04-per-turn-hash-exchange-plus-desync-detection.md`](./04-per-turn-hash-exchange-plus-desync-detection.md) and [`05-auto-bisect-on-hash-mismatch.md`](./05-auto-bisect-on-hash-mismatch.md) with the redaction acceptance: every desync report and every auto-bisect round routes through the redactor declared in [`docs/architecture/desync-redaction.md`](../../../docs/architecture/desync-redaction.md) **before** any UI / log / peer sink. Intermediate `expected: bigint` hashes remain public; the underlying commands stay hidden. Plan 22 § 3 — Edits to the desync tasks (consume the redaction taxonomy without redesigning the multiplayer plan).",
+      "inputs": [
+        "The field-visibility tag added by `mvp.00-core-architecture.22-06-command-field-visibility-and-desync-redaction`."
+      ],
+      "outputs": [
+        "Acceptance-criterion edits on tasks 04 and 05 (multiplayer)."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/desync-redaction.md`](../../../docs/architecture/desync-redaction.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)"
+      ],
+      "ownedPaths": [
+        "tasks/phase-3/01-multiplayer/04-per-turn-hash-exchange-plus-desync-detection.md",
+        "tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "tasks/phase-3/01-multiplayer/04-per-turn-hash-exchange-plus-desync-detection.md",
+        "tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md"
+      ],
+      "dependencies": [
+        "mvp.00-core-architecture.22-06-command-field-visibility-and-desync-redaction"
+      ],
+      "acceptanceCriteria": [
+        "Task 04 acceptance gains: \"desync report passes through the redactor declared in `desync-redaction.md` before any UI / log / peer sink.\"",
+        "Task 05 acceptance gains: \"each bisect round re-runs the redactor; intermediate `expected: bigint` hashes are public but the underlying commands are not.\" Owned Paths (shared) acceptance:",
+        "Task 04 (per-turn hash exchange + desync detection) is **owned by** the multiplayer task family (the primary owner of the desync detection algorithm). This task is **additive**: one new acceptance criterion is appended naming the redactor; the existing per-turn hash schedule, the hash-mismatch handshake, and the recovery flow must not rewrite anything else.",
+        "Task 05 (auto-bisect on hash mismatch) is **owned by** the same multiplayer task family (the primary owner of the bisect algorithm). This task is **additive**: one new acceptance criterion is appended naming the per-round redactor; the bisect algorithm, the round budget, and the snapshot-rebase fallback must not rewrite anything else."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-06-command-field-visibility-and-desync-redaction"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-06-command-field-visibility-and-desync-redaction"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -32774,6 +33605,74 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "phase-3.02-ai-generation.10-ai-gateway-retention-and-error-codes",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI Gateway Retention and Error Codes",
+      "path": "tasks/phase-3/02-ai-generation/10-ai-gateway-retention-and-error-codes.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Author [`services/ai-gateway/retention.md`](../../../services/ai-gateway/retention.md) and [`services/ai-gateway/error-codes.md`](../../../services/ai-gateway/error-codes.md). Prompts log only as `promptHash` (the `notes.promptHash` field already declared by Plan 14); raw responses retained ≤ 24 h in the provider-response cache then purged; failure-path logger uses `formatDevError` to strip the prompt body before any sink. Wire the new error-code mapping (401/403 collapse → 404, 429 with `Retry-After`, 500 without `cause`). Plan 22 § 3 — Service-side observability + retention docs.",
+      "inputs": [
+        "Plan 14's `notes.promptHash` rule.",
+        "Plan 22's failure-path redactor.",
+        "The closed [`provider-failure.schema.json`](../../../content-schema/schemas/provider-failure.schema.json) taxonomy (transport / auth / quota / content-policy)."
+      ],
+      "outputs": [
+        "`services/ai-gateway/retention.md`",
+        "`services/ai-gateway/error-codes.md`",
+        "Cross-link sentence in `ai-integration.md` and `ai-generation-pipeline.md`."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)"
+      ],
+      "ownedPaths": [
+        "services/ai-gateway/retention.md",
+        "services/ai-gateway/error-codes.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs"
+      ],
+      "acceptanceCriteria": [
+        "The retention doc names every \"do not log\" / \"log as hash\" / \"TTL\" row, including the 24 h response-cache TTL.",
+        "The error-codes doc collapses 401 / 403 → 404 on the wire and forbids `cause` chains in 500 responses.",
+        "The failure-path logger contract is named: prompt body is `redact: true`, cause chain is dropped in production builds.",
+        "`npm run validate` passes."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/provider-failure.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/provider-failure.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "phase-3.03-mcts-ai.01a-mcts-tree-state-and-root-expansion",
       "kind": "task",
       "status": "planned",
@@ -33576,7 +34475,10 @@
         "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
         "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
         "phase-3.01-multiplayer.18-mute-block-and-trust-banner",
-        "phase-3.01-multiplayer.19-report-bundle-and-export"
+        "phase-3.01-multiplayer.19-report-bundle-and-export",
+        "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary",
+        "phase-3.01-multiplayer.21-peer-failure-ui-contract",
+        "phase-3.01-multiplayer.22-desync-redaction-acceptance"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -33645,6 +34547,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
@@ -33655,6 +34558,7 @@
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "taskDependencies": [
@@ -34102,6 +35006,8 @@
         "mvp.02-content-schemas.37-localization-interpolation-block",
         "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
         "mvp.02-content-schemas.39-generated-faction-player-inspectable",
+        "mvp.02-content-schemas.40-privacy-and-legal-docs",
+        "mvp.02-content-schemas.41-error-and-audit-schemas",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",

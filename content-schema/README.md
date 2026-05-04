@@ -57,6 +57,10 @@ generation payloads. They currently cover:
 - publisher registry (known-publisher signing-key list)
 - pack revocation list (client-local user-decision revocations)
 - trust store (per-installation user pack-trust decisions)
+- signature error (closed pack-signature error vocabulary)
+- signaling error (closed signaling-server error vocabulary; wire vs. owner-notice)
+- audit log entry (local on-device privacy/consent journal)
+- erasure receipt (verifiable receipt for `REQUEST_ERASURE_RECEIPT`)
 
 ## Relationship To Other Folders
 

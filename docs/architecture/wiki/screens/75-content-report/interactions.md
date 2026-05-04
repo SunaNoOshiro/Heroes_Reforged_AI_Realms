@@ -46,6 +46,11 @@ against `content-report.schema.json`; persists to
   manifest to declare `aiProvenance.present === true`; otherwise the
   route falls back to `targetType = pack`.
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behavior and timing.
 - `spec.md` owns static regions and state bindings.

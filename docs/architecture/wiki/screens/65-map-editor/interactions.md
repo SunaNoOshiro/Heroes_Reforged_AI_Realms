@@ -38,6 +38,7 @@ Map editor shell with terrain/object palettes, brush tools, layers, scenario pro
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
 
 ### AI Implementation Notes
 - This file owns behavior and timing.

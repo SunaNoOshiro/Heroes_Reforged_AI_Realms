@@ -39,6 +39,33 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
 
 `PlayerSlotRowDotsMenu`, `HostCloseRoomButton`, and the per-slot moderation row are host-only — they render disabled (or hide entirely) for non-host peers. `PendingPeerModal` mounts when `state.net.lobby.pendingPeers.length > 0`. `JoinAttemptToast` is non-modal and surfaces aggregated `JOIN_ATTEMPT_REJECTED` counts at thresholds 1, 5, 20. `MutedBadge` renders next to a roster row when the local user has muted or blocked that peer. `ChatTrustBanner` mounts above the chat input on first lobby session and dismisses to `localStorage` per [`chat-safety.md` § 10](../../../chat-safety.md#10-trust-model-disclosure). `ChatPanelOverflowMenu` exposes "Save chat log" (`EXPORT_CHAT_LOG`). `ReportPeerDialog` mounts on `network.reportPeer` and produces a `report-bundle.schema.json`-conformant download.
 
+### Peer-Failure Error Contract
+
+When a peer connection fails (timeout, refused, network error, protocol
+mismatch), the only fields rendered to UI are:
+
+- `peerLabel` — the display-name string the user already saw, never a
+  raw IP / ICE address; resolved from `state.net.lobby.players`.
+- `reason` — a closed enum
+  `peerFailureReason: 'TIMEOUT' | 'REFUSED' | 'NETWORK_ERROR' | 'PROTOCOL_MISMATCH'`.
+
+Peer IPs and ICE candidate addresses **never** appear in any
+user-visible string and **never** appear in the on-device crash log
+file; the redactor in [`error-formatter.md` § 3](../../../error-formatter.md#3-redaction-allowlist)
+strips them via the IP-pattern allowlist. The thrown error is
+tagged `redact: true` so the formatter scrubs the cause chain in
+production builds.
+
+A dev-only debug surface (gated by `__DEV__` per
+[`production-build.md` rule 1](../../../production-build.md#1-__dev__-is-constant-folded))
+may render the raw ICE candidate list — but only when the build flag
+is on. There is no production code path that reaches the raw
+candidate set from this screen.
+
+The peer-connection task in
+[`tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md`](../../../../../tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md)
+inherits this contract via task **22-10**.
+
 ### Rendering Safety
 - `ChatPanel` renders chat `text` via `{text}` JSX binding only. **No `dangerouslySetInnerHTML`. No markdown library. No link auto-detector.** A CI / lint rule fails the build on any `dangerouslySetInnerHTML` usage under the lobby chat surface.
 - Inbound chat envelopes are normalized (NFKC, control + bidi strip, length cap 240) and schema-validated against [`chat-message.schema.json`](../../../../../content-schema/schemas/chat-message.schema.json) **before** they reach the reducer or the renderer.

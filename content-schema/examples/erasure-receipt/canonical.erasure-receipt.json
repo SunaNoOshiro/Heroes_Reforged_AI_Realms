@@ -1,0 +1,9 @@
+{
+  "$schema": "heroes-reforged/erasure-receipt.schema.json",
+  "schemaVersion": 1,
+  "erasureRequestId": "44444444-5555-4666-8ccc-888888888888",
+  "scope": ["all"],
+  "performedAt": "2026-05-04T18:30:00Z",
+  "contentHash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "policyVersion": 1
+}

@@ -11,3 +11,11 @@ Use this when:
 
 Client and orchestration code should depend on the request/response
 contract, not on one provider SDK.
+
+## Operational contracts
+
+- [`error-codes.md`](./error-codes.md) — closed HTTP-wire vocabulary
+  (`401` / `404` collapse, `429` with `Retry-After`, `500` without
+  `cause`).
+- [`retention.md`](./retention.md) — `promptHash` rule, ≤ 24 h
+  response cache TTL, failure-path logger contract.

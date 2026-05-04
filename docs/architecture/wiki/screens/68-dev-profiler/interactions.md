@@ -48,6 +48,11 @@ Developer-only profiling overlay. Read-only.
   rendered with a warn colour and an asterisk; see
   [`performance.md` § Allocation Policy](../../../performance.md#allocation-policy).
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behaviour and timing.
 - Hotkey registration is done through the central hotkey

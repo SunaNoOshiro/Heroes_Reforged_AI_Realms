@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/audit-log-entry.schema.json",
+  "title": "Audit Log Entry",
+  "description": "Local on-device journal entry written by privacy / consent flows: erasure receipts, replay-export sanitization decisions, policy acceptance, analytics opt-in toggles. Persisted in IndexedDB `hr-profile.audit` per `data-inventory.md`. The full journal is wiped by `WIPE_LOCAL_DATA scope=profile|all`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "type", "performedAt"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "type": {
+      "enum": ["ERASURE", "REPLAY_EXPORT", "POLICY_ACCEPTED", "OPT_IN_TOGGLED"],
+      "description": "Closed entry type. `ERASURE` records a `WIPE_LOCAL_DATA` invocation. `REPLAY_EXPORT` records a save/replay export sanitization decision. `POLICY_ACCEPTED` records a privacy-policy acceptance. `OPT_IN_TOGGLED` records every analytics / mature-content / display-name-mode flip."
+    },
+    "performedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601. Wall-clock at the moment of the recorded action; never used for gameplay determinism."
+    },
+    "errorId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "Optional. Set when the entry is correlated with a thrown error so support can match the on-device crash log."
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "enum": ["all", "saves", "profile", "chat", "pendingGenerationCache"]
+      },
+      "uniqueItems": true,
+      "description": "Required for `ERASURE`; mirrors the `WIPE_LOCAL_DATA` payload."
+    },
+    "contentHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of the affected payload at the moment of the action. For `ERASURE`, the digest of the cleared inventory rows; for `REPLAY_EXPORT`, the digest of the exported file."
+    },
+    "mode": {
+      "enum": ["playerHashOnly", "playerNameCleartext"],
+      "description": "Required for `REPLAY_EXPORT`; mirrors `state.privacy.replayShareConsent.mode`."
+    },
+    "policyVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Required for `POLICY_ACCEPTED`; mirrors the top-of-file `policyVersion` in `docs/architecture/privacy.md`."
+    },
+    "toggleKey": {
+      "enum": ["analytics", "mature-content", "display-name-mode"],
+      "description": "Required for `OPT_IN_TOGGLED`."
+    },
+    "toggleValue": {
+      "type": ["boolean", "string"],
+      "description": "Required for `OPT_IN_TOGGLED`. Booleans for analytics / mature-content; the new mode string for display-name-mode."
+    },
+    "erasureRequestId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "UUID v4 paired with the corresponding `erasure-receipt.schema.json` row when `type == \"ERASURE\"`."
+    },
+    "signalingSessionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Optional. Carried only when `type == \"ERASURE\"` and the user was in an active multiplayer session. The signaling session id is opaque (CSPRNG-minted) and never contains a peer IP."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "ERASURE" } } },
+      "then": { "required": ["scope", "contentHash", "erasureRequestId"] }
+    },
+    {
+      "if": { "properties": { "type": { "const": "REPLAY_EXPORT" } } },
+      "then": { "required": ["mode", "contentHash"] }
+    },
+    {
+      "if": { "properties": { "type": { "const": "POLICY_ACCEPTED" } } },
+      "then": { "required": ["policyVersion"] }
+    },
+    {
+      "if": { "properties": { "type": { "const": "OPT_IN_TOGGLED" } } },
+      "then": { "required": ["toggleKey", "toggleValue"] }
+    }
+  ]
+}

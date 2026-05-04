@@ -21,6 +21,9 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
 | Manage packs… | `system.managePacks` | navigation | `71-pack-manager` | `OPEN_PACK_MANAGER` | Routes to the pack manager. | Tablet darkens, manager fades in. |
 | Safe mode (disable all packs) | `system.safeMode` | navigation | `60-confirmation-dialog` | `ENTER_SAFE_MODE` | Routes through confirmation per [`pack-trust.md` § Safe Mode](../../../pack-trust.md#5-safe-mode). | Confirmation modal mounts; safe-mode banner appears on accept. |
 | Forget me on this device | `system.forgetMe` | navigation | `60-confirmation-dialog` | `WIPE_LOCAL_DATA` (with `scope: "all", confirmed: false`) | Routes through confirmation per [`data-inventory.md`](../../../data-inventory.md) § Wipe-Scope Policy. The handler iterates the inventory rows on accept; the page reloads to drop in-memory state. | Confirmation modal mounts; on accept, "Wiped" banner appears, then full reload. |
+| Erasure receipt | `system.erasureReceipt` | command | Current screen | `REQUEST_ERASURE_RECEIPT` | Emits an [`erasure-receipt.schema.json`](../../../../../content-schema/schemas/erasure-receipt.schema.json) and appends an [`audit-log-entry.schema.json`](../../../../../content-schema/schemas/audit-log-entry.schema.json) `type: "ERASURE"` row. Renders the receipt in `ErasureReceiptModal` with "Copy to clipboard." See [`docs/legal/erasure-process.md`](../../../../legal/erasure-process.md) for the manual server-side fallback. | Modal fade-in; clipboard glint on copy. |
+| Privacy policy | `system.privacy` | local-ui | _(modal)_ | `OPEN_PRIVACY_POLICY` | Opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../privacy.md). Mirrors the affordance from screen 01 footer. | Modal fade-in. |
+| Processor list | `system.processors` | local-ui | _(modal)_ | `OPEN_PROCESSOR_LIST` | Opens an in-app modal rendering [`docs/legal/processors.md`](../../../../legal/processors.md). | Modal fade-in. |
 
 ### State Changes
 - `state.ui.systemMenu.callerRoute` refreshes `callerRoute` after the owning reducer or local UI draft changes.
@@ -44,6 +47,7 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
 - **Save / load debounce.** All command-emitting buttons and hotkeys here are debounced 250 ms (trailing edge); dispatcher single-flight is the safety net. See [`docs/architecture/command-schema.md` § Single-flight commands](../../../command-schema.md#single-flight-commands).
 - **Save eligibility.** The Save Game item is disabled per the `canSaveNow(state)` predicate enumerated in [`content-schema/save-eligibility.md`](../../../../../content-schema/save-eligibility.md). Reasons surface as localized strings: `save.disabled.in_battle`, `save.disabled.not_your_turn`, `save.disabled.modal_open`, `save.disabled.animating`.
 

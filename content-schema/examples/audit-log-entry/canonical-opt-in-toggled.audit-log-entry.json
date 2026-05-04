@@ -1,0 +1,8 @@
+{
+  "$schema": "heroes-reforged/audit-log-entry.schema.json",
+  "schemaVersion": 1,
+  "type": "OPT_IN_TOGGLED",
+  "performedAt": "2026-05-04T18:05:00Z",
+  "toggleKey": "analytics",
+  "toggleValue": false
+}

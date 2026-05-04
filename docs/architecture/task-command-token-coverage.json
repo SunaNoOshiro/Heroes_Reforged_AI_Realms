@@ -68,6 +68,16 @@
     "RANDOM_WIN": "AI benchmark label.",
     "SCOUT_FOG": "AI Want enum.",
     "SEND_GAME_CHAT": "Reserved in-game chat payload type carried on the dedicated `chat` DataChannel (Phase-3 multiplayer); never enters the reducer (`state.net.game.chat`). Screen package and full registration land with the in-game chat UI post-M5.",
-    "SPELL_EFFECT": "Spell animation/effect event name in task prose."
+    "SPELL_EFFECT": "Spell animation/effect event name in task prose.",
+    "JOIN_FAILED": "Closed signaling wire-error code from content-schema/schemas/signaling-error.schema.json; not a UI command. Owned by phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary per services/signaling/error-codes.md.",
+    "SERVER_ERROR": "Closed signaling wire-error code from content-schema/schemas/signaling-error.schema.json; not a UI command.",
+    "OWNER_NOTICE": "Signaling owner-only authenticated channel envelope from content-schema/schemas/signaling-error.schema.json; not a UI command.",
+    "INVALID_SIGNATURE": "Closed pack-signature error code from content-schema/schemas/signature-error.schema.json; not a UI command. Owned by mvp.00-core-architecture.22-03-crypto-rules-and-signature-error.",
+    "SIGNATURE_DISABLED": "Closed pack-signature error code from content-schema/schemas/signature-error.schema.json; not a UI command.",
+    "REPLAY_EXPORT": "Closed audit-log-entry type from content-schema/schemas/audit-log-entry.schema.json; not a UI command.",
+    "POLICY_ACCEPTED": "Closed audit-log-entry type from content-schema/schemas/audit-log-entry.schema.json; not a UI command.",
+    "OPT_IN_TOGGLED": "Closed audit-log-entry type from content-schema/schemas/audit-log-entry.schema.json; not a UI command.",
+    "PROTOCOL_MISMATCH": "Closed peerFailureReason enum value from docs/architecture/wiki/screens/64-network-lobby/spec.md; not a UI command.",
+    "NETWORK_ERROR": "Closed peerFailureReason enum value from docs/architecture/wiki/screens/64-network-lobby/spec.md; not a UI command."
   }
 }

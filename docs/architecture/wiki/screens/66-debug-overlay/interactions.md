@@ -46,6 +46,11 @@ replay driver.
   [`scripts/validate-screen-component-coverage.mjs`](../../../../../scripts/validate-screen-component-coverage.mjs)
   is the build-time guard; the overlay surfaces runtime drift.
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behaviour and timing.
 - `spec.md` owns static regions and state bindings.

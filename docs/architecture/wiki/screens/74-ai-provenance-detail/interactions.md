@@ -34,6 +34,11 @@ mutation. Triggered by the `[AI]` badge on info-cards.
   to a single line `ui.ai-provenance.details-unavailable` and the
   detail rows are hidden; the close affordance remains.
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behavior and timing.
 - `spec.md` owns static regions and state bindings.

@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/signaling-error.schema.json",
+  "schemaVersion": 1,
+  "kind": "wire",
+  "wireCode": "JOIN_FAILED",
+  "errorId": "11111111-2222-4333-8444-555555555555"
+}

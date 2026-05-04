@@ -12,6 +12,8 @@
 | --- | --- | --- |
 | `asset-index.schema.json` | Backgrounds, frames, icons, cursor sprites, animation manifests. | `content-schema/schemas/asset-index.schema.json` |
 | `localization.schema.json` | UI labels, status text, disabled reasons, error messages. | `content-schema/schemas/localization.schema.json` |
+| `audit-log-entry.schema.json` | Local on-device audit-log row appended by `REQUEST_ERASURE_RECEIPT`. | `content-schema/schemas/audit-log-entry.schema.json` |
+| `erasure-receipt.schema.json` | User-facing erasure receipt rendered in `ErasureReceiptModal`. | `content-schema/schemas/erasure-receipt.schema.json` |
 | `ruleset.schema.json` | Deterministic constants, formulas, and guard rules consumed by commands. | `content-schema/schemas/ruleset.schema.json` |
 | Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, or shell state as listed below. | Loaded content/runtime registries. |
 
@@ -33,6 +35,9 @@
 - `OPEN_PACK_MANAGER` from `system.managePacks`: Routes to screen [`71-pack-manager`](../71-pack-manager/) per [`pack-trust.md`](../../../pack-trust.md).
 - `ENTER_SAFE_MODE` from `system.safeMode`: Routes through screen [`60-confirmation-dialog`](../60-confirmation-dialog/) per [`pack-trust.md` § Safe Mode](../../../pack-trust.md#5-safe-mode).
 - `WIPE_LOCAL_DATA` from `system.forgetMe`: Routes through screen [`60-confirmation-dialog`](../60-confirmation-dialog/) per [`data-inventory.md` § Wipe-Scope Policy](../../../data-inventory.md#3-wipe-scope-policy). Payload `{ scope: "all" \| "saves" \| "profile" \| "chat", confirmed: boolean }`. The handler iterates `data-inventory.md` rows.
+- `REQUEST_ERASURE_RECEIPT` from `system.erasureReceipt`: Emits an [`erasure-receipt.schema.json`](../../../../../content-schema/schemas/erasure-receipt.schema.json) value and appends an [`audit-log-entry.schema.json`](../../../../../content-schema/schemas/audit-log-entry.schema.json) row with `type: "ERASURE"`. Renders the receipt in `ErasureReceiptModal`.
+- `OPEN_PRIVACY_POLICY` from `system.privacy`: Opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../privacy.md).
+- `OPEN_PROCESSOR_LIST` from `system.processors`: Opens an in-app modal rendering [`docs/legal/processors.md`](../../../../legal/processors.md).
 
 ### Config Keys
 - `config.ui.locale`
@@ -49,6 +54,11 @@
 - `ui.system-menu.errors.*`
 - `ui.privacy.forget-me.label`
 - `ui.privacy.forget-me.confirm`
+- `ui.privacy.erasure-receipt.title`
+- `ui.privacy.erasure-receipt.copy`
+- `ui.privacy.erasure-receipt.serverFallback`
+- `ui.system-menu.footer.privacy`
+- `ui.system-menu.footer.processors`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs

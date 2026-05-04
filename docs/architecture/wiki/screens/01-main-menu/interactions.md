@@ -18,6 +18,7 @@ Boot shell menu with full-bleed fantasy painting, title treatment, icon-backed m
 | High Score | `mainMenu.highScore` | navigation | `57-high-scores` | `OPEN_HIGH_SCORES` | Reads completed-game score records. | Storm/cloud shimmer, title glint, hovered command icon glow, pressed command depresses, and route fade after guard approval. |
 | Credits | `mainMenu.credits` | navigation | `05-intro-cinematic` | `OPEN_CREDITS_OR_INTRO` | Routes to presentation-only cinematic shell. | Storm/cloud shimmer, title glint, hovered command icon glow, pressed command depresses, and route fade after guard approval. |
 | Quit | `mainMenu.quit` | navigation | `60-confirmation-dialog` | `REQUEST_QUIT_CONFIRMATION` | No gameplay mutation. | Storm/cloud shimmer, title glint, hovered command icon glow, pressed command depresses, and route fade after guard approval. |
+| Privacy | `mainMenu.privacy` | local-ui | _(modal)_ | `OPEN_PRIVACY_POLICY` | Opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../privacy.md); does not enter the deterministic command log. | Modal fade-in. |
 
 ### State Changes
 - `state.shell.availableCommands` refreshes `menu.commands` after the owning reducer or local UI draft changes.
@@ -36,6 +37,7 @@ Boot shell menu with full-bleed fantasy painting, title treatment, icon-backed m
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
 
 ### AI Implementation Notes
 - This file owns behavior and timing.

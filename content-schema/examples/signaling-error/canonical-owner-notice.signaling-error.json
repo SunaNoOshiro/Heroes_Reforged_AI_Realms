@@ -1,0 +1,8 @@
+{
+  "$schema": "heroes-reforged/signaling-error.schema.json",
+  "schemaVersion": 1,
+  "kind": "ownerNotice",
+  "ownerReason": "ROOM_FULL",
+  "ownerCount": 3,
+  "errorId": "33333333-4444-4555-8bbb-777777777777"
+}

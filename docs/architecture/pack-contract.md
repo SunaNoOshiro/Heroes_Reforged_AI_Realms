@@ -66,6 +66,14 @@ every example pack against its schema.
 ## Trust Fields
 
 - `signature` — optional object with `scheme`, `keyId`, and `value`.
+  Comparisons MUST use the constant-time-compare rule pinned in
+  [`crypto-rules.md`](./crypto-rules.md) § 1; failures collapse to
+  the closed `signatureErrorCode` enum on
+  [`signature-error.schema.json`](../../content-schema/schemas/signature-error.schema.json)
+  (`INVALID_SIGNATURE` for any failure mode, `SIGNATURE_DISABLED`
+  for the explicit "feature off" state). The wire / UI-facing
+  surface MUST NOT distinguish "wrong key" from "no such key" —
+  both collapse to `INVALID_SIGNATURE`.
 - `sandboxed` — boolean trust flag enforced by runtime policy.
 - `sandboxedReason` — optional string identifying why the pack is
   sandboxed (`ai-generated`, `user-edited`, `unsigned`). Consumed

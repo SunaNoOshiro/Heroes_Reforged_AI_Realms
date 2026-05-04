@@ -45,6 +45,11 @@ Per-pack trust review and persistence-scope picker. Writes a
   applies to the header pack — each transitive row requires its
   own re-prompt.
 
+
+### Error Formatter
+
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
 ### AI Implementation Notes
 - This file owns behavior and timing.
 - `spec.md` owns static regions and state bindings.

@@ -26,6 +26,8 @@
 | `dirty` | `selectors.options.hasUnsavedChanges` | Apply enabled state. |
 | `privacyOptions` | `state.privacy.options` | Per `privacy-options.schema.json`. |
 | `saltFingerprint` | `selectors.privacy.saltFingerprint` | First 4 hex chars of the local salt; verifies that `WIPE_LOCAL_DATA` rotated it. |
+| `disclosureSeen` | `state.privacy.disclosureSeenVersion` | Acknowledged disclosure version; gates `PrivacyDisclosureModal`. |
+| `currentDisclosure` | `state.privacy.currentDisclosureVersion` | Compile-time disclosure version, mirrored from [`privacy.md`](../../../privacy.md). |
 
 ### Commands And Events
 - `SET_OPTIONS_TAB` from `options.tab`: Changes visible category.
@@ -37,6 +39,8 @@
 - `TOGGLE_MATURE_CONTENT_GATE` from `options.toggleMatureContentGate`: Flip `state.privacy.options.allowMatureContent`.
 - `RESET_ANALYTICS_ID` from `options.resetAnalyticsId`: Regenerate the analytics client id (no-op until a future analytics integration lands).
 - `WIPE_LOCAL_DATA` from `options.forgetMe`: Routes through screen 60-confirmation-dialog per [`data-inventory.md` § Wipe-Scope Policy](../../../data-inventory.md#3-wipe-scope-policy).
+- `ACKNOWLEDGE_PRIVACY_DISCLOSURE` from `options.acknowledgePrivacyDisclosure`: Sets `state.privacy.disclosureSeenVersion = state.privacy.currentDisclosureVersion`; appends a `POLICY_ACCEPTED` row to the local audit log.
+- `OPEN_PRIVACY_POLICY` from `options.openPrivacyPolicy`: Opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../privacy.md); does not enter the deterministic command log.
 
 ### Config Keys
 - `config.ui.locale`
@@ -77,6 +81,10 @@
 - `ui.privacy.reset-analytics-id.label`
 - `ui.privacy.forget-me.label`
 - `ui.privacy.local-storage-warning`
+- `ui.privacy.disclosure.title`
+- `ui.privacy.disclosure.body`
+- `ui.privacy.disclosure.acknowledge`
+- `ui.privacy.disclosure.openPolicy`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs

@@ -606,6 +606,45 @@ adapter, never the engine reducer.
   info-card affordance. Distinct from `REPORT_PEER` (chat-safety):
   this command targets content; `REPORT_PEER` targets player
   behavior.
+- `OPEN_PRIVACY_POLICY` — opens an in-app modal rendering
+  [`docs/architecture/privacy.md`](./privacy.md). local-ui. Bound
+  by the privacy footer in screen
+  [`01-main-menu`](./wiki/screens/01-main-menu/) and the "Account &
+  Data" entry in [`54-system-menu`](./wiki/screens/54-system-menu/).
+- `REQUEST_ERASURE_RECEIPT` — emit an
+  [`erasure-receipt.schema.json`](../../content-schema/schemas/erasure-receipt.schema.json)
+  and append a corresponding
+  [`audit-log-entry.schema.json`](../../content-schema/schemas/audit-log-entry.schema.json)
+  row with `type: "ERASURE"`. Payload: `{ scope: "all" | "saves" |
+  "profile" | "chat" }`. Complements Plan 21's `WIPE_LOCAL_DATA`;
+  rendered by [`54-system-menu`](./wiki/screens/54-system-menu/).
+  Owned by `tasks/mvp/07-ui-shell/25-erasure-receipt-modal.md`.
+
+## Field Visibility (Desync Redaction)
+
+Every command field declared above carries a closed
+`visibility: 'public' | 'hidden'` tag (default `public` for
+backwards compatibility). The tag drives the desync-report
+redactor and the replay-export sanitizer; full rules and worked
+examples per kind live in
+[`desync-redaction.md`](./desync-redaction.md).
+
+Quick reference (worked examples — full table in
+[`desync-redaction.md` § 3](./desync-redaction.md#3-worked-examples)):
+
+| Command | Public fields | Hidden fields |
+|---|---|---|
+| `MOVE_HERO` | `heroId` | `path` |
+| `INITIATE_BATTLE` | `attackerHeroId`, `defenderId` | _(none)_ |
+| `BATTLE_ATTACK` | `targetHeroId` | `attackerSpellChoice` |
+| `CAST_SPELL` | `spellId` | `targetIds` |
+| `TRANSFER_ARTIFACT` | `fromHeroId`, `toHeroId` | `artifactId` |
+| `RECRUIT_UNIT` | `townId` | `unitId`, `count` |
+| `SET_GUARD` | `townId`, `heroId` | `garrisonOrder` |
+
+The redactor copies `public` fields verbatim and replaces `hidden`
+fields with `sha256(canonical(field))` truncated to 12 hex chars
+plus a length-class label (`<8` / `<32` / `<128` / `>=128`).
 
 ## Future Commands (Phase 2+)
 

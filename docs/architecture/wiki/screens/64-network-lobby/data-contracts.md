@@ -18,7 +18,14 @@
 | `faction.schema.json` | Faction identity, town roster, hero/unit references, and player-facing faction metadata. | `content-schema/schemas/faction.schema.json` |
 | `chat-message.schema.json` | Lobby chat envelope; carried over the dedicated `chat` DataChannel; receive-side validation contract per [`chat-safety.md` § 3](../../../chat-safety.md#3-envelope-schema). | `content-schema/schemas/chat-message.schema.json` |
 | `report-bundle.schema.json` | Local-only evidence bundle produced by `REPORT_PEER` per [`chat-safety.md` § 8](../../../chat-safety.md#8-report). | `content-schema/schemas/report-bundle.schema.json` |
+| `signaling-error.schema.json` | Closed signaling-server error vocabulary; `wire` payloads collapse to `JOIN_FAILED` / `RATE_LIMITED` / `SERVER_ERROR`; richer reasons surface via `OWNER_NOTICE` per [`services/signaling/error-codes.md`](../../../../../services/signaling/error-codes.md). | `content-schema/schemas/signaling-error.schema.json` |
 | Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, or shell state as listed below. | Loaded content/runtime registries. |
+
+### Closed Enums
+
+- `peerFailureReason: 'TIMEOUT' \| 'REFUSED' \| 'NETWORK_ERROR' \| 'PROTOCOL_MISMATCH'` —
+  the only reason value rendered to UI on a peer-connection failure.
+  See [`spec.md` § Peer-Failure Error Contract](./spec.md#peer-failure-error-contract).
 
 ### Runtime State Selectors
 | UI Element | Selector | Notes |

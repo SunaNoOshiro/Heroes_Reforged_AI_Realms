@@ -27,6 +27,7 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
   - ToggleRows
   - SegmentedControls
   - PrivacyPane
+  - PrivacyDisclosureModal
   - ApplyCancelButtons
 
 ### State Bindings
@@ -39,6 +40,7 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
 | dirty | selectors.options.hasUnsavedChanges | Apply enabled state. |
 | privacyOptions | state.privacy.options | Per [`privacy-options.schema.json`](../../../../../content-schema/schemas/privacy-options.schema.json): `displayNameMode`, `analyticsOptIn`, `allowMatureContent`, `saltFingerprint`. |
 | saltFingerprint | selectors.privacy.saltFingerprint | First 4 hex chars of the local salt; user-visible verification. |
+| disclosureSeen | state.privacy.disclosureSeenVersion | Version of the privacy disclosure the user has acknowledged. When `<` `state.privacy.currentDisclosureVersion`, the `PrivacyDisclosureModal` opens before any analytics or reporting surface activates. See [`docs/architecture/privacy.md`](../../../privacy.md) and [`docs/architecture/state-flow.md` § Privacy Slice](../../../state-flow.md#privacy-slice). |
 
 ### Mechanics Mapping
 - Edits a settings draft. Apply validates config values, persists presentation settings, and only changes gameplay-affecting options at allowed setup boundaries.

@@ -22,6 +22,8 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
 | Toggle mature-content gate | `options.toggleMatureContentGate` | command | Current screen | `TOGGLE_MATURE_CONTENT_GATE` | Flips `state.privacy.options.allowMatureContent`. Binds the same key Plan 20 uses for its `contentRating` gate. | Toggle flips; pack-trust prompts re-evaluate. |
 | Reset analytics ID | `options.resetAnalyticsId` | command | Current screen | `RESET_ANALYTICS_ID` | Regenerates `state.privacy.options.analyticsClientId` if present (no-op until a future analytics integration lands). | Row text replaces with new fingerprint. |
 | Forget me on this device | `options.forgetMe` | navigation | `60-confirmation-dialog` | `WIPE_LOCAL_DATA` | Routes through screen 54-system-menu's confirmation per [`data-inventory.md` § Wipe-Scope Policy](../../../data-inventory.md#3-wipe-scope-policy). | Confirmation modal mounts. |
+| Acknowledge privacy disclosure | `options.acknowledgePrivacyDisclosure` | local-ui | Current screen | `ACKNOWLEDGE_PRIVACY_DISCLOSURE` | Sets `state.privacy.disclosureSeenVersion = state.privacy.currentDisclosureVersion`; closes the modal. | Modal fade-out. |
+| Open privacy policy | `options.openPrivacyPolicy` | local-ui | _(modal)_ | `OPEN_PRIVACY_POLICY` | Opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../privacy.md). Reused affordance from screen 01 footer. | Modal fade-in. |
 
 ### State Changes
 - `state.ui.options.draft` refreshes `optionsDraft` after the owning reducer or local UI draft changes.
@@ -38,6 +40,21 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
+
+### Privacy disclosure modal
+
+- The `PrivacyDisclosureModal` opens automatically when
+  `state.privacy.disclosureSeenVersion < state.privacy.currentDisclosureVersion`.
+- The modal lists every row of [`docs/architecture/data-inventory.md`](../../../data-inventory.md)
+  (medium, sensitivity tier, retention, wipe coverage) and links
+  to [`docs/architecture/privacy.md`](../../../privacy.md).
+- No analytics SDK loads while
+  `state.privacy.options.analyticsOptIn === false`; this is the
+  build-mode rule from [`production-build.md` rule 3](../../../production-build.md#3-formatusererror-is-the-only-ui-error-sink).
+- Acknowledging the modal records a
+  [`POLICY_ACCEPTED`](../../../../../content-schema/schemas/audit-log-entry.schema.json)
+  audit-log entry with `policyVersion`.
 
 ### Locale Swap
 - Switching `language` is **presentation-only** — never a deterministic command, never a command-log entry.

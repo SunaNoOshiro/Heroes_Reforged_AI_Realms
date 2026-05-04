@@ -1,0 +1,6 @@
+{
+  "$schema": "heroes-reforged/signature-error.schema.json",
+  "schemaVersion": 1,
+  "code": "INVALID_SIGNATURE",
+  "errorId": "8b2f1c2e-1234-4abc-9def-0123456789ab"
+}

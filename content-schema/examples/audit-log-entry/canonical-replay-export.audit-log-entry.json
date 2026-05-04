@@ -1,0 +1,8 @@
+{
+  "$schema": "heroes-reforged/audit-log-entry.schema.json",
+  "schemaVersion": 1,
+  "type": "REPLAY_EXPORT",
+  "performedAt": "2026-05-04T18:32:00Z",
+  "mode": "playerHashOnly",
+  "contentHash": "f7c3bc1d808e04732adf679965ccc34ca7ae3441c47b4c3fdf7a84c6d8f0d6e3"
+}

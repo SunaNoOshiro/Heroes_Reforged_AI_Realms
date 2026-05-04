@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/audit-log-entry.schema.json",
+  "schemaVersion": 1,
+  "type": "POLICY_ACCEPTED",
+  "performedAt": "2026-05-04T18:00:00Z",
+  "policyVersion": 1
+}

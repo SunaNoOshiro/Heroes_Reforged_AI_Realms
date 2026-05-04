@@ -26,6 +26,7 @@ Boot shell menu with full-bleed fantasy painting, title treatment, icon-backed m
   - LogoTitle
   - CommandStack
   - VersionLabel
+  - PrivacyFooter
   - RouteFadeOverlay
 
 ### State Bindings

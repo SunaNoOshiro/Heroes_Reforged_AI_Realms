@@ -59,6 +59,113 @@
       "treasure"
     ]
   },
+  "heroes-reforged/asset-index.schema.json": {
+    "heroes-reforged/asset-index.schema.json#/properties/pathScheme/const": [
+      "pack-relative"
+    ]
+  },
+  "heroes-reforged/asset-normalization-spec.schema.json": {
+    "heroes-reforged/asset-normalization-spec.schema.json#/properties/roles/items/properties/frames/properties/fallback/enum": [
+      "attack",
+      "death",
+      "hurt",
+      "idle",
+      "none",
+      "walking"
+    ],
+    "heroes-reforged/asset-normalization-spec.schema.json#/properties/roles/items/properties/frames/properties/required/items/enum": [
+      "attack",
+      "casting",
+      "death",
+      "defending",
+      "hurt",
+      "idle",
+      "special",
+      "walking"
+    ],
+    "heroes-reforged/asset-normalization-spec.schema.json#/properties/roles/items/properties/palette/properties/source/enum": [
+      "faction",
+      "shared",
+      "uncolored"
+    ],
+    "heroes-reforged/asset-normalization-spec.schema.json#/properties/roles/items/properties/role/enum": [
+      "ability-icon",
+      "building",
+      "creature-sprite",
+      "hero-portrait"
+    ]
+  },
+  "heroes-reforged/audit-log-entry.schema.json": {
+    "heroes-reforged/audit-log-entry.schema.json#/allOf~10/if/properties/type/const": [
+      "ERASURE"
+    ],
+    "heroes-reforged/audit-log-entry.schema.json#/allOf~11/if/properties/type/const": [
+      "REPLAY_EXPORT"
+    ],
+    "heroes-reforged/audit-log-entry.schema.json#/allOf~12/if/properties/type/const": [
+      "POLICY_ACCEPTED"
+    ],
+    "heroes-reforged/audit-log-entry.schema.json#/allOf~13/if/properties/type/const": [
+      "OPT_IN_TOGGLED"
+    ],
+    "heroes-reforged/audit-log-entry.schema.json#/properties/mode/enum": [
+      "playerHashOnly",
+      "playerNameCleartext"
+    ],
+    "heroes-reforged/audit-log-entry.schema.json#/properties/scope/items/enum": [
+      "all",
+      "chat",
+      "pendingGenerationCache",
+      "profile",
+      "saves"
+    ],
+    "heroes-reforged/audit-log-entry.schema.json#/properties/toggleKey/enum": [
+      "analytics",
+      "display-name-mode",
+      "mature-content"
+    ],
+    "heroes-reforged/audit-log-entry.schema.json#/properties/type/enum": [
+      "ERASURE",
+      "OPT_IN_TOGGLED",
+      "POLICY_ACCEPTED",
+      "REPLAY_EXPORT"
+    ]
+  },
+  "heroes-reforged/balance-report.schema.json": {
+    "heroes-reforged/balance-report.schema.json#/properties/stage/const": [
+      "balance"
+    ],
+    "heroes-reforged/balance-report.schema.json#/properties/verdict/enum": [
+      "fail",
+      "pass",
+      "warn"
+    ]
+  },
+  "heroes-reforged/canonical-packs.schema.json": {
+    "heroes-reforged/canonical-packs.schema.json#/properties/packs/items/properties/type/enum": [
+      "asset-pack",
+      "faction-pack",
+      "library-pack",
+      "ruleset-pack",
+      "scenario-pack",
+      "world-pack"
+    ]
+  },
+  "heroes-reforged/chat-message.schema.json": {
+    "heroes-reforged/chat-message.schema.json#/properties/scope/enum": [
+      "lobby"
+    ]
+  },
+  "heroes-reforged/coherence-report.schema.json": {
+    "heroes-reforged/coherence-report.schema.json#/properties/stage/const": [
+      "coherence"
+    ],
+    "heroes-reforged/coherence-report.schema.json#/properties/verdict/enum": [
+      "fail",
+      "pass",
+      "warn"
+    ]
+  },
   "heroes-reforged/command.schema.json": {
     "heroes-reforged/command.schema.json#/$defs/acceptBattleSurrender/properties/kind/const": [
       "ACCEPT_BATTLE_SURRENDER"
@@ -301,6 +408,74 @@
       "not"
     ]
   },
+  "heroes-reforged/content-report.schema.json": {
+    "heroes-reforged/content-report.schema.json#/properties/reason/enum": [
+      "harassment",
+      "infringement",
+      "malware",
+      "mature-without-rating",
+      "other"
+    ],
+    "heroes-reforged/content-report.schema.json#/properties/targetType/enum": [
+      "ai-faction",
+      "hero",
+      "pack",
+      "scenario",
+      "unit"
+    ]
+  },
+  "heroes-reforged/dispatcher-validation-error.schema.json": {
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~10/properties/code/const": [
+      "MALFORMED_PAYLOAD"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~11/properties/code/const": [
+      "NOT_CURRENT_ACTOR"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~12/properties/code/const": [
+      "ENTITY_NOT_FOUND"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~12/properties/details/properties/entityKind/enum": [
+      "artifact",
+      "battle",
+      "hero",
+      "mine",
+      "object",
+      "scenario",
+      "spell",
+      "stack",
+      "town"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~13/properties/code/const": [
+      "INSUFFICIENT_RESOURCES"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~14/properties/code/const": [
+      "ILLEGAL_PHASE"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~15/properties/code/const": [
+      "OWNERSHIP_VIOLATION"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~15/properties/details/properties/entityKind/enum": [
+      "artifact",
+      "hero",
+      "mine",
+      "object",
+      "stack",
+      "town"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~16/properties/code/const": [
+      "UNREACHABLE_TARGET"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~16/properties/details/properties/reason/enum": [
+      "blocked-by-zoc",
+      "impassable",
+      "los-blocked",
+      "no-path",
+      "out-of-range"
+    ],
+    "heroes-reforged/dispatcher-validation-error.schema.json#/oneOf~17/properties/code/const": [
+      "DUPLICATE_INTENT"
+    ]
+  },
   "heroes-reforged/easing.schema.json": {
     "heroes-reforged/easing.schema.json#/oneOf~10/enum": [
       "bezier",
@@ -405,12 +580,62 @@
       "unlock_unit"
     ]
   },
+  "heroes-reforged/erasure-receipt.schema.json": {
+    "heroes-reforged/erasure-receipt.schema.json#/properties/scope/items/enum": [
+      "all",
+      "chat",
+      "pendingGenerationCache",
+      "profile",
+      "saves"
+    ]
+  },
   "heroes-reforged/error-state.schema.json": {
     "heroes-reforged/error-state.schema.json#/properties/severity/enum": [
       "error",
       "fatal",
       "info",
       "warn"
+    ]
+  },
+  "heroes-reforged/event.schema.json": {
+    "heroes-reforged/event.schema.json#/$defs/battleInitiated/properties/kind/const": [
+      "BATTLE_INITIATED"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/buildingBuilt/properties/kind/const": [
+      "BUILDING_BUILT"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/dayEnd/properties/kind/const": [
+      "DAY_END"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/dayStart/properties/kind/const": [
+      "DAY_START"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/heroLevelUp/properties/kind/const": [
+      "HERO_LEVEL_UP"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/mineCaptured/properties/kind/const": [
+      "MINE_CAPTURED"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/projectileFired/properties/kind/const": [
+      "PROJECTILE_FIRED"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/spellCast/properties/kind/const": [
+      "SPELL_CAST"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/townVisited/properties/kind/const": [
+      "TOWN_VISITED"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/unitAttacked/properties/kind/const": [
+      "UNIT_ATTACKED"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/unitDied/properties/kind/const": [
+      "UNIT_DIED"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/unitMoved/properties/kind/const": [
+      "UNIT_MOVED"
+    ],
+    "heroes-reforged/event.schema.json#/$defs/weekStart/properties/kind/const": [
+      "WEEK_START"
     ]
   },
   "heroes-reforged/faction.schema.json": {
@@ -492,6 +717,13 @@
       "screen"
     ]
   },
+  "heroes-reforged/localization.schema.json": {
+    "heroes-reforged/localization.schema.json#/properties/entries/additionalProperties/oneOf~11/properties/interpolation/properties/mode/enum": [
+      "icu",
+      "literal",
+      "named"
+    ]
+  },
   "heroes-reforged/manifest.schema.json": {
     "heroes-reforged/manifest.schema.json#/properties/capabilities/items/enum": [
       "abilities.custom-kind",
@@ -499,6 +731,35 @@
       "formulas.ast",
       "scripts.none",
       "spells.custom-kind"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/contentRating/properties/language/enum": [
+      "mild",
+      "none",
+      "strong"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/contentRating/properties/sexual/enum": [
+      "explicit",
+      "mild",
+      "none"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/contentRating/properties/themes/enum": [
+      "mature",
+      "none"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/contentRating/properties/violence/enum": [
+      "intense",
+      "mild",
+      "moderate",
+      "none"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/overrides/items/properties/kind/enum": [
+      "patch",
+      "replace"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/sandboxedReason/enum": [
+      "ai-generated",
+      "unsigned",
+      "user-edited"
     ],
     "heroes-reforged/manifest.schema.json#/properties/signature/properties/scheme/enum": [
       "ed25519"
@@ -595,6 +856,127 @@
       "wanderer"
     ]
   },
+  "heroes-reforged/pack-revocation-list.schema.json": {
+    "heroes-reforged/pack-revocation-list.schema.json#/properties/revoked/items/properties/reason/enum": [
+      "deprecated",
+      "malware",
+      "tampered",
+      "user-revoked"
+    ]
+  },
+  "heroes-reforged/privacy-options.schema.json": {
+    "heroes-reforged/privacy-options.schema.json#/properties/displayNameMode/enum": [
+      "clear",
+      "hashed"
+    ]
+  },
+  "heroes-reforged/provider-failure.schema.json": {
+    "heroes-reforged/provider-failure.schema.json#/oneOf~10/properties/kind/const": [
+      "transport"
+    ],
+    "heroes-reforged/provider-failure.schema.json#/oneOf~11/properties/kind/const": [
+      "auth"
+    ],
+    "heroes-reforged/provider-failure.schema.json#/oneOf~12/properties/kind/const": [
+      "quota"
+    ],
+    "heroes-reforged/provider-failure.schema.json#/oneOf~13/properties/kind/const": [
+      "content-policy"
+    ]
+  },
+  "heroes-reforged/publisher-registry.schema.json": {
+    "heroes-reforged/publisher-registry.schema.json#/properties/publishers/items/properties/scheme/const": [
+      "ed25519"
+    ]
+  },
+  "heroes-reforged/renderer-event.schema.json": {
+    "heroes-reforged/renderer-event.schema.json#/$defs/animationFinished/properties/kind/const": [
+      "ANIMATION_FINISHED"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/animationStarted/properties/kind/const": [
+      "ANIMATION_STARTED"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/cameraFocused/properties/kind/const": [
+      "CAMERA_FOCUSED"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/cameraFocused/properties/payload/properties/reason/enum": [
+      "engine-event",
+      "init",
+      "snap-to-active",
+      "user"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/contextLost/properties/kind/const": [
+      "CONTEXT_LOST"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/contextLost/properties/payload/properties/reason/enum": [
+      "gpu-reset",
+      "out-of-memory",
+      "tab-backgrounded",
+      "unknown"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/contextRestored/properties/kind/const": [
+      "CONTEXT_RESTORED"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/damageNumber/properties/kind/const": [
+      "DAMAGE_NUMBER"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/damageNumber/properties/payload/properties/variant/enum": [
+      "block",
+      "crit",
+      "damage",
+      "heal",
+      "miss"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/effectTriggered/properties/kind/const": [
+      "EFFECT_TRIGGERED"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/selectionChanged/properties/kind/const": [
+      "SELECTION_CHANGED"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/selectionChanged/properties/payload/properties/target/oneOf~10/properties/kind/enum": [
+      "building",
+      "hero",
+      "stack",
+      "tile"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/selectionChanged/properties/payload/properties/target/oneOf~11/properties/kind/const": [
+      "none"
+    ],
+    "heroes-reforged/renderer-event.schema.json#/$defs/tileRevealed/properties/kind/const": [
+      "TILE_REVEALED"
+    ]
+  },
+  "heroes-reforged/report-base.schema.json": {
+    "heroes-reforged/report-base.schema.json#/$defs/baseProperties/stage/enum": [
+      "balance",
+      "coherence",
+      "validate"
+    ],
+    "heroes-reforged/report-base.schema.json#/$defs/severity/enum": [
+      "error",
+      "fatal",
+      "info",
+      "warn"
+    ],
+    "heroes-reforged/report-base.schema.json#/$defs/verdict/enum": [
+      "fail",
+      "pass",
+      "warn"
+    ]
+  },
+  "heroes-reforged/report-bundle.schema.json": {
+    "heroes-reforged/report-bundle.schema.json#/properties/kind/enum": [
+      "ai-ugc",
+      "peer-behavior"
+    ],
+    "heroes-reforged/report-bundle.schema.json#/properties/subject/properties/reasonCode/enum": [
+      "cheating-suspected",
+      "harassment",
+      "other",
+      "slurs-or-hate",
+      "unsafe-ai-content"
+    ]
+  },
   "heroes-reforged/resource-id.schema.json": {
     "heroes-reforged/resource-id.schema.json#/enum": [
       "crystal",
@@ -604,6 +986,35 @@
       "ore",
       "sulfur",
       "wood"
+    ]
+  },
+  "heroes-reforged/retry-policy.schema.json": {
+    "heroes-reforged/retry-policy.schema.json#/$defs/policyEntry/properties/backoff/oneOf~10/properties/kind/const": [
+      "none"
+    ],
+    "heroes-reforged/retry-policy.schema.json#/$defs/policyEntry/properties/backoff/oneOf~11/properties/kind/const": [
+      "fixed"
+    ],
+    "heroes-reforged/retry-policy.schema.json#/$defs/policyEntry/properties/onExhaust/enum": [
+      "degrade",
+      "escalate-to-user",
+      "fail"
+    ]
+  },
+  "heroes-reforged/revocation-entry.schema.json": {
+    "heroes-reforged/revocation-entry.schema.json#/properties/signature/properties/scheme/enum": [
+      "ed25519"
+    ]
+  },
+  "heroes-reforged/revocation-registry.schema.json": {
+    "heroes-reforged/revocation-registry.schema.json#/properties/signature/properties/scheme/enum": [
+      "ed25519"
+    ]
+  },
+  "heroes-reforged/save.schema.json": {
+    "heroes-reforged/save.schema.json#/properties/metadata/properties/displayNameMode/enum": [
+      "clear",
+      "hashed"
     ]
   },
   "heroes-reforged/scenario.schema.json": {
@@ -641,6 +1052,38 @@
       "ai",
       "either",
       "human"
+    ]
+  },
+  "heroes-reforged/signaling-error.schema.json": {
+    "heroes-reforged/signaling-error.schema.json#/allOf~10/if/properties/kind/const": [
+      "wire"
+    ],
+    "heroes-reforged/signaling-error.schema.json#/allOf~11/if/properties/kind/const": [
+      "ownerNotice"
+    ],
+    "heroes-reforged/signaling-error.schema.json#/properties/kind/enum": [
+      "ownerNotice",
+      "wire"
+    ],
+    "heroes-reforged/signaling-error.schema.json#/properties/ownerReason/enum": [
+      "INTERNAL_ERROR",
+      "PEER_BANNED",
+      "PROTOCOL_VIOLATION",
+      "RATE_LIMIT_TRIGGERED",
+      "ROOM_EXPIRED",
+      "ROOM_FULL",
+      "WRONG_CODE"
+    ],
+    "heroes-reforged/signaling-error.schema.json#/properties/wireCode/enum": [
+      "JOIN_FAILED",
+      "RATE_LIMITED",
+      "SERVER_ERROR"
+    ]
+  },
+  "heroes-reforged/signature-error.schema.json": {
+    "heroes-reforged/signature-error.schema.json#/properties/code/enum": [
+      "INVALID_SIGNATURE",
+      "SIGNATURE_DISABLED"
     ]
   },
   "heroes-reforged/skill.schema.json": {
@@ -708,6 +1151,32 @@
       "weakened"
     ]
   },
+  "heroes-reforged/storage-error.schema.json": {
+    "heroes-reforged/storage-error.schema.json#/oneOf~10/properties/code/const": [
+      "QUOTA_EXCEEDED"
+    ],
+    "heroes-reforged/storage-error.schema.json#/oneOf~10/properties/details/properties/store/enum": [
+      "ai-cache",
+      "content",
+      "saves",
+      "scenarios"
+    ],
+    "heroes-reforged/storage-error.schema.json#/oneOf~11/properties/code/const": [
+      "IDB_VERSION_ERROR"
+    ],
+    "heroes-reforged/storage-error.schema.json#/oneOf~12/properties/code/const": [
+      "IDB_BLOCKED"
+    ],
+    "heroes-reforged/storage-error.schema.json#/oneOf~13/properties/code/const": [
+      "IDB_DATA_CORRUPTION"
+    ],
+    "heroes-reforged/storage-error.schema.json#/oneOf~13/properties/details/properties/store/enum": [
+      "ai-cache",
+      "content",
+      "saves",
+      "scenarios"
+    ]
+  },
   "heroes-reforged/target-scope.schema.json": {
     "heroes-reforged/target-scope.schema.json#/enum": [
       "all_allies",
@@ -753,6 +1222,25 @@
       "all"
     ]
   },
+  "heroes-reforged/telemetry-event.schema.json": {
+    "heroes-reforged/telemetry-event.schema.json#/properties/severity/enum": [
+      "error",
+      "info",
+      "warn"
+    ]
+  },
+  "heroes-reforged/trust-store.schema.json": {
+    "heroes-reforged/trust-store.schema.json#/properties/entries/items/properties/decision/enum": [
+      "deny",
+      "sandboxed",
+      "trust"
+    ],
+    "heroes-reforged/trust-store.schema.json#/properties/entries/items/properties/scope/enum": [
+      "global",
+      "save",
+      "session"
+    ]
+  },
   "heroes-reforged/validation-error.schema.json": {
     "heroes-reforged/validation-error.schema.json#/properties/rule/enum": [
       "additional",
@@ -780,6 +1268,16 @@
       "error",
       "fatal",
       "info",
+      "warn"
+    ]
+  },
+  "heroes-reforged/validation-report.schema.json": {
+    "heroes-reforged/validation-report.schema.json#/properties/stage/const": [
+      "validate"
+    ],
+    "heroes-reforged/validation-report.schema.json#/properties/verdict/enum": [
+      "fail",
+      "pass",
       "warn"
     ]
   }

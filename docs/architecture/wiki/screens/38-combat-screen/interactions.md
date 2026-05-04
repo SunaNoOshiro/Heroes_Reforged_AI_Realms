@@ -36,6 +36,7 @@ Tactical combat board with hex grid, stack placement, active unit, hero portrait
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.
 - Missing presentation assets may use resolver fallback. Missing gameplay records, invalid content IDs, or rejected commands fail loudly.
 - On rejection, keep the current screen open, preserve local draft when useful, show localized error text, and play failure feedback.
+- Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
 - **End-turn debounce.** Wait / Defend / End-turn buttons and hotkeys are debounced 250 ms (trailing edge). Dispatcher single-flight on `(playerId, END_BATTLE_TURN)` and `(playerId, START_BATTLE)` is the safety net; the second arrival within the same tick returns `DUPLICATE_INTENT`. See [`docs/architecture/command-schema.md` § Single-flight commands](../../../command-schema.md#single-flight-commands).
 
 ### Multiplayer Disconnect (Q213)

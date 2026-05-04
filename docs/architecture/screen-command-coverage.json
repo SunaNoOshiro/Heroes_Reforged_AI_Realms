@@ -110,6 +110,10 @@
     "ACCEPT_PUBLISH_DISCLAIMER": "phase-2.04-content-editor.10-publish-disclaimer-flow owns the per-pack content-policy ack write per docs/architecture/ugc-safety.md.",
     "EXPORT_SCENARIO_AS_PACK": "phase-2.04-content-editor.10-publish-disclaimer-flow owns the local .hrmod export per docs/architecture/wiki/screens/73-ugc-publish-disclaimer/.",
     "SUBMIT_CONTENT_REPORT": "phase-2.05-mod-system.12-content-report-intake-and-local-queue owns the content-report queue write per docs/architecture/wiki/screens/75-content-report/.",
-    "ATTACH_CONTENT_REPORT_SCREENSHOT": "phase-2.05-mod-system.12-content-report-intake-and-local-queue owns the optional screenshot attach affordance per docs/architecture/wiki/screens/75-content-report/."
+    "ATTACH_CONTENT_REPORT_SCREENSHOT": "phase-2.05-mod-system.12-content-report-intake-and-local-queue owns the optional screenshot attach affordance per docs/architecture/wiki/screens/75-content-report/.",
+    "OWNER_NOTICE": "Signaling server-to-host authenticated channel event carrying the richer ownerReason enum from content-schema/schemas/signaling-error.schema.json; not a UI command. Owned by phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby per services/signaling/error-codes.md.",
+    "NETWORK_ERROR": "Closed peerFailureReason enum value rendered to UI on a peer-connection failure per docs/architecture/wiki/screens/64-network-lobby/spec.md § Peer-Failure Error Contract; not a command. Surfaced by formatUserError -> errors.peer.failed.",
+    "PROTOCOL_MISMATCH": "Closed peerFailureReason enum value rendered to UI on a peer-connection failure per docs/architecture/wiki/screens/64-network-lobby/spec.md § Peer-Failure Error Contract; not a command. Surfaced by formatUserError -> errors.peer.failed.",
+    "POLICY_ACCEPTED": "Closed audit-log-entry.schema.json type emitted on privacy-policy acceptance per docs/architecture/wiki/screens/56-options/interactions.md § Privacy disclosure modal; not a command. Owned by mvp.07-ui-shell.26-privacy-disclosure-modal."
   }
 }

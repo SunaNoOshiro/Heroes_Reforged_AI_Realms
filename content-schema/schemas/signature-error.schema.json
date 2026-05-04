@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/signature-error.schema.json",
+  "title": "Signature Error",
+  "description": "Closed pack-signature error vocabulary. Per `docs/architecture/crypto-rules.md`, every signature-comparison failure collapses to `INVALID_SIGNATURE`; the explicit `SIGNATURE_DISABLED` code is reserved for the documented \"feature off\" state. The structure carries no key id, no attempted value, and no algorithm name on the wire.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "code", "errorId"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "code": {
+      "enum": ["INVALID_SIGNATURE", "SIGNATURE_DISABLED"],
+      "description": "Closed enum. `INVALID_SIGNATURE` covers wrong key, no such key, malformed signature, and any other failure mode; consumers MUST NOT branch on a richer reason."
+    },
+    "errorId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "UUID v4 minted by `formatUserError` / `formatDevError`. Cross-referenced from on-device crash log."
+    }
+  }
+}

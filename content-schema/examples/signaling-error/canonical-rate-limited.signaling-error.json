@@ -1,0 +1,8 @@
+{
+  "$schema": "heroes-reforged/signaling-error.schema.json",
+  "schemaVersion": 1,
+  "kind": "wire",
+  "wireCode": "RATE_LIMITED",
+  "retryAfterMs": 30000,
+  "errorId": "22222222-3333-4444-8aaa-666666666666"
+}

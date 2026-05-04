@@ -27,6 +27,7 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
   - SaveLoadButtons
   - OptionsButton
   - ForgetMeButton
+  - ErasureReceiptModal
   - ConfirmRoutes
 
 ### State Bindings

@@ -160,6 +160,47 @@ The worker boundary consumes the projected per-player
 not raw `AdventureState`. Dispatcher legality validation still
 runs against full state.
 
+## Privacy Slice
+
+`state.privacy.*` is the in-memory mirror of the persisted privacy
+options ([`privacy-options.schema.json`](../../content-schema/schemas/privacy-options.schema.json))
+plus the consent-version state added by Plan 22:
+
+- `state.privacy.options` — display-name mode, analytics opt-in,
+  mature-content gate, salt fingerprint (mirrors the persisted
+  `hr-profile.privacy` row).
+- `state.privacy.acceptedPolicyVersion: integer` — the
+  `policyVersion` the user has explicitly accepted; mirrors
+  [`privacy.md`](./privacy.md) top-of-file.
+- `state.privacy.currentDisclosureVersion: integer` — compile-time
+  constant; increments on any material change to
+  [`privacy.md`](./privacy.md). When
+  `acceptedPolicyVersion < currentDisclosureVersion`, the
+  disclosure modal in screen
+  [`56-options`](./wiki/screens/56-options/) re-opens on next
+  launch and re-records consent.
+- `state.privacy.replayShareConsent` —
+  `{ mode: 'playerHashOnly' | 'playerNameCleartext', exportedAt }`.
+  Default `playerHashOnly`. Consumed by the replay-export
+  sanitizer declared in
+  [`diagrams/24-save-flow.md`](./diagrams/24-save-flow.md).
+
+The slice is the **only** sink that consumers (analytics SDK
+loader, replay-export sanitizer, privacy disclosure modal) must
+read; reading the persisted IndexedDB row directly is forbidden.
+
+## Error Sinks
+
+Every UI sink that originates from a thrown error routes through
+[`error-formatter.md`](./error-formatter.md). `formatUserError` is
+the only function that may produce the text bound into a UI sink;
+`formatDevError` is the only function that may produce the text
+bound into a developer sink. The build-mode policy in
+[`production-build.md`](./production-build.md) rules out other
+paths in production. `state.privacy.*` is not consulted by the
+formatter; redaction is data-shape-driven (allowlist patterns +
+the `redact: true` tag).
+
 ## Related docs
 
 - [`event-system.md`](./event-system.md) — event-log runtime contract (emission, consumption, no-veto, retention, save/load, error isolation, re-entry guard rules)

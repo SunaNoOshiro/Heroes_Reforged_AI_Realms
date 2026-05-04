@@ -22,6 +22,85 @@
       "type": "string",
       "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
     },
+    "errors": {
+      "type": "object",
+      "description": "Closed namespace of user-grade error keys produced by `formatUserError`. CI asserts every key listed here is present in every shipped locale, or carries an `@fallbackOnly` marker. See `docs/architecture/error-formatter.md`.",
+      "additionalProperties": false,
+      "properties": {
+        "generic": { "type": "string", "minLength": 1 },
+        "network": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "joinFailed": { "type": "string", "minLength": 1 },
+            "rateLimited": { "type": "string", "minLength": 1 },
+            "serverError": { "type": "string", "minLength": 1 }
+          },
+          "required": ["joinFailed", "rateLimited", "serverError"]
+        },
+        "peer": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "failed": { "type": "string", "minLength": 1 }
+          },
+          "required": ["failed"]
+        },
+        "signature": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "invalid": { "type": "string", "minLength": 1 },
+            "disabled": { "type": "string", "minLength": 1 }
+          },
+          "required": ["invalid", "disabled"]
+        },
+        "import": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "versionMismatch": { "type": "string", "minLength": 1 },
+            "corrupted": { "type": "string", "minLength": 1 },
+            "unsupportedPack": { "type": "string", "minLength": 1 },
+            "tooOld": { "type": "string", "minLength": 1 },
+            "unknown": { "type": "string", "minLength": 1 }
+          },
+          "required": [
+            "versionMismatch",
+            "corrupted",
+            "unsupportedPack",
+            "tooOld",
+            "unknown"
+          ]
+        },
+        "ai": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "generationFailed": { "type": "string", "minLength": 1 },
+            "providerUnavailable": { "type": "string", "minLength": 1 }
+          },
+          "required": ["generationFailed", "providerUnavailable"]
+        },
+        "desync": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "detected": { "type": "string", "minLength": 1 }
+          },
+          "required": ["detected"]
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "notAccepted": { "type": "string", "minLength": 1 }
+          },
+          "required": ["notAccepted"]
+        }
+      },
+      "required": ["generic", "network", "peer", "signature", "import", "ai", "desync", "policy"]
+    },
     "entries": {
       "type": "object",
       "minProperties": 1,

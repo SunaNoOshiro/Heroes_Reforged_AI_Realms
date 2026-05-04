@@ -28,6 +28,7 @@
 - `OPEN_HIGH_SCORES` from `mainMenu.highScore`: Reads completed-game score records.
 - `OPEN_CREDITS_OR_INTRO` from `mainMenu.credits`: Routes to presentation-only cinematic shell.
 - `REQUEST_QUIT_CONFIRMATION` from `mainMenu.quit`: No gameplay mutation.
+- `OPEN_PRIVACY_POLICY` from `mainMenu.privacy`: Opens the in-app privacy modal rendering [`docs/architecture/privacy.md`](../../../privacy.md); does not enter the deterministic command log.
 
 ### Config Keys
 - `config.ui.locale`
@@ -42,6 +43,7 @@
 - `ui.main-menu.actions.*`
 - `ui.main-menu.status.*`
 - `ui.main-menu.errors.*`
+- `ui.main-menu.footer.privacy`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs

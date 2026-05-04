@@ -1069,6 +1069,14 @@
       ]
     },
     {
+      "componentId": "ErasureReceiptModal",
+      "module": "src/ui/system-menu/erasure-receipt-modal.tsx",
+      "exportName": "ErasureReceiptModal",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
       "componentId": "EventIcon",
       "module": "src/ui/components/event-icon.tsx",
       "exportName": "EventIcon",
@@ -2288,6 +2296,22 @@
       "componentId": "PrivacyCover",
       "module": "src/ui/components/privacy-cover.tsx",
       "exportName": "PrivacyCover",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PrivacyDisclosureModal",
+      "module": "src/ui/options/privacy-disclosure-modal.tsx",
+      "exportName": "PrivacyDisclosureModal",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "PrivacyFooter",
+      "module": "src/ui/menus/privacy-footer.tsx",
+      "exportName": "PrivacyFooter",
       "tags": [
         "ui"
       ]
