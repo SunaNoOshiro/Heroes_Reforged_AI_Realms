@@ -1,0 +1,25 @@
+{
+  "$schema": "heroes-reforged/tournament-result.schema.json",
+  "schemaVersion": 1,
+  "matchId": "knight-vs-pawn-emberwild-2026-05-04",
+  "aiA": {
+    "id": "knight",
+    "version": "1.0.0"
+  },
+  "aiB": {
+    "id": "pawn",
+    "version": "1.0.0"
+  },
+  "gamesPlayed": 100,
+  "winRateA": 78,
+  "winRateB": 18,
+  "drawRate": 4,
+  "avgDecisionTimeMsA": 45,
+  "avgDecisionTimeMsB": 12,
+  "avgBranchingA": 32,
+  "avgBranchingB": 18,
+  "avgGameLengthTurns": 42,
+  "seed": 42,
+  "contentPack": "heroes-reforged/canonical",
+  "scenarioId": "emberwild-1v1"
+}

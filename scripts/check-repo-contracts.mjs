@@ -456,6 +456,8 @@ function schemaForFile(filePath) {
   if (base.endsWith(".provider-response-cache-entry.json")) return "provider-response-cache-entry.schema.json";
   if (base.endsWith(".revocation-registry.json")) return "revocation-registry.schema.json";
   if (base.endsWith(".revocation-entry.json")) return "revocation-entry.schema.json";
+  if (base.endsWith(".golden-fixture.json")) return "golden-fixture.schema.json";
+  if (base.endsWith(".tournament-result.json")) return "tournament-result.schema.json";
   if (base === "game-state.example.json") return "game-state.schema.json";
   if (base === "ui-component-registry.example.json") return "ui-component-registry.schema.json";
   if (base.endsWith(".error-state.json")) return "error-state.schema.json";

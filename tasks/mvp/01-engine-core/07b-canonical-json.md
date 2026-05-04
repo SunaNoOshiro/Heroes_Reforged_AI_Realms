@@ -38,6 +38,14 @@ Outputs:
 - Fuzz test: 10 000 random JSON-compatible values, re-serialize →
   re-parse → re-serialize returns identical bytes
 
+Downstream Consumers:
+- `mvp.02-tooling.04-property-based-testing` adds
+  `src/engine/__tests__/canonical-json.property.test.ts` that pins
+  the round-trip identity, key-order insensitivity, and byte-stability
+  invariants as `fast-check` properties. The property test consumes
+  the canonicalizer authored here; this task does not own the
+  property file.
+
 Owned Paths:
 - `src/engine/canonical-json.ts`
 - `src/engine/content-hash.ts`

@@ -16,10 +16,15 @@ Inputs:
 - All tasks in this module, `02-strategic-ai.md`
 
 Outputs:
-- `src/ai/bots/__tests__/emberwild-vs-necropolis.test.ts`
-- Run ≥ 200 games, report win rate per faction with Wilson 95 % CI
+- `src/ai/bots/__tests__/emberwild-vs-necropolis.test.ts` — consumes
+  the shared tournament harness owned by
+  `phase-2.10-ai-tournament-harness.01-ai-tournament-harness`. The
+  test imports `tournament(...)` and supplies
+  `{aiA: emberwild_knight, aiB: necropolis_knight, gamesPerMatch:
+  200}`. Wilson 95 % CI is computed from the returned
+  `TournamentResult.winRateA / winRateB`.
 - Flag if either faction's Wilson lower bound exceeds 65 % (threshold
-  for "severely imbalanced")
+  for "severely imbalanced").
 
 Owned Paths:
 - `src/ai/bots/__tests__/emberwild-vs-necropolis.test.ts`
@@ -30,6 +35,7 @@ Dependencies:
 - phase-2.03-second-faction.03-necropolis-hero-roster-json
 - phase-2.03-second-faction.04-necromancy-mechanic-raise-skeletons-after-combat
 - phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules
+- phase-2.10-ai-tournament-harness.01-ai-tournament-harness
 
 Acceptance Criteria:
 - Neither faction's 95 % Wilson lower bound is above 65 %

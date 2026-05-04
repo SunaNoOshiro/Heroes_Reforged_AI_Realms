@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/tournament-result.schema.json",
+  "title": "Tournament Result",
+  "description": "Output of the shared AI tournament harness pinned by tasks/phase-2/10-ai-tournament-harness/. Every percent and timing field is an integer so the metrics struct serializes byte-stably through canonical JSON; the runner truncates sub-ms / sub-1 branching to 0. Reproducibility contract: same (seed, aiA, aiB, contentPack, scenarioId, gamesPerMatch, budget) produces byte-identical TournamentResult.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "matchId",
+    "aiA",
+    "aiB",
+    "gamesPlayed",
+    "winRateA",
+    "winRateB",
+    "drawRate",
+    "avgDecisionTimeMsA",
+    "avgDecisionTimeMsB",
+    "avgBranchingA",
+    "avgBranchingB",
+    "avgGameLengthTurns",
+    "seed",
+    "contentPack",
+    "scenarioId"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "matchId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable id of this tournament run; canonical-JSON-derived hash of the input tuple."
+    },
+    "aiA": {
+      "$ref": "#/$defs/botRef"
+    },
+    "aiB": {
+      "$ref": "#/$defs/botRef"
+    },
+    "gamesPlayed": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "winRateA": {
+      "$ref": "#/$defs/percent"
+    },
+    "winRateB": {
+      "$ref": "#/$defs/percent"
+    },
+    "drawRate": {
+      "$ref": "#/$defs/percent"
+    },
+    "avgDecisionTimeMsA": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Mean decision time in milliseconds across aiA's turns, integer-truncated."
+    },
+    "avgDecisionTimeMsB": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "avgBranchingA": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Mean number of legal commands considered per decision by aiA, integer-truncated."
+    },
+    "avgBranchingB": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "avgGameLengthTurns": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "seed": {
+      "type": "integer",
+      "description": "Input seed that the runner forks per game via PCG32."
+    },
+    "contentPack": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenarioId": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "botRef": {
+      "type": "object",
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

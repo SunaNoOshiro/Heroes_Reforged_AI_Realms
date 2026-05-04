@@ -35,7 +35,7 @@ asset file paths.
 | `src/ui/` | App shell, gameplay UI, and creator tooling under `src/ui/editor/` |
 | `src/ai/` | Bots, balancing, AI generation |
 | `src/net/` | Lockstep multiplayer |
-| `src/persistence/` | Saves, replays, scenarios |
+| `src/persistence/` | Saves, replays, scenarios. Edge-case scenario fixtures consumed by the golden-state suite live under `tests/__fixtures__/edge-cases/`. |
 | `resources/` | Authored packs and asset payloads |
 | `services/` | Optional backend services |
 

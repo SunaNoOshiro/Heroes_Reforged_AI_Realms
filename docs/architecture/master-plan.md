@@ -43,9 +43,22 @@ Important `src/` modules:
 - `renderer` map, battle, animation playback
 - `ui` shell and gameplay UI (includes `ui/editor/` for content authoring screens)
 - `editor` reserved for non-UI editor logic split out from `ui/editor/` if it grows
-- `ai` bots, balancing, generation
-- `net` multiplayer
+- `ai` bots, balancing, generation. The shared headless tournament
+  harness and metrics shape live in
+  [testing/ai-tournament-harness.md](testing/ai-tournament-harness.md).
+- `net` multiplayer. The deterministic test transport contract is
+  pinned in [net-transport.md](net-transport.md).
 - `persistence` saves, replays, scenarios
+
+Per-module unit-test contract (DI seams, canonical fakes, rubric)
+lives in
+[testing/unit-test-contract.md](testing/unit-test-contract.md);
+coverage thresholds in
+[testing/coverage-policy.md](testing/coverage-policy.md);
+engine throughput SLO in
+[testing/engine-throughput-slo.md](testing/engine-throughput-slo.md);
+per-screen smoke contract in
+[testing/ui-smoke-contract.md](testing/ui-smoke-contract.md).
 
 ## Determinism Stack
 

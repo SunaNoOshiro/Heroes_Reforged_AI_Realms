@@ -50,6 +50,21 @@ follow the same group order, and the wiki sidebar renders those groups
 directly so each section reads in natural numeric sequence. General
 diagrams stay separate under `docs/architecture/diagrams/`.
 
+## UI Smoke Contract
+
+Every screen package under
+[`screens/<nn-screen>/`](./screens/) is paired at runtime with
+exactly one `<screen>.smoke.test.ts` under
+[`src/ui/__tests__/screens/`](../../../src/ui/__tests__/) per the
+contract pinned in
+[`testing/ui-smoke-contract.md`](../testing/ui-smoke-contract.md).
+A UI task whose `ownedPaths` glob matches `src/ui/**` cannot flip to
+`done` if the smoke step fails, because
+[`scripts/tasks.mjs`](../../../scripts/tasks.mjs) automatically
+prepends `npm run test:ui-smoke` to its verify chain. The harness
+itself is owned by
+[`tasks/mvp/02-tooling/01-ui-smoke-harness.md`](../../../tasks/mvp/02-tooling/01-ui-smoke-harness.md).
+
 ## UI Evolution Policy
 
 UI layout, visual style, panel composition, navigation flow, component

@@ -16,8 +16,8 @@ Inputs:
 
 Outputs:
 - `.github/workflows/ci.yml`
-- Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz)
-- Badge in root `README.md`
+- Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz) → `npm run test:ui-smoke` → `npm run test:golden` → `npm run test:coverage` → `npm run test:replays` → `npm run bench:engine` (non-gating, posts PR comment)
+- Badge in root `README.md` (CI status + coverage)
 - **Perf-bench job** (advisory on PRs, blocking on `main` and
   `perf/**` branches) — wired by
   `mvp.00-perf.02-bench-baseline-and-ci-gate` via
@@ -45,7 +45,22 @@ Acceptance Criteria:
 - CI passes on `main` after all M0 tasks are merged
 - A deliberate `Math.random()` injection causes CI to fail at the lint step
 - A deliberate state-mutation bug causes CI to fail at the fuzz step
-- Total CI runtime < 3 minutes
+- Total CI runtime < 3 minutes (smoke + coverage + golden + replays
+  steps each fit inside the existing budget; the non-gating
+  `bench:engine` step runs in parallel and posts a PR comment with
+  the per-metric delta against `main`)
+- A deliberate UI binding-name typo causes the
+  `npm run test:ui-smoke` step to fail per the contract owned by
+  `mvp.02-tooling.01-ui-smoke-harness`
+- A deliberate ruleset formula change without a paired golden re-
+  bless causes the `npm run test:golden` step to fail per the
+  contract owned by `mvp.01-engine-core.12-golden-state-suite`
+- A deliberate untested module under `src/engine/` causes the
+  `npm run test:coverage` step to fail per the threshold map owned
+  by `mvp.02-tooling.02-coverage-gate`
+- A deliberate regression of any fixed mechanics bug causes the
+  `npm run test:replays` step to fail per the policy owned by
+  `mvp.01-engine-core.13-replay-regression-suite`
 - The shared paths `.github/workflows/perf.yml` and
   `.github/workflows/memory.yml` are **additive** workflow files;
   they coexist with `.github/workflows/ci.yml` and must not

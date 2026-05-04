@@ -1,0 +1,18 @@
+{
+  "$schema": "heroes-reforged/golden-fixture.schema.json",
+  "schemaVersion": 1,
+  "scenarioId": "emberwild-1v1",
+  "seed": 0,
+  "commandLog": [
+    {
+      "kind": "END_DAY",
+      "metadata": {
+        "turn": 0,
+        "playerId": 0,
+        "nonce": "0:0:0"
+      }
+    }
+  ],
+  "expectedStateHash": "0000000000000000",
+  "notes": "Empty-day baseline; pins the initial-state hash after a single END_DAY transition."
+}

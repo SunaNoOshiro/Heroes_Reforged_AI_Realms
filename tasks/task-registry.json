@@ -95,8 +95,8 @@
       "title": "Module: Engine Core (M0)",
       "path": "tasks/mvp/01-engine-core.md",
       "milestone": "M0 — Skeleton",
-      "totalEstimate": "~45 hours",
-      "exitCriteria": "Replay-determinism fuzz test passes on every PR in CI.",
+      "totalEstimate": "~56 hours",
+      "exitCriteria": "Replay-determinism fuzz test, golden-state suite,",
       "lintTags": [],
       "taskLinks": [
         {
@@ -150,6 +150,18 @@
         {
           "label": "11-no-wall-clock-lint.md",
           "link": "01-engine-core/11-no-wall-clock-lint.md"
+        },
+        {
+          "label": "12-golden-state-suite.md",
+          "link": "01-engine-core/12-golden-state-suite.md"
+        },
+        {
+          "label": "13-replay-regression-suite.md",
+          "link": "01-engine-core/13-replay-regression-suite.md"
+        },
+        {
+          "label": "14-engine-throughput-benchmark.md",
+          "link": "01-engine-core/14-engine-throughput-benchmark.md"
         }
       ]
     },
@@ -271,6 +283,39 @@
         {
           "label": "27-reserve-ai-profile-schema.md",
           "link": "02-content-schemas/27-reserve-ai-profile-schema.md"
+        }
+      ]
+    },
+    {
+      "id": "mvp.02-tooling",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Test & Tooling Contracts (M0)",
+      "path": "tasks/mvp/02-tooling.md",
+      "milestone": "M0 — Test contract foundation",
+      "totalEstimate": "~17 hours",
+      "exitCriteria": "`npm run test:ui-smoke`, `npm run test:coverage`,",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "01-ui-smoke-harness.md",
+          "link": "02-tooling/01-ui-smoke-harness.md"
+        },
+        {
+          "label": "02-coverage-gate.md",
+          "link": "02-tooling/02-coverage-gate.md"
+        },
+        {
+          "label": "03-unit-test-contract.md",
+          "link": "02-tooling/03-unit-test-contract.md"
+        },
+        {
+          "label": "04-property-based-testing.md",
+          "link": "02-tooling/04-property-based-testing.md"
+        },
+        {
+          "label": "05-edge-case-fixtures.md",
+          "link": "02-tooling/05-edge-case-fixtures.md"
         }
       ]
     },
@@ -1503,13 +1548,30 @@
       ]
     },
     {
+      "id": "phase-2.10-ai-tournament-harness",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: AI Tournament Harness (M3+)",
+      "path": "tasks/phase-2/10-ai-tournament-harness.md",
+      "milestone": "M3+ — shared evaluation infrastructure",
+      "totalEstimate": "~4 hours",
+      "exitCriteria": "Every downstream consumer task imports the runner",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "01-ai-tournament-harness.md",
+          "link": "10-ai-tournament-harness/01-ai-tournament-harness.md"
+        }
+      ]
+    },
+    {
       "id": "phase-3.01-multiplayer",
       "kind": "module",
       "status": "planned",
       "title": "Module: Multiplayer — WebRTC Lockstep (M5)",
       "path": "tasks/phase-3/01-multiplayer.md",
       "milestone": "M5 — Multiplayer",
-      "totalEstimate": "~50 hours",
+      "totalEstimate": "~56 hours",
       "exitCriteria": "Two players on different networks complete a full match with no desync; disconnection and reconnection work.",
       "lintTags": [],
       "taskLinks": [
@@ -1556,6 +1618,10 @@
         {
           "label": "11-network-chaos-test-matrix.md",
           "link": "01-multiplayer/11-network-chaos-test-matrix.md"
+        },
+        {
+          "label": "12-network-chaos-harness.md",
+          "link": "01-multiplayer/12-network-chaos-harness.md"
         }
       ]
     },
@@ -2735,7 +2801,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 333
+      "downstreamTransitiveCount": 342
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2776,7 +2842,8 @@
       "acceptanceCriteria": [
         "`npm run -ws type-check` exits 0",
         "No `any` types in `src/engine` or `src/rules`",
-        "Source maps generated for all implementation modules"
+        "Source maps generated for all implementation modules",
+        "`vitest.config.ts` declares the per-module coverage threshold map pinned in [`docs/architecture/testing/coverage-policy.md`](../../../docs/architecture/testing/coverage-policy.md) under the canonical `coverage` block. The threshold values are contributed additively by `mvp.02-tooling.02-coverage-gate`; this task only ensures the config block exists with the c8 provider selected."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -2795,8 +2862,8 @@
         "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 331
+      "downstreamDirectCount": 12,
+      "downstreamTransitiveCount": 340
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2852,8 +2919,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 214
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 221
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2909,7 +2976,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 245
+      "downstreamTransitiveCount": 252
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3055,8 +3122,8 @@
         "mvp.01-engine-core.04-implement-fixed-point-math-library"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 28,
-      "downstreamTransitiveCount": 203
+      "downstreamDirectCount": 30,
+      "downstreamTransitiveCount": 210
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3265,8 +3332,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 61
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 70
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3285,7 +3352,8 @@
         "`src/engine/canonical-json.ts` — `canonicalize(value): string`",
         "`src/engine/content-hash.ts` — `contentHash(value): string` returning 16-hex-char xxh64 digest",
         "`scripts/hash-pack.mjs` — CLI that recomputes and rewrites each manifest's `contentHash` field after content edits",
-        "Fuzz test: 10 000 random JSON-compatible values, re-serialize → re-parse → re-serialize returns identical bytes"
+        "Fuzz test: 10 000 random JSON-compatible values, re-serialize → re-parse → re-serialize returns identical bytes Downstream Consumers:",
+        "`mvp.02-tooling.04-property-based-testing` adds `src/engine/__tests__/canonical-json.property.test.ts` that pins the round-trip identity, key-order insensitivity, and byte-stability invariants as `fast-check` properties. The property test consumes the canonicalizer authored here; this task does not own the property file."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -3327,8 +3395,8 @@
         "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 16
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "mvp.01-engine-core.08-replay-api",
@@ -3345,7 +3413,8 @@
       ],
       "outputs": [
         "`src/engine/replay.ts` — `replay(seed: bigint, log: Command[]): GameState`",
-        "Optional: `replayUntil(seed, log, index)` for checkpoint seeks"
+        "Optional: `replayUntil(seed, log, index)` for checkpoint seeks",
+        "Replay format additive field: `expectedFinalStateHash?: string` (16-hex-char xxh64 digest). Optional in the schema, no migration needed; required for replays consumed by the regression suite owned by `mvp.01-engine-core.13-replay-regression-suite`."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -3386,8 +3455,8 @@
         "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 59
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -3473,8 +3542,8 @@
       ],
       "outputs": [
         "`.github/workflows/ci.yml`",
-        "Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz)",
-        "Badge in root `README.md`",
+        "Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz) → `npm run test:ui-smoke` → `npm run test:golden` → `npm run test:coverage` → `npm run test:replays` → `npm run bench:engine` (non-gating, posts PR comment)",
+        "Badge in root `README.md` (CI status + coverage)",
         "**Perf-bench job** (advisory on PRs, blocking on `main` and `perf/**` branches) — wired by `mvp.00-perf.02-bench-baseline-and-ci-gate` via `.github/workflows/perf.yml`.",
         "**Memory-gate job** (blocking) — wired by `mvp.00-perf.03-memory-regression-gate` via `.github/workflows/memory.yml`.",
         "Both perf jobs share the bench harness from `mvp.00-perf.01-bench-harness`."
@@ -3503,7 +3572,11 @@
         "CI passes on `main` after all M0 tasks are merged",
         "A deliberate `Math.random()` injection causes CI to fail at the lint step",
         "A deliberate state-mutation bug causes CI to fail at the fuzz step",
-        "Total CI runtime < 3 minutes",
+        "Total CI runtime < 3 minutes (smoke + coverage + golden + replays steps each fit inside the existing budget; the non-gating `bench:engine` step runs in parallel and posts a PR comment with the per-metric delta against `main`)",
+        "A deliberate UI binding-name typo causes the `npm run test:ui-smoke` step to fail per the contract owned by `mvp.02-tooling.01-ui-smoke-harness`",
+        "A deliberate ruleset formula change without a paired golden re- bless causes the `npm run test:golden` step to fail per the contract owned by `mvp.01-engine-core.12-golden-state-suite`",
+        "A deliberate untested module under `src/engine/` causes the `npm run test:coverage` step to fail per the threshold map owned by `mvp.02-tooling.02-coverage-gate`",
+        "A deliberate regression of any fixed mechanics bug causes the `npm run test:replays` step to fail per the policy owned by `mvp.01-engine-core.13-replay-regression-suite`",
         "The shared paths `.github/workflows/perf.yml` and `.github/workflows/memory.yml` are **additive** workflow files; they coexist with `.github/workflows/ci.yml` and must not rewrite or merge into it. The primary owner of `perf.yml` is `mvp.00-perf.02-bench-baseline-and-ci-gate`; the primary owner of `memory.yml` is `mvp.00-perf.03-memory-regression-gate`. This task only references those workflows; it does not author their gate logic."
       ],
       "verifyCommands": [
@@ -3587,6 +3660,242 @@
       "downstreamTransitiveCount": 16
     },
     {
+      "id": "mvp.01-engine-core.12-golden-state-suite",
+      "kind": "task",
+      "status": "planned",
+      "title": "Golden-State Regression Suite",
+      "path": "tasks/mvp/01-engine-core/12-golden-state-suite.md",
+      "moduleId": "mvp.01-engine-core",
+      "modulePath": "tasks/mvp/01-engine-core.md",
+      "description": "Add a checked-in golden-state regression suite that pins `(scenarioId, seed) → expectedStateHash` for every fixture in `tests/__fixtures__/golden/`. The differential fuzz harness ([`09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](./09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md)) catches non-determinism between two live engine instances; it does **not** catch an unintended *intentional* mechanics change that silently shifts a canonical state hash. The golden suite closes that gap by replaying each fixture's command log and asserting the final `stateHash` matches the checked-in expected hash. On any drift the runner fails with a diff between expected and actual canonical JSON (truncated to the first 50 differing lines for log readability). A `golden:bless` script re-emits the expected hash for a named fixture, gated behind an explicit human action (refuses to run when `process.env.CI` is set) so blessing is never accidental.",
+      "inputs": [
+        "Canonical JSON serializer + content hash (`mvp.01-engine-core.07b-canonical-json`)",
+        "State serializer + xxh64 hash (`mvp.01-engine-core.07-state-serializer-plus-xxh64-hash`)",
+        "Replay API (`mvp.01-engine-core.08-replay-api`)",
+        "Edge-case scenario fixtures (`mvp.02-tooling.05-edge-case-fixtures`)"
+      ],
+      "outputs": [
+        "`content-schema/schemas/golden-fixture.schema.json` — schema for a golden fixture: `{scenarioId, seed, commandLog: Command[], expectedStateHash}`, `additionalProperties: false`. References the existing [`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json).",
+        "`content-schema/examples/golden-fixture/canonical.golden-fixture.json` — one worked example using a small canonical scenario.",
+        "`tests/__fixtures__/golden/README.md` — naming convention, `(scenarioId, seed)` uniqueness rule, blessing policy.",
+        "`tests/__fixtures__/golden/.gitkeep` — keep the directory in git even when the corpus is empty at first.",
+        "`src/engine/__tests__/golden.test.ts` — runner that loads each fixture, replays through `replay(seed, commandLog)`, asserts `hashState(state) === expectedStateHash`.",
+        "`scripts/golden-bless.mjs` — re-emits the expected hash for a named fixture; refuses to run in CI (`process.env.CI` guard).",
+        "`package.json` script `golden:bless` invoking the bless script and `test:golden` invoking the runner."
+      ],
+      "readFirst": [
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q251"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/golden-fixture.schema.json",
+        "content-schema/examples/golden-fixture/",
+        "tests/__fixtures__/golden/",
+        "src/engine/__tests__/golden.test.ts",
+        "scripts/golden-bless.mjs",
+        "package.json",
+        "docs/architecture/determinism.md",
+        "scripts/check-repo-contracts.mjs",
+        ".golden-fixture.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json",
+        "docs/architecture/determinism.md",
+        "scripts/check-repo-contracts.mjs",
+        ".golden-fixture.json"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.07b-canonical-json",
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.02-tooling.05-edge-case-fixtures"
+      ],
+      "acceptanceCriteria": [
+        "`npm run test:golden` loads every `tests/__fixtures__/golden/*.json`, replays it, and asserts the final state hash equals `expectedStateHash`.",
+        "A deliberate ruleset formula change in `src/rules/` causes `npm run test:golden` to fail with a canonical-JSON diff.",
+        "`npm run golden:bless -- <fixtureName>` re-emits the expected hash for one named fixture; running the same command in CI environment exits non-zero with a \"blessing in CI is forbidden\" message.",
+        "The schema validates a fixture missing `expectedStateHash` and rejects unknown properties.",
+        "Shared paths (`package.json`, `docs/architecture/determinism.md`, `scripts/check-repo-contracts.mjs`) are extended with additive scope only. This task must not rewrite existing scripts, determinism sections, or schema-suffix mappings; the primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/golden-fixture.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/golden-fixture.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.07b-canonical-json",
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.02-tooling.05-edge-case-fixtures"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.07b-canonical-json",
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.02-tooling.05-edge-case-fixtures"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 17
+    },
+    {
+      "id": "mvp.01-engine-core.13-replay-regression-suite",
+      "kind": "task",
+      "status": "planned",
+      "title": "Replay Regression Suite",
+      "path": "tasks/mvp/01-engine-core/13-replay-regression-suite.md",
+      "moduleId": "mvp.01-engine-core",
+      "modulePath": "tasks/mvp/01-engine-core.md",
+      "description": "Add a checked-in replay corpus under `tests/replays/` plus a runner that loads every `*.replay.json` and asserts the recorded `expectedFinalStateHash` matches actual. Document the policy: every PR that fixes a mechanics bug must add a replay that fails before the fix and passes after. Without this gate, a fixed bug can return six months later with no failing test, and the replay primitive's regression-test value is unrealized. The runner shares the canonical-hash + replay primitives with the golden-state suite ([Task 12](./12-golden-state-suite.md)); landing both together amortizes review.",
+      "inputs": [
+        "Replay API (`mvp.01-engine-core.08-replay-api`); this task extends the replay format to add `expectedFinalStateHash`.",
+        "Golden-state suite (`mvp.01-engine-core.12-golden-state-suite`) — same canonical-hash primitive."
+      ],
+      "outputs": [
+        "`tests/replays/README.md` — naming convention (`bug-<issue-id>-<short-name>.replay.json`), the \"one replay per fixed mechanics bug\" policy, the `expectedFinalStateHash` field requirement.",
+        "`tests/replays/.gitkeep`",
+        "`src/engine/__tests__/replays.test.ts` — runner that loads every `tests/replays/*.replay.json`, replays it, asserts `hashState(replayed) === expectedFinalStateHash`.",
+        "`package.json` script `test:replays` invoking the runner.",
+        "One-line cross-reference under `docs/architecture/determinism.md` § Replay pointing at the corpus directory."
+      ],
+      "readFirst": [
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md) § Replay",
+        "[`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q252"
+      ],
+      "ownedPaths": [
+        "tests/replays/",
+        "src/engine/__tests__/replays.test.ts",
+        "package.json",
+        "docs/architecture/determinism.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json",
+        "docs/architecture/determinism.md"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.01-engine-core.12-golden-state-suite"
+      ],
+      "acceptanceCriteria": [
+        "`npm run test:replays` loads every `tests/replays/*.replay.json`, replays through `replay(seed, commandLog)`, and asserts the final state hash equals `expectedFinalStateHash`.",
+        "The replay-format spec inside `08-replay-api.md` documents the additive `expectedFinalStateHash` field; the field is optional in the schema (no migration needed) but required for fixtures consumed by this runner.",
+        "`tests/replays/README.md` documents the `bug-<issue-id>-<short-name>.replay.json` naming convention and the policy that every fixed mechanics bug must add a replay.",
+        "A deliberate regression of a fixed mechanics bug causes `npm run test:replays` to fail with the bisect-friendly hash mismatch.",
+        "Shared paths (`package.json`, `docs/architecture/determinism.md`) are extended with additive scope only. This task must not rewrite existing scripts or determinism sections; the primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.01-engine-core.12-golden-state-suite"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.08-replay-api",
+        "mvp.01-engine-core.12-golden-state-suite"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
+    },
+    {
+      "id": "mvp.01-engine-core.14-engine-throughput-benchmark",
+      "kind": "task",
+      "status": "planned",
+      "title": "Engine Throughput Benchmark",
+      "path": "tasks/mvp/01-engine-core/14-engine-throughput-benchmark.md",
+      "moduleId": "mvp.01-engine-core",
+      "modulePath": "tasks/mvp/01-engine-core.md",
+      "description": "Author a `vitest bench` benchmark file under `src/engine/__tests__/throughput.bench.ts` that pins three engine- isolated throughput targets: command dispatch ≥ 100 000 commands / sec, state hash ≥ 50 MB / sec, replay loader ≥ 10 000 commands / sec. Targets are measured against the canonical 1000-command fuzz fixture and reported as median + p95 over 1 000 samples after a 200- iteration warmup. CI runs the bench in **non-gating** mode (records numbers, posts the delta as a PR comment) — flipped to gating only after a stability window measures the noise envelope on shared CI runners. The full SLO (targets, measurement method, tightening policy) lives in [`docs/architecture/testing/engine-throughput-slo.md`](../../../docs/architecture/testing/engine-throughput-slo.md). This benchmark is engine-isolated; the broader perf-bench gate owned by [`tasks/mvp/00-perf/02-bench-baseline-and-ci-gate.md`](../00-perf/02-bench-baseline-and-ci-gate.md) measures the engine + renderer + AI stack end-to-end. Both layers ship; an engine regression surfaces in this bench first.",
+      "inputs": [
+        "Command dispatcher (`mvp.01-engine-core.06-command-dispatcher`)",
+        "State serializer + xxh64 hash (`mvp.01-engine-core.07-state-serializer-plus-xxh64-hash`)",
+        "Replay API (`mvp.01-engine-core.08-replay-api`)",
+        "The 1000-command fuzz fixture pinned by `mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test`"
+      ],
+      "outputs": [
+        "`docs/architecture/testing/engine-throughput-slo.md` — three SLO targets, measurement method, tightening policy.",
+        "`src/engine/__tests__/throughput.bench.ts` — `vitest bench` file measuring the three metrics.",
+        "`package.json` script `bench:engine` invoking `vitest bench src/engine/__tests__/throughput.bench.ts`.",
+        "Edit to `mvp.01-engine-core.10-github-actions-ci`'s acceptance criteria (additive only): non-gating bench step + PR-comment reporter behavior."
+      ],
+      "readFirst": [
+        "[`docs/architecture/testing/engine-throughput-slo.md`](../../../docs/architecture/testing/engine-throughput-slo.md)",
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q260"
+      ],
+      "ownedPaths": [
+        "docs/architecture/testing/engine-throughput-slo.md",
+        "src/engine/__tests__/throughput.bench.ts",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api"
+      ],
+      "acceptanceCriteria": [
+        "`npm run bench:engine` runs the three measured metrics and emits median + p95 to stdout.",
+        "Two consecutive runs on the same hardware produce byte-identical fixture inputs and identical simulation traces; only the timing values may vary.",
+        "A 5× regression on any of the three targets is flagged in the PR comment; CI does not fail (non-gating until the noise envelope measurement window completes).",
+        "The SLO doc names exactly three targets, the measurement method, and the policy for tightening.",
+        "Shared path (`package.json`) is extended with additive scope only. This task must not rewrite the existing scripts; the primary owner of `package.json` remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
+    },
+    {
       "id": "mvp.02-content-schemas.01-unit-schema",
       "kind": "task",
       "status": "planned",
@@ -3643,7 +3952,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 249
+      "downstreamTransitiveCount": 250
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -3701,7 +4010,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 170
+      "downstreamTransitiveCount": 171
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -3884,7 +4193,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 159
+      "downstreamTransitiveCount": 160
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -3945,7 +4254,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 218
+      "downstreamTransitiveCount": 219
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4473,7 +4782,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 130
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5523,7 +5832,10 @@
         "mvp.01-engine-core.08-replay-api",
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
         "mvp.01-engine-core.10-github-actions-ci",
-        "mvp.01-engine-core.11-no-wall-clock-lint"
+        "mvp.01-engine-core.11-no-wall-clock-lint",
+        "mvp.01-engine-core.12-golden-state-suite",
+        "mvp.01-engine-core.13-replay-regression-suite",
+        "mvp.01-engine-core.14-engine-throughput-benchmark"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -5626,6 +5938,349 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
       "downstreamTransitiveCount": 14
+    },
+    {
+      "id": "mvp.02-tooling.01-ui-smoke-harness",
+      "kind": "task",
+      "status": "planned",
+      "title": "UI Smoke Harness",
+      "path": "tasks/mvp/02-tooling/01-ui-smoke-harness.md",
+      "moduleId": "mvp.02-tooling",
+      "modulePath": "tasks/mvp/02-tooling.md",
+      "description": "Promote [`scripts/verify-ui-smoke.mjs`](../../../scripts/verify-ui-smoke.mjs) from a placeholder owned-path checker into a real browser-side smoke runner. Adopt `vitest --browser` (with Playwright's headless Chromium binary as the driver) so every screen package gets a `*.smoke.test.ts` that mounts the screen, asserts the bindings declared in [`spec.md`](../../../docs/architecture/wiki/screens/01-main-menu/spec.md), and dispatches each control listed in [`interactions.md`](../../../docs/architecture/wiki/screens/01-main-menu/interactions.md). Wire the runner into [`scripts/tasks.mjs`](../../../scripts/tasks.mjs) so any task whose `ownedPaths` glob matches `src/ui/**` automatically runs the smoke step at `tasks:done` time.",
+      "inputs": [
+        "Screen packages under [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/) — every numbered screen package is a downstream consumer; see the representative [`docs/architecture/wiki/screens/01-main-menu/`](../../../docs/architecture/wiki/screens/01-main-menu/) for the contract shape.",
+        "Vitest pinned by `mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`"
+      ],
+      "outputs": [
+        "`docs/architecture/testing/ui-smoke-contract.md` — three required assertions per screen (mount with canonical example data, bindings reachable, interactions invokable).",
+        "`scripts/verify-ui-smoke.mjs` (rewritten) — resolves `src/ui/**/*.smoke.test.ts` via glob and dispatches `vitest --browser run` against each. Skips files whose name matches `smoke.template.*`.",
+        "`src/ui/__tests__/smoke.template.test.ts` — copy-paste template every new screen package starts from.",
+        "`package.json` script `test:ui-smoke` invoking the runner.",
+        "`@vitest/browser` and `playwright` added to `devDependencies`.",
+        "Edit to `scripts/tasks.mjs` `done` so any task with `ownedPaths.some(p => p.startsWith('src/ui/'))` prepends `npm run test:ui-smoke` to its verify chain."
+      ],
+      "readFirst": [
+        "[`docs/architecture/testing/ui-smoke-contract.md`](../../../docs/architecture/testing/ui-smoke-contract.md)",
+        "[`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)",
+        "[`docs/architecture/ui-component-resolver.md`](../../../docs/architecture/ui-component-resolver.md)",
+        "[`docs/architecture/wiki/screens/01-main-menu/`](../../../docs/architecture/wiki/screens/01-main-menu/)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/testing/ui-smoke-contract.md",
+        "scripts/verify-ui-smoke.mjs",
+        "src/ui/__tests__/smoke.template.test.ts",
+        "scripts/tasks.mjs",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "scripts/tasks.mjs",
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
+      ],
+      "acceptanceCriteria": [
+        "`npm run test:ui-smoke` runs every `src/ui/**/*.smoke.test.ts` through `vitest --browser` against headless Chromium.",
+        "A deliberate binding-name typo against any [`docs/architecture/wiki/screens/01-main-menu/spec.md`](../../../docs/architecture/wiki/screens/01-main-menu/spec.md) consumer causes the smoke step to fail.",
+        "A deliberate missing handler on any control listed in any screen package's `interactions.md` causes the smoke step to fail.",
+        "`scripts/tasks.mjs done <id>` for a task that owns a `src/ui/**` path runs `npm run test:ui-smoke` automatically; the task cannot flip to `done` if the smoke step fails.",
+        "Smoke step adds < 60 s to CI total wall-clock budget so the overall < 3 minute budget pinned in `mvp.01-engine-core.10-github-actions-ci` still holds.",
+        "Shared paths (`scripts/tasks.mjs`, `package.json`) are extended with additive scope only. This task must not rewrite the existing task-system CLI behavior, the existing CI verify chain, or the existing package metadata, and must not collapse other verify steps into the smoke runner. The primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/01-main-menu"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.02-tooling.02-coverage-gate",
+      "kind": "task",
+      "status": "planned",
+      "title": "Coverage Gate",
+      "path": "tasks/mvp/02-tooling/02-coverage-gate.md",
+      "moduleId": "mvp.02-tooling",
+      "modulePath": "tasks/mvp/02-tooling.md",
+      "description": "Adopt `vitest --coverage` (c8 backend, already bundled with Vitest) and pin per-module thresholds — engine ≥ 90 %, rules ≥ 90 %, content-runtime ≥ 80 %, persistence ≥ 80 %, net ≥ 80 %, ai ≥ 70 %, ui smoke-only — in `vitest.config.ts`. CI fails on any threshold violation; the gate sits between `npm test` and the determinism fuzz step inside [`tasks/mvp/01-engine-core/10-github-actions-ci.md`](../01-engine-core/10-github-actions-ci.md).",
+      "inputs": [
+        "`vitest.config.ts` pinned by `mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`"
+      ],
+      "outputs": [
+        "`docs/architecture/testing/coverage-policy.md` — per-module threshold table, exclusion rules, tightening policy, and per-module rationale.",
+        "`package.json` script `test:coverage` invoking `vitest run --coverage`.",
+        "`vitest.config.ts` patch declaring the per-module threshold map under the canonical `coverage` block.",
+        "README badge wired by `mvp.01-engine-core.10-github-actions-ci` consumes `coverage/summary.json`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/testing/coverage-policy.md`](../../../docs/architecture/testing/coverage-policy.md)",
+        "[`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q259"
+      ],
+      "ownedPaths": [
+        "docs/architecture/testing/coverage-policy.md",
+        "vitest.config.ts",
+        "package.json",
+        "README.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "vitest.config.ts",
+        "package.json",
+        "README.md"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
+      ],
+      "acceptanceCriteria": [
+        "`npm run test:coverage` runs with the c8 provider and emits `coverage/summary.json`.",
+        "Threshold map in `vitest.config.ts` matches the table in `docs/architecture/testing/coverage-policy.md` line-for-line.",
+        "A deliberate untested module file (zero callers) under `src/engine/` causes `npm run test:coverage` to fail with the threshold-violation message.",
+        "README coverage badge resolves to a non-404 endpoint after the badge URL lands.",
+        "Shared paths (`vitest.config.ts`, `package.json`, `README.md`) are extended with additive scope only. This task must not rewrite the existing config, scripts, or README structure, and must not collapse the existing test or build scripts into the coverage runner. The primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.02-tooling.03-unit-test-contract",
+      "kind": "task",
+      "status": "planned",
+      "title": "Unit-Test Contract",
+      "path": "tasks/mvp/02-tooling/03-unit-test-contract.md",
+      "moduleId": "mvp.02-tooling",
+      "modulePath": "tasks/mvp/02-tooling.md",
+      "description": "Author the per-module unit-test contract that pins, for every implementation module under `src/`, the dependency-injection seams that module must expose, the canonical fakes that consume those seams, and the rubric a reviewer applies when asking \"is this module well-tested?\" Without a single shared contract, every test invents its own mocking style and DI seams diverge between modules with no rationale. The doc is a contract; the fakes themselves land incrementally as each module first needs them.",
+      "inputs": [
+        "Module breakdown in `master-plan.md`",
+        "Existing per-module READMEs under `src/`"
+      ],
+      "outputs": [
+        "`docs/architecture/testing/unit-test-contract.md` — per-module rubric. One subsection per module: `engine`, `rules`, `content-runtime`, `ai`, `net`, `persistence`, `ui`. Each subsection lists DI seams (interface name + responsibility), canonical fakes (file path + behavior), and the rubric (e.g. for `rules`: \"every formula in `formula.schema.json` must have at least one unit test asserting evaluator output for one canonical input\"). Includes a \"Property testing\" subsection that names the two anchor files owned by `mvp.02-tooling.04-property-based-testing`.",
+        "One-line cross-reference under the module breakdown in `docs/architecture/master-plan.md`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/overview.md`](../../../docs/architecture/overview.md)",
+        "[`docs/architecture/master-plan.md`](../../../docs/architecture/master-plan.md)",
+        "[`docs/architecture/multi-engine-harness.md`](../../../docs/architecture/multi-engine-harness.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/testing/unit-test-contract.md",
+        "docs/architecture/master-plan.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/master-plan.md"
+      ],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "`docs/architecture/testing/unit-test-contract.md` lists every implementation module from `master-plan.md` § \"Important `src/` modules\" exactly once.",
+        "Each module subsection contains exactly three sections: DI seams, canonical fakes, rubric.",
+        "The fake-file paths cited match the per-module `__tests__/fakes/` convention.",
+        "The `master-plan.md` cross-reference has additive scope only. This task must not rewrite any existing master-plan section. The primary owner of `master-plan.md` remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "mvp.02-tooling.04-property-based-testing",
+      "kind": "task",
+      "status": "planned",
+      "title": "Property-Based Testing",
+      "path": "tasks/mvp/02-tooling/04-property-based-testing.md",
+      "moduleId": "mvp.02-tooling",
+      "modulePath": "tasks/mvp/02-tooling.md",
+      "description": "Adopt `fast-check` as the project's property-based testing layer. Author two anchor property-test files — one for the formula evaluator in `src/rules/`, one for the canonical-JSON serializer in `src/engine/` — that pin a small set of invariants (purity, fixed-point bounds, round-trip identity, key-order insensitivity, byte stability). Document the pattern in the unit-test contract so subsequent modules add their own property tests by copying the shape.",
+      "inputs": [
+        "Canonical-JSON serializer (`mvp.01-engine-core.07b-canonical-json`)",
+        "Formula evaluator (lives in `src/rules/`; pinned by ruleset schema)"
+      ],
+      "outputs": [
+        "`package.json` — add `fast-check` to `devDependencies`.",
+        "`src/rules/__tests__/formula-invariants.property.test.ts` — three invariants on the evaluator: purity (same inputs always produce same output), fixed-point bounds (no intermediate exceeds the documented integer cap from [`docs/architecture/determinism.md` § Saturation policy](../../../docs/architecture/determinism.md#saturation-policy)), zero-divisor handling (`divFloor` clamps per ruleset constants).",
+        "`src/engine/__tests__/canonical-json.property.test.ts` — three invariants on canonical JSON: round-trip identity (`parse(canonicalize(v)) → canonicalize again` is byte-equal), key-order insensitivity (two structurally equal records hash identically regardless of input key order), byte stability across Node and browser."
+      ],
+      "readFirst": [
+        "[`docs/architecture/testing/unit-test-contract.md`](../../../docs/architecture/testing/unit-test-contract.md) § Property Testing",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`content-schema/schemas/formula.schema.json`](../../../content-schema/schemas/formula.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/rules/__tests__/formula-invariants.property.test.ts",
+        "src/engine/__tests__/canonical-json.property.test.ts",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.02-tooling.03-unit-test-contract",
+        "mvp.01-engine-core.07b-canonical-json"
+      ],
+      "acceptanceCriteria": [
+        "Both property-test files run inside the existing Vitest pipeline (`npm test`).",
+        "Each property test asserts at least three named invariants; the test runner reports each invariant separately on shrink.",
+        "A deliberate non-pure formula evaluator (e.g. consults `Date.now()`) causes the formula property test to fail with a shrunk counterexample.",
+        "A deliberate non-canonical key sort in the canonical-JSON serializer causes the canonical-JSON property test to fail with a shrunk counterexample.",
+        "Shared path (`package.json`) is extended with additive scope only. This task must not rewrite the existing scripts or dependency entries; the primary owner of `package.json` remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/formula.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/formula.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.01-engine-core.07b-canonical-json",
+        "mvp.02-tooling.03-unit-test-contract"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.07b-canonical-json",
+        "mvp.02-tooling.03-unit-test-contract"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.02-tooling.05-edge-case-fixtures",
+      "kind": "task",
+      "status": "planned",
+      "title": "Edge-Case Scenario Fixtures",
+      "path": "tasks/mvp/02-tooling/05-edge-case-fixtures.md",
+      "moduleId": "mvp.02-tooling",
+      "modulePath": "tasks/mvp/02-tooling.md",
+      "description": "Author the initial seed catalogue of edge-case scenario fixtures under `tests/__fixtures__/edge-cases/`. Six small scenarios drawn from the audit's enumerated examples — empty garrison, single-stack vs large stack, dead-heroes victory, resource-overflow turn, full- inventory artifact pickup, zero-mana spell attempt — each pinned by [`content-schema/schemas/scenario.schema.json`](../../../content-schema/schemas/scenario.schema.json). Each scenario gets a one-line purpose entry in a sibling `INDEX.md`. The golden-state suite owned by [`tasks/mvp/01-engine-core/12-golden-state-suite.md`](../01-engine-core/12-golden-state-suite.md) consumes these scenarios to produce checked-in expected hashes.",
+      "inputs": [
+        "Scenario schema + scenario loader (`mvp.08-persistence.04-scenario-loader`).",
+        "Edge-case enumeration in the testability audit and `edge-cases-policy.md`."
+      ],
+      "outputs": [
+        "`tests/__fixtures__/edge-cases/INDEX.md` — one line per fixture with the edge it exercises.",
+        "`tests/__fixtures__/edge-cases/empty-garrison.scenario.json` — siege scenario where the defending town has zero garrisoned units; pins the \"empty garrison auto-loses\" rule.",
+        "`tests/__fixtures__/edge-cases/stack-1-vs-1000.scenario.json` — battle scenario contrasting a 1-unit stack against a 1000-unit stack; pins damage rounding at extremes.",
+        "`tests/__fixtures__/edge-cases/all-heroes-dead-victory.scenario.json` — adventure scenario where the loss condition fires on the next turn after the last hero is killed.",
+        "`tests/__fixtures__/edge-cases/resource-overflow-turn.scenario.json` — economy scenario seeded near the documented per-resource cap so day-one accrual triggers the saturation rule pinned in `docs/architecture/edge-cases-policy.md` § 6.",
+        "`tests/__fixtures__/edge-cases/full-inventory-pickup.scenario.json` — adventure scenario where a hero with a full backpack visits an artifact pile.",
+        "`tests/__fixtures__/edge-cases/zero-mana-spell-attempt.scenario.json` — combat scenario where a hero attempts a spell with insufficient mana."
+      ],
+      "readFirst": [
+        "[`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q258",
+        "[`content-schema/schemas/scenario.schema.json`](../../../content-schema/schemas/scenario.schema.json)",
+        "[`docs/architecture/edge-cases-policy.md`](../../../docs/architecture/edge-cases-policy.md)"
+      ],
+      "ownedPaths": [
+        "tests/__fixtures__/edge-cases/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.08-persistence.04-scenario-loader"
+      ],
+      "acceptanceCriteria": [
+        "Six scenarios live under `tests/__fixtures__/edge-cases/` and each validates against [`content-schema/schemas/scenario.schema.json`](../../../content-schema/schemas/scenario.schema.json) through the scenario loader.",
+        "`INDEX.md` lists every fixture with a one-line purpose comment in the same order as the file names above.",
+        "The golden-state suite consumes each fixture and emits a corresponding entry under `tests/__fixtures__/golden/`.",
+        "Adding a seventh scenario follows the same naming convention (`<edge-name>.scenario.json` plus an `INDEX.md` entry) without changing the runner."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/scenario.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/scenario.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.04-scenario-loader"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.04-scenario-loader"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
@@ -6792,7 +7447,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 162
+      "downstreamTransitiveCount": 163
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -6852,7 +7507,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 102
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -6908,7 +7563,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 142
+      "downstreamTransitiveCount": 143
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -6971,7 +7626,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -7568,7 +8223,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -7720,7 +8375,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 102
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -7855,7 +8510,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 130
+      "downstreamTransitiveCount": 137
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -7931,7 +8586,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -7994,7 +8649,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 90
+      "downstreamTransitiveCount": 91
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -8060,7 +8715,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 70
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -8126,7 +8781,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 72
+      "downstreamTransitiveCount": 73
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -8204,7 +8859,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 50
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -8259,7 +8914,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 49
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -12297,7 +12952,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 39
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -12527,8 +13182,8 @@
         "mvp.08-persistence.01-indexeddb-wrapper"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "mvp.08-persistence.05-export-import-json",
@@ -13011,7 +13666,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 79
+      "downstreamTransitiveCount": 80
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -13073,7 +13728,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 60
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -13218,7 +13873,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -13285,7 +13940,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -13421,7 +14076,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -13484,7 +14139,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -13557,7 +14212,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -14231,7 +14886,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -14319,7 +14974,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -14382,7 +15037,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 43
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -14464,7 +15119,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 43
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -14538,7 +15193,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 39
+      "downstreamTransitiveCount": 40
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -14643,7 +15298,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 38
+      "downstreamTransitiveCount": 39
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -14713,7 +15368,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 39
+      "downstreamTransitiveCount": 40
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -14808,7 +15463,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 16
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -14891,7 +15546,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 17
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -14969,7 +15624,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 30
+      "downstreamTransitiveCount": 31
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -15040,7 +15695,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 16
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -17347,9 +18002,8 @@
       "outputs": [
         "`src/ai/bots/difficulty.ts` (extend from `10-heuristic-ai.md` Task 5)",
         "`DifficultyLevel`: add `\"grand_master\"`",
-        "`src/ai/bots/__tests__/headless-eval.test.ts`",
-        "Script: 100 games, Grand Master (player 1) vs Knight (player 2), random seeds",
-        "Report: win rate, average game length, most common win condition"
+        "`src/ai/bots/__tests__/headless-eval.test.ts` — 100-game evaluation consuming the shared tournament harness owned by `phase-2.10-ai-tournament-harness.01-ai-tournament-harness`. The test imports `tournament(...)` from `src/ai/__tests__/tournament.ts`, supplies `{aiA: grand_master, aiB: knight, gamesPerMatch: 100}`, and asserts on the returned `TournamentResult` (winRateA, gamesPlayed, avgGameLengthTurns) instead of authoring its own bracket loop.",
+        "Report shape: standard [`TournamentResult`](../../../content-schema/schemas/tournament-result.schema.json) emitted to test stdout for manual review."
       ],
       "readFirst": [
         "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table (Grand Master row), § 8 BotProvider",
@@ -17370,7 +18024,8 @@
         "phase-2.02-strategic-ai.01-resource-deficit-detector",
         "phase-2.02-strategic-ai.02-town-building-planner",
         "phase-2.02-strategic-ai.03-multi-hero-role-assignment",
-        "phase-2.02-strategic-ai.04-long-horizon-path-planning-2-day-lookahead"
+        "phase-2.02-strategic-ai.04-long-horizon-path-planning-2-day-lookahead",
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness"
       ],
       "acceptanceCriteria": [
         "Grand Master wins ≥ 70% of 100 headless games vs Knight",
@@ -17385,21 +18040,27 @@
       ],
       "estimatedTime": "- 3 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/tournament-result.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/tournament-result.schema.json"
+      ],
       "taskDependencies": [
         "phase-2.02-strategic-ai.01-resource-deficit-detector",
         "phase-2.02-strategic-ai.02-town-building-planner",
         "phase-2.02-strategic-ai.03-multi-hero-role-assignment",
-        "phase-2.02-strategic-ai.04-long-horizon-path-planning-2-day-lookahead"
+        "phase-2.02-strategic-ai.04-long-horizon-path-planning-2-day-lookahead",
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
         "phase-2.02-strategic-ai.01-resource-deficit-detector",
         "phase-2.02-strategic-ai.02-town-building-planner",
         "phase-2.02-strategic-ai.03-multi-hero-role-assignment",
-        "phase-2.02-strategic-ai.04-long-horizon-path-planning-2-day-lookahead"
+        "phase-2.02-strategic-ai.04-long-horizon-path-planning-2-day-lookahead",
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -17806,9 +18467,8 @@
         "All tasks in this module, `02-strategic-ai.md`"
       ],
       "outputs": [
-        "`src/ai/bots/__tests__/emberwild-vs-necropolis.test.ts`",
-        "Run ≥ 200 games, report win rate per faction with Wilson 95 % CI",
-        "Flag if either faction's Wilson lower bound exceeds 65 % (threshold for \"severely imbalanced\")"
+        "`src/ai/bots/__tests__/emberwild-vs-necropolis.test.ts` — consumes the shared tournament harness owned by `phase-2.10-ai-tournament-harness.01-ai-tournament-harness`. The test imports `tournament(...)` and supplies `{aiA: emberwild_knight, aiB: necropolis_knight, gamesPerMatch: 200}`. Wilson 95 % CI is computed from the returned `TournamentResult.winRateA / winRateB`.",
+        "Flag if either faction's Wilson lower bound exceeds 65 % (threshold for \"severely imbalanced\")."
       ],
       "readFirst": [
         "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
@@ -17826,7 +18486,8 @@
         "phase-2.03-second-faction.02-necropolis-building-tree-json",
         "phase-2.03-second-faction.03-necropolis-hero-roster-json",
         "phase-2.03-second-faction.04-necromancy-mechanic-raise-skeletons-after-combat",
-        "phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules"
+        "phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules",
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness"
       ],
       "acceptanceCriteria": [
         "Neither faction's 95 % Wilson lower bound is above 65 %",
@@ -17847,7 +18508,8 @@
         "phase-2.03-second-faction.02-necropolis-building-tree-json",
         "phase-2.03-second-faction.03-necropolis-hero-roster-json",
         "phase-2.03-second-faction.04-necromancy-mechanic-raise-skeletons-after-combat",
-        "phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules"
+        "phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules",
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
@@ -17855,7 +18517,8 @@
         "phase-2.03-second-faction.02-necropolis-building-tree-json",
         "phase-2.03-second-faction.03-necropolis-hero-roster-json",
         "phase-2.03-second-faction.04-necromancy-mechanic-raise-skeletons-after-combat",
-        "phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules"
+        "phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules",
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,
@@ -26978,6 +27641,94 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "phase-2.10-ai-tournament-harness.01-ai-tournament-harness",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI Tournament Harness — Shared Bracket Runner",
+      "path": "tasks/phase-2/10-ai-tournament-harness/01-ai-tournament-harness.md",
+      "moduleId": "phase-2.10-ai-tournament-harness",
+      "modulePath": "tasks/phase-2/10-ai-tournament-harness.md",
+      "description": "Author `src/ai/__tests__/tournament.ts` — a single reusable bracket runner consumed by every headless-evaluation task. Inputs: `{aiA, aiB, gamesPerMatch, seed, contentPack, scenarioId, budget}`. Outputs: a fixed metrics struct `{winRateA, winRateB, drawRate, avgDecisionTimeMsA, avgDecisionTimeMsB, avgBranchingA, avgBranchingB, avgGameLengthTurns, …}` pinned by [`content-schema/schemas/tournament-result.schema.json`](../../../content-schema/schemas/tournament-result.schema.json). The four downstream consumer tasks switch from authoring their own runners to consuming this one; they keep their own pass/fail thresholds, but stop owning the loop and the metrics shape.",
+      "inputs": [
+        "`BotProvider` interface (`docs/architecture/ai-contract.md` § 8)",
+        "Command dispatcher (`mvp.01-engine-core.06-command-dispatcher`)",
+        "State serializer + xxh64 hash (`mvp.01-engine-core.07-state-serializer-plus-xxh64-hash`)",
+        "Replay API (`mvp.01-engine-core.08-replay-api`)"
+      ],
+      "outputs": [
+        "`docs/architecture/testing/ai-tournament-harness.md` — defines the input / output shape, the metric definitions, and the reproducibility contract (PCG32 seed → identical bracket outcome).",
+        "`src/ai/__tests__/tournament.ts` — bracket runner with PCG32-seeded per-game seed derivation.",
+        "`content-schema/schemas/tournament-result.schema.json` — metrics struct schema, `additionalProperties: false`.",
+        "`content-schema/examples/tournament-result/canonical.tournament-result.json` — canonical example.",
+        "One-line cross-reference under `src/ai/` in `docs/architecture/master-plan.md`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/testing/ai-tournament-harness.md`](../../../docs/architecture/testing/ai-tournament-harness.md)",
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`content-schema/schemas/tournament-result.schema.json`](../../../content-schema/schemas/tournament-result.schema.json)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/testing/ai-tournament-harness.md",
+        "src/ai/__tests__/tournament.ts",
+        "content-schema/schemas/tournament-result.schema.json",
+        "content-schema/examples/tournament-result/",
+        "docs/architecture/master-plan.md",
+        "src/ai/",
+        "scripts/check-repo-contracts.mjs",
+        ".tournament-result.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/master-plan.md",
+        "src/ai/",
+        "scripts/check-repo-contracts.mjs",
+        ".tournament-result.json"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api"
+      ],
+      "acceptanceCriteria": [
+        "Two consecutive runs of `tournament({aiA, aiB, seed, …})` with identical inputs produce byte-identical `TournamentResult` records.",
+        "Per-game seeds derive from the input seed via PCG32 forking; a failing game `i` is reproducible from `(seed, i)` alone.",
+        "The metrics schema validates the canonical example and rejects unknown properties.",
+        "All percent and timing fields in `TournamentResult` are integers (no floats); the canonical-JSON serializer accepts the record without fallback.",
+        "The downstream consumer tasks (`phase-2/02-strategic-ai/05`, `phase-2/03-second-faction/06`, `phase-3/03-mcts-ai/06`) cite this runner and the schema by canonical path.",
+        "Shared paths (`docs/architecture/master-plan.md`, `scripts/check-repo-contracts.mjs`) are extended with additive scope only. This task must not rewrite existing master-plan sections or schema-suffix mappings; the primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/tournament-result.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/tournament-result.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.06-command-dispatcher",
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.08-replay-api"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 5
+    },
+    {
       "id": "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
       "kind": "task",
       "status": "planned",
@@ -27050,7 +27801,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 15
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -27114,7 +27865,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 13
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -27168,7 +27919,8 @@
         "Bots run on every peer with deterministic sub-streams (`botRngStreamId = hash(matchSeed, botId)`) per [`docs/architecture/determinism.md` § Bot RNG Sub-Streams](../../../docs/architecture/determinism.md#bot-rng-sub-streams).",
         "The lockstep transport accepts only the elected broadcaster's bot commands; broadcaster election reuses the peer-priority order from Task 7 (host migration). Non-broadcasters compute and verify locally but do not transmit.",
         "Acceptance: 1v1+1bot match on two peers; both peers replay bit-identical state over 200 turns. Network-Chaos Coverage:",
-        "This task is exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
+        "Per-PR module-level chaos: this task must pass the **lockstep under loss + jitter** scenario in [`12-network-chaos-harness.md`](./12-network-chaos-harness.md). The chaos harness owns NetSim and the scenario file; this task consumes them. The acceptance bar is bit-identical reducer state across both peers under the named adversarial conditions.",
+        "Nightly stack-level chaos: this task is also exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -27187,8 +27939,8 @@
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 10
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 11
     },
     {
       "id": "phase-3.01-multiplayer.04-per-turn-hash-exchange-plus-desync-detection",
@@ -27247,7 +27999,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 7
+      "downstreamTransitiveCount": 8
     },
     {
       "id": "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch",
@@ -27287,7 +28039,8 @@
         "Bisect completes in < 10 seconds for a 1000-command log",
         "Output report is human-readable and suitable for filing a determinism bug",
         "Bisect runs only after [Task 9 snapshot-resync](./09-snapshot-resync-fallback.md) emits `SNAPSHOT_DISAGREE` for every entry in the snapshot ring; see [`04-per-turn-hash-exchange-plus-desync-detection.md`](./04-per-turn-hash-exchange-plus-desync-detection.md) for the full recovery state machine. Network-Chaos Coverage:",
-        "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
+        "Per-PR module-level chaos: this task must pass the **bisect under reorder** scenario in [`12-network-chaos-harness.md`](./12-network-chaos-harness.md). Acceptance: bisect correctly identifies the first diverging command index even when message ordering inside the NetSim reorder window varies run-to-run.",
+        "Nightly stack-level chaos: also exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -27308,8 +28061,8 @@
         "phase-3.01-multiplayer.04-per-turn-hash-exchange-plus-desync-detection"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay",
@@ -27371,8 +28124,8 @@
         "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 6
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 7
     },
     {
       "id": "phase-3.01-multiplayer.07-host-migration-heartbeat-election",
@@ -27413,7 +28166,8 @@
         "New host correctly takes over log publication and hash exchange",
         "Peer-priority order also drives the bot-broadcaster election defined in [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Bot Commands](./03-input-only-lockstep-command-serialization-plus-sequencing.md#bot-commands); re-electing the host re-elects the bot broadcaster atomically.",
         "**`WILL_BACKGROUND` extension protocol (Q217).** When a peer emits `visibilitychange:hidden`, it sends a `WILL_BACKGROUND` transport message to its peers. Receiving peers extend that side's heartbeat tolerance from 6 s to **30 s** for the next **60 s**. After 60 s of continuous backgrounding the normal 6 s threshold resumes (mobile sleep ≈ disconnect). On `:visible`, the peer emits a `STATE_HASH_PROBE` and the standard desync / reconnection flow takes over. See [`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md). Network-Chaos Coverage:",
-        "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)) — the `simultaneous disconnect` failure-injection cell pins regression protection for this task."
+        "Per-PR module-level chaos: this task must pass the **host migration under permanent partition** scenario in [`12-network-chaos-harness.md`](./12-network-chaos-harness.md). Acceptance: a peer whose heartbeat times out during a NetSim permanent partition triggers re-election within 8 seconds and the new host successfully resumes log publication on the surviving peer's transport.",
+        "Nightly stack-level chaos: also exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)) — the `simultaneous disconnect` failure-injection cell pins regression protection for this task."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -27434,8 +28188,8 @@
         "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
@@ -27757,6 +28511,88 @@
         "phase-3.01-multiplayer.07-host-migration-heartbeat-election",
         "phase-3.01-multiplayer.09-snapshot-resync-fallback",
         "phase-3.01-multiplayer.10-turn-fallback-and-credentials"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.12-network-chaos-harness",
+      "kind": "task",
+      "status": "planned",
+      "title": "Network-Chaos Harness — NetSim Transport",
+      "path": "tasks/phase-3/01-multiplayer/12-network-chaos-harness.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Add `src/net/__tests__/netsim.ts` — a deterministic, seedable in- memory transport that satisfies the same `NetTransport` interface as the real WebRTC datachannel. Configurable: `lossRate` (per-message Bernoulli drop), `latencyMs` (constant + jitter via PCG32), `reorderWindow` (deliver out-of-order within N messages), `partitionAt(seq)` (drop everything from seq N onward until `heal()`). Author chaos tests under `src/net/__tests__/chaos.test.ts` that bind two engine instances through NetSim and assert lockstep, auto-bisect, reconnection, and host-migration each survive their respective adversarial scenarios. Failures are reproducible by `(seed, scenario)`. This task is the **per-PR** module-level chaos harness. It is distinct from the existing [`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md), which is a **nightly** integration-level matrix that runs against real headless browsers and the signaling server. The two layers are complementary; both ship.",
+      "inputs": [
+        "PCG32 implementation (`mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams`)",
+        "The lockstep, hash-exchange, bisect, reconnection, and host- migration interfaces (Tasks 3, 4, 5, 6, 7); this task exercises them but does not author them."
+      ],
+      "outputs": [
+        "`docs/architecture/net-transport.md` — defines the `NetTransport` interface contract that both real WebRTC and NetSim satisfy.",
+        "`src/net/__tests__/netsim.ts` — deterministic test transport.",
+        "`src/net/__tests__/chaos.test.ts` — four scenarios: lockstep under loss + jitter, bisect under reorder, reconnect under transient partition, host migration under permanent partition.",
+        "One-line cross-reference under `docs/architecture/determinism.md` noting that NetSim is PCG32- seeded and reproducible by `(seed, scenario)`.",
+        "\"Chaos test contract\" section in [`tasks/phase-3/01-multiplayer.md`](../01-multiplayer.md) listing the four adversarial scenarios required."
+      ],
+      "readFirst": [
+        "[`docs/architecture/net-transport.md`](../../../docs/architecture/net-transport.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q254"
+      ],
+      "ownedPaths": [
+        "docs/architecture/net-transport.md",
+        "src/net/__tests__/netsim.ts",
+        "src/net/__tests__/chaos.test.ts",
+        "docs/architecture/determinism.md",
+        "tasks/phase-3/01-multiplayer.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/determinism.md",
+        "tasks/phase-3/01-multiplayer.md"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
+        "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
+        "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch",
+        "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay",
+        "phase-3.01-multiplayer.07-host-migration-heartbeat-election"
+      ],
+      "acceptanceCriteria": [
+        "`NetSim` satisfies the `NetTransport` interface; production code must compile against either implementation interchangeably.",
+        "All four chaos scenarios run in < 1 s each; `npm test` invokes the chaos test file as part of the standard test pipeline.",
+        "Two consecutive chaos runs with the same seed produce byte- identical message traces (the simulation must be deterministic; only network timing values vary).",
+        "`partitionAt(seq) → heal()` correctly drops every message from the named seq onward until `heal()` is called, and resumes from the next seq after.",
+        "Production code (`src/net/webrtc/**`) must not import `src/net/__tests__/**`; the architecture validation rule pinned in `docs/architecture/module-graph.md` enforces this.",
+        "Shared paths (`docs/architecture/determinism.md`, `tasks/phase-3/01-multiplayer.md`) are extended with additive scope only. This task must not rewrite existing determinism sections or the multiplayer module's task-list; the primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
+        "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
+        "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch",
+        "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay",
+        "phase-3.01-multiplayer.07-host-migration-heartbeat-election"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
+        "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
+        "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch",
+        "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay",
+        "phase-3.01-multiplayer.07-host-migration-heartbeat-election"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -29392,9 +30228,9 @@
         "Tasks 1–5"
       ],
       "outputs": [
-        "`src/ai/bots/__tests__/mcts-eval.test.ts`",
+        "`src/ai/bots/__tests__/mcts-eval.test.ts` — the perf-benchmark half remains owned by this task; the evaluation half consumes the shared tournament harness owned by `phase-2.10-ai-tournament-harness.01-ai-tournament-harness`. The test imports `tournament(...)` and supplies `{aiA: lord, aiB: grand_master, gamesPerMatch: 50}` instead of authoring its own bracket loop.",
         "Benchmark: 100 MCTS (500-node) tactical searches, report avg time",
-        "Evaluation: 50 games Lord vs Grand Master (random seeds)"
+        "Evaluation: 50 games Lord vs Grand Master (random seeds), result emitted as a [`TournamentResult`](../../../content-schema/schemas/tournament-result.schema.json)."
       ],
       "readFirst": [
         "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 8 BotProvider",
@@ -29411,7 +30247,8 @@
         "phase-3.03-mcts-ai.02-heuristic-evaluator-no-random-rollouts",
         "phase-3.03-mcts-ai.03-beam-search-for-strategic-layer",
         "phase-3.03-mcts-ai.04-wasm-hot-path-compilation-assemblyscript",
-        "phase-3.03-mcts-ai.05-difficulty-levels-lord-and-immortal"
+        "phase-3.03-mcts-ai.05-difficulty-levels-lord-and-immortal",
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness"
       ],
       "acceptanceCriteria": [
         "MCTS search: < 50ms average per tactical move (with WASM)",
@@ -29424,10 +30261,15 @@
       ],
       "estimatedTime": "- 2 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/tournament-result.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/tournament-result.schema.json"
+      ],
       "taskDependencies": [
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness",
         "phase-3.03-mcts-ai.02-heuristic-evaluator-no-random-rollouts",
         "phase-3.03-mcts-ai.03-beam-search-for-strategic-layer",
         "phase-3.03-mcts-ai.04-wasm-hot-path-compilation-assemblyscript",
@@ -29435,6 +30277,7 @@
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
+        "phase-2.10-ai-tournament-harness.01-ai-tournament-harness",
         "phase-3.03-mcts-ai.02-heuristic-evaluator-no-random-rollouts",
         "phase-3.03-mcts-ai.03-beam-search-for-strategic-layer",
         "phase-3.03-mcts-ai.04-wasm-hot-path-compilation-assemblyscript",
@@ -29785,7 +30628,8 @@
         "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
         "phase-3.01-multiplayer.09-snapshot-resync-fallback",
         "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
-        "phase-3.01-multiplayer.11-network-chaos-test-matrix"
+        "phase-3.01-multiplayer.11-network-chaos-test-matrix",
+        "phase-3.01-multiplayer.12-network-chaos-harness"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -29955,6 +30799,9 @@
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
         "mvp.01-engine-core.10-github-actions-ci",
         "mvp.01-engine-core.11-no-wall-clock-lint",
+        "mvp.01-engine-core.12-golden-state-suite",
+        "mvp.01-engine-core.13-replay-regression-suite",
+        "mvp.01-engine-core.14-engine-throughput-benchmark",
         "mvp.03-map-system.01-axial-hex-coordinate-utilities",
         "mvp.03-map-system.02-tile-type-registry",
         "mvp.03-map-system.03-layered-tile-storage",

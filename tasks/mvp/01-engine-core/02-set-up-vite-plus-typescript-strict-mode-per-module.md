@@ -38,6 +38,13 @@ Acceptance Criteria:
 - `npm run -ws type-check` exits 0
 - No `any` types in `src/engine` or `src/rules`
 - Source maps generated for all implementation modules
+- `vitest.config.ts` declares the per-module coverage threshold map
+  pinned in
+  [`docs/architecture/testing/coverage-policy.md`](../../../docs/architecture/testing/coverage-policy.md)
+  under the canonical `coverage` block. The threshold values are
+  contributed additively by `mvp.02-tooling.02-coverage-gate`; this
+  task only ensures the config block exists with the c8 provider
+  selected.
 
 Verify:
 - npm run validate

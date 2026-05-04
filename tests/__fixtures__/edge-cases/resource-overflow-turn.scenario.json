@@ -1,0 +1,48 @@
+{
+  "$schema": "heroes-reforged/scenario.schema.json",
+  "schemaVersion": 1,
+  "id": "edge-cases:scenario:resource_overflow_turn",
+  "name": "Edge — Resource Overflow Saturation",
+  "description": "Day-one resource accrual is seeded near MAX_RESOURCE; pins the saturation rule from docs/architecture/edge-cases-policy.md § 6.",
+  "worldId": "emberwild:world:emberwild",
+  "rulesetId": "shared:ruleset:baseline",
+  "players": [
+    {
+      "slot": 0,
+      "factionId": "emberwild:faction:emberwild",
+      "kind": "ai",
+      "startingResources": {
+        "gold": 1999999990,
+        "wood": 1999999990,
+        "ore": 1999999990
+      },
+      "startingHeroIds": ["emberwild:hero:kaelis"]
+    },
+    {
+      "slot": 1,
+      "factionId": "emberwild:faction:emberwild",
+      "kind": "ai",
+      "startingResources": { "gold": 0 }
+    }
+  ],
+  "objectives": {
+    "victory": [
+      { "kind": "defeat_all_enemies" }
+    ],
+    "defeat": [
+      { "kind": "lose_all_heroes" }
+    ]
+  },
+  "pinnedDependencies": [
+    {
+      "packId": "emberwild-faction",
+      "version": "0.1.0",
+      "contentHash": "0000000000000000"
+    },
+    {
+      "packId": "emberwild-world",
+      "version": "0.1.0",
+      "contentHash": "0000000000000000"
+    }
+  ]
+}

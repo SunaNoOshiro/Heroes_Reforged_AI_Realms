@@ -68,7 +68,14 @@ with these refinements (full framing in
   revisit if reconnect time becomes problematic.
 
 Network-Chaos Coverage:
-- This task is exercised by the consolidated network-chaos test matrix
+- Per-PR module-level chaos: this task must pass the **reconnect
+  under transient partition** scenario in
+  [`12-network-chaos-harness.md`](./12-network-chaos-harness.md).
+  Acceptance: a peer that survives a `partitionAt(seq) → heal()`
+  cycle catches up via the log-range protocol and ends with bit-
+  identical reducer state.
+- Nightly stack-level chaos: also exercised by the consolidated
+  network-chaos test matrix
   ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)).
 
 Verify:

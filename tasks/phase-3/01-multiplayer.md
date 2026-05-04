@@ -4,7 +4,7 @@ P2P multiplayer. Two players on different machines complete a real match using W
 
 **Milestone**: M5 — Multiplayer  
 **Prerequisite**: Fuzz harness (`01-engine-core.md` Task 9) must pass before this module starts. No exceptions.  
-**Total Estimate**: ~50 hours
+**Total Estimate**: ~56 hours
 **Exit Criteria**: Two players on different networks complete a full match with no desync; disconnection and reconnection work.
 
 **M5 Scope Caps**
@@ -50,3 +50,26 @@ contract live in [`docs/architecture/multiplayer-security.md`](../../docs/archit
   🤖 Task 10: TURN fallback and credentials (~4h)
 - [11-network-chaos-test-matrix.md](01-multiplayer/11-network-chaos-test-matrix.md)
   🧠⚠️ Task 11: Network-chaos test matrix (~6h)
+- [12-network-chaos-harness.md](01-multiplayer/12-network-chaos-harness.md)
+  🧠⚠️ Task 12: Network-chaos harness — NetSim transport (~6h)
+
+## Chaos Test Contract
+
+The four adversarial scenarios required by the per-PR module-level
+chaos harness ([Task 12](./01-multiplayer/12-network-chaos-harness.md))
+plus the nightly stack-level chaos matrix
+([Task 11](./01-multiplayer/11-network-chaos-test-matrix.md)). Both
+layers ship; both gates must pass before the multiplayer module is
+considered done.
+
+| Adversarial scenario | Per-PR (Task 12) | Nightly (Task 11) | Owner task |
+|---|---|---|---|
+| Lockstep under loss + jitter | NetSim seeded loss / latency | matrix axes (loss × RTT × jitter) | [Task 3](./01-multiplayer/03-input-only-lockstep-command-serialization-plus-sequencing.md) |
+| Bisect under reorder | NetSim reorder window | matrix `determinism injection` cell | [Task 5](./01-multiplayer/05-auto-bisect-on-hash-mismatch.md) |
+| Reconnect under transient partition | NetSim `partitionAt → heal` | matrix `signaling restart` cell | [Task 6](./01-multiplayer/06-reconnection-log-range-request-plus-replay.md) |
+| Host migration under permanent partition | NetSim permanent partition | matrix `simultaneous disconnect` cell | [Task 7](./01-multiplayer/07-host-migration-heartbeat-election.md) |
+
+Per-PR chaos targets reproducibility: same `(seed, scenario)` →
+identical trace. Nightly chaos targets coverage of real-network
+failure modes that NetSim cannot represent. The two layers complement
+each other; neither replaces the other.

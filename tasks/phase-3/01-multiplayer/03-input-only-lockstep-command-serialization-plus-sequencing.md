@@ -77,7 +77,14 @@ Bot Commands:
   bit-identical state over 200 turns.
 
 Network-Chaos Coverage:
-- This task is exercised by the consolidated network-chaos test matrix
+- Per-PR module-level chaos: this task must pass the **lockstep
+  under loss + jitter** scenario in
+  [`12-network-chaos-harness.md`](./12-network-chaos-harness.md).
+  The chaos harness owns NetSim and the scenario file; this task
+  consumes them. The acceptance bar is bit-identical reducer state
+  across both peers under the named adversarial conditions.
+- Nightly stack-level chaos: this task is also exercised by the
+  consolidated network-chaos test matrix
   ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)).
 
 Verify:

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/golden-fixture.schema.json",
+  "title": "Golden Fixture",
+  "description": "One row of the golden-state regression suite. Pins the expected post-replay state hash for a (scenarioId, seed, commandLog) triple. The runner under src/engine/__tests__/golden.test.ts replays each fixture and asserts the final state hash equals expectedStateHash. On drift the runner fails with a canonical-JSON diff. Blessing is gated behind scripts/golden-bless.mjs which refuses to run in CI.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "scenarioId",
+    "seed",
+    "commandLog",
+    "expectedStateHash"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "scenarioId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable id of the scenario the fixture replays. Resolves through the scenario loader pinned by mvp.08-persistence.04-scenario-loader."
+    },
+    "seed": {
+      "type": "integer",
+      "description": "PCG32 seed passed to replay(seed, log)."
+    },
+    "commandLog": {
+      "type": "array",
+      "items": {
+        "$ref": "command.schema.json"
+      },
+      "description": "Sequence of canonical commands replayed against scenarioId at seed. Empty arrays are valid (assert the initial-state hash for scenario + seed)."
+    },
+    "expectedStateHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{16}$",
+      "description": "16-hex-char xxh64 digest of the canonical-JSON serialization of GameState after replay completes."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional one-line note on what the fixture exercises (e.g. \"empty garrison auto-loss\"). Excluded from hash inputs by convention."
+    }
+  },
+  "additionalProperties": false
+}

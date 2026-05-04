@@ -683,6 +683,78 @@ Closed the nine audit gaps from
   [`schema-matrix.md`](../architecture/schema-matrix.md), and
   [`AGENTS.md`](../../AGENTS.md) "Read first" list.
 
+### Testability Plan Implementation (2026-05-04)
+
+Closed the ten audit gaps from
+[`docs/implementation-plans/15-testability-plan.md`](../implementation-plans/15-testability-plan.md):
+
+- Authored five new architecture-testing docs:
+  [`docs/architecture/testing/ui-smoke-contract.md`](../architecture/testing/ui-smoke-contract.md),
+  [`docs/architecture/testing/coverage-policy.md`](../architecture/testing/coverage-policy.md),
+  [`docs/architecture/testing/unit-test-contract.md`](../architecture/testing/unit-test-contract.md),
+  [`docs/architecture/testing/engine-throughput-slo.md`](../architecture/testing/engine-throughput-slo.md),
+  [`docs/architecture/testing/ai-tournament-harness.md`](../architecture/testing/ai-tournament-harness.md).
+- Authored
+  [`docs/architecture/net-transport.md`](../architecture/net-transport.md)
+  pinning the `NetTransport` contract that both real WebRTC and the
+  deterministic `NetSim` test transport satisfy.
+- Added two new schemas + canonical examples:
+  [`golden-fixture`](../../content-schema/schemas/golden-fixture.schema.json)
+  for the golden-state regression suite and
+  [`tournament-result`](../../content-schema/schemas/tournament-result.schema.json)
+  for the shared AI tournament harness.
+- Added a new module `tasks/mvp/02-tooling/` with five tasks:
+  UI smoke harness, coverage gate, unit-test contract, property-
+  based testing, edge-case fixtures. Created six placeholder
+  edge-case scenario fixtures and an `INDEX.md` under
+  `tests/__fixtures__/edge-cases/`.
+- Added three new engine-core tasks: `12-golden-state-suite`,
+  `13-replay-regression-suite`, `14-engine-throughput-benchmark`.
+  Slot 11 was already taken by `11-no-wall-clock-lint`, so the new
+  tasks shifted by one.
+- Added `tasks/phase-2/10-ai-tournament-harness/` with
+  `01-ai-tournament-harness.md`. The plan's path
+  `tasks/phase-2/09-ai-tournament-harness.md` would have collided
+  with the existing `09-quality` module; the new module preserves
+  the plan's intent.
+- Added `tasks/phase-3/01-multiplayer/12-network-chaos-harness.md`
+  for per-PR module-level NetSim chaos. Distinct from the existing
+  `11-network-chaos-test-matrix.md` (nightly stack-level matrix);
+  both layers ship.
+- Authored `src/ui/__tests__/smoke.template.test.ts` as the
+  per-screen smoke template; the future runner skips files matching
+  `smoke.template.*`.
+- Created `tests/__fixtures__/golden/`, `tests/__fixtures__/edge-cases/`,
+  and `tests/replays/` with README + INDEX files documenting naming
+  conventions, blessing policy, and the bug-replay rule.
+- Patched
+  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
+  with the `.golden-fixture.json` and `.tournament-result.json`
+  suffix mappings.
+- Updated `package.json` with six new scripts (`test:ui-smoke`,
+  `test:golden`, `test:replays`, `test:coverage`, `bench:engine`,
+  `golden:bless`); none are invoked by `npm run all`.
+- Edited
+  [`docs/architecture/determinism.md`](../architecture/determinism.md),
+  [`docs/architecture/master-plan.md`](../architecture/master-plan.md),
+  [`docs/architecture/overview.md`](../architecture/overview.md),
+  [`docs/architecture/schema-matrix.md`](../architecture/schema-matrix.md),
+  and
+  [`docs/architecture/wiki/README.md`](../architecture/wiki/README.md)
+  to cite the new contracts and schemas.
+- Edited eleven existing task files (additive only): vite-config
+  task (coverage threshold block), canonical-json task (downstream
+  property-test consumer), replay-api task (additive
+  `expectedFinalStateHash` field), CI task (five new verify steps),
+  the four multiplayer chaos consumers (Tasks 3, 5, 6, 7), and the
+  three AI eval consumers (`phase-2/02-strategic-ai/05`,
+  `phase-2/03-second-faction/06`, `phase-3/03-mcts-ai/06` —
+  switched from self-authored bracket loops to the shared harness).
+- Registry now contains 370 tasks across 28 modules.
+
+Implementation report:
+[`docs/implementation-plans/15-testability-report.md`](../implementation-plans/15-testability-report.md).
+
 ## Recommended Next Steps
 
 Suggested order:

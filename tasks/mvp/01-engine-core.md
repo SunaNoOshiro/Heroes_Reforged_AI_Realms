@@ -3,8 +3,10 @@
 The non-negotiable foundation. Everything else in the project depends on the determinism stack being rock-solid before a single line of game logic is written. Do not skip or rush these tasks.
 
 **Milestone**: M0 — Skeleton  
-**Total Estimate**: ~45 hours  
-**Exit Criteria**: Replay-determinism fuzz test passes on every PR in CI.
+**Total Estimate**: ~56 hours  
+**Exit Criteria**: Replay-determinism fuzz test, golden-state suite,
+replay-regression suite, and the engine-throughput bench all pass on
+every PR in CI.
 
 ---
 
@@ -36,3 +38,9 @@ The non-negotiable foundation. Everything else in the project depends on the det
   🤖 Task 10: GitHub Actions CI — lint + type-check + fuzz on every PR (~2h)
 - [11-no-wall-clock-lint.md](01-engine-core/11-no-wall-clock-lint.md)
   🤖 Task 11: ESLint rule — `no-wall-clock` in deterministic paths (~2h)
+- [12-golden-state-suite.md](01-engine-core/12-golden-state-suite.md)
+  🤖 Task 12: Golden-state regression suite (~4h)
+- [13-replay-regression-suite.md](01-engine-core/13-replay-regression-suite.md)
+  🤖 Task 13: Replay regression suite (~3h)
+- [14-engine-throughput-benchmark.md](01-engine-core/14-engine-throughput-benchmark.md)
+  🤖 Task 14: Engine throughput benchmark (~4h)

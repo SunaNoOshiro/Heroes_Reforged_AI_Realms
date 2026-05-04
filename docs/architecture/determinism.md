@@ -211,6 +211,31 @@ fuzz-harness CI gate
 asserts this equivalence by re-saving and re-loading every fixture
 and comparing `canonicalContentHash` and post-replay `stateHash`.
 
+## Golden-State Regression
+
+Differential fuzz catches non-determinism between two live engine
+instances; it does not catch an unintended *intentional* rule
+change that silently shifts a canonical state hash. The golden-
+state regression suite owned by
+[`tasks/mvp/01-engine-core/12-golden-state-suite.md`](../../tasks/mvp/01-engine-core/12-golden-state-suite.md)
+is the canonical drift sentinel: every fixture under
+`tests/__fixtures__/golden/` pins
+`(scenarioId, seed, commandLog) → expectedStateHash`, and a drift
+fails CI with a canonical-JSON diff. Blessing is gated behind a
+human-only `golden:bless` script that refuses to run in CI.
+
+The replay-regression suite owned by
+[`tasks/mvp/01-engine-core/13-replay-regression-suite.md`](../../tasks/mvp/01-engine-core/13-replay-regression-suite.md)
+extends the same pattern to checked-in replay artifacts under
+`tests/replays/`: every fixed mechanics bug ships with one replay
+that fails before the fix and passes after, locking the fix forever.
+
+The deterministic NetSim transport pinned in
+[`net-transport.md`](./net-transport.md) is PCG32-seeded; chaos test
+failures owned by
+[`tasks/phase-3/01-multiplayer/12-network-chaos-harness.md`](../../tasks/phase-3/01-multiplayer/12-network-chaos-harness.md)
+are reproducible by `(seed, scenario)` alone.
+
 ## Snapshot Rebase
 
 Saves bound their command log via snapshot-and-rebase

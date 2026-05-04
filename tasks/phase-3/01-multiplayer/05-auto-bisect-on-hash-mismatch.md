@@ -37,7 +37,14 @@ Acceptance Criteria:
   for the full recovery state machine.
 
 Network-Chaos Coverage:
-- Exercised by the consolidated network-chaos test matrix
+- Per-PR module-level chaos: this task must pass the **bisect under
+  reorder** scenario in
+  [`12-network-chaos-harness.md`](./12-network-chaos-harness.md).
+  Acceptance: bisect correctly identifies the first diverging
+  command index even when message ordering inside the NetSim
+  reorder window varies run-to-run.
+- Nightly stack-level chaos: also exercised by the consolidated
+  network-chaos test matrix
   ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)).
 
 Verify:

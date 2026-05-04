@@ -18,6 +18,10 @@ Inputs:
 Outputs:
 - `src/engine/replay.ts` — `replay(seed: bigint, log: Command[]): GameState`
 - Optional: `replayUntil(seed, log, index)` for checkpoint seeks
+- Replay format additive field: `expectedFinalStateHash?: string`
+  (16-hex-char xxh64 digest). Optional in the schema, no migration
+  needed; required for replays consumed by the regression suite owned
+  by `mvp.01-engine-core.13-replay-regression-suite`.
 
 Owned Paths:
 - `src/engine/replay.ts`

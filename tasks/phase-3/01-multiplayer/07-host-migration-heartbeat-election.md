@@ -45,7 +45,15 @@ Acceptance Criteria:
   [`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md).
 
 Network-Chaos Coverage:
-- Exercised by the consolidated network-chaos test matrix
+- Per-PR module-level chaos: this task must pass the **host
+  migration under permanent partition** scenario in
+  [`12-network-chaos-harness.md`](./12-network-chaos-harness.md).
+  Acceptance: a peer whose heartbeat times out during a NetSim
+  permanent partition triggers re-election within 8 seconds and the
+  new host successfully resumes log publication on the surviving
+  peer's transport.
+- Nightly stack-level chaos: also exercised by the consolidated
+  network-chaos test matrix
   ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))
   — the `simultaneous disconnect` failure-injection cell pins
   regression protection for this task.
