@@ -10,14 +10,27 @@
   "engineHash": "deadbeefcafef00d",
   "contentHash": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
   "dependencies": [
-    "shared_skills",
-    "shared_abilities"
+    { "id": "shared_skills",    "version": ">=0.1.0" },
+    { "id": "shared_abilities", "version": ">=0.1.0" }
   ],
   "capabilities": [
     "formulas.ast",
     "scripts.none"
   ],
   "sandboxed": false,
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changed": [
+        "emberwild:faction:emberwild",
+        "emberwild:unit:ash_hound",
+        "emberwild:hero:kaelis",
+        "emberwild:building:fort",
+        "emberwild:building:kennels",
+        "emberwild:ability:pack_hunt"
+      ]
+    }
+  ],
   "provides": {
     "factions": [
       "emberwild:faction:emberwild"

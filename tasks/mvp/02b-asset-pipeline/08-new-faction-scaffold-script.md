@@ -49,6 +49,11 @@ Acceptance Criteria:
 - Running the script produces a pack that passes `validatePackAssets` with only warnings (no errors) — all required JSONs exist, asset files are missing (expected at this stage)
 - Generated faction loads in the game without crashing (renders placeholder sprites)
 - Script idempotent: running twice doesn't overwrite existing files
+- Generated `assets/index.json` includes a deterministic `sha256`
+  placeholder for every stub asset; running
+  `npm run build:asset-index` after authors add real files rewrites
+  the placeholder with the on-disk digest. Per-asset integrity rules
+  in [`content-system-policy.md` § 4](../../../docs/architecture/content-system-policy.md#4-asset-integrity).
 
 Verify:
 - npm run validate

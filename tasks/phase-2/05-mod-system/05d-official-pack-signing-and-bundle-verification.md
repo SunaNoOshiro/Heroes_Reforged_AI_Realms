@@ -41,6 +41,11 @@ Acceptance Criteria:
   signature metadata
 - Bundle verification reports missing dependencies or bad load order
   before runtime load
+- Bundle verification consults the canonical-packs registry from
+  [`phase-2.05-mod-system.09-canonical-packs-registry`](./09-canonical-packs-registry.md)
+  and refuses to start if a `required: true` entry is missing
+  (`pack.error.canonical.missing`) or its hash/version mismatches
+  (`pack.error.canonical.mismatch`).
 - The full official bundle passes `npm run validate` with zero errors
 - Loading all official packs does not require any hard-coded faction or
   pack ordering in the engine

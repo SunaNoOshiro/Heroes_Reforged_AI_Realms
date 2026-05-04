@@ -75,6 +75,12 @@ Acceptance Criteria:
   through one of these library packs
 - All packs validate with zero schema or cross-reference errors
 - No first-party faction-specific IDs leak into any shared-library pack
+- Every shared-library pack manifest declares its dependencies in the
+  `{ id, version }` object form pinned in
+  [`pack-resolver.md`](../../../docs/architecture/pack-resolver.md)
+  (no plain-string `dependencies[]`).
+- Pack `id` values follow the namespace pattern in
+  [`content-system-policy.md` § 1](../../../docs/architecture/content-system-policy.md#1-pack-identity).
 
 Verify:
 - npm run validate

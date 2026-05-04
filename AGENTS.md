@@ -15,52 +15,58 @@ Read first if you need to understand the full project:
    wall-clock readers, tab backgrounding, storage quota
 5. [docs/architecture/content-platform.md](docs/architecture/content-platform.md)
 6. [docs/architecture/pack-contract.md](docs/architecture/pack-contract.md)
-7. [docs/architecture/schema-matrix.md](docs/architecture/schema-matrix.md)
-8. [docs/architecture/effect-registry.md](docs/architecture/effect-registry.md)
-9. [docs/architecture/glossary.md](docs/architecture/glossary.md)
-10. [docs/architecture/ui-technology-choice.md](docs/architecture/ui-technology-choice.md)
+7. [docs/architecture/content-system-policy.md](docs/architecture/content-system-policy.md)
+   — cross-pack policy: namespace pattern, dependency resolution,
+   override precedence, asset integrity, locale merge, balance corridor,
+   error codes, canonical-packs registry. Linked from
+   [pack-resolver.md](docs/architecture/pack-resolver.md) and
+   [pack-error-codes.md](docs/architecture/pack-error-codes.md).
+8. [docs/architecture/schema-matrix.md](docs/architecture/schema-matrix.md)
+9. [docs/architecture/effect-registry.md](docs/architecture/effect-registry.md)
+10. [docs/architecture/glossary.md](docs/architecture/glossary.md)
+11. [docs/architecture/ui-technology-choice.md](docs/architecture/ui-technology-choice.md)
     — DOM-side framework, state binding, z-stack, localization, fonts,
     build flags
-11. [docs/architecture/ui-renderer-seam.md](docs/architecture/ui-renderer-seam.md)
+12. [docs/architecture/ui-renderer-seam.md](docs/architecture/ui-renderer-seam.md)
     — DOM ↔ canvas seam, input routing, hit-test API, resize protocol
-12. [docs/architecture/screen-scaling.md](docs/architecture/screen-scaling.md)
+13. [docs/architecture/screen-scaling.md](docs/architecture/screen-scaling.md)
     — virtual stage, aspect, hi-DPI, filter modes, breakpoints
-13. [docs/architecture/ui-component-resolver.md](docs/architecture/ui-component-resolver.md)
+14. [docs/architecture/ui-component-resolver.md](docs/architecture/ui-component-resolver.md)
     — `data-component` registry, reuse policy, missing-component fallback
-14. [docs/architecture/ui-frame-lag-contract.md](docs/architecture/ui-frame-lag-contract.md)
+15. [docs/architecture/ui-frame-lag-contract.md](docs/architecture/ui-frame-lag-contract.md)
     — single-player lag, optimistic UI, M5 lockstep, context loss, replay
-15. [docs/architecture/ui-state-contract.md](docs/architecture/ui-state-contract.md)
+16. [docs/architecture/ui-state-contract.md](docs/architecture/ui-state-contract.md)
     — component-state matrix, selector purity, tooltip lifecycle,
     command lifecycle, undo/redo (map editor)
-16. [docs/architecture/ui-routing.md](docs/architecture/ui-routing.md)
+17. [docs/architecture/ui-routing.md](docs/architecture/ui-routing.md)
     — screen-router FSM, transition graph, modal stack, dismissal policy
-17. [docs/architecture/ui-input-arbitration.md](docs/architecture/ui-input-arbitration.md)
+18. [docs/architecture/ui-input-arbitration.md](docs/architecture/ui-input-arbitration.md)
     — single-emit per gesture, Esc precedence ladder, animation gates
-18. [docs/architecture/ui-gestures.md](docs/architecture/ui-gestures.md)
+19. [docs/architecture/ui-gestures.md](docs/architecture/ui-gestures.md)
     — gesture taxonomy, drag contract, drop acceptance
-19. [docs/architecture/ui-hotkeys.md](docs/architecture/ui-hotkeys.md)
+20. [docs/architecture/ui-hotkeys.md](docs/architecture/ui-hotkeys.md)
     — hotkey registry, focus order, tab-trap, focus restoration
-20. [docs/architecture/ui-input-modalities.md](docs/architecture/ui-input-modalities.md)
+21. [docs/architecture/ui-input-modalities.md](docs/architecture/ui-input-modalities.md)
     — mouse / touch / keyboard / gamepad bridging
-21. [docs/architecture/mechanics-coverage.md](docs/architecture/mechanics-coverage.md)
+22. [docs/architecture/mechanics-coverage.md](docs/architecture/mechanics-coverage.md)
     — mechanic scope SSOT (mvp / phase-2 / phase-3 / deferred / out-of-scope)
-22. [docs/architecture/performance.md](docs/architecture/performance.md)
+23. [docs/architecture/performance.md](docs/architecture/performance.md)
     — hardware tiers, per-frame CPU budget, GC budget, memory budget,
     entity ceilings, AI compute budget, allocation policy
-23. [docs/architecture/atlas-pipeline.md](docs/architecture/atlas-pipeline.md)
+24. [docs/architecture/atlas-pipeline.md](docs/architecture/atlas-pipeline.md)
     — atlas-generation pipeline (pinned packer, deterministic invocation,
     publish step ordering)
-24. [docs/architecture/ai-contract.md](docs/architecture/ai-contract.md)
+25. [docs/architecture/ai-contract.md](docs/architecture/ai-contract.md)
     — gameplay-AI runtime contract: input view projection, worker
     protocol, per-turn budget table, cancellation, parallelism,
     decision log, BotProvider, cheats. Provider-backed content
     generation lives in `ai-integration.md`.
-25. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-26. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
+26. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
+27. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
     Mermaid flows: game startup, race → castle rendering, battle attack
     sequence, asset loading per context, localization, save/load. Read
     a single `<id>.md` to understand one runtime behavior end-to-end.
-27. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
+28. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
     numbered per-screen UI packages. Each package contains
     `mockup.html` for visuals, `spec.md` for components and bindings,
     `interactions.md` for per-control behavior, `data-contracts.md` for

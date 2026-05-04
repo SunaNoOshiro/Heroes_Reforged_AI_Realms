@@ -15,10 +15,12 @@ schema, not this file.
 
 Read First:
 - [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)
+- [`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)
 
 Inputs:
 - `content-schema/schemas/manifest.schema.json`
 - `docs/architecture/pack-contract.md`
+- `docs/architecture/content-system-policy.md`
 
 Outputs:
 - `src/content-schema/manifest.ts` — compiled TypeScript types plus a
@@ -79,12 +81,21 @@ Dependencies:
 
 Acceptance Criteria:
 - `manifest.json` missing required fields → clear error with JSON path
-  from the validator
+  from the validator (code `pack.error.manifest.schema` per
+  [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)).
+- A manifest whose `id` violates the namespace pattern in
+  [`content-system-policy.md` § 1](../../../docs/architecture/content-system-policy.md#1-pack-identity)
+  rejects with `pack.error.manifest.id-pattern`.
 - `PackRegistry.getFaction("emberwild")` returns the Emberwild faction
-  after the pack is registered
-- Unregistering a pack removes all its entities from the registry
-- Two packs declaring the same provided id → conflict error (load is
-  rejected; no silent last-wins)
+  after the pack is registered.
+- Unregistering a pack removes all its entities from the registry.
+- Two packs declaring the same provided id without a matching
+  `overrides` entry → `pack.error.override.unordered` (load is
+  rejected; no silent last-wins). Resolver semantics — including
+  `dependencies[]` object form, version-range matching, topological
+  order, and override evaluation — are owned by
+  [`mvp.02b-asset-pipeline.12-pack-resolver-algorithm`](./12-pack-resolver-algorithm.md);
+  this task delegates rather than re-specifying them.
 
 Verify:
 - npm run validate

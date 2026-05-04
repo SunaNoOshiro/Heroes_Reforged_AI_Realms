@@ -1,0 +1,16 @@
+{
+  "$schema": "heroes-reforged/localization.schema.json",
+  "schemaVersion": 1,
+  "locale": "en",
+  "fallbackLocale": "en",
+  "entries": {
+    "ui.faction.emberwild.name": "Emberwild",
+    "ui.faction.emberwild.tagline": "Born of cinder, bound by pack.",
+    "ui.unit.ash-hound.name": "Ash Hound",
+    "ui.hero.kaelis.name": "Kaelis the Cinder Knight",
+    "ui.building.fort.name": "Fort",
+    "ui.building.kennels.name": "Kennels",
+    "ui.ability.pack-hunt.name": "Pack Hunt",
+    "ui.ability.pack-hunt.description": "Adjacent allies of the same kind add a small bonus to attack."
+  }
+}

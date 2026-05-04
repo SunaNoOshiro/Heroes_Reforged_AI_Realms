@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/corridor.schema.json",
+  "title": "Balance Corridor",
+  "description": "Per-tier numeric corridor for unit stats. Encoded from research/deep-research-report.md § 1. Consumed by `npm run validate:balance` and the load-time gate referenced from content-system-policy.md § 7.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "source",
+    "tiers",
+    "tolerance",
+    "factionBudget"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "pattern": "^heroes-reforged/corridor\\.schema\\.json$"
+    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "source": {
+      "type": "string",
+      "description": "Citation of the research report and section the corridor was derived from."
+    },
+    "tiers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "tier",
+          "hp",
+          "attack",
+          "defense",
+          "damageMin",
+          "damageMax",
+          "speed"
+        ],
+        "properties": {
+          "tier":      { "type": "integer", "minimum": 1, "maximum": 7 },
+          "hp":        { "$ref": "#/$defs/range" },
+          "attack":    { "$ref": "#/$defs/range" },
+          "defense":   { "$ref": "#/$defs/range" },
+          "damageMin": { "$ref": "#/$defs/range" },
+          "damageMax": { "$ref": "#/$defs/range" },
+          "speed":     { "$ref": "#/$defs/range" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "tolerance": {
+      "type": "object",
+      "description": "Per-stat multipliers applied to the per-tier `lo`/`hi` to produce the soft band used by the validator. effectiveLo = lo * loFactor; effectiveHi = hi * hiFactor.",
+      "required": ["hp", "attack", "defense", "damageMin", "damageMax", "speed"],
+      "properties": {
+        "hp":        { "$ref": "#/$defs/factor" },
+        "attack":    { "$ref": "#/$defs/factor" },
+        "defense":   { "$ref": "#/$defs/factor" },
+        "damageMin": { "$ref": "#/$defs/factor" },
+        "damageMax": { "$ref": "#/$defs/factor" },
+        "speed":     { "$ref": "#/$defs/factor" }
+      },
+      "additionalProperties": false
+    },
+    "factionBudget": {
+      "type": "object",
+      "description": "Pack-level skew gate. For each unit the validator computes a normalized skew across every numeric stat (-1 = at tier `lo`, 0 = tier mid, +1 = at tier `hi`). The pack's average unit skew must fall within ±`skewThreshold`; otherwise → pack.error.balance.factionImbalance. Packs with fewer than `minUnits` units are skipped (no balance to enforce).",
+      "required": ["skewThreshold", "minUnits"],
+      "properties": {
+        "skewThreshold": { "type": "number", "minimum": 0 },
+        "minUnits":      { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "range": {
+      "type": "object",
+      "required": ["lo", "hi"],
+      "properties": {
+        "lo": { "type": "number", "minimum": 0 },
+        "hi": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "factor": {
+      "type": "object",
+      "required": ["loFactor", "hiFactor"],
+      "properties": {
+        "loFactor": { "type": "number", "minimum": 0 },
+        "hiFactor": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

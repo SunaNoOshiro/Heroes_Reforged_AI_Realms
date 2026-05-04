@@ -45,12 +45,23 @@ multiple faction manifests into one mega-pack when separate
 `src/content-runtime/` should handle:
 
 - manifest loading
-- dependency resolution
+- dependency resolution (algorithm:
+  [`pack-resolver.md`](./pack-resolver.md))
 - capability checks
 - override precedence
+  ([`content-system-policy.md` § 3](./content-system-policy.md#3-override-precedence))
 - asset indirection
+- per-asset integrity verification
+  ([`content-system-policy.md` § 4](./content-system-policy.md#4-asset-integrity))
 - content registry assembly
 - archive import and pack trust policy
+- canonical-packs registry check
+  ([`content-system-policy.md` § 9](./content-system-policy.md#9-canonical-pack-registry))
+
+The single canonical reference for cross-pack contracts is
+[`content-system-policy.md`](./content-system-policy.md). Error codes
+emitted by these systems live in
+[`pack-error-codes.md`](./pack-error-codes.md).
 
 `src/content-schema/` should handle:
 

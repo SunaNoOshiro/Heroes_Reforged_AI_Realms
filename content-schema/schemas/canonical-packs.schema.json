@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/canonical-packs.schema.json",
+  "title": "Canonical Packs Registry",
+  "description": "Static registry of first-party packs pinned to an engine build. The bundle verifier (Task 5d) refuses to start if a `required: true` entry is missing or mismatched. See content-system-policy.md § 9.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "engineHash",
+    "packs"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "pattern": "^heroes-reforged/canonical-packs\\.schema\\.json$"
+    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "engineHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16,128}$",
+      "description": "Engine build this registry is pinned to."
+    },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "version",
+          "type",
+          "signatureKeyId",
+          "required"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(_[a-z0-9]+)+$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[\\^~]?\\d+\\.\\d+\\.\\d+(-[a-z0-9.-]+)?$|^>=?\\d+\\.\\d+\\.\\d+$|^\\d+\\.\\d+\\.\\d+ - \\d+\\.\\d+\\.\\d+$|^\\*$"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ruleset-pack",
+              "library-pack",
+              "faction-pack",
+              "world-pack",
+              "scenario-pack",
+              "asset-pack"
+            ]
+          },
+          "signatureKeyId": { "type": "string", "minLength": 1 },
+          "contentHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{16,128}$"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "If true, the engine refuses to start when this pack is missing or mismatched. If false, the entry is an optional bundle."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

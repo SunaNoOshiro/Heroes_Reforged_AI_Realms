@@ -6,27 +6,37 @@
     {
       "id": "unit:ash_hound:sprite",
       "kind": "image",
-      "path": "assets/sprites/ash-hound.png"
+      "path": "assets/sprites/ash-hound.png",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000001",
+      "bytes": 0
     },
     {
       "id": "unit:ash_hound:portrait",
       "kind": "image",
-      "path": "assets/portraits/ash-hound.png"
+      "path": "assets/portraits/ash-hound.png",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000002",
+      "bytes": 0
     },
     {
       "id": "unit:ash_hound:animset",
       "kind": "animation",
-      "path": "animations/ash-hound.anim.json"
+      "path": "animations/ash-hound.anim.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000003",
+      "bytes": 0
     },
     {
       "id": "unit:ash_hound:sounds",
       "kind": "audio-bank",
-      "path": "sounds/ash-hound.json"
+      "path": "sounds/ash-hound.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000004",
+      "bytes": 0
     },
     {
       "id": "town:emberwild:bg",
       "kind": "image",
-      "path": "assets/town/emberwild-bg.png"
+      "path": "assets/town/emberwild-bg.png",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000005",
+      "bytes": 0
     }
   ]
 }

@@ -1,0 +1,77 @@
+{
+  "$schema": "heroes-reforged/canonical-packs.schema.json",
+  "schemaVersion": 1,
+  "engineHash": "deadbeefcafef00d",
+  "packs": [
+    {
+      "id": "heroes_reforged_baseline_ruleset",
+      "version": "1.0.0",
+      "type": "ruleset-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": true
+    },
+    {
+      "id": "heroes_reforged_shared_skills",
+      "version": "1.0.0",
+      "type": "library-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": true
+    },
+    {
+      "id": "heroes_reforged_shared_abilities",
+      "version": "1.0.0",
+      "type": "library-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": true
+    },
+    {
+      "id": "heroes_reforged_shared_spells",
+      "version": "1.0.0",
+      "type": "library-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": true
+    },
+    {
+      "id": "heroes_reforged_shared_artifacts",
+      "version": "1.0.0",
+      "type": "library-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": true
+    },
+    {
+      "id": "heroes_reforged_emberwild_faction",
+      "version": "1.0.0",
+      "type": "faction-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": false
+    },
+    {
+      "id": "heroes_reforged_sylvan_faction",
+      "version": "1.0.0",
+      "type": "faction-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": false
+    },
+    {
+      "id": "heroes_reforged_stormspire_faction",
+      "version": "1.0.0",
+      "type": "faction-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": false
+    },
+    {
+      "id": "heroes_reforged_ashlord_faction",
+      "version": "1.0.0",
+      "type": "faction-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": false
+    },
+    {
+      "id": "heroes_reforged_deepway_faction",
+      "version": "1.0.0",
+      "type": "faction-pack",
+      "signatureKeyId": "hr-official-2026",
+      "required": false
+    }
+  ]
+}

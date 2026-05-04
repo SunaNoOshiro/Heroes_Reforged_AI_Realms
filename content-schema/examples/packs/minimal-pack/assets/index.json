@@ -6,42 +6,58 @@
     {
       "id": "unit:slate_footman:sprite",
       "kind": "image",
-      "path": "assets/sprites/slate-footman.png"
+      "path": "assets/sprites/slate-footman.png",
+      "sha256": "7f7080bde8d5097b6ca9a532ae1de0b3f1994c95d04c3e324c74a6e61649bd56",
+      "bytes": 0
     },
     {
       "id": "unit:slate_footman:portrait",
       "kind": "image",
-      "path": "assets/portraits/slate-footman.png"
+      "path": "assets/portraits/slate-footman.png",
+      "sha256": "bd6045e1419d168de66f620a5d803d4af4c3f1e61370e97b823ca3dabe4a0205",
+      "bytes": 0
     },
     {
       "id": "hero:slate_captain:portrait",
       "kind": "image",
-      "path": "assets/portraits/slate-captain.png"
+      "path": "assets/portraits/slate-captain.png",
+      "sha256": "21838c8e26f4fa9866c66e7af052ebd809832e2cbbceeee445192fb6898d94b7",
+      "bytes": 0
     },
     {
       "id": "building:slate_barracks:icon",
       "kind": "image",
-      "path": "assets/buildings/slate-barracks.png"
+      "path": "assets/buildings/slate-barracks.png",
+      "sha256": "06bf213f2226dd2447bc4ac04320e3101cf1caefa7aa7e694dfc1da163e70b90",
+      "bytes": 0
     },
     {
       "id": "town:slate:bg",
       "kind": "image",
-      "path": "assets/town/slate-bg.png"
+      "path": "assets/town/slate-bg.png",
+      "sha256": "2bde2486537cde349a4e47fd8b47b789cd426e91d99dc199618784f624a2efc4",
+      "bytes": 0
     },
     {
       "id": "town:slate:theme",
       "kind": "audio",
-      "path": "sounds/slate-theme.ogg"
+      "path": "sounds/slate-theme.ogg",
+      "sha256": "9e45068ddf5da8d28ba2feee4310b90339d2b261f8c0f6354321ac17fdf65f29",
+      "bytes": 0
     },
     {
       "id": "ui:slate:theme",
       "kind": "theme",
-      "path": "themes/slate.json"
+      "path": "themes/slate.json",
+      "sha256": "9943d3a2b74cdb2546fbed3f10681185b5b0478bdedb56c37669d531e9f79d1b",
+      "bytes": 0
     },
     {
       "id": "banner:slate",
       "kind": "image",
-      "path": "assets/banners/slate.png"
+      "path": "assets/banners/slate.png",
+      "sha256": "155362dd455087f6c27474629decad35d57c382e12454dc5c6c8381a56afdb7b",
+      "bytes": 0
     }
   ]
 }

@@ -21,15 +21,22 @@
         "required": [
           "id",
           "kind",
-          "path"
+          "path",
+          "sha256"
         ],
         "properties": {
-          "id": { "type": "string" },
-          "kind": {
-            "type": "string"
+          "id":   { "type": "string" },
+          "kind": { "type": "string" },
+          "path": { "type": "string" },
+          "sha256": {
+            "type": "string",
+            "description": "Hex SHA-256 of the asset bytes. Recomputed by `npm run build:asset-index`. Mismatch at load time is fatal: pack.error.asset.integrity.",
+            "pattern": "^[a-f0-9]{64}$"
           },
-          "path": {
-            "type": "string"
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Optional file size hint so the loader can pre-flight quota before downloading."
           }
         },
         "additionalProperties": true

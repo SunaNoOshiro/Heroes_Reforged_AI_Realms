@@ -9,6 +9,8 @@ Before a pack is published or used in gameplay, verify that all required assets 
 
 Read First:
 - [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)
+- [`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)
+- [`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)
 
 Inputs:
 - Loaded pack file tree, unit/hero/building definitions
@@ -37,8 +39,19 @@ Required per faction:
 - [ ] `assets/battle/battlefield-grass.png` (minimum one backdrop)
 - [ ] `assets/ui/faction-color.json`
 
-Errors (block loading): missing sprite sheet, missing portrait
-Warnings (allow loading with placeholder): missing icon, missing animation sequence
+Errors (block loading, code `pack.error.asset.missing` / fatal):
+missing sprite sheet, missing portrait
+Warnings (allow loading with placeholder, code
+`pack.error.asset.missing` / warn): missing icon, missing animation
+sequence
+
+Per-asset integrity (`pack.error.asset.integrity`) and the balance
+corridor gate (`pack.error.balance.outOfCorridor`) run as separate
+pipeline stages — owned by
+[`mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script`](./13-per-asset-integrity-and-build-script.md)
+and
+[`mvp.02b-asset-pipeline.15-balance-corridor-validator`](./15-balance-corridor-validator.md)
+respectively. This task owns the completeness step only.
 
 Dependencies:
 - mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry

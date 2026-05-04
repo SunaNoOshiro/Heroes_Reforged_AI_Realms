@@ -3,6 +3,13 @@
 This file is the canonical source of truth for pack layout, manifest
 rules, archive rules, and trust metadata.
 
+Cross-pack rules — namespace pattern, dependency resolution, override
+precedence, asset integrity, locale merge order, error codes, and the
+canonical-packs registry — live in
+[`content-system-policy.md`](./content-system-policy.md). The pack
+resolver algorithm itself is pinned in
+[`pack-resolver.md`](./pack-resolver.md).
+
 ## Core Rule
 
 One folder under `resources/packs/` equals one pack root with one
@@ -97,6 +104,8 @@ resources/packs/emberwild-faction/
     emberwild.sound-set.json
   assets/
     index.json
+  locales/
+    en.localization.json
 ```
 
 Rules:
@@ -104,7 +113,12 @@ Rules:
 - record files are one-per-record
 - gameplay records use ids, not asset paths
 - file extensions should communicate record type when practical
-- `assets/index.json` owns path-to-asset-id mapping
+- `assets/index.json` owns path-to-asset-id mapping plus a `sha256` per
+  binary asset; integrity rule in
+  [`content-system-policy.md` § 4](./content-system-policy.md#4-asset-integrity)
+- `locales/<locale>.localization.json` carries the per-pack
+  localization bundle; merge order in
+  [`content-system-policy.md` § 6](./content-system-policy.md#6-localization-bundling)
 
 ## Archive Rule
 
@@ -125,7 +139,8 @@ is explicitly revised to require it.
 
 - manifest loading
 - archive import
-- dependency resolution
+- dependency resolution (algorithm in
+  [`pack-resolver.md`](./pack-resolver.md))
 - signature checks
 - sandbox policy
 - pack registry assembly

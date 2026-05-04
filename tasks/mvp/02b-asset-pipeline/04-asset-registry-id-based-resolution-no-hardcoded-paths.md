@@ -59,6 +59,11 @@ Acceptance Criteria:
 - **Retry policy.** On `404` / fetch failure, the resolver retries exactly once with 500 ms backoff. Subsequent failures within the same session use the placeholder without further retry.
 - **User notification.** A non-modal toast "Some visuals couldn't load" is emitted at most once per session, not per asset.
 - **Gameplay vs presentation boundary.** The resolver returns *pixels / audio* only. Frame timing, hitbox geometry, and projectile speed are gameplay records loaded pre-session — never streamed assets. Cross-cutting policy in [`docs/architecture/edge-cases-policy.md` § 12](../../../docs/architecture/edge-cases-policy.md#12-asset-load-failure-q215).
+- **Per-asset integrity.** The resolver returns the verified asset
+  only. Hash verification is owned by
+  [`mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script`](./13-per-asset-integrity-and-build-script.md);
+  this resolver consumes its outcome rather than re-implementing
+  hashing.
 
 Verify:
 - npm run validate

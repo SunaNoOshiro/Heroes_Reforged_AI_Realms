@@ -37,6 +37,11 @@ Acceptance Criteria:
   presentation assets may still fall back through the asset resolver
 - Interpolation placeholders are explicit and never evaluated as code
 - UI tasks read keys through a `t()` helper, not raw string literals
+- Per-pack layout `<pack>/locales/<locale>.localization.json` is the
+  canonical placement; per-pack merge order is owned by
+  [`mvp.02b-asset-pipeline.14-per-pack-localization-and-merge`](../02b-asset-pipeline/14-per-pack-localization-and-merge.md)
+  and pinned in
+  [`content-system-policy.md` § 6](../../../docs/architecture/content-system-policy.md#6-localization-bundling).
 
 Verify:
 - npm run validate

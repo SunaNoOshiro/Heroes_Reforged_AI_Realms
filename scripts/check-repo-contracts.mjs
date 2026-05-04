@@ -458,6 +458,7 @@ function schemaForFile(filePath) {
   if (base.endsWith(".ai-profile.json")) return "ai-profile.schema.json";
   if (base === "event-log.example.json") return "event.schema.json";
   if (base.endsWith(".event.json")) return "event.schema.json";
+  if (base.endsWith(".localization.json")) return "localization.schema.json";
 
   return null;
 }

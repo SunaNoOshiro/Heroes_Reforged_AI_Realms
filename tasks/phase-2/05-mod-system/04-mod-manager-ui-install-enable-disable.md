@@ -26,6 +26,17 @@ Outputs:
 - Uninstall: removes pack from IndexedDB
 - Warning: disabling an active pack mid-game is not allowed (must return to main menu)
 - Conflict detection: warns if two packs define the same unit/building IDs
+- Override visualization: for every entry in
+  `loadedPack.overrides[]` surfaces `target`, `kind`, `source` (the
+  overriding pack), and `reason` so the player sees *why* a baseline
+  record was replaced. Backed by the resolver's `overrideMap` from
+  [`mvp.02b-asset-pipeline.12-pack-resolver-algorithm`](../../mvp/02b-asset-pipeline/12-pack-resolver-algorithm.md)
+  and the override task
+  [`phase-2.05-mod-system.08-override-precedence-and-patch-merge`](./08-override-precedence-and-patch-merge.md).
+- Error rendering: every load failure renders by the
+  `pack.error.*` code from
+  [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)
+  (no ad-hoc error strings). Severity drives blocking vs warning UI.
 
 Owned Paths:
 - `src/ui/components/ModManager.tsx`

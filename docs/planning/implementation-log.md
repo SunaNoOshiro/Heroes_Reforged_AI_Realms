@@ -588,6 +588,89 @@ Closed the performance gaps from
 - Updated [`CLAUDE.md`](../../CLAUDE.md) "Read first" list to
   include `performance.md` and `atlas-pipeline.md`.
 
+### Content System Plan Implementation (2026-05-04)
+
+Closed the nine audit gaps from
+[`docs/implementation-plans/13-content-system-plan.md`](../implementation-plans/13-content-system-plan.md):
+
+- Authored
+  [`docs/architecture/content-system-policy.md`](../architecture/content-system-policy.md)
+  as the cross-pack policy anchor (pack identity, dependency
+  resolution, override precedence, asset integrity, per-record
+  versioning, localization bundling, validation pipeline, error
+  codes, canonical-pack registry).
+- Authored
+  [`docs/architecture/pack-resolver.md`](../architecture/pack-resolver.md)
+  pinning the resolver algorithm: Kahn topological sort,
+  lexicographic tie-break, semver range matching, override
+  evaluation, locale merge, deterministic resolution trace.
+- Authored
+  [`docs/architecture/pack-error-codes.md`](../architecture/pack-error-codes.md)
+  with the initial 15-code catalog and severity table.
+- Patched
+  [`content-schema/schemas/manifest.schema.json`](../../content-schema/schemas/manifest.schema.json)
+  additively: `id` namespace pattern (`^[a-z0-9]+(_[a-z0-9]+)+$`),
+  `dependencies[]` accepts both string (deprecated) and
+  `{id, version}` object forms, new `overrides[]` block, new
+  `changelog[]` block. Migrated the canonical emberwild manifest to
+  the object form.
+- Patched
+  [`content-schema/schemas/asset-index.schema.json`](../../content-schema/schemas/asset-index.schema.json)
+  to require `sha256` on every asset entry (with optional `bytes`
+  size hint). Populated emberwild and minimal-pack examples.
+- Added the canonical-packs registry: schema
+  [`content-schema/schemas/canonical-packs.schema.json`](../../content-schema/schemas/canonical-packs.schema.json)
+  and pinned file
+  [`resources/canonical-packs.json`](../../resources/canonical-packs.json).
+- Added the balance corridor spec at
+  [`content-schema/balance/corridor.json`](../../content-schema/balance/corridor.json)
+  (with [`corridor.schema.json`](../../content-schema/balance/corridor.schema.json))
+  encoding the per-tier numeric corridor from
+  `research/deep-research-report.md` § 1 plus per-stat tolerance
+  factors. Two gates: per-unit (out-of-band stat →
+  `pack.error.balance.outOfCorridor`) and per-pack (average unit
+  skew exceeds `factionBudget.skewThreshold` →
+  `pack.error.balance.factionImbalance`, blocking factions where
+  every unit sits at the top of its tier band). The canonical
+  emberwild pack passes; HP=50000 / ATK=1 single-unit outliers fail;
+  3-unit synthetic all-high-band packs fail the faction gate.
+  Sandbox packs warn instead.
+- Added new scripts:
+  - [`scripts/build-asset-index.mjs`](../../scripts/build-asset-index.mjs)
+    — recomputes per-asset SHA-256 and bytes; supports `--check`.
+  - [`scripts/validate-balance.mjs`](../../scripts/validate-balance.mjs)
+    — corridor gate.
+  - [`scripts/check-pack-error-codes.mjs`](../../scripts/check-pack-error-codes.mjs)
+    — lint that fails on unknown `pack.error.*` tokens.
+  - Wired all three into `npm run validate` plus added
+    `npm run build:asset-index`, `npm run validate:balance`,
+    `npm run validate:error-codes`.
+- Added per-pack localization layout: example
+  [`content-schema/examples/packs/emberwild-faction/locales/en.localization.json`](../../content-schema/examples/packs/emberwild-faction/locales/en.localization.json)
+  and the `.localization.json` suffix mapping in
+  `scripts/check-repo-contracts.mjs`.
+- Authored 9 new task records:
+  - [`tasks/mvp/02b-asset-pipeline/11-content-system-policy-doc.md`](../../tasks/mvp/02b-asset-pipeline/11-content-system-policy-doc.md)
+  - [`tasks/mvp/02b-asset-pipeline/12-pack-resolver-algorithm.md`](../../tasks/mvp/02b-asset-pipeline/12-pack-resolver-algorithm.md)
+  - [`tasks/mvp/02b-asset-pipeline/13-per-asset-integrity-and-build-script.md`](../../tasks/mvp/02b-asset-pipeline/13-per-asset-integrity-and-build-script.md)
+  - [`tasks/mvp/02b-asset-pipeline/14-per-pack-localization-and-merge.md`](../../tasks/mvp/02b-asset-pipeline/14-per-pack-localization-and-merge.md)
+  - [`tasks/mvp/02b-asset-pipeline/15-balance-corridor-validator.md`](../../tasks/mvp/02b-asset-pipeline/15-balance-corridor-validator.md)
+  - [`tasks/mvp/02b-asset-pipeline/16-pack-error-code-catalog.md`](../../tasks/mvp/02b-asset-pipeline/16-pack-error-code-catalog.md)
+  - [`tasks/phase-2/05-mod-system/08-override-precedence-and-patch-merge.md`](../../tasks/phase-2/05-mod-system/08-override-precedence-and-patch-merge.md)
+  - [`tasks/phase-2/05-mod-system/09-canonical-packs-registry.md`](../../tasks/phase-2/05-mod-system/09-canonical-packs-registry.md)
+  Registry now contains 351 tasks across 26 modules.
+- Extended existing tasks (02b-01 manifest+registry, 02b-04 asset
+  registry, 02b-06 completeness validator, 02b-08 scaffold script,
+  02-14 localization schema, 05-03 sandbox, 05-04 mod manager UI,
+  05a baseline ruleset packs, 05d official signing) to point at
+  the new policy/spec docs and replace ad-hoc error strings with
+  `pack.error.*` codes.
+- Cross-linked the new policy from
+  [`pack-contract.md`](../architecture/pack-contract.md),
+  [`content-platform.md`](../architecture/content-platform.md),
+  [`schema-matrix.md`](../architecture/schema-matrix.md), and
+  [`AGENTS.md`](../../AGENTS.md) "Read first" list.
+
 ## Recommended Next Steps
 
 Suggested order:

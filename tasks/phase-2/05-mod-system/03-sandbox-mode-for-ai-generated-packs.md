@@ -32,9 +32,19 @@ Dependencies:
 - phase-2.05-mod-system.02-ed25519-signature-verification
 
 Acceptance Criteria:
-- AI pack with HP=1000 unit is rejected with "HP cap exceeded (max 500)"
-- Sandbox badge is visible and cannot be removed from sandboxed packs
-- Non-sandboxed pack with same unit loads fine (caps only apply to sandboxed packs)
+- AI pack with HP=1000 unit is rejected with `pack.error.sandbox.cap`
+  ("HP cap exceeded (max 500)").
+- Sandbox badge is visible and cannot be removed from sandboxed
+  packs.
+- Non-sandboxed pack with same unit loads fine (caps only apply to
+  sandboxed packs).
+- Sandboxed packs out of the balance corridor — either per-unit
+  (`pack.error.balance.outOfCorridor`) or pack-wide
+  (`pack.error.balance.factionImbalance`) — surface a
+  `BALANCE-WARN` badge alongside `SANDBOX` instead of failing
+  (downgraded codes per
+  [`mvp.02b-asset-pipeline.15-balance-corridor-validator`](../../mvp/02b-asset-pipeline/15-balance-corridor-validator.md)
+  / [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)).
 
 Verify:
 - npm run validate

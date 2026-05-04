@@ -35,3 +35,7 @@ proves the full pack surface.
   🧠 Task 6: Build boat command and shipyard (~4h)
 - [07-build-grail-structure-command.md](05-mod-system/07-build-grail-structure-command.md)
   🧠 Task 7: Build grail structure command (~4h)
+- [08-override-precedence-and-patch-merge.md](05-mod-system/08-override-precedence-and-patch-merge.md)
+  🧠 Task 8: Override precedence + patch merge (~5h)
+- [09-canonical-packs-registry.md](05-mod-system/09-canonical-packs-registry.md)
+  🧠 Task 9: Canonical-packs registry + bundle verifier (~4h)

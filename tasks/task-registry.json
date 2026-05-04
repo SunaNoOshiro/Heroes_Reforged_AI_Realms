@@ -324,6 +324,30 @@
         {
           "label": "10-migrate-emberwild-pack-to-this-structure.md",
           "link": "02b-asset-pipeline/10-migrate-emberwild-pack-to-this-structure.md"
+        },
+        {
+          "label": "11-content-system-policy-doc.md",
+          "link": "02b-asset-pipeline/11-content-system-policy-doc.md"
+        },
+        {
+          "label": "12-pack-resolver-algorithm.md",
+          "link": "02b-asset-pipeline/12-pack-resolver-algorithm.md"
+        },
+        {
+          "label": "13-per-asset-integrity-and-build-script.md",
+          "link": "02b-asset-pipeline/13-per-asset-integrity-and-build-script.md"
+        },
+        {
+          "label": "14-per-pack-localization-and-merge.md",
+          "link": "02b-asset-pipeline/14-per-pack-localization-and-merge.md"
+        },
+        {
+          "label": "15-balance-corridor-validator.md",
+          "link": "02b-asset-pipeline/15-balance-corridor-validator.md"
+        },
+        {
+          "label": "16-pack-error-code-catalog.md",
+          "link": "02b-asset-pipeline/16-pack-error-code-catalog.md"
         }
       ]
     },
@@ -1099,6 +1123,14 @@
         {
           "label": "07-build-grail-structure-command.md",
           "link": "05-mod-system/07-build-grail-structure-command.md"
+        },
+        {
+          "label": "08-override-precedence-and-patch-merge.md",
+          "link": "05-mod-system/08-override-precedence-and-patch-merge.md"
+        },
+        {
+          "label": "09-canonical-packs-registry.md",
+          "link": "05-mod-system/09-canonical-packs-registry.md"
         }
       ]
     },
@@ -2667,7 +2699,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 319
+      "downstreamTransitiveCount": 324
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2728,7 +2760,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 317
+      "downstreamTransitiveCount": 322
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2785,7 +2817,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 208
+      "downstreamTransitiveCount": 211
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2841,7 +2873,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 233
+      "downstreamTransitiveCount": 236
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -2900,7 +2932,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 90
+      "downstreamTransitiveCount": 91
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -2988,7 +3020,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 28,
-      "downstreamTransitiveCount": 198
+      "downstreamTransitiveCount": 200
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3198,7 +3230,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 57
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3319,7 +3351,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 57
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -3575,7 +3607,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 235
+      "downstreamTransitiveCount": 240
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -3633,7 +3665,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 156
+      "downstreamTransitiveCount": 161
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -3697,7 +3729,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 102
+      "downstreamTransitiveCount": 107
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -3755,7 +3787,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 107
+      "downstreamTransitiveCount": 112
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -3816,7 +3848,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 145
+      "downstreamTransitiveCount": 150
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -3877,7 +3909,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 204
+      "downstreamTransitiveCount": 209
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -3951,7 +3983,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 93
+      "downstreamTransitiveCount": 98
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4036,7 +4068,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 65
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4137,7 +4169,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 62
+      "downstreamTransitiveCount": 64
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -4245,7 +4277,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 53
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -4335,7 +4367,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 31
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "mvp.02-content-schemas.12-formula-dsl",
@@ -4405,7 +4437,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 118
+      "downstreamTransitiveCount": 120
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -4497,7 +4529,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 69
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -4535,7 +4567,8 @@
         "A bundle with `schemaVersion`, `locale`, and non-empty `entries` validates",
         "Missing localization keys fail loudly at screen bind time; missing presentation assets may still fall back through the asset resolver",
         "Interpolation placeholders are explicit and never evaluated as code",
-        "UI tasks read keys through a `t()` helper, not raw string literals"
+        "UI tasks read keys through a `t()` helper, not raw string literals",
+        "Per-pack layout `<pack>/locales/<locale>.localization.json` is the canonical placement; per-pack merge order is owned by [`mvp.02b-asset-pipeline.14-per-pack-localization-and-merge`](../02b-asset-pipeline/14-per-pack-localization-and-merge.md) and pinned in [`content-system-policy.md` § 6](../../../docs/architecture/content-system-policy.md#6-localization-bundling)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -4566,8 +4599,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 59
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -4629,7 +4662,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 63
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -5569,14 +5602,16 @@
       "description": "Wire the manifest schema (already defined in `content-schema/schemas/manifest.schema.json`) into a runtime validator, and implement the `PackRegistry` that tracks all loaded packs. The manifest schema is the single source of truth — do not redefine required fields in this task. If the field list feels wrong, change the schema, not this file.",
       "inputs": [
         "`content-schema/schemas/manifest.schema.json`",
-        "`docs/architecture/pack-contract.md`"
+        "`docs/architecture/pack-contract.md`",
+        "`docs/architecture/content-system-policy.md`"
       ],
       "outputs": [
         "`src/content-schema/manifest.ts` — compiled TypeScript types plus a runtime validator generated from the JSON schema",
         "`src/content-runtime/pack-registry.ts` — `PackRegistry` Canonical example manifest (reference, not normative): ```json { \"schemaVersion\": 1, \"id\": \"emberwild-faction\", \"version\": \"1.0.0\", \"name\": \"Emberwild\", \"author\": \"Heroes Reforged\", \"kind\": \"faction-pack\", \"engine\": \">=1.0.0\", \"dependencies\": [ { \"id\": \"baseline-ruleset\", \"version\": \">=1.0.0\" } ], \"capabilities\": [], \"provides\": { \"factions\": [\"emberwild\"], \"abilities\": [\"pack-hunt\"], \"spells\": [], \"artifacts\": [] }, \"sandboxed\": false } ``` `PackRegistry`: ```typescript class PackRegistry { register(pack: LoadedPack): void unregister(packId: string): void getFaction(factionId: string): FactionPack | null getAbility(abilityId: string): AbilityDef | null getSpell(spellId: string): SpellDef | null getArtifact(artifactId: string): ArtifactDef | null listFactions(): FactionPack[] } ```"
       ],
       "readFirst": [
-        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)"
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)"
       ],
       "ownedPaths": [
         "src/content-schema/manifest.ts",
@@ -5596,10 +5631,11 @@
         "mvp.02-content-schemas.07-hero-schema"
       ],
       "acceptanceCriteria": [
-        "`manifest.json` missing required fields → clear error with JSON path from the validator",
-        "`PackRegistry.getFaction(\"emberwild\")` returns the Emberwild faction after the pack is registered",
-        "Unregistering a pack removes all its entities from the registry",
-        "Two packs declaring the same provided id → conflict error (load is rejected; no silent last-wins)"
+        "`manifest.json` missing required fields → clear error with JSON path from the validator (code `pack.error.manifest.schema` per [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)).",
+        "A manifest whose `id` violates the namespace pattern in [`content-system-policy.md` § 1](../../../docs/architecture/content-system-policy.md#1-pack-identity) rejects with `pack.error.manifest.id-pattern`.",
+        "`PackRegistry.getFaction(\"emberwild\")` returns the Emberwild faction after the pack is registered.",
+        "Unregistering a pack removes all its entities from the registry.",
+        "Two packs declaring the same provided id without a matching `overrides` entry → `pack.error.override.unordered` (load is rejected; no silent last-wins). Resolver semantics — including `dependencies[]` object form, version-range matching, topological order, and override evaluation — are owned by [`mvp.02b-asset-pipeline.12-pack-resolver-algorithm`](./12-pack-resolver-algorithm.md); this task delegates rather than re-specifying them."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -5634,8 +5670,8 @@
         "mvp.02-content-schemas.07-hero-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 29
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 36
     },
     {
       "id": "mvp.02b-asset-pipeline.02-animation-definition-json-format",
@@ -5692,7 +5728,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "mvp.02b-asset-pipeline.03-sound-manifest-format",
@@ -5749,7 +5785,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 6
+      "downstreamTransitiveCount": 7
     },
     {
       "id": "mvp.02b-asset-pipeline.04-asset-registry-id-based-resolution-no-hardcoded-paths",
@@ -5791,7 +5827,8 @@
         "**Fallback chain order (Q215).** `locale variant → faction default → generic placeholder`. The generic placeholder is bundled with the app and is never absent.",
         "**Retry policy.** On `404` / fetch failure, the resolver retries exactly once with 500 ms backoff. Subsequent failures within the same session use the placeholder without further retry.",
         "**User notification.** A non-modal toast \"Some visuals couldn't load\" is emitted at most once per session, not per asset.",
-        "**Gameplay vs presentation boundary.** The resolver returns *pixels / audio* only. Frame timing, hitbox geometry, and projectile speed are gameplay records loaded pre-session — never streamed assets. Cross-cutting policy in [`docs/architecture/edge-cases-policy.md` § 12](../../../docs/architecture/edge-cases-policy.md#12-asset-load-failure-q215)."
+        "**Gameplay vs presentation boundary.** The resolver returns *pixels / audio* only. Frame timing, hitbox geometry, and projectile speed are gameplay records loaded pre-session — never streamed assets. Cross-cutting policy in [`docs/architecture/edge-cases-policy.md` § 12](../../../docs/architecture/edge-cases-policy.md#12-asset-load-failure-q215).",
+        "**Per-asset integrity.** The resolver returns the verified asset only. Hash verification is owned by [`mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script`](./13-per-asset-integrity-and-build-script.md); this resolver consumes its outcome rather than re-implementing hashing."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -5817,7 +5854,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 10
+      "downstreamTransitiveCount": 11
     },
     {
       "id": "mvp.02b-asset-pipeline.05-async-asset-loader-with-caching",
@@ -5872,7 +5909,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 8
+      "downstreamTransitiveCount": 9
     },
     {
       "id": "mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present",
@@ -5892,7 +5929,9 @@
         "`ValidationReport`: `{ errors: MissingAsset[], warnings: MissingAsset[] }`"
       ],
       "readFirst": [
-        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)"
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)"
       ],
       "ownedPaths": [
         "src/engine/pack-validator.ts",
@@ -5951,8 +5990,8 @@
         "mvp.02b-asset-pipeline.05-async-asset-loader-with-caching"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "mvp.02b-asset-pipeline.07-dev-hot-reload-watch-folder-reload-without-restart",
@@ -6065,7 +6104,8 @@
       "acceptanceCriteria": [
         "Running the script produces a pack that passes `validatePackAssets` with only warnings (no errors) — all required JSONs exist, asset files are missing (expected at this stage)",
         "Generated faction loads in the game without crashing (renders placeholder sprites)",
-        "Script idempotent: running twice doesn't overwrite existing files"
+        "Script idempotent: running twice doesn't overwrite existing files",
+        "Generated `assets/index.json` includes a deterministic `sha256` placeholder for every stub asset; running `npm run build:asset-index` after authors add real files rewrites the placeholder with the on-disk digest. Per-asset integrity rules in [`content-system-policy.md` § 4](../../../docs/architecture/content-system-policy.md#4-asset-integrity)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -6245,6 +6285,424 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+      "kind": "task",
+      "status": "done",
+      "title": "Content-System Policy Doc",
+      "path": "tasks/mvp/02b-asset-pipeline/11-content-system-policy-doc.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Author the single canonical cross-pack policy document that pack contract, asset pipeline, mod system, and determinism docs link into. The doc consolidates pack identity, dependency resolution, override precedence, asset integrity, per-record versioning, localization bundling, the validation pipeline, error codes, and the canonical-pack registry. Without this anchor, fixes for the eight other content-system audit gaps scatter across nine files.",
+      "inputs": [
+        "The nine audit gaps in `docs/readiness-audit/13-content-system.md`",
+        "Existing references in `pack-contract.md`, `content-platform.md`, `schema-matrix.md`"
+      ],
+      "outputs": [
+        "`docs/architecture/content-system-policy.md`",
+        "Updates to `docs/architecture/pack-contract.md`, `docs/architecture/content-platform.md`, `docs/architecture/schema-matrix.md`, and `AGENTS.md` to cross-link the new doc."
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/content-system-policy.md",
+        "docs/architecture/pack-contract.md",
+        "docs/architecture/content-platform.md",
+        "docs/architecture/schema-matrix.md",
+        "AGENTS.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/pack-contract.md",
+        "docs/architecture/content-platform.md",
+        "docs/architecture/schema-matrix.md",
+        "AGENTS.md"
+      ],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "`content-system-policy.md` covers the nine canonical sections (pack identity, dependency resolution, override precedence, asset integrity, per-record versioning, localization, validation pipeline, error codes, canonical-pack registry).",
+        "Every other affected doc cross-links into the policy doc instead of restating the rule.",
+        "`npm run validate:links` passes against the new file.",
+        "Shared-path edits to `pack-contract.md`, `content-platform.md`, `schema-matrix.md`, and `AGENTS.md` are additive only — must not rewrite the primary prose owned by their respective architecture tasks; this task owns only the new policy doc."
+      ],
+      "verifyCommands": [
+        "npm run validate:links",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 12
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pack Resolver Algorithm",
+      "path": "tasks/mvp/02b-asset-pipeline/12-pack-resolver-algorithm.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Implement the pack resolver against the contract pinned in [`docs/architecture/pack-resolver.md`](../../../docs/architecture/pack-resolver.md). The resolver reads installed manifests, builds the dependency graph, runs Kahn's topological sort with lexicographic tie-break, performs node-semver range matching, evaluates override edges, and produces a deterministic `loadedPacks` array plus a resolution trace consumed by the mod manager UI. This is the single source of cross-pack load order and gates everything that depends on `contentHash` equality (saves, replays, multiplayer).",
+      "inputs": [
+        "`content-schema/schemas/manifest.schema.json`",
+        "Resolver fixtures under `content-schema/examples/packs/__tests__/resolver/`"
+      ],
+      "outputs": [
+        "`src/content-runtime/pack-resolver.ts` exporting `resolvePacks(manifests: Manifest[]): ResolverResult`",
+        "Test fixtures under `content-schema/examples/packs/__tests__/resolver/` covering linear chain, diamond, cycle, missing dep, version conflict."
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-resolver.md`](../../../docs/architecture/pack-resolver.md)",
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/pack-resolver.ts",
+        "content-schema/examples/packs/__tests__/resolver/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry"
+      ],
+      "acceptanceCriteria": [
+        "Linear-chain fixture loads in `loadedPacks` order (deps first, dependents last).",
+        "Diamond fixture: tie-break is lexicographic on namespaced `id`; byte-identical `loadedPacks` order across two runs.",
+        "Cycle fixture rejects with `pack.error.dependency.cycle` listing every pack in the cycle in lexicographic order.",
+        "Missing-dep fixture rejects with `pack.error.dependency.missing`.",
+        "Version-conflict fixture rejects with `pack.error.dependency.version-conflict`.",
+        "A pack manifest using a plain string in `dependencies[]` is accepted with a deprecation warning during the migration window documented in `pack-resolver.md` § 1.",
+        "`manifest.schema.json` is referenced by canonical path so `validate:tasks` recognizes the schema link."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 8
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script",
+      "kind": "task",
+      "status": "planned",
+      "title": "Per-Asset Integrity + Build Script",
+      "path": "tasks/mvp/02b-asset-pipeline/13-per-asset-integrity-and-build-script.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Add per-asset SHA-256 integrity verification to the pack-load pipeline. The schema [`content-schema/schemas/asset-index.schema.json`](../../../content-schema/schemas/asset-index.schema.json) already requires a `sha256` field per asset entry; this task implements the runtime verifier in `src/engine/pack-validator.ts` (extending the completeness validator) and the author-facing build script `scripts/build-asset-index.mjs` that walks `<pack>/assets/` and rewrites `sha256`/`bytes` from the file on disk so authors do not maintain hashes by hand.",
+      "inputs": [
+        "`content-schema/schemas/asset-index.schema.json`",
+        "`content-schema/examples/packs/emberwild-faction/assets/index.json`"
+      ],
+      "outputs": [
+        "`scripts/build-asset-index.mjs` — walks `<pack>/assets/` and recomputes `sha256` + `bytes` per entry; supports `--check` to fail on drift.",
+        "Extension of `src/engine/pack-validator.ts` to fetch each asset, compute SHA-256 via WebCrypto's `crypto.subtle.digest`, and emit `pack.error.asset.integrity` on mismatch.",
+        "New `npm run build:asset-index` script entry."
+      ],
+      "readFirst": [
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)"
+      ],
+      "ownedPaths": [
+        "scripts/build-asset-index.mjs",
+        "package.json",
+        "src/engine/pack-validator.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json",
+        "src/engine/pack-validator.ts"
+      ],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present"
+      ],
+      "acceptanceCriteria": [
+        "Running `npm run build:asset-index` against the canonical emberwild pack rewrites `sha256` and `bytes` for every entry from the on-disk file (or a deterministic placeholder when the file is absent in this planning-first repo).",
+        "Re-running with `--check` reports zero drift and exits 0.",
+        "Tampering with one asset byte and re-running with `--check` exits non-zero with the affected pack listed.",
+        "`validatePackAssets()` returns `pack.error.asset.integrity` for a pack whose declared `sha256` does not match the bytes on disk.",
+        "Shared-path edits to `package.json` (one new script entry) and `src/engine/pack-validator.ts` are additive only — must not rewrite the primary contract owned by Task 06; primary owner of the validator file remains Task 06, this task only extends with hash verification.",
+        "Schema reference: `content-schema/schemas/asset-index.schema.json`."
+      ],
+      "verifyCommands": [
+        "npm run build:asset-index -- --check",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present",
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present",
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.14-per-pack-localization-and-merge",
+      "kind": "task",
+      "status": "planned",
+      "title": "Per-Pack Localization Layout + Merge",
+      "path": "tasks/mvp/02b-asset-pipeline/14-per-pack-localization-and-merge.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Implement the per-pack localization merge described in [`content-system-policy.md` § 6](../../../docs/architecture/content-system-policy.md#6-localization-bundling) and [`pack-resolver.md` § 5](../../../docs/architecture/pack-resolver.md). Each pack carries its own `locales/<locale>.localization.json`. The content runtime merges them in resolution order with later-loaded packs winning per key. A pack overriding a string key from another pack must declare a dependency edge to it — otherwise → `pack.error.locale.unordered`. The registry exposes `getString(key, locale)` and `getStringSource(key, locale)` so the localization editor can show \"this string came from pack X.\"",
+      "inputs": [
+        "`content-schema/schemas/localization.schema.json`",
+        "Canonical example [`content-schema/examples/packs/emberwild-faction/locales/en.localization.json`](../../../content-schema/examples/packs/emberwild-faction/locales/en.localization.json)"
+      ],
+      "outputs": [
+        "`src/content-runtime/locale-registry.ts` exporting `LocaleRegistry` with `getString(key, locale)`, `getStringSource(key, locale)`, and a builder that consumes resolver output."
+      ],
+      "readFirst": [
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-resolver.md`](../../../docs/architecture/pack-resolver.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/locale-registry.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "mvp.02-content-schemas.14-localization-schema"
+      ],
+      "acceptanceCriteria": [
+        "Loading three packs (base, faction, translation) where the translation pack `dependencies` the faction pack: `getString(\"ui.faction.emberwild.name\", \"en\")` returns the translation pack's value; `getStringSource(...)` returns the translation pack's id.",
+        "A translation pack overriding a key without a declared dep edge to the providing pack rejects with `pack.error.locale.unordered`.",
+        "Missing locale falls back to the file's `fallbackLocale`, then to `en`.",
+        "Schema reference: `content-schema/schemas/localization.schema.json`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.14-localization-schema",
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.14-localization-schema",
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.15-balance-corridor-validator",
+      "kind": "task",
+      "status": "planned",
+      "title": "Balance Corridor Validator",
+      "path": "tasks/mvp/02b-asset-pipeline/15-balance-corridor-validator.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Encode the per-tier numeric corridor from [`research/deep-research-report.md`](../../../research/deep-research-report.md) § 1 into a JSON spec and ship a validator with two gates: - **Per-unit corridor.** Walk every unit in a pack; each numeric stat must fall inside the tier's `lo`/`hi` band widened by per-stat `tolerance` factors. Out-of-band → `pack.error.balance.outOfCorridor`. - **Per-pack faction budget.** Compute each unit's normalized skew across every numeric stat (-1 = at tier `lo`, 0 = tier mid, +1 = at tier `hi`); the pack's average unit skew must fall within `factionBudget.skewThreshold`. Without this gate a pack where every unit sits at the top of its band would pass per-unit but be objectively stronger than other factions. Out of band → `pack.error.balance.factionImbalance`. Packs with fewer than `factionBudget.minUnits` units are skipped (no balance to enforce). First-party (non-sandbox) packs are fatal on either failure; sandboxed packs warn with a `BALANCE-WARN` badge but still load. The validator is wired into `npm run validate` for first-party packs and runs as a publish gate for community imports.",
+      "inputs": [
+        "`content-schema/balance/corridor.json`",
+        "`content-schema/balance/corridor.schema.json`",
+        "Unit records under `content-schema/examples/packs/` and `resources/packs/`"
+      ],
+      "outputs": [
+        "`content-schema/balance/corridor.json` with per-tier `lo`/`hi` values plus a `tolerance` block of per-stat multipliers.",
+        "`content-schema/balance/corridor.schema.json` describing the spec.",
+        "`scripts/validate-balance.mjs` exporting `collectBalanceViolations()` and a CLI runner.",
+        "`npm run validate:balance` script entry, wired into `npm run validate`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)",
+        "[`research/deep-research-report.md`](../../../research/deep-research-report.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/balance/corridor.json",
+        "content-schema/balance/corridor.schema.json",
+        "scripts/validate-balance.mjs",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc"
+      ],
+      "acceptanceCriteria": [
+        "The canonical emberwild pack passes the validator with zero violations.",
+        "A unit with HP=50000 at any tier fails with `pack.error.balance.outOfCorridor`.",
+        "A unit with ATK=1 at tier 7 fails with `pack.error.balance.outOfCorridor`.",
+        "A 3-unit pack where every unit sits at the top of its tier band (every per-unit check still passes) fails with `pack.error.balance.factionImbalance` because the pack-wide average skew exceeds `factionBudget.skewThreshold`.",
+        "A 3-unit pack where one unit is high, one low, one mid passes the faction-budget gate.",
+        "A sandboxed pack with either kind of out-of-band content warns instead of failing.",
+        "A pack with fewer than `factionBudget.minUnits` units skips the pack-skew gate (no balance to enforce).",
+        "`npm run validate:balance` exits 0 against the current repo and reports any violation by code, severity, file, and stat.",
+        "Shared-path edits to `package.json` are additive only — one new `validate:balance` script entry; must not rewrite existing script entries; primary owner of `package.json` remains the workspace setup task."
+      ],
+      "verifyCommands": [
+        "npm run validate:balance",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pack Error-Code Catalog + Lint",
+      "path": "tasks/mvp/02b-asset-pipeline/16-pack-error-code-catalog.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Single canonical table of every `pack.error.*` code emitted by the content runtime. Tasks that introduce a new code MUST add it to this catalog in the same change. The catalog drives the localized error table the mod manager renders, the telemetry buckets, and the typed enum re-exported from `src/content-runtime/error-codes.ts`. A small lint script confirms every `pack.error.*` token referenced elsewhere in the repo exists in the catalog.",
+      "inputs": [
+        "Audit-derived initial codes (manifest, dependency, override, asset, sandbox, balance, signature, canonical, locale)",
+        "`content-schema/schemas/localization.schema.json`"
+      ],
+      "outputs": [
+        "`docs/architecture/pack-error-codes.md` — the catalog table.",
+        "`scripts/check-pack-error-codes.mjs` — lint that fails on a `pack.error.*` token referenced anywhere in the repo that is not in the catalog.",
+        "`npm run validate:error-codes` script entry, wired into `npm run validate`.",
+        "`src/content-runtime/error-codes.ts` re-exports the catalog as a typed enum (deferred until runtime work begins; the doc lands now)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/pack-error-codes.md",
+        "scripts/check-pack-error-codes.mjs",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc"
+      ],
+      "acceptanceCriteria": [
+        "The catalog includes the initial 15 codes covering manifest, dependency, override, asset, sandbox, balance, signature, canonical, and locale failures with severity and localization key per row.",
+        "`npm run validate:error-codes` exits 0 with no unknown codes present in the repo, and exits 1 if a task or schema introduces a `pack.error.*` token that is not in the catalog.",
+        "Schema reference: `content-schema/schemas/localization.schema.json` (the catalog mandates a localization-key column).",
+        "Shared-path edits to `package.json` are additive only — one new `validate:error-codes` script entry; must not rewrite existing scripts; primary owner of `package.json` remains the workspace setup task."
+      ],
+      "verifyCommands": [
+        "npm run validate:error-codes",
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 11
     },
     {
       "id": "mvp.03-map-system.01-axial-hex-coordinate-utilities",
@@ -7226,7 +7684,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 99
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -9013,7 +9471,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 131
+      "downstreamTransitiveCount": 133
     },
     {
       "id": "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
@@ -9652,7 +10110,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 53,
-      "downstreamTransitiveCount": 93
+      "downstreamTransitiveCount": 95
     },
     {
       "id": "mvp.07-ui-shell.02-zustand-store",
@@ -11803,7 +12261,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 35
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -11874,7 +12332,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -11966,7 +12424,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 27
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "mvp.08-persistence.04-scenario-loader",
@@ -12130,7 +12588,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 24
+      "downstreamTransitiveCount": 26
     },
     {
       "id": "mvp.08-persistence.06-autosave",
@@ -17037,7 +17495,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 9
+      "downstreamTransitiveCount": 10
     },
     {
       "id": "phase-2.03-second-faction.02-necropolis-building-tree-json",
@@ -17103,7 +17561,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 9
+      "downstreamTransitiveCount": 10
     },
     {
       "id": "phase-2.03-second-faction.03-necropolis-hero-roster-json",
@@ -17175,7 +17633,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 9
+      "downstreamTransitiveCount": 10
     },
     {
       "id": "phase-2.03-second-faction.04-necromancy-mechanic-raise-skeletons-after-combat",
@@ -17464,7 +17922,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 29
+      "downstreamTransitiveCount": 31
     },
     {
       "id": "phase-2.04-content-editor.02-unit-editor-form",
@@ -17569,7 +18027,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 27
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "phase-2.04-content-editor.03-faction-editor-form",
@@ -17675,7 +18133,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 25
+      "downstreamTransitiveCount": 27
     },
     {
       "id": "phase-2.04-content-editor.04-schema-validation-with-inline-error-display",
@@ -17779,7 +18237,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 24
+      "downstreamTransitiveCount": 26
     },
     {
       "id": "phase-2.04-content-editor.05-live-preview-panel-unit-card",
@@ -17980,7 +18438,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 23
+      "downstreamTransitiveCount": 25
     },
     {
       "id": "phase-2.04-content-editor.07-editor-integration-test",
@@ -18397,8 +18855,8 @@
         "phase-2.04-content-editor.06-mod-pack-export-import"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 20
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "phase-2.05-mod-system.02-ed25519-signature-verification",
@@ -18456,8 +18914,8 @@
         "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 19
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs",
@@ -18494,9 +18952,10 @@
         "phase-2.05-mod-system.02-ed25519-signature-verification"
       ],
       "acceptanceCriteria": [
-        "AI pack with HP=1000 unit is rejected with \"HP cap exceeded (max 500)\"",
-        "Sandbox badge is visible and cannot be removed from sandboxed packs",
-        "Non-sandboxed pack with same unit loads fine (caps only apply to sandboxed packs)"
+        "AI pack with HP=1000 unit is rejected with `pack.error.sandbox.cap` (\"HP cap exceeded (max 500)\").",
+        "Sandbox badge is visible and cannot be removed from sandboxed packs.",
+        "Non-sandboxed pack with same unit loads fine (caps only apply to sandboxed packs).",
+        "Sandboxed packs out of the balance corridor — either per-unit (`pack.error.balance.outOfCorridor`) or pack-wide (`pack.error.balance.factionImbalance`) — surface a `BALANCE-WARN` badge alongside `SANDBOX` instead of failing (downgraded codes per [`mvp.02b-asset-pipeline.15-balance-corridor-validator`](../../mvp/02b-asset-pipeline/15-balance-corridor-validator.md) / [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md))."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -18518,7 +18977,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "phase-2.05-mod-system.04-mod-manager-ui-install-enable-disable",
@@ -18540,7 +18999,9 @@
         "Install: drag-and-drop or file picker for `.hrmod` files",
         "Uninstall: removes pack from IndexedDB",
         "Warning: disabling an active pack mid-game is not allowed (must return to main menu)",
-        "Conflict detection: warns if two packs define the same unit/building IDs"
+        "Conflict detection: warns if two packs define the same unit/building IDs",
+        "Override visualization: for every entry in `loadedPack.overrides[]` surfaces `target`, `kind`, `source` (the overriding pack), and `reason` so the player sees *why* a baseline record was replaced. Backed by the resolver's `overrideMap` from [`mvp.02b-asset-pipeline.12-pack-resolver-algorithm`](../../mvp/02b-asset-pipeline/12-pack-resolver-algorithm.md) and the override task [`phase-2.05-mod-system.08-override-precedence-and-patch-merge`](./08-override-precedence-and-patch-merge.md).",
+        "Error rendering: every load failure renders by the `pack.error.*` code from [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md) (no ad-hoc error strings). Severity drives blocking vs warning UI."
       ],
       "readFirst": [
         "`docs/architecture/wiki/screens/54-system-menu/spec.md`",
@@ -18601,7 +19062,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 17
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs",
@@ -18667,7 +19128,9 @@
         "Shared library packs contain only cross-faction reusable records",
         "Every `shared:*` id referenced by a first-party faction resolves through one of these library packs",
         "All packs validate with zero schema or cross-reference errors",
-        "No first-party faction-specific IDs leak into any shared-library pack"
+        "No first-party faction-specific IDs leak into any shared-library pack",
+        "Every shared-library pack manifest declares its dependencies in the `{ id, version }` object form pinned in [`pack-resolver.md`](../../../docs/architecture/pack-resolver.md) (no plain-string `dependencies[]`).",
+        "Pack `id` values follow the namespace pattern in [`content-system-policy.md` § 1](../../../docs/architecture/content-system-policy.md#1-pack-identity)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -18720,8 +19183,8 @@
         "phase-2.05-mod-system.04-mod-manager-ui-install-enable-disable"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 16
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "phase-2.05-mod-system.05b-sylvan-and-stormspire-reference-packs",
@@ -18835,8 +19298,8 @@
         "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 7
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 8
     },
     {
       "id": "phase-2.05-mod-system.05c-ashlord-and-deepway-reference-packs",
@@ -18944,8 +19407,8 @@
         "phase-2.05-mod-system.05b-sylvan-and-stormspire-reference-packs"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 6
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 7
     },
     {
       "id": "phase-2.05-mod-system.05d-official-pack-signing-and-bundle-verification",
@@ -18990,6 +19453,7 @@
       "acceptanceCriteria": [
         "Every official pack carries `contentHash`, `engineHash`, and official signature metadata",
         "Bundle verification reports missing dependencies or bad load order before runtime load",
+        "Bundle verification consults the canonical-packs registry from [`phase-2.05-mod-system.09-canonical-packs-registry`](./09-canonical-packs-registry.md) and refuses to start if a `required: true` entry is missing (`pack.error.canonical.missing`) or its hash/version mismatches (`pack.error.canonical.mismatch`).",
         "The full official bundle passes `npm run validate` with zero errors",
         "Loading all official packs does not require any hard-coded faction or pack ordering in the engine",
         "Shared path work is additive only: add signature metadata to manifests without rewriting the primary manifest contract owned by the pack authoring tasks in `phase-2.05-mod-system.05a` through `05c`"
@@ -19183,6 +19647,160 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
       "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "phase-2.05-mod-system.08-override-precedence-and-patch-merge",
+      "kind": "task",
+      "status": "planned",
+      "title": "Override Precedence + Patch Merge",
+      "path": "tasks/phase-2/05-mod-system/08-override-precedence-and-patch-merge.md",
+      "moduleId": "phase-2.05-mod-system",
+      "modulePath": "tasks/phase-2/05-mod-system.md",
+      "description": "Implement the explicit `overrides` channel from [`content-system-policy.md` § 3](../../../docs/architecture/content-system-policy.md#3-override-precedence) and [`pack-resolver.md` § 4](../../../docs/architecture/pack-resolver.md). A pack declaring `overrides[]` may legally replace or JSON-merge-patch records contributed by packs in its dependency chain. Two packs in unrelated dep subtrees overriding the same target must be rejected with `pack.error.override.unordered`. The mod manager surfaces `overrides[].source` and `overrides[].reason` per affected target so the player sees *why* a baseline record was replaced.",
+      "inputs": [
+        "`content-schema/schemas/manifest.schema.json` (`overrides` block)",
+        "Resolver output from `mvp.02b-asset-pipeline.12-pack-resolver-algorithm`",
+        "Override fixtures under `content-schema/examples/packs/__tests__/overrides/`"
+      ],
+      "outputs": [
+        "`src/content-runtime/overrides.ts` — applies replace/patch overrides on top of the resolved registry, returns the `overrideMap` consumed by the mod manager.",
+        "Override fixtures: legal replace, legal patch, override of non-dep target (rejected), unordered override (rejected)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-resolver.md`](../../../docs/architecture/pack-resolver.md)",
+        "[`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/overrides.ts",
+        "content-schema/examples/packs/__tests__/overrides/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser"
+      ],
+      "acceptanceCriteria": [
+        "Legal-replace fixture: an overriding pack `dependencies` the providing pack and replaces a record; registry entry reflects the overriding pack's content; `overrideMap[target]` returns the overriding pack's id.",
+        "Legal-patch fixture: JSON-merge-patch (RFC 7396) applied to the base record; only the patched fields change.",
+        "Override-of-non-dep fixture: pack overrides a target that is not in its transitive dep closure → rejected with `pack.error.override.unordered`.",
+        "Unordered-override fixture: two packs in unrelated dep subtrees override the same target → rejected with `pack.error.override.unordered`.",
+        "Schema reference: `content-schema/schemas/manifest.schema.json`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-2.05-mod-system.09-canonical-packs-registry",
+      "kind": "task",
+      "status": "planned",
+      "title": "Canonical-Packs Registry + Bundle Verifier",
+      "path": "tasks/phase-2/05-mod-system/09-canonical-packs-registry.md",
+      "moduleId": "phase-2.05-mod-system",
+      "modulePath": "tasks/phase-2/05-mod-system.md",
+      "description": "Ship the static registry of first-party packs pinned to the engine build at [`resources/canonical-packs.json`](../../../resources/canonical-packs.json), authored against [`content-schema/schemas/canonical-packs.schema.json`](../../../content-schema/schemas/canonical-packs.schema.json). At startup, the bundle verifier loads the registry and confirms, for every `required: true` entry, that a pack with that `id` is loaded, its `version` satisfies the pinned version, its `signature.keyId` matches `signatureKeyId`, and its `contentHash` matches. Failure blocks game start with `pack.error.canonical.missing` or `pack.error.canonical.mismatch`. `required: false` entries are optional bundles (extra factions, asset packs).",
+      "inputs": [
+        "`content-schema/schemas/canonical-packs.schema.json`",
+        "`resources/canonical-packs.json`",
+        "Resolver output from `mvp.02b-asset-pipeline.12-pack-resolver-algorithm`"
+      ],
+      "outputs": [
+        "`src/content-runtime/canonical-packs.ts` exporting `verifyBundle(loadedPacks, registry)` returning `{ ok: true } | { ok: false, code, missing }`.",
+        "A test fixture proving that a missing `required: true` entry produces `pack.error.canonical.missing` and a mismatched `contentHash` produces `pack.error.canonical.mismatch`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
+        "[`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/canonical-packs.ts",
+        "resources/canonical-packs.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "resources/canonical-packs.json"
+      ],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "phase-2.05-mod-system.02-ed25519-signature-verification",
+        "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs",
+        "phase-2.05-mod-system.05b-sylvan-and-stormspire-reference-packs",
+        "phase-2.05-mod-system.05c-ashlord-and-deepway-reference-packs"
+      ],
+      "acceptanceCriteria": [
+        "The shipped `resources/canonical-packs.json` validates against `content-schema/schemas/canonical-packs.schema.json`.",
+        "A boot fixture missing a `required: true` entry refuses to start with `pack.error.canonical.missing`.",
+        "A boot fixture whose loaded pack has a different `contentHash` than the registry entry refuses to start with `pack.error.canonical.mismatch`.",
+        "`required: false` entries are skipped silently when absent.",
+        "Schema reference: `content-schema/schemas/canonical-packs.schema.json`.",
+        "Shared-path edits to `resources/canonical-packs.json` are additive only — entries may be appended for new first-party packs; must not rewrite the schemaVersion or engineHash without an engine-build bump; primary owner of the registry file is this task."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/canonical-packs.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/canonical-packs.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "phase-2.05-mod-system.02-ed25519-signature-verification",
+        "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs",
+        "phase-2.05-mod-system.05b-sylvan-and-stormspire-reference-packs",
+        "phase-2.05-mod-system.05c-ashlord-and-deepway-reference-packs"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "phase-2.05-mod-system.02-ed25519-signature-verification",
+        "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs",
+        "phase-2.05-mod-system.05b-sylvan-and-stormspire-reference-packs",
+        "phase-2.05-mod-system.05c-ashlord-and-deepway-reference-packs"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "phase-2.06-visual-fidelity.01-terrain-transition-tiles-blending-between-terrain-types",
@@ -28447,6 +29065,8 @@
         "phase-2.05-mod-system.05d-official-pack-signing-and-bundle-verification",
         "phase-2.05-mod-system.06-build-boat-command-and-shipyard",
         "phase-2.05-mod-system.07-build-grail-structure-command",
+        "phase-2.05-mod-system.08-override-precedence-and-patch-merge",
+        "phase-2.05-mod-system.09-canonical-packs-registry",
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
         "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -28973,6 +29593,12 @@
         "mvp.02b-asset-pipeline.08-new-faction-scaffold-script",
         "mvp.02b-asset-pipeline.09-adding-a-faction-guide-faction-guide-md",
         "mvp.02b-asset-pipeline.10-migrate-emberwild-pack-to-this-structure",
+        "mvp.02b-asset-pipeline.11-content-system-policy-doc",
+        "mvp.02b-asset-pipeline.12-pack-resolver-algorithm",
+        "mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script",
+        "mvp.02b-asset-pipeline.14-per-pack-localization-and-merge",
+        "mvp.02b-asset-pipeline.15-balance-corridor-validator",
+        "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
         "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser",
         "phase-2.05-mod-system.02-ed25519-signature-verification",
         "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs",
@@ -28982,7 +29608,9 @@
         "phase-2.05-mod-system.05c-ashlord-and-deepway-reference-packs",
         "phase-2.05-mod-system.05d-official-pack-signing-and-bundle-verification",
         "phase-2.05-mod-system.06-build-boat-command-and-shipyard",
-        "phase-2.05-mod-system.07-build-grail-structure-command"
+        "phase-2.05-mod-system.07-build-grail-structure-command",
+        "phase-2.05-mod-system.08-override-precedence-and-patch-merge",
+        "phase-2.05-mod-system.09-canonical-packs-registry"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
