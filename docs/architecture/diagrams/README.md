@@ -6,6 +6,26 @@ behavior (e.g. how a castle is rendered for the chosen race, how a
 battle attack animation is sequenced, how localization resolves a
 string).
 
+## Normative Status
+
+**Diagrams are normatively secondary to task acceptance criteria.**
+If a diagram and the cited task spec disagree, the task wins —
+patch the diagram to match. The CI gate
+[`scripts/check-diagram-task-parity.mjs`](../../../scripts/check-diagram-task-parity.mjs)
+catches the previously-observed divergence patterns:
+
+- save-flow showing a `state` blob alongside the log
+  ([`24-save-flow.md`](./24-save-flow.md) is log-only per
+  [`tasks/mvp/08-persistence/02-log-only-save-format.md`](../../../tasks/mvp/08-persistence/02-log-only-save-format.md))
+- multiplayer-sync showing "resync from last good state" without
+  citing the bisect → report → quit ladder
+  ([`26-multiplayer-sync.md`](./26-multiplayer-sync.md) shows the
+  three-step ladder per
+  [`tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md`](../../../tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md))
+- DAMAGE_FRAME drawn as an engine→renderer callback (the contract
+  is engine-emit-only, owned by
+  [`animation-contract.md` § DAMAGE_FRAME Ownership](../animation-contract.md#damage_frame-ownership))
+
 ## Source Of Truth
 
 - `index.json` — manifest listing every diagram, grouped into

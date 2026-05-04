@@ -29,7 +29,12 @@ The engine must provide these, in this order:
 6. **Fuzz harness** (N random commands replayed bit-identically). The
    companion **multi-engine harness** runs two `createEngine()`
    instances in parallel and compares hashes per step; see
-   [`multi-engine-harness.md`](./multi-engine-harness.md).
+   [`multi-engine-harness.md`](./multi-engine-harness.md). The fuzz
+   harness's Node-only output is additionally cross-validated against
+   the browser engines pinned by
+   [`runtime-requirements.md` RR-08](./runtime-requirements.md#rr-08-browser-engine-floor)
+   and RR-09 by the Playwright job owned by
+   [`tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md`](../../tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md).
 
 ## Forbidden In Deterministic Paths
 

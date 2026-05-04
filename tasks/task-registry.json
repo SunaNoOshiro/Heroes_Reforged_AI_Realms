@@ -1565,6 +1565,44 @@
       ]
     },
     {
+      "id": "phase-2.11-observability",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Observability (Phase 2)",
+      "path": "tasks/phase-2/11-observability.md",
+      "milestone": "Phase 2 — operability foundation",
+      "totalEstimate": "~5 hours",
+      "exitCriteria": "Logger and metrics sink interfaces exist, every",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "01-logger-and-metrics-sink-interfaces.md",
+          "link": "11-observability/01-logger-and-metrics-sink-interfaces.md"
+        },
+        {
+          "label": "02-required-emissions-catalogue.md",
+          "link": "11-observability/02-required-emissions-catalogue.md"
+        }
+      ]
+    },
+    {
+      "id": "phase-2.12-balance-judgement",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Balance Judgement (Phase 2)",
+      "path": "tasks/phase-2/12-balance-judgement.md",
+      "milestone": "Phase 2 — operability foundation",
+      "totalEstimate": "~2 hours",
+      "exitCriteria": "A second contributor reading",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "01-judgement-rules-doc.md",
+          "link": "12-balance-judgement/01-judgement-rules-doc.md"
+        }
+      ]
+    },
+    {
       "id": "phase-3.01-multiplayer",
       "kind": "module",
       "status": "planned",
@@ -1801,6 +1839,23 @@
         {
           "label": "07-launch-checklist-plus-final-smoke-test.md",
           "link": "04-polish/07-launch-checklist-plus-final-smoke-test.md"
+        }
+      ]
+    },
+    {
+      "id": "phase-3.05-lobby",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Lobby Discovery (Phase 3)",
+      "path": "tasks/phase-3/05-lobby.md",
+      "milestone": "Phase 3 — multiplayer polish",
+      "totalEstimate": "~2 hours (stub)",
+      "exitCriteria": "Plan 18 has an executable task list that this",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "00-plan-stub.md",
+          "link": "05-lobby/00-plan-stub.md"
         }
       ]
     }
@@ -2801,7 +2856,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 342
+      "downstreamTransitiveCount": 344
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2863,7 +2918,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 340
+      "downstreamTransitiveCount": 342
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -2920,7 +2975,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 221
+      "downstreamTransitiveCount": 223
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -2976,7 +3031,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 252
+      "downstreamTransitiveCount": 254
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3123,7 +3178,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 210
+      "downstreamTransitiveCount": 212
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3313,7 +3368,8 @@
         "`serialize(stateA) === serialize(stateB)` if and only if states are logically equal",
         "Hash is identical on Node 20, Chrome 120, Firefox 121, Safari 17 for the same state",
         "Round-trip: `deserialize(serialize(state))` produces a state with identical hash",
-        "Performance: serialize + hash a 500-unit battle state in < 5ms"
+        "Performance: serialize + hash a 500-unit battle state in < 5ms",
+        "Cross-environment parity proof: the canonical bytes produced by this serializer match across Node and the browser engines pinned by [`runtime-requirements.md` RR-08](../../../docs/architecture/runtime-requirements.md#rr-08-browser-engine-floor) and RR-09. The proof is owned by [`09b-cross-environment-canonical-bytes-test.md`](09b-cross-environment-canonical-bytes-test.md); this task exposes the determinism-fragile primitives (number formatter, sorted-key emitter, sorted Map/Set emitter, UTF-8 identity) the parity test consumes."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -3332,8 +3388,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 70
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3456,7 +3512,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -3502,7 +3558,8 @@
         "Re-save byte equivalence: two consecutive `save()` calls of the same session produce identical `canonicalContentHash`.",
         "Snapshot equivalence: replay from `(snapshot, log_since_snapshot)` is bit-identical to replay from `(seed, full_log)` for every verified snapshot in the fixture.",
         "**AI `searchBudget` determinism case:** for each fixture, run the AI worker (`mvp.10-heuristic-ai.06-run-ai-in-web-worker`) twice with identical seed, state, and `searchBudget`, with two different simulated `setTimeout` rate profiles (\"fast\" / \"slow\"). The two runs MUST produce identical `Command` outputs and identical `nodesExpanded` counts. Wall-clock-driven truncation would break this case; that is the point.",
-        "**Bench harness Scenario C fixtures** are shared with this harness. Adding a fixture here adds it to the bench Scenario C scenario list (and vice versa) — a single fixture source feeds both gates."
+        "**Bench harness Scenario C fixtures** are shared with this harness. Adding a fixture here adds it to the bench Scenario C scenario list (and vice versa) — a single fixture source feeds both gates.",
+        "**Browser parity sub-target.** The fuzz harness exposes a `writeTranscript()` step that emits `(state, canonicalBytes, hash)` triples per command. The transcript is consumed by [`09b-cross-environment-canonical-bytes-test.md`](09b-cross-environment-canonical-bytes-test.md) which replays the same transcript through the same serializer inside a Playwright headless Chromium and asserts byte equality. This task owns transcript emission; `09b` owns the browser replay."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -3525,8 +3582,76 @@
         "mvp.08-persistence.07-snapshot-rebase"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 18
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.01-engine-core.09b-cross-environment-canonical-bytes-test",
+      "kind": "task",
+      "status": "planned",
+      "title": "Cross-environment canonical-bytes parity test",
+      "path": "tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md",
+      "moduleId": "mvp.01-engine-core",
+      "modulePath": "tasks/mvp/01-engine-core.md",
+      "description": "Prove that the canonical serializer + xxh64 hash pinned by [`07-state-serializer-plus-xxh64-hash.md`](07-state-serializer-plus-xxh64-hash.md) produces byte-identical output on Node and on every browser engine that meets [`runtime-requirements.md` RR-08](../../../docs/architecture/runtime-requirements.md#rr-08-browser-engine-floor) and RR-09. Today the fuzz harness in [`09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md) runs Node-only; this task adds the Playwright-driven browser leg.",
+      "inputs": [
+        "Existing fuzz transcript exporter (`writeTranscript({state, canonicalBytes, hash}[])`) added by the parent fuzz task",
+        "Browser-supported engine factory from [`07-state-serializer-plus-xxh64-hash.md`](07-state-serializer-plus-xxh64-hash.md)"
+      ],
+      "outputs": [
+        "`tests/determinism/cross-env/playwright.config.ts` — Playwright config targeting Chromium (mandatory) plus WebKit and Firefox gated behind an env-var flag (see [`DEF-015`](../../../docs/planning/deferred.md))",
+        "`tests/determinism/cross-env/parity.spec.ts` — Playwright spec that reads the Node-emitted transcript and asserts byte equality + identical xxh64 in the headless browser",
+        "`tests/determinism/cross-env/transcript-runner.ts` — shared module imported on both sides so the byte-comparison code is the same on Node and browser"
+      ],
+      "readFirst": [
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/runtime-requirements.md`](../../../docs/architecture/runtime-requirements.md)",
+        "[`docs/architecture/multi-engine-harness.md`](../../../docs/architecture/multi-engine-harness.md)"
+      ],
+      "ownedPaths": [
+        "tests/determinism/cross-env/playwright.config.ts",
+        "tests/determinism/cross-env/parity.spec.ts",
+        "tests/determinism/cross-env/transcript-runner.ts",
+        ".github/workflows/multiplayer-determinism.yml"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        ".github/workflows/multiplayer-determinism.yml"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
+      ],
+      "acceptanceCriteria": [
+        "A 1000-command run produces a transcript file under `tests/determinism/cross-env/__transcripts__/` containing `(state, canonicalBytes, hash)` triples.",
+        "Playwright Chromium replays the transcript and asserts byte equality and xxh64 equality at every step.",
+        "WebKit + Firefox legs run under `HR_CROSS_ENV_FULL=1` and are optional in the default CI gate (per [`DEF-015`](../../../docs/planning/deferred.md)).",
+        "The CI job named \"determinism-cross-env\" runs in `.github/workflows/multiplayer-determinism.yml` and is required for merge once `src/engine/serializer.ts` lands.",
+        "Shared-path work is additive only: this task adds a `determinism-cross-env` job to the existing workflow without changing the existing multiplayer-determinism job. The primary owner of the workflow remains the parent multiplayer-determinism task; this task must not rewrite the existing job."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash",
+        "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "mvp.01-engine-core.10-github-actions-ci",
@@ -3952,7 +4077,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 250
+      "downstreamTransitiveCount": 251
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4010,7 +4135,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 171
+      "downstreamTransitiveCount": 172
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4193,7 +4318,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 160
+      "downstreamTransitiveCount": 161
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4254,7 +4379,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 219
+      "downstreamTransitiveCount": 220
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4782,7 +4907,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 130
+      "downstreamTransitiveCount": 131
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5831,6 +5956,7 @@
         "mvp.01-engine-core.07b-canonical-json",
         "mvp.01-engine-core.08-replay-api",
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
+        "mvp.01-engine-core.09b-cross-environment-canonical-bytes-test",
         "mvp.01-engine-core.10-github-actions-ci",
         "mvp.01-engine-core.11-no-wall-clock-lint",
         "mvp.01-engine-core.12-golden-state-suite",
@@ -7447,7 +7573,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 163
+      "downstreamTransitiveCount": 164
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -7507,7 +7633,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 102
+      "downstreamTransitiveCount": 103
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -7563,7 +7689,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 143
+      "downstreamTransitiveCount": 144
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -7626,7 +7752,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 102
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -8223,7 +8349,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 77
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -8375,7 +8501,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 102
+      "downstreamTransitiveCount": 103
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -8510,7 +8636,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 137
+      "downstreamTransitiveCount": 138
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -8586,7 +8712,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 102
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -8649,7 +8775,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 91
+      "downstreamTransitiveCount": 92
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -8715,7 +8841,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 72
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -8781,7 +8907,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 73
+      "downstreamTransitiveCount": 74
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -8859,7 +8985,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -8914,7 +9040,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 49
+      "downstreamTransitiveCount": 50
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -13025,7 +13151,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 58
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -13444,7 +13570,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 20
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "mvp.08-persistence.08-migration-registry",
@@ -13668,7 +13794,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 80
+      "downstreamTransitiveCount": 81
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -13730,7 +13856,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -13878,7 +14004,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -13945,7 +14071,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 49
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -14081,7 +14207,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 49
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -14144,7 +14270,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 52
+      "downstreamTransitiveCount": 53
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -14217,7 +14343,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -14891,7 +15017,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 49
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -14979,7 +15105,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -15042,7 +15168,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -15124,7 +15250,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -15198,7 +15324,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 40
+      "downstreamTransitiveCount": 41
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -15303,7 +15429,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 39
+      "downstreamTransitiveCount": 40
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -15373,7 +15499,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 40
+      "downstreamTransitiveCount": 41
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -15468,7 +15594,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 17
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -15551,7 +15677,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 18
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -15629,7 +15755,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 31
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -15700,7 +15826,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 17
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -27734,6 +27860,196 @@
       "downstreamTransitiveCount": 5
     },
     {
+      "id": "phase-2.11-observability.01-logger-and-metrics-sink-interfaces",
+      "kind": "task",
+      "status": "planned",
+      "title": "Logger + MetricsSink interfaces",
+      "path": "tasks/phase-2/11-observability/01-logger-and-metrics-sink-interfaces.md",
+      "moduleId": "phase-2.11-observability",
+      "modulePath": "tasks/phase-2/11-observability.md",
+      "description": "Implement the pure `Logger` and `MetricsSink` interfaces declared in [`docs/architecture/observability.md`](../../../docs/architecture/observability.md) §§ 1–2, plus the dev console backend and the capture-and-assert test fake referenced from [`docs/architecture/testing-conventions.md`](../../../docs/architecture/testing-conventions.md). Both interfaces are environment-agnostic and dependency-injected; no module-level singleton.",
+      "inputs": [
+        "Type definitions from `src/contracts/`"
+      ],
+      "outputs": [
+        "`src/observability/logger.ts` — `Logger` interface plus the dev console backend",
+        "`src/observability/metrics.ts` — `MetricsSink` interface plus the dev in-memory backend",
+        "`src/contracts/fakes/observability.ts` — capture-and-assert fake used by every module's tests when proving required emissions"
+      ],
+      "readFirst": [
+        "[`docs/architecture/observability.md`](../../../docs/architecture/observability.md)",
+        "[`docs/architecture/testing-conventions.md`](../../../docs/architecture/testing-conventions.md)",
+        "[`docs/architecture/side-effect-matrix.md`](../../../docs/architecture/side-effect-matrix.md)"
+      ],
+      "ownedPaths": [
+        "src/observability/logger.ts",
+        "src/observability/metrics.ts",
+        "src/contracts/fakes/observability.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "The `Logger` interface matches the declaration in [`docs/architecture/observability.md`](../../../docs/architecture/observability.md) § 1 exactly: `info`, `warn`, `error` taking `(event: string, fields?: LogFields)`.",
+        "The `MetricsSink` interface matches § 2: `counter`, `histogram`, `gauge`.",
+        "Console backend serializes each call as a single one-line JSON object so log aggregators can parse without splitting lines.",
+        "Capture-and-assert fake exposes `events`, `metrics`, `expectEvent(kind, fields?)`, and `expectMetric(name, op, predicate?)` helpers; redaction rules from § 5 are enforced inside the fake (PII fields throw at capture time so violators fail tests loudly).",
+        "No module-level state inside `src/observability/` (verified by `npm run validate:arch`)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "phase-2.11-observability.02-required-emissions-catalogue",
+      "kind": "task",
+      "status": "planned",
+      "title": "Required emissions catalogue + telemetry-event schema validation",
+      "path": "tasks/phase-2/11-observability/02-required-emissions-catalogue.md",
+      "moduleId": "phase-2.11-observability",
+      "modulePath": "tasks/phase-2/11-observability.md",
+      "description": "Lock the per-subsystem required-emissions catalogue declared in [`docs/architecture/observability.md`](../../../docs/architecture/observability.md) § 4 and back it with a CI gate. Validate the canonical examples under [`content-schema/examples/telemetry/`](../../../content-schema/examples/telemetry/) against [`content-schema/schemas/telemetry-event.schema.json`](../../../content-schema/schemas/telemetry-event.schema.json), and ensure each owning module's task acceptance criteria cite the emissions it owes the catalogue.",
+      "inputs": [
+        "Required emissions table in [`observability.md`](../../../docs/architecture/observability.md) § 4",
+        "Existing module task lists under `tasks/mvp/` and `tasks/phase-2/`"
+      ],
+      "outputs": [
+        "Acceptance-criteria patches in each owning module's tasks (see table) that add a \"MUST emit `<event>` per observability.md § 4 row M\" line.",
+        "Two canonical telemetry examples under [`content-schema/examples/telemetry/`](../../../content-schema/examples/telemetry/) that pass the schema gate.",
+        "Cross-link from [`error-taxonomy.md`](../../../docs/architecture/error-taxonomy.md) to the `error.shown` row of the catalogue."
+      ],
+      "readFirst": [
+        "[`docs/architecture/observability.md`](../../../docs/architecture/observability.md)",
+        "[`content-schema/schemas/telemetry-event.schema.json`](../../../content-schema/schemas/telemetry-event.schema.json)",
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/examples/telemetry/",
+        "docs/architecture/observability.md",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/observability.md",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "dependencies": [
+        "phase-2.11-observability.01-logger-and-metrics-sink-interfaces"
+      ],
+      "acceptanceCriteria": [
+        "Schema gate (`npm run validate:contracts`) passes for the canonical examples in `content-schema/examples/telemetry/`.",
+        "Every row of the § 4 table cites a stable event name and at least one owning subsystem.",
+        "Privacy redaction rules from § 5 are referenced from the privacy- retention plan ([`22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)); do not duplicate the rules.",
+        "Shared-path work is additive only: extending § 4 must not rewrite the rest of `observability.md`. The primary owner of [`observability.md`](../../../docs/architecture/observability.md) remains the doc itself; this task adds rows without changing the declared interfaces, and must not rewrite §§ 1–3 or § 5–7."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-2.11-observability.01-logger-and-metrics-sink-interfaces"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-2.11-observability.01-logger-and-metrics-sink-interfaces"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "phase-2.12-balance-judgement.01-judgement-rules-doc",
+      "kind": "task",
+      "status": "planned",
+      "title": "Balance-corridor judgement-rules doc",
+      "path": "tasks/phase-2/12-balance-judgement/01-judgement-rules-doc.md",
+      "moduleId": "phase-2.12-balance-judgement",
+      "modulePath": "tasks/phase-2/12-balance-judgement.md",
+      "description": "Author `docs/balance/judgement-rules.md` extracting the balance- corridor judgement-call methodology that today lives only in [`research/deep-research-report.md`](../../../research/deep-research-report.md) and (per the audit) in the head of one contributor (Q294 #2). The rules cover: which Wilson 95 % CI band counts as inside the corridor, how to treat outliers, when a \"compensating ability exists\" exempts a stat from the corridor, and how to log the judgement call against the affected record.",
+      "inputs": [
+        "Methodology section of `research/deep-research-report.md`",
+        "Existing balance-constraints schema",
+        "Existing balance-report schema"
+      ],
+      "outputs": [
+        "`docs/balance/judgement-rules.md` containing:",
+        "Wilson 95 % CI rule statement (verbatim from research report)",
+        "Outlier rule",
+        "\"Compensating ability exists\" rule",
+        "Decision-log requirement: every judgement call MUST land an entry in [`docs/planning/decision-log.md`](../../../docs/planning/decision-log.md) or as a `findings[].context.judgement` field on the corresponding `balance-report`",
+        "Cross-link added to `research/deep-research-report.md` pointing at the new doc"
+      ],
+      "readFirst": [
+        "[`research/deep-research-report.md`](../../../research/deep-research-report.md)",
+        "[`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json)",
+        "[`content-schema/schemas/balance-report.schema.json`](../../../content-schema/schemas/balance-report.schema.json)",
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)"
+      ],
+      "ownedPaths": [
+        "docs/balance/judgement-rules.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "Doc exists and is referenced from [`research/deep-research-report.md`](../../../research/deep-research-report.md).",
+        "A worked example walks through one borderline stat and shows which rule applied and where the judgement was logged.",
+        "`npm run validate:links` resolves every link."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json",
+        "content-schema/schemas/balance-report.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json",
+        "content-schema/schemas/balance-report.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
       "kind": "task",
       "status": "planned",
@@ -27806,7 +28122,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 15
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -27870,7 +28186,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 15
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -28288,8 +28604,8 @@
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 5
     },
     {
       "id": "phase-3.01-multiplayer.09-snapshot-resync-fallback",
@@ -30820,6 +31136,7 @@
         "mvp.01-engine-core.07b-canonical-json",
         "mvp.01-engine-core.08-replay-api",
         "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
+        "mvp.01-engine-core.09b-cross-environment-canonical-bytes-test",
         "mvp.01-engine-core.10-github-actions-ci",
         "mvp.01-engine-core.11-no-wall-clock-lint",
         "mvp.01-engine-core.12-golden-state-suite",
@@ -31373,6 +31690,58 @@
         "phase-3.04-polish.05c-ai-performance-profiling",
         "phase-3.04-polish.05d-content-loader-performance-profiling",
         "phase-3.04-polish.06-accessibility-pass"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "phase-3.05-lobby.00-plan-stub",
+      "kind": "task",
+      "status": "blocked",
+      "title": "Lobby discovery — plan stub",
+      "path": "tasks/phase-3/05-lobby/00-plan-stub.md",
+      "moduleId": "phase-3.05-lobby",
+      "modulePath": "tasks/phase-3/05-lobby.md",
+      "description": "Placeholder marker for lobby-browser / friend-list work. The 1.x multiplayer surface is invite-link only and shipped through [`tasks/phase-3/01-multiplayer/08-multiplayer-ui-lobby-invite-link-in-game-status.md`](../../phase-3/01-multiplayer/08-multiplayer-ui-lobby-invite-link-in-game-status.md). A discoverable lobby + friend list is deferred to post-1.0 per [`DEF-016`](../../../docs/planning/deferred.md). This task file pins the dependency on plan 18 so the gap shows up in the registry rather than disappearing into chat history.",
+      "inputs": [
+        "Plan 18 (when authored)"
+      ],
+      "outputs": [
+        "(none — this task is a marker; once plan 18 is authored, this file is replaced by concrete tasks under [`tasks/phase-3/05-lobby/`](../05-lobby/))"
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../../../docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md)",
+        "[`docs/planning/deferred.md`](../../../docs/planning/deferred.md) (`DEF-016`)",
+        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)"
+      ],
+      "ownedPaths": [],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": true,
+      "ownedPathsOptOutReason": "this is a planning placeholder so concrete `Owned Paths` are deferred to plan 18's tasks; no concrete code or content paths are written by this stub",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status"
+      ],
+      "acceptanceCriteria": [
+        "This task remains `blocked` until plan 18 lands an executable decomposition. When plan 18 lands, this file is replaced (not edited) by per-feature tasks under [`tasks/phase-3/05-lobby/`](../05-lobby/).",
+        "The deferred-items register ([`DEF-016`](../../../docs/planning/deferred.md)) continues to point at this module while the stub stands."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,

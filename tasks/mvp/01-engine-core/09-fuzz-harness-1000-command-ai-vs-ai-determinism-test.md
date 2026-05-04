@@ -62,6 +62,14 @@ Acceptance Criteria:
   harness. Adding a fixture here adds it to the bench
   Scenario C scenario list (and vice versa) — a single fixture
   source feeds both gates.
+- **Browser parity sub-target.** The fuzz harness exposes a
+  `writeTranscript()` step that emits `(state, canonicalBytes,
+  hash)` triples per command. The transcript is consumed by
+  [`09b-cross-environment-canonical-bytes-test.md`](09b-cross-environment-canonical-bytes-test.md)
+  which replays the same transcript through the same serializer
+  inside a Playwright headless Chromium and asserts byte equality.
+  This task owns transcript emission; `09b` owns the browser
+  replay.
 
 Verify:
 - npm run validate

@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schemas/telemetry-event.schema.json",
+  "schemaVersion": 1,
+  "kind": "pack.load.failed",
+  "timestamp": 1746336060000,
+  "engineHash": "sha256:7a1f9b4c3e0d8f25",
+  "packHashes": ["sha256:9090909090909090"],
+  "severity": "error",
+  "fields": {
+    "code": "PACK_DEPENDENCY_MISSING",
+    "missingDependencyId": "redacted",
+    "loaderStage": "manifest"
+  }
+}

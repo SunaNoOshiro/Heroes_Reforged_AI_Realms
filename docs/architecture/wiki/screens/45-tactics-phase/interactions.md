@@ -38,3 +38,22 @@ Pre-combat tactics deployment phase with legal placement zones, draggable friend
 - This file owns behavior and timing.
 - `spec.md` owns static regions and state bindings.
 - `architecture.md` diagrams must mirror these interactions rather than inventing new behavior.
+
+## Error surfaces
+
+Per [`error-ux.md`](../../../error-ux.md) § 5, this screen inherits
+the default code → surface mapping from § 2. The table below
+maps each action whose `Type` column is `command` to its default
+surface for this screen's dominant error domain. A row whose Notes
+column reads `override` replaces the § 2 default for that action;
+otherwise the default applies. Specific error codes (e.g.
+`DISPATCHER_<token>`, `STORAGE_<token>`) land alongside the engine
+reducer that owns each command and trigger the gate in
+[`scripts/check-error-ux-coverage.mjs`](../../../../../scripts/check-error-ux-coverage.mjs)
+if a row is missing for them.
+
+| Action | Default error code | Surface | Localization key | Notes |
+| --- | --- | --- | --- | --- |
+| Place stack (`PLACE_TACTICS_STACK`) | DISPATCHER_REJECTED | inline | `error.dispatcher.rejected.body` | Default per `error-ux.md` § 2 DISPATCHER_*; disabled control + tooltip on rejection. |
+| Start battle (`START_BATTLE_AFTER_TACTICS`) | DISPATCHER_REJECTED | inline | `error.dispatcher.rejected.body` | Default per `error-ux.md` § 2 DISPATCHER_*; disabled control + tooltip on rejection. |
+| Reset placement (`RESET_TACTICS_PLACEMENT`) | DISPATCHER_REJECTED | inline | `error.dispatcher.rejected.body` | Default per `error-ux.md` § 2 DISPATCHER_*; disabled control + tooltip on rejection. |

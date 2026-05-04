@@ -568,6 +568,7 @@ function schemaForFile(filePath) {
   if (base === "event-log.example.json") return "event.schema.json";
   if (base.endsWith(".event.json")) return "event.schema.json";
   if (base.endsWith(".renderer-event.json")) return "renderer-event.schema.json";
+  if (base.endsWith(".telemetry-event.json")) return "telemetry-event.schema.json";
   if (base.endsWith(".validation-report.json")) return "validation-report.schema.json";
   if (base.endsWith(".coherence-report.json")) return "coherence-report.schema.json";
   if (base.endsWith(".balance-report.json")) return "balance-report.schema.json";

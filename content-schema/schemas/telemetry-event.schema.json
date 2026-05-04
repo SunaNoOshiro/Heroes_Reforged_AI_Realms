@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/telemetry-event.schema.json",
+  "title": "TelemetryEvent",
+  "description": "Canonical event shape for the per-match anonymous-stats emission pipeline. Authored by docs/architecture/observability.md. Privacy rules forbid PII, IPs, and peer IDs; only pack hashes, engine hashes, faction IDs, and aggregate metrics are allowed. See docs/implementation-plans/17-final-critical-questions-plan.md.",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "timestamp", "engineHash", "fields"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "type": "string",
+      "description": "Stable event identifier following the dotted-domain.code naming convention (e.g. desync.detected, pack.load.failed, ai.provider.error, save.corrupt).",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+    },
+    "timestamp": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Wall-clock millis since epoch on the emitting client. Telemetry is presentation-side; deterministic gameplay never reads this field."
+    },
+    "engineHash": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Engine build digest the emitting client is running (RR-09 / determinism contract)."
+    },
+    "packHashes": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Optional content-pack digests in load order. Hashes only — never pack names that could leak user-installed content lists."
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Stage-specific structured fields (numeric metrics, faction IDs, error codes). MUST NOT carry PII, IP addresses, peer IDs, message contents, save names, or free-form user text."
+    },
+    "severity": {
+      "enum": ["info", "warn", "error"],
+      "description": "Optional severity hint, used by the metrics sink to choose backend routing."
+    }
+  }
+}

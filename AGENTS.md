@@ -94,6 +94,25 @@ Read first if you need to understand the full project:
     asset-index → schema-validate → registry-rebuild → engine-reload).
 34. [docs/architecture/asset-path-resolution.md](docs/architecture/asset-path-resolution.md)
     — editor-time string lookups vs runtime registry resolution.
+35. [docs/architecture/runtime-requirements.md](docs/architecture/runtime-requirements.md)
+    — load-bearing runtime preconditions (UI shell, WebGL2 floor,
+    Web Workers, Web Crypto, IndexedDB quota, time source, gzip pin,
+    browser engine floor, cross-environment serializer parity).
+36. [docs/architecture/observability.md](docs/architecture/observability.md)
+    — Logger / MetricsSink interfaces, per-match anonymous-stats
+    schema, required-emissions catalogue, privacy redaction rules.
+37. [docs/architecture/error-ux.md](docs/architecture/error-ux.md)
+    — surface decision matrix (toast / inline / modal / log-only),
+    code → surface mapping, localization-key convention,
+    `error.shown` telemetry rule.
+38. [docs/operations/rollback-playbook.md](docs/operations/rollback-playbook.md)
+    — content / engine / save rollback, kill-switch policy, hot-fix
+    migration, incident-response RACI.
+39. [docs/planning/decision-log.md](docs/planning/decision-log.md)
+    — append-only register of locked decisions; provenance gate for
+    `docs/archive/AUDIT-*` claims.
+40. [docs/planning/deferred.md](docs/planning/deferred.md)
+    — single register of deferred / out-of-scope items (`DEF-NNN`).
 
 For a single browseable view of architecture docs, general flow diagrams,
 and numbered UI screen packages, open

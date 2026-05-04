@@ -66,6 +66,13 @@
     "LOCALE_CHANGED"
   ],
   "outOfScope": {
+    "AI_PROVIDER_TIMEOUT": "Error code from docs/architecture/error-taxonomy.md (AI_* prefix); not a command. Surfaced by docs/architecture/error-ux.md.",
+    "AI_WORKER_BUSY": "Error code from docs/architecture/error-taxonomy.md (AI_* prefix); not a command. Surfaced by docs/architecture/error-ux.md.",
+    "UI_TRACE_DIVERGENCE": "Error code from docs/architecture/error-taxonomy.md (UI_* prefix); not a command. Surfaced by docs/architecture/error-ux.md.",
+    "DISPATCHER_REJECTED": "Default dispatcher rejection code from docs/architecture/error-taxonomy.md (DISPATCHER_* prefix); not a command. Surfaced by the per-screen Error surfaces tables generated from docs/architecture/error-ux.md § 2.",
+    "STORAGE_REJECTED": "Default save/persistence rejection code from docs/architecture/error-taxonomy.md (STORAGE_* prefix); not a command. Surfaced by the per-screen Error surfaces tables generated from docs/architecture/error-ux.md § 2.",
+    "NET_REJECTED": "Default network/multiplayer rejection code from docs/architecture/error-taxonomy.md (NET_* prefix); not a command. Surfaced by the per-screen Error surfaces tables generated from docs/architecture/error-ux.md § 2.",
+    "VALIDATION_REJECTED": "Default validation rejection code from docs/architecture/error-taxonomy.md (VALIDATION_* prefix); not a command. Surfaced by the per-screen Error surfaces tables generated from docs/architecture/error-ux.md § 2.",
     "COMPLETE_CINEMATIC": "phase-2.08-meta-systems.03-cinematic-playback-engine owns cinematic completion state.",
     "END_BATTLE_TURN": "mvp.09-tactical-combat owns the per-stack turn-end command; reserved single-flight kind referenced from the dispatcher policy in docs/architecture/command-schema.md § Single-flight commands.",
     "HOST_MULTIPLAYER_SESSION": "phase-3.01-multiplayer owns network session commands.",

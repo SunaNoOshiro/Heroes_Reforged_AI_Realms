@@ -51,6 +51,31 @@ creator platform.
   every wiki section reads in a natural numeric sequence. The index must
   cover every screen exactly once. See
   [`wiki/README.md`](wiki/README.md) for authoring rules.
+- `runtime-requirements.md`
+  Load-bearing runtime preconditions (UI shell, WebGL2 floor, Web
+  Workers, Web Crypto, IndexedDB quota, time source, gzip pin,
+  browser engine floor, cross-environment serializer parity). Each
+  precondition has a stable `RR-NN` ID; tasks must cite the ID, not
+  re-author the precondition.
+- `observability.md`
+  `Logger` / `MetricsSink` interfaces, per-match anonymous-stats
+  schema (`telemetry-event.schema.json`), required-emissions
+  catalogue, and privacy redaction rules.
+- `error-ux.md`
+  Player-facing error surface decision matrix, code → surface
+  mapping, localization-key convention, and the `error.shown`
+  telemetry rule. The error *shape* (validation-error /
+  dispatcher-error / storage-error schemas) is owned by
+  `error-taxonomy.md`; this doc owns the surface.
+- `../operations/rollback-playbook.md`
+  Operations-side runbook for content / engine / save rollback,
+  kill-switch policy, hot-fix migration, and the incident-response
+  RACI table.
+- `../planning/decision-log.md`
+  Append-only register of locked decisions; provenance gate for
+  `docs/archive/AUDIT-*` claims.
+- `../planning/deferred.md`
+  Single register of deferred / out-of-scope items (`DEF-NNN`).
 - `architecture-wiki.html`
   **Unified read-only viewer** for architecture docs, general diagrams,
   and numbered UI screen packages. Screen pages have these tabs: Mockup,

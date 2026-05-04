@@ -64,3 +64,11 @@ turn against the same `(view, rngSeed)`.
   `AI_TRACE_REQUEST` mid-game does NOT append entries to the
   canonical command log per
   [`ai-contract.md` § 7 Decision Log](../../../ai-contract.md#7-decision-log).
+
+## Error surfaces
+
+| Action | Error code | Surface | Localization key | Notes |
+| --- | --- | --- | --- | --- |
+| RE-RUN TRACE | AI_PROVIDER_TIMEOUT | inline | error.ai.provider-timeout.body | Disable the RE-RUN button with tooltip; do not auto-retry. |
+| RE-RUN TRACE | AI_WORKER_BUSY | inline | error.ai.worker-busy.body | Re-RUN stays disabled while a real COMPUTE_MOVE is in flight; tooltip explains the wait. |
+| Trace replay divergence | UI_TRACE_DIVERGENCE | inline | error.ui.trace-divergence.body | Renders the warn banner described above; never blocks gameplay. |

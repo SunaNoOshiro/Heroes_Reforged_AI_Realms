@@ -68,6 +68,42 @@ function architectureRelative(repoPath) {
     : repoPath;
 }
 
+// The wiki HTML lives at docs/architecture/architecture-wiki.html, so
+// any relative URL inside a bundled markdown file must be relative to
+// docs/architecture/ rather than to the source file's own directory.
+// Rewrite relative URLs accordingly. The runtime client-side rewriter
+// in inlineMd handles `.md` and `.md#anchor` links separately
+// (turning them into wiki-internal navigation); this preprocessor
+// only fixes non-`.md` relative links (e.g. links into `scripts/`,
+// `tasks/`, `content-schema/`).
+function rewriteRelativeLinks(markdown, sourceRepoPath) {
+  if (!markdown) return markdown;
+  const sourceDirRepo = sourceRepoPath.includes("/")
+    ? sourceRepoPath.slice(0, sourceRepoPath.lastIndexOf("/"))
+    : "";
+  return markdown.replace(/\]\(([^)]+)\)/g, (match, url) => {
+    if (
+      url.startsWith("http://")
+      || url.startsWith("https://")
+      || url.startsWith("mailto:")
+      || url.startsWith("#")
+    ) {
+      return match;
+    }
+    if (/\.md(?:#[^)\s]*)?$/.test(url)) {
+      // Internal `.md` links are handled by the runtime rewriter.
+      return match;
+    }
+    if (url.startsWith("/")) return match;
+    const [pathPart, hashPart] = url.split("#");
+    const resolved = relative(
+      "docs/architecture",
+      resolve("/" + sourceDirRepo, pathPart).slice(1)
+    ).replaceAll("\\", "/");
+    return `](${resolved}${hashPart ? "#" + hashPart : ""})`;
+  });
+}
+
 function heading(markdown, pattern, fallback) {
   return markdown.match(pattern)?.[1]?.trim() || fallback;
 }
@@ -93,7 +129,7 @@ async function readArchitectureDocs() {
     const s = await stat(path);
     if (!s.isFile()) continue;
 
-    docs[name] = await readFile(path, "utf8");
+    docs[name] = rewriteRelativeLinks(await readFile(path, "utf8"), repoRelative(path));
   }
 
   return docs;
@@ -110,7 +146,7 @@ async function readDiagrams() {
     for (const id of cat.diagrams) {
       const path = join(DIAGRAMS_DIR, id + ".md");
       if (existsSync(path)) {
-        diagrams[id] = await readFile(path, "utf8");
+        diagrams[id] = rewriteRelativeLinks(await readFile(path, "utf8"), repoRelative(path));
       }
     }
   }
@@ -142,10 +178,14 @@ async function readScreenPackages() {
       }
     }
 
-    const specMd = await readFile(specPath, "utf8");
-    const interactionsMd = await readFile(interactionsPath, "utf8");
-    const dataContractsMd = await readFile(dataContractsPath, "utf8");
-    const architectureMd = await readFile(architecturePath, "utf8");
+    const specMdRaw = await readFile(specPath, "utf8");
+    const interactionsMdRaw = await readFile(interactionsPath, "utf8");
+    const dataContractsMdRaw = await readFile(dataContractsPath, "utf8");
+    const architectureMdRaw = await readFile(architecturePath, "utf8");
+    const specMd = rewriteRelativeLinks(specMdRaw, repoRelative(specPath));
+    const interactionsMd = rewriteRelativeLinks(interactionsMdRaw, repoRelative(interactionsPath));
+    const dataContractsMd = rewriteRelativeLinks(dataContractsMdRaw, repoRelative(dataContractsPath));
+    const architectureMd = rewriteRelativeLinks(architectureMdRaw, repoRelative(architecturePath));
     const order = numericPrefix(dirName);
     const title = heading(specMd, /^#\s+Screen\s+\d+:\s+(.+)$/m, dirName.slice(3).replaceAll("-", " "));
     const system = lineValue(architectureMd, "System", "unknown");
@@ -721,13 +761,15 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       text = text.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>');
       text = text.replace(/(^|[^*])\\*([^*]+)\\*/g, '$1<em>$2</em>');
       text = text.replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g, (m, label, url) => {
-        if (url.endsWith('.md') && !url.startsWith('http')) {
-          const target = url.split('/').pop();
+        const mdMatch = url.match(/\\.md(?:#[^)\\s]*)?$/);
+        if (mdMatch && !url.startsWith('http')) {
+          const cleanUrl = url.split('#')[0];
+          const target = cleanUrl.split('/').pop();
+          if (cleanUrl.startsWith('diagrams/')) {
+            const id = cleanUrl.replace('diagrams/', '').replace('.md', '');
+            return '<a href="#" data-diagram-link="' + escAttr(id) + '">' + label + '</a>';
+          }
           return '<a href="#" data-md-link="' + escAttr(target) + '">' + label + '</a>';
-        }
-        if (url.startsWith('diagrams/') && url.endsWith('.md')) {
-          const id = url.replace('diagrams/', '').replace('.md', '');
-          return '<a href="#" data-diagram-link="' + escAttr(id) + '">' + label + '</a>';
         }
         return '<a href="' + escAttr(url) + '" target="_blank">' + label + '</a>';
       });

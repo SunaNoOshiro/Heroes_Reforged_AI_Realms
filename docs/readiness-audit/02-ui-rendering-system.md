@@ -31,7 +31,9 @@ browsers.
 - [docs/architecture/renderer-technology-choice.md:113-114](../architecture/renderer-technology-choice.md#L113-L114) — Canvas 2D fallback for older browsers
 - [docs/architecture/renderer-technology-choice.md:121-122](../architecture/renderer-technology-choice.md#L121-L122) — "`src/ui/` — UI shell (separate from renderer, no WebGL)"
 - [docs/architecture/wiki/README.md:32-47](../architecture/wiki/README.md#L32-L47) — `mockup.html` is the canonical visual contract
-- ❌ No doc that explicitly names the UI-shell runtime tech (DOM vs. ImGui-on-canvas vs. framework)
+- ❌ No doc that explicitly names the UI-shell runtime tech (DOM vs. ImGui-on-canvas vs. framework) — *resolved* in
+  [`docs/architecture/runtime-requirements.md` § RR-01](../architecture/runtime-requirements.md#rr-01-ui-shell--dom-react-18--zustand)
+  and [`docs/architecture/ui-technology-choice.md`](../architecture/ui-technology-choice.md).
 
 ---
 

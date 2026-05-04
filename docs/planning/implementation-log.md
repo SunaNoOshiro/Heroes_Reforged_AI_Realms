@@ -879,6 +879,94 @@ Closed the 11 ❌/⚠ findings from
 Implementation report:
 [`docs/implementation-plans/16-implementation-readiness-report.md`](../implementation-plans/16-implementation-readiness-report.md).
 
+### Final-Critical-Questions Plan Implementation (2026-05-04)
+
+Closed the synthesis-layer findings from
+[`docs/implementation-plans/17-final-critical-questions-plan.md`](../implementation-plans/17-final-critical-questions-plan.md):
+
+- **Decision-log + provenance gate** — created
+  [`docs/planning/decision-log.md`](./decision-log.md) (DEC-001
+  ratifies the DEFEND `250 permille` lock; DEC-002 captures the
+  IP-neutralization rules) and
+  [`scripts/check-decision-provenance.mjs`](../../scripts/check-decision-provenance.mjs).
+  The gate fails when an archive `Locked` claim is absent from both
+  canonical sources and the decision log.
+- **Runtime requirements** — authored
+  [`docs/architecture/runtime-requirements.md`](../architecture/runtime-requirements.md)
+  with RR-01…RR-09 (UI shell DOM, WebGL2 floor + Canvas-2D fallback,
+  Web Workers, Web Crypto + Node parity, IndexedDB ≥ 50 MB, time
+  source, gzip pin at level 6, browser engine floor, cross-env
+  serializer parity). Backed by
+  [`scripts/check-runtime-requirements.mjs`](../../scripts/check-runtime-requirements.mjs).
+- **Deferred register** — authored
+  [`docs/planning/deferred.md`](./deferred.md) with DEF-001…DEF-016
+  + advisory gate
+  [`scripts/check-deferred-coverage.mjs`](../../scripts/check-deferred-coverage.mjs).
+- **Rollback playbook** — authored
+  [`docs/operations/rollback-playbook.md`](../operations/rollback-playbook.md)
+  (pack revocation, engine retention window, save quarantine,
+  kill-switch policy with conservative default, hot-fix migration,
+  RACI table).
+- **Observability** — authored
+  [`docs/architecture/observability.md`](../architecture/observability.md)
+  (Logger / MetricsSink interfaces, required-emissions catalogue,
+  privacy redaction rules) with
+  [`content-schema/schemas/telemetry-event.schema.json`](../../content-schema/schemas/telemetry-event.schema.json)
+  + two canonical examples under
+  [`content-schema/examples/telemetry/`](../../content-schema/examples/telemetry/).
+  Tasks landed at
+  [`tasks/phase-2/11-observability/`](../../tasks/phase-2/11-observability/).
+- **Diagram-task parity** — added the "Normative Status" section to
+  [`docs/architecture/diagrams/README.md`](../architecture/diagrams/README.md)
+  + gate
+  [`scripts/check-diagram-task-parity.mjs`](../../scripts/check-diagram-task-parity.mjs)
+  (catches state-blob in save-flow, "resync from last good state"
+  in multiplayer-sync without bisect ladder, and renderer→engine
+  callbacks at DAMAGE_FRAME).
+- **Error UX** — authored
+  [`docs/architecture/error-ux.md`](../architecture/error-ux.md)
+  (surface decision matrix, code → surface mapping, localization-
+  key convention, `error.shown` telemetry rule). Gate
+  [`scripts/check-error-ux-coverage.mjs`](../../scripts/check-error-ux-coverage.mjs)
+  runs strict and fires when a screen names a specific error code
+  without an accompanying `## Error surfaces` block. Per-screen
+  blocks were generated from each screen's Actions table using the
+  row's `Type` column as the authority — `Type: command` rows get
+  a domain-aware default (`STORAGE_REJECTED → modal` for save-load
+  actions, `NET_REJECTED → modal` for multiplayer actions,
+  `VALIDATION_REJECTED → inline` for editor actions,
+  `DISPATCHER_REJECTED → inline` otherwise); `Type: navigation` /
+  `Type: local-ui` rows are skipped because the dispatcher never
+  sees them. Result: 41 screens carry the table; 28 are correctly
+  navigation/local-UI only (no block needed). The wiki generator's
+  link rewriter was patched to handle `.md#anchor` fragment links
+  too, fixing broken in-wiki cross-references. New error-code
+  tokens (`DISPATCHER_REJECTED`, `STORAGE_REJECTED`, `NET_REJECTED`,
+  `VALIDATION_REJECTED`, `AI_PROVIDER_TIMEOUT`, `AI_WORKER_BUSY`,
+  `UI_TRACE_DIVERGENCE`) registered in
+  [`docs/architecture/screen-command-coverage.json`](../architecture/screen-command-coverage.json)
+  `outOfScope` so the command-coverage gate skips them with a
+  recorded reason.
+- **Cross-environment parity** — task
+  [`tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md`](../../tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md)
+  pins the Playwright-driven Node↔browser byte-equality proof; the
+  parent serializer task and fuzz harness task were extended to
+  expose / consume the transcript.
+- **Balance judgement rules** — task stub
+  [`tasks/phase-2/12-balance-judgement/01-judgement-rules-doc.md`](../../tasks/phase-2/12-balance-judgement/01-judgement-rules-doc.md)
+  schedules the methodology extraction (Q294 #2).
+- **Lobby placeholder** — task stub
+  [`tasks/phase-3/05-lobby/00-plan-stub.md`](../../tasks/phase-3/05-lobby/00-plan-stub.md)
+  marks the gap until plan 18 lands (DEF-016).
+- **Wiring** — `package.json` wires `validate:provenance`,
+  `validate:runtime-requirements`, `validate:deferred`,
+  `validate:diagram-task-parity`, `validate:error-ux` into
+  `npm run validate`. AGENTS.md, overview.md, and the architecture
+  README index point at the new docs.
+
+Implementation report:
+[`docs/implementation-plans/17-final-critical-questions-report.md`](../implementation-plans/17-final-critical-questions-report.md).
+
 ## Recommended Next Steps
 
 Suggested order:

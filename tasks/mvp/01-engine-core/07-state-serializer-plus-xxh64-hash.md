@@ -31,6 +31,14 @@ Acceptance Criteria:
 - Hash is identical on Node 20, Chrome 120, Firefox 121, Safari 17 for the same state
 - Round-trip: `deserialize(serialize(state))` produces a state with identical hash
 - Performance: serialize + hash a 500-unit battle state in < 5ms
+- Cross-environment parity proof: the canonical bytes produced by
+  this serializer match across Node and the browser engines pinned
+  by [`runtime-requirements.md` RR-08](../../../docs/architecture/runtime-requirements.md#rr-08-browser-engine-floor)
+  and RR-09. The proof is owned by
+  [`09b-cross-environment-canonical-bytes-test.md`](09b-cross-environment-canonical-bytes-test.md);
+  this task exposes the determinism-fragile primitives (number
+  formatter, sorted-key emitter, sorted Map/Set emitter, UTF-8
+  identity) the parity test consumes.
 
 Verify:
 - npm run validate

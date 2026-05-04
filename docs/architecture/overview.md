@@ -135,5 +135,19 @@ vocabulary, [event-schema.md](event-schema.md) for the closed event
 vocabulary, [event-system.md](event-system.md) for the event-log
 runtime contract,
 [determinism.md](determinism.md) for deterministic-path rules,
+[runtime-requirements.md](runtime-requirements.md) for load-bearing
+runtime preconditions (UI shell, WebGL floor, Web Workers, gzip
+pin, browser engine floor, cross-environment serializer parity),
+[observability.md](observability.md) for the logger / metrics-sink
+interfaces and the per-match anonymous-stats schema,
+[error-ux.md](error-ux.md) for the player-facing error surface
+matrix,
 [glossary.md](glossary.md) for domain terms, and
 [../planning/roadmap.md](../planning/roadmap.md) for milestones.
+
+For operations-side runbooks see
+[../operations/rollback-playbook.md](../operations/rollback-playbook.md);
+for the append-only register of locked decisions, see
+[../planning/decision-log.md](../planning/decision-log.md); for the
+deferred / out-of-scope items register, see
+[../planning/deferred.md](../planning/deferred.md).

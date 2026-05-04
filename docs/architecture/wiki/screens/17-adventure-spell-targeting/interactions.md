@@ -40,3 +40,20 @@ Adventure map targeting overlay for map spells such as Town Portal, Dimension Do
 - This file owns behavior and timing.
 - `spec.md` owns static regions and state bindings.
 - `architecture.md` diagrams must mirror these interactions rather than inventing new behavior.
+
+## Error surfaces
+
+Per [`error-ux.md`](../../../error-ux.md) § 5, this screen inherits
+the default code → surface mapping from § 2. The table below
+maps each action whose `Type` column is `command` to its default
+surface for this screen's dominant error domain. A row whose Notes
+column reads `override` replaces the § 2 default for that action;
+otherwise the default applies. Specific error codes (e.g.
+`DISPATCHER_<token>`, `STORAGE_<token>`) land alongside the engine
+reducer that owns each command and trigger the gate in
+[`scripts/check-error-ux-coverage.mjs`](../../../../../scripts/check-error-ux-coverage.mjs)
+if a row is missing for them.
+
+| Action | Default error code | Surface | Localization key | Notes |
+| --- | --- | --- | --- | --- |
+| Cast on target (`CAST_ADVENTURE_SPELL`) | DISPATCHER_REJECTED | inline | `error.dispatcher.rejected.body` | Default per `error-ux.md` § 2 DISPATCHER_*; disabled control + tooltip on rejection. |

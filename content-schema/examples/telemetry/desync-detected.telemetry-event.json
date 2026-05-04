@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schemas/telemetry-event.schema.json",
+  "schemaVersion": 1,
+  "kind": "desync.detected",
+  "timestamp": 1746336000000,
+  "engineHash": "sha256:7a1f9b4c3e0d8f25",
+  "packHashes": ["sha256:1a2b3c4d5e6f7081", "sha256:0f1e2d3c4b5a6978"],
+  "severity": "error",
+  "fields": {
+    "turnNumber": 12,
+    "snapshotsCompared": 5,
+    "snapshotsAgreed": 0
+  }
+}
