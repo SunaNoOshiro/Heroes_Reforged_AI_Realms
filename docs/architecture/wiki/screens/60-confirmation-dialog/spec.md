@@ -26,6 +26,7 @@ Reusable confirmation dialog for destructive, irreversible, or route-changing ac
   - DimmedCaller
   - WarningIcon
   - PromptText
+  - RequireTypeChallenge
   - ConfirmCancelButtons
 
 ### State Bindings
@@ -35,7 +36,36 @@ Reusable confirmation dialog for destructive, irreversible, or route-changing ac
 | promptKey | state.ui.confirmation.promptKey | Localized prompt key. |
 | callerRoute | state.ui.confirmation.callerRoute | Screen to return on cancel. |
 | confirmPayload | state.ui.confirmation.payload | Stable IDs/scalars passed on confirm. |
-| severity | state.ui.confirmation.severity | Warning styling only. |
+| severity | state.ui.confirmation.severity | Closed enum `info` / `warning` / `critical`. Load-bearing — drives both styling **and** the input gate in [Click-Through Resistance](#click-through-resistance). |
+| openedAt | state.ui.confirmation.openedAt | Wall-clock at modal mount; used by the click-through-resistance timer. Never enters saves, replays, or the canonical state hash. |
+| confirmDelayMs | state.ui.confirmation.confirmDelayMs | Optional integer (ms). When omitted, falls back to the per-severity default in [Click-Through Resistance](#click-through-resistance). |
+| requireType | state.ui.confirmation.requireType | Optional literal text the user must type before `Confirm` enables. Combined with `severity: critical` for high-impact actions. |
+| typedConfirmText | state.ui.confirmation.typedConfirmText | Live local input from `RequireTypeChallenge`; presentation-only. |
+| popInComplete | state.ui.confirmation.popInComplete | Set by the modal pop-in animation end-frame. While `false`, `Confirm` stays disabled regardless of `confirmDelayMs`. |
+
+### Click-Through Resistance
+The modal hardens against reflexive clicks (Risk "Reflexive confirm clicks"
+in plan 23 / Q437). `Confirm` is disabled until **all** of the following
+are true:
+
+1. `pendingAction != null`
+2. `now() - openedAt >= confirmDelayMs`
+3. `popInComplete === true`
+4. `requireType == null || typedConfirmText === requireType`
+
+Defaults consumed when the caller omits the optional fields:
+
+| `severity`   | default `confirmDelayMs` | optional `requireType` |
+|--------------|--------------------------|------------------------|
+| `info`       | `0`                      | unsupported            |
+| `warning`    | `750`                    | `false` (omitted)      |
+| `critical`   | `1500`                   | caller-supplied (e.g. `'CONFIRM'`, `'UNINSTALL'`, `'REVOKE'`, `'DEV'`) |
+
+Any caller dispatching `REQUEST_CONFIRMATION` with `severity: 'critical'`
+and no `confirmDelayMs` MUST inherit the `1500` default — the
+confirmation builder in `src/ui/confirmation/` is the single enforcement
+point. `severity` is no longer "warning styling only"; it is the closed
+input-gate selector.
 
 ### Mechanics Mapping
 - Executes only the pending confirmed event supplied by caller. Dialog itself has no gameplay logic beyond confirm/cancel routing.

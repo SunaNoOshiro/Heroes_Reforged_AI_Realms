@@ -3587,6 +3587,78 @@
       "tags": [
         "ui"
       ]
+    },
+    {
+      "componentId": "AgeGateRow",
+      "module": "src/ui/onboarding/age-gate-row.tsx",
+      "exportName": "AgeGateRow",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "componentId": "ConsentRow",
+      "module": "src/ui/onboarding/consent-row.tsx",
+      "exportName": "ConsentRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ConsentRowList",
+      "module": "src/ui/options/consent-row-list.tsx",
+      "exportName": "ConsentRowList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ConsentHistoryPanel",
+      "module": "src/ui/options/consent-history-panel.tsx",
+      "exportName": "ConsentHistoryPanel",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "DisclosureCallouts",
+      "module": "src/ui/onboarding/disclosure-callouts.tsx",
+      "exportName": "DisclosureCallouts",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OnboardingConsentScreen",
+      "module": "src/ui/onboarding/onboarding-consent-screen.tsx",
+      "exportName": "OnboardingConsentScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OptionalTierGroup",
+      "module": "src/ui/onboarding/optional-tier-group.tsx",
+      "exportName": "OptionalTierGroup",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RequiredTierGroup",
+      "module": "src/ui/onboarding/required-tier-group.tsx",
+      "exportName": "RequiredTierGroup",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "RequireTypeChallenge",
+      "module": "src/ui/confirmation/require-type-challenge.tsx",
+      "exportName": "RequireTypeChallenge",
+      "tags": [
+        "control"
+      ]
     }
   ]
 }

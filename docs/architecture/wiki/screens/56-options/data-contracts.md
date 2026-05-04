@@ -13,6 +13,8 @@
 | `asset-index.schema.json` | Backgrounds, frames, icons, cursor sprites, animation manifests. | `content-schema/schemas/asset-index.schema.json` |
 | `localization.schema.json` | UI labels, status text, disabled reasons, error messages. | `content-schema/schemas/localization.schema.json` |
 | `privacy-options.schema.json` | Privacy pane state slice (`displayNameMode`, `analyticsOptIn`, `allowMatureContent`, `saltFingerprint`). | `content-schema/schemas/privacy-options.schema.json` |
+| `consent.schema.json` | Per-scope consent record rendered as `ConsentRowList`. | `content-schema/schemas/consent.schema.json` |
+| `consent-audit-log.schema.json` | Ring buffer rendered by `ConsentHistoryPanel`. | `content-schema/schemas/consent-audit-log.schema.json` |
 | `ruleset.schema.json` | Deterministic constants, formulas, and guard rules consumed by commands. | `content-schema/schemas/ruleset.schema.json` |
 | Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, or shell state as listed below. | Loaded content/runtime registries. |
 
@@ -28,6 +30,10 @@
 | `saltFingerprint` | `selectors.privacy.saltFingerprint` | First 4 hex chars of the local salt; verifies that `WIPE_LOCAL_DATA` rotated it. |
 | `disclosureSeen` | `state.privacy.disclosureSeenVersion` | Acknowledged disclosure version; gates `PrivacyDisclosureModal`. |
 | `currentDisclosure` | `state.privacy.currentDisclosureVersion` | Compile-time disclosure version, mirrored from [`privacy.md`](../../../privacy.md). |
+| `consentRecords` | `state.profile.consent` | One [`consent.schema.json`](../../../../../content-schema/schemas/consent.schema.json) record per `ConsentScope`. Surfaced as the `Privacy` tab `ConsentRowList`. |
+| `consentAuditLog` | `state.profile.consentAuditLog` | [`consent-audit-log.schema.json`](../../../../../content-schema/schemas/consent-audit-log.schema.json) ring buffer rendered by `ConsentHistoryPanel`. |
+| `ageGate` | `config.player.ageGate` | `'unknown' \| 'under13' \| 'over13'`. Driven by `AgeGateRow`. |
+| `featureAvailability` | `selectors.onboarding.featureAvailability` | Closed selector merging age gate and consent state per [`onboarding.md`](../../../onboarding.md). |
 
 ### Commands And Events
 - `SET_OPTIONS_TAB` from `options.tab`: Changes visible category.
@@ -41,6 +47,10 @@
 - `WIPE_LOCAL_DATA` from `options.forgetMe`: Routes through screen 60-confirmation-dialog per [`data-inventory.md` § Wipe-Scope Policy](../../../data-inventory.md#3-wipe-scope-policy).
 - `ACKNOWLEDGE_PRIVACY_DISCLOSURE` from `options.acknowledgePrivacyDisclosure`: Sets `state.privacy.disclosureSeenVersion = state.privacy.currentDisclosureVersion`; appends a `POLICY_ACCEPTED` row to the local audit log.
 - `OPEN_PRIVACY_POLICY` from `options.openPrivacyPolicy`: Opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../privacy.md); does not enter the deterministic command log.
+- `SET_AGE_GATE` from `options.privacy.setAgeGate`: Updates `config.player.ageGate`; cascades through [`age-gate.md`](../../../age-gate.md) into the consent matrix.
+- `REVOKE_CONSENT` from `options.privacy.revoke`: Revokes a consent scope after `60-confirmation-dialog (severity: critical, requireType: 'REVOKE')`; chains to `REQUEST_DATA_ERASURE(scope)` when applicable.
+- `REQUEST_CONSENT_PROMPT` from `options.privacy.regrant`: Routes through `76-onboarding-consent` for the targeted scope.
+- `OPEN_CONSENT_HISTORY` from `options.privacy.viewHistory`: Toggles the read-only `ConsentHistoryPanel`; local-ui only.
 
 ### Config Keys
 - `config.ui.locale`
@@ -85,6 +95,22 @@
 - `ui.privacy.disclosure.body`
 - `ui.privacy.disclosure.acknowledge`
 - `ui.privacy.disclosure.openPolicy`
+- `ui.privacy.consent.tab.title`
+- `ui.privacy.consent.row.acceptedAtLabel`
+- `ui.privacy.consent.row.policyVersionLabel`
+- `ui.privacy.consent.row.revokeCta`
+- `ui.privacy.consent.row.regrantCta`
+- `ui.privacy.consent.history.openCta`
+- `ui.privacy.consent.history.title`
+- `ui.privacy.consent.history.empty`
+- `consent.<scope>.title`
+- `consent.<scope>.body`
+- `consent.<scope>.acceptCta`
+- `consent.<scope>.declineCta`
+- `consent.<scope>.requiredBadge`
+- `consent.<scope>.optionalBadge`
+- `consent.<scope>.revokeCta`
+- `consent.<scope>.revokeRequiresWipe`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs

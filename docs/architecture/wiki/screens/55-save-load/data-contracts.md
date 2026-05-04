@@ -31,6 +31,7 @@
 | `quotaUsage` | `selectors.persistence.quotaUsage` | `{ used, quota }` from the IDB wrapper. Drives a "Manage saves" CTA above the slot list when `used / quota > 0.8`. |
 | `recycleRing` | `selectors.persistence.recycle.savedSlots` | Per-slot rolling overwrite ring (cap 3, 7-day TTL) per [`pack-trust.md` § Save Quarantine](../../../pack-trust.md#2-save-quarantine). |
 | `importStaging` | `selectors.persistence.import.staging` | In-memory staged save during import, owned by screen [`70-save-import`](../70-save-import/). |
+| `lastDestructive` | `state.ui.lastDestructive` | Soft-delete / overwrite undo slot per [`undo-policy.md`](../../../undo-policy.md). Drives the non-modal undo toast while `now() < expiresAt`. Never enters saves or the canonical state hash. |
 
 ### Commands And Events
 - `SELECT_SAVE_SLOT` from `saveLoad.selectSlot`: Updates preview and compatibility.
@@ -40,6 +41,10 @@
 - `CLOSE_SAVE_LOAD` from `saveLoad.back`: Returns to caller.
 - `OPEN_SAVE_IMPORT` from `saveLoad.import`: Routes to the quarantined import flow on screen [`70-save-import`](../70-save-import/).
 - `RESTORE_OVERWRITTEN_SAVE` from `saveLoad.restoreOverwritten`: Restores from the rolling overwrite ring per [`pack-trust.md` § Save Quarantine](../../../pack-trust.md#2-save-quarantine).
+- `DELETE_SAVE_SLOT` from the confirmation chain after `REQUEST_DELETE_SAVE_SLOT`: Marks the slot `softDeleted: true` with a 5 s tombstone TTL per [`undo-policy.md`](../../../undo-policy.md); populates `state.ui.lastDestructive`.
+- `OVERWRITE_SAVE_SLOT` from the save flow when overwriting an existing slot: Clones the prior payload into the rolling overwrite ring before the new payload writes; populates `state.ui.lastDestructive`.
+- `UNDO_LAST_DESTRUCTIVE` from the undo toast: Clears tombstone fields or restores the overwrite-ring entry; clears `state.ui.lastDestructive`.
+- `EXPIRE_LAST_DESTRUCTIVE` from a scheduled effect at TTL: Runs the underlying file-system delete (or drops the ring entry) and clears `state.ui.lastDestructive`.
 
 ### Config Keys
 - `config.ui.locale`

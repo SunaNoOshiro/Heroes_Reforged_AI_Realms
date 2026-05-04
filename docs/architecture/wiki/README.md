@@ -120,6 +120,26 @@ package:
   order, tab-trap, focus restoration.
 - [`../ui-input-modalities.md`](../ui-input-modalities.md) — mouse /
   touch / keyboard / gamepad bridging.
+- [`../onboarding.md`](../onboarding.md) — first-run onboarding,
+  consent scopes, policy version, re-prompt rules.
+- [`../age-gate.md`](../age-gate.md) — `config.player.ageGate` and
+  the minor-strict feature matrix.
+- [`../undo-policy.md`](../undo-policy.md) — soft-delete + undo
+  contract for save delete / overwrite.
+- [`../url-routing.md`](../url-routing.md) — closed query-param list,
+  fragment discipline, confirmation routing.
+- [`../autoplay-policy.md`](../autoplay-policy.md) — first-gesture
+  unlock, muted-by-default, `prefers-reduced-motion`.
+- [`../new-install-defaults.md`](../new-install-defaults.md) — safe
+  defaults table for every optional feature.
+- [`../developer-mode.md`](../developer-mode.md) — `config.dev.*`
+  keys, chord-unlock, double-confirm, persistent banner.
+- [`../peer-trust.md`](../peer-trust.md) — `state.profile.knownPeers`
+  ring buffer and the lobby `trustLevel` badge.
+- [`../ai-moderation-contract.md`](../ai-moderation-contract.md) — AI
+  moderation status field and banner contract.
+- [`../storage-contract.md`](../storage-contract.md) — file-picker
+  rules and storage transport pinning.
 
 ## Authoring Rules
 

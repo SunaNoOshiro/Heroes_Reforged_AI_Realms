@@ -620,6 +620,83 @@ adapter, never the engine reducer.
   rendered by [`54-system-menu`](./wiki/screens/54-system-menu/).
   Owned by `tasks/mvp/07-ui-shell/25-erasure-receipt-modal.md`.
 
+## Consent, Onboarding & Destructive-UX Commands
+
+Commands surfaced by screens
+[`60-confirmation-dialog`](./wiki/screens/60-confirmation-dialog/),
+[`76-onboarding-consent`](./wiki/screens/76-onboarding-consent/),
+[`56-options`](./wiki/screens/56-options/) (Privacy tab),
+[`55-save-load`](./wiki/screens/55-save-load/), and
+[`64-network-lobby`](./wiki/screens/64-network-lobby/) per
+[`onboarding.md`](./onboarding.md),
+[`undo-policy.md`](./undo-policy.md), and plan 23. These tokens drive
+UI flow, persistence-side state, and `state.profile.consent.*` /
+`state.ui.lastDestructive` slices but do **not** enter the
+deterministic engine command log; they are dispatched against the
+persistence / runtime adapters, never the engine reducer.
+
+- `REQUEST_CONFIRMATION` — opens
+  [`60-confirmation-dialog`](./wiki/screens/60-confirmation-dialog/).
+  Payload `{ pendingAction, promptKey, severity, callerRoute,
+  payload?, confirmDelayMs?, requireType? }`. The dispatcher applies
+  per-severity defaults from
+  [`60-confirmation-dialog/spec.md` § Click-Through Resistance](./wiki/screens/60-confirmation-dialog/spec.md#click-through-resistance).
+- `CONFIRM_PENDING_ACTION` — runs the queued `pendingAction` after the
+  `ConfirmEnabled` predicate passes.
+- `CANCEL_PENDING_CONFIRMATION` — clears the pending action without mutation.
+- `SET_CONFIRM_TYPED_TEXT` — local-ui; updates
+  `state.ui.confirmation.typedConfirmText` while the
+  `RequireTypeChallenge` is mounted.
+- `GRANT_CONSENT` — writes a `state: 'granted'` record into
+  `state.profile.consent[scope]`. Payload `{ scope, method }`.
+- `REVOKE_CONSENT` — writes `state: 'revoked'`. Payload
+  `{ scope, method }`.
+- `RECORD_CONSENT_AUDIT` — appends a row to
+  `state.profile.consentAuditLog.entries`. Payload
+  `{ scope, fromState, toState, policyVersion, method }`.
+- `REQUEST_CONSENT_PROMPT` — routes the user to
+  [`76-onboarding-consent`](./wiki/screens/76-onboarding-consent/)
+  with `pendingScope` set. Payload `{ scope }`.
+- `IMPORT_CONSENT_SNAPSHOT` — routes the user through onboarding with
+  `importedSnapshot` set; never auto-grants. Payload
+  `{ snapshot: ConsentSnapshot }`.
+- `CANCEL_CONSENT_PROMPT` — closes onboarding without granting; the
+  originating gated action is not retried.
+- `SET_AGE_GATE_DRAFT` / `SET_CONSENT_DRAFT` — local-ui drafts on
+  `76-onboarding-consent`.
+- `SET_AGE_GATE` — writes `config.player.ageGate`; cascades to
+  `selectFeatureAvailability` per [`age-gate.md`](./age-gate.md).
+- `OPEN_CONSENT_HISTORY` — local-ui; toggles the read-only
+  `ConsentHistoryPanel` on the Privacy tab.
+- `LEAVE_NETWORK_LOBBY_CONFIRMED` — runs the original disconnect after
+  the `60-confirmation-dialog` chain; severity is
+  `'critical'` for in-game leave and `'warning'` for waiting-room.
+- `CANCEL_OPTIONS_CONFIRMED` — runs the discard-draft path after the
+  dirty-state confirmation.
+- `UNDO_LAST_DESTRUCTIVE` — clears the tombstone (or restores the
+  rolling-overwrite-ring entry) per
+  [`undo-policy.md`](./undo-policy.md).
+- `EXPIRE_LAST_DESTRUCTIVE` — scheduled effect that runs the
+  underlying file-system delete (or drops the ring entry) at TTL.
+- `ADD_PEER_TO_ALLOWLIST` / `REMOVE_PEER_FROM_ALLOWLIST` — write to
+  `state.profile.knownPeers` per [`peer-trust.md`](./peer-trust.md);
+  gated on `consent.multiplayer === 'granted'`.
+- `RECORD_PEER_CONTACT` — refreshes `lastSeenAt` on every successful
+  WebRTC handshake.
+- `ACK_UNSIGNED_PACKS_SESSION` — per-peer session ack for casual
+  lobbies when any pack reports `trustState !== 'signed'`; appends a
+  row to the consent audit log under scope `unsignedPacks`,
+  `tier: 'optional'`, `method: 'session'`.
+- `UNLOCK_MEDIA_AUTOPLAY` — local-ui; flips
+  `state.runtime.media.unlocked = true` after the first user gesture
+  per [`autoplay-policy.md`](./autoplay-policy.md).
+- `REVEAL_DEVELOPER_TAB` — local-ui; chord-unlock for the Developer
+  tab in [`56-options`](./wiki/screens/56-options/) per
+  [`developer-mode.md`](./developer-mode.md).
+- `REQUEST_PERMISSION_RATIONALE` — local-ui; opens the JIT rationale
+  modal preceding any native permission prompt per
+  [`permissions.md` § Just-In-Time (JIT) Rule](./permissions.md#just-in-time-jit-rule-plan-23--q448).
+
 ## Field Visibility (Desync Redaction)
 
 Every command field declared above carries a closed

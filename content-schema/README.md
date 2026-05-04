@@ -61,6 +61,9 @@ generation payloads. They currently cover:
 - signaling error (closed signaling-server error vocabulary; wire vs. owner-notice)
 - audit log entry (local on-device privacy/consent journal)
 - erasure receipt (verifiable receipt for `REQUEST_ERASURE_RECEIPT`)
+- consent (per-scope consent record captured by screen `76-onboarding-consent`; revocable via the Privacy tab in screen 56-options)
+- consent audit log (append-only ring buffer of per-scope consent state transitions)
+- peer allowlist (per-installation LRU ring of known peers backing the lobby trust-level badge)
 
 ## Relationship To Other Folders
 

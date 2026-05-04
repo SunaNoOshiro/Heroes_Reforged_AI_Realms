@@ -1,0 +1,10 @@
+{
+  "$schema": "heroes-reforged/consent.schema.json",
+  "schemaVersion": 1,
+  "scope": "multiplayer",
+  "state": "granted",
+  "tier": "optional",
+  "policyVersion": 1,
+  "method": "explicit",
+  "acceptedAt": "2026-05-04T10:00:00Z"
+}

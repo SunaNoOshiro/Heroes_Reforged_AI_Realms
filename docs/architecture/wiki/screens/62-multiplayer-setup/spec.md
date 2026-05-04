@@ -43,6 +43,14 @@ Multiplayer setup for hotseat, LAN/online lobby, player colors, teams, timers, m
 
 ### Mechanics Mapping
 - Creates a multiplayer setup draft, validates identical content hashes/ruleset, assigns player slots, and routes to hotseat handoff or network lobby.
+- **Consent precondition.** `Host` and `Join` are blocked until
+  `state.profile.consent.multiplayer.state === 'granted'` per
+  [`onboarding.md`](../../../onboarding.md) and the
+  [`MultiplayerConsentGate`](./interactions.md#multiplayer-consent-gate).
+  The IP-exposure disclosure copy is `consent.multiplayer.ipDisclosure`
+  in [`localization.schema.json`](../../../../../content-schema/schemas/localization.schema.json).
+  No `RTCPeerConnection` may be instantiated and no signaling WebSocket
+  may be opened before the gate is satisfied.
 - UI previews stay local until a listed command or route guard accepts them.
 - Costs, spells, artifacts, buildings, stacks, heroes, towns, and objects resolve through registries/content schemas, not hardcoded view logic.
 

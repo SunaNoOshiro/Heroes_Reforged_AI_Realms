@@ -1,0 +1,21 @@
+{
+  "$schema": "heroes-reforged/peer-allowlist.schema.json",
+  "schemaVersion": 1,
+  "capacity": 256,
+  "peers": [
+    {
+      "peerId": "peer-aabbccddeeff0011",
+      "displayNameAtAdd": "Calex",
+      "addedAt": "2026-04-30T12:00:00Z",
+      "lastSeenAt": "2026-05-04T09:00:00Z",
+      "tier": "friend"
+    },
+    {
+      "peerId": "peer-aabbccddeeff0042",
+      "displayNameAtAdd": "Renn",
+      "addedAt": "2026-05-03T18:30:00Z",
+      "lastSeenAt": "2026-05-04T10:15:00Z",
+      "tier": "recent"
+    }
+  ]
+}

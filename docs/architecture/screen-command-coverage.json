@@ -114,6 +114,17 @@
     "OWNER_NOTICE": "Signaling server-to-host authenticated channel event carrying the richer ownerReason enum from content-schema/schemas/signaling-error.schema.json; not a UI command. Owned by phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby per services/signaling/error-codes.md.",
     "NETWORK_ERROR": "Closed peerFailureReason enum value rendered to UI on a peer-connection failure per docs/architecture/wiki/screens/64-network-lobby/spec.md § Peer-Failure Error Contract; not a command. Surfaced by formatUserError -> errors.peer.failed.",
     "PROTOCOL_MISMATCH": "Closed peerFailureReason enum value rendered to UI on a peer-connection failure per docs/architecture/wiki/screens/64-network-lobby/spec.md § Peer-Failure Error Contract; not a command. Surfaced by formatUserError -> errors.peer.failed.",
-    "POLICY_ACCEPTED": "Closed audit-log-entry.schema.json type emitted on privacy-policy acceptance per docs/architecture/wiki/screens/56-options/interactions.md § Privacy disclosure modal; not a command. Owned by mvp.07-ui-shell.26-privacy-disclosure-modal."
+    "POLICY_ACCEPTED": "Closed audit-log-entry.schema.json type emitted on privacy-policy acceptance per docs/architecture/wiki/screens/56-options/interactions.md § Privacy disclosure modal; not a command. Owned by mvp.07-ui-shell.26-privacy-disclosure-modal.",
+    "REVOKE_CONSENT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the consent-revoke command. Surfaced from the Privacy tab in 56-options through 60-confirmation-dialog (severity: critical, requireType: 'REVOKE') per docs/architecture/onboarding.md.",
+    "DELETE_SAVE_SLOT": "mvp.08-persistence.27-undo-soft-delete owns the soft-delete + 5 s tombstone path per docs/architecture/undo-policy.md.",
+    "UNDO_LAST_DESTRUCTIVE": "mvp.08-persistence.27-undo-soft-delete owns the user-driven undo command per docs/architecture/undo-policy.md.",
+    "EXPIRE_LAST_DESTRUCTIVE": "mvp.08-persistence.27-undo-soft-delete owns the scheduled-effect TTL path that completes the file-system delete per docs/architecture/undo-policy.md.",
+    "LEAVE_NETWORK_LOBBY_CONFIRMED": "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display owns the post-confirmation lobby-leave path per docs/architecture/wiki/screens/64-network-lobby/interactions.md § Leave Confirmation.",
+    "ADD_PEER_TO_ALLOWLIST": "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display owns the peer-allowlist write per docs/architecture/peer-trust.md.",
+    "REMOVE_PEER_FROM_ALLOWLIST": "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display owns the peer-allowlist removal per docs/architecture/peer-trust.md.",
+    "RECORD_PEER_CONTACT": "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display owns the per-handshake lastSeenAt refresh per docs/architecture/peer-trust.md.",
+    "GRANT_CONSENT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the consent-grant write per docs/architecture/onboarding.md.",
+    "RECORD_CONSENT_AUDIT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the per-transition audit-log append per docs/architecture/onboarding.md.",
+    "IMPORT_CONSENT_SNAPSHOT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the save-import re-prompt path per docs/architecture/onboarding.md."
   }
 }

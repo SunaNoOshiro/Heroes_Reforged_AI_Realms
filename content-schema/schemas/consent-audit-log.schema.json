@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/consent-audit-log.schema.json",
+  "title": "Consent Audit Log",
+  "description": "Append-only, capped journal of consent state transitions per scope. Rendered by the `View consent history` panel in the Privacy tab of screen 56-options and consumed by support / regulator queries. Persisted in IndexedDB `hr-profile.audit` per `data-inventory.md`; wiped by `WIPE_LOCAL_DATA scope=profile|all`. Distinct from `audit-log-entry.schema.json` (which carries `ERASURE` / `REPLAY_EXPORT` / `POLICY_ACCEPTED` / `OPT_IN_TOGGLED` events): this schema is the per-scope consent-state journal that backs GDPR Art. 7(1) record-keeping.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "capacity", "entries"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "capacity": {
+      "type": "integer",
+      "minimum": 16,
+      "maximum": 1024,
+      "default": 256,
+      "description": "Ring-buffer cap. The runtime drops the oldest entry when `entries.length > capacity`."
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ConsentAuditLogEntry" }
+    }
+  },
+  "$defs": {
+    "ConsentAuditLogEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "timestamp",
+        "scope",
+        "fromState",
+        "toState",
+        "policyVersion",
+        "method"
+      ],
+      "properties": {
+        "schemaVersion": { "type": "integer", "minimum": 1 },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 wall-clock at the moment of the transition."
+        },
+        "scope": { "$ref": "heroes-reforged/consent.schema.json#/$defs/ConsentScope" },
+        "fromState": {
+          "enum": ["unset", "granted", "revoked", "denied"]
+        },
+        "toState": {
+          "enum": ["unset", "granted", "revoked", "denied"]
+        },
+        "policyVersion": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Mirrors the policy version in effect at the time of the transition, per `docs/architecture/onboarding.md`."
+        },
+        "method": {
+          "enum": ["explicit", "import", "legacy", "session"]
+        },
+        "errorId": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "description": "Optional UUID v4 carried when the transition was reached via an error path (e.g. import-failure) so support can correlate."
+        }
+      }
+    }
+  }
+}

@@ -584,6 +584,9 @@ function schemaForFile(filePath) {
   if (base.endsWith(".signature-error.json")) return "signature-error.schema.json";
   if (base.endsWith(".audit-log-entry.json")) return "audit-log-entry.schema.json";
   if (base.endsWith(".erasure-receipt.json")) return "erasure-receipt.schema.json";
+  if (base.endsWith(".consent.json")) return "consent.schema.json";
+  if (base.endsWith(".consent-audit-log.json")) return "consent-audit-log.schema.json";
+  if (base.endsWith(".peer-allowlist.json")) return "peer-allowlist.schema.json";
   if (base.endsWith(".asset-index.json")) return "asset-index.schema.json";
   if (base.endsWith(".localization.json")) return "localization.schema.json";
 

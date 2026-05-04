@@ -6,7 +6,7 @@
       "id": "lifecycle",
       "title": "Game Lifecycle",
       "icon": "🎯",
-      "diagrams": ["01-game-startup", "02-new-game-flow", "03-race-castle", "04-map-loading"]
+      "diagrams": ["01-game-startup", "02-new-game-flow", "03-race-castle", "04-map-loading", "30-onboarding-consent"]
     },
     {
       "id": "town",

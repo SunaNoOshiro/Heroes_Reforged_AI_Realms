@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>61b. Onboarding &amp; Consent - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .gold { fill: #f5d77a; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .title { fill: #ffe28a; font: 700 22px Georgia, serif; letter-spacing: .6px; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 4; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .redPanel { fill: #6f0d0b; stroke: #d7ad45; stroke-width: 1.5; }
+  .row { fill: #221409; stroke: #8d6a30; stroke-width: 1; }
+  .rowRequired { fill: #2c1f0b; stroke: #d8b04a; stroke-width: 1.5; }
+  .button { cursor: pointer; }
+  .button rect { fill: #4f2713; stroke: #e1bd55; stroke-width: 1.4; }
+  .button text { fill: #ffe59a; font: 700 12px Georgia, serif; }
+  .badge { fill: #2c5018; stroke: #b9d863; stroke-width: 1; }
+  .badgeRed { fill: #5e1413; stroke: #e6a447; stroke-width: 1; }
+  .toggleOn { fill: #5a8a2a; stroke: #b3d965; stroke-width: 1.5; }
+  .toggleOff { fill: #3b2517; stroke: #8b6229; stroke-width: 1.5; }
+  .knob { fill: #f2d781; stroke: #2a160b; stroke-width: 1; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-screen="76-onboarding-consent" data-archetype="curated-tiered-list" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Onboarding consent mockup">
+  <defs>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a421c"/><stop offset=".5" stop-color="#2a160b"/><stop offset="1" stop-color="#9a6525"/></linearGradient>
+  </defs>
+  <rect x="6" y="6" width="788" height="588" fill="url(#bronze)" stroke="#090604" stroke-width="3"/>
+  <rect x="13" y="13" width="774" height="574" fill="none" stroke="#f0cf69" stroke-width="2"/>
+  <rect x="21" y="21" width="758" height="558" fill="#1b1208" stroke="#e0bd59"/>
+
+  <text x="400" y="60" text-anchor="middle" class="title">Welcome — choose what to allow</text>
+  <text x="400" y="82" text-anchor="middle" class="small">Each row explains what it gates. Storage is required; everything else is off by default.</text>
+
+  <!-- Age gate -->
+  <rect x="40" y="100" width="720" height="60" class="rowRequired"/>
+  <text x="55" y="125" class="label">Age gate</text>
+  <text x="55" y="145" class="small">We use this to enable safer defaults for minors.</text>
+  <g class="button"><rect x="540" y="115" width="100" height="30"/><text x="590" y="135" text-anchor="middle">Under 13</text></g>
+  <g class="button"><rect x="650" y="115" width="100" height="30"/><text x="700" y="135" text-anchor="middle">13 or over</text></g>
+
+  <!-- Required tier header -->
+  <text x="40" y="190" class="label">Required (data we need to run the game)</text>
+
+  <rect x="40" y="200" width="720" height="56" class="rowRequired"/>
+  <text x="55" y="223" class="label">Storage (saves, profile, audit log)</text>
+  <text x="55" y="241" class="small">Saved on this device only. Wipe anytime via Privacy → Forget me.</text>
+  <rect x="650" y="215" width="80" height="26" class="badge"/><text x="690" y="232" text-anchor="middle" class="small">Required</text>
+
+  <!-- Optional tier header -->
+  <text x="40" y="285" class="label">Optional (off by default — turn on what you want)</text>
+
+  <!-- Multiplayer -->
+  <rect x="40" y="295" width="720" height="48" class="row"/>
+  <text x="55" y="316" class="label">Multiplayer</text>
+  <text x="55" y="334" class="small">Your public IP may be visible to peers. Tap to read more.</text>
+  <rect x="700" y="306" width="46" height="26" class="toggleOff"/>
+  <circle cx="713" cy="319" r="9" class="knob"/>
+
+  <!-- AI generation -->
+  <rect x="40" y="349" width="720" height="48" class="row"/>
+  <text x="55" y="370" class="label">AI faction generation</text>
+  <text x="55" y="388" class="small">Sends your prompt off-device. Generated content is community-reviewed.</text>
+  <rect x="700" y="360" width="46" height="26" class="toggleOff"/>
+  <circle cx="713" cy="373" r="9" class="knob"/>
+
+  <!-- Telemetry -->
+  <rect x="40" y="403" width="720" height="48" class="row"/>
+  <text x="55" y="424" class="label">Anonymous telemetry</text>
+  <text x="55" y="442" class="small">Frame budgets and crash counts only. No identifiers.</text>
+  <rect x="700" y="414" width="46" height="26" class="toggleOff"/>
+  <circle cx="713" cy="427" r="9" class="knob"/>
+
+  <!-- Crash reports -->
+  <rect x="40" y="457" width="720" height="48" class="row"/>
+  <text x="55" y="478" class="label">Crash reports</text>
+  <text x="55" y="496" class="small">Helps us fix what broke. You can revoke anytime in Privacy.</text>
+  <rect x="700" y="468" width="46" height="26" class="toggleOff"/>
+  <circle cx="713" cy="481" r="9" class="knob"/>
+
+  <!-- Footer -->
+  <rect x="40" y="520" width="720" height="50" class="panel"/>
+  <text x="55" y="552" class="small">Privacy policy · v1 · You can revoke any choice from Options → Privacy.</text>
+  <g class="button"><rect x="630" y="528" width="120" height="34"/><text x="690" y="551" text-anchor="middle">Continue</text></g>
+</svg>
+</body>
+</html>

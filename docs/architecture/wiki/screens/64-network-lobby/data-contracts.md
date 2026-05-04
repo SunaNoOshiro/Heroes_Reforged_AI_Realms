@@ -40,8 +40,11 @@
 | `muted` | `state.net.lobby.muted` | Local-only mute slice keyed by `peerId`; entries `{ peerId, scope: 'session' \| 'persistent', mutedAtMs }` per [`chat-safety.md` § 7](../../../chat-safety.md#7-mute--block). Never enters saves, replays, or the canonical state hash. |
 | `blocked` | `state.net.lobby.blocked` | Local-only block slice keyed by `peerId`; superset of mute. Never enters saves, replays, or the canonical state hash. |
 | `chatRateBucket` | `state.net.lobby.chatRateBucket` | Per-peer token-bucket slice (capacity 5, refill 1/s). Reset on lobby leave/join. Never enters saves, replays, or the canonical state hash. |
-| `compatibility` | `selectors.net.lobbyCompatibility` | Hash/version/ruleset match result. |
-| `launchGuard` | `selectors.net.canLaunchSession` | All ready and compatible. |
+| `compatibility` | `selectors.net.lobbyCompatibility` | Hash/version/ruleset match result, including per-pack `trustState: 'signed' \| 'unsigned' \| 'invalid-signature'` aggregated into `lobby.compatibility.signatureGate.requiresAck`. |
+| `launchGuard` | `selectors.net.canLaunchSession` | All ready and compatible. Casual lobbies additionally require every peer's `unsignedPacksAck` when `signatureGate.requiresAck === true`. |
+| `knownPeers` | `state.profile.knownPeers` | [`peer-allowlist.schema.json`](../../../../../content-schema/schemas/peer-allowlist.schema.json) — capped LRU. |
+| `peerTrustLevel(peerId)` | `selectors.net.peerTrustLevel` | Closed enum `'friend' \| 'recent' \| 'unknown'` per [`peer-trust.md`](../../../peer-trust.md). |
+| `unsignedPacksAck` | `state.net.lobby.unsignedPacksAck` | Per-peer ack flag for the casual unsigned-pack gate; cleared on session end. |
 
 ### Display Name Validation
 - Every `displayName` and `displayNameDraft` field on this screen MUST be validated through `validateDisplayName(...)` per [`docs/architecture/display-name-policy.md`](../../../display-name-policy.md). NFC normalization, 1–24 grapheme cluster bound, category rejection (Cf, Cc, Co, zero-width, bidi overrides), reserved-name list, UTS #39 confusable collision check.
@@ -61,7 +64,11 @@
 - `ACKNOWLEDGE_CHAT_TRUST_BANNER` from `network.dismissChatTrustBanner`: Persists the banner-dismiss flag in `localStorage`.
 - `CLOSE_ROOM` from `network.closeRoom`: Host-initiated room close; signaling server emits `ROOM_CLOSED`.
 - `LAUNCH_NETWORK_GAME` from `network.launch`: Host starts deterministic session.
-- `LEAVE_NETWORK_LOBBY` from `network.leave`: Disconnects or leaves lobby.
+- `LEAVE_NETWORK_LOBBY_CONFIRMED` from confirmation chain: Disconnects or leaves lobby. Always preceded by `REQUEST_CONFIRMATION` per [`interactions.md` § Leave Confirmation](./interactions.md#leave-confirmation).
+- `ADD_PEER_TO_ALLOWLIST` from per-row context menu: Adds the peer to `state.profile.knownPeers`; gated on `state.profile.consent.multiplayer.state === 'granted'`.
+- `REMOVE_PEER_FROM_ALLOWLIST` from per-row context menu: Removes the peer from `state.profile.knownPeers`.
+- `RECORD_PEER_CONTACT` from successful WebRTC handshake: Refreshes `lastSeenAt` for the peer; emitted by the lobby reducer, not by user input.
+- `ACK_UNSIGNED_PACKS_SESSION` from the unsigned-pack gate: Records the per-peer session ack; appends a `consent-audit-log` row with scope `unsignedPacks`, `tier: 'optional'`, `method: 'session'`.
 
 ### Server-Side Notifications
 - `PEER_PENDING { peerPubKey, displayNameDraft, joinNonceMs }` — populates `pendingPeers`.

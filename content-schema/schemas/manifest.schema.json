@@ -146,9 +146,14 @@
     "sandboxed": { "type": "boolean" },
     "contentRating": {
       "type": "object",
-      "description": "Optional author-asserted content rating. Advisory only; not consumed by gameplay or matchmaking gates in v1. Surfaced by screen 72 (pack-trust prompt) under \"Author-declared content\" per `pack-trust.md` § Content Rating.",
+      "description": "Optional author-asserted content rating. Advisory only; not consumed by gameplay or matchmaking gates in v1. Surfaced by screen 72 (pack-trust prompt) under \"Author-declared content\" per `pack-trust.md` § Content Rating. The `overallRating` aggregate is consumed by `config.player.ageGate` per `docs/architecture/age-gate.md`: `under13` profiles filter out packs whose `overallRating` is above `everyone`.",
       "additionalProperties": false,
       "properties": {
+        "overallRating": {
+          "enum": ["everyone", "teen", "mature"],
+          "default": "everyone",
+          "description": "Closed aggregate rating. Optional on read for backwards compatibility; missing maps to `everyone`. Consumed by the age-gate filter per `docs/architecture/age-gate.md`."
+        },
         "violence": { "enum": ["none", "mild", "moderate", "intense"] },
         "language": { "enum": ["none", "mild", "strong"] },
         "sexual":   { "enum": ["none", "mild", "explicit"] },

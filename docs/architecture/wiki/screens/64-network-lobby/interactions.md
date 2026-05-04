@@ -26,7 +26,7 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
 | Dismiss trust banner | `network.dismissChatTrustBanner` | command | Current screen | `ACKNOWLEDGE_CHAT_TRUST_BANNER` | Persists `hr.ui.lobby.chat.trust-banner.dismissed = true` in `localStorage` and unmounts `ChatTrustBanner` for the rest of this and all future sessions on the same install. Per [`chat-safety.md` § 10](../../../chat-safety.md#10-trust-model-disclosure). | Banner fades out. |
 | Close room | `network.closeRoom` | command | `62-multiplayer-setup` | `CLOSE_ROOM` | Host-only: signaling server emits `ROOM_CLOSED { reason: "host_closed" }`, drops the room, and MAY skip the 10-minute cool-down per [`docs/architecture/lobby-identifiers.md` § 6](../../../lobby-identifiers.md#6-reuse-policy-cool-down). | Lobby fades to setup screen. |
 | Launch | `network.launch` | navigation | `59-loading-screen` | `LAUNCH_NETWORK_GAME` | Host starts deterministic session. | Player rows slide in/out, ready seals stamp, chat messages scroll, hash mismatch flashes red, and launch fades to loading. |
-| Leave | `network.leave` | navigation | `62-multiplayer-setup` | `LEAVE_NETWORK_LOBBY` | Disconnects or leaves lobby. | Player rows slide in/out, ready seals stamp, chat messages scroll, hash mismatch flashes red, and launch fades to loading. |
+| Leave | `network.leave` | navigation | `60-confirmation-dialog` (then `62-multiplayer-setup`) | `REQUEST_CONFIRMATION` → `LEAVE_NETWORK_LOBBY_CONFIRMED` | Routes through `60-confirmation-dialog` per [`spec.md` § Click-Through Resistance](../60-confirmation-dialog/spec.md#click-through-resistance). Severity selector: `state.net.lobby.session.phase === 'in-game' ? 'critical' : 'warning'`. In-game leave shows the forfeit-penalty copy `multiplayer.disclosure.leaveForfeit`. On confirm, `LEAVE_NETWORK_LOBBY_CONFIRMED` runs the original disconnect path. | Confirmation modal mounts; on confirm, lobby fades to setup screen. |
 
 ### State Changes
 - `state.net.sessionId` refreshes `sessionId` after the owning reducer or local UI draft changes.
@@ -40,6 +40,56 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
 - `selectors.net.lobbyCompatibility` refreshes `compatibility` after the owning reducer or local UI draft changes.
 - `selectors.net.canLaunchSession` refreshes `launchGuard` after the owning reducer or local UI draft changes.
 - UI-only hover, focus, selected row, open tab, target cursor, drag ghost, and animation frame stay outside deterministic gameplay state.
+
+### Leave Confirmation
+Per plan 23 / Q436, `network.leave` always routes through
+[`60-confirmation-dialog`](../60-confirmation-dialog/) before
+`LEAVE_NETWORK_LOBBY_CONFIRMED` actually disconnects. The chain is:
+
+1. `network.leave` dispatches `REQUEST_CONFIRMATION` with
+   `pendingAction: LEAVE_NETWORK_LOBBY_CONFIRMED`,
+   `severity: state.net.lobby.session.phase === 'in-game' ? 'critical' : 'warning'`,
+   `confirmDelayMs` defaulted from severity, and
+   `requireType: undefined`.
+2. The localization keys are
+   `multiplayer.disclosure.leaveForfeit` (in-game) and
+   `ui.network-lobby.leave.confirmTitle` (waiting room).
+3. On `Cancel`, the lobby state is unchanged.
+4. On `Confirm`, `LEAVE_NETWORK_LOBBY_CONFIRMED` runs the existing
+   disconnect path, the audit-log emission rules in
+   [`signaling-audit-log.md`](../../../signaling-audit-log.md) still
+   apply, and the screen routes to
+   [`62-multiplayer-setup`](../62-multiplayer-setup/).
+
+### Peer Trust Display
+Per plan 23 / Q447, `PlayerSlotList` renders a `trustLevel` badge per
+peer derived from `state.profile.knownPeers`:
+
+| `trustLevel` | Source                                      | Badge          |
+|--------------|---------------------------------------------|----------------|
+| `friend`     | `state.profile.knownPeers.peers[*]` (allowlist) | green `Friend` |
+| `recent`     | `lastSeenAt` within last 30 days            | amber `Recent` |
+| `unknown`    | otherwise                                   | grey `Unknown` |
+
+The per-row context menu adds `Add to friends` / `Remove from friends`
+which dispatch `ADD_PEER_TO_ALLOWLIST` / `REMOVE_PEER_FROM_ALLOWLIST`.
+On every successful WebRTC handshake the lobby dispatches
+`RECORD_PEER_CONTACT` to refresh `lastSeenAt`. Storage is governed by
+[`peer-trust.md`](../../../peer-trust.md) and
+[`peer-allowlist.schema.json`](../../../../../content-schema/schemas/peer-allowlist.schema.json);
+all writes require
+`state.profile.consent.multiplayer.state === 'granted'`.
+
+### Unsigned-Pack Ack (Casual Lobbies)
+Per plan 23 / Q440, the `ContentCompatibilityPanel` aggregates pack
+trust state. When **any** pack in the session reports
+`trustState !== 'signed'` and the lobby is casual (ranked already
+excludes unsigned via
+[`tasks/phase-3/04-polish/03-ranked-play-elo-ladder-plus-ai-pack-sandbox.md`](../../../../../tasks/phase-3/04-polish/03-ranked-play-elo-ladder-plus-ai-pack-sandbox.md)),
+the `Launch` button is disabled until **every** peer ticks
+`I accept unsigned packs for this session`. The ack appends to the
+consent audit log under scope `unsignedPacks`, `tier: 'optional'`,
+`method: 'session'` and never persists past the session.
 
 ### Pending Peer Flow
 1. Signaling server forwards `PEER_PENDING { peerPubKey, displayNameDraft, joinNonceMs }` to the host.

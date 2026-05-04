@@ -62,6 +62,32 @@
         "warnings":    { "type": "array", "items": { "type": "string" } }
       },
       "additionalProperties": false
+    },
+    "moderation": {
+      "type": "object",
+      "description": "Moderation status carrier per `docs/architecture/ai-moderation-contract.md`. UI MUST render the `ai.moderation.banner.<status>` banner whenever `status !== 'passed'`. The actual moderation logic is owned by audit 14 / Plan 14; this field is the contract surface that lets every consumer render the banner without knowing the moderator's identity.",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "enum": ["pending", "passed", "failed", "skipped"],
+          "description": "`pending` = moderator queued but not run; `passed` = moderator ok; `failed` = flagged; `skipped` = moderator unavailable (e.g. dev mode)."
+        },
+        "flaggedReasons": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Optional human-readable reasons; consumed by screen 74 / 75 detail panels."
+        },
+        "reviewedBy": {
+          "type": "string",
+          "description": "Optional moderator id (provider name or human reviewer handle)."
+        },
+        "reviewedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Optional ISO 8601 wall-clock at the moderator's verdict; never used for gameplay determinism."
+        }
+      }
     }
   },
   "additionalProperties": false

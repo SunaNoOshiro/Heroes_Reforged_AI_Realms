@@ -11,7 +11,10 @@
 | Saves (`save.schema.json` blobs) | IndexedDB | `hr-saves.slots` | yes | per-origin browser quota |
 | Profile (high-scores, achievements) | IndexedDB | `hr-profile.profile` | yes | small (<1 MiB) |
 | Privacy options | IndexedDB | `hr-profile.privacy` | yes | small |
-| UI options (volume, language, hotkeys) | IndexedDB | `hr-profile.options` | yes | small |
+| Consent records (`consent.schema.json`) | IndexedDB | `hr-profile.consent` | yes | small |
+| Consent + privacy audit log | IndexedDB | `hr-profile.audit` | yes | small (capped ring buffers) |
+| Known peers (`peer-allowlist.schema.json`) | IndexedDB | `hr-profile.knownPeers` | yes | small (LRU 256) |
+| UI options (volume, language, hotkeys, age gate) | IndexedDB | `hr-profile.options` | yes | small |
 | Local salt (raw bytes) | IndexedDB | `hr-profile.keys` | yes | tiny |
 | Outbound content reports | IndexedDB | `hr-profile.reports` | yes | small |
 | Pack store (`.hrmod` bytes + extracted records) | IndexedDB + (optional) FS-Access | `hr-packs.packs` | yes | large |

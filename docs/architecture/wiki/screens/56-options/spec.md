@@ -27,6 +27,9 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
   - ToggleRows
   - SegmentedControls
   - PrivacyPane
+    - ConsentRowList
+    - AgeGateRow
+    - ConsentHistoryPanel
   - PrivacyDisclosureModal
   - ApplyCancelButtons
 
@@ -41,6 +44,40 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
 | privacyOptions | state.privacy.options | Per [`privacy-options.schema.json`](../../../../../content-schema/schemas/privacy-options.schema.json): `displayNameMode`, `analyticsOptIn`, `allowMatureContent`, `saltFingerprint`. |
 | saltFingerprint | selectors.privacy.saltFingerprint | First 4 hex chars of the local salt; user-visible verification. |
 | disclosureSeen | state.privacy.disclosureSeenVersion | Version of the privacy disclosure the user has acknowledged. When `<` `state.privacy.currentDisclosureVersion`, the `PrivacyDisclosureModal` opens before any analytics or reporting surface activates. See [`docs/architecture/privacy.md`](../../../privacy.md) and [`docs/architecture/state-flow.md` § Privacy Slice](../../../state-flow.md#privacy-slice). |
+| consentRecords | state.profile.consent | One [`consent.schema.json`](../../../../../content-schema/schemas/consent.schema.json) record per `ConsentScope`. Surfaced as `ConsentRowList` rows; revocable except for `tier: required` rows. |
+| consentAuditLog | state.profile.consentAuditLog | [`consent-audit-log.schema.json`](../../../../../content-schema/schemas/consent-audit-log.schema.json) ring buffer rendered by `ConsentHistoryPanel`. |
+| ageGate | config.player.ageGate | `'unknown' \| 'under13' \| 'over13'` per [`age-gate.md`](../../../age-gate.md). Editable from the `AgeGateRow` inside the `Privacy` tab. |
+
+### Privacy Tab
+The `Privacy` tab sits to the right of `Accessibility` and to the left
+of `Renderer` (placement matches privacy-adjacent patterns in
+[`56-options` § Tabs](./interactions.md)). Contents:
+
+- `AgeGateRow` — segmented control for `config.player.ageGate`.
+  Changing this re-evaluates the consent matrix per
+  [`age-gate.md`](../../../age-gate.md); switching to `under13` forces
+  every optional-tier consent to `denied`.
+- `ConsentRowList` — one row per `ConsentScope`. Each row shows
+  `state` badge, `acceptedAt` (when granted), `policyVersion`, and a
+  `Revoke` button. Rows whose `tier === 'required'` (i.e. `storage`)
+  render `Revoke` disabled with the localized rationale
+  `consent.storage.revokeRequiresWipe`.
+- `Forget me on this device` — pre-existing entry, retained.
+- `View consent history` link — opens `ConsentHistoryPanel`.
+- `ConsentHistoryPanel` — read-only list of the latest N
+  `ConsentAuditLogEntry` rows from
+  [`consent-audit-log.schema.json`](../../../../../content-schema/schemas/consent-audit-log.schema.json).
+  Each row displays `timestamp`, `scope`, `fromState → toState`,
+  `policyVersion`, `method`.
+- Existing display-name / analytics / mature-content / salt rows are
+  preserved underneath the consent block.
+
+`Revoke` always opens
+[`60-confirmation-dialog`](../60-confirmation-dialog/) with
+`severity: 'critical'` and `requireType: 'REVOKE'`. On confirm, the
+flow dispatches `REVOKE_CONSENT(scope)` and, if any data exists for
+that scope, `REQUEST_DATA_ERASURE(scope)` (reuses the
+plan 21 / 22 erasure pipeline).
 
 ### Mechanics Mapping
 - Edits a settings draft. Apply validates config values, persists presentation settings, and only changes gameplay-affecting options at allowed setup boundaries.

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/peer-allowlist.schema.json",
+  "title": "Peer Allowlist",
+  "description": "Per-installation LRU ring buffer of known peers (friends + recent contacts). Backs the `trustLevel` badge in screen `64-network-lobby` and the `Add to friends` / `Remove from friends` per-row actions. Persisted in IndexedDB `hr-profile.knownPeers` per `data-inventory.md`; wiped by `WIPE_LOCAL_DATA scope=profile|all`. Writes require `state.profile.consent.multiplayer.state === 'granted'`. See `docs/architecture/peer-trust.md`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "capacity", "peers"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "capacity": {
+      "type": "integer",
+      "minimum": 16,
+      "maximum": 1024,
+      "default": 256
+    },
+    "peers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/PeerEntry" }
+    }
+  },
+  "$defs": {
+    "PeerEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["peerId", "addedAt", "lastSeenAt"],
+      "properties": {
+        "peerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Stable peer identifier; in M5 derived from the long-lived peer key per `peer-identity.md`."
+        },
+        "displayNameAtAdd": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Best-effort label captured at the moment of allowlist add. Display-name validation per `display-name-policy.md`. Never used for handshake; the peer key is authoritative."
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Refreshed on every successful WebRTC handshake via `RECORD_PEER_CONTACT`."
+        },
+        "tier": {
+          "enum": ["friend", "recent"],
+          "default": "recent",
+          "description": "`friend` = explicit allowlist add; `recent` = seen within the last 30 days but never explicitly allowlisted. The `trustLevel` selector derives `unknown` for any peer not in this list."
+        }
+      }
+    }
+  }
+}

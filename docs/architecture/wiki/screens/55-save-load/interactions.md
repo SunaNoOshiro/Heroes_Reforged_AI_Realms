@@ -16,7 +16,8 @@ Save/load slot browser with save metadata, compatibility checks, overwrite confi
 | Select slot | `saveLoad.selectSlot` | local-ui | Current screen | `SELECT_SAVE_SLOT` | Updates preview and compatibility. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
 | Save | `saveLoad.save` | command | Current screen | `SAVE_GAME_SLOT` | Writes save manifest and payload after overwrite guard. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
 | Load | `saveLoad.load` | navigation | `59-loading-screen` | `LOAD_GAME_SLOT` | Validates and loads selected save. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
-| Delete | `saveLoad.delete` | navigation | `60-confirmation-dialog` | `REQUEST_DELETE_SAVE_SLOT` | Requires confirmation. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
+| Delete | `saveLoad.delete` | navigation | `60-confirmation-dialog` | `REQUEST_DELETE_SAVE_SLOT` → on confirm `DELETE_SAVE_SLOT` (soft-delete) | Routes through `60-confirmation-dialog` with `severity: 'critical'`. On confirm, `DELETE_SAVE_SLOT` marks the slot `softDeleted: true` with a 5 s tombstone TTL per [`undo-policy.md`](../../../undo-policy.md); a non-modal undo toast surfaces while `state.ui.lastDestructive` is non-null. After TTL, `EXPIRE_LAST_DESTRUCTIVE` performs the file-system delete. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
+| Undo destructive | `saveLoad.undo` | command | Current screen | `UNDO_LAST_DESTRUCTIVE` | Clears the tombstone fields (or restores the overwrite-ring entry) per [`undo-policy.md`](../../../undo-policy.md); only available while the toast is mounted (`state.ui.lastDestructive != null && now() < expiresAt`). | Slot row pulses; toast fades out. |
 | Back | `saveLoad.back` | navigation | `54-system-menu` or `01-main-menu` | `CLOSE_SAVE_LOAD` | Returns to caller. | Slot rows slide, selected thumbnail resolves, compatibility seal stamps, overwrite/delete actions route through confirmation. |
 | Import… | `saveLoad.import` | navigation | `70-save-import` | `OPEN_SAVE_IMPORT` | Opens the quarantined save-import flow per [`pack-trust.md`](../../../pack-trust.md). | Import button highlight; exit animation routes to screen 70. |
 | Restore overwritten | `saveLoad.restoreOverwritten` | command | Current screen | `RESTORE_OVERWRITTEN_SAVE` | Restores from `selectors.persistence.recycle.savedSlots`. | Slot row pulses, restored thumbnail resolves. |
@@ -28,6 +29,14 @@ Save/load slot browser with save metadata, compatibility checks, overwrite confi
 - `selectors.persistence.selectedSaveCompatibility` refreshes `compatibility` after the owning reducer or local UI draft changes.
 - `selectors.persistence.overwriteGuard` refreshes `overwriteGuard` after the owning reducer or local UI draft changes.
 - UI-only hover, focus, selected row, open tab, target cursor, drag ghost, and animation frame stay outside deterministic gameplay state.
+
+### Soft-Delete Toast
+While `state.ui.lastDestructive != null && now() < state.ui.lastDestructive.expiresAt`,
+the screen mounts a non-modal undo toast at the bottom of the slot
+list, per [`undo-policy.md`](../../../undo-policy.md). The toast
+renders the localized `toastMessageKey` and an `Undo` button that
+dispatches `UNDO_LAST_DESTRUCTIVE`. The TTL is authoritative; toast
+dismissal is gestural only.
 
 ### Navigation Outcomes
 - Load can route to `59-loading-screen` after guard approval and exit animation.

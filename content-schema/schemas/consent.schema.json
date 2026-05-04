@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/consent.schema.json",
+  "title": "Consent Record",
+  "description": "Per-installation consent state for one closed scope. Persisted in IndexedDB `hr-profile.consent` per `persistence.md` and `data-inventory.md`. Captured first at the `76-onboarding-consent` screen and revocable via the Privacy tab in screen 56-options. Wiped by `WIPE_LOCAL_DATA scope=profile|all`. The `ConsentSnapshot` definition below is the shape an exported save embeds so an import can re-prompt the user under their current device's policy.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "scope",
+    "state",
+    "tier",
+    "policyVersion",
+    "method"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "scope": {
+      "$ref": "#/$defs/ConsentScope"
+    },
+    "state": {
+      "enum": ["unset", "granted", "revoked", "denied"],
+      "description": "`unset` is the only state that allows the runtime to prompt; `granted` unlocks the gated surface; `revoked` is user-initiated withdrawal; `denied` is age-gate or policy-driven default-off (e.g. `under13` profiles)."
+    },
+    "tier": {
+      "enum": ["required", "optional"],
+      "description": "`required` consents (e.g. `storage`) cannot be revoked without wiping the install; `optional` consents are revocable from the Privacy tab."
+    },
+    "policyVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Privacy-policy version in effect at the moment of the recorded action; mirrored from `docs/architecture/privacy.md` and `docs/architecture/onboarding.md`. A bump invalidates `state === 'granted'` and re-routes the affected scope through onboarding."
+    },
+    "method": {
+      "enum": ["explicit", "import", "legacy", "session"],
+      "description": "`explicit` = user clicked Accept / toggle in onboarding or the Privacy tab. `import` = save-import flow re-prompted and the user accepted on this device. `legacy` = pre-policy v1 install, flagged for re-prompt. `session` = ephemeral session-only ack (e.g. unsigned-pack lobby ack)."
+    },
+    "acceptedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 wall-clock at the moment the user granted consent. Required when `state === 'granted'`. Never used for gameplay determinism."
+    },
+    "revokedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 wall-clock at the moment the user revoked consent. Required when `state === 'revoked'`."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "state": { "const": "granted" } } },
+      "then": { "required": ["acceptedAt"] }
+    },
+    {
+      "if": { "properties": { "state": { "const": "revoked" } } },
+      "then": { "required": ["revokedAt"] }
+    }
+  ],
+  "$defs": {
+    "ConsentScope": {
+      "enum": [
+        "storage",
+        "multiplayer",
+        "aiGeneration",
+        "telemetry",
+        "crashReports",
+        "analytics",
+        "unsignedPacks"
+      ],
+      "description": "Closed enum. `storage` is `tier: required` (always pre-accepted with explanation). `multiplayer`, `aiGeneration`, `telemetry`, `crashReports`, `analytics` are `tier: optional`, default `state: unset`. `unsignedPacks` is `tier: optional`, `method: session` (per-lobby ack only)."
+    },
+    "ConsentSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "policyVersion", "records"],
+      "description": "Frozen consent state embedded in an exported save under `consentSnapshot`. Save imports never auto-grant consent; the importer enumerates these records inside the onboarding flow with `method: 'import'` and asks the user to confirm per scope.",
+      "properties": {
+        "schemaVersion": { "type": "integer", "minimum": 1 },
+        "policyVersion": { "type": "integer", "minimum": 1 },
+        "records": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "heroes-reforged/consent.schema.json" }
+        }
+      }
+    }
+  }
+}

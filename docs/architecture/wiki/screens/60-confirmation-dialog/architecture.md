@@ -76,6 +76,26 @@ flowchart LR
 - callerRoute -> state.ui.confirmation.callerRoute
 - confirmPayload -> state.ui.confirmation.payload
 - severity -> state.ui.confirmation.severity
+- openedAt -> state.ui.confirmation.openedAt
+- confirmDelayMs -> state.ui.confirmation.confirmDelayMs
+- requireType -> state.ui.confirmation.requireType
+- typedConfirmText -> state.ui.confirmation.typedConfirmText
+- popInComplete -> state.ui.confirmation.popInComplete
+
+## Click-Through Resistance Flow
+```mermaid
+flowchart LR
+  R0["REQUEST_CONFIRMATION"] --> R1["Apply severity defaults"]
+  R1 --> R2["Mount modal at openedAt = now()"]
+  R2 --> R3["popIn animation"]
+  R3 -->|"end-frame"| R4["popInComplete = true"]
+  R2 --> R5["delay timer<br/>(confirmDelayMs)"]
+  R5 -->|"elapsed"| R6["delay satisfied"]
+  R2 --> R7{"requireType?"}
+  R7 -->|"yes"| R8["RequireTypeChallenge"]
+  R8 -->|"text == requireType"| R9["challenge satisfied"]
+  R4 & R6 & R9 --> R10["ConfirmEnabled = true"]
+```
 
 ## Implementation Contract
 - Mockup defines visual regions and data hooks only.

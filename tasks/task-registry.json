@@ -3156,7 +3156,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 387
+      "downstreamTransitiveCount": 393
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3218,7 +3218,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 385
+      "downstreamTransitiveCount": 391
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3275,7 +3275,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 231
+      "downstreamTransitiveCount": 235
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3331,7 +3331,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 297
+      "downstreamTransitiveCount": 303
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3390,7 +3390,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 92
+      "downstreamTransitiveCount": 94
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -3478,7 +3478,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 220
+      "downstreamTransitiveCount": 224
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3689,7 +3689,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 73
+      "downstreamTransitiveCount": 74
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3812,7 +3812,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 70
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -4377,7 +4377,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 295
+      "downstreamTransitiveCount": 298
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4435,7 +4435,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 216
+      "downstreamTransitiveCount": 219
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4499,7 +4499,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 156
+      "downstreamTransitiveCount": 159
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4557,7 +4557,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 161
+      "downstreamTransitiveCount": 164
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4618,7 +4618,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 207
+      "downstreamTransitiveCount": 210
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4679,7 +4679,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 266
+      "downstreamTransitiveCount": 269
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4753,7 +4753,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 147
+      "downstreamTransitiveCount": 150
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4838,7 +4838,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 116
+      "downstreamTransitiveCount": 119
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4939,7 +4939,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 113
+      "downstreamTransitiveCount": 116
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -5046,8 +5046,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 29,
-      "downstreamTransitiveCount": 103
+      "downstreamDirectCount": 30,
+      "downstreamTransitiveCount": 106
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -5207,7 +5207,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 177
+      "downstreamTransitiveCount": 180
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5299,7 +5299,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 120
+      "downstreamTransitiveCount": 123
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5370,7 +5370,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 112
+      "downstreamTransitiveCount": 115
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5432,7 +5432,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 112
+      "downstreamTransitiveCount": 115
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -6893,12 +6893,16 @@
       ],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
@@ -7309,8 +7313,93 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 23
+    },
+    {
+      "id": "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+      "kind": "task",
+      "status": "planned",
+      "title": "Consent And Peer-Allowlist Schemas",
+      "path": "tasks/mvp/02-content-schemas/42-consent-and-peer-allowlist-schemas.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Add the schemas Plan 23 needs that have no existing surface: [`consent.schema.json`](../../../content-schema/schemas/consent.schema.json), [`consent-audit-log.schema.json`](../../../content-schema/schemas/consent-audit-log.schema.json), and [`peer-allowlist.schema.json`](../../../content-schema/schemas/peer-allowlist.schema.json). Author canonical examples per schema, register them in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md) and [`content-schema/README.md`](../../../content-schema/README.md), and extend `scripts/check-repo-contracts.mjs` with the suffix mapping rows. Plan 23 § 3 / Critical Fix 2.",
+      "inputs": [
+        "Closed `ConsentScope` enum (`storage`, `multiplayer`, `aiGeneration`, `telemetry`, `crashReports`, `analytics`, `unsignedPacks`).",
+        "Closed `state` enum (`unset`, `granted`, `revoked`, `denied`).",
+        "Closed `method` enum (`explicit`, `import`, `legacy`, `session`).",
+        "Per-scope `tier` enum (`required`, `optional`)."
+      ],
+      "outputs": [
+        "`content-schema/schemas/consent.schema.json`",
+        "`content-schema/schemas/consent-audit-log.schema.json`",
+        "`content-schema/schemas/peer-allowlist.schema.json`",
+        "Canonical examples under `content-schema/examples/consent/`, `content-schema/examples/consent-audit-log/`, and `content-schema/examples/peer-allowlist/`.",
+        "Registration rows in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md) and [`content-schema/README.md`](../../../content-schema/README.md).",
+        "Schema-mapping suffix rows in [`scripts/check-repo-contracts.mjs`](../../../scripts/check-repo-contracts.mjs)."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md`](../../../docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md)",
+        "[`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md)",
+        "[`docs/architecture/peer-trust.md`](../../../docs/architecture/peer-trust.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/examples/consent/",
+        "content-schema/examples/consent-audit-log/",
+        "content-schema/examples/peer-allowlist/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Each schema validates its canonical example(s).",
+        "Each schema declares `additionalProperties: false`.",
+        "`consent.schema.json` `scope` enum equals exactly `[\"storage\", \"multiplayer\", \"aiGeneration\", \"telemetry\", \"crashReports\", \"analytics\", \"unsignedPacks\"]`.",
+        "`consent.schema.json` `state` enum equals exactly `[\"unset\", \"granted\", \"revoked\", \"denied\"]`.",
+        "`consent.schema.json` `method` enum equals exactly `[\"explicit\", \"import\", \"legacy\", \"session\"]`.",
+        "`consent-audit-log.schema.json` declares a capacity bound `[16, 1024]`, default 256.",
+        "`peer-allowlist.schema.json` declares a capacity bound `[16, 1024]`, default 256, and a closed `tier` enum `[\"friend\", \"recent\"]`.",
+        "`npm run validate:contracts` passes.",
+        "`npm run validate:enums` and `npm run generate:enum-snapshot` agree (snapshot updated)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 20
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "mvp.02-tooling.01-ui-smoke-harness",
@@ -8881,7 +8970,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 170
+      "downstreamTransitiveCount": 171
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -8941,7 +9030,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 109
+      "downstreamTransitiveCount": 110
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -8997,7 +9086,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 150
+      "downstreamTransitiveCount": 151
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -9060,7 +9149,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 108
+      "downstreamTransitiveCount": 109
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -9657,7 +9746,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 83
+      "downstreamTransitiveCount": 84
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -9809,7 +9898,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 109
+      "downstreamTransitiveCount": 110
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -9944,7 +10033,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 144
+      "downstreamTransitiveCount": 145
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -10020,7 +10109,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 108
+      "downstreamTransitiveCount": 109
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -10083,7 +10172,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 98
+      "downstreamTransitiveCount": 99
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -10149,7 +10238,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 78
+      "downstreamTransitiveCount": 79
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -10215,7 +10304,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 80
+      "downstreamTransitiveCount": 81
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -10293,7 +10382,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 58
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -10348,7 +10437,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 57
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -12736,8 +12825,8 @@
         "mvp.01-engine-core.06-command-dispatcher"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 51,
-      "downstreamTransitiveCount": 69
+      "downstreamDirectCount": 52,
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.07-ui-shell.07-main-menu-screen",
@@ -13200,8 +13289,8 @@
       "moduleDependencies": [],
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 13
     },
     {
       "id": "mvp.07-ui-shell.12-component-state-matrix",
@@ -13585,8 +13674,8 @@
         "mvp.07-ui-shell.11-screen-router-fsm"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 12
     },
     {
       "id": "mvp.07-ui-shell.15-input-arbitration",
@@ -14391,12 +14480,16 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
@@ -14615,12 +14708,16 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
@@ -14726,6 +14823,261 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "mvp.07-ui-shell.27-onboarding-consent-screen",
+      "kind": "task",
+      "status": "planned",
+      "title": "Onboarding & Consent Screen",
+      "path": "tasks/mvp/07-ui-shell/27-onboarding-consent-screen.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Implement screen [`76-onboarding-consent`](../../../docs/architecture/wiki/screens/76-onboarding-consent/) — first-run onboarding screen that captures the age gate and tiered consent before any network, AI, telemetry, or crash-report surface becomes reachable. Re-prompts on policy bumps, revocations, and save imports per [`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md). Plan 23 / Critical Fix 2 + Critical Fix 3.",
+      "inputs": [
+        "`consent.schema.json` and `consent-audit-log.schema.json` from [`mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas`](../02-content-schemas/42-consent-and-peer-allowlist-schemas.md).",
+        "Localization namespaces `consent.<scope>.*` and `ui.onboarding.*`.",
+        "`policyVersion` constant from [`onboarding.md`](../../../docs/architecture/onboarding.md)."
+      ],
+      "outputs": [
+        "`src/ui/onboarding/onboarding-consent-screen.tsx`",
+        "`src/ui/onboarding/__tests__/onboarding-consent-screen.test.tsx`"
+      ],
+      "readFirst": [
+        "`docs/architecture/wiki/screens/76-onboarding-consent/spec.md`",
+        "`docs/architecture/wiki/screens/76-onboarding-consent/interactions.md`",
+        "`docs/architecture/wiki/screens/76-onboarding-consent/data-contracts.md`",
+        "`docs/architecture/wiki/screens/76-onboarding-consent/architecture.md`",
+        "`docs/architecture/wiki/screens/76-onboarding-consent/mockup.html`",
+        "[`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md)",
+        "[`docs/architecture/age-gate.md`](../../../docs/architecture/age-gate.md)",
+        "[`docs/architecture/diagrams/30-onboarding-consent.md`](../../../docs/architecture/diagrams/30-onboarding-consent.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/onboarding/",
+        "src/ui/__tests__/screens/76-onboarding-consent.smoke.test.ts",
+        "testing/ui-smoke-contract.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/ui/__tests__/screens/76-onboarding-consent.smoke.test.ts",
+        "testing/ui-smoke-contract.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.07-ui-shell.11-screen-router-fsm",
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "acceptanceCriteria": [
+        "Layout matches `docs/architecture/wiki/screens/76-onboarding-consent/mockup.html`.",
+        "Every action in `docs/architecture/wiki/screens/76-onboarding-consent/interactions.md` has a handler.",
+        "`docs/architecture/wiki/screens/76-onboarding-consent/` is **owned by** this task; subsequent UI redesigns are additive and must not rewrite the consent contract or the `selectFeatureAvailability` selector.",
+        "The shared smoke-test directory `src/ui/__tests__/screens/` change is additive; this task adds only `76-onboarding-consent.smoke.test.ts` and must not rewrite other smoke tests.",
+        "First-run profile (`consent.storage.state === 'unset'`) routes to `76-onboarding-consent` from `01-main-menu`.",
+        "Multiplayer / AI / telemetry / crash-report toggles default OFF; `Continue` writes only the rows the user accepted.",
+        "`under13` profile force-denies every optional-tier consent per [`age-gate.md`](../../../docs/architecture/age-gate.md).",
+        "Each transition appends a row to `state.profile.consentAuditLog.entries[]`.",
+        "Re-prompt cases (`unset`, stale `policyVersion`, revoke, `IMPORT_CONSENT_SNAPSHOT`) all route here.",
+        "`npm run validate:ui-components` recognizes every component named in [`spec.md`](../../../docs/architecture/wiki/screens/76-onboarding-consent/spec.md)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/76-onboarding-consent"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.07-ui-shell.11-screen-router-fsm",
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.07-ui-shell.11-screen-router-fsm",
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "mvp.07-ui-shell.28-confirmation-dialog-hardening",
+      "kind": "task",
+      "status": "planned",
+      "title": "Confirmation Dialog Hardening",
+      "path": "tasks/mvp/07-ui-shell/28-confirmation-dialog-hardening.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Promote `severity` on screen [`60-confirmation-dialog`](../../../docs/architecture/wiki/screens/60-confirmation-dialog/) from styling-only to a load-bearing input gate. Add the `confirmDelayMs` and `requireType` payload fields, the per-severity defaults, and the `RequireTypeChallenge` component. Wire the `ConfirmEnabled` predicate so the `Confirm` button stays disabled until the pop-in animation completes, the delay elapses, and the optional type challenge passes. Plan 23 / Critical Fix 1.",
+      "inputs": [
+        "Per-severity defaults: `info → 0`, `warning → 750`, `critical → 1500`.",
+        "`requireType` is opt-in for `severity: critical` only."
+      ],
+      "outputs": [
+        "`src/ui/confirmation/confirmation-dialog.tsx` (extend existing).",
+        "`src/ui/confirmation/builder.ts` — single dispatch site for `REQUEST_CONFIRMATION` that applies the per-severity defaults.",
+        "`src/ui/confirmation/__tests__/confirmation-dialog.test.tsx`."
+      ],
+      "readFirst": [
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/spec.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/data-contracts.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/architecture.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/mockup.html`"
+      ],
+      "ownedPaths": [
+        "src/ui/confirmation/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render",
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "acceptanceCriteria": [
+        "Layout matches `docs/architecture/wiki/screens/60-confirmation-dialog/mockup.html`.",
+        "Every action in `docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md` has a handler.",
+        "`state.ui.confirmation` carries `severity`, `openedAt`, `confirmDelayMs`, `requireType`, `typedConfirmText`, `popInComplete` per the data-contracts file.",
+        "`Confirm` is disabled while `now() - openedAt < confirmDelayMs`, `popInComplete === false`, or `(requireType != null && typedConfirmText !== requireType)`.",
+        "The builder applies the per-severity defaults when the caller omits `confirmDelayMs`.",
+        "A `severity: critical` payload without `confirmDelayMs` inherits `1500`.",
+        "Esc on the modal always routes to `CANCEL_PENDING_CONFIRMATION`, regardless of the predicate's state."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/60-confirmation-dialog"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render",
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render",
+        "mvp.07-ui-shell.14-modal-stack"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "mvp.07-ui-shell.29-url-routing-contract",
+      "kind": "task",
+      "status": "planned",
+      "title": "URL Routing Contract",
+      "path": "tasks/mvp/07-ui-shell/29-url-routing-contract.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Implement the deep-link contract declared in [`docs/architecture/url-routing.md`](../../../docs/architecture/url-routing.md): parse only the closed list of query params, validate the shape, and route through [`60-confirmation-dialog`](../../../docs/architecture/wiki/screens/60-confirmation-dialog/) before any state-changing command fires. Honors the fragment discipline pinned by [`62-multiplayer-setup/spec.md`](../../../docs/architecture/wiki/screens/62-multiplayer-setup/spec.md). Plan 23 / Q443.",
+      "inputs": [
+        "Closed param list: `?lobby=`, `?campaign=`, `?packId=`, `?import=`.",
+        "Fragment helper from [`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)."
+      ],
+      "outputs": [
+        "`src/ui/routing/url-handler.ts`",
+        "`src/ui/routing/__tests__/url-handler.test.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/url-routing.md`](../../../docs/architecture/url-routing.md)",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/spec.md`",
+        "`docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md`",
+        "`docs/architecture/wiki/screens/62-multiplayer-setup/spec.md`",
+        "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/routing/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.11-screen-router-fsm",
+        "mvp.07-ui-shell.28-confirmation-dialog-hardening"
+      ],
+      "acceptanceCriteria": [
+        "The screen-router FSM's URL-handler module is the only dispatch site for the closed param list per `docs/architecture/wiki/screens/60-confirmation-dialog/interactions.md`.",
+        "`?lobby=` dispatches `REQUEST_CONFIRMATION` with `severity: 'warning'`, `pendingAction: 'JOIN_MULTIPLAYER_SESSION'`.",
+        "`?packId=` dispatches `severity: 'critical'`, `requireType: 'INSTALL'`.",
+        "`?import=` dispatches `severity: 'critical'`, `requireType: 'IMPORT'`.",
+        "Unknown params are dropped silently with one console warning per session.",
+        "`registerProtocolHandler` calls remain banned.",
+        "Underlying commands never fire from URL parse alone — the confirmation dialog is the single dispatch boundary."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/60-confirmation-dialog",
+        "docs/architecture/wiki/screens/62-multiplayer-setup"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.11-screen-router-fsm",
+        "mvp.07-ui-shell.28-confirmation-dialog-hardening"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.11-screen-router-fsm",
+        "mvp.07-ui-shell.28-confirmation-dialog-hardening"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "mvp.08-persistence.01-indexeddb-wrapper",
       "kind": "task",
       "status": "planned",
@@ -14794,8 +15146,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 60
+      "downstreamDirectCount": 11,
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -14866,7 +15218,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -14958,7 +15310,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 33
+      "downstreamTransitiveCount": 34
     },
     {
       "id": "mvp.08-persistence.04-scenario-loader",
@@ -15198,6 +15550,8 @@
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/manifest.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
@@ -15208,6 +15562,8 @@
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/manifest.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
@@ -15229,8 +15585,8 @@
         "mvp.08-persistence.07-snapshot-rebase"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 0,
-      "downstreamTransitiveCount": 0
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
     },
     {
       "id": "mvp.08-persistence.07-snapshot-rebase",
@@ -15299,7 +15655,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 21
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "mvp.08-persistence.08-migration-registry",
@@ -15834,6 +16190,8 @@
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
@@ -15842,6 +16200,8 @@
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/audit-log-entry.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/erasure-receipt.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
@@ -15935,6 +16295,92 @@
       "downstreamTransitiveCount": 6
     },
     {
+      "id": "mvp.08-persistence.27-undo-soft-delete",
+      "kind": "task",
+      "status": "planned",
+      "title": "Undo / Soft-Delete For Save Slots",
+      "path": "tasks/mvp/08-persistence/27-undo-soft-delete.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Add the soft-delete + undo model declared in [`docs/architecture/undo-policy.md`](../../../docs/architecture/undo-policy.md) for `DELETE_SAVE_SLOT` and `OVERWRITE_SAVE_SLOT`. Adds `state.ui.lastDestructive`, the 5-second tombstone TTL, the `UNDO_LAST_DESTRUCTIVE` and `EXPIRE_LAST_DESTRUCTIVE` commands, and the non-modal undo toast surfaced by screen [`55-save-load`](../../../docs/architecture/wiki/screens/55-save-load/). Plan 23 § 3.1 (Q438 — \"No undo on destructive commit\").",
+      "inputs": [
+        "Default TTL: **5000 ms**.",
+        "Reuse the rolling overwrite ring from [`pack-trust.md` § Save Quarantine](../../../docs/architecture/pack-trust.md#2-save-quarantine)."
+      ],
+      "outputs": [
+        "`src/persistence/undo-soft-delete.ts`",
+        "`src/persistence/__tests__/undo-soft-delete.test.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/undo-policy.md`](../../../docs/architecture/undo-policy.md)",
+        "[`docs/architecture/wiki/screens/55-save-load/interactions.md`](../../../docs/architecture/wiki/screens/55-save-load/interactions.md)",
+        "[`docs/architecture/diagrams/24-save-flow.md`](../../../docs/architecture/diagrams/24-save-flow.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/undo-soft-delete.ts",
+        "src/persistence/__tests__/undo-soft-delete.test.ts",
+        "src/state/ui/save-load-slice.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/state/ui/save-load-slice.ts"
+      ],
+      "dependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.06-autosave"
+      ],
+      "acceptanceCriteria": [
+        "`src/state/ui/save-load-slice.ts` is **owned by** the existing UI shell tasks; this task is additive (one new `lastDestructive` field plus the `UNDO_LAST_DESTRUCTIVE` / `EXPIRE_LAST_DESTRUCTIVE` reducers) and must not rewrite the existing slot list, autosave ring, or recycle ring.",
+        "`DELETE_SAVE_SLOT` marks the slot `softDeleted: true` with `tombstoneExpiresAt = now() + 5000 ms`; the file remains on disk while the toast is mounted.",
+        "`OVERWRITE_SAVE_SLOT` clones the prior payload into the rolling overwrite ring before the new payload writes.",
+        "`UNDO_LAST_DESTRUCTIVE` clears the tombstone (or restores the ring entry) and clears `state.ui.lastDestructive`.",
+        "`EXPIRE_LAST_DESTRUCTIVE` runs the underlying file-system delete at TTL.",
+        "The toast renders only while `state.ui.lastDestructive != null && now() < expiresAt`.",
+        "Peer clients in a remote match do not autosave and do not surface the toast."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/55-save-load"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.06-autosave"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper",
+        "mvp.08-persistence.06-autosave"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order",
       "kind": "task",
       "status": "planned",
@@ -15998,7 +16444,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 87
+      "downstreamTransitiveCount": 88
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -16060,7 +16506,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -16208,7 +16654,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 62
+      "downstreamTransitiveCount": 63
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -16275,7 +16721,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -16411,7 +16857,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -16474,7 +16920,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -16547,7 +16993,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 53
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -17221,7 +17667,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 56
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -17309,7 +17755,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -17372,7 +17818,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -17454,7 +17900,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 52
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -17528,7 +17974,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -17633,7 +18079,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -17703,7 +18149,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -17798,7 +18244,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 24
+      "downstreamTransitiveCount": 25
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -17881,7 +18327,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 25
+      "downstreamTransitiveCount": 26
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -17959,7 +18405,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 38
+      "downstreamTransitiveCount": 39
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -18030,7 +18476,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 24
+      "downstreamTransitiveCount": 25
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -18521,7 +18967,8 @@
         "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
         "mvp.02-content-schemas.39-generated-faction-player-inspectable",
         "mvp.02-content-schemas.40-privacy-and-legal-docs",
-        "mvp.02-content-schemas.41-error-and-audit-schemas"
+        "mvp.02-content-schemas.41-error-and-audit-schemas",
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -28591,12 +29038,16 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/consent-audit-log.schema.json",
+        "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
@@ -30651,7 +31102,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 22
+      "downstreamTransitiveCount": 23
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -30723,8 +31174,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 19
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -31131,6 +31582,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31142,6 +31594,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31617,6 +32070,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31628,6 +32082,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31711,6 +32166,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31722,6 +32178,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31801,8 +32258,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
@@ -31880,6 +32337,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31891,6 +32349,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31979,6 +32438,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -31990,6 +32450,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -32096,6 +32557,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -32107,6 +32569,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -32260,6 +32723,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -32271,6 +32735,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -32344,6 +32809,116 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "mvp.00-core-architecture.22-06-command-field-visibility-and-desync-redaction"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display",
+      "kind": "task",
+      "status": "planned",
+      "title": "Multiplayer Consent Gate & Peer Trust Display",
+      "path": "tasks/phase-3/01-multiplayer/23-multiplayer-consent-and-trust-display.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Implement the multiplayer consent gate declared in [`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md) and the peer-trust display declared in [`docs/architecture/peer-trust.md`](../../../docs/architecture/peer-trust.md). `Host` and `Join` are blocked until `state.profile.consent.multiplayer.state === 'granted'`. The lobby `PlayerSlotList` renders a `trustLevel` badge per peer derived from `state.profile.knownPeers`, and the casual lobby gates `Launch` behind a per-peer ack when any pack is unsigned. Plan 23 / Critical Fix 3 + § 3.1 (Q447, Q440).",
+      "inputs": [
+        "`consent.schema.json` and `peer-allowlist.schema.json` from [`mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas`](../../mvp/02-content-schemas/42-consent-and-peer-allowlist-schemas.md).",
+        "Pack `trustState: 'signed' | 'unsigned' | 'invalid-signature'` from Plan 20."
+      ],
+      "outputs": [
+        "`src/multiplayer/consent-gate.ts`",
+        "`src/multiplayer/peer-trust.ts`",
+        "`src/multiplayer/__tests__/consent-gate.test.ts`",
+        "`src/multiplayer/__tests__/peer-trust.test.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md)",
+        "[`docs/architecture/peer-trust.md`](../../../docs/architecture/peer-trust.md)",
+        "`docs/architecture/wiki/screens/62-multiplayer-setup/spec.md`",
+        "`docs/architecture/wiki/screens/62-multiplayer-setup/interactions.md`",
+        "`docs/architecture/wiki/screens/64-network-lobby/spec.md`",
+        "`docs/architecture/wiki/screens/64-network-lobby/interactions.md`",
+        "`docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`"
+      ],
+      "ownedPaths": [
+        "src/multiplayer/consent-gate.ts",
+        "src/multiplayer/peer-trust.ts",
+        "src/multiplayer/__tests__/consent-gate.test.ts",
+        "src/multiplayer/__tests__/peer-trust.test.ts",
+        "src/ui/multiplayer/lobby-screen.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/ui/multiplayer/lobby-screen.tsx"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.07-ui-shell.27-onboarding-consent-screen",
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "acceptanceCriteria": [
+        "Layout matches the consent-gate, trust-badge, and unsigned-pack ack affordances in `docs/architecture/wiki/screens/62-multiplayer-setup/interactions.md` and `docs/architecture/wiki/screens/64-network-lobby/interactions.md`.",
+        "`src/ui/multiplayer/lobby-screen.tsx` is **owned by** the existing UI shell / multiplayer tasks; this task is additive (`trustLevel` badge column, per-row context menu, casual unsigned-pack ack checklist) and must not rewrite the existing slot list, ready-state controls, chat panel, or pending-peer modal.",
+        "`docs/architecture/wiki/screens/64-network-lobby/` is **owned by** the existing UI / multiplayer screen-package tasks; this task is additive (Leave confirmation, peer trust display, unsigned-pack ack) and must not rewrite the existing chat / mute / report flows.",
+        "The runtime refuses to instantiate `RTCPeerConnection` while `consent.multiplayer.state !== 'granted'`.",
+        "`Host` and `Join` controls are disabled with the localized rationale `consent.multiplayer.denied.body` when the gate fails.",
+        "`peerTrustLevel(peerId)` returns `'friend'` / `'recent'` / `'unknown'` per the rules in [`peer-trust.md`](../../../docs/architecture/peer-trust.md).",
+        "`ADD_PEER_TO_ALLOWLIST` and `REMOVE_PEER_FROM_ALLOWLIST` write to `state.profile.knownPeers`; entries persist across sessions.",
+        "`RECORD_PEER_CONTACT` refreshes `lastSeenAt` on every successful WebRTC handshake.",
+        "Casual lobbies disable `Launch` until every peer's `unsignedPacksAck` is present when `lobby.compatibility.signatureGate.requiresAck === true`.",
+        "Each ack appends a row to the consent audit log under scope `unsignedPacks`, `tier: 'optional'`, `method: 'session'`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/62-multiplayer-setup",
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.07-ui-shell.27-onboarding-consent-screen",
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.07-ui-shell.27-onboarding-consent-screen",
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -34478,7 +35053,8 @@
         "phase-3.01-multiplayer.19-report-bundle-and-export",
         "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary",
         "phase-3.01-multiplayer.21-peer-failure-ui-contract",
-        "phase-3.01-multiplayer.22-desync-redaction-acceptance"
+        "phase-3.01-multiplayer.22-desync-redaction-acceptance",
+        "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -34544,6 +35120,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -34555,6 +35132,7 @@
         "content-schema/schemas/chat-message.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
         "content-schema/schemas/report-bundle.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
@@ -35008,6 +35586,7 @@
         "mvp.02-content-schemas.39-generated-faction-player-inspectable",
         "mvp.02-content-schemas.40-privacy-and-legal-docs",
         "mvp.02-content-schemas.41-error-and-audit-schemas",
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",

@@ -41,6 +41,51 @@ session start, never on screen mount.
 - Future microphone / camera (deferred) MUST display a localized
   pre-prompt before the OS prompt.
 
+### Just-In-Time (JIT) Rule (plan 23 / Q448)
+
+Every native browser permission prompt MUST be preceded by an in-app
+rationale modal whose copy comes from the localization namespace
+`permission.<scope>.rationale`. The rationale modal explains:
+
+1. What the app is about to ask the OS for.
+2. What the app does with the result.
+3. What the app **falls back to** if the user denies (per the
+   degradation matrix below).
+
+Concretely, every call site for `navigator.permissions.request`,
+`Notification.requestPermission`, `navigator.storage.persist`,
+`showOpenFilePicker`, `showSaveFilePicker`, and any future
+`getUserMedia` MUST first dispatch a `REQUEST_PERMISSION_RATIONALE`
+modal. CI enforces this by linting for raw API invocations and
+demanding the rationale-helper import.
+
+### Rationale Copy Convention (plan 23 / Q450)
+
+Localization keys for each prompt-bearing scope:
+
+- `permission.<scope>.prompt` — short title rendered above the OS prompt.
+- `permission.<scope>.rationale` — body of the in-app pre-prompt.
+- `permission.<scope>.deniedFallback` — body shown after a denial,
+  explaining the degradation path.
+
+Required scopes today: `storage`, `notifications`, `clipboardWrite`.
+Add a row in this document and the localization namespace before
+introducing a new scope.
+
+### Degradation Matrix (plan 23 / Q449)
+
+| Scope             | Denied → Behavior                                      |
+|-------------------|--------------------------------------------------------|
+| `storage.persist` | session-only mode; persistent banner via `error-ux.md` |
+| `notifications`   | feature off, no error                                  |
+| `clipboardWrite`  | inline copy textarea fallback                          |
+| `clipboardRead`   | feature off, no error                                  |
+| any other         | feature off, link to settings                          |
+
+A denied permission must never break the screen; the surface gracefully
+degrades and the rationale modal cites
+`permission.<scope>.deniedFallback`.
+
 ## 3. Crash Reporting
 
 Crash dumps live in-memory only at v1 and are exported only via a

@@ -1,0 +1,11 @@
+{
+  "$schema": "heroes-reforged/consent.schema.json",
+  "schemaVersion": 1,
+  "scope": "aiGeneration",
+  "state": "revoked",
+  "tier": "optional",
+  "policyVersion": 1,
+  "method": "explicit",
+  "acceptedAt": "2026-05-04T10:00:00Z",
+  "revokedAt": "2026-05-04T11:30:00Z"
+}

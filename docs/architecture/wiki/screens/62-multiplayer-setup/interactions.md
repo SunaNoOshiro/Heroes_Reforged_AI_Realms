@@ -15,8 +15,8 @@ Multiplayer setup for hotseat, LAN/online lobby, player colors, teams, timers, m
 | --- | --- | --- | --- | --- | --- | --- |
 | Set connection type | `mpSetup.connectionType` | local-ui | Current screen | `SET_MULTIPLAYER_CONNECTION_TYPE` | Changes setup draft. | Player banners flip, ready seals stamp, content hash lock glows, and Host/Join opens the correct lobby route. |
 | Edit slot | `mpSetup.editSlot` | local-ui | Current screen | `EDIT_MULTIPLAYER_SLOT` | Updates player slot draft. | Player banners flip, ready seals stamp, content hash lock glows, and Host/Join opens the correct lobby route. |
-| Host | `mpSetup.host` | navigation | `64-network-lobby` or `63-hotseat-turn-handoff` | `HOST_MULTIPLAYER_SESSION` | Creates session or hotseat game draft. | Player banners flip, ready seals stamp, content hash lock glows, and Host/Join opens the correct lobby route. |
-| Join | `mpSetup.join` | navigation | `64-network-lobby` | `JOIN_MULTIPLAYER_SESSION` | Routes to network lobby. | Player banners flip, ready seals stamp, content hash lock glows, and Host/Join opens the correct lobby route. |
+| Host | `mpSetup.host` | navigation | `64-network-lobby` or `63-hotseat-turn-handoff` | `HOST_MULTIPLAYER_SESSION` | Creates session or hotseat game draft. Gated by [`MultiplayerConsentGate`](#multiplayer-consent-gate); blocked until `state.profile.consent.multiplayer.state === 'granted'`. | Player banners flip, ready seals stamp, content hash lock glows, and Host/Join opens the correct lobby route. |
+| Join | `mpSetup.join` | navigation | `64-network-lobby` | `JOIN_MULTIPLAYER_SESSION` | Routes to network lobby. Same `MultiplayerConsentGate` precondition as `Host`. | Player banners flip, ready seals stamp, content hash lock glows, and Host/Join opens the correct lobby route. |
 | Back | `mpSetup.back` | navigation | `02-new-game-setup` | `CLOSE_MULTIPLAYER_SETUP` | Discards draft. | Player banners flip, ready seals stamp, content hash lock glows, and Host/Join opens the correct lobby route. |
 
 ### State Changes
@@ -27,6 +27,31 @@ Multiplayer setup for hotseat, LAN/online lobby, player colors, teams, timers, m
 - `selectors.multiplayer.contentCompatibilityHash` refreshes `contentHash` after the owning reducer or local UI draft changes.
 - `state.net.statusThresholds` drives the Task 8 status indicator state machine (green ≤ 2 s, yellow 2 – 10 s, red 10 s+, action-buttons 30 s+, forfeit 120 s+).
 - UI-only hover, focus, selected row, open tab, target cursor, drag ghost, and animation frame stay outside deterministic gameplay state.
+
+### Multiplayer Consent Gate
+Per [`onboarding.md` § 2 Consent Scopes](../../../onboarding.md) and
+plan 23 Critical Fix 3, `Host` and `Join` are blocked until
+`state.profile.consent.multiplayer.state === 'granted'`. Behavior:
+
+1. If `state === 'granted'` and `policyVersion` matches the current
+   `onboarding.policyVersion`, proceed to the lobby route.
+2. If `state === 'unset'`, dispatch
+   `REQUEST_CONSENT_PROMPT('multiplayer')` and route through
+   [`76-onboarding-consent`](../76-onboarding-consent/). On grant,
+   the user must re-trigger the original action; the runtime does
+   not auto-retry.
+3. If `state === 'denied'` (e.g. `under13` profile), the `Host` /
+   `Join` controls are disabled with the localized reason
+   `consent.multiplayer.denied.body`. The user can change the age
+   gate from the Privacy tab in [`56-options`](../56-options/).
+4. If `state === 'revoked'` or `policyVersion` is stale, the runtime
+   re-prompts via the same path as `unset`.
+
+The disclosure copy lives under
+`consent.multiplayer.ipDisclosure` in
+[`localization.schema.json`](../../../../../content-schema/schemas/localization.schema.json).
+The runtime MUST NOT instantiate `RTCPeerConnection` or open the
+WebSocket signaling channel before the gate is satisfied.
 
 ### Stall Threshold Behavior
 - 0 – 2 s after expected response: status indicator green; "your

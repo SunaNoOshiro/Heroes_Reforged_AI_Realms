@@ -18,6 +18,10 @@
 | high-score entries | `state.profile.highScores` | IndexedDB (`hr-profile.profile`) | low | rolling top-10 | `WIPE_LOCAL_DATA scope=profile\|all` | renders `playerLabel`, never `playerName` |
 | UI options | `state.ui.options` | IndexedDB (`hr-profile.options`) | low | until user-deleted | `WIPE_LOCAL_DATA scope=profile\|all` | volume, language, hotkeys, reduced-motion |
 | privacy options | `state.privacy.options` | IndexedDB (`hr-profile.privacy`) | low | until user-deleted | `WIPE_LOCAL_DATA scope=profile\|all` | analytics opt-in, mature-content gate, displayNameMode |
+| consent records | `state.profile.consent` | IndexedDB (`hr-profile.consent`) | low | until user-deleted | `WIPE_LOCAL_DATA scope=profile\|all` | per-scope `consent.schema.json` records; backs the Privacy tab consent rows; load-bearing for `selectFeatureAvailability` |
+| consent audit log | `state.profile.consentAuditLog` | IndexedDB (`hr-profile.audit`) | low | rolling capacity (default 256) | `WIPE_LOCAL_DATA scope=profile\|all` | append-only `consent-audit-log.schema.json` ring buffer; rendered by `ConsentHistoryPanel` |
+| age gate | `config.player.ageGate` | IndexedDB (`hr-profile.options`) | low | until user-deleted | `WIPE_LOCAL_DATA scope=profile\|all` | `'unknown' \| 'under13' \| 'over13'` per [`age-gate.md`](./age-gate.md); cascades into the consent matrix |
+| known peers | `state.profile.knownPeers` | IndexedDB (`hr-profile.knownPeers`) | medium | LRU 256, 30-day implicit retention for `tier: recent` | `WIPE_LOCAL_DATA scope=profile\|all` | `peer-allowlist.schema.json`; writes require `consent.multiplayer === 'granted'` |
 | lobby chat (transient) | `state.net.lobby.chat` | in-memory | medium | session | n/a | not persisted; cleared on lobby exit |
 | save thumbnail | save `metadata.thumbnail` | IndexedDB (`hr-saves.slots`) | low | until save deleted | `WIPE_LOCAL_DATA scope=saves\|all` | base64 PNG/WebP |
 | AI prompt (per pack) | pack `manifest.aiProvenance.promptExcerpt` | IndexedDB (`hr-packs.packs`) + `.hrmod` | medium | until pack uninstalled | n/a (pack scope) | declared by Plan 14; truncated to 280 chars |
