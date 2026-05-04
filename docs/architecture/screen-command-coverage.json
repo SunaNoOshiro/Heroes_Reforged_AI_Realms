@@ -105,6 +105,11 @@
     "REVOKE_PACK_TRUST": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns trust-store revocation per docs/architecture/pack-trust.md § Trust Anchors.",
     "INSTALL_PACK_FROM_FILE": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the pack-install entry point per docs/architecture/pack-trust.md § Resource Limits.",
     "REMOVE_PACK": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns pack uninstall and trust-store cleanup per docs/architecture/pack-trust.md.",
-    "ENTER_SAFE_MODE": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the safe-mode toggle per docs/architecture/pack-trust.md § Safe Mode."
+    "ENTER_SAFE_MODE": "mvp.08-persistence.12-pack-trust-prompt-and-manager owns the safe-mode toggle per docs/architecture/pack-trust.md § Safe Mode.",
+    "WIPE_LOCAL_DATA": "mvp.08-persistence.14-wipe-local-data-handler owns the wipe-local-data handler per docs/architecture/data-inventory.md § Wipe-Scope Policy.",
+    "ACCEPT_PUBLISH_DISCLAIMER": "phase-2.04-content-editor.10-publish-disclaimer-flow owns the per-pack content-policy ack write per docs/architecture/ugc-safety.md.",
+    "EXPORT_SCENARIO_AS_PACK": "phase-2.04-content-editor.10-publish-disclaimer-flow owns the local .hrmod export per docs/architecture/wiki/screens/73-ugc-publish-disclaimer/.",
+    "SUBMIT_CONTENT_REPORT": "phase-2.05-mod-system.12-content-report-intake-and-local-queue owns the content-report queue write per docs/architecture/wiki/screens/75-content-report/.",
+    "ATTACH_CONTENT_REPORT_SCREENSHOT": "phase-2.05-mod-system.12-content-report-intake-and-local-queue owns the optional screenshot attach affordance per docs/architecture/wiki/screens/75-content-report/."
   }
 }

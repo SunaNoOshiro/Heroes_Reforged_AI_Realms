@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>74. AI Provenance Detail - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #1a1410; }
+  body { color: #e8d8b8; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: #1a1410; }
+  .frame { fill: #2b1f15; stroke: #c9a14e; stroke-width: 2; }
+  .panel { fill: #1f1610; stroke: #6b4f2a; stroke-width: 1; }
+  .badge { fill: #2f3b5d; stroke: #7c9ce0; }
+  .header { fill: #f0d590; font: 700 13px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #d8c4a0; font: 11px ui-monospace, Menlo, monospace; }
+  .info { fill: #7c9ce0; font: 700 11px ui-monospace, Menlo, monospace; }
+  .button rect { fill: #4a3520; stroke: #c9a14e; }
+  .button text { fill: #f0d590; font: 700 11px ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body data-screen="74-ai-provenance-detail" data-archetype="system-info-modal" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Provenance Detail mockup">
+  <rect x="14" y="14" width="772" height="572" class="frame"/>
+
+  <text x="40" y="44" class="header" data-i18n="ui.ai-provenance.title">AI-GENERATED CONTENT</text>
+  <rect x="240" y="28" width="60" height="20" rx="4" class="badge"/>
+  <text x="270" y="42" text-anchor="middle" class="info">[AI]</text>
+
+  <rect x="32" y="60" width="736" height="60" class="panel"/>
+  <text x="48" y="80" class="header" data-i18n="ui.ai-provenance.section.identity">PACK IDENTITY</text>
+  <text x="48" y="100" class="row">id: example_ai_faction   v0.1.0   contentHash: 4c11..e2af</text>
+
+  <rect x="32" y="132" width="736" height="120" class="panel"/>
+  <text x="48" y="152" class="header" data-i18n="ui.ai-provenance.section.model">MODEL</text>
+  <text x="48" y="174" class="row" data-i18n="ui.ai-provenance.row.provider">Provider: anthropic</text>
+  <text x="48" y="192" class="row" data-i18n="ui.ai-provenance.row.model-hint">Model hint: claude-opus-4-7</text>
+  <text x="48" y="210" class="row" data-i18n="ui.ai-provenance.row.model-version">Model version: 2026-05</text>
+  <text x="48" y="228" class="row" data-i18n="ui.ai-provenance.row.generated-at">Generated at: 2026-05-04 12:00 UTC</text>
+  <text x="48" y="246" class="row" data-i18n="ui.ai-provenance.row.token-count">Token count: 1850</text>
+
+  <rect x="32" y="264" width="736" height="180" class="panel"/>
+  <text x="48" y="284" class="header" data-i18n="ui.ai-provenance.section.prompt">PROMPT (TRUNCATED)</text>
+  <text x="48" y="306" class="row" data-i18n="ui.ai-provenance.row.prompt-excerpt">Generate a faction inspired by ember and ash, with five units...</text>
+  <text x="48" y="324" class="row">[truncated to 280 chars]</text>
+  <text x="48" y="362" class="row" data-i18n="ui.ai-provenance.row.content-hash">contentHash: 4c11..e2af</text>
+
+  <g class="button" data-action="aiProvenance.report">
+    <rect x="40" y="520" width="200" height="32" rx="4"/>
+    <text x="140" y="540" text-anchor="middle" data-i18n="ui.ai-provenance.report-button">REPORT THIS CONTENT</text>
+  </g>
+  <g class="button" data-action="aiProvenance.close">
+    <rect x="620" y="520" width="148" height="32" rx="4"/>
+    <text x="694" y="540" text-anchor="middle" data-i18n="ui.ai-provenance.close-button">CLOSE</text>
+  </g>
+</svg>
+</body>
+</html>

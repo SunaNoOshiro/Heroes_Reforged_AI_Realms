@@ -26,6 +26,7 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
   - SliderRows
   - ToggleRows
   - SegmentedControls
+  - PrivacyPane
   - ApplyCancelButtons
 
 ### State Bindings
@@ -36,6 +37,8 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
 | uiConfig | config.ui | Locale, animation speed, reduced motion, scale. |
 | gameplayLocks | selectors.options.gameplayConfigLocks | Settings locked during active game. |
 | dirty | selectors.options.hasUnsavedChanges | Apply enabled state. |
+| privacyOptions | state.privacy.options | Per [`privacy-options.schema.json`](../../../../../content-schema/schemas/privacy-options.schema.json): `displayNameMode`, `analyticsOptIn`, `allowMatureContent`, `saltFingerprint`. |
+| saltFingerprint | selectors.privacy.saltFingerprint | First 4 hex chars of the local salt; user-visible verification. |
 
 ### Mechanics Mapping
 - Edits a settings draft. Apply validates config values, persists presentation settings, and only changes gameplay-affecting options at allowed setup boundaries.

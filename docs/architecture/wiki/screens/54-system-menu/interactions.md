@@ -20,6 +20,7 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
 | Resume | `system.resume` | navigation | Caller screen | `CLOSE_SYSTEM_MENU` | Returns to gameplay. | Current screen darkens, tablet drops in, hovered command glows, and route buttons crossfade into child dialogs. |
 | Manage packs… | `system.managePacks` | navigation | `71-pack-manager` | `OPEN_PACK_MANAGER` | Routes to the pack manager. | Tablet darkens, manager fades in. |
 | Safe mode (disable all packs) | `system.safeMode` | navigation | `60-confirmation-dialog` | `ENTER_SAFE_MODE` | Routes through confirmation per [`pack-trust.md` § Safe Mode](../../../pack-trust.md#5-safe-mode). | Confirmation modal mounts; safe-mode banner appears on accept. |
+| Forget me on this device | `system.forgetMe` | navigation | `60-confirmation-dialog` | `WIPE_LOCAL_DATA` (with `scope: "all", confirmed: false`) | Routes through confirmation per [`data-inventory.md`](../../../data-inventory.md) § Wipe-Scope Policy. The handler iterates the inventory rows on accept; the page reloads to drop in-memory state. | Confirmation modal mounts; on accept, "Wiped" banner appears, then full reload. |
 
 ### State Changes
 - `state.ui.systemMenu.callerRoute` refreshes `callerRoute` after the owning reducer or local UI draft changes.
@@ -37,6 +38,7 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
 - Resume can route to Caller screen after guard approval and exit animation.
 - Manage packs can route to `71-pack-manager` after guard approval and exit animation.
 - Safe mode can route to `60-confirmation-dialog` after guard approval and exit animation.
+- Forget me can route to `60-confirmation-dialog` after guard approval; on accept, dispatches `WIPE_LOCAL_DATA scope=all confirmed=true` and reloads.
 
 ### Disabled And Error Cases
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.

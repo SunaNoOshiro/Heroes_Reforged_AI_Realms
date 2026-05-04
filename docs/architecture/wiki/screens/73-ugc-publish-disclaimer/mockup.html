@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>73. UGC Publish Disclaimer - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #1a1410; }
+  body { color: #e8d8b8; font-family: ui-monospace, Menlo, monospace; }
+  svg { width: 800px; height: 600px; display: block; background: #1a1410; }
+  .frame { fill: #2b1f15; stroke: #c9a14e; stroke-width: 2; }
+  .panel { fill: #1f1610; stroke: #6b4f2a; stroke-width: 1; }
+  .header { fill: #f0d590; font: 700 13px ui-monospace, Menlo, monospace; letter-spacing: .4px; }
+  .row { fill: #d8c4a0; font: 11px ui-monospace, Menlo, monospace; }
+  .warn { fill: #ffd166; font: 700 11px ui-monospace, Menlo, monospace; }
+  .button rect { fill: #4a3520; stroke: #c9a14e; }
+  .button text { fill: #f0d590; font: 700 11px ui-monospace, Menlo, monospace; }
+  .button-disabled rect { fill: #2a1f10; stroke: #5b4f2a; }
+  .button-disabled text { fill: #6b5f4a; font: 700 11px ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body data-screen="73-ugc-publish-disclaimer" data-archetype="system-disclosure-modal" data-curation="curated-pass-1">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="UGC Publish Disclaimer mockup">
+  <rect x="14" y="14" width="772" height="572" class="frame"/>
+
+  <text x="40" y="44" class="header" data-i18n="ui.publish.policy.title">SHARING A CREATION</text>
+
+  <rect x="32" y="60" width="736" height="52" class="panel"/>
+  <text x="48" y="80" class="row" data-i18n="ui.publish.policy.body">By exporting this pack you confirm:</text>
+  <text x="48" y="100" class="row">Pack: example_pack v0.1.0   hash: 4c11..e2af   source: map-editor</text>
+
+  <rect x="32" y="124" width="736" height="120" class="panel"/>
+  <text x="48" y="144" class="header">CONTENT POLICY</text>
+  <text x="48" y="166" class="row" data-i18n="ui.publish.policy.bullet.no-infringement">• No copyrighted assets without permission.</text>
+  <text x="48" y="184" class="row" data-i18n="ui.publish.policy.bullet.no-minors-sexual">• No sexual content involving minors.</text>
+  <text x="48" y="202" class="row" data-i18n="ui.publish.policy.bullet.no-targeted-harassment">• No targeted harassment of real people.</text>
+  <text x="48" y="220" class="row" data-i18n="ui.publish.policy.bullet.no-illegal">• No content illegal in the creator's jurisdiction.</text>
+
+  <rect x="32" y="256" width="736" height="80" class="panel"/>
+  <g data-action="publish.toggleRights">
+    <text x="48" y="278" class="row" data-i18n="ui.publish.policy.ack.rights">[ ] I am the author or have rights to every asset in this pack.</text>
+  </g>
+  <g data-action="publish.togglePolicy">
+    <text x="48" y="304" class="row" data-i18n="ui.publish.policy.ack.policy">[ ] I accept the content policy.</text>
+  </g>
+  <text x="48" y="322" class="warn" data-i18n="ui.publish.policy.required-checks">Both checks are required to export.</text>
+
+  <rect x="32" y="350" width="736" height="60" class="panel"/>
+  <text x="48" y="372" class="warn" data-i18n="ui.publish.policy.local-only-notice">This export writes a local file only. No upload, no telemetry, no network call.</text>
+  <text x="48" y="390" class="row">A signed-acks/&lt;contentHash&gt;.json companion file is written inside the .hrmod archive.</text>
+
+  <g class="button-disabled" data-action="publish.accept">
+    <rect x="40" y="520" width="200" height="32" rx="4"/>
+    <text x="140" y="540" text-anchor="middle" data-i18n="ui.publish.policy.export-button">EXPORT (DISABLED)</text>
+  </g>
+  <g class="button" data-action="publish.cancel">
+    <rect x="620" y="520" width="148" height="32" rx="4"/>
+    <text x="694" y="540" text-anchor="middle" data-i18n="ui.publish.policy.cancel-button">CANCEL</text>
+  </g>
+</svg>
+</body>
+</html>

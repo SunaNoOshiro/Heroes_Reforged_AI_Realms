@@ -2,6 +2,7 @@
   "$schema": "heroes-reforged/asset-index.schema.json",
   "schemaVersion": 1,
   "packId": "minimal_pack",
+  "pathScheme": "pack-relative",
   "assets": [
     {
       "id": "unit:slate_footman:sprite",

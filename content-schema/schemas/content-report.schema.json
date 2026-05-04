@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/content-report.schema.json",
+  "title": "Content Report",
+  "description": "Player-submitted report targeting unsafe or infringing content (pack, scenario, hero, unit, AI-faction). Distinct from `report-bundle.schema.json` (peer-behavior). Persisted locally in `state.privacy.outboundReports[]` and dequeued by the future moderation backend (Plan 30). See `ugc-safety.md` and screen 75.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "reportId",
+    "targetType",
+    "targetId",
+    "reason",
+    "submittedAt"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "reportId":   {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$",
+      "description": "Local opaque identifier; xxh64 of (targetId, submittedAt, salt). Never user-visible."
+    },
+    "targetType": {
+      "enum": ["pack", "scenario", "hero", "unit", "ai-faction"]
+    },
+    "targetId":   { "type": "string", "minLength": 1 },
+    "contentHash":{
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$",
+      "description": "Hex digest of the offending pack's contentHash (first 16 hex chars) so the moderation backend can correlate to revocation entries."
+    },
+    "reason":     {
+      "enum": [
+        "infringement",
+        "harassment",
+        "mature-without-rating",
+        "malware",
+        "other"
+      ]
+    },
+    "notes":      {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Free-text notes; sanitized via the `safeUserText` helper per `ugc-safety.md` § Text Sanitization Contract."
+    },
+    "screenshotAssetId": {
+      "type": "string",
+      "description": "Optional pack-relative asset ID pointing at a user-captured screenshot. No upload at v1."
+    },
+    "submittedAt": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix epoch ms at submission."
+    },
+    "appVersion":  { "type": "string" },
+    "engineHash":  { "type": "string", "pattern": "^[a-f0-9]{16,128}$" }
+  }
+}

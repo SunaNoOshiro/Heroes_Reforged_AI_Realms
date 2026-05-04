@@ -99,7 +99,10 @@
         "61-ai-turn-indicator",
         "70-save-import",
         "71-pack-manager",
-        "72-pack-trust-prompt"
+        "72-pack-trust-prompt",
+        "73-ugc-publish-disclaimer",
+        "74-ai-provenance-detail",
+        "75-content-report"
       ]
     },
     {

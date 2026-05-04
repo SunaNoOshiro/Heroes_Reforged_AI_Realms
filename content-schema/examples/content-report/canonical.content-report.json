@@ -1,0 +1,13 @@
+{
+  "$schema": "heroes-reforged/content-report.schema.json",
+  "schemaVersion": 1,
+  "reportId": "9f3a1b7c2e0d4f81",
+  "targetType": "pack",
+  "targetId": "example_pack",
+  "contentHash": "4c11ab27ce0fe2af",
+  "reason": "infringement",
+  "notes": "This pack appears to redistribute copyrighted assets without permission.",
+  "submittedAt": 1762200000000,
+  "appVersion": "0.1.0",
+  "engineHash": "0000000000000000000000000000000000000000000000000000000000000001"
+}

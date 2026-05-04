@@ -18,6 +18,7 @@ Map editor shell with terrain/object palettes, brush tools, layers, scenario pro
 | Place object | `editor.placeObject` | command | Current screen | `PLACE_EDITOR_OBJECT` | Adds object record with stable ID. | Brush preview follows cursor, object stamp bounces, invalid cells crosshatch red, validation drawer slides up, and saved status seal glows. |
 | Validate | `editor.validate` | local-ui | Current screen | `VALIDATE_EDITOR_DOCUMENT` | Refreshes validation drawer. | Brush preview follows cursor, object stamp bounces, invalid cells crosshatch red, validation drawer slides up, and saved status seal glows. |
 | Save | `editor.save` | command | Current screen | `SAVE_EDITOR_SCENARIO` | Writes scenario draft after validation guard. | Brush preview follows cursor, object stamp bounces, invalid cells crosshatch red, validation drawer slides up, and saved status seal glows. |
+| Publish… | `editor.publish` | navigation | `73-ugc-publish-disclaimer` | `OPEN_PUBLISH_DISCLAIMER` | Routes through screen 73 for the per-pack content-policy ack; on accept, dispatches `EXPORT_SCENARIO_AS_PACK` to write a local `.hrmod` (no network upload at v1). | Modal drops in over dimmed editor. |
 
 ### State Changes
 - `state.editor.currentDocument` refreshes `editorDocument` after the owning reducer or local UI draft changes.
@@ -28,7 +29,10 @@ Map editor shell with terrain/object palettes, brush tools, layers, scenario pro
 - UI-only hover, focus, selected row, open tab, target cursor, drag ghost, and animation frame stay outside deterministic gameplay state.
 
 ### Navigation Outcomes
-
+- Publish can route to `73-ugc-publish-disclaimer` after the editor's
+  validation guard passes; on accept, the disclaimer screen
+  dispatches `EXPORT_SCENARIO_AS_PACK` and the OS file-picker resolves
+  the destination.
 
 ### Disabled And Error Cases
 - Disable controls when required selectors, registry records, resource costs, target legality, ownership, phase, or route guards fail.

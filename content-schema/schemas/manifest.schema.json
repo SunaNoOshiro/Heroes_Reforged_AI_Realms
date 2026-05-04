@@ -103,6 +103,8 @@
     "capabilities": {
       "type": "array",
       "uniqueItems": true,
+      "default": ["scripts.none"],
+      "description": "Closed enum of pack capabilities. Default-deny: a pack that omits this field is treated as `[\"scripts.none\"]`. Capability declarations are load-bearing per `ugc-safety.md` § Capability Enforcement; the loader applies byte-level sniffs when `scripts.none` is declared.",
       "items": {
         "type": "string",
         "enum": [
@@ -112,6 +114,23 @@
           "assets.binary",
           "scripts.none"
         ]
+      }
+    },
+    "aiProvenance": {
+      "type": "object",
+      "description": "Optional manifest-level re-assertion of `GeneratedFaction.notes` so the loader can read provenance without parsing every record. Populated by AI-generation Stage 6 (pack materialize). When `present = true`, screen 74 (`ai-provenance-detail`) renders this block on player request.",
+      "additionalProperties": false,
+      "required": ["present"],
+      "properties": {
+        "present":      { "type": "boolean", "default": false },
+        "providerId":   { "type": "string" },
+        "modelHint":    { "type": "string" },
+        "modelVersion": { "type": "string" },
+        "generatedAt":  { "type": "integer", "minimum": 0 },
+        "promptHash":   { "type": "string", "pattern": "^[a-f0-9]{16}$" },
+        "tokenCount":   { "type": "integer", "minimum": 0 },
+        "playerInspectable": { "type": "boolean", "default": true },
+        "promptExcerpt":{ "type": "string", "maxLength": 280 }
       }
     },
     "signature": {

@@ -60,3 +60,4 @@
 - Reads profile score records and sorts deterministically by score/date tie-breakers. It is read-only except clearing/importing through confirmed profile actions.
 - Missing presentation may fall back through asset resolver.
 - Missing gameplay records, invalid commands, and unresolved content IDs fail loudly before controls become enabled.
+- **Display name policy.** When `state.privacy.options.displayNameMode === "hashed"` (default), each row renders `playerLabel` (short opaque string), not `playerName`. When `displayNameMode === "clear"` and the score record carries a `playerName`, that string renders instead. See [`data-inventory.md`](../../../data-inventory.md).

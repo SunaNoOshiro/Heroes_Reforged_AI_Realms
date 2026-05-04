@@ -147,6 +147,39 @@ safety must still be removable from clients. The contract is in
 require a schema change and a runtime policy update. That blocks a
 sandboxed pack from claiming made-up permissions.
 
+### Capability Enforcement
+
+The schema declares `capabilities` with `default: ["scripts.none"]`.
+A pack that omits the field is treated as `["scripts.none"]`
+(default-deny). The loader MUST apply byte-level sniffs whenever
+`scripts.none` is declared (or default), per
+[`ugc-safety.md` § Capability Enforcement](./ugc-safety.md#6-capability-enforcement):
+no `js/mjs/cjs/ts/wasm/html/htm/svg` extensions, no
+prototype-pollution keys, no `formulas.ast` nodes outside the Effect
+Registry's pure-evaluator set.
+
+## Asset Path Scheme
+
+`assets/index.json` declares `pathScheme: "pack-relative"` and every
+`path` is constrained to a closed extension allowlist (`png`, `webp`,
+`ogg`, `mp3`, `json`). Absolute schemes (`http`, `https`, `file`,
+`data`, `blob`), leading slashes, and parent-directory escapes are
+rejected at schema time. Rationale: closes the IP-exfiltration surface
+flagged in audit 21 (Q390). Cross-link:
+[`ugc-safety.md` § External URL Ban](./ugc-safety.md#1-external-url-ban),
+[`asset-index.schema.json`](../../content-schema/schemas/asset-index.schema.json).
+
+## Override Precedence
+
+When a pack declares `dependencies[]` and `overrides[]`, resolution
+follows declaration order — **last declared wins** on a collision.
+Sandboxed packs MAY NEVER shadow a non-sandboxed canonical pack on a
+stable ID; attempting to do so is a load-time error
+(`override.sandboxed-shadow-canonical`). Same-tier collisions (two
+non-sandboxed packs claiming the same ID) require an explicit
+`overrides[]` entry on the downstream pack; without it the load
+fails with `override.unauthorized-shadow`.
+
 ## Folder Layout
 
 Canonical faction-pack shape:

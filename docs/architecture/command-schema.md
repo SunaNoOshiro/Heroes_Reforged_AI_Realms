@@ -556,6 +556,57 @@ adapter, never the engine reducer.
   Owned by
   `tasks/mvp/08-persistence/12-pack-trust-prompt-and-manager.md`.
 
+## UGC, Privacy & Content-Report Commands
+
+Commands surfaced by screens
+[`56-options`](./wiki/screens/56-options/),
+[`73-ugc-publish-disclaimer`](./wiki/screens/73-ugc-publish-disclaimer/),
+[`74-ai-provenance-detail`](./wiki/screens/74-ai-provenance-detail/),
+[`75-content-report`](./wiki/screens/75-content-report/), and the
+"Forget me" entry in [`54-system-menu`](./wiki/screens/54-system-menu/),
+per [`ugc-safety.md`](./ugc-safety.md) and
+[`data-inventory.md`](./data-inventory.md). These tokens drive UI flow
+and persistence-side state but do not enter the deterministic engine
+command log; they are dispatched against the persistence/content-runtime
+adapter, never the engine reducer.
+
+- `WIPE_LOCAL_DATA` — wipe local data per scope. Payload
+  `{ scope: "all" | "saves" | "profile" | "chat", confirmed: boolean }`.
+  Iterates the rows in [`data-inventory.md`](./data-inventory.md)
+  rather than a hand-coded list. Owned by
+  `tasks/mvp/08-persistence/13-wipe-local-data-handler.md`.
+- `TOGGLE_HASHED_DISPLAY_NAME` — flip
+  `state.privacy.options.displayNameMode`. Owned by
+  `tasks/mvp/07-ui-shell/22-privacy-pane-in-options.md`.
+- `TOGGLE_ANALYTICS_OPT_IN` — flip
+  `state.privacy.options.analyticsOptIn`. Owned by the same task.
+- `TOGGLE_MATURE_CONTENT_GATE` — flip
+  `state.privacy.options.allowMatureContent`; binds the same key
+  Plan 20 uses for its `contentRating` gate. Owned by the same task.
+- `RESET_ANALYTICS_ID` — regenerate `analyticsClientId` if present
+  (no-op until a future analytics integration lands). local-ui /
+  persistence.
+- `OPEN_PUBLISH_DISCLAIMER` — opens screen 73. local-ui.
+- `ACCEPT_PUBLISH_DISCLAIMER` — record the per-pack ack and continue
+  to the local export step. Owned by
+  `tasks/phase-2/04-content-editor/10-publish-disclaimer-flow.md`.
+- `EXPORT_SCENARIO_AS_PACK` — package the active editor scenario into
+  a `.hrmod` (no network upload at v1). Owned by the same task.
+- `OPEN_AI_PROVENANCE` — opens screen 74 with a target pack id.
+  local-ui. Owned by
+  `tasks/phase-2/05-mod-system/13-ai-provenance-detail-screen.md`.
+- `OPEN_CONTENT_REPORT` — opens screen 75 with target metadata
+  pre-filled. local-ui.
+- `SUBMIT_CONTENT_REPORT` — validate against
+  `content-report.schema.json`, persist to
+  `state.privacy.outboundReports[]`, return to caller. Owned by
+  `tasks/phase-2/05-mod-system/12-content-report-intake-and-local-queue.md`.
+- `CANCEL_CONTENT_REPORT` — drop the in-progress report. local-ui.
+- `REPORT_PACK` — alias of `OPEN_CONTENT_REPORT` from any UGC
+  info-card affordance. Distinct from `REPORT_PEER` (chat-safety):
+  this command targets content; `REPORT_PEER` targets player
+  behavior.
+
 ## Future Commands (Phase 2+)
 
 These are documented for reference but not implemented in MVP:

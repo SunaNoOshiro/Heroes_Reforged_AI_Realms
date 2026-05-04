@@ -51,12 +51,14 @@
     },
     "notes": {
       "type": "object",
-      "description": "Generator-reported metadata (e.g. provider id, prompt hash, estimated power). Never load-bearing for gameplay. `notes.providerId` is best-effort metadata only; the authoritative version pin baked into the materialized pack is `manifest.generation` per `generation-config.schema.json`.",
+      "description": "Generator-reported metadata (e.g. provider id, prompt hash, estimated power). Never load-bearing for gameplay. `notes.providerId` is best-effort metadata only; the authoritative version pin baked into the materialized pack is `manifest.generation` per `generation-config.schema.json`. `playerInspectable` and `modelVersion` are surfaced by screen 74 (`ai-provenance-detail`) per `ugc-safety.md` § Localization Keys.",
       "properties": {
         "providerId":  { "type": "string" },
         "promptHash":  { "type": "string" },
         "modelHint":   { "type": "string" },
+        "modelVersion": { "type": "string" },
         "tokenCount":  { "type": "integer", "minimum": 0 },
+        "playerInspectable": { "type": "boolean", "default": true },
         "warnings":    { "type": "array", "items": { "type": "string" } }
       },
       "additionalProperties": false

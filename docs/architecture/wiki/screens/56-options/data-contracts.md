@@ -12,6 +12,7 @@
 | --- | --- | --- |
 | `asset-index.schema.json` | Backgrounds, frames, icons, cursor sprites, animation manifests. | `content-schema/schemas/asset-index.schema.json` |
 | `localization.schema.json` | UI labels, status text, disabled reasons, error messages. | `content-schema/schemas/localization.schema.json` |
+| `privacy-options.schema.json` | Privacy pane state slice (`displayNameMode`, `analyticsOptIn`, `allowMatureContent`, `saltFingerprint`). | `content-schema/schemas/privacy-options.schema.json` |
 | `ruleset.schema.json` | Deterministic constants, formulas, and guard rules consumed by commands. | `content-schema/schemas/ruleset.schema.json` |
 | Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, or shell state as listed below. | Loaded content/runtime registries. |
 
@@ -23,12 +24,19 @@
 | `uiConfig` | `config.ui` | Locale, animation speed, reduced motion, scale. |
 | `gameplayLocks` | `selectors.options.gameplayConfigLocks` | Settings locked during active game. |
 | `dirty` | `selectors.options.hasUnsavedChanges` | Apply enabled state. |
+| `privacyOptions` | `state.privacy.options` | Per `privacy-options.schema.json`. |
+| `saltFingerprint` | `selectors.privacy.saltFingerprint` | First 4 hex chars of the local salt; verifies that `WIPE_LOCAL_DATA` rotated it. |
 
 ### Commands And Events
 - `SET_OPTIONS_TAB` from `options.tab`: Changes visible category.
 - `SET_OPTIONS_DRAFT_VALUE` from `options.slider`: Updates draft value.
 - `APPLY_OPTIONS` from `options.apply`: Persists allowed settings.
 - `CANCEL_OPTIONS` from `options.cancel`: Discards draft.
+- `TOGGLE_HASHED_DISPLAY_NAME` from `options.toggleHashedDisplayName`: Flip `state.privacy.options.displayNameMode`.
+- `TOGGLE_ANALYTICS_OPT_IN` from `options.toggleAnalyticsOptIn`: Flip `state.privacy.options.analyticsOptIn`.
+- `TOGGLE_MATURE_CONTENT_GATE` from `options.toggleMatureContentGate`: Flip `state.privacy.options.allowMatureContent`.
+- `RESET_ANALYTICS_ID` from `options.resetAnalyticsId`: Regenerate the analytics client id (no-op until a future analytics integration lands).
+- `WIPE_LOCAL_DATA` from `options.forgetMe`: Routes through screen 60-confirmation-dialog per [`data-inventory.md` § Wipe-Scope Policy](../../../data-inventory.md#3-wipe-scope-policy).
 
 ### Config Keys
 - `config.ui.locale`
@@ -59,6 +67,16 @@
 - `ui.options.actions.*`
 - `ui.options.status.*`
 - `ui.options.errors.*`
+- `ui.privacy.tab.title`
+- `ui.privacy.display-name-mode.label`
+- `ui.privacy.display-name-mode.hashed`
+- `ui.privacy.display-name-mode.clear`
+- `ui.privacy.analytics-opt-in.label`
+- `ui.privacy.mature-content.label`
+- `ui.privacy.salt-fingerprint.label`
+- `ui.privacy.reset-analytics-id.label`
+- `ui.privacy.forget-me.label`
+- `ui.privacy.local-storage-warning`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs

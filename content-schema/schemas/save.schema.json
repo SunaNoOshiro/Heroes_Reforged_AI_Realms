@@ -84,7 +84,27 @@
         "name":       { "type": "string", "maxLength": 120 },
         "savedAt":    { "type": "integer", "minimum": 0 },
         "turnNumber": { "type": "integer", "minimum": 0 },
-        "thumbnail":  { "type": "string", "pattern": "^data:image/(png|webp);base64," }
+        "thumbnail":  { "type": "string", "pattern": "^data:image/(png|webp);base64," },
+        "displayNameMode": {
+          "enum": ["clear", "hashed"],
+          "default": "hashed",
+          "description": "Per `data-inventory.md`: when `hashed`, `playerHash` + `playerLabel` are written and `playerName` is omitted. Default flips to `hashed` for new installs."
+        },
+        "playerName": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Cleartext display name. Only present when `displayNameMode = clear` (opt-in via screen 56 Privacy pane)."
+        },
+        "playerHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{16}$",
+          "description": "Salted xxh64 of the display name. Hash boundary: `xxh64(displayName + localSalt)`. The salt lives in IndexedDB `hr-profile.keys` and is wiped by `WIPE_LOCAL_DATA scope=profile|all`."
+        },
+        "playerLabel": {
+          "type": "string",
+          "maxLength": 16,
+          "description": "Player-chosen short opaque label rendered in lieu of cleartext name (e.g. \"Suna\" → \"S.\")."
+        }
       }
     }
   },

@@ -32,6 +32,7 @@
 - `CLOSE_SYSTEM_MENU` from `system.resume`: Returns to gameplay.
 - `OPEN_PACK_MANAGER` from `system.managePacks`: Routes to screen [`71-pack-manager`](../71-pack-manager/) per [`pack-trust.md`](../../../pack-trust.md).
 - `ENTER_SAFE_MODE` from `system.safeMode`: Routes through screen [`60-confirmation-dialog`](../60-confirmation-dialog/) per [`pack-trust.md` § Safe Mode](../../../pack-trust.md#5-safe-mode).
+- `WIPE_LOCAL_DATA` from `system.forgetMe`: Routes through screen [`60-confirmation-dialog`](../60-confirmation-dialog/) per [`data-inventory.md` § Wipe-Scope Policy](../../../data-inventory.md#3-wipe-scope-policy). Payload `{ scope: "all" \| "saves" \| "profile" \| "chat", confirmed: boolean }`. The handler iterates `data-inventory.md` rows.
 
 ### Config Keys
 - `config.ui.locale`
@@ -46,6 +47,8 @@
 - `ui.system-menu.actions.*`
 - `ui.system-menu.status.*`
 - `ui.system-menu.errors.*`
+- `ui.privacy.forget-me.label`
+- `ui.privacy.forget-me.confirm`
 - `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
 
 ### Asset, Sound, And VFX IDs

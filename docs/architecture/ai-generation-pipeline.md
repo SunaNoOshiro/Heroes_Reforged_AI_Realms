@@ -194,6 +194,19 @@ Output: faction pack directory with:
   sandbox-enforcement layer (see
   [`pack-contract.md` § Sandbox enforcement`](./pack-contract.md#sandbox-enforcement))
   reads both fields.
+- **AI provenance disclosure**: Stage 6 emits the
+  `manifest.aiProvenance` block by re-asserting the values from
+  `GeneratedFaction.notes` (`providerId`, `modelHint`,
+  `modelVersion`, `promptHash`, `tokenCount`,
+  `playerInspectable`, optional truncated `promptExcerpt` ≤ 280
+  chars). `aiProvenance.present` is set to `true`. Screen 74
+  (`ai-provenance-detail`) is the player-facing surface that
+  consumes this block, per [`ugc-safety.md`](./ugc-safety.md).
+- **Optional publish ack**: if the user picks "Save and share"
+  instead of "Save locally", Stage 6 routes the export through
+  screen 73 (`ugc-publish-disclaimer`) which records a per-pack
+  `signed-acks/<contentHash>.json` companion file before writing
+  the `.hrmod`.
 - records under `units/`, `heroes/`, `buildings/`, `abilities/`
 - `assets/index.json` with placeholder asset bindings
 - raw per-frame PNGs under `sprites/<entityId>/<frame>.png`

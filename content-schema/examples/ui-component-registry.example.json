@@ -1157,6 +1157,14 @@
       ]
     },
     {
+      "componentId": "ForgetMeButton",
+      "module": "src/ui/components/forget-me-button.tsx",
+      "exportName": "ForgetMeButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "FortificationCutaway",
       "module": "src/ui/components/fortification-cutaway.tsx",
       "exportName": "FortificationCutaway",
@@ -2285,6 +2293,14 @@
       ]
     },
     {
+      "componentId": "PrivacyPane",
+      "module": "src/ui/options/privacy-pane.tsx",
+      "exportName": "PrivacyPane",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
       "componentId": "ProgressBar",
       "module": "src/ui/components/progress-bar.tsx",
       "exportName": "ProgressBar",
@@ -2338,6 +2354,14 @@
       "exportName": "PublicInfoRows",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "PublishButton",
+      "module": "src/ui/components/publish-button.tsx",
+      "exportName": "PublishButton",
+      "tags": [
+        "control"
       ]
     },
     {

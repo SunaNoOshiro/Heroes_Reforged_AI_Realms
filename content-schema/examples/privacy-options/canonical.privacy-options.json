@@ -1,0 +1,8 @@
+{
+  "$schema": "heroes-reforged/privacy-options.schema.json",
+  "schemaVersion": 1,
+  "displayNameMode": "hashed",
+  "analyticsOptIn": false,
+  "allowMatureContent": false,
+  "saltFingerprint": "4c11"
+}

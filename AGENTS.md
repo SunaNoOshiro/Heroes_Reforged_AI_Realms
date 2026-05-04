@@ -113,6 +113,18 @@ Read first if you need to understand the full project:
     `docs/archive/AUDIT-*` claims.
 40. [docs/planning/deferred.md](docs/planning/deferred.md)
     — single register of deferred / out-of-scope items (`DEF-NNN`).
+41. [docs/architecture/data-inventory.md](docs/architecture/data-inventory.md)
+    — single source of truth for every persisted field (medium,
+    sensitivity tier, retention, wipe scope). The `WIPE_LOCAL_DATA`
+    handler iterates this document.
+42. [docs/architecture/persistence.md](docs/architecture/persistence.md)
+    — closed allowlist of storage media; per-slice mapping;
+    `localStorage` / cookie ban.
+43. [docs/architecture/permissions.md](docs/architecture/permissions.md)
+    — closed allowlist of OS / browser APIs.
+44. [docs/architecture/ugc-safety.md](docs/architecture/ugc-safety.md)
+    — text / binary / capability sanitization contracts for UGC and
+    AI-generated payloads.
 
 For a single browseable view of architecture docs, general flow diagrams,
 and numbered UI screen packages, open
@@ -135,6 +147,15 @@ viewer.
   updating the relevant screen package first, while preserving
   deterministic gameplay, stable IDs, and save/replay contracts. See
   [docs/architecture/wiki/README.md](docs/architecture/wiki/README.md#ui-evolution-policy).
+- every persisted field is registered in
+  [`data-inventory.md`](docs/architecture/data-inventory.md); adding a
+  new persistent slice without an inventory row is a CI failure
+- OS / browser API usage is bound by
+  [`docs/architecture/permissions.md`](docs/architecture/permissions.md);
+  adding a new API requires an architecture amendment
+- all persisted state lives in IndexedDB unless
+  [`persistence.md`](docs/architecture/persistence.md) exempts it;
+  `localStorage` and `document.cookie` are banned in `src/`
 
 ## Folder Guide
 

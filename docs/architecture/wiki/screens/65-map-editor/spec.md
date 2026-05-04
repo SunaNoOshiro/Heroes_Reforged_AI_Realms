@@ -29,6 +29,7 @@ Map editor shell with terrain/object palettes, brush tools, layers, scenario pro
   - PropertiesInspector
   - ValidationDrawer
   - SaveExportButtons
+  - PublishButton
 
 ### State Bindings
 | Element | Bound To | Notes |

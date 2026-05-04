@@ -1,0 +1,29 @@
+{
+  "$schema": "heroes-reforged/asset-index.schema.json",
+  "schemaVersion": 1,
+  "packId": "example_pack",
+  "pathScheme": "pack-relative",
+  "assets": [
+    {
+      "id": "unit:example_unit:sprite",
+      "kind": "image",
+      "path": "assets/sprites/example-unit.png",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000001",
+      "bytes": 0
+    },
+    {
+      "id": "ui:example:theme",
+      "kind": "audio",
+      "path": "sounds/example-theme.ogg",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000002",
+      "bytes": 0
+    },
+    {
+      "id": "ui:example:icon",
+      "kind": "image",
+      "path": "assets/icons/example.webp",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000003",
+      "bytes": 0
+    }
+  ]
+}

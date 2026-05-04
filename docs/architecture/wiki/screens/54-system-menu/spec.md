@@ -26,6 +26,7 @@ In-game system menu overlay for save, load, options, restart, main menu, and qui
   - CommandTablet
   - SaveLoadButtons
   - OptionsButton
+  - ForgetMeButton
   - ConfirmRoutes
 
 ### State Bindings

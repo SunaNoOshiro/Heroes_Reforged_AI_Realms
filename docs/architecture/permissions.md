@@ -1,0 +1,73 @@
+# OS / Browser Permissions
+
+> Closed allowlist of the browser / OS APIs the app may use. Adding
+> any API not on this list requires an architecture amendment PR
+> that updates this file AND adds a row in
+> [`data-inventory.md`](./data-inventory.md) if the API can produce
+> persisted data.
+
+## 1. Allowlist
+
+| API | Purpose | Owner | Justification |
+|-----|---------|-------|---------------|
+| WebRTC `RTCDataChannel` | gameplay command transport | Plan 07 | sole multiplayer transport; no media tracks |
+| WebRTC ICE / STUN / TURN | NAT traversal | Plan 07 | required by DataChannel |
+| `IndexedDB` | persistence | Plan 08 | per [`persistence.md`](./persistence.md) |
+| `File System Access API` | save export only | Plan 08 (optional desktop) | user-initiated; never background |
+| `Clipboard read/write` | save-link share, content-report screenshot ref | Plan 21 (this file's plan) | user-gesture-only; no background read |
+| `WebCrypto` | salt / hashing / future tokens | Plan 21 + Plan 25 | non-extractable keys |
+| `Canvas` / `WebGL2` | renderer | Plan 06 | rendering only; never reads CORS-tainted images |
+| `HTMLCanvasElement.toBlob` | screenshot for content reports | Plan 21 | user-initiated only |
+| `Web Workers` | gameplay-AI workers, decoders | Plan 10 | per [`ai-contract.md`](./ai-contract.md) and [`ugc-safety.md`](./ugc-safety.md) |
+| `createImageBitmap` | image decode-off-thread | Plan 21 | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
+| `AudioContext.decodeAudioData` | audio decode | Plan 21 | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
+| `Notification API` | (deferred) | (none) | requires architecture amendment |
+| `Microphone` / `Camera` | (deferred; voice chat out of MVP) | (none) | requires architecture amendment |
+| `Geolocation` | forbidden | (none) | not used; banned indefinitely |
+| `Contacts API` | forbidden | (none) | not used; banned indefinitely |
+| `Bluetooth` / `Serial` / `USB` / `HID` | forbidden | (none) | not used; banned indefinitely |
+| `localStorage` | forbidden | (none) | per [`persistence.md`](./persistence.md) § localStorage Ban |
+| `document.cookie` (read/write from JS) | forbidden | (none) | per [`persistence.md`](./persistence.md) § Cookies |
+
+## 2. Permission-Request Policy
+
+Permission requests fire on **explicit user gesture** only — never on
+session start, never on screen mount.
+
+- Clipboard read/write requires a click or keyboard shortcut on a UI
+  affordance that explicitly names the target.
+- File-System-Access save export requires the user to pick a
+  destination via the OS picker.
+- Future microphone / camera (deferred) MUST display a localized
+  pre-prompt before the OS prompt.
+
+## 3. Crash Reporting
+
+Crash dumps live in-memory only at v1 and are exported only via a
+user-initiated download. The redaction baseline lives in
+[`data-inventory.md` § 4 Crash Dumps](./data-inventory.md#4-crash-dumps).
+Until Plan 22 declares a network upload destination, no crash dump
+leaves the device.
+
+## 4. CI Enforcement
+
+A lint rule scans `src/` for direct invocations of any forbidden API
+(see the table above) and fails on any match outside an explicit
+allowlist. Adding a new permitted API requires:
+
+1. A row in this document.
+2. A row in [`data-inventory.md`](./data-inventory.md) if the API
+   produces persisted data.
+3. A privacy-pane disclosure on screen 56 if the API can correlate
+   to a single device or session.
+
+## 5. Cross-References
+
+- [`docs/architecture/persistence.md`](./persistence.md) — concrete
+  storage media derived from this allowlist.
+- [`docs/architecture/data-inventory.md`](./data-inventory.md) — per-field
+  inventory of what those APIs persist.
+- [`docs/architecture/ugc-safety.md`](./ugc-safety.md) — decoder /
+  validator constraints layered on top of the allowed APIs.
+- [`docs/architecture/runtime-requirements.md`](./runtime-requirements.md)
+  — runtime preconditions intersect with this allowlist.

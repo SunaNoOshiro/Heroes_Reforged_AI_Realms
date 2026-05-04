@@ -578,6 +578,9 @@ function schemaForFile(filePath) {
   if (base.endsWith(".balance-report.json")) return "balance-report.schema.json";
   if (base.endsWith(".chat-message.json")) return "chat-message.schema.json";
   if (base.endsWith(".report-bundle.json")) return "report-bundle.schema.json";
+  if (base.endsWith(".content-report.json")) return "content-report.schema.json";
+  if (base.endsWith(".privacy-options.json")) return "privacy-options.schema.json";
+  if (base.endsWith(".asset-index.json")) return "asset-index.schema.json";
   if (base.endsWith(".localization.json")) return "localization.schema.json";
 
   return null;

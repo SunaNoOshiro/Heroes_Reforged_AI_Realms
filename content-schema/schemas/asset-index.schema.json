@@ -6,6 +6,7 @@
   "required": [
     "schemaVersion",
     "packId",
+    "pathScheme",
     "assets"
   ],
   "properties": {
@@ -14,6 +15,11 @@
       "minimum": 1
     },
     "packId": { "type": "string" },
+    "pathScheme": {
+      "type": "string",
+      "const": "pack-relative",
+      "description": "Closed scheme. Asset paths are resolved relative to the pack root. Absolute schemes (http, https, file, data, blob) are forbidden by `ugc-safety.md` § External URL Ban."
+    },
     "assets": {
       "type": "array",
       "items": {
@@ -27,7 +33,12 @@
         "properties": {
           "id":   { "type": "string" },
           "kind": { "type": "string" },
-          "path": { "type": "string" },
+          "path": {
+            "type": "string",
+            "description": "Pack-relative path. Forbids absolute schemes, leading slashes, parent-directory escapes, and any extension outside the closed allowlist (png, webp, ogg, mp3, json). See `ugc-safety.md` § Binary Asset Validators.",
+            "pattern": "^(?!https?:|file:|data:|blob:)(?!/)(?!\\.\\.)[A-Za-z0-9_./-]+\\.(png|webp|ogg|mp3|json)$",
+            "maxLength": 256
+          },
           "sha256": {
             "type": "string",
             "description": "Hex SHA-256 of the asset bytes. Recomputed by `npm run build:asset-index`. Mismatch at load time is fatal: pack.error.asset.integrity.",

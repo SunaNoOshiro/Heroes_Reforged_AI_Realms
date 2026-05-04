@@ -2900,7 +2900,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 357
+      "downstreamTransitiveCount": 375
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -2962,7 +2962,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 355
+      "downstreamTransitiveCount": 373
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3019,7 +3019,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 230
+      "downstreamTransitiveCount": 231
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3075,7 +3075,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 267
+      "downstreamTransitiveCount": 285
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3222,7 +3222,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 219
+      "downstreamTransitiveCount": 220
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -3433,7 +3433,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 72
+      "downstreamTransitiveCount": 73
     },
     {
       "id": "mvp.01-engine-core.07b-canonical-json",
@@ -3556,7 +3556,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 69
+      "downstreamTransitiveCount": 70
     },
     {
       "id": "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test",
@@ -4121,7 +4121,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 265
+      "downstreamTransitiveCount": 283
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4179,7 +4179,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 186
+      "downstreamTransitiveCount": 204
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4243,7 +4243,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 126
+      "downstreamTransitiveCount": 144
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4301,7 +4301,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 131
+      "downstreamTransitiveCount": 149
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4362,7 +4362,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 177
+      "downstreamTransitiveCount": 195
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4423,7 +4423,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 236
+      "downstreamTransitiveCount": 254
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4497,7 +4497,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 117
+      "downstreamTransitiveCount": 135
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4582,7 +4582,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 86
+      "downstreamTransitiveCount": 104
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4683,7 +4683,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 83
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -4790,8 +4790,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 73
+      "downstreamDirectCount": 27,
+      "downstreamTransitiveCount": 91
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -4951,7 +4951,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 147
+      "downstreamTransitiveCount": 165
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5043,7 +5043,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 90
+      "downstreamTransitiveCount": 108
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5113,8 +5113,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 82
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5176,7 +5176,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 82
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -6171,7 +6171,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 43
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.02-content-schemas.29-publisher-registry-schema",
@@ -6392,6 +6392,527 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
       "downstreamTransitiveCount": 15
+    },
+    {
+      "id": "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+      "kind": "task",
+      "status": "planned",
+      "title": "safeUserText Helper And JSX / localStorage Lint",
+      "path": "tasks/mvp/02-content-schemas/32-safe-user-text-helper-and-jsx-lint.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Add the `safeUserText(maxLen)` helper consumed by every schema field that accepts user-supplied text, and add CI lint rules that ban `dangerouslySetInnerHTML` in `src/ui/`, `localStorage.setItem` in `src/`, and `document.cookie =` in `src/`. Per [`ugc-safety.md` § Text Sanitization Contract](../../../docs/architecture/ugc-safety.md#3-text-sanitization-contract) and [`persistence.md` § localStorage Ban](../../../docs/architecture/persistence.md#2-localstorage-ban).",
+      "inputs": [
+        "Closed allowlist of permitted markdown tags (`p`, `em`, `strong`, `ul`, `ol`, `li`, `code`, `a[href^=\"#\"]`).",
+        "Localization interpolation rules per [`localization.schema.json`](../../../content-schema/schemas/localization.schema.json)."
+      ],
+      "outputs": [
+        "`src/content-schema/safe-user-text.ts` — Zod helper.",
+        "`scripts/lint-jsx-dangerous-html.mjs` — zero-hit lint.",
+        "`scripts/lint-banned-storage-apis.mjs` — zero-hit lint."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)",
+        "[`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)",
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)"
+      ],
+      "ownedPaths": [
+        "src/content-schema/safe-user-text.ts",
+        "scripts/lint-jsx-dangerous-html.mjs",
+        "scripts/lint-banned-storage-apis.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`safeUserText(maxLen)` strips control chars and clamps length; unit tests cover ASCII, multi-byte, RTL, and zero-width injections.",
+        "`scripts/lint-jsx-dangerous-html.mjs` exits non-zero on any `dangerouslySetInnerHTML` match in `src/ui/`.",
+        "`scripts/lint-banned-storage-apis.mjs` exits non-zero on any `localStorage.setItem` or `document.cookie =` match in `src/` (allowlist initially empty).",
+        "Lints wired into `npm run validate` (additive; no existing pipeline regressions)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy",
+      "kind": "task",
+      "status": "planned",
+      "title": "Data Inventory And Wipe-Scope Policy",
+      "path": "tasks/mvp/02-content-schemas/33-data-inventory-and-wipe-scope-policy.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Maintain the canonical [`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md) table — one row per persisted field, sensitivity tier, retention TTL, and `WIPE_LOCAL_DATA` scope coverage. Wire a CI registry-scan under `npm run validate:tasks` that fails when an IndexedDB store literal in `src/persistence/` has no inventory row.",
+      "inputs": [
+        "Per-slice mapping in `persistence.md`."
+      ],
+      "outputs": [
+        "`docs/architecture/data-inventory.md` (already authored).",
+        "`scripts/check-data-inventory-coverage.mjs` — registry-scan lint."
+      ],
+      "readFirst": [
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)",
+        "[`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)",
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/data-inventory.md",
+        "scripts/check-data-inventory-coverage.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "The inventory document carries one row per persisted field with sensitivity, retention, and wipe scope columns.",
+        "`scripts/check-data-inventory-coverage.mjs` exits non-zero on any IndexedDB store literal not present in the inventory table.",
+        "The lint is wired into `npm run validate:tasks`."
+      ],
+      "verifyCommands": [
+        "npm run validate"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 17
+    },
+    {
+      "id": "mvp.02-content-schemas.34-content-report-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Content Report Schema",
+      "path": "tasks/mvp/02-content-schemas/34-content-report-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Player-submitted report targeting unsafe / infringing UGC content (pack, scenario, hero, unit, AI-faction). Distinct from `report-bundle.schema.json` (peer-behavior). Persisted locally in `state.privacy.outboundReports[]` and dequeued by the future moderation backend (Plan 30). Backs screen 75 (content-report).",
+      "inputs": [
+        "Closed reason enum: `infringement`, `harassment`, `mature-without-rating`, `malware`, `other`.",
+        "Closed targetType enum: `pack`, `scenario`, `hero`, `unit`, `ai-faction`."
+      ],
+      "outputs": [
+        "`content-schema/schemas/content-report.schema.json`",
+        "Canonical example `content-schema/examples/content-report/canonical.content-report.json`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)",
+        "[`docs/architecture/wiki/screens/75-content-report/data-contracts.md`](../../../docs/architecture/wiki/screens/75-content-report/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/examples/content-report/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example.",
+        "`reason` is the closed enum listed above.",
+        "`targetType` is the closed enum listed above.",
+        "`notes` is bounded to `maxLength: 1000` and is sanitized via the `safeUserText(1000)` helper before persistence.",
+        "The schema is referenced from [`ugc-safety.md`](../../../docs/architecture/ugc-safety.md) and screen 75."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/75-content-report"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/content-report.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.02-content-schemas.35-privacy-options-schema",
+      "kind": "task",
+      "status": "planned",
+      "title": "Privacy Options Schema",
+      "path": "tasks/mvp/02-content-schemas/35-privacy-options-schema.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Per-installation privacy preferences slice (`displayNameMode`, `analyticsOptIn`, `allowMatureContent`, `saltFingerprint`). Persisted in IndexedDB `hr-profile.privacy` per [`persistence.md`](../../../docs/architecture/persistence.md). Backs the Privacy pane in screen 56-options.",
+      "inputs": [
+        "Display-name policy from [`docs/architecture/display-name-policy.md`](../../../docs/architecture/display-name-policy.md).",
+        "Mature-content gate from [`docs/architecture/pack-trust.md`](../../../docs/architecture/pack-trust.md)."
+      ],
+      "outputs": [
+        "`content-schema/schemas/privacy-options.schema.json`",
+        "Canonical example `content-schema/examples/privacy-options/canonical.privacy-options.json`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)",
+        "[`docs/architecture/wiki/screens/56-options/data-contracts.md`](../../../docs/architecture/wiki/screens/56-options/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/examples/privacy-options/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema validates the canonical example.",
+        "`displayNameMode` defaults to `hashed`.",
+        "`analyticsOptIn` defaults to `false`.",
+        "`allowMatureContent` defaults to `false`.",
+        "`saltFingerprint` (when present) matches `^[a-f0-9]{4}$`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/56-options"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/privacy-options.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 18
+    },
+    {
+      "id": "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist",
+      "kind": "task",
+      "status": "planned",
+      "title": "Asset Index pathScheme And Extension Allowlist",
+      "path": "tasks/mvp/02-content-schemas/36-asset-index-pathscheme-and-extension-allowlist.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Tighten [`asset-index.schema.json`](../../../content-schema/schemas/asset-index.schema.json) to forbid absolute schemes (`http`, `https`, `file`, `data`, `blob`), parent-directory escapes, and any extension outside the closed allowlist (`png`, `webp`, `ogg`, `mp3`, `json`). Adds a required `pathScheme: \"pack-relative\"` constant. Per [`ugc-safety.md` § External URL Ban](../../../docs/architecture/ugc-safety.md#1-external-url-ban).",
+      "inputs": [
+        "Closed extension allowlist.",
+        "CSP baseline from `ugc-safety.md` § CSP Baseline."
+      ],
+      "outputs": [
+        "Updated `content-schema/schemas/asset-index.schema.json`.",
+        "Canonical example `content-schema/examples/asset-index/canonical.asset-index.json`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)",
+        "[`docs/architecture/pack-contract.md` § Asset Path Scheme](../../../docs/architecture/pack-contract.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/examples/asset-index/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema rejects entries with absolute schemes, leading slashes, parent-directory escapes, or non-allowlisted extensions.",
+        "`pathScheme` is a required const `\"pack-relative\"`.",
+        "The pack-loader task acceptance lines reject any `assets/index.json` whose `pathScheme != \"pack-relative\"`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 15
+    },
+    {
+      "id": "mvp.02-content-schemas.37-localization-interpolation-block",
+      "kind": "task",
+      "status": "planned",
+      "title": "Localization Interpolation Block",
+      "path": "tasks/mvp/02-content-schemas/37-localization-interpolation-block.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Extend [`localization.schema.json`](../../../content-schema/schemas/localization.schema.json) with a per-key `interpolation` block (`mode: literal | named | icu`, `allowedTokens: string[]`). Default `mode = literal` escapes `{` and `}`; `named` and `icu` modes require an explicit `allowedTokens[]` allowlist. Per [`ugc-safety.md` § ICU Locks](../../../docs/architecture/ugc-safety.md#4-icu-locks).",
+      "inputs": [
+        "ICU formatter allowlist (`plural`, `select`, `selectordinal`, `number`, `date`, `time`)."
+      ],
+      "outputs": [
+        "Updated `content-schema/schemas/localization.schema.json`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.14-localization-schema",
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Schema accepts an entry with `interpolation.mode = \"literal\"` (default) and rejects any non-allowlisted ICU formatter.",
+        "`allowedTokens` items match `^[a-zA-Z][a-zA-Z0-9_]{0,31}$`.",
+        "UGC-supplied translation files cannot raise the interpolation tier of an existing canonical key (resolver enforces \"tier-min\")."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/localization.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.14-localization-schema"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.14-localization-schema"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 14
+    },
+    {
+      "id": "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
+      "kind": "task",
+      "status": "planned",
+      "title": "Manifest aiProvenance + capabilities default-deny",
+      "path": "tasks/mvp/02-content-schemas/38-manifest-ai-provenance-and-capabilities-default.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Extend [`manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json) with an additive `aiProvenance` block (re-asserted from `GeneratedFaction.notes` at materialize time) and tighten `capabilities` to default `[\"scripts.none\"]` (default-deny). Per [`ugc-safety.md` § Capability Enforcement](../../../docs/architecture/ugc-safety.md#6-capability-enforcement) and [`ai-generation-pipeline.md` § Stage 6](../../../docs/architecture/ai-generation-pipeline.md).",
+      "inputs": [
+        "`GeneratedFaction.notes` shape (provider, model, prompt, tokens).",
+        "Closed-enum capability list."
+      ],
+      "outputs": [
+        "Updated `content-schema/schemas/manifest.schema.json`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)",
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`docs/architecture/wiki/screens/74-ai-provenance-detail/data-contracts.md`](../../../docs/architecture/wiki/screens/74-ai-provenance-detail/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`aiProvenance.present` is the only required sub-field; all others are optional.",
+        "`aiProvenance.promptExcerpt` is bounded to 280 chars.",
+        "`capabilities` declares `default: [\"scripts.none\"]`; a manifest that omits the field validates as default-deny.",
+        "`aiProvenance` is referenced from screen 74's data contract."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/74-ai-provenance-detail"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.02-content-schemas.39-generated-faction-player-inspectable",
+      "kind": "task",
+      "status": "planned",
+      "title": "Generated Faction notes.playerInspectable + modelVersion",
+      "path": "tasks/mvp/02-content-schemas/39-generated-faction-player-inspectable.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Extend [`generated-faction.schema.json`](../../../content-schema/schemas/generated-faction.schema.json) with optional `notes.playerInspectable: boolean` and `notes.modelVersion: string`. These are surfaced via screen 74 (`ai-provenance-detail`) per [`ugc-safety.md` § Localization Keys](../../../docs/architecture/ugc-safety.md#7-localization-keys).",
+      "inputs": [
+        "AI-generation Stage 6 emits the model version from the provider."
+      ],
+      "outputs": [
+        "Updated `content-schema/schemas/generated-faction.schema.json`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`docs/architecture/wiki/screens/74-ai-provenance-detail/data-contracts.md`](../../../docs/architecture/wiki/screens/74-ai-provenance-detail/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/generated-faction.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`notes.playerInspectable` defaults to `true` when present.",
+        "`notes.modelVersion` is an optional string.",
+        "Screen 74 falls back to a collapsed body when `playerInspectable === false`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/74-ai-provenance-detail"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/generated-faction.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "mvp.02-tooling.01-ui-smoke-harness",
@@ -7848,6 +8369,67 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
       "downstreamTransitiveCount": 11
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.17-binary-asset-validators",
+      "kind": "task",
+      "status": "planned",
+      "title": "Binary Asset Validators",
+      "path": "tasks/mvp/02b-asset-pipeline/17-binary-asset-validators.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Implement the magic-byte sniff, MIME match, dimension/duration probe, decode-off-thread, and font ban for every binary asset loaded from a pack. Constants and validator order are normative per [`ugc-safety.md` § Binary Asset Validators](../../../docs/architecture/ugc-safety.md#5-binary-asset-validators).",
+      "inputs": [
+        "Allowed image MIMEs: `image/png`, `image/webp`. Max 4096×4096, 4 MiB.",
+        "Allowed audio MIMEs: `audio/ogg`, `audio/mpeg`. Max 120 s, 2 MiB.",
+        "Forbidden: `image/svg+xml`, `.otf`, `.ttf`, `.woff`, `.woff2`.",
+        "Decoder APIs: `createImageBitmap`, `AudioContext.decodeAudioData`."
+      ],
+      "outputs": [
+        "`src/content-runtime/binary-asset-validators.ts`",
+        "`src/content-runtime/__tests__/binary-asset-validators.test.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/asset-normalization.md`](../../../docs/architecture/asset-normalization.md)"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/binary-asset-validators.ts",
+        "src/content-runtime/__tests__/binary-asset-validators.test.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist"
+      ],
+      "acceptanceCriteria": [
+        "Validator order: magic-byte sniff → MIME match → dimension/duration probe → decode-off-thread → cache.",
+        "Any failure marks the asset `invalid` and emits a per-asset diagnostic; no engine crash, no silent fallback.",
+        "Forbidden extensions are rejected at the schema layer (covered by task 36); this validator is the runtime safety net.",
+        "Tests cover canonical, malformed-PNG, oversized-PNG, zero-byte-WebP, audio-too-long, and forbidden-font cases."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 2
     },
     {
       "id": "mvp.03-map-system.01-axial-hex-coordinate-utilities",
@@ -10616,7 +11198,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 136
+      "downstreamTransitiveCount": 137
     },
     {
       "id": "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform",
@@ -11257,7 +11839,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 53,
-      "downstreamTransitiveCount": 97
+      "downstreamTransitiveCount": 98
     },
     {
       "id": "mvp.07-ui-shell.02-zustand-store",
@@ -13339,6 +13921,229 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "mvp.07-ui-shell.22-privacy-pane-in-options",
+      "kind": "task",
+      "status": "planned",
+      "title": "Privacy Pane In Options Screen",
+      "path": "tasks/mvp/07-ui-shell/22-privacy-pane-in-options.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Add a \"Privacy\" tab to [`56-options`](../../../docs/architecture/wiki/screens/56-options/) covering display-name mode, analytics opt-in, mature-content gate, \"Forget me\" entry, and a salt-fingerprint read-out. Wires the `TOGGLE_HASHED_DISPLAY_NAME`, `TOGGLE_ANALYTICS_OPT_IN`, `TOGGLE_MATURE_CONTENT_GATE`, `RESET_ANALYTICS_ID`, and `WIPE_LOCAL_DATA` commands.",
+      "inputs": [
+        "`privacy-options.schema.json`",
+        "Localization keys under `ui.privacy.*` per [`ugc-safety.md` § Localization Keys](../../../docs/architecture/ugc-safety.md#7-localization-keys)."
+      ],
+      "outputs": [
+        "`src/ui/options/privacy-pane.tsx`",
+        "`src/ui/options/__tests__/privacy-pane.test.tsx`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/56-options/spec.md`](../../../docs/architecture/wiki/screens/56-options/spec.md)",
+        "[`docs/architecture/wiki/screens/56-options/interactions.md`](../../../docs/architecture/wiki/screens/56-options/interactions.md)",
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)",
+        "[`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/options/privacy-pane.tsx",
+        "src/ui/options/__tests__/privacy-pane.test.tsx",
+        "src/ui/options/options-screen.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/ui/options/options-screen.tsx"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.08-persistence.13-display-name-hash-and-salt",
+        "mvp.08-persistence.14-wipe-local-data-handler"
+      ],
+      "acceptanceCriteria": [
+        "Privacy tab in `docs/architecture/wiki/screens/56-options/` renders the display-name mode toggle, analytics opt-in toggle, mature-content gate toggle, \"Reset analytics ID\" button, \"Forget me on this device\" entry, and a read-only salt fingerprint.",
+        "Each toggle dispatches its declared command and persists to IndexedDB `hr-profile.privacy`.",
+        "\"Forget me\" routes through `docs/architecture/wiki/screens/60-confirmation-dialog/` before dispatching `WIPE_LOCAL_DATA scope=all confirmed=true`. Owned Paths (shared) acceptance:",
+        "`docs/architecture/wiki/screens/56-options/` is **owned by** the screen-package-contract-sweep tasks; this task is additive (one new tab, new state bindings, new localization keys under `ui.privacy.*`) and must not rewrite the existing tabs."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/56-options",
+        "docs/architecture/wiki/screens/60-confirmation-dialog"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.08-persistence.13-display-name-hash-and-salt",
+        "mvp.08-persistence.14-wipe-local-data-handler"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.08-persistence.13-display-name-hash-and-salt",
+        "mvp.08-persistence.14-wipe-local-data-handler"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "mvp.07-ui-shell.23-high-scores-player-label",
+      "kind": "task",
+      "status": "planned",
+      "title": "High Scores Player Label Render",
+      "path": "tasks/mvp/07-ui-shell/23-high-scores-player-label.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Update [`57-high-scores`](../../../docs/architecture/wiki/screens/57-high-scores/) to render `playerLabel` instead of `playerName` (or `displayName`) when `state.privacy.options.displayNameMode === \"hashed\"`. When `displayNameMode === \"clear\"` and the score record carries a `playerName`, render that instead.",
+      "inputs": [
+        "`state.profile.highScores` rows.",
+        "`state.privacy.options.displayNameMode` toggle."
+      ],
+      "outputs": [
+        "`src/ui/high-scores/score-row.tsx`",
+        "`src/ui/high-scores/__tests__/score-row.test.tsx`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/57-high-scores/data-contracts.md`](../../../docs/architecture/wiki/screens/57-high-scores/data-contracts.md)",
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/high-scores/score-row.tsx",
+        "src/ui/high-scores/__tests__/score-row.test.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.07-ui-shell.22-privacy-pane-in-options"
+      ],
+      "acceptanceCriteria": [
+        "`docs/architecture/wiki/screens/57-high-scores/` score rows render `playerLabel` by default.",
+        "When `displayNameMode === \"clear\"` and `playerName` is present, the row renders `playerName` instead.",
+        "Tests cover both branches and the missing-label fallback (\"Anonymous\")."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/57-high-scores"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.07-ui-shell.22-privacy-pane-in-options"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.07-ui-shell.22-privacy-pane-in-options"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.07-ui-shell.24-ai-content-badge-on-info-cards",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI-Content Badge On Info Cards",
+      "path": "tasks/mvp/07-ui-shell/24-ai-content-badge-on-info-cards.md",
+      "moduleId": "mvp.07-ui-shell",
+      "modulePath": "tasks/mvp/07-ui-shell.md",
+      "description": "Add an `[AI]` badge to hero / unit / faction / scenario info-card screen packages whenever the owning pack declares `manifest.aiProvenance.present === true`. Clicking the badge dispatches `OPEN_AI_PROVENANCE` and routes to screen 74 (`ai-provenance-detail`).",
+      "inputs": [
+        "`manifest.aiProvenance.present` per pack id.",
+        "Existing info-card screens: hero, unit, creature-info, faction selectors."
+      ],
+      "outputs": [
+        "`src/ui/badges/ai-badge.tsx`",
+        "`src/ui/badges/__tests__/ai-badge.test.tsx`",
+        "Edits to `src/ui/info-cards/*` to host the badge."
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/74-ai-provenance-detail/spec.md`](../../../docs/architecture/wiki/screens/74-ai-provenance-detail/spec.md)",
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)"
+      ],
+      "ownedPaths": [
+        "src/ui/badges/ai-badge.tsx",
+        "src/ui/badges/__tests__/ai-badge.test.tsx",
+        "src/ui/info-cards/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "src/ui/info-cards/"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default"
+      ],
+      "acceptanceCriteria": [
+        "Badge renders only when `aiProvenance.present === true`.",
+        "Badge click dispatches `OPEN_AI_PROVENANCE` with the target pack id.",
+        "Badge does not render when the owning pack lacks the `aiProvenance` block (canonical packs).",
+        "Localization key under `ui.ugc.warning.ai-content`.",
+        "`docs/architecture/wiki/screens/74-ai-provenance-detail/` receives the click target via `OPEN_AI_PROVENANCE`. Owned Paths (shared) acceptance:",
+        "`src/ui/info-cards/` is **owned by** the existing info-card screen tasks (hero, unit, creature-info); this task is additive (adds the AI badge slot only) and must not rewrite their visual contract or component trees."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/74-ai-provenance-detail"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 6
+    },
+    {
       "id": "mvp.08-persistence.01-indexeddb-wrapper",
       "kind": "task",
       "status": "planned",
@@ -13407,8 +14212,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 57
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -13479,7 +14284,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 60
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.08-persistence.03-save-load-ui",
@@ -13571,7 +14376,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 32
+      "downstreamTransitiveCount": 33
     },
     {
       "id": "mvp.08-persistence.04-scenario-loader",
@@ -13747,7 +14552,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 28
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "mvp.08-persistence.06-autosave",
@@ -13813,6 +14618,7 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
@@ -13822,6 +14628,7 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
@@ -14144,8 +14951,8 @@
         "mvp.02-content-schemas.28-save-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 30
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 35
     },
     {
       "id": "mvp.08-persistence.11-save-import-screen-and-quarantine",
@@ -14230,7 +15037,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 29
+      "downstreamTransitiveCount": 30
     },
     {
       "id": "mvp.08-persistence.12-pack-trust-prompt-and-manager",
@@ -14327,6 +15134,219 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,
       "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.08-persistence.13-display-name-hash-and-salt",
+      "kind": "task",
+      "status": "planned",
+      "title": "Display Name Hash + Per-Installation Salt",
+      "path": "tasks/mvp/08-persistence/13-display-name-hash-and-salt.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Generate a per-installation salt via WebCrypto `getRandomValues` and persist it under IndexedDB `hr-profile.keys`. Compute `playerHash = xxh64(displayName + localSalt)` and write `metadata.playerHash` + `metadata.playerLabel` into save records. The salt is regenerated by `WIPE_LOCAL_DATA scope=profile|all`. Per [`data-inventory.md`](../../../docs/architecture/data-inventory.md) and [`persistence.md`](../../../docs/architecture/persistence.md).",
+      "inputs": [
+        "`displayNameMode` from `state.privacy.options`.",
+        "Save schema metadata fields (`playerHash`, `playerName`, `playerLabel`, `displayNameMode`)."
+      ],
+      "outputs": [
+        "`src/persistence/display-name-hash.ts`",
+        "`src/persistence/__tests__/display-name-hash.test.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)",
+        "[`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)",
+        "[`docs/architecture/diagrams/24-save-flow.md`](../../../docs/architecture/diagrams/24-save-flow.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/display-name-hash.ts",
+        "src/persistence/__tests__/display-name-hash.test.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.08-persistence.10-save-schema-and-validator"
+      ],
+      "acceptanceCriteria": [
+        "`getOrCreateLocalSalt()` generates a 16-byte salt on first call; subsequent calls return the persisted bytes.",
+        "`computePlayerHash(displayName)` returns a 16-hex-char digest.",
+        "`WIPE_LOCAL_DATA scope=profile|all` rotates the salt; the next hash for the same display name differs.",
+        "Default `displayNameMode` is `hashed`; existing saves migrate by recomputing the hash from the loaded `playerName` on first load and rewriting on next save."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.08-persistence.10-save-schema-and-validator"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.08-persistence.10-save-schema-and-validator"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 3
+    },
+    {
+      "id": "mvp.08-persistence.14-wipe-local-data-handler",
+      "kind": "task",
+      "status": "planned",
+      "title": "WIPE_LOCAL_DATA Handler",
+      "path": "tasks/mvp/08-persistence/14-wipe-local-data-handler.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement the `WIPE_LOCAL_DATA` command handler. Iterates the rows declared in [`data-inventory.md`](../../../docs/architecture/data-inventory.md), not a hand-coded list. Accepts a `scope: \"all\" | \"saves\" | \"profile\" | \"chat\"` payload; reloads the page after wipe to drop in-memory state. Routes through screen 60-confirmation-dialog before executing.",
+      "inputs": [
+        "IndexedDB databases declared in `persistence.md`: `hr-saves`, `hr-profile`, `hr-packs`, `hr-trust`.",
+        "Sensitivity tiers from the inventory document."
+      ],
+      "outputs": [
+        "`src/persistence/wipe-local-data.ts`",
+        "`src/persistence/__tests__/wipe-local-data.test.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)",
+        "[`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)",
+        "[`docs/architecture/wiki/screens/54-system-menu/interactions.md`](../../../docs/architecture/wiki/screens/54-system-menu/interactions.md)",
+        "[`docs/architecture/wiki/screens/56-options/interactions.md`](../../../docs/architecture/wiki/screens/56-options/interactions.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/wipe-local-data.ts",
+        "src/persistence/__tests__/wipe-local-data.test.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy",
+        "mvp.08-persistence.13-display-name-hash-and-salt"
+      ],
+      "acceptanceCriteria": [
+        "`scope=all` clears every IndexedDB database listed in the inventory and reloads the page.",
+        "`scope=saves` clears only `hr-saves.*`; the salt is preserved.",
+        "`scope=profile` clears only `hr-profile.*` and `hr-trust.*`; saves are preserved.",
+        "`scope=chat` is a no-op today (no persistent chat surface) but exists so a future feature cannot regress it.",
+        "Tests exercise each scope and verify the post-wipe inventory consistency."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/54-system-menu",
+        "docs/architecture/wiki/screens/56-options"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
+        "content-schema/schemas/ruleset.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy",
+        "mvp.08-persistence.13-display-name-hash-and-salt"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy",
+        "mvp.08-persistence.13-display-name-hash-and-salt"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 2
+    },
+    {
+      "id": "mvp.08-persistence.15-content-report-queue",
+      "kind": "task",
+      "status": "planned",
+      "title": "Outbound Content-Report Queue",
+      "path": "tasks/mvp/08-persistence/15-content-report-queue.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Persist outbound content reports under IndexedDB `hr-profile.reports` with a retry stub. Validates each report against [`content-report.schema.json`](../../../content-schema/schemas/content-report.schema.json) before enqueue. No network call at v1; the queue is shaped so Plan 30's moderation backend can dequeue once it lands.",
+      "inputs": [
+        "`content-report.schema.json` envelope.",
+        "Local salt for `reportId` derivation."
+      ],
+      "outputs": [
+        "`src/persistence/content-report-queue.ts`",
+        "`src/persistence/__tests__/content-report-queue.test.ts`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)",
+        "[`docs/architecture/wiki/screens/75-content-report/data-contracts.md`](../../../docs/architecture/wiki/screens/75-content-report/data-contracts.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/content-report-queue.ts",
+        "src/persistence/__tests__/content-report-queue.test.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "acceptanceCriteria": [
+        "`enqueue(report)` validates the envelope and persists it.",
+        "`peek()` returns the oldest queued report.",
+        "`dequeue(reportId)` removes a report; the queue is durable across reload.",
+        "`WIPE_LOCAL_DATA scope=profile|all` clears the queue.",
+        "Tests cover validation failure (rejected, not enqueued) and durability across simulated reload."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/75-content-report"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/content-report.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order",
@@ -16905,7 +17925,15 @@
         "mvp.02-content-schemas.28-save-schema",
         "mvp.02-content-schemas.29-publisher-registry-schema",
         "mvp.02-content-schemas.30-pack-revocation-list-schema",
-        "mvp.02-content-schemas.31-trust-store-schema"
+        "mvp.02-content-schemas.31-trust-store-schema",
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy",
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist",
+        "mvp.02-content-schemas.37-localization-interpolation-block",
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
+        "mvp.02-content-schemas.39-generated-faction-player-inspectable"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -19354,7 +20382,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 33
+      "downstreamTransitiveCount": 34
     },
     {
       "id": "phase-2.04-content-editor.02-unit-editor-form",
@@ -19459,7 +20487,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 31
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "phase-2.04-content-editor.03-faction-editor-form",
@@ -19565,7 +20593,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 29
+      "downstreamTransitiveCount": 30
     },
     {
       "id": "phase-2.04-content-editor.04-schema-validation-with-inline-error-display",
@@ -19669,7 +20697,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 28
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "phase-2.04-content-editor.05-live-preview-panel-unit-card",
@@ -19869,8 +20897,8 @@
         "phase-2.04-content-editor.04-schema-validation-with-inline-error-display"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 27
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 28
     },
     {
       "id": "phase-2.04-content-editor.07-editor-integration-test",
@@ -20227,6 +21255,110 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "phase-2.04-content-editor.10-publish-disclaimer-flow",
+      "kind": "task",
+      "status": "planned",
+      "title": "Publish Disclaimer Flow",
+      "path": "tasks/phase-2/04-content-editor/10-publish-disclaimer-flow.md",
+      "moduleId": "phase-2.04-content-editor",
+      "modulePath": "tasks/phase-2/04-content-editor.md",
+      "description": "Wire the Map Editor `Publish…` affordance to screen [`73-ugc-publish-disclaimer`](../../../docs/architecture/wiki/screens/73-ugc-publish-disclaimer/). On accept, write a `signed-acks/<contentHash>.json` companion file into the staged `.hrmod` and dispatch `EXPORT_SCENARIO_AS_PACK` against the OS file-picker. No network upload at v1.",
+      "inputs": [
+        "Map Editor scenario draft.",
+        "Active content-policy doc hash (`policyVersion`)."
+      ],
+      "outputs": [
+        "`src/editor/publish-flow.ts`",
+        "`src/editor/__tests__/publish-flow.test.ts`",
+        "`src/ui/screens/ugc-publish-disclaimer-screen.tsx`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/73-ugc-publish-disclaimer/`](../../../docs/architecture/wiki/screens/73-ugc-publish-disclaimer/)",
+        "[`docs/architecture/wiki/screens/65-map-editor/interactions.md`](../../../docs/architecture/wiki/screens/65-map-editor/interactions.md)",
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)"
+      ],
+      "ownedPaths": [
+        "src/editor/publish-flow.ts",
+        "src/editor/__tests__/publish-flow.test.ts",
+        "src/ui/screens/ugc-publish-disclaimer-screen.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-2.04-content-editor.06-mod-pack-export-import",
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint"
+      ],
+      "acceptanceCriteria": [
+        "`docs/architecture/wiki/screens/65-map-editor/`'s \"Publish…\" affordance routes through `docs/architecture/wiki/screens/73-ugc-publish-disclaimer/` with the candidate pack pre-filled.",
+        "Both ack checkboxes MUST be true before export enables.",
+        "On accept, the ack file is written into the archive at `signed-acks/<contentHash>.json` with timestamp + policy-version hash.",
+        "File-picker rejection drops the staged pack but preserves the modal open state.",
+        "Tests cover the disabled-export gate, accept path, and cancel path."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/65-map-editor",
+        "docs/architecture/wiki/screens/73-ugc-publish-disclaimer"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/artifact.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/spell.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+        "phase-2.04-content-editor.06-mod-pack-export-import"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+        "phase-2.04-content-editor.06-mod-pack-export-import"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser",
@@ -21369,6 +22501,163 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "phase-2.05-mod-system.10-sandbox-enforcement-contract"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-2.05-mod-system.12-content-report-intake-and-local-queue",
+      "kind": "task",
+      "status": "planned",
+      "title": "Content-Report Intake And Local Queue",
+      "path": "tasks/phase-2/05-mod-system/12-content-report-intake-and-local-queue.md",
+      "moduleId": "phase-2.05-mod-system",
+      "modulePath": "tasks/phase-2/05-mod-system.md",
+      "description": "Wire screen [`75-content-report`](../../../docs/architecture/wiki/screens/75-content-report/) to the outbound queue from [`tasks/mvp/08-persistence/15-content-report-queue.md`](../../mvp/08-persistence/15-content-report-queue.md). Validates each submission against [`content-report.schema.json`](../../../content-schema/schemas/content-report.schema.json), sanitizes notes via `safeUserText(1000)`, and persists to `hr-profile.reports`.",
+      "inputs": [
+        "`content-report.schema.json` envelope.",
+        "Trigger affordances on hero / unit / faction info-cards, pack-manager rows, and the AI-provenance detail screen."
+      ],
+      "outputs": [
+        "`src/content-runtime/content-report-intake.ts`",
+        "`src/content-runtime/__tests__/content-report-intake.test.ts`",
+        "`src/ui/screens/content-report-screen.tsx`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/75-content-report/`](../../../docs/architecture/wiki/screens/75-content-report/)",
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/content-report-intake.ts",
+        "src/content-runtime/__tests__/content-report-intake.test.ts",
+        "src/ui/screens/content-report-screen.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+        "mvp.08-persistence.15-content-report-queue"
+      ],
+      "acceptanceCriteria": [
+        "`OPEN_CONTENT_REPORT` mounts `docs/architecture/wiki/screens/75-content-report/` with target metadata pre-filled.",
+        "`SUBMIT_CONTENT_REPORT` validates, sanitizes notes, and pushes onto the queue.",
+        "Schema validation failure surfaces a modal error and preserves the form draft.",
+        "The trigger affordance is wired into the hero, unit, faction, and AI-provenance info-cards."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/75-content-report"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/content-report.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.08-persistence.15-content-report-queue"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.08-persistence.15-content-report-queue"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-2.05-mod-system.13-ai-provenance-detail-screen",
+      "kind": "task",
+      "status": "planned",
+      "title": "AI Provenance Detail Screen Wiring",
+      "path": "tasks/phase-2/05-mod-system/13-ai-provenance-detail-screen.md",
+      "moduleId": "phase-2.05-mod-system",
+      "modulePath": "tasks/phase-2/05-mod-system.md",
+      "description": "Wire screen [`74-ai-provenance-detail`](../../../docs/architecture/wiki/screens/74-ai-provenance-detail/) to read `manifest.aiProvenance` and render the player-facing detail view. Implements the `OPEN_AI_PROVENANCE` and `CLOSE_AI_PROVENANCE` command handlers; routes to screen 75 when the player chooses \"Report this content\".",
+      "inputs": [
+        "`manifest.aiProvenance` block per pack.",
+        "Truncated prompt excerpt sanitized via `safeUserText(280)`."
+      ],
+      "outputs": [
+        "`src/content-runtime/ai-provenance.ts`",
+        "`src/content-runtime/__tests__/ai-provenance.test.ts`",
+        "`src/ui/screens/ai-provenance-detail-screen.tsx`"
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/74-ai-provenance-detail/`](../../../docs/architecture/wiki/screens/74-ai-provenance-detail/)",
+        "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)",
+        "[`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/ai-provenance.ts",
+        "src/content-runtime/__tests__/ai-provenance.test.ts",
+        "src/ui/screens/ai-provenance-detail-screen.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
+        "mvp.02-content-schemas.39-generated-faction-player-inspectable",
+        "mvp.07-ui-shell.24-ai-content-badge-on-info-cards"
+      ],
+      "acceptanceCriteria": [
+        "`OPEN_AI_PROVENANCE { packId }` mounts `docs/architecture/wiki/screens/74-ai-provenance-detail/` with the pack's provenance block.",
+        "When `aiProvenance.playerInspectable === false`, the body collapses to `ui.ai-provenance.details-unavailable`.",
+        "The \"Report this content\" affordance routes to `docs/architecture/wiki/screens/75-content-report/` with `targetType = ai-faction` and `targetId = packId` pre-filled."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/74-ai-provenance-detail",
+        "docs/architecture/wiki/screens/75-content-report"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/generated-faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
+        "mvp.02-content-schemas.39-generated-faction-player-inspectable",
+        "mvp.07-ui-shell.24-ai-content-badge-on-info-cards"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
+        "mvp.02-content-schemas.39-generated-faction-player-inspectable",
+        "mvp.07-ui-shell.24-ai-content-badge-on-info-cards"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -26707,11 +27996,13 @@
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/privacy-options.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
       "taskDependencies": [
@@ -32265,6 +33556,8 @@
         "phase-2.05-mod-system.09-canonical-packs-registry",
         "phase-2.05-mod-system.10-sandbox-enforcement-contract",
         "phase-2.05-mod-system.11-revocation-registry",
+        "phase-2.05-mod-system.12-content-report-intake-and-local-queue",
+        "phase-2.05-mod-system.13-ai-provenance-detail-screen",
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby",
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
         "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -32801,6 +34094,14 @@
         "mvp.02-content-schemas.29-publisher-registry-schema",
         "mvp.02-content-schemas.30-pack-revocation-list-schema",
         "mvp.02-content-schemas.31-trust-store-schema",
+        "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
+        "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy",
+        "mvp.02-content-schemas.34-content-report-schema",
+        "mvp.02-content-schemas.35-privacy-options-schema",
+        "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist",
+        "mvp.02-content-schemas.37-localization-interpolation-block",
+        "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default",
+        "mvp.02-content-schemas.39-generated-faction-player-inspectable",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",
@@ -32817,6 +34118,7 @@
         "mvp.02b-asset-pipeline.14-per-pack-localization-and-merge",
         "mvp.02b-asset-pipeline.15-balance-corridor-validator",
         "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
+        "mvp.02b-asset-pipeline.17-binary-asset-validators",
         "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser",
         "phase-2.05-mod-system.02-ed25519-signature-verification",
         "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs",
@@ -32830,7 +34132,9 @@
         "phase-2.05-mod-system.08-override-precedence-and-patch-merge",
         "phase-2.05-mod-system.09-canonical-packs-registry",
         "phase-2.05-mod-system.10-sandbox-enforcement-contract",
-        "phase-2.05-mod-system.11-revocation-registry"
+        "phase-2.05-mod-system.11-revocation-registry",
+        "phase-2.05-mod-system.12-content-report-intake-and-local-queue",
+        "phase-2.05-mod-system.13-ai-provenance-detail-screen"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,

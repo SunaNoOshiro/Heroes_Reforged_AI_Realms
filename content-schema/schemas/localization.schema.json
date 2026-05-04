@@ -54,6 +54,26 @@
                   "type": "string",
                   "minLength": 1
                 }
+              },
+              "interpolation": {
+                "type": "object",
+                "description": "Per-key interpolation contract per `ugc-safety.md` § ICU Locks. Default `mode = literal` escapes `{` / `}`. UGC-supplied translation files MAY NOT raise the interpolation tier of an existing canonical key.",
+                "additionalProperties": false,
+                "properties": {
+                  "mode": {
+                    "enum": ["literal", "named", "icu"],
+                    "default": "literal"
+                  },
+                  "allowedTokens": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+                    },
+                    "uniqueItems": true,
+                    "default": []
+                  }
+                }
               }
             },
             "additionalProperties": false

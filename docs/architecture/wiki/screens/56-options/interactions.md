@@ -17,6 +17,11 @@ Options screen for audio, animation speed, combat settings, autosave, language, 
 | Adjust slider | `options.slider` | local-ui | Current screen | `SET_OPTIONS_DRAFT_VALUE` | Updates draft value. | Tab pages slide, slider knobs tick, toggles flip, Apply seal glows, and Cancel restores previous values. |
 | Apply | `options.apply` | command | Current screen | `APPLY_OPTIONS` | Persists allowed settings. | Tab pages slide, slider knobs tick, toggles flip, Apply seal glows, and Cancel restores previous values. |
 | Cancel | `options.cancel` | navigation | Caller screen | `CANCEL_OPTIONS` | Discards draft. | Tab pages slide, slider knobs tick, toggles flip, Apply seal glows, and Cancel restores previous values. |
+| Toggle hashed display name | `options.toggleHashedDisplayName` | command | Current screen | `TOGGLE_HASHED_DISPLAY_NAME` | Flips `state.privacy.options.displayNameMode` between `hashed` and `clear`. | Toggle flips; salt-fingerprint row updates. |
+| Toggle analytics opt-in | `options.toggleAnalyticsOptIn` | command | Current screen | `TOGGLE_ANALYTICS_OPT_IN` | Flips `state.privacy.options.analyticsOptIn`. v1 loads no SDK; toggle declares the default. | Toggle flips. |
+| Toggle mature-content gate | `options.toggleMatureContentGate` | command | Current screen | `TOGGLE_MATURE_CONTENT_GATE` | Flips `state.privacy.options.allowMatureContent`. Binds the same key Plan 20 uses for its `contentRating` gate. | Toggle flips; pack-trust prompts re-evaluate. |
+| Reset analytics ID | `options.resetAnalyticsId` | command | Current screen | `RESET_ANALYTICS_ID` | Regenerates `state.privacy.options.analyticsClientId` if present (no-op until a future analytics integration lands). | Row text replaces with new fingerprint. |
+| Forget me on this device | `options.forgetMe` | navigation | `60-confirmation-dialog` | `WIPE_LOCAL_DATA` | Routes through screen 54-system-menu's confirmation per [`data-inventory.md` § Wipe-Scope Policy](../../../data-inventory.md#3-wipe-scope-policy). | Confirmation modal mounts. |
 
 ### State Changes
 - `state.ui.options.draft` refreshes `optionsDraft` after the owning reducer or local UI draft changes.

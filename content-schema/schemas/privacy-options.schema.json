@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/privacy-options.schema.json",
+  "title": "Privacy Options",
+  "description": "Per-installation privacy preferences. Persisted in IndexedDB `hr-profile.privacy` per `persistence.md`. Surfaced via screen 56 (Privacy pane). Wiped by `WIPE_LOCAL_DATA scope=profile|all`.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "displayNameMode",
+    "analyticsOptIn",
+    "allowMatureContent"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "displayNameMode": {
+      "enum": ["hashed", "clear"],
+      "default": "hashed",
+      "description": "When `hashed`, save metadata stores `playerHash` + `playerLabel`; `playerName` is omitted. When `clear` (opt-in only), `playerName` is stored cleartext per `data-inventory.md`."
+    },
+    "analyticsOptIn": {
+      "type": "boolean",
+      "default": false,
+      "description": "Opt-in for analytics. v1 loads no SDK; this toggle declares the default so the first SDK integrator cannot regress it."
+    },
+    "allowMatureContent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Mature-content gate. Bound to `config.player.allowMatureContent` per `pack-trust.md` § Content Rating."
+    },
+    "saltFingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{4}$",
+      "description": "First 4 hex chars of the local salt; user-visible verification that `WIPE_LOCAL_DATA` rotated it."
+    },
+    "analyticsClientId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "Optional UUIDv4. Not generated at v1; reserved so a future analytics integration cannot bypass the opt-in toggle."
+    }
+  }
+}
