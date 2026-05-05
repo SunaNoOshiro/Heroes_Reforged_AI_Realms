@@ -131,9 +131,10 @@ is removed:
 
 ## 6. SBOM and signing
 
-The full SBOM-generation and provenance-signing wiring lives in
-[`30-dependencies-and-build-pipeline-plan.md`](../implementation-plans/30-dependencies-and-build-pipeline-plan.md).
-Until that work lands, the lockfile + audit step + Dependabot config
+SBOM emission and release signing are deferred until a bundler /
+release artifact exists; see
+[`30-dependencies-and-build-pipeline-plan.md`](../implementation-plans/30-dependencies-and-build-pipeline-plan.md)
+§ 3.2. Until then, the lockfile + audit step + Dependabot config
 above are the authoritative supply-chain controls.
 
 ---
@@ -144,6 +145,13 @@ above are the authoritative supply-chain controls.
   --audit-level=high` on every PR.
 - `.github/dependabot.yml` opens grouped weekly PRs for `npm` and
   `github-actions`.
+- [`scripts/check-action-pinning.mjs`](../../scripts/check-action-pinning.mjs)
+  rejects unpinned GitHub Actions.
+- [`scripts/check-workflows.mjs`](../../scripts/check-workflows.mjs)
+  enforces explicit `permissions:` and bans `pull_request_target`
+  without an allowlist comment.
+- `.npmrc` commits `ignore-scripts=true` so no dep's postinstall
+  hook runs at install time.
 - [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
   refuses bare `TBD`, `TODO`, `FIXME`, or `???` markers in canonical
   sources, so this policy doc cannot regress to a placeholder.

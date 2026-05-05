@@ -3,6 +3,10 @@
   "private": true,
   "type": "module",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0 <23"
+  },
+  "packageManager": "npm@10.9.2",
   "workspaces": [
     "src/contracts"
   ],
@@ -31,10 +35,12 @@
     "validate:error-ux": "node scripts/check-error-ux-coverage.mjs",
     "validate:build-attestation": "node scripts/check-build-attestation.mjs",
     "validate:no-stochastic-preview": "node scripts/check-no-stochastic-preview.mjs",
+    "validate:action-pinning": "node scripts/check-action-pinning.mjs",
+    "validate:workflows": "node scripts/check-workflows.mjs",
     "validate:unused-scripts": "node scripts/check-unused-scripts.mjs",
     "build:asset-index": "node scripts/build-asset-index.mjs",
     "generate:enum-snapshot": "node scripts/snapshot-enums.mjs",
-    "validate": "npm run generate:task-registry && npm run validate:links && npm run validate:contracts && npm run validate:contracts-ts && npm run validate:cross-refs && npm run validate:commands && npm run validate:tasks && npm run validate:arch && npm run validate:ui-components && npm run validate:animation-budgets && npm run validate:enums && npm run validate:balance && npm run validate:error-codes && npm run validate:provenance && npm run validate:runtime-requirements && npm run validate:deferred && npm run validate:diagram-task-parity && npm run validate:error-ux && npm run validate:build-attestation && npm run validate:no-stochastic-preview && npm run validate:unused-scripts && npm run build:asset-index -- --check",
+    "validate": "npm run generate:task-registry && npm run validate:links && npm run validate:contracts && npm run validate:contracts-ts && npm run validate:cross-refs && npm run validate:commands && npm run validate:tasks && npm run validate:arch && npm run validate:ui-components && npm run validate:animation-budgets && npm run validate:enums && npm run validate:balance && npm run validate:error-codes && npm run validate:provenance && npm run validate:runtime-requirements && npm run validate:deferred && npm run validate:diagram-task-parity && npm run validate:error-ux && npm run validate:build-attestation && npm run validate:no-stochastic-preview && npm run validate:action-pinning && npm run validate:workflows && npm run validate:unused-scripts && npm run build:asset-index -- --check",
     "test": "node --test scripts/__tests__/*.test.mjs",
     "test:security": "node tests/security/run.mjs",
     "test:ui-smoke": "vitest --browser run -- src/ui/**/*.smoke.test.ts",

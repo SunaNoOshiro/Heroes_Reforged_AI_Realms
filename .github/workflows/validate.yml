@@ -19,31 +19,30 @@ jobs:
     timeout-minutes: 5
 
     env:
-      NPM_CONFIG_AUDIT: false
       NPM_CONFIG_FUND: false
       NPM_CONFIG_PREFER_OFFLINE: true
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 1
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: package-lock.json
 
       - name: Install
-        run: npm ci --prefer-offline --no-audit --no-fund
+        # `--ignore-scripts` is redundant given the committed `.npmrc`,
+        # but kept explicit for grep-ability.
+        run: npm ci --prefer-offline --ignore-scripts --audit=false --no-fund
 
       - name: Audit production dependencies
-        # Implementation Plan 16 (T3): supply-chain hygiene gate.
-        # No-op while package-lock.json carries no production deps, but
-        # activates the moment runtime deps land per
-        # docs/architecture/dependency-policy.md.
+        # No-ops on an empty lockfile; activates the moment runtime
+        # deps land per docs/architecture/dependency-policy.md.
         run: npm audit --omit=dev --audit-level=high
 
       - name: Validate

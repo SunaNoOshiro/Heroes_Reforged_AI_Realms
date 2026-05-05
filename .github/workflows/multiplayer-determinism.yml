@@ -46,25 +46,24 @@ jobs:
     timeout-minutes: 10
 
     env:
-      NPM_CONFIG_AUDIT: false
       NPM_CONFIG_FUND: false
       NPM_CONFIG_PREFER_OFFLINE: true
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 1
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: package-lock.json
 
       - name: Install
-        run: npm ci --prefer-offline --no-audit --no-fund
+        run: npm ci --prefer-offline --ignore-scripts --audit=false --no-fund
 
       # The fuzz harness + chaos shim land with phase-3 task 11
       # (`tests/multiplayer/chaos/`). Until then this step succeeds
