@@ -1,0 +1,7 @@
+{
+  "$schema": "../../schemas/error-envelope.schema.json",
+  "error": "SERVICE_PAUSED",
+  "retryAfterMs": 600000,
+  "scope": "global",
+  "requestId": "00112233-4455-4677-8899-aabbccddeeff"
+}

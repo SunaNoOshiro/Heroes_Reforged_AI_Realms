@@ -1,0 +1,7 @@
+{
+  "$schema": "../../schemas/error-envelope.schema.json",
+  "error": "UNAVAILABLE",
+  "retryAfterMs": 5000,
+  "scope": "global",
+  "requestId": "cccccccc-dddd-4eee-8fff-000011112222"
+}

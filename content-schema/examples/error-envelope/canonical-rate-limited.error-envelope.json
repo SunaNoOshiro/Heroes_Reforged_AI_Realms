@@ -1,0 +1,7 @@
+{
+  "$schema": "../../schemas/error-envelope.schema.json",
+  "error": "RATE_LIMITED",
+  "retryAfterMs": 30000,
+  "scope": "account",
+  "requestId": "11111111-2222-4333-8444-555566667777"
+}

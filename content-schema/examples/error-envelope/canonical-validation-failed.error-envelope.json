@@ -1,0 +1,6 @@
+{
+  "$schema": "../../schemas/error-envelope.schema.json",
+  "error": "VALIDATION_FAILED",
+  "scope": "session",
+  "requestId": "ffffffff-0000-4111-8222-333344445555"
+}

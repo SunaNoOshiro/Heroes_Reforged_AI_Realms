@@ -4,3 +4,16 @@ dist/
 node_modules/
 *.tsbuildinfo
 *.crdownload
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+id_ed25519*
+id_rsa*
+.doppler/

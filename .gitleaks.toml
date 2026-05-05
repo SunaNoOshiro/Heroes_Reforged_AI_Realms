@@ -1,0 +1,23 @@
+# gitleaks configuration for Heroes Reforged.
+#
+# Extends the upstream default ruleset (provider keys, JWT, AWS, GCP,
+# etc.) with a small allowlist for placeholder fixtures committed in
+# this repo. Real values must never appear in any of these paths.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Heroes Reforged placeholders — no real keys here."
+
+paths = [
+  '''(?i)^content-schema/examples/''',
+  '''(?i)^docs/''',
+  '''(?i)^services/.+/error-codes\.md$''',
+  '''(?i)^services/.+/README\.md$'''
+]
+
+regexes = [
+  '''placeholder-[a-z0-9-]+''',
+  '''peer:[a-z0-9-]{8,64}'''
+]

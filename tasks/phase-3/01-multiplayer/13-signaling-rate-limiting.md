@@ -14,6 +14,8 @@ Read First:
 - [`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)
 - [`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)
 - [`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)
+- [`docs/operations/error-envelope.md`](../../../docs/operations/error-envelope.md)
+- [`content-schema/schemas/error-envelope.schema.json`](../../../content-schema/schemas/error-envelope.schema.json)
 
 Inputs:
 - Node.js 20 wall-clock (`Date.now()` is permitted in the
@@ -63,7 +65,13 @@ Acceptance Criteria:
   10 000-distinct-IP soak test does not retain entries beyond the
   cap.
 - `RATE_LIMITED` reply payload matches
-  [`signaling-rate-limits.md` § 3](../../../docs/architecture/signaling-rate-limits.md#3-rate_limited-reply).
+  [`signaling-rate-limits.md` § 3](../../../docs/architecture/signaling-rate-limits.md#3-rate_limited-reply)
+  and conforms to the canonical envelope at
+  [`content-schema/schemas/error-envelope.schema.json`](../../../content-schema/schemas/error-envelope.schema.json)
+  per [`docs/operations/error-envelope.md`](../../../docs/operations/error-envelope.md);
+  the `scope` field is coarse (`ip` / `session` / `account` / `global`)
+  and exact-bucket fields (`bucketKey`, `remaining`, `limit`) are
+  forbidden by `additionalProperties: false`.
 - The IP key is sha256-truncated per
   [`signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md);
   no raw IP is held in the bucket map.

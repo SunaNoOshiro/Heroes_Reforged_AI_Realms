@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+# Heroes Reforged — secret-scan pre-commit hook.
+#
+# Source plan:
+#   docs/implementation-plans/29-rate-limiting-and-secret-management-plan.md
+#   — Critical Fix 2.
+#
+# Runs `gitleaks protect` against staged changes only. A non-zero exit
+# blocks the commit. If gitleaks is not installed locally the hook
+# emits a warning and exits 0; the canonical CI gate at
+# `.github/workflows/secret-scan.yml` is still authoritative on PRs.
+. "$(dirname -- "$0")/_/husky.sh" 2>/dev/null || true
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  if ! command -v npx >/dev/null 2>&1; then
+    echo "[secret-scan] gitleaks not installed locally; skipping pre-commit scan." >&2
+    echo "[secret-scan] Install gitleaks (https://github.com/gitleaks/gitleaks) to scan locally." >&2
+    echo "[secret-scan] CI scan in .github/workflows/secret-scan.yml is authoritative." >&2
+    exit 0
+  fi
+  npx --yes gitleaks protect --staged --redact --no-banner --config .gitleaks.toml
+  exit $?
+fi
+
+gitleaks protect --staged --redact --no-banner --config .gitleaks.toml

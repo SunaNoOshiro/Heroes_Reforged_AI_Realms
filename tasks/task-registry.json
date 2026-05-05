@@ -33248,7 +33248,9 @@
       "readFirst": [
         "[`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)",
         "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
-        "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)"
+        "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)",
+        "[`docs/operations/error-envelope.md`](../../../docs/operations/error-envelope.md)",
+        "[`content-schema/schemas/error-envelope.schema.json`](../../../content-schema/schemas/error-envelope.schema.json)"
       ],
       "ownedPaths": [
         "services/signaling/rate-limit.ts",
@@ -33271,7 +33273,7 @@
         "5 wrong codes against the same room locks the code for 60 s; the host receives `JOIN_ATTEMPT_REJECTED { count, sinceMs }`.",
         "Global rolling-window counter at ≥ 200 / minute enters accept-only-known-IPs mode for 5 minutes; the `/healthz` route reports `globalFloodMode: true`.",
         "Bucket map evicts entries after 10 minutes of inactivity; a 10 000-distinct-IP soak test does not retain entries beyond the cap.",
-        "`RATE_LIMITED` reply payload matches [`signaling-rate-limits.md` § 3](../../../docs/architecture/signaling-rate-limits.md#3-rate_limited-reply).",
+        "`RATE_LIMITED` reply payload matches [`signaling-rate-limits.md` § 3](../../../docs/architecture/signaling-rate-limits.md#3-rate_limited-reply) and conforms to the canonical envelope at [`content-schema/schemas/error-envelope.schema.json`](../../../content-schema/schemas/error-envelope.schema.json) per [`docs/operations/error-envelope.md`](../../../docs/operations/error-envelope.md); the `scope` field is coarse (`ip` / `session` / `account` / `global`) and exact-bucket fields (`bucketKey`, `remaining`, `limit`) are forbidden by `additionalProperties: false`.",
         "The IP key is sha256-truncated per [`signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md); no raw IP is held in the bucket map.",
         "The implementation imports no PCG32 RNG; refill is a pure `(now - lastRefillMs) * rate` calculation.",
         "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The rate-limit wiring is **additive**: it MUST NOT rewrite Task 01's request-handler entrypoint, the message envelope, or the room-table shape; new call sites slot in alongside existing handlers."
@@ -33282,9 +33284,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/error-envelope.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/error-envelope.schema.json"
+      ],
       "taskDependencies": [
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],

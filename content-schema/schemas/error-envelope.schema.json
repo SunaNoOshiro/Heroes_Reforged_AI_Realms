@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/error-envelope.schema.json",
+  "title": "ErrorEnvelope",
+  "description": "Canonical error response shape shared by every public service surface (HTTP and WebSocket). Source plan: docs/implementation-plans/29-rate-limiting-and-secret-management-plan.md (Critical Fix 4). Doctrine: docs/operations/error-envelope.md. The `scope` field is intentionally coarse to deny attackers an oracle on the exact bucket key; per-bucket fields (`bucketKey`, `remaining`, `limit`, `currentCount`) are forbidden by `additionalProperties: false`.",
+  "type": "object",
+  "required": ["error", "scope", "requestId"],
+  "additionalProperties": false,
+  "properties": {
+    "error": {
+      "type": "string",
+      "enum": [
+        "RATE_LIMITED",
+        "BUDGET_EXCEEDED",
+        "SERVICE_PAUSED",
+        "VALIDATION_FAILED",
+        "UNAVAILABLE",
+        "INTERNAL"
+      ],
+      "description": "Closed error code. Maps 1:1 to HTTP status (see doctrine § HTTP mapping) and to the signaling `ERROR { code }` discriminator."
+    },
+    "retryAfterMs": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Hint to the client. Present only when retry is meaningful (`RATE_LIMITED`, `BUDGET_EXCEEDED` after window reset, `SERVICE_PAUSED`, `UNAVAILABLE`). Mirrors HTTP `Retry-After` (in milliseconds rather than seconds for finer client-side scheduling). Coarse-grained: never reveals the exact remaining-tokens count."
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["ip", "session", "account", "global"],
+      "description": "Coarse axis that triggered the failure. Closed enum forbids leaking the exact bucket key so an attacker cannot calibrate the rate-limit shape against this response. Per-bucket detail (e.g., the actual key, the remaining-tokens count) is intentionally absent."
+    },
+    "requestId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID v4 generated server-side. Carried in `requestId` header on HTTP responses and in the signaling `ERROR` payload. Used by support to correlate a user report with server logs without exposing user-identifying data."
+    }
+  }
+}

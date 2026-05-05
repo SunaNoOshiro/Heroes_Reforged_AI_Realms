@@ -594,6 +594,7 @@ function schemaForFile(filePath) {
   if (base.endsWith(".lockstep-envelope.json")) return "lockstep-envelope.schema.json";
   if (base.endsWith(".match-handshake.json")) return "match-handshake.schema.json";
   if (base.endsWith(".save-envelope.json")) return "save-envelope.schema.json";
+  if (base.endsWith(".error-envelope.json")) return "error-envelope.schema.json";
 
   return null;
 }

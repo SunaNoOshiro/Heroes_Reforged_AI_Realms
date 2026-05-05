@@ -1,0 +1,6 @@
+{
+  "$schema": "../../schemas/error-envelope.schema.json",
+  "error": "INTERNAL",
+  "scope": "global",
+  "requestId": "99999999-aaaa-4bbb-8ccc-ddddeeeeffff"
+}

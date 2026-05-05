@@ -1,0 +1,7 @@
+{
+  "$schema": "../../schemas/error-envelope.schema.json",
+  "error": "BUDGET_EXCEEDED",
+  "retryAfterMs": 86400000,
+  "scope": "account",
+  "requestId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeffff0000"
+}
