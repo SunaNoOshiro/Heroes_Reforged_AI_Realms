@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "ERROR",
+  "code": "rate_limited",
+  "action": "createroom",
+  "retryAfterMs": 60000
+}

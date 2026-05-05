@@ -581,6 +581,8 @@ function schemaForFile(filePath) {
   if (base.endsWith(".content-report.json")) return "content-report.schema.json";
   if (base.endsWith(".privacy-options.json")) return "privacy-options.schema.json";
   if (base.endsWith(".signaling-error.json")) return "signaling-error.schema.json";
+  if (base.endsWith(".signaling-message.json")) return "signaling-message.schema.json";
+  if (base.endsWith(".turn-credential.json")) return "turn-credential.schema.json";
   if (base.endsWith(".signature-error.json")) return "signature-error.schema.json";
   if (base.endsWith(".audit-log-entry.json")) return "audit-log-entry.schema.json";
   if (base.endsWith(".erasure-receipt.json")) return "erasure-receipt.schema.json";

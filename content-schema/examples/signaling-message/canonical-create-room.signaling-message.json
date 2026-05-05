@@ -1,0 +1,5 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "CREATE_ROOM",
+  "maxPeers": 2
+}

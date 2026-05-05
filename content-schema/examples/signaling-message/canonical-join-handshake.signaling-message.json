@@ -1,0 +1,9 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "JOIN_HANDSHAKE",
+  "roomId": "ABCD1234",
+  "peerId": "11111111-2222-4333-8444-555555555555",
+  "peerPubKey": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "secret": "AAAAAAAAAAAAAAAAAAAAAA",
+  "sigSchemaVersion": 1
+}

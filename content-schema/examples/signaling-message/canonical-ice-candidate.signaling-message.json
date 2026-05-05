@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "ICE_CANDIDATE",
+  "roomId": "ABCD1234",
+  "peerId": "11111111-2222-4333-8444-555555555555",
+  "candidate": "candidate:1 1 UDP 2122252543 192.0.2.1 51234 typ relay raddr 0.0.0.0 rport 0"
+}

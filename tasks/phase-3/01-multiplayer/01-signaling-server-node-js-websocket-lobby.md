@@ -13,6 +13,12 @@ Read First:
 - [`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)
 - [`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)
 - [`docs/architecture/signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md)
+- [`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)
+- [`docs/architecture/signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md)
+- [`docs/architecture/signaling-health-endpoints.md`](../../../docs/architecture/signaling-health-endpoints.md)
+- [`docs/architecture/signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md)
+- [`docs/architecture/turn-credentials.md`](../../../docs/architecture/turn-credentials.md)
+- [`docs/architecture/turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md)
 - [`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)
 - [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)
 - [`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)
@@ -31,13 +37,17 @@ Outputs:
   `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`,
   `KICK_PEER`, `PEER_KICKED`, `JOIN_ATTEMPT_REJECTED`,
   `CLOSE_ROOM`, `ROOM_EXPIRED`, `ROOM_CLOSED`, `RATE_LIMITED`,
-  `PEER_CONNECTED`, `PEER_DISCONNECTED`, `CHALLENGE`,
-  `CHALLENGE_RESPONSE`, `HOST_CHANGED`. Every signaling frame
-  after `JOIN_HANDSHAKE` is wrapped in the signed envelope per
-  [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md):
-  fields `signerId`, `sig`, `nonce`, `iat`, `sessionTokenHash`
-  are mandatory on the wire. The server validates **shape +
-  freshness** but does NOT verify the inner signature.
+  `ROOM_FULL`, `PEER_CONNECTED`, `PEER_DISCONNECTED`,
+  `CHALLENGE`, `CHALLENGE_RESPONSE`, `HOST_CHANGED`,
+  `TURN_CREDENTIALS`, `REQUEST_TURN_REFRESH`, `ERROR`. Every
+  signaling frame after `JOIN_HANDSHAKE` is wrapped in the
+  signed envelope per
+  [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md);
+  every inner payload conforms to
+  [`signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json)
+  per [`signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md).
+  The server validates **shape + freshness** but does NOT verify
+  the inner signature.
 - Room ID: 8-character upper-case Crockford-Base32 code per
   [`lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)
 - Room secret: 16 bytes, base64url-encoded — generated at
@@ -47,11 +57,17 @@ Outputs:
 - Server memory: only room → peer mapping (with secret), room
   cool-down table, rate-limit buckets, and the per-room
   `peerDenylist` keyed on peer public keys
-- HTTP route: `GET /turn-credential` (issued by Task 10; this task
-  reserves the route surface)
-- HTTP route: `GET /healthz` (returns aggregate rate-limit /
-  active-room counters per
-  [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md))
+- HTTP route: `GET /turn-credential` reserved here for backwards
+  compat with [Task 10](./10-turn-fallback-and-credentials.md);
+  superseded by the `TURN_CREDENTIALS` WebSocket envelope per
+  [Task 33](./33-turn-credentials-doctrine-issuance.md).
+- HTTP `/healthz` and `/metrics` are bound to the **admin
+  listener on `127.0.0.1:9091`** with `Bearer ADMIN_TOKEN` auth
+  per
+  [`signaling-health-endpoints.md`](../../../docs/architecture/signaling-health-endpoints.md);
+  the public listener serves a bare `200 OK` for the platform-LB
+  liveness probe and never reveals version / build SHA / dep
+  versions.
 - Deploy target: any stateless container (Fly.io, Railway) — TLS
   terminated at the edge per
   [`transport-security.md`](../../../docs/architecture/transport-security.md);
@@ -111,10 +127,62 @@ Pre-Consent ICE Filtering:
 Rate Limiting:
 - Per-IP, per-code, and global token-bucket throttles — full table
   in [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md).
+- Per-`/24` v4 / per-`/64` v6 prefix concurrent-socket cap (8) and
+  per-connection message rate (60 / min, burst 30) added by
+  [Task 32](./32-signaling-rate-limit-augmentations.md).
 - On exceed, server replies `RATE_LIMITED { retryAfterMs }` and the
   client back-offs exponentially (1 s → 30 s).
 - Per-code failures emit a `JOIN_ATTEMPT_REJECTED { count, sinceMs }`
   notice to the host every 30 s when count > 0.
+
+Edge-Tier Defenses:
+- Per-prefix CONNECT-flood + sustained-breach blocklist
+  (15 min / 24 h / 7 d TTL ladder), CAPTCHA escalation hook on
+  `2× burst` `CREATE_ROOM` rate per
+  [`signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md).
+  Owned by [Task 35](./35-edge-defense-and-health-segregation.md).
+- Public `Server: signaling` header pin; no version / build SHA on
+  any public response per
+  [`signaling-health-endpoints.md`](../../../docs/architecture/signaling-health-endpoints.md).
+
+Message Validation:
+- Every inbound frame after `JOIN_HANDSHAKE` validates against
+  [`signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json)
+  via the AJV gate at the message-router boundary; raw strings
+  never reach the room-table mutation layer per
+  [`signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md).
+- WebSocket hardening defaults pinned in
+  `services/signaling/src/config.ts` (`MAX_PAYLOAD_BYTES = 64 KiB`,
+  `PING_INTERVAL_MS = 25_000`, `PING_TIMEOUT_MS = 30_000`,
+  `UPGRADE_DEADLINE_MS = 10_000`, `FRAME_DEADLINE_MS = 5_000`,
+  binary frames rejected). Owned by
+  [Task 31](./31-signaling-message-schema-and-validation.md).
+- Validation failure: `close(1008, "signaling-validation")`,
+  `signaling.payload.rejected` audit-log row, increment per-prefix
+  edge-defense counter. Offending payload is **never** echoed in
+  logs.
+
+TURN Credentials:
+- Issued only after `CREATE_ROOM` / `JOIN_ROOM` admit via the
+  `TURN_CREDENTIALS` envelope per
+  [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md);
+  no public HTTP endpoint, no static client-bundle constant. Owned
+  by [Task 33](./33-turn-credentials-doctrine-issuance.md).
+- TURN-down state (`iceconnectionstate` → `failed` twice within
+  10 s) surfaces `CONNECTION_FAILED_RELAY_UNAVAILABLE` in the
+  lobby per
+  [`turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md).
+
+Stateless Invariant:
+- This server is **stateless-by-design** per
+  [`signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md);
+  the only allowed in-memory state is the room-table, in-flight
+  SDP / ICE, rate-limit buckets, the TURN deny-list (TTL ≤ 6 min),
+  the edge blocklist (TTL ≤ 7 d), and the per-frame timer state.
+  No disk write, no DB connection, no cross-restart cache. The
+  `npm run validate:signaling-stateless` gate (owned by
+  [Task 35](./35-edge-defense-and-health-segregation.md)) fails
+  any commit that introduces forbidden state.
 
 Room Cleanup:
 - Idle TTL: 30 minutes since last protocol message → server emits
@@ -151,6 +219,23 @@ Owned Paths (shared):
   contributes the pending-peer queue; this task forwards
   `JOIN_ROOM` into it. Approval-state additions must not rewrite
   this task's room-table shape.
+- Task 31 ([`31-signaling-message-schema-and-validation.md`](./31-signaling-message-schema-and-validation.md))
+  is the **primary owner** of `services/signaling/src/validation/`
+  and `services/signaling/src/config.ts`; this task wires the AJV
+  gate into the message-router and the named hardening constants
+  into the `ws` bootstrap. Wiring is **additive**.
+- Task 32 ([`32-signaling-rate-limit-augmentations.md`](./32-signaling-rate-limit-augmentations.md))
+  contributes the per-prefix concurrent-socket cap, per-connection
+  message rate, and `ROOM_FULL` reply on the 3rd
+  `JOIN_HANDSHAKE`; this task accepts those call-site additions.
+- Task 33 ([`33-turn-credentials-doctrine-issuance.md`](./33-turn-credentials-doctrine-issuance.md))
+  contributes the `TURN_CREDENTIALS` issuance call sites and the
+  deny-list emitter; this task accepts those additions.
+- Task 35 ([`35-edge-defense-and-health-segregation.md`](./35-edge-defense-and-health-segregation.md))
+  contributes the blocklist check in the upgrade-handler, the
+  CAPTCHA escalation hook in the `CREATE_ROOM` handler, and the
+  separate admin-listener boot. The public `Server` header pin
+  is contributed by this task.
 
 Dependencies:
 - module:mvp.10-heuristic-ai

@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "ERROR",
+  "code": "captcha_required",
+  "action": "createroom",
+  "captchaToken": "tstn-placeholder-token"
+}

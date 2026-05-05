@@ -1,0 +1,356 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/signaling-message.schema.json",
+  "title": "SignalingMessage",
+  "description": "Closed discriminated union of every payload that may travel inside a signaling-envelope `payload` field, plus the pre-handshake `JOIN_HANDSHAKE` raw frame. Every variant pins `additionalProperties: false`, length caps, and pattern-checked id fields. Authoritative doctrine: `docs/architecture/signaling-message-schema.md`. The allow/deny list of which kinds may travel at all lives in `docs/architecture/signaling-payload-policy.md`; this schema is the wire-shape layer beneath it.",
+  "oneOf": [
+    { "$ref": "#/$defs/JoinHandshake" },
+    { "$ref": "#/$defs/JoinRejected" },
+    { "$ref": "#/$defs/JoinAttemptRejected" },
+    { "$ref": "#/$defs/CreateRoom" },
+    { "$ref": "#/$defs/CloseRoom" },
+    { "$ref": "#/$defs/RoomExpired" },
+    { "$ref": "#/$defs/RoomClosed" },
+    { "$ref": "#/$defs/JoinRoom" },
+    { "$ref": "#/$defs/Offer" },
+    { "$ref": "#/$defs/Answer" },
+    { "$ref": "#/$defs/IceCandidate" },
+    { "$ref": "#/$defs/PeerPending" },
+    { "$ref": "#/$defs/ApprovePeer" },
+    { "$ref": "#/$defs/RejectPeer" },
+    { "$ref": "#/$defs/PeerRejected" },
+    { "$ref": "#/$defs/KickPeer" },
+    { "$ref": "#/$defs/PeerKicked" },
+    { "$ref": "#/$defs/PeerConnected" },
+    { "$ref": "#/$defs/PeerDisconnected" },
+    { "$ref": "#/$defs/RateLimited" },
+    { "$ref": "#/$defs/RoomFull" },
+    { "$ref": "#/$defs/Challenge" },
+    { "$ref": "#/$defs/ChallengeResponse" },
+    { "$ref": "#/$defs/HostChanged" },
+    { "$ref": "#/$defs/TurnCredentials" },
+    { "$ref": "#/$defs/RequestTurnRefresh" },
+    { "$ref": "#/$defs/Error" }
+  ],
+  "$defs": {
+    "RoomId": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{8}$",
+      "description": "Crockford-Base32 8-char room code per `docs/architecture/lobby-identifiers.md`."
+    },
+    "PeerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "Base64Url22": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{22}$"
+    },
+    "Sdp": {
+      "type": "string",
+      "maxLength": 16384,
+      "description": "RFC 8866 SDP body; per-message ceiling 16 KiB, well below the 64 KiB frame cap."
+    },
+    "Candidate": {
+      "type": "string",
+      "maxLength": 1024,
+      "description": "Single `a=candidate:` line; 1 KiB blocks line-injection."
+    },
+    "ReasonCode": {
+      "type": "string",
+      "maxLength": 32,
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "JoinHandshake": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "peerId", "peerPubKey", "secret", "sigSchemaVersion"],
+      "properties": {
+        "type": { "const": "JOIN_HANDSHAKE" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "peerId": { "$ref": "#/$defs/PeerId" },
+        "peerPubKey": { "type": "string", "pattern": "^[A-Za-z0-9_-]{43}$", "description": "Ed25519 public key, base64url, 32 raw bytes (43 url-safe chars without padding)." },
+        "secret": { "$ref": "#/$defs/Base64Url22" },
+        "sigSchemaVersion": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "JoinRejected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "reason"],
+      "properties": {
+        "type": { "const": "JOIN_REJECTED" },
+        "reason": { "$ref": "#/$defs/ReasonCode" }
+      }
+    },
+    "JoinAttemptRejected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "count", "sinceMs"],
+      "properties": {
+        "type": { "const": "JOIN_ATTEMPT_REJECTED" },
+        "count": { "type": "integer", "minimum": 1 },
+        "sinceMs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "CreateRoom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "CREATE_ROOM" },
+        "maxPeers": { "type": "integer", "minimum": 2, "maximum": 2, "description": "M5 cap is 2; reserved field for forward-compat." }
+      }
+    },
+    "CloseRoom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId"],
+      "properties": {
+        "type": { "const": "CLOSE_ROOM" },
+        "roomId": { "$ref": "#/$defs/RoomId" }
+      }
+    },
+    "RoomExpired": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "reason"],
+      "properties": {
+        "type": { "const": "ROOM_EXPIRED" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "reason": { "enum": ["idle", "max_lifetime"] }
+      }
+    },
+    "RoomClosed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "reason"],
+      "properties": {
+        "type": { "const": "ROOM_CLOSED" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "reason": { "enum": ["host_closed"] }
+      }
+    },
+    "JoinRoom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "peerId"],
+      "properties": {
+        "type": { "const": "JOIN_ROOM" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "peerId": { "$ref": "#/$defs/PeerId" },
+        "displayNameDraft": { "type": "string", "maxLength": 24, "description": "Reserved field: relayed to the host (host validates per `display-name-policy.md`); never logged." }
+      }
+    },
+    "Offer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "peerId", "sdp"],
+      "properties": {
+        "type": { "const": "OFFER" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "peerId": { "$ref": "#/$defs/PeerId" },
+        "sdp": { "$ref": "#/$defs/Sdp" },
+        "iceCandidates": {
+          "type": "array",
+          "maxItems": 32,
+          "items": { "$ref": "#/$defs/Candidate" }
+        }
+      }
+    },
+    "Answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "peerId", "sdp"],
+      "properties": {
+        "type": { "const": "ANSWER" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "peerId": { "$ref": "#/$defs/PeerId" },
+        "sdp": { "$ref": "#/$defs/Sdp" },
+        "iceCandidates": {
+          "type": "array",
+          "maxItems": 32,
+          "items": { "$ref": "#/$defs/Candidate" }
+        }
+      }
+    },
+    "IceCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "peerId", "candidate"],
+      "properties": {
+        "type": { "const": "ICE_CANDIDATE" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "peerId": { "$ref": "#/$defs/PeerId" },
+        "candidate": { "$ref": "#/$defs/Candidate" }
+      }
+    },
+    "PeerPending": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId"],
+      "properties": {
+        "type": { "const": "PEER_PENDING" },
+        "peerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "ApprovePeer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId"],
+      "properties": {
+        "type": { "const": "APPROVE_PEER" },
+        "peerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "RejectPeer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId"],
+      "properties": {
+        "type": { "const": "REJECT_PEER" },
+        "peerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "PeerRejected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "reason"],
+      "properties": {
+        "type": { "const": "PEER_REJECTED" },
+        "reason": { "enum": ["rejected", "denylisted"] }
+      }
+    },
+    "KickPeer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId"],
+      "properties": {
+        "type": { "const": "KICK_PEER" },
+        "peerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "PeerKicked": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "PEER_KICKED" }
+      }
+    },
+    "PeerConnected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId"],
+      "properties": {
+        "type": { "const": "PEER_CONNECTED" },
+        "peerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "PeerDisconnected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId"],
+      "properties": {
+        "type": { "const": "PEER_DISCONNECTED" },
+        "peerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "RateLimited": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "tier", "retryAfterMs", "reason"],
+      "properties": {
+        "type": { "const": "RATE_LIMITED" },
+        "tier": { "enum": ["per_ip", "per_code", "per_connection", "per_prefix", "global"] },
+        "retryAfterMs": { "type": "integer", "minimum": 0 },
+        "reason": { "enum": ["join_flood", "create_flood", "wrong_code", "global", "per_connection_burst", "prefix_socket_cap"] }
+      }
+    },
+    "RoomFull": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId"],
+      "properties": {
+        "type": { "const": "ROOM_FULL" },
+        "roomId": { "$ref": "#/$defs/RoomId" }
+      }
+    },
+    "Challenge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId", "nonce"],
+      "properties": {
+        "type": { "const": "CHALLENGE" },
+        "peerId": { "$ref": "#/$defs/PeerId" },
+        "nonce": { "$ref": "#/$defs/Base64Url22" }
+      }
+    },
+    "ChallengeResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "peerId", "nonce", "sig"],
+      "properties": {
+        "type": { "const": "CHALLENGE_RESPONSE" },
+        "peerId": { "$ref": "#/$defs/PeerId" },
+        "nonce": { "$ref": "#/$defs/Base64Url22" },
+        "sig": { "type": "string", "pattern": "^[A-Za-z0-9_-]{86}$" }
+      }
+    },
+    "HostChanged": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "newHostPeerId"],
+      "properties": {
+        "type": { "const": "HOST_CHANGED" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "newHostPeerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "TurnCredentials": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "credential"],
+      "properties": {
+        "type": { "const": "TURN_CREDENTIALS" },
+        "credential": {
+          "$ref": "turn-credential.schema.json",
+          "description": "Inner shape pinned by `turn-credential.schema.json`. The signaling server is the only issuer; clients never construct credentials."
+        }
+      }
+    },
+    "RequestTurnRefresh": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "roomId", "peerId"],
+      "properties": {
+        "type": { "const": "REQUEST_TURN_REFRESH" },
+        "roomId": { "$ref": "#/$defs/RoomId" },
+        "peerId": { "$ref": "#/$defs/PeerId" }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "code"],
+      "properties": {
+        "type": { "const": "ERROR" },
+        "code": {
+          "enum": [
+            "rate_limited",
+            "global_limit",
+            "code_locked",
+            "captcha_required",
+            "ip_blocklisted",
+            "capacity",
+            "validation_failed",
+            "internal"
+          ]
+        },
+        "action": { "$ref": "#/$defs/ReasonCode" },
+        "retryAfterMs": { "type": "integer", "minimum": 0 },
+        "captchaToken": { "type": "string", "maxLength": 256, "description": "Opaque token surfaced when `code === \"captcha_required\"`; client renders the verifier widget and replays the verified token." }
+      }
+    }
+  }
+}

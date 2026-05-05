@@ -50,6 +50,43 @@ described in [`spec.md` § Trust](./spec.md). Behavior:
 success, dispatch `RECORD_ABANDON_PENALTY`; on timeout, neither
 peer is penalized.
 
+### Connection-Failure Handlers
+
+The lobby exposes four handlers that respond to server-side
+failure states (see [`spec.md` § Connection-Failure States](./spec.md#connection-failure-states)
+and [`turn-fallback-policy.md`](../../../turn-fallback-policy.md)):
+
+- `OnRelayUnavailable()` — invoked when the TURN-down state
+  machine in `src/net/webrtc/peer-connection.ts` dispatches
+  `CONNECTION_FAILED_RELAY_UNAVAILABLE`. Sets
+  `state.net.lobby.errorState = { kind: "relayUnavailable" }`,
+  closes the peer connection, and surfaces the lobby
+  "Back to setup" button. No retry storm; the user must
+  re-create the room manually.
+- `OnRateLimited(retryAfterMs)` — invoked when the signaling
+  server emits `RATE_LIMITED` or
+  `ERROR { code: "rate_limited" }`. Sets
+  `state.net.lobby.errorState = { kind: "rateLimited", retryAfterMs }`;
+  the cooldown timer ticks down and re-enables the action button
+  on expiry.
+- `OnRoomFull()` — invoked when the signaling server emits
+  `ROOM_FULL`. Sets
+  `state.net.lobby.errorState = { kind: "roomFull" }` and
+  surfaces the "Back to setup" button (route to
+  `62-multiplayer-setup`). No `room.peers` mutation occurred on
+  the server; no rollback is required.
+- `OnCodeLocked(cooldownMs)` — invoked when the signaling server
+  emits `ERROR { code: "code_locked" }` after 5 wrong-code
+  attempts within 60 s. Sets
+  `state.net.lobby.errorState = { kind: "codeLocked", retryAfterMs: cooldownMs }`.
+
+`OnCaptchaRequired(captchaToken, action)` mounts an inline
+Cloudflare Turnstile / hCaptcha widget when the signaling server
+returns `ERROR { code: "captcha_required", captchaToken, action }`
+(per [`signaling-edge-defense.md`](../../../signaling-edge-defense.md)).
+On verify, the lobby replays `action` with the verified token; on
+dismiss, the lobby flips to `rateLimited` with the operator cooldown.
+
 ### Reconnect Continuity Challenge
 
 When a peer's connection drops and they re-signal, the host

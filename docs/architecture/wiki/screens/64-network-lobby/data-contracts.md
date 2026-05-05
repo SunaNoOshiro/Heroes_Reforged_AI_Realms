@@ -45,6 +45,7 @@
 | `knownPeers` | `state.profile.knownPeers` | [`peer-allowlist.schema.json`](../../../../../content-schema/schemas/peer-allowlist.schema.json) — capped LRU. |
 | `peerTrustLevel(peerId)` | `selectors.net.peerTrustLevel` | Closed enum `'friend' \| 'recent' \| 'unknown'` per [`peer-trust.md`](../../../peer-trust.md). |
 | `unsignedPacksAck` | `state.net.lobby.unsignedPacksAck` | Per-peer ack flag for the casual unsigned-pack gate; cleared on session end. |
+| `errorState` | `state.net.lobby.errorState` | Closed shape `{ kind: 'relayUnavailable' \| 'rateLimited' \| 'roomFull' \| 'codeLocked' \| 'captchaRequired', retryAfterMs?: number, captchaToken?: string, message?: string }`. Drives the **Connection-Failure States** subsection in [`spec.md`](./spec.md#connection-failure-states). Cleared on lobby leave / re-create. Never enters saves, replays, or the canonical state hash. |
 
 ### Display Name Validation
 - Every `displayName` and `displayNameDraft` field on this screen MUST be validated through `validateDisplayName(...)` per [`docs/architecture/display-name-policy.md`](../../../display-name-policy.md). NFC normalization, 1–24 grapheme cluster bound, category rejection (Cf, Cc, Co, zero-width, bidi overrides), reserved-name list, UTS #39 confusable collision check.

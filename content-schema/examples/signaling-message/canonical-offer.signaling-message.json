@@ -1,0 +1,8 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "OFFER",
+  "roomId": "ABCD1234",
+  "peerId": "22222222-3333-4444-9555-666666666666",
+  "sdp": "v=0\r\no=- 0 0 IN IP4 0.0.0.0\r\ns=-\r\nt=0 0\r\nm=application 9 UDP/DTLS/SCTP webrtc-datachannel\r\nc=IN IP4 0.0.0.0\r\na=mid:0\r\na=sctp-port:5000\r\n",
+  "iceCandidates": []
+}

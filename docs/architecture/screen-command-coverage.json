@@ -130,6 +130,9 @@
     "RECORD_ABANDON_PENALTY": "phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect owns the abandon-penalty ring-buffer append per docs/architecture/abandon-penalty.md.",
     "RECORD_CONTINUITY_CHALLENGE": "phase-3.01-multiplayer.27-dtls-fingerprint-pinning owns the continuity-challenge round-trip record per docs/architecture/dtls-fingerprint-pinning.md § 4.",
     "PEER_DISCONNECTED": "Signaling server-emitted event wrapped in the signed signaling envelope per docs/architecture/signaling-envelope.md and quorum-attested per docs/architecture/abandon-penalty.md; not a UI command. Owned by phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect.",
-    "CHALLENGE_RESPONSE": "Signed signaling envelope payloadType emitted by a reconnecting peer to prove identity continuity per docs/architecture/dtls-fingerprint-pinning.md § 4; not a UI command. Owned by phase-3.01-multiplayer.27-dtls-fingerprint-pinning."
+    "CHALLENGE_RESPONSE": "Signed signaling envelope payloadType emitted by a reconnecting peer to prove identity continuity per docs/architecture/dtls-fingerprint-pinning.md § 4; not a UI command. Owned by phase-3.01-multiplayer.27-dtls-fingerprint-pinning.",
+    "CONNECTION_FAILED_RELAY_UNAVAILABLE": "phase-3.01-multiplayer.35-edge-defense-and-health-segregation owns the TURN-down dispatch per docs/architecture/turn-fallback-policy.md; surfaces the lobby `relayUnavailable` state.",
+    "RATE_LIMITED": "Closed signaling-server reply payload per docs/architecture/signaling-rate-limits.md § 3 and content-schema/schemas/signaling-message.schema.json; not a UI command. Consumed by phase-3.01-multiplayer.35-edge-defense-and-health-segregation via `OnRateLimited`.",
+    "ROOM_FULL": "Closed signaling-server reply payload per docs/architecture/signaling-message-schema.md § 1 and content-schema/schemas/signaling-message.schema.json; not a UI command. Consumed by phase-3.01-multiplayer.35-edge-defense-and-health-segregation via `OnRoomFull`."
   }
 }

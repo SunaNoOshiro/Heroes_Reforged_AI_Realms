@@ -76,6 +76,38 @@ success, the toast flips to `Forfeit confirmed`; on timeout, the
 banner reads `Disconnect attestation failed — match aborted`
 and no penalty is recorded.
 
+### Connection-Failure States
+
+When the lobby cannot proceed because of a server-side throttle,
+a TURN-relay failure, or a room-capacity issue, the screen renders
+one of four named failure states. Each binds to
+`state.net.lobby.errorState.kind` (see
+[`data-contracts.md`](./data-contracts.md)) and overlays a
+non-modal toast plus a single button. Per
+[`turn-fallback-policy.md`](../../../turn-fallback-policy.md) and
+[`signaling-edge-defense.md`](../../../signaling-edge-defense.md).
+
+| `kind` | Copy | Action |
+| --- | --- | --- |
+| `relayUnavailable` | "Direct connection blocked — try a different network or wait a moment and retry." | Single button: "Back to setup" → `62-multiplayer-setup`. |
+| `rateLimited` | "Too many attempts. Try again in {{retryAfterSeconds}} s." | Disabled button until cooldown elapses. |
+| `roomFull` | "This room is full." | Single button: "Back to setup" → `62-multiplayer-setup`. |
+| `codeLocked` | "Too many wrong codes against this room. Try again in {{cooldownSeconds}} s." | Disabled button until cooldown elapses. |
+
+The `relayUnavailable` state is reached only after the single
+TURN-refresh retry pinned by
+[`turn-fallback-policy.md`](../../../turn-fallback-policy.md);
+the lobby never silently retries, never auto-falls-through to a
+relay-only configuration, and never renders "Connecting…"
+indefinitely.
+
+A fifth transient state, `captchaRequired`, mounts an inline
+Turnstile / hCaptcha verifier when the signaling server returns
+`ERROR { code: "captcha_required", captchaToken }`. On verify,
+the lobby retries the originating action with the verified token;
+on dismiss, the lobby falls back to `rateLimited` with the
+operator-configured cooldown.
+
 ### Peer-Failure Error Contract
 
 When a peer connection fails (timeout, refused, network error, protocol

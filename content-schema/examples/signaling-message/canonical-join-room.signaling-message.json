@@ -1,0 +1,6 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "JOIN_ROOM",
+  "roomId": "ABCD1234",
+  "peerId": "22222222-3333-4444-9555-666666666666"
+}

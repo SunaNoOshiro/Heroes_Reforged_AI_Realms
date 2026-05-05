@@ -1,0 +1,7 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "RATE_LIMITED",
+  "tier": "per_ip",
+  "retryAfterMs": 60000,
+  "reason": "join_flood"
+}

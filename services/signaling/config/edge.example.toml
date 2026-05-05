@@ -58,3 +58,63 @@ ipv4_bucket = "/24"
 ipv6_bucket = "/64"
 sink = "stdout-json"
 per_bucket_rate_limit_per_60s = 1
+
+# --- Edge-tier abuse defenses ----------------------------------------
+# Plan 25 / Critical Fix 5. Authoritative doctrine:
+#   docs/architecture/signaling-edge-defense.md
+
+[edge_defense.per_prefix_socket_cap]
+# Per-/24 IPv4 / per-/64 IPv6 concurrent open WebSocket cap.
+# 9th upgrade is refused with HTTP 429.
+ipv4_prefix = "/24"
+ipv6_prefix = "/64"
+max_concurrent_sockets = 8
+refuse_status = 429
+
+[edge_defense.upgrade_flood]
+# Per-prefix upgrade-attempt ceiling per minute.
+# Above this, the prefix is auto-added to the blocklist on
+# sustained breach (see docs/architecture/signaling-edge-defense.md
+# § 4 for the TTL ladder).
+ipv4_prefix = "/24"
+ipv6_prefix = "/64"
+max_upgrades_per_minute = 30
+
+[edge_defense.captcha_escalation]
+# Activated when per-prefix CREATE_ROOM rate breaches 2× burst
+# (10 in 60 s) for >= 60 s. The next CREATE_ROOM from the prefix
+# returns ERROR { code: "captcha_required" } with a token; the
+# lobby renders the verifier widget; the verified token is
+# replayed on the retry. Off in dev (CAPTCHA_PROVIDER unset).
+provider = "turnstile"  # also: "hcaptcha", "stub"
+breach_window_sec = 60
+breach_threshold_multiplier = 2.0
+
+[edge_defense.blocklist]
+# Time-bound blocklist; in-memory by default. Optional Redis
+# backing for cross-restart memory.
+ipv4_prefix = "/24"
+ipv6_prefix = "/64"
+ttl_minutes_first = 15
+ttl_hours_repeat_within_1h = 24
+ttl_days_repeat_within_24h = 7
+backing = "in-memory"  # also: "redis"
+
+# --- Health / metrics segregation ------------------------------------
+# Plan 25 / Critical Fix 5. Authoritative doctrine:
+#   docs/architecture/signaling-health-endpoints.md
+#
+# The public listener exposes only the WebSocket upgrade plus a
+# bare 200 OK at any other path (LB liveness probe). /healthz and
+# /metrics live on the admin port and require a bearer token.
+
+[health.public]
+server_header = "signaling"            # never the platform default
+expose_healthz = false
+expose_metrics = false
+liveness_status = 200
+
+[health.admin]
+bind = "127.0.0.1:9091"                 # loopback only
+require_auth = "Bearer:ADMIN_TOKEN"
+paths = ["/healthz", "/metrics"]

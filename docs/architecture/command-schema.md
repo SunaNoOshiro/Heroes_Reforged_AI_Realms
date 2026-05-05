@@ -753,6 +753,67 @@ deterministic engine command log; they are dispatched against the
 - `INSPECT_ABANDON_HISTORY` — local-ui; opens a read-only panel
   rendering `state.profile.abandonHistory`. Owned by the same task.
 
+### Signaling Abuse-Defense, TURN, and Connection-Failure Commands
+
+Plan-25 surface tokens dispatched against the `src/net/`,
+`src/net/webrtc/`, and lobby-screen adapters. None enter the
+deterministic engine command log. Closed event vocabulary aligned
+with [`signaling-message.schema.json`](../../content-schema/schemas/signaling-message.schema.json)
+and the failure-state shape in
+[`64-network-lobby/data-contracts.md`](./wiki/screens/64-network-lobby/data-contracts.md).
+
+- `RECEIVE_TURN_CREDENTIALS` — runtime-only; consumes a
+  `TURN_CREDENTIALS` envelope from the signaling server, validates
+  it against [`turn-credential.schema.json`](../../content-schema/schemas/turn-credential.schema.json),
+  and writes the resulting `iceServers` entry into
+  `state.net.peers[peerId].iceServers`. Owned by
+  `tasks/phase-3/01-multiplayer/33-turn-credentials-doctrine-issuance.md`.
+- `REQUEST_TURN_REFRESH` — runtime-only; dispatched on
+  `iceconnectionstate === 'failed'` (1st) or when
+  `expiresAt - now < 30_000`. Rate-limited per
+  [`signaling-rate-limits.md`](./signaling-rate-limits.md).
+  Owned by the same task.
+- `TURN_CREDENTIALS_EXPIRED` — runtime-only; emitted by the
+  client-side credential watchdog when the active credential's
+  `expiresAt` falls within the refresh window without a successful
+  refresh round-trip. Owned by the same task.
+- `CONNECTION_FAILED_RELAY_UNAVAILABLE` — runtime-only; dispatched
+  by the TURN-down state machine on a second
+  `iceconnectionstate === 'failed'` within 10 s. Closes the peer
+  connection, sets `state.net.lobby.errorState = { kind: "relayUnavailable" }`,
+  and surfaces the lobby copy per
+  [`turn-fallback-policy.md`](./turn-fallback-policy.md). Owned by
+  `tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md`.
+- `SIGNALING_RATE_LIMITED` — runtime-only; consumes a
+  `RATE_LIMITED` reply from the signaling server and sets
+  `state.net.lobby.errorState = { kind: "rateLimited", retryAfterMs }`.
+  Owned by the same task.
+- `SIGNALING_ROOM_FULL` — runtime-only; consumes a `ROOM_FULL`
+  reply and sets
+  `state.net.lobby.errorState = { kind: "roomFull" }`. Owned by
+  the same task.
+- `SIGNALING_VALIDATION_FAILED` — runtime-only; client-side trust
+  event when an inbound envelope fails AJV validation per
+  [`signaling-message-schema.md`](./signaling-message-schema.md).
+  Owned by `tasks/phase-3/01-multiplayer/31-signaling-message-schema-and-validation.md`.
+- `SIGNALING_PAYLOAD_REJECTED` — server-side metric event; emitted
+  by the signaling server when an inbound payload fails validation
+  (`unknown_type` / `additional_property` / `length_exceeded` / …).
+  Surfaced on the admin `/metrics` endpoint per
+  [`signaling-health-endpoints.md` § 3](./signaling-health-endpoints.md#3-metrics-shape).
+  Owned by Task 31.
+- `CAPTCHA_REQUIRED` — runtime-only; consumes
+  `ERROR { code: "captcha_required", captchaToken, action }`.
+  Mounts the verifier widget. Owned by Task 35.
+- `CAPTCHA_VERIFIED` — runtime-only; dispatched after the verifier
+  widget produces a token. Replays `action` with the verified
+  token. Owned by Task 35.
+- `IP_BLOCKLISTED` — runtime-only; client-side reaction to an HTTP
+  `403` upgrade response (no body). Surfaces the
+  `relayUnavailable` copy with a generic "Try a different network"
+  hint; the lobby never confirms the blocklist state to the user.
+  Owned by Task 35.
+
 ## Field Visibility (Desync Redaction)
 
 Every command field declared above carries a closed

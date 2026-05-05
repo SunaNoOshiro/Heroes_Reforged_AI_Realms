@@ -11,8 +11,11 @@ short-TTL credential endpoint, and add automatic STUN→TURN fallback
 to the peer connection so public-facing matches actually connect.
 
 Read First:
+- [`docs/architecture/turn-credentials.md`](../../../docs/architecture/turn-credentials.md)
+- [`docs/architecture/turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md)
 - [`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)
 - [`services/multiplayer/turn-config.md`](../../../services/multiplayer/turn-config.md)
+- [`services/turn/README.md`](../../../services/turn/README.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 
 Inputs:
@@ -24,15 +27,25 @@ Outputs:
 - `services/multiplayer/turn/` — signaling-side credential endpoint
   config.
 - `src/net/webrtc/ice-config.ts` — client-side `iceServers` builder
-  with STUN-first / TURN-fallback logic.
-- `GET /turn-credential` endpoint contract:
-  `{ urls, username, credential, ttl }` per
-  [`turn-config.md`](../../../services/multiplayer/turn-config.md).
-- HMAC credential format: `username = unix-ts-expiry:roomId`,
-  `credential = base64( HMAC_SHA1(secret, username) )`,
-  `ttl = 600 s`.
+  with STUN-first / TURN-fallback logic. **`iceServers` is built
+  from the `TURN_CREDENTIALS` WebSocket envelope** per
+  [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md);
+  the build never imports a `turn:` URL constant.
+- HMAC credential format and lifecycle pinned by
+  [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md);
+  `username = "<expEpochSeconds>:<roomCode>:<peerId>"`,
+  `credential = base64( HMAC_SHA1(secret, username) )`, hard
+  TTL ceiling 300 s.
 - Telemetry: `turn_fallback_used` counter emitted on every match
   that lands on a `relay` candidate pair.
+
+> **Superseded delivery channel:** the older `GET /turn-credential`
+> HTTP route is replaced by the `TURN_CREDENTIALS` WebSocket
+> envelope per
+> [Task 33](./33-turn-credentials-doctrine-issuance.md). The
+> STUN-first / 4 s ICE-gather-timeout / TURN-fallback flow in
+> this task is preserved; only the credential-delivery channel
+> changes.
 
 Owned Paths:
 - `services/multiplayer/turn/`

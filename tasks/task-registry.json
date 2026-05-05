@@ -3156,7 +3156,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 401
+      "downstreamTransitiveCount": 406
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3218,7 +3218,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 399
+      "downstreamTransitiveCount": 404
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3275,7 +3275,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 242
+      "downstreamTransitiveCount": 247
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3331,7 +3331,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 311
+      "downstreamTransitiveCount": 316
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3478,7 +3478,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 231
+      "downstreamTransitiveCount": 236
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -4377,7 +4377,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 306
+      "downstreamTransitiveCount": 311
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4435,7 +4435,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 227
+      "downstreamTransitiveCount": 232
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4618,7 +4618,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 218
+      "downstreamTransitiveCount": 223
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4679,7 +4679,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 277
+      "downstreamTransitiveCount": 282
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -5207,7 +5207,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 188
+      "downstreamTransitiveCount": 193
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -9060,7 +9060,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 178
+      "downstreamTransitiveCount": 183
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -9120,7 +9120,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 117
+      "downstreamTransitiveCount": 122
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -9176,7 +9176,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 158
+      "downstreamTransitiveCount": 163
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -9239,7 +9239,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 116
+      "downstreamTransitiveCount": 121
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -9836,7 +9836,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 91
+      "downstreamTransitiveCount": 96
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -9988,7 +9988,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 117
+      "downstreamTransitiveCount": 122
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -10123,7 +10123,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 152
+      "downstreamTransitiveCount": 157
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -10199,7 +10199,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 116
+      "downstreamTransitiveCount": 121
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -10262,7 +10262,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 106
+      "downstreamTransitiveCount": 111
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -10328,7 +10328,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 86
+      "downstreamTransitiveCount": 91
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -10394,7 +10394,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 88
+      "downstreamTransitiveCount": 93
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -10472,7 +10472,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 66
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -10527,7 +10527,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 64
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -16534,7 +16534,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 95
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -16596,7 +16596,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 81
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -16744,7 +16744,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 70
+      "downstreamTransitiveCount": 75
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -16811,7 +16811,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 63
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -16947,7 +16947,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 63
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -17010,7 +17010,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 72
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -17083,7 +17083,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 61
+      "downstreamTransitiveCount": 66
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -17757,7 +17757,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 63
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -17845,7 +17845,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 62
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -17908,7 +17908,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 64
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -17990,7 +17990,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 64
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -18064,7 +18064,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -18169,7 +18169,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -18239,7 +18239,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 60
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -18334,7 +18334,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 32
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -18417,7 +18417,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 33
+      "downstreamTransitiveCount": 38
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -18495,7 +18495,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 51
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -18566,7 +18566,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 32
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -31094,12 +31094,12 @@
       ],
       "outputs": [
         "`services/signaling/src/server.ts`",
-        "Messages: `CREATE_ROOM`, `JOIN_ROOM`, `JOIN_HANDSHAKE`, `JOIN_REJECTED`, `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`, `KICK_PEER`, `PEER_KICKED`, `JOIN_ATTEMPT_REJECTED`, `CLOSE_ROOM`, `ROOM_EXPIRED`, `ROOM_CLOSED`, `RATE_LIMITED`, `PEER_CONNECTED`, `PEER_DISCONNECTED`, `CHALLENGE`, `CHALLENGE_RESPONSE`, `HOST_CHANGED`. Every signaling frame after `JOIN_HANDSHAKE` is wrapped in the signed envelope per [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md): fields `signerId`, `sig`, `nonce`, `iat`, `sessionTokenHash` are mandatory on the wire. The server validates **shape + freshness** but does NOT verify the inner signature.",
+        "Messages: `CREATE_ROOM`, `JOIN_ROOM`, `JOIN_HANDSHAKE`, `JOIN_REJECTED`, `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`, `KICK_PEER`, `PEER_KICKED`, `JOIN_ATTEMPT_REJECTED`, `CLOSE_ROOM`, `ROOM_EXPIRED`, `ROOM_CLOSED`, `RATE_LIMITED`, `ROOM_FULL`, `PEER_CONNECTED`, `PEER_DISCONNECTED`, `CHALLENGE`, `CHALLENGE_RESPONSE`, `HOST_CHANGED`, `TURN_CREDENTIALS`, `REQUEST_TURN_REFRESH`, `ERROR`. Every signaling frame after `JOIN_HANDSHAKE` is wrapped in the signed envelope per [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md); every inner payload conforms to [`signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json) per [`signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md). The server validates **shape + freshness** but does NOT verify the inner signature.",
         "Room ID: 8-character upper-case Crockford-Base32 code per [`lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
         "Room secret: 16 bytes, base64url-encoded — generated at `CREATE_ROOM`, embedded in invite URL fragment, rotated on empty-room (see [`multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake))",
         "Server memory: only room → peer mapping (with secret), room cool-down table, rate-limit buckets, and the per-room `peerDenylist` keyed on peer public keys",
-        "HTTP route: `GET /turn-credential` (issued by Task 10; this task reserves the route surface)",
-        "HTTP route: `GET /healthz` (returns aggregate rate-limit / active-room counters per [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md))",
+        "HTTP route: `GET /turn-credential` reserved here for backwards compat with [Task 10](./10-turn-fallback-and-credentials.md); superseded by the `TURN_CREDENTIALS` WebSocket envelope per [Task 33](./33-turn-credentials-doctrine-issuance.md).",
+        "HTTP `/healthz` and `/metrics` are bound to the **admin listener on `127.0.0.1:9091`** with `Bearer ADMIN_TOKEN` auth per [`signaling-health-endpoints.md`](../../../docs/architecture/signaling-health-endpoints.md); the public listener serves a bare `200 OK` for the platform-LB liveness probe and never reveals version / build SHA / dep versions.",
         "Deploy target: any stateless container (Fly.io, Railway) — TLS terminated at the edge per [`transport-security.md`](../../../docs/architecture/transport-security.md); edge config example lives at [`services/signaling/config/edge.example.toml`](../../../services/signaling/config/edge.example.toml) (introduced by [Task 24](./24-transport-security-edge-config.md)) Transport:",
         "**Listener**: WSS-only. Plain `ws://` is rejected at the listener. The bootstrap refuses to bind on `ws://` unless `process.env.NODE_ENV === 'test'`.",
         "**TLS**: TLS 1.2 floor; cipher allowlist per [`transport-security.md` § 2](../../../docs/architecture/transport-security.md#2-tls-floor). Weak-cipher fallback is forbidden.",
@@ -31112,8 +31112,17 @@
         "The only payloads that traverse the signaling server are the protocol messages listed above. Pack hash, save hash, display names, chat content, and `typ host` / `typ srflx` ICE candidates destined for a pending peer MUST NOT traverse the signaling server. See [`signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md) for the canonical allow / deny list. Pre-Consent ICE Filtering:",
         "ICE candidates destined for a peer that has not yet been approved by the host (see Task 10) are filtered down to `typ relay` candidates only. Post-`APPROVE_PEER`, the full candidate set flows. See [`ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md). Rate Limiting:",
         "Per-IP, per-code, and global token-bucket throttles — full table in [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md).",
+        "Per-`/24` v4 / per-`/64` v6 prefix concurrent-socket cap (8) and per-connection message rate (60 / min, burst 30) added by [Task 32](./32-signaling-rate-limit-augmentations.md).",
         "On exceed, server replies `RATE_LIMITED { retryAfterMs }` and the client back-offs exponentially (1 s → 30 s).",
-        "Per-code failures emit a `JOIN_ATTEMPT_REJECTED { count, sinceMs }` notice to the host every 30 s when count > 0. Room Cleanup:",
+        "Per-code failures emit a `JOIN_ATTEMPT_REJECTED { count, sinceMs }` notice to the host every 30 s when count > 0. Edge-Tier Defenses:",
+        "Per-prefix CONNECT-flood + sustained-breach blocklist (15 min / 24 h / 7 d TTL ladder), CAPTCHA escalation hook on `2× burst` `CREATE_ROOM` rate per [`signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md). Owned by [Task 35](./35-edge-defense-and-health-segregation.md).",
+        "Public `Server: signaling` header pin; no version / build SHA on any public response per [`signaling-health-endpoints.md`](../../../docs/architecture/signaling-health-endpoints.md). Message Validation:",
+        "Every inbound frame after `JOIN_HANDSHAKE` validates against [`signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json) via the AJV gate at the message-router boundary; raw strings never reach the room-table mutation layer per [`signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md).",
+        "WebSocket hardening defaults pinned in `services/signaling/src/config.ts` (`MAX_PAYLOAD_BYTES = 64 KiB`, `PING_INTERVAL_MS = 25_000`, `PING_TIMEOUT_MS = 30_000`, `UPGRADE_DEADLINE_MS = 10_000`, `FRAME_DEADLINE_MS = 5_000`, binary frames rejected). Owned by [Task 31](./31-signaling-message-schema-and-validation.md).",
+        "Validation failure: `close(1008, \"signaling-validation\")`, `signaling.payload.rejected` audit-log row, increment per-prefix edge-defense counter. Offending payload is **never** echoed in logs. TURN Credentials:",
+        "Issued only after `CREATE_ROOM` / `JOIN_ROOM` admit via the `TURN_CREDENTIALS` envelope per [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md); no public HTTP endpoint, no static client-bundle constant. Owned by [Task 33](./33-turn-credentials-doctrine-issuance.md).",
+        "TURN-down state (`iceconnectionstate` → `failed` twice within 10 s) surfaces `CONNECTION_FAILED_RELAY_UNAVAILABLE` in the lobby per [`turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md). Stateless Invariant:",
+        "This server is **stateless-by-design** per [`signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md); the only allowed in-memory state is the room-table, in-flight SDP / ICE, rate-limit buckets, the TURN deny-list (TTL ≤ 6 min), the edge blocklist (TTL ≤ 7 d), and the per-frame timer state. No disk write, no DB connection, no cross-restart cache. The `npm run validate:signaling-stateless` gate (owned by [Task 35](./35-edge-defense-and-health-segregation.md)) fails any commit that introduces forbidden state. Room Cleanup:",
         "Idle TTL: 30 minutes since last protocol message → server emits `ROOM_EXPIRED { reason: \"idle\" }` and drops the room.",
         "Max lifetime: 4 hours wall-clock since `CREATE_ROOM` → server emits `ROOM_EXPIRED { reason: \"max_lifetime\" }` and drops the room.",
         "Host `CLOSE_ROOM` command: server emits `ROOM_CLOSED { reason: \"host_closed\" }`, drops the room, and MAY skip the 10-minute cool-down at the host's discretion.",
@@ -31129,6 +31138,12 @@
         "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
         "[`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)",
         "[`docs/architecture/signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md)",
+        "[`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)",
+        "[`docs/architecture/signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md)",
+        "[`docs/architecture/signaling-health-endpoints.md`](../../../docs/architecture/signaling-health-endpoints.md)",
+        "[`docs/architecture/signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md)",
+        "[`docs/architecture/turn-credentials.md`](../../../docs/architecture/turn-credentials.md)",
+        "[`docs/architecture/turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md)",
         "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)",
         "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)",
         "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
@@ -31142,7 +31157,13 @@
         "13-signaling-rate-limiting.md",
         "services/signaling/rate-limit.ts",
         "14-host-approval-and-moderation.md",
-        "services/signaling/approval.ts"
+        "services/signaling/approval.ts",
+        "31-signaling-message-schema-and-validation.md",
+        "services/signaling/src/validation/",
+        "services/signaling/src/config.ts",
+        "32-signaling-rate-limit-augmentations.md",
+        "33-turn-credentials-doctrine-issuance.md",
+        "35-edge-defense-and-health-segregation.md"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
@@ -31151,7 +31172,13 @@
         "13-signaling-rate-limiting.md",
         "services/signaling/rate-limit.ts",
         "14-host-approval-and-moderation.md",
-        "services/signaling/approval.ts"
+        "services/signaling/approval.ts",
+        "31-signaling-message-schema-and-validation.md",
+        "services/signaling/src/validation/",
+        "services/signaling/src/config.ts",
+        "32-signaling-rate-limit-augmentations.md",
+        "33-turn-credentials-doctrine-issuance.md",
+        "35-edge-defense-and-health-segregation.md"
       ],
       "dependencies": [
         "module:mvp.10-heuristic-ai"
@@ -31183,9 +31210,13 @@
       ],
       "estimatedTime": "- 4 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
       "taskDependencies": [],
       "moduleDependencies": [
         "mvp.10-heuristic-ai"
@@ -31204,8 +31235,8 @@
         "mvp.10-heuristic-ai.11-ai-bench-harness"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 30
+      "downstreamDirectCount": 9,
+      "downstreamTransitiveCount": 35
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -31260,7 +31291,9 @@
         "**Channel allowlist**: `ondatachannel` accepts only `commands` and `heartbeat` (and `chat` per the chat-safety reservation). Any other label closes the channel immediately and dispatches `TRUST_VIOLATION_DETECTED { kind: 'unexpectedDataChannel' }` per [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands).",
         "**DTLS fingerprint capture**: after `setLocalDescription` and `setRemoteDescription` resolve, parse the `a=fingerprint:` line per [`dtls-fingerprint-pinning.md` § 1](../../../docs/architecture/dtls-fingerprint-pinning.md#1-extraction-rule) and write to `state.net.peers[peerId].dtlsFp`. Mismatched fingerprint on rejoin aborts via `TRUST_VIOLATION_DETECTED { kind: 'dtlsFingerprintMismatch' }`. Owned by [Task 27](./27-dtls-fingerprint-pinning.md).",
         "**Session-key derivation**: on `commands` DataChannel open, derive the per-session HMAC key via `RTCDtlsTransport.exportKeyingMaterial(\"hr-cmd-mac\", 32)`; cache in `state.net.peers[peerId].cmdKey` as a non-extractable `CryptoKey`. Browsers without `exportKeyingMaterial` fall back to a host-minted 32-byte key delivered through the signed signaling envelope per [`command-stream-integrity.md` § 2a](../../../docs/architecture/command-stream-integrity.md#2a-fallback-key). Owned by [Task 30](./30-command-stream-hmac.md).",
-        "**Envelope verification**: every inbound signaling frame is unwrapped via the runtime in [Task 26](./26-signed-signaling-envelope.md) before SDP / ICE is consumed; failure aborts the handshake. Network-Chaos Coverage:",
+        "**Envelope verification**: every inbound signaling frame is unwrapped via the runtime in [Task 26](./26-signed-signaling-envelope.md) before SDP / ICE is consumed; failure aborts the handshake.",
+        "**TURN provisioning**: `iceServers` is built from the `TURN_CREDENTIALS` envelope received over the signaling WebSocket per [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md). The build never imports a `turn:` / `turns:` URL constant or a credential constant; the `npm run validate:turn` gate (owned by [Task 33](./33-turn-credentials-doctrine-issuance.md)) fails on any literal.",
+        "**TURN-down fallback**: on `iceconnectionstate === 'failed'`, dispatch `REQUEST_TURN_REFRESH` once; on a second `failed` within 10 s, dispatch `CONNECTION_FAILED_RELAY_UNAVAILABLE` and close the peer connection per [`turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md). No third retry, no silent fallthrough to `iceTransportPolicy: 'all'`. Owned by [Task 35](./35-edge-defense-and-health-segregation.md). Network-Chaos Coverage:",
         "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
       ],
       "verifyCommands": [
@@ -31285,7 +31318,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 20
+      "downstreamTransitiveCount": 23
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -31823,14 +31856,16 @@
       ],
       "outputs": [
         "`services/multiplayer/turn/` — signaling-side credential endpoint config.",
-        "`src/net/webrtc/ice-config.ts` — client-side `iceServers` builder with STUN-first / TURN-fallback logic.",
-        "`GET /turn-credential` endpoint contract: `{ urls, username, credential, ttl }` per [`turn-config.md`](../../../services/multiplayer/turn-config.md).",
-        "HMAC credential format: `username = unix-ts-expiry:roomId`, `credential = base64( HMAC_SHA1(secret, username) )`, `ttl = 600 s`.",
-        "Telemetry: `turn_fallback_used` counter emitted on every match that lands on a `relay` candidate pair."
+        "`src/net/webrtc/ice-config.ts` — client-side `iceServers` builder with STUN-first / TURN-fallback logic. **`iceServers` is built from the `TURN_CREDENTIALS` WebSocket envelope** per [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md); the build never imports a `turn:` URL constant.",
+        "HMAC credential format and lifecycle pinned by [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md); `username = \"<expEpochSeconds>:<roomCode>:<peerId>\"`, `credential = base64( HMAC_SHA1(secret, username) )`, hard TTL ceiling 300 s.",
+        "Telemetry: `turn_fallback_used` counter emitted on every match that lands on a `relay` candidate pair. > **Superseded delivery channel:** the older `GET /turn-credential` > HTTP route is replaced by the `TURN_CREDENTIALS` WebSocket > envelope per > [Task 33](./33-turn-credentials-doctrine-issuance.md). The > STUN-first / 4 s ICE-gather-timeout / TURN-fallback flow in > this task is preserved; only the credential-delivery channel > changes."
       ],
       "readFirst": [
+        "[`docs/architecture/turn-credentials.md`](../../../docs/architecture/turn-credentials.md)",
+        "[`docs/architecture/turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md)",
         "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)",
         "[`services/multiplayer/turn-config.md`](../../../services/multiplayer/turn-config.md)",
+        "[`services/turn/README.md`](../../../services/turn/README.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
       ],
       "ownedPaths": [
@@ -31881,8 +31916,8 @@
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 8
     },
     {
       "id": "phase-3.01-multiplayer.11-network-chaos-test-matrix",
@@ -32117,8 +32152,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 1,
-      "downstreamTransitiveCount": 4
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "phase-3.01-multiplayer.14-host-approval-and-moderation",
@@ -33121,8 +33156,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 8
     },
     {
       "id": "phase-3.01-multiplayer.25-peer-keypair-and-session-token",
@@ -33658,6 +33693,521 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "phase-3.01-multiplayer.27-dtls-fingerprint-pinning"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.31-signaling-message-schema-and-validation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Signaling Message Schema and Validation",
+      "path": "tasks/phase-3/01-multiplayer/31-signaling-message-schema-and-validation.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Pin the **wire-shape contract** for every payload that crosses the M5 signaling WebSocket. Author `content-schema/schemas/signaling-message.schema.json` (a closed discriminated union with `additionalProperties: false`, length caps, and pattern-checked id fields), wire AJV at the message-router boundary so raw strings never reach the in-memory `room → peer` map, and pin `ws`-library hardening defaults (`maxPayload: 64 KiB`, ping interval, frame deadline, upgrade deadline). Closes Plan 25 Critical Fix 1.",
+      "inputs": [
+        "AJV 8 (already a transitive dev dependency).",
+        "Node.js 20 `ws` library defaults that this task overrides.",
+        "Closed enum of message types from [`signaling-payload-policy.md` § 1](../../../docs/architecture/signaling-payload-policy.md#1-allowlist-signaling-server-payloads), extended with `ROOM_FULL`, `TURN_CREDENTIALS`, `REQUEST_TURN_REFRESH`, and `ERROR`."
+      ],
+      "outputs": [
+        "`content-schema/schemas/signaling-message.schema.json` — closed discriminated union; every variant pins `additionalProperties: false`; length caps per [`signaling-message-schema.md` § 3](../../../docs/architecture/signaling-message-schema.md#3-length-caps).",
+        "`content-schema/examples/signaling-message/*.json` — at least one canonical fixture per variant; exercised by `npm run validate:contracts`.",
+        "`services/signaling/src/validation/ajv.ts` — compiled AJV instance with `strict: true`, `allErrors: false`; preloaded schema; exported entry point `validateSignalingMessage(raw): { ok: true; msg } | { ok: false; reason }`.",
+        "`services/signaling/src/config.ts` — committed named constants: `MAX_PAYLOAD_BYTES = 64 * 1024`, `PING_INTERVAL_MS = 25_000`, `PING_TIMEOUT_MS = 30_000`, `UPGRADE_DEADLINE_MS = 10_000`, `FRAME_DEADLINE_MS = 5_000`, `BINARY_FRAMES_REJECTED = true`.",
+        "`scripts/validate-signaling.mjs` — CI gate (`npm run validate:signaling`):",
+        "asserts `signaling-message.schema.json` exists and validates every fixture under `content-schema/examples/signaling-message/`",
+        "greps `services/signaling/src/server.ts` for the named hardening constants; fails on any missing",
+        "asserts the message-router routes every public handler through `validateSignalingMessage` (greps for the call site)",
+        "asserts every variant in `signaling-message.schema.json` has `additionalProperties: false`",
+        "`services/signaling/__tests__/validation.test.ts` — oversized SDP rejected, malformed `roomId` rejected, additional property rejected, binary frame rejected, idle ping-miss closes, slow fragmented frame terminated, slow handshake terminated."
+      ],
+      "readFirst": [
+        "[`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)",
+        "[`docs/architecture/signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)",
+        "[`docs/architecture/signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md)",
+        "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/signaling-message.schema.json",
+        "content-schema/examples/signaling-message/",
+        "services/signaling/src/validation/ajv.ts",
+        "services/signaling/src/config.ts",
+        "scripts/validate-signaling.mjs",
+        "services/signaling/__tests__/validation.test.ts",
+        "services/signaling/src/server.ts",
+        "config.ts",
+        "package.json",
+        "docs/architecture/schema-matrix.md",
+        "signaling-message.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/src/server.ts",
+        "config.ts",
+        "package.json",
+        "docs/architecture/schema-matrix.md",
+        "signaling-message.schema.json"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "acceptanceCriteria": [
+        "Every variant in `signaling-message.schema.json` is closed (`additionalProperties: false`); a fixture with a stray `debug` key is rejected by `validateSignalingMessage`.",
+        "Length caps are enforced at the schema layer (16 KiB SDP, 1 KiB candidate, 32-entry `iceCandidates`); a 17 KiB `OFFER` is rejected before the router dispatches.",
+        "The compiled AJV validator is the only path from raw string to the message-router. A static-analysis assertion in `validate:signaling` greps the router file and fails on any handler that consumes `raw` directly.",
+        "`MAX_PAYLOAD_BYTES = 64 * 1024` is wired into the `ws` bootstrap; a 65 KiB inbound frame closes the socket with `1009` (Message Too Big).",
+        "`PING_INTERVAL_MS = 25_000` and `PING_TIMEOUT_MS = 30_000` are wired; a missed pong terminates the connection.",
+        "`UPGRADE_DEADLINE_MS = 10_000` is wired; an upgrade that takes longer than 10 s is destroyed.",
+        "`FRAME_DEADLINE_MS = 5_000` is wired; a fragmented message that spans more than 5 s between first and final frame closes with `1009`.",
+        "Binary frames are rejected (`BINARY_FRAMES_REJECTED = true`); closes with `1003`.",
+        "On any validation failure, the server replies with a single `RATE_LIMITED` / `JOIN_REJECTED` / `ERROR` envelope per [`signaling-message-schema.md` § 4](../../../docs/architecture/signaling-message-schema.md#4-rejection-behavior), closes with `1008`, and **never echoes the offending payload** in logs.",
+        "`npm run validate:signaling` passes on the canonical fixtures; fails on a hand-corrupted fixture.",
+        "The schema is registered in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md) with a row pointing at this task.",
+        "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The validation contributed by this task is **additive**; it MUST NOT rewrite the request-handler entrypoint, the message-envelope shape, or the in-memory room-table layout. New call sites slot in alongside existing handlers.",
+        "**Shared-ownership split with repo-tooling**: `package.json` is **owned by** the repo-tooling task layer. The `validate:signaling` entry contributed by this task is **additive**; it MUST NOT rewrite or remove existing `validate:*` entries."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 8
+    },
+    {
+      "id": "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
+      "kind": "task",
+      "status": "planned",
+      "title": "Signaling Rate Limit Augmentations + Per-Room Cap Hardening",
+      "path": "tasks/phase-3/01-multiplayer/32-signaling-rate-limit-augmentations.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Extend the existing token-bucket matrix in [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md) and the limiter in [Task 13](./13-signaling-rate-limiting.md) with two new tiers required by Plan 25 Critical Fix 2: a **per-`/24` v4 / per-`/64` v6 prefix concurrent-socket cap** and a **per-connection message rate ceiling**. Add `REQUEST_TURN_REFRESH` to the per-IP throttle list. Formalize idle-room eviction. Surface the `ROOM_FULL` reply on the existing 2-peer cap. This task is **additive** to Task 13: the existing per-IP `JOIN_ROOM` / `CREATE_ROOM` / per-code / global tiers are unchanged.",
+      "inputs": [
+        "Validated message envelope from Task 31; the limiter dispatches on `msg.type` after AJV validation.",
+        "Existing `RateLimiter` from Task 13."
+      ],
+      "outputs": [
+        "Extended `services/signaling/rate-limit.ts` (Task 13's primary owner): adds two new methods — `checkPerPrefixSockets(prefixKey)` and `checkPerConnectionMessages(connectionKey)` — and a `REQUEST_TURN_REFRESH` row to the per-IP table.",
+        "Extended [`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md) bucket table (additive rows; existing rows unchanged): | Tier | Bucket | Refill | Burst | Action on exceed | | --- | --- | --- | --- | --- | | per-prefix concurrent open sockets | 8 | n/a | — | refuse upgrade with HTTP 429 | | per-connection any message | 60 / min | 1 / s | 30 | `RATE_LIMITED { tier: \"per_connection\" }` then `close(1008)` | | per-IP `REQUEST_TURN_REFRESH` | 6 / min | 1 / 10 s | 6 | `ERROR { code: \"rate_limited\", action: \"turn_refresh\" }` |",
+        "Idle-room eviction loop: `setInterval(60_000, …)`; rooms with `peers.length === 0` for ≥ 5 minutes are dropped (already the spirit of \"cleared when room is empty\"; this task formalizes the timer and emits `ROOM_EXPIRED { reason: \"idle\" }` per [Task 01](./01-signaling-server-node-js-websocket-lobby.md).",
+        "`services/signaling/__tests__/rate-limit-prefix.test.ts` and `…/rate-limit-perconn.test.ts` — coverage of the new tiers."
+      ],
+      "readFirst": [
+        "[`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)",
+        "[`docs/architecture/signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md)",
+        "[`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)",
+        "[`docs/architecture/signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md)"
+      ],
+      "ownedPaths": [
+        "services/signaling/__tests__/rate-limit-prefix.test.ts",
+        "services/signaling/__tests__/rate-limit-perconn.test.ts",
+        "services/signaling/rate-limit.ts",
+        "services/signaling/src/server.ts",
+        "docs/architecture/signaling-rate-limits.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/rate-limit.ts",
+        "services/signaling/src/server.ts",
+        "docs/architecture/signaling-rate-limits.md"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.13-signaling-rate-limiting",
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "acceptanceCriteria": [
+        "9 simultaneous WebSocket upgrades from one `/24` are reduced to 8 accepted + 1 refused with HTTP `429` and no body.",
+        "61 messages on a single connection within 60 s: the 61st receives `RATE_LIMITED { tier: \"per_connection\" }` and the socket closes with `1008`.",
+        "7 `REQUEST_TURN_REFRESH` from the same IP within 60 s: the 7th receives `ERROR { code: \"rate_limited\", action: \"turn_refresh\" }`.",
+        "Idle-room eviction: a room with no peers for 5 minutes is removed at the next 60 s sweep; the freed code enters the 10-minute cool-down per [`lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md).",
+        "3rd `JOIN_HANDSHAKE` to a 2-peer room receives `ROOM_FULL { roomId }` and the socket closes; the existing 2 peers are not affected.",
+        "The new tiers honor the existing bucket-eviction rule (entries evicted after 10 minutes of inactivity); a 10 000-distinct-prefix soak test does not retain entries beyond the cap.",
+        "All new bucket maps are keyed on the `sha256(prefix || dailySalt)` shape per [`signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md); no raw IP is held.",
+        "**Shared-ownership split with Task 13**: Task 13 is the **primary owner** of `services/signaling/rate-limit.ts`. The new bucket rows and methods contributed by this task are **additive**; they MUST NOT rewrite the existing tier methods, the bucket data structures, or the `RATE_LIMITED` reply payload.",
+        "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The call sites contributed by this task are **additive**; they MUST NOT rewrite the upgrade-handler, the message router entrypoint, or the room-table layout."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.13-signaling-rate-limiting",
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.13-signaling-rate-limiting",
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance",
+      "kind": "task",
+      "status": "planned",
+      "title": "TURN Credentials — Doctrine + Server Issuance",
+      "path": "tasks/phase-3/01-multiplayer/33-turn-credentials-doctrine-issuance.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Implement the canonical TURN credential doctrine in [`docs/architecture/turn-credentials.md`](../../../docs/architecture/turn-credentials.md): HMAC-SHA1 long-term-credential issuance keyed per `(roomCode, peerId, exp)`, ≤ 5-minute TTL hard ceiling, signaling server as the only issuer, dual-secret rotation window, and the revocation-on-end deny-list. Replaces the older \"Optional TURN server config\" handwave in [Task 02](./02-webrtc-peer-connection-plus-datachannel-setup.md) and the looser route shape in [Task 10](./10-turn-fallback-and-credentials.md). Closes Plan 25 Critical Fix 3. This task supersedes [Task 10](./10-turn-fallback-and-credentials.md)'s `GET /turn-credential` HTTP route with the **`TURN_CREDENTIALS` WebSocket envelope** — issued only after `CREATE_ROOM` / `JOIN_ROOM` admit, never via a public HTTP route.",
+      "inputs": [
+        "Node.js 20 `crypto.createHmac('sha1', …)` for the credential signature.",
+        "Validated message envelope from Task 31 — `TURN_CREDENTIALS` and `REQUEST_TURN_REFRESH` are new variants.",
+        "`TURN_SHARED_SECRET` and (during rotation) `TURN_SHARED_SECRET_PREVIOUS` env vars per `services/signaling/.env.example`."
+      ],
+      "outputs": [
+        "`content-schema/schemas/turn-credential.schema.json` — wire shape; embedded inside `TURN_CREDENTIALS` per [`signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json).",
+        "`content-schema/examples/turn-credential/canonical-issued.turn-credential.json`",
+        "`content-schema/examples/turn-credential/canonical-expired.turn-credential.json`",
+        "`services/signaling/.env.example` — `TURN_PROVIDER`, `TURN_URLS`, `TURN_SHARED_SECRET` (and `TURN_SHARED_SECRET_PREVIOUS` during the rotation window) placeholders.",
+        "`services/signaling/src/turn/issue.ts` — pure function `issueTurnCredential({ roomCode, peerId, secret, ttlSec, urls, now }): TurnCredential`; no side effects; deterministic given fixed inputs.",
+        "`services/signaling/src/turn/refresh.ts` — handler for `REQUEST_TURN_REFRESH` (rate-limited per Task 32).",
+        "`services/signaling/src/turn/deny-list.ts` — in-memory deny-list store (TTL = `expEpochSeconds + 60_000`); pub-sub emitter wired to the `services/turn/scripts/sync-deny-list.ts` consumer (Task 34).",
+        "`scripts/validate-turn.mjs` — CI gate (`npm run validate:turn`):",
+        "greps `src/`, `services/`, `resources/` for any `turn:` / `turns:` URL literal — fails (the only allowed source is the env var).",
+        "greps for any hardcoded `username` / `credential` field on an `iceServers` object — fails.",
+        "`services/signaling/__tests__/turn-issue.test.ts`, `…/turn-refresh.test.ts` — vector-based determinism, scope parsing, dual-secret rotation, refresh denied for non-admitted peer."
+      ],
+      "readFirst": [
+        "[`docs/architecture/turn-credentials.md`](../../../docs/architecture/turn-credentials.md)",
+        "[`docs/architecture/turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md)",
+        "[`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)",
+        "[`services/multiplayer/turn-config.md`](../../../services/multiplayer/turn-config.md)",
+        "[`services/turn/README.md`](../../../services/turn/README.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/turn-credential.schema.json",
+        "content-schema/examples/turn-credential/",
+        "docs/architecture/turn-credentials.md",
+        "services/signaling/.env.example",
+        "services/signaling/src/turn/",
+        "services/signaling/__tests__/turn-issue.test.ts",
+        "services/signaling/__tests__/turn-refresh.test.ts",
+        "scripts/validate-turn.mjs",
+        "services/signaling/src/server.ts",
+        "tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md",
+        "tasks/phase-3/01-multiplayer/10-turn-fallback-and-credentials.md",
+        "services/multiplayer/turn-config.md",
+        "turn-credentials.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/src/server.ts",
+        "tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md",
+        "tasks/phase-3/01-multiplayer/10-turn-fallback-and-credentials.md",
+        "services/multiplayer/turn-config.md",
+        "turn-credentials.md"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation",
+        "phase-3.01-multiplayer.24-transport-security-edge-config",
+        "phase-3.01-multiplayer.10-turn-fallback-and-credentials"
+      ],
+      "acceptanceCriteria": [
+        "`issueTurnCredential` is deterministic: a vector `(secret=\"seed\", roomCode=\"ABCD1234\", peerId=\"…\", now=…, ttlSec=300)` produces the same credential across calls.",
+        "`username` parses back to `{ exp, roomCode, peerId }` by splitting on `:`; the TURN server (and the deny-list sync worker) never consults a database.",
+        "`expiresAt - now > 300_000` is rejected by the issuer (issuance unit test pins the 5-minute hard ceiling).",
+        "During the rotation window, the previous secret is accepted by coturn for the duration of the window; new credentials are signed with the active secret only.",
+        "`REQUEST_TURN_REFRESH` from a peer no longer in `room → peer` receives `ERROR { code: \"validation_failed\", action: \"turn_refresh\" }`.",
+        "Peer drop / kick / room evict appends `(roomCode, peerId, expEpochSeconds)` to the deny-list with TTL = `expEpochSeconds + 60_000`; the deny-list-sync consumer (Task 34) sees the entry.",
+        "`npm run validate:turn` rejects any committed `turn:` / `turns:` URL literal in `src/`, `services/`, or `resources/` (excluding the doctrine docs, the env example, and the schema / example fixtures, which are listed as exemptions).",
+        "`npm run validate:turn` rejects any hardcoded `username` / `credential` field on an `iceServers` object.",
+        "The schema is registered in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md).",
+        "The `TURN_CREDENTIALS` issuance is the **only path** by which a client receives a credential. The build never imports a credential constant.",
+        "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The issuance call sites contributed by this task are **additive**; they MUST NOT rewrite the router shape, the room-table layout, or the message envelope.",
+        "**Shared-ownership split with Task 10**: Task 10 is the **primary owner** of `src/net/webrtc/ice-config.ts` and the STUN-first / TURN-fallback flow. The edits contributed by this task are **additive**; they MUST NOT rewrite the builder, the 4 s ICE-gather timeout, or the `turn_fallback_used` telemetry hook. The `GET /turn-credential` HTTP route is replaced by the `TURN_CREDENTIALS` WebSocket envelope; that delivery-channel swap is the only non-additive edit, and it is documented as a **superseded** clause inside Task 10's spec."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/signaling-message.schema.json",
+        "content-schema/schemas/turn-credential.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/signaling-message.schema.json",
+        "content-schema/schemas/turn-credential.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
+        "phase-3.01-multiplayer.24-transport-security-edge-config",
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
+        "phase-3.01-multiplayer.24-transport-security-edge-config",
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "phase-3.01-multiplayer.34-turn-server-hardening",
+      "kind": "task",
+      "status": "planned",
+      "title": "TURN Server Hardening (No Open Relay)",
+      "path": "tasks/phase-3/01-multiplayer/34-turn-server-hardening.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Pin the **hardened TURN-server config** in [`services/turn/config/turnserver.example.conf`](../../../services/turn/config/turnserver.example.conf): `lt-cred-mech` paired with HMAC issuance from [Task 33](./33-turn-credentials-doctrine-issuance.md), `no-tcp-relay`, `no-loopback-peers`, `no-multicast-peers`, full `denied-peer-ip` allowlist for IPv4 / IPv6 private / loopback / multicast / reserved ranges, port allowlist, per-credential and per-instance bandwidth quotas, attribution log, and the deny-list sync worker. Closes Plan 25 Critical Fix 4.",
+      "inputs": [
+        "coturn 4.6+ (Docker `coturn/coturn:latest-alpine`) for self-hosted; Cloudflare Calls TURN for managed.",
+        "HMAC-SHA1 shared secret from Task 33 (env-injected; never committed).",
+        "Deny-list pub/sub channel emitted by Task 33's `services/signaling/src/turn/deny-list.ts`."
+      ],
+      "outputs": [
+        "`services/turn/config/turnserver.example.conf` (already authored by this plan) — operator-copy baseline; CI gate parses it as the canonical pinned config.",
+        "`services/turn/scripts/sync-deny-list.ts` — already authored contract surface; this task implements the Redis pub/sub consumer (`RedisCotrunProvider`) and the Cloudflare Calls HTTP consumer (`CloudflareCallsProvider`). Both implement `DenyListProvider`.",
+        "`services/turn/log/schema.json` (already authored by this plan) — attribution log shape; this task implements the log-rewriter sidecar that bucketizes peer addresses to `/24` v4 / `/64` v6 before stdout-JSON emission.",
+        "`scripts/validate-turn-config.mjs` — CI gate (`npm run validate:turn-config`):",
+        "asserts the example config sets `no-tcp-relay`, `no-loopback-peers`, `no-multicast-peers`, `lt-cred-mech`, `realm`, `min-port`, `max-port`, `user-quota`, `max-bps`, `total-quota`, `cipher-list`",
+        "asserts every IPv4 + IPv6 private / loopback / multicast / reserved range from [`services/turn/config/turnserver.example.conf`](../../../services/turn/config/turnserver.example.conf) is in `denied-peer-ip`",
+        "rejects any commit that adds `cli-password` (admin via Redis only)",
+        "asserts `static-auth-secret-file` references an env-injected path; never an inline secret",
+        "`services/turn/__tests__/sync-deny-list.test.ts` — idempotency, retry-with-backoff, double-revocation no-op, transient-error recovery."
+      ],
+      "readFirst": [
+        "[`services/turn/README.md`](../../../services/turn/README.md)",
+        "[`docs/architecture/turn-credentials.md`](../../../docs/architecture/turn-credentials.md)",
+        "[`services/multiplayer/turn-config.md`](../../../services/multiplayer/turn-config.md)",
+        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)",
+        "[`docs/architecture/signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md)"
+      ],
+      "ownedPaths": [
+        "services/turn/",
+        "scripts/validate-turn-config.mjs",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance"
+      ],
+      "acceptanceCriteria": [
+        "`coturn -c turnserver.example.conf` boots with no warnings on the four hardening directives.",
+        "A valid HMAC credential admits an allocation; an invalid credential is rejected with `401`.",
+        "An allocation request whose `peer-address` falls in `192.168.0.0/16`, `127.0.0.0/8`, or `::1` is rejected by coturn before the relay binds.",
+        "4 concurrent allocations under one credential succeed; the 5th is rejected with `486 Allocation Quota Reached`.",
+        "Per-allocation bandwidth above 1.5 Mbps is dropped at the configured ceiling.",
+        "The attribution log writes `alloc.created` / `alloc.refreshed` / `alloc.closed` events per [`services/turn/log/schema.json`](../../../services/turn/log/schema.json); no entry contains the credential `username` or `credential`, no entry contains the full peer IP.",
+        "Peer addresses are bucketed to `/24` v4 / `/64` v6 in the log rewriter sidecar before stdout-JSON emission.",
+        "The deny-list sync worker closes an active allocation within the same TTL window when the signaling deny-list emits `(roomCode, peerId, exp)`.",
+        "The dual-secret rotation window (per [`turn-credentials.md` § 9](../../../docs/architecture/turn-credentials.md#9-rotation)) is exercised: a credential signed with the previous secret is accepted during the 5-minute window and rejected after.",
+        "`npm run validate:turn-config` fails on any missing hardening directive, on any private IP range omitted from `denied-peer-ip`, on any inline `cli-password`, and on any inline secret literal.",
+        "The runbook for rotating `static-auth-secret-file` without dropping in-flight allocations is documented in [`services/multiplayer/turn-config.md`](../../../services/multiplayer/turn-config.md) (cross-link from this task; the runbook itself is the SSOT).",
+        "**Shared-ownership split with repo-tooling**: `package.json` is **owned by** the repo-tooling task layer. The `validate:turn-config` entry contributed by this task is **additive**; it MUST NOT rewrite or remove existing `validate:*` entries."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.35-edge-defense-and-health-segregation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Edge Defense, Health Segregation, Stateless Gate, TURN-Down Fallback",
+      "path": "tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Land the **edge-tier abuse defenses**, the **public/admin listener split**, the **stateless-by-design gate**, and the **TURN-down fallback UI** for M5. Closes Plan 25 Critical Fix 5 plus the System Improvements / Architecture clauses (\"Stateless-by-design audit checklist\" and \"Lobby surfaces relay failure as a non-blocking, actionable toast\").",
+      "inputs": [
+        "Validated message envelope from Task 31; the `ERROR` variant carries `code: \"captcha_required\"` per [`signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json).",
+        "Limiter counters from Task 32; sustained-breach detection drives blocklist auto-add and CAPTCHA escalation.",
+        "`REQUEST_TURN_REFRESH` round-trip from Task 33; the TURN-down state machine in [`turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md) fires on the second `failed` within a 10 s window.",
+        "`ADMIN_TOKEN`, `CAPTCHA_PROVIDER` env vars per the extended `services/signaling/.env.example`."
+      ],
+      "outputs": [
+        "`services/signaling/src/blocklist/store.ts` — time-bound blocklist; `/24` v4 / `/64` v6 keying; in-memory map `prefix → expiresAt`; CRUD `add`, `check`, `evict`.",
+        "`services/signaling/src/blocklist/redis-backing.ts` — opt-in Redis-backed persistence (TTL-bound; on the `signaling-stateless-invariant.md` allowlist).",
+        "`services/signaling/src/admin/health.ts` — admin server bound to `127.0.0.1:9091`; bearer-token-auth; emits `MetricsSnapshot` JSON and Prometheus text format per [`signaling-health-endpoints.md` § 3](../../../docs/architecture/signaling-health-endpoints.md#3-metrics-shape).",
+        "`services/signaling/src/captcha/turnstile.ts` — Cloudflare Turnstile / hCaptcha verifier wrapper; dev stub passes every token (env-controlled); on the `signaling-stateless-invariant.md` allowlist.",
+        "`services/signaling/scripts/check-stateless.ts` — gate per [`signaling-stateless-invariant.md` § 3](../../../docs/architecture/signaling-stateless-invariant.md#3-mechanical-gate); `npm run validate:signaling-stateless`.",
+        "`scripts/validate-edge.mjs` — CI gate (`npm run validate:edge`):",
+        "asserts `services/signaling/config/edge.example.toml` defines `[edge_defense.per_prefix_socket_cap]`, `[edge_defense.upgrade_flood]`, `[edge_defense.captcha_escalation]`, `[edge_defense.blocklist]`, `[health.public]`, `[health.admin]`",
+        "asserts the bootstrap binds the admin server to `127.0.0.1` and requires `Authorization: Bearer <ADMIN_TOKEN>`",
+        "asserts the public listener never exposes `/healthz` or `/metrics`",
+        "asserts the public response builder pins `Server: signaling`",
+        "Client-side TURN-down state machine in `src/net/webrtc/peer-connection.ts` (Task 02 owned, additive): on `iceconnectionstate === 'failed'` (1st), dispatch `REQUEST_TURN_REFRESH`; on (2nd) within 10 s, dispatch `CONNECTION_FAILED_RELAY_UNAVAILABLE` and close.",
+        "Lobby UI updates: `64-network-lobby/spec.md` adds **Connection-Failure States**; `interactions.md` adds `OnRelayUnavailable`, `OnRateLimited`, `OnRoomFull`, `OnCodeLocked`, `OnCaptchaRequired` handlers; `data-contracts.md` adds `state.net.lobby.errorState: { kind, retryAfterMs?, message }`.",
+        "`services/signaling/__tests__/blocklist.test.ts`, `…/admin-health.test.ts`, `…/captcha-escalation.test.ts`, `…/turn-fallback.test.ts`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md)",
+        "[`docs/architecture/signaling-health-endpoints.md`](../../../docs/architecture/signaling-health-endpoints.md)",
+        "[`docs/architecture/turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md)",
+        "[`docs/architecture/signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/signaling-edge-defense.md",
+        "docs/architecture/signaling-health-endpoints.md",
+        "docs/architecture/turn-fallback-policy.md",
+        "docs/architecture/signaling-stateless-invariant.md",
+        "services/signaling/src/blocklist/",
+        "services/signaling/src/admin/",
+        "services/signaling/src/captcha/",
+        "services/signaling/scripts/check-stateless.ts",
+        "scripts/validate-edge.mjs",
+        "services/signaling/__tests__/blocklist.test.ts",
+        "services/signaling/__tests__/admin-health.test.ts",
+        "services/signaling/__tests__/captcha-escalation.test.ts",
+        "services/signaling/__tests__/turn-fallback.test.ts",
+        "services/signaling/config/edge.example.toml",
+        "services/signaling/src/server.ts",
+        "src/net/webrtc/peer-connection.ts",
+        "docs/architecture/wiki/screens/64-network-lobby/",
+        "spec.md",
+        "interactions.md",
+        "data-contracts.md",
+        "docs/architecture/command-schema.md",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/config/edge.example.toml",
+        "services/signaling/src/server.ts",
+        "src/net/webrtc/peer-connection.ts",
+        "docs/architecture/wiki/screens/64-network-lobby/",
+        "spec.md",
+        "interactions.md",
+        "data-contracts.md",
+        "docs/architecture/command-schema.md",
+        "package.json"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation",
+        "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
+        "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance"
+      ],
+      "acceptanceCriteria": [
+        "A blocklisted prefix's WebSocket upgrade returns HTTP `403` with no body.",
+        "Sustained `1× burst` breach for ≥ 60 s auto-adds the prefix with a 15-minute TTL; auto-removes at TTL expiry.",
+        "The 9th concurrent socket from one `/24` is refused with HTTP `429`.",
+        "Sustained `2× burst` `CREATE_ROOM` rate from one prefix triggers CAPTCHA escalation: the next `CREATE_ROOM` returns `ERROR { code: \"captcha_required\", captchaToken }`. The lobby renders the verifier; the verified token is replayed on the retry.",
+        "Admin endpoint `/healthz` requires `Authorization: Bearer <ADMIN_TOKEN>`; missing or invalid bearer returns `401` with no body.",
+        "Admin endpoint `/metrics` returns the Prometheus text format per [`signaling-health-endpoints.md` § 3](../../../docs/architecture/signaling-health-endpoints.md#3-metrics-shape); no high-cardinality labels.",
+        "Public response headers contain no version string; the `Server` header is pinned to `Server: signaling`.",
+        "The public listener never serves `/healthz` or `/metrics`; a `GET /healthz` on the public port returns the bare-200 LB liveness response with no body.",
+        "TURN-down state machine: `failed` → dispatch `REQUEST_TURN_REFRESH` once → second `failed` within 10 s → dispatch `CONNECTION_FAILED_RELAY_UNAVAILABLE`, close peer connection. No third retry, no silent fallthrough to `iceTransportPolicy: 'all'` only.",
+        "Lobby renders `relayUnavailable`, `rateLimited`, `roomFull`, `codeLocked` failure states with the copy and actions in [`64-network-lobby/spec.md` § Connection-Failure States](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md#connection-failure-states).",
+        "`npm run validate:signaling-stateless` fails on any forbidden import (`fs.write*`, DB drivers, `redis` outside the closed allowlist, `localStorage`, `document.cookie`, `indexedDB`).",
+        "`npm run validate:edge` fails on a missing edge-defense section, on a missing public `Server` header pin, on a public `/healthz` route, on an admin server bound to anything other than `127.0.0.1`.",
+        "The blocklist + CAPTCHA + admin endpoints obey the stateless invariant: the only persistence is the TTL-bound Redis option behind a closed allowlist.",
+        "**Shared-ownership split with Task 24**: Task 24 is the **primary owner** of `services/signaling/config/edge.example.toml`. The new sections contributed by this task are **additive**; they MUST NOT rewrite the existing `[listener]`, `[tls]`, `[headers]`, `[origin_allowlist]`, or `[observability.tls]` blocks.",
+        "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The call sites contributed by this task are **additive**; they MUST NOT rewrite the upgrade-handler, the message router entrypoint, or the room-table layout.",
+        "**Shared-ownership split with Task 02**: Task 02 is the **primary owner** of `src/net/webrtc/peer-connection.ts`. The TURN-down state machine contributed by this task is **additive** — one `iceconnectionstate` listener; it MUST NOT rewrite the STUN-first ICE flow, the channel declarations, or the existing peer-connection lifecycle.",
+        "**Shared-ownership split with repo-tooling**: `package.json` is **owned by** the repo-tooling task layer. The `validate:edge` and `validate:signaling-stateless` entries contributed by this task are **additive**; they MUST NOT rewrite or remove existing `validate:*` entries."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/signaling-message.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation",
+        "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
+        "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation",
+        "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
+        "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -35800,7 +36350,12 @@
         "phase-3.01-multiplayer.27-dtls-fingerprint-pinning",
         "phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect",
         "phase-3.01-multiplayer.29-tls-observability",
-        "phase-3.01-multiplayer.30-command-stream-hmac"
+        "phase-3.01-multiplayer.30-command-stream-hmac",
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation",
+        "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
+        "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance",
+        "phase-3.01-multiplayer.34-turn-server-hardening",
+        "phase-3.01-multiplayer.35-edge-defense-and-health-segregation"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,

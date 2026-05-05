@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/turn-attribution-log.schema.json",
+  "title": "TurnAttributionLogEntry",
+  "description": "Per-allocation attribution log emitted by the TURN relay to stdout-JSON. Authoritative shape for both Cloudflare Calls (provider dashboard export) and self-hosted coturn (log rewriter sidecar). PII-scrubbed: peer addresses are bucketed to /24 IPv4 / /64 IPv6; credential `username` and `credential` fields are NEVER written. Cross-link: docs/architecture/turn-credentials.md § 8, services/turn/README.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ts", "event", "roomCode", "peerId", "expEpochSeconds", "allocId"],
+  "properties": {
+    "ts": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Wall-clock at the event, milliseconds since epoch."
+    },
+    "event": {
+      "enum": [
+        "alloc.created",
+        "alloc.refreshed",
+        "alloc.closed",
+        "alloc.bandwidth.exceeded",
+        "alloc.user_quota.exceeded",
+        "alloc.total_quota.exceeded",
+        "alloc.denied_peer_ip",
+        "alloc.bad_credential",
+        "revoked"
+      ]
+    },
+    "roomCode": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{8}$",
+      "description": "Recovered from the credential `username` (`<exp>:<roomCode>:<peerId>`). The TURN server does not consult any database; the room scope is self-describing in the credential."
+    },
+    "peerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "expEpochSeconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "allocId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,32}$",
+      "description": "TURN-server-local allocation identifier; not exposed to clients."
+    },
+    "bytesIn": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "bytesOut": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "peerAddrBucket": {
+      "type": "string",
+      "pattern": "^([0-9]{1,3}(\\.[0-9]{1,3}){2}\\.0/24|[0-9a-f:]+::/64)$",
+      "description": "/24 IPv4 or /64 IPv6 prefix. Full peer address is NEVER logged."
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 32,
+      "pattern": "^[a-z0-9_]+$",
+      "description": "Closed reason code for non-`alloc.created` events."
+    }
+  }
+}

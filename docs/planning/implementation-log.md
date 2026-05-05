@@ -967,6 +967,103 @@ Closed the synthesis-layer findings from
 Implementation report:
 [`docs/implementation-plans/17-final-critical-questions-report.md`](../implementation-plans/17-final-critical-questions-report.md).
 
+### TURN Credentials & Signaling-Server Abuse Plan Implementation (2026-05-05)
+
+Closed the doctrine and contract gaps from
+[`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md):
+
+- **Doctrine docs (six new)** — authored
+  [`docs/architecture/signaling-message-schema.md`](../architecture/signaling-message-schema.md),
+  [`docs/architecture/turn-credentials.md`](../architecture/turn-credentials.md),
+  [`docs/architecture/signaling-edge-defense.md`](../architecture/signaling-edge-defense.md),
+  [`docs/architecture/signaling-health-endpoints.md`](../architecture/signaling-health-endpoints.md),
+  [`docs/architecture/turn-fallback-policy.md`](../architecture/turn-fallback-policy.md), and
+  [`docs/architecture/signaling-stateless-invariant.md`](../architecture/signaling-stateless-invariant.md).
+- **Schemas (two new)** —
+  [`signaling-message.schema.json`](../../content-schema/schemas/signaling-message.schema.json)
+  (closed discriminated union, `additionalProperties: false`, length
+  caps, 27 message variants) with 11 canonical fixtures under
+  [`content-schema/examples/signaling-message/`](../../content-schema/examples/signaling-message/);
+  [`turn-credential.schema.json`](../../content-schema/schemas/turn-credential.schema.json)
+  with two fixtures under
+  [`content-schema/examples/turn-credential/`](../../content-schema/examples/turn-credential/).
+  Both registered in
+  [`schema-matrix.md`](../architecture/schema-matrix.md); suffix-mapped
+  in `scripts/check-repo-contracts.mjs`.
+- **TURN-server scaffolding** —
+  [`services/turn/README.md`](../../services/turn/README.md),
+  [`services/turn/config/turnserver.example.conf`](../../services/turn/config/turnserver.example.conf)
+  (pinned coturn config: `lt-cred-mech`, `no-tcp-relay`,
+  `no-loopback-peers`, full IPv4 / IPv6 `denied-peer-ip` allowlist,
+  `min-port=49160`, `max-port=49200`, `total-quota=200`,
+  `user-quota=4`, `max-bps=1500000`, `bps-capacity=300000000`),
+  [`services/turn/scripts/sync-deny-list.ts`](../../services/turn/scripts/sync-deny-list.ts)
+  (deny-list contract surface), and
+  [`services/turn/log/schema.json`](../../services/turn/log/schema.json)
+  (PII-scrubbed attribution log shape).
+- **Edge config augments** —
+  [`services/signaling/config/edge.example.toml`](../../services/signaling/config/edge.example.toml)
+  extended with `[edge_defense.per_prefix_socket_cap]`,
+  `[edge_defense.upgrade_flood]`,
+  `[edge_defense.captcha_escalation]`,
+  `[edge_defense.blocklist]`, `[health.public]`, `[health.admin]`
+  (additive; no existing block rewritten).
+- **Owning tasks (five new)** at
+  [`tasks/phase-3/01-multiplayer/`](../../tasks/phase-3/01-multiplayer/):
+  - `31-signaling-message-schema-and-validation.md` — AJV gate +
+    `ws` hardening defaults + `validate:signaling`.
+  - `32-signaling-rate-limit-augmentations.md` — per-prefix
+    concurrent-socket cap, per-connection message rate,
+    `REQUEST_TURN_REFRESH` throttle, `ROOM_FULL` reply.
+  - `33-turn-credentials-doctrine-issuance.md` — HMAC-SHA1
+    issuer, dual-secret rotation, `TURN_CREDENTIALS` envelope,
+    deny-list emitter, `validate:turn`.
+  - `34-turn-server-hardening.md` — coturn config + deny-list
+    consumers + log-rewriter sidecar + `validate:turn-config`.
+  - `35-edge-defense-and-health-segregation.md` — blocklist
+    store, admin server on `127.0.0.1:9091`, CAPTCHA escalation,
+    TURN-down state machine, lobby failure-state handlers,
+    `validate:edge` and `validate:signaling-stateless`.
+- **Existing tasks extended (additive)** —
+  [Task 01](../../tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)
+  message list extended with
+  `ROOM_FULL` / `TURN_CREDENTIALS` / `REQUEST_TURN_REFRESH` /
+  `ERROR`; new sections (Message Validation, Edge-Tier Defenses,
+  TURN Credentials, Stateless Invariant); shared-ownership rows
+  for Tasks 31 / 32 / 33 / 35.
+  [Task 02](../../tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md)
+  acceptance criteria extended with TURN-provisioning + TURN-down
+  fallback clauses.
+  [Task 10](../../tasks/phase-3/01-multiplayer/10-turn-fallback-and-credentials.md)
+  Read First and Outputs extended; `GET /turn-credential` is
+  superseded by the `TURN_CREDENTIALS` envelope (Task 33).
+- **Lobby + setup screens** —
+  [`64-network-lobby/spec.md`](../architecture/wiki/screens/64-network-lobby/spec.md)
+  added § Connection-Failure States with the four named failure
+  states (`relayUnavailable`, `rateLimited`, `roomFull`,
+  `codeLocked`) plus the transient `captchaRequired`;
+  [`64-network-lobby/interactions.md`](../architecture/wiki/screens/64-network-lobby/interactions.md)
+  added the matching handler block; data-contracts now list
+  `errorState`. [`62-multiplayer-setup/architecture.md`](../architecture/wiki/screens/62-multiplayer-setup/architecture.md)
+  carries a TURN Provisioning subsection pointing at
+  `turn-credentials.md`.
+- **Command + screen-coverage maps** —
+  [`command-schema.md`](../architecture/command-schema.md) gained
+  a "Signaling Abuse-Defense, TURN, and Connection-Failure
+  Commands" subsection registering
+  `RECEIVE_TURN_CREDENTIALS`, `REQUEST_TURN_REFRESH`,
+  `TURN_CREDENTIALS_EXPIRED`, `CONNECTION_FAILED_RELAY_UNAVAILABLE`,
+  `SIGNALING_RATE_LIMITED`, `SIGNALING_ROOM_FULL`,
+  `SIGNALING_VALIDATION_FAILED`, `SIGNALING_PAYLOAD_REJECTED`,
+  `CAPTCHA_REQUIRED`, `CAPTCHA_VERIFIED`, `IP_BLOCKLISTED`. Same
+  tokens added to
+  [`screen-command-coverage.json`](../architecture/screen-command-coverage.json)
+  `outOfScope` and to
+  [`task-command-token-coverage.json`](../architecture/task-command-token-coverage.json).
+
+Implementation report:
+[`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-report.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-report.md).
+
 ## Recommended Next Steps
 
 Suggested order:

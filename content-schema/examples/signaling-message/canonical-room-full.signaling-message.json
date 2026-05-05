@@ -1,0 +1,5 @@
+{
+  "$schema": "heroes-reforged/signaling-message.schema.json",
+  "type": "ROOM_FULL",
+  "roomId": "ABCD1234"
+}

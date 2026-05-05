@@ -105,6 +105,23 @@ Acceptance Criteria:
   unwrapped via the runtime in
   [Task 26](./26-signed-signaling-envelope.md) before SDP / ICE
   is consumed; failure aborts the handshake.
+- **TURN provisioning**: `iceServers` is built from the
+  `TURN_CREDENTIALS` envelope received over the signaling
+  WebSocket per
+  [`turn-credentials.md`](../../../docs/architecture/turn-credentials.md).
+  The build never imports a `turn:` / `turns:` URL constant or
+  a credential constant; the `npm run validate:turn` gate
+  (owned by [Task 33](./33-turn-credentials-doctrine-issuance.md))
+  fails on any literal.
+- **TURN-down fallback**: on `iceconnectionstate === 'failed'`,
+  dispatch `REQUEST_TURN_REFRESH` once; on a second `failed`
+  within 10 s, dispatch
+  `CONNECTION_FAILED_RELAY_UNAVAILABLE` and close the peer
+  connection per
+  [`turn-fallback-policy.md`](../../../docs/architecture/turn-fallback-policy.md).
+  No third retry, no silent fallthrough to
+  `iceTransportPolicy: 'all'`. Owned by
+  [Task 35](./35-edge-defense-and-health-segregation.md).
 
 Network-Chaos Coverage:
 - Exercised by the consolidated network-chaos test matrix

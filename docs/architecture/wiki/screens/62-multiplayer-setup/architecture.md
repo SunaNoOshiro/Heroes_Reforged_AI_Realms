@@ -88,3 +88,20 @@ flowchart LR
 - Interactions define controls, timing, command routing, disabled states, and error behavior.
 - Data contracts define schemas, config, localization, asset, audio, VFX, save, and replay references.
 - Diagrams are screen-specific summaries of the same contract and must not introduce hidden behavior.
+
+## TURN Provisioning
+- TURN credentials are issued by the signaling server **after**
+  the host's `CREATE_ROOM` succeeds and **after** a joiner's
+  `JOIN_ROOM` is admitted, never at app launch and never embedded
+  in the static client bundle. The credential lifecycle and
+  HMAC-SHA1 long-term-credential format are pinned by
+  [`turn-credentials.md`](../../../turn-credentials.md);
+  the wire shape is
+  [`turn-credential.schema.json`](../../../../../content-schema/schemas/turn-credential.schema.json),
+  embedded inside the `TURN_CREDENTIALS` variant of
+  [`signaling-message.schema.json`](../../../../../content-schema/schemas/signaling-message.schema.json).
+- Hard TTL ceiling: 5 minutes. The `iceServers` builder in
+  `src/net/webrtc/ice-config.ts`
+  ([Task 10](../../../../../tasks/phase-3/01-multiplayer/10-turn-fallback-and-credentials.md))
+  consumes the runtime envelope only; it never reads a build-time
+  TURN URL constant.
