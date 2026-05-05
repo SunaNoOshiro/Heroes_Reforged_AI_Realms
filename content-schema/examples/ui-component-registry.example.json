@@ -3659,6 +3659,88 @@
       "tags": [
         "control"
       ]
+    },
+    {
+      "componentId": "MultiplayerGameStatus",
+      "module": "src/ui/multiplayer/MultiplayerGameStatus.tsx",
+      "exportName": "MultiplayerGameStatus",
+      "tags": [
+        "ui",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "OpponentTurnIndicator",
+      "module": "src/ui/multiplayer/OpponentTurnIndicator.tsx",
+      "exportName": "OpponentTurnIndicator",
+      "tags": [
+        "hud",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "BuildAttestationBanner",
+      "module": "src/ui/multiplayer/BuildAttestationBanner.tsx",
+      "exportName": "BuildAttestationBanner",
+      "tags": [
+        "hud",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "MatchInfoPanel",
+      "module": "src/ui/multiplayer/MatchInfoPanel.tsx",
+      "exportName": "MatchInfoPanel",
+      "tags": [
+        "panel",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "EnvelopeStatsPanel",
+      "module": "src/ui/multiplayer/EnvelopeStatsPanel.tsx",
+      "exportName": "EnvelopeStatsPanel",
+      "tags": [
+        "panel",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "DesyncBanner",
+      "module": "src/ui/multiplayer/DesyncBanner.tsx",
+      "exportName": "DesyncBanner",
+      "tags": [
+        "hud",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "BisectReportPanel",
+      "module": "src/ui/multiplayer/BisectReportPanel.tsx",
+      "exportName": "BisectReportPanel",
+      "tags": [
+        "panel",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "MatchKeyDisplay",
+      "module": "src/ui/multiplayer/MatchKeyDisplay.tsx",
+      "exportName": "MatchKeyDisplay",
+      "tags": [
+        "panel",
+        "multiplayer",
+        "dev"
+      ]
+    },
+    {
+      "componentId": "PostMatchAuditConsentPrompt",
+      "module": "src/ui/multiplayer/PostMatchAuditConsentPrompt.tsx",
+      "exportName": "PostMatchAuditConsentPrompt",
+      "tags": [
+        "modal",
+        "multiplayer"
+      ]
     }
   ]
 }

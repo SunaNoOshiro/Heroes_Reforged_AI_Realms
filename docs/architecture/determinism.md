@@ -212,6 +212,31 @@ all records) and an `engineHash` (build digest). Saves, replays, and
 multiplayer pin both. Any mismatch fails loud at load time; never
 silent.
 
+### Seed Establishment Protocol — Multiplayer
+
+In **single-player and replay-from-save**, the seed is pinned by
+save metadata per the precedence list in
+[`command-schema.md` § Seed Source Precedence](./command-schema.md#seed-source-precedence).
+
+In **multiplayer**, the seed is **always** the output of the
+three-phase commit-reveal handshake pinned in
+[`match-handshake.md`](./match-handshake.md):
+
+```text
+seed = xxh64( bytes(nonceA) || bytes(nonceB) )    // lex peerId order
+```
+
+The host-unilateral path is forbidden in multiplayer; both peers
+contribute equal entropy, and `(contentHash, engineHash,
+packManifestDigest, bundleSha256)` are mutually verified before any
+`seq=0` envelope is permitted.
+
+Tamper detection that the seed binding does not catch — information
+leaks via local memory read, host-side speculative apply, etc. — is
+covered by
+[`security-model.md`](./security-model.md). Read it before designing
+any feature that depends on hidden information.
+
 ## Save Artifact Byte Determinism
 
 The save artifact's gzip layer is pinned to **`pako` at level 6** so

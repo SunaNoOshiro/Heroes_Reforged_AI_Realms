@@ -1,0 +1,13 @@
+{
+  "matchId": "550e8400-e29b-41d4-a716-446655440000",
+  "matchEpoch": 0,
+  "seq": 9001,
+  "playerId": "11111111-2222-3333-4444-555555555555",
+  "turn": 25,
+  "command": {
+    "kind": "BISECT_MIDPOINT",
+    "prefixIndex": 128,
+    "stateHash": "fedcba9876543210fedcba9876543210"
+  },
+  "mac": "abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd"
+}

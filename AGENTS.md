@@ -125,6 +125,12 @@ Read first if you need to understand the full project:
 44. [docs/architecture/ugc-safety.md](docs/architecture/ugc-safety.md)
     — text / binary / capability sanitization contracts for UGC and
     AI-generated payloads.
+45. [docs/architecture/security-model.md](docs/architecture/security-model.md)
+    — symmetric input-only lockstep threat model: what is detected,
+    what is structurally impossible to hide, mitigations in this
+    codebase, and product gating for ranked / tournament / spectator
+    modes. Cross-linked from `determinism.md`, `pack-contract.md`,
+    and the `77-multiplayer-game` screen package.
 
 For a single browseable view of architecture docs, general flow diagrams,
 and numbered UI screen packages, open
@@ -156,6 +162,11 @@ viewer.
 - all persisted state lives in IndexedDB unless
   [`persistence.md`](docs/architecture/persistence.md) exempts it;
   `localStorage` and `document.cookie` are banned in `src/`
+- information secrecy is **not** provided by symmetric input-only
+  lockstep; do not design a multiplayer feature that depends on
+  hidden information without first reading
+  [`security-model.md`](docs/architecture/security-model.md) and
+  gating it behind the friendly / closed-beta product surface
 
 ## Folder Guide
 

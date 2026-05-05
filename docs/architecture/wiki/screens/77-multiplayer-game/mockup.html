@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>77. Multiplayer Game Status - Curated UI Mockup</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 800px; height: 600px; overflow: hidden; background: #070504; }
+  body { color: #f1dd9b; font-family: Georgia, "Times New Roman", serif; }
+  svg { width: 800px; height: 600px; display: block; background: #130b07; }
+  .title { fill: #ffe28a; font: 700 22px Georgia, serif; letter-spacing: .4px; }
+  .label { fill: #fff0b8; font: 700 13px Georgia, serif; }
+  .small { fill: #f4dfac; font: 12px Georgia, serif; }
+  .tiny { fill: #ead6a3; font: 10px ui-monospace, Menlo, monospace; }
+  .panel { fill: #382012; stroke: #c49a42; stroke-width: 1.5; }
+  .panelDim { fill: #2a1a10; stroke: #6b4925; stroke-width: 1; }
+  .stalled { fill: #6b4615; stroke: #d4a544; stroke-width: 1.5; }
+  .danger { fill: #5a1a14; stroke: #d44545; stroke-width: 1.5; }
+  .ok { fill: #1c4523; stroke: #67c47a; stroke-width: 1.5; }
+  .frame { fill: none; stroke: #d9b245; stroke-width: 3; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect class="frame" x="6" y="6" width="788" height="588" rx="6"/>
+
+  <text class="title" x="20" y="40">In-Match Multiplayer Status</text>
+
+  <!-- Opponent Turn Indicator -->
+  <g transform="translate(20,60)">
+    <rect class="stalled" x="0" y="0" width="380" height="80" rx="6"/>
+    <text class="label" x="14" y="22">Opponent Turn Indicator</text>
+    <text class="small" x="14" y="44">Status: STALLED — 32 s since last input</text>
+    <text class="tiny" x="14" y="62">Auto-end day at 90 s if peer remains idle.</text>
+    <text class="tiny" x="14" y="74">Threshold: stallLimit = 90,000 ms (manifest override)</text>
+  </g>
+
+  <!-- Build Attestation Banner -->
+  <g transform="translate(420,60)">
+    <rect class="panelDim" x="0" y="0" width="360" height="80" rx="6"/>
+    <text class="label" x="14" y="22">Build Attestation</text>
+    <text class="small" x="14" y="44">Opponent bundle: ✓ canonical (key: hr-engine-2026-q1)</text>
+    <text class="tiny" x="14" y="62">Your bundle: ✓ canonical</text>
+    <text class="tiny" x="14" y="74">Pack signature: ✓ required-ranked verified</text>
+  </g>
+
+  <!-- Match Info -->
+  <g transform="translate(20,160)">
+    <rect class="panel" x="0" y="0" width="380" height="120" rx="6"/>
+    <text class="label" x="14" y="22">Match</text>
+    <text class="tiny" x="14" y="44">matchId:    550e8400-e29b-41d4-a716-446655440000</text>
+    <text class="tiny" x="14" y="60">matchEpoch: 0</text>
+    <text class="tiny" x="14" y="76">turn:       7</text>
+    <text class="tiny" x="14" y="92">envelopes:  142 (signed / verified)</text>
+    <text class="tiny" x="14" y="108">stateHash:  fedcba9876543210 (last agreed)</text>
+  </g>
+
+  <!-- Envelope Stats -->
+  <g transform="translate(420,160)">
+    <rect class="panel" x="0" y="0" width="360" height="120" rx="6"/>
+    <text class="label" x="14" y="22">Envelope Stats</text>
+    <text class="tiny" x="14" y="44">macFailureCount:        0</text>
+    <text class="tiny" x="14" y="60">duplicate-seq drops:    1 (network reorder)</text>
+    <text class="tiny" x="14" y="76">precondition rejects:   0</text>
+    <text class="tiny" x="14" y="92">turn-timer state:       STALLED</text>
+    <text class="tiny" x="14" y="108">last bisect outcome:    n/a</text>
+  </g>
+
+  <!-- Desync Banner (collapsed) -->
+  <g transform="translate(20,300)">
+    <rect class="panelDim" x="0" y="0" width="760" height="50" rx="6"/>
+    <text class="label" x="14" y="22">Desync Detection</text>
+    <text class="small" x="14" y="40">No divergence detected this match. Hash exchange OK at every turn.</text>
+  </g>
+
+  <!-- Bisect Report Panel (placeholder when triggered) -->
+  <g transform="translate(20,370)">
+    <rect class="danger" x="0" y="0" width="760" height="120" rx="6"/>
+    <text class="label" x="14" y="22">Bisect Report (preview)</text>
+    <text class="tiny" x="14" y="44">divergentPrefixIndex:   128 (turn 25, MOVE_HERO)</text>
+    <text class="tiny" x="14" y="60">peerAHash / peerBHash:  fedc... / 89ab...</text>
+    <text class="tiny" x="14" y="76">canonicalReplayHash:    fedc...</text>
+    <text class="tiny" x="14" y="92">attributedPeer:         peer-B</text>
+    <text class="tiny" x="14" y="108">attributionConfidence:  high  →  Match aborted; report submitted.</text>
+  </g>
+
+  <!-- Match Key Display (debug-only) -->
+  <g transform="translate(20,510)">
+    <rect class="panelDim" x="0" y="0" width="760" height="60" rx="6"/>
+    <text class="label" x="14" y="22">Match Key (debug-only; toggled in developer mode)</text>
+    <text class="tiny" x="14" y="44">matchKey: 0x*** (hidden by default; toggle via developer-mode flag)</text>
+    <text class="tiny" x="14" y="58">handshakeNonces: nonceA: 0x01..., nonceB: 0x02...</text>
+  </g>
+</svg>
+</body>
+</html>

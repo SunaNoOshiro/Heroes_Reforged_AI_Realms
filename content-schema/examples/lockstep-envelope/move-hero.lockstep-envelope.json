@@ -1,0 +1,13 @@
+{
+  "matchId": "550e8400-e29b-41d4-a716-446655440000",
+  "matchEpoch": 0,
+  "seq": 42,
+  "playerId": "11111111-2222-3333-4444-555555555555",
+  "turn": 7,
+  "command": {
+    "kind": "MOVE_HERO",
+    "heroId": "kaelis",
+    "path": [{ "x": 12, "y": 14 }, { "x": 13, "y": 14 }]
+  },
+  "mac": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+}

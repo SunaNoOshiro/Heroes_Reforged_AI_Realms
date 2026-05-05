@@ -1902,6 +1902,23 @@
           "link": "05-lobby/00-plan-stub.md"
         }
       ]
+    },
+    {
+      "id": "phase-4.spectator-mode",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Spectator Mode (Phase 4 — Out of M5 Scope)",
+      "path": "tasks/phase-4/spectator-mode.md",
+      "milestone": "Phase 4 (post-M5)",
+      "totalEstimate": "pending Phase-4 scoping",
+      "exitCriteria": "spectator mode design and implementation",
+      "lintTags": [],
+      "taskLinks": [
+        {
+          "label": "00-requirements",
+          "link": "./spectator-mode/00-requirements.md"
+        }
+      ]
     }
   ],
   "tasks": [
@@ -3156,7 +3173,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 406
+      "downstreamTransitiveCount": 413
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3218,7 +3235,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 404
+      "downstreamTransitiveCount": 411
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3275,7 +3292,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 247
+      "downstreamTransitiveCount": 254
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3331,7 +3348,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 316
+      "downstreamTransitiveCount": 323
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3478,7 +3495,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 236
+      "downstreamTransitiveCount": 243
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -4377,7 +4394,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 311
+      "downstreamTransitiveCount": 318
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4435,7 +4452,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 232
+      "downstreamTransitiveCount": 239
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4618,7 +4635,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 223
+      "downstreamTransitiveCount": 230
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4679,7 +4696,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 282
+      "downstreamTransitiveCount": 289
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -5207,7 +5224,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 193
+      "downstreamTransitiveCount": 200
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -9060,7 +9077,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 183
+      "downstreamTransitiveCount": 190
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -9120,7 +9137,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 122
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -9176,7 +9193,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 163
+      "downstreamTransitiveCount": 170
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -9239,7 +9256,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 121
+      "downstreamTransitiveCount": 128
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -9836,7 +9853,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 96
+      "downstreamTransitiveCount": 103
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -9988,7 +10005,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 122
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -10123,7 +10140,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 157
+      "downstreamTransitiveCount": 164
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -10199,7 +10216,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 121
+      "downstreamTransitiveCount": 128
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -10262,7 +10279,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 111
+      "downstreamTransitiveCount": 118
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -10328,7 +10345,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 91
+      "downstreamTransitiveCount": 98
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -10394,7 +10411,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 93
+      "downstreamTransitiveCount": 100
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -10472,7 +10489,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 78
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -10527,7 +10544,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 69
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -16534,7 +16551,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 107
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -16596,7 +16613,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 81
+      "downstreamTransitiveCount": 88
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -16744,7 +16761,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 82
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -16811,7 +16828,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 75
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -16947,7 +16964,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 75
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -17010,7 +17027,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 72
+      "downstreamTransitiveCount": 79
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -17083,7 +17100,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 66
+      "downstreamTransitiveCount": 73
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -17757,7 +17774,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 75
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -17845,7 +17862,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 74
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -17908,7 +17925,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 64
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -17990,7 +18007,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 64
+      "downstreamTransitiveCount": 71
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -18064,7 +18081,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 60
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -18169,7 +18186,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 66
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -18239,7 +18256,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 60
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -18334,7 +18351,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -18417,7 +18434,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 38
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -18495,7 +18512,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 51
+      "downstreamTransitiveCount": 58
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -18566,7 +18583,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 37
+      "downstreamTransitiveCount": 44
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -31236,7 +31253,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 35
+      "downstreamTransitiveCount": 42
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -31266,7 +31283,9 @@
         "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)",
         "[`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)",
         "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)",
-        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)"
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)",
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/peer-connection.ts"
@@ -31317,8 +31336,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 23
+      "downstreamDirectCount": 10,
+      "downstreamTransitiveCount": 30
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -31343,7 +31362,10 @@
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
-        "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)"
+        "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)",
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/turn-timer.md`](../../../docs/architecture/turn-timer.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/lockstep.ts",
@@ -31354,7 +31376,8 @@
       "ownedPathsOptOutReason": "",
       "sharedOwnedPaths": [],
       "dependencies": [
-        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac"
       ],
       "acceptanceCriteria": [
         "100 commands sent and received in sequence with no drops (on good connection)",
@@ -31383,22 +31406,26 @@
       "estimatedTime": "- 5 hours",
       "screenPackages": [],
       "directSchemaPaths": [
-        "content-schema/schemas/command-envelope.schema.json"
+        "content-schema/schemas/command-envelope.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json"
       ],
       "screenSchemaPaths": [],
       "schemaPaths": [
-        "content-schema/schemas/command-envelope.schema.json"
+        "content-schema/schemas/command-envelope.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json"
       ],
       "taskDependencies": [
-        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac"
       ],
       "moduleDependencies": [],
       "resolvedDependencies": [
-        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 11
+      "downstreamTransitiveCount": 12
     },
     {
       "id": "phase-3.01-multiplayer.04-per-turn-hash-exchange-plus-desync-detection",
@@ -31420,7 +31447,10 @@
         "On desync: emit `DESYNC_DETECTED` event with both hashes + turn number for debugging"
       ],
       "readFirst": [
-        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)",
+        "[`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/sync-check.ts"
@@ -31457,7 +31487,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 8
+      "downstreamTransitiveCount": 9
     },
     {
       "id": "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch",
@@ -31479,7 +31509,10 @@
         "Report: `{ commandIndex, command, preMismatchHash, postMismatchHash }`"
       ],
       "readFirst": [
-        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/bisect-protocol.md`](../../../docs/architecture/bisect-protocol.md)",
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)",
+        "[`docs/architecture/peer-reputation.md`](../../../docs/architecture/peer-reputation.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/bisect.ts"
@@ -31519,8 +31552,8 @@
         "phase-3.01-multiplayer.04-per-turn-hash-exchange-plus-desync-detection"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 5
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
     },
     {
       "id": "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay",
@@ -31773,6 +31806,82 @@
       "downstreamTransitiveCount": 8
     },
     {
+      "id": "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+      "kind": "task",
+      "status": "planned",
+      "title": "Lockstep Envelope and Per-Match MAC",
+      "path": "tasks/phase-3/01-multiplayer/09-lockstep-envelope-and-mac.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Author the canonical wire-envelope contract used by every M5 lockstep DataChannel payload (in-game commands, bisect midpoints, per-turn hash exchanges). The envelope wraps each payload with `{ matchId, matchEpoch, seq, playerId, turn, command, mac }` and authenticates it with HMAC-SHA-256 keyed by the per-match `matchKey` derived in [`match-handshake.md`](../../../docs/architecture/match-handshake.md). Plan 26 § Critical Fix 1.",
+      "inputs": [
+        "`matchKey` from the match handshake (Task 10).",
+        "`command.schema.json` for inner-record validation."
+      ],
+      "outputs": [
+        "`content-schema/schemas/lockstep-envelope.schema.json` — authoritative wire-shape with strict `additionalProperties: false`.",
+        "`content-schema/examples/lockstep-envelope/*.json` — canonical example fixtures (move-hero, end-day, cast-spell, bisect-midpoint).",
+        "`src/net/lockstep/envelope.ts` — `wrap(matchKey, inner) → Envelope`, `unwrap(matchKey, raw) → { ok, inner } | { ok: false, reason }`.",
+        "`src/net/lockstep/mac.ts` — HMAC-SHA-256 sign / verify primitive using `globalThis.crypto.subtle.sign('HMAC', …)` only; constant-time comparison.",
+        "Schema-shape validation of every example fixture is provided by the existing repo-contracts gate (`npm run validate:contracts`) via the `.lockstep-envelope.json` suffix mapping in `scripts/check-repo-contracts.mjs`. The owning task adds per-implementation golden tests under `src/net/lockstep/__tests__/` for the canonical-JSON round-trip and the positive / negative MAC cases."
+      ],
+      "readFirst": [
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)",
+        "[`content-schema/schemas/lockstep-envelope.schema.json`](../../../content-schema/schemas/lockstep-envelope.schema.json)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/examples/lockstep-envelope/",
+        "src/net/lockstep/envelope.ts",
+        "src/net/lockstep/mac.ts",
+        "docs/architecture/lockstep-envelope.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "acceptanceCriteria": [
+        "`lockstep-envelope.schema.json` schema-validates every example fixture under `content-schema/examples/lockstep-envelope/`.",
+        "Canonical-JSON round-trip test: `wrap(unwrap(payload))` is byte-identical to the original payload, with `mac` excluded from the canonical-JSON input.",
+        "Positive MAC golden test: a known `(matchKey, payload)` pair produces a known MAC byte string.",
+        "Negative MAC golden test: tampering with any field in the envelope (`matchId`, `matchEpoch`, `seq`, `playerId`, `turn`, `command`) causes `unwrap` to return `{ ok: false, reason: 'mac' }`.",
+        "Cross-`matchKey` isolation test: a MAC produced under `matchKey_A` is rejected when verified with `matchKey_B`.",
+        "`npm run validate:lockstep` runs all four golden classes and exits non-zero on any failure."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/lockstep-envelope.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/lockstep-envelope.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 17
+    },
+    {
       "id": "phase-3.01-multiplayer.09-snapshot-resync-fallback",
       "kind": "task",
       "status": "planned",
@@ -31840,6 +31949,89 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
       "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-3.01-multiplayer.10-match-handshake-protocol",
+      "kind": "task",
+      "status": "planned",
+      "title": "Match Handshake Protocol — Commit-Reveal Seed and Match Key",
+      "path": "tasks/phase-3/01-multiplayer/10-match-handshake-protocol.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Implement the three-phase commit-reveal handshake that runs as the first DataChannel exchange of every M5 multiplayer match. Both peers contribute equal entropy to the seed; both peers freeze and exchange `(contentHash, engineHash, packManifestDigest, bundleSha256, signaturePolicy)`; both peers derive `matchId` and `matchKey` deterministically from the revealed nonces. Plan 26 § Critical Fix 2.",
+      "inputs": [
+        "WebRTC DataChannel from [Task 02](./02-webrtc-peer-connection-plus-datachannel-setup.md).",
+        "Pack manifest + content hash + engine hash + build attestation surface.",
+        "Build-attestation allow-list at `services/signaling/config/build-attestation.allow.example.json` (placeholder; production keys provisioned separately)."
+      ],
+      "outputs": [
+        "`content-schema/schemas/match-handshake.schema.json` — discriminated union of `COMMIT | REVEAL | ACCEPT | ABORT`.",
+        "`content-schema/examples/match-handshake/*.json` — canonical example for every phase + several abort reasons.",
+        "`src/net/lockstep/handshake.ts` — `runHandshake(channel, localContext) → { ok, seed, matchId, matchKey, matchEpoch } | { ok: false, reason }`.",
+        "`src/content-runtime/manifest-digest.ts` — pinned canonical-JSON xxh64 over `manifest.json`.",
+        "Schema-shape validation of every example fixture is provided by the existing repo-contracts gate (`npm run validate:contracts`) via the `.match-handshake.json` suffix mapping in `scripts/check-repo-contracts.mjs`. The owning task adds per-implementation golden tests under `src/net/lockstep/__tests__/` for the derivation rules (`seed`, `matchId`, `matchKey`) and for every abort-reason path."
+      ],
+      "readFirst": [
+        "[`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/build-attestation.md`](../../../docs/architecture/build-attestation.md)",
+        "[`content-schema/schemas/match-handshake.schema.json`](../../../content-schema/schemas/match-handshake.schema.json)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/examples/match-handshake/",
+        "src/net/lockstep/handshake.ts",
+        "src/content-runtime/manifest-digest.ts",
+        "docs/architecture/match-handshake.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine",
+        "phase-3.01-multiplayer.15-pack-signature-and-build-attestation-policy"
+      ],
+      "acceptanceCriteria": [
+        "Both peers running the same `(contentHash, engineHash, packManifestDigest, bundleSha256, signaturePolicy)` derive the same `seed`, `matchId`, and `matchKey` regardless of which side acted as host.",
+        "Lexicographic `peerId` order on the nonce concatenation guarantees byte-stable seed / matchId / matchKey.",
+        "A REVEAL whose `xxh64(reveal-fields)` does not equal the previously sent `commit` triggers `ABORT { reason: COMMIT_MISMATCH }`.",
+        "Disagreement on any of the pinned values triggers the matching abort reason from the schema enum.",
+        "`signaturePolicy = \"required-ranked\"` with a missing `packSignature` triggers `PACK_SIGNATURE_REQUIRED`.",
+        "`bundleSha256` outside the allow-list while ranked triggers `BUILD_ATTESTATION_MISMATCH`; friendly mode warns only.",
+        "Any phase exceeding `HANDSHAKE_PHASE_TIMEOUT_MS = 10_000` triggers `HANDSHAKE_TIMEOUT`.",
+        "`runHandshake` is the only entry point that produces `matchKey`; the value is a non-extractable `CryptoKey` and is never logged or re-emitted on the wire."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/match-handshake.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/match-handshake.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine",
+        "phase-3.01-multiplayer.15-pack-signature-and-build-attestation-policy"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine",
+        "phase-3.01-multiplayer.15-pack-signature-and-build-attestation-policy"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
@@ -32005,6 +32197,93 @@
       "downstreamTransitiveCount": 4
     },
     {
+      "id": "phase-3.01-multiplayer.11-turn-timer-and-stall-detection",
+      "kind": "task",
+      "status": "planned",
+      "title": "Turn Timer and Stall Detection",
+      "path": "tasks/phase-3/01-multiplayer/11-turn-timer-and-stall-detection.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Add the per-peer turn timer that closes the connected-but-idle griefing gap. Three escalation states: `WAITING` from turn start, `STALLED` at `WAITING_THRESHOLD_MS = 30_000`, `AUTO_END_DAY` at `STALL_LIMIT_MS = 90_000`. The auto-`END_DAY` envelope is canonical and rides the lockstep envelope pipeline like any other command, so both peers apply it deterministically. Plan 26 § Critical Fix 4.",
+      "inputs": [
+        "Lockstep envelope wrap pipeline from [Task 09](./09-lockstep-envelope-and-mac.md).",
+        "`END_DAY` command shape with `source` discriminator from [`command-schema.md`](../../../docs/architecture/command-schema.md).",
+        "Manifest field `multiplayer.turnTimerMs` from [`manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json)."
+      ],
+      "outputs": [
+        "`src/net/lockstep/turn-timer.ts` — wall-clock-driven timer state machine; emits canonical `END_DAY { source: 'auto-timeout' }` envelope at `STALL_LIMIT_MS`.",
+        "Manifest schema extension: `multiplayer.turnTimerMs` with bounds `waitingThreshold ≥ 5_000`, `stallLimit ≥ waitingThreshold + 5_000`, `stallLimit ≤ 600_000`.",
+        "Telemetry event types `TURN_TIMER_WAITING`, `TURN_TIMER_STALLED`, `TURN_TIMER_AUTO_END_DAY` registered in [`telemetry-event.schema.json`](../../../content-schema/schemas/telemetry-event.schema.json).",
+        "Screen 77 (`docs/architecture/wiki/screens/77-multiplayer-game/`) surfaces the three states via `OpponentTurnIndicator`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/turn-timer.md`](../../../docs/architecture/turn-timer.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/spec.md)"
+      ],
+      "ownedPaths": [
+        "src/net/lockstep/turn-timer.ts",
+        "docs/architecture/turn-timer.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac"
+      ],
+      "acceptanceCriteria": [
+        "Simulated wall-clock advance through `WAITING_THRESHOLD_MS` emits `TURN_TIMER_STALLED`.",
+        "Simulated advance through `STALL_LIMIT_MS` emits a canonical `END_DAY { source: 'auto-timeout' }` envelope; the envelope passes the canonical intra-turn order rule from [Task 03](./03-input-only-lockstep-command-serialization-plus-sequencing.md).",
+        "Manifest override `multiplayer.turnTimerMs` is honored and validated against the bounds above.",
+        "Both peers independently emitting the auto-`END_DAY` results in exactly one canonical apply (the canonical intra-turn order decides which envelope goes first; the second is dropped as duplicate per task 03 sequence rules).",
+        "`OpponentTurnIndicator` on screen 77 transitions `waiting → stalled → auto-ended` matching the timer state."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/77-multiplayer-game"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
       "id": "phase-3.01-multiplayer.12-network-chaos-harness",
       "kind": "task",
       "status": "planned",
@@ -32085,6 +32364,183 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.12-visibility-preconditions-on-commands",
+      "kind": "task",
+      "status": "planned",
+      "title": "Visibility Preconditions on Commands",
+      "path": "tasks/phase-3/01-multiplayer/12-visibility-preconditions-on-commands.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Add the canonical-reducer-side visibility precondition that closes the fog-bypass-via-crafted-command gap. Each command kind declares a `visibility` precondition (`none | tile | object | hero | battle-cell`); the reducer rejects any command whose target is not in the issuing peer's `viewWorldVisibleObjects` projection at the issuance turn. Plan 26 § Critical Fix 5.",
+      "inputs": [
+        "`viewWorldVisibleObjects` selector from the existing visibility policy.",
+        "`command.schema.json` discriminated-union shape.",
+        "Lockstep envelope's `turn` field from [Task 09](./09-lockstep-envelope-and-mac.md) for issuance-turn projection."
+      ],
+      "outputs": [
+        "`src/engine/visibility/precondition.ts` — pure function `checkVisibilityPrecondition(state, command, issuingPeer) → { ok } | { ok: false, reason }` re-using `viewWorldVisibleObjects`.",
+        "`command.schema.json` extension: every command kind declares `visibility: 'none' | 'tile' | 'object' | 'hero' | 'battle-cell'`.",
+        "Reducer entry-point wiring so every dispatch runs the precondition before any effect resolution; `ok: false` produces `COMMAND_REJECTED_PRECONDITION` telemetry.",
+        "Screen 07 and 16 spec notes about two-layer enforcement (UI fog mask + reducer precondition)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)",
+        "[`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md)",
+        "[`docs/architecture/wiki/screens/07-adventure-map/spec.md`](../../../docs/architecture/wiki/screens/07-adventure-map/spec.md)",
+        "[`docs/architecture/wiki/screens/16-view-world/spec.md`](../../../docs/architecture/wiki/screens/16-view-world/spec.md)",
+        "[`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/engine/visibility/precondition.ts",
+        "src/engine/visibility/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "acceptanceCriteria": [
+        "Every command kind in `command.schema.json` carries a `visibility` declaration.",
+        "`MOVE_HERO` to a fog-covered tile is rejected on both peers with `reason: 'TILE_NOT_VISIBLE'`; canonical state hash is unchanged.",
+        "`MOVE_HERO` to a tile in `viewWorldVisibleObjects(turn)` is accepted.",
+        "Hand-crafted `ATTACK` against an unrevealed enemy stack is rejected with `reason: 'OBJECT_NOT_VISIBLE'`; state hash unchanged on both peers.",
+        "`END_DAY` and other `visibility: 'none'` commands skip the precondition.",
+        "Issuance-turn projection: a command issued at turn N runs the precondition against the projection at turn N, not against the live state at apply time (so a freshly-revealed tile in turn N+1 does not retroactively validate a turn-N command that targeted a then-fog-covered tile)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/07-adventure-map",
+        "docs/architecture/wiki/screens/16-view-world"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/adventure-building.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/hero.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/map-object.schema.json",
+        "content-schema/schemas/neutral-stack-template.schema.json",
+        "content-schema/schemas/resource-id.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/unit.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.13-security-model-and-doctrine",
+      "kind": "task",
+      "status": "planned",
+      "title": "Security Model and Doctrine",
+      "path": "tasks/phase-3/01-multiplayer/13-security-model-and-doctrine.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Author and maintain the canonical security-model doctrine for the M5 multiplayer module: the closed list of what symmetric input-only lockstep protects, what it does not, the inherent limits of the chosen netcode, the threat-model summary, and the product gating that follows. Cross-link from [`CLAUDE.md`](../../../CLAUDE.md) so new contributors and AI agents encounter the doctrine before designing downstream features. Plan 26 § Critical Fix 5.",
+      "inputs": [
+        "Audit findings from `docs/readiness-audit/26-replay-tampering-and-simulation-cheating.md`.",
+        "Existing multiplayer-security doctrine for cross-references."
+      ],
+      "outputs": [
+        "`docs/architecture/security-model.md` — canonical doctrine.",
+        "`CLAUDE.md` cross-link in **Read first** and **Protect These Rules** sections.",
+        "Cross-links from [`determinism.md`](../../../docs/architecture/determinism.md), [`pack-contract.md`](../../../docs/architecture/pack-contract.md), [`command-schema.md`](../../../docs/architecture/command-schema.md), and [`master-plan.md`](../../../docs/architecture/master-plan.md).",
+        "Trust-banner copy on screen 77."
+      ],
+      "readFirst": [
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)",
+        "[`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/spec.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/security-model.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "`security-model.md` enumerates the protections from § 1 and the inherent limits from § 2 of [`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md) and matches every Plan 26 Critical Fix and Improvement to a row in § 3 (Mitigations).",
+        "`CLAUDE.md` lists `security-model.md` in the **Read first** table and adds the \"information secrecy is not provided by symmetric lockstep\" rule to **Protect These Rules**.",
+        "Every doctrine doc that touches the lockstep boundary (`lockstep-envelope.md`, `match-handshake.md`, `bisect-protocol.md`, `turn-timer.md`, `peer-reputation.md`, `replay-audit-pipeline.md`, `draft-preview-policy.md`, `build-attestation.md`, `spectator-mode-requirements.md`) cross-links back to `security-model.md`.",
+        "The product-gating section (§ 4) explicitly names ranked / tournament / spectator / public-ladder modes as out of M5 scope and points to the closed-beta surface as the M5 ceiling."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/77-multiplayer-game"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "phase-3.01-multiplayer.13-signaling-rate-limiting",
@@ -32265,6 +32721,101 @@
       "downstreamTransitiveCount": 4
     },
     {
+      "id": "phase-3.01-multiplayer.14-screen-multiplayer-game-status",
+      "kind": "task",
+      "status": "planned",
+      "title": "Screen Package — Multiplayer Game Status (in-match overlay)",
+      "path": "tasks/phase-3/01-multiplayer/14-screen-multiplayer-game-status.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Add screen package [`docs/architecture/wiki/screens/77-multiplayer-game/`](../../../docs/architecture/wiki/screens/77-multiplayer-game/) that surfaces the in-match multiplayer trust state — opponent turn indicator, build-attestation banner, envelope statistics, desync banner / bisect report panel, developer-mode match-key display, and the post-match audit-pipeline consent prompt. Splits the in-game status surface off [Task 08](./08-multiplayer-ui-lobby-invite-link-in-game-status.md) into its own owning task per the wiki convention. Plan 26 § System Improvements / UI / Multiplayer-game-screen.",
+      "inputs": [
+        "Telemetry surfaces from [Task 09](./09-lockstep-envelope-and-mac.md) (envelope stats), [Task 10](./10-match-handshake-protocol.md) (build attestation), [Task 11](./11-turn-timer-and-stall-detection.md) (turn timer states), and [Task 05](./05-auto-bisect-on-hash-mismatch.md) (bisect report shape with `attributedPeer`).",
+        "Localization keys per the data-contracts file."
+      ],
+      "outputs": [
+        "`docs/architecture/wiki/screens/77-multiplayer-game/mockup.html`",
+        "`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`",
+        "`docs/architecture/wiki/screens/77-multiplayer-game/interactions.md`",
+        "`docs/architecture/wiki/screens/77-multiplayer-game/data-contracts.md`",
+        "`docs/architecture/wiki/screens/77-multiplayer-game/architecture.md`",
+        "`src/ui/multiplayer/MultiplayerGameStatus.tsx` — composition root per the spec's component tree.",
+        "Registration in [`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json) under the `multiplayer` group."
+      ],
+      "readFirst": [
+        "[`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/spec.md)",
+        "[`docs/architecture/wiki/screens/77-multiplayer-game/interactions.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/interactions.md)",
+        "[`docs/architecture/wiki/screens/77-multiplayer-game/data-contracts.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/data-contracts.md)",
+        "[`docs/architecture/wiki/screens/77-multiplayer-game/architecture.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/architecture.md)",
+        "[`docs/architecture/turn-timer.md`](../../../docs/architecture/turn-timer.md)",
+        "[`docs/architecture/bisect-protocol.md`](../../../docs/architecture/bisect-protocol.md)",
+        "[`docs/architecture/build-attestation.md`](../../../docs/architecture/build-attestation.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/wiki/screens/77-multiplayer-game/",
+        "src/ui/multiplayer/MultiplayerGameStatus.tsx"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.11-turn-timer-and-stall-detection",
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.10-match-handshake-protocol"
+      ],
+      "acceptanceCriteria": [
+        "All five package files (`mockup.html`, `spec.md`, `interactions.md`, `data-contracts.md`, `architecture.md`) exist and follow the conventions in [`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md).",
+        "The package is registered in [`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json) under the `multiplayer` category.",
+        "`OpponentTurnIndicator` renders all four states (`waiting`, `stalled`, `auto-ended`, `disconnected`) per [`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/spec.md).",
+        "`BisectReportPanel` renders `attributedAbortPeer` (peer-hash digest, never raw `peerId`) and `attributionConfidence`.",
+        "`MatchKeyDisplay` is gated by `state.developer.flags.showMatchKey` and renders nothing when the flag is `false`.",
+        "`npm run generate:wiki` folds the screen into `docs/architecture/architecture-wiki.html`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/77-multiplayer-game"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "phase-3.01-multiplayer.11-turn-timer-and-stall-detection"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "phase-3.01-multiplayer.11-turn-timer-and-stall-detection"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
       "id": "phase-3.01-multiplayer.15-display-name-validation",
       "kind": "task",
       "status": "planned",
@@ -32353,6 +32904,82 @@
       "downstreamTransitiveCount": 4
     },
     {
+      "id": "phase-3.01-multiplayer.15-pack-signature-and-build-attestation-policy",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pack Signature Mandate and Engine-Build Attestation",
+      "path": "tasks/phase-3/01-multiplayer/15-pack-signature-and-build-attestation-policy.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Make pack signatures **required** for ranked-style multiplayer matches and add an engine-bundle attestation field to the match handshake. Hosts the canonical doctrine ([`build-attestation.md`](../../../docs/architecture/build-attestation.md)), the signaling-side allow-list example, and the CI gate that keeps the allow-list well-formed. Plan 26 § System Improvements / Data Contracts.",
+      "inputs": [
+        "Plan 25 signing-key trust list (signaling-side configuration).",
+        "Pack contract `signature` field (currently optional).",
+        "Match handshake REVEAL phase fields."
+      ],
+      "outputs": [
+        "`docs/architecture/build-attestation.md` — canonical doctrine.",
+        "`services/signaling/config/build-attestation.allow.example.json` — placeholder allow-list shape for operators.",
+        "`pack-contract.md` extension: `signaturePolicy` field with enum `optional | required-friendly | required-ranked`; default `optional`.",
+        "`manifest.schema.json` extension: pin `signature.scheme` to `ed25519`; pin `signature.keyId` format.",
+        "`scripts/check-build-attestation.mjs` — CI gate that schema-validates the allow-list, verifies entry signatures against listed trust anchors, and refuses any commit that appears to embed a real signing key.",
+        "`npm run validate:build-attestation` script wired into `npm run validate`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/build-attestation.md`](../../../docs/architecture/build-attestation.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json)",
+        "[`content-schema/schemas/match-handshake.schema.json`](../../../content-schema/schemas/match-handshake.schema.json)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/build-attestation.md",
+        "services/signaling/config/build-attestation.allow.example.json",
+        "scripts/check-build-attestation.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "acceptanceCriteria": [
+        "`signaturePolicy` defaults to `optional` for friendly play.",
+        "Ranked play sets `signaturePolicy = required-ranked`; the match handshake rejects unsigned packs and `sandboxed: true` packs at the REVEAL phase per [`match-handshake.md`](../../../docs/architecture/match-handshake.md) § 5.",
+        "A `bundleSha256` outside the canonical allow-list while ranked triggers `BUILD_ATTESTATION_MISMATCH` ABORT.",
+        "Friendly mode warns only; the screen-77 `BuildAttestationBanner` renders the warning copy from [`build-attestation.md`](../../../docs/architecture/build-attestation.md) § 5.",
+        "`scripts/check-build-attestation.mjs` schema-validates `services/signaling/config/build-attestation.allow.example.json` and verifies that every `bundles[].signature` matches the listed `trustAnchors[].publicKey` for `signedBy`.",
+        "The CI gate refuses any commit that adds a `trustAnchors[]` entry whose `publicKey` matches any other repo file (defends against accidentally committing a real signing key)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/match-handshake.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/match-handshake.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 19
+    },
+    {
       "id": "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
       "kind": "task",
       "status": "planned",
@@ -32420,6 +33047,75 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
       "downstreamTransitiveCount": 11
+    },
+    {
+      "id": "phase-3.01-multiplayer.16-peer-reputation-counter",
+      "kind": "task",
+      "status": "planned",
+      "title": "Peer Reputation Counter — Signaling Side",
+      "path": "tasks/phase-3/01-multiplayer/16-peer-reputation-counter.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Implement the bounded, in-memory peer-reputation counter on the signaling server. Counts attributed `MATCH_ABORTED_DESYNC` events per `(peerHash, ipPrefix)` with a 24-hour TTL; soft-rate-limits a peer at 5 attributed early-game aborts in 24 hours by rejecting new `CREATE_ROOM` / `JOIN_ROOM` requests. Plan 26 § System Improvements / Architecture / Peer reputation.",
+      "inputs": [
+        "Bisect-attribution feed: post-match `MATCH_ABORTED_DESYNC` notifications carrying `attributedPeer` and `attributionConfidence`.",
+        "Signaling-server admit gate (`CREATE_ROOM`, `JOIN_ROOM`)."
+      ],
+      "outputs": [
+        "`docs/architecture/peer-reputation.md` — canonical doctrine.",
+        "`services/signaling/src/reputation/counter.ts` — bounded LRU with TTL eviction; pure in-memory; no disk persistence.",
+        "Prometheus metric `signaling_reputation_aborts_total{peer, prefix}` exposed on the admin port from [`signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md).",
+        "Updates to [Task 01](./01-signaling-server-node-js-websocket-lobby.md): add **Peer Reputation** subsection cross-linking Plan 25."
+      ],
+      "readFirst": [
+        "[`docs/architecture/peer-reputation.md`](../../../docs/architecture/peer-reputation.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md)",
+        "[`docs/architecture/bisect-protocol.md`](../../../docs/architecture/bisect-protocol.md)",
+        "[`docs/architecture/signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/peer-reputation.md",
+        "services/signaling/src/reputation/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine",
+        "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch"
+      ],
+      "acceptanceCriteria": [
+        "Counter increments only when both: (a) `MATCH_ABORTED_DESYNC` arrives with `attributionConfidence: high`, and (b) divergence occurred within the first 3 turns of the match.",
+        "The counter increments on the **opposing peer's** report when the offender refuses to self-report (consent-resilient).",
+        "Counter LRU cap is bounded (≤ 100 000 entries); TTL evicts inactive entries at 24 hours since `lastSeen`.",
+        "Reaching `AUTO_RATE_LIMIT_THRESHOLD = 5` rejects subsequent `CREATE_ROOM` / `JOIN_ROOM` with `RATE_LIMITED { kind: 'reputation' }`.",
+        "Existing matches in flight when the threshold trips are unaffected.",
+        "The counter file imports zero disk-persistent modules per [`signaling-stateless-invariant.md`](../../../docs/architecture/signaling-stateless-invariant.md); `npm run validate:signaling-stateless` continues to pass.",
+        "Peer keys are SHA-256 hashed to 16 chars before storage; raw `peerId` is never logged. IP is bucketed to `/24` (IPv4) or `/64` (IPv6) before storage."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
     },
     {
       "id": "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
@@ -32526,6 +33222,93 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
       "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "phase-3.01-multiplayer.17-replay-audit-pipeline-contract",
+      "kind": "task",
+      "status": "planned",
+      "title": "Replay Audit Pipeline Contract",
+      "path": "tasks/phase-3/01-multiplayer/17-replay-audit-pipeline-contract.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Pin the canonical contract for the post-match audit pipeline: opt-in upload payload shape, retention semantics, anomaly detection list, and the post-match consent prompt on screen 77. The hosted ingestion service that consumes the upload is a Phase-4 follow-up; M5 ships only the contract + the UI consent surface, since no human will run the audit from a terminal — the consumer is the future hosted service plus its admin UI. Plan 26 § System Improvements / Architecture / Post-match audit pipeline.",
+      "inputs": [
+        "Lockstep envelope MAC self-authentication from [Task 09](./09-lockstep-envelope-and-mac.md).",
+        "Handshake nonce + matchKey derivation from [Task 10](./10-match-handshake-protocol.md).",
+        "Post-match summary surface on screen 77.",
+        "Plan 22 retention semantics; Plan 23 consent UX."
+      ],
+      "outputs": [
+        "`docs/architecture/replay-audit-pipeline.md` — canonical contract: upload payload shape, retention rules, anomaly list, Phase-4 hand-off statement.",
+        "Post-match consent prompt on screen 77 per [`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/spec.md) `PostMatchAuditConsentPrompt`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/replay-audit-pipeline.md`](../../../docs/architecture/replay-audit-pipeline.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)",
+        "[`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)",
+        "[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)",
+        "[`docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md`](../../../docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/replay-audit-pipeline.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine",
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.10-match-handshake-protocol"
+      ],
+      "acceptanceCriteria": [
+        "`replay-audit-pipeline.md` defines the upload payload shape with the privacy invariants from § 2 (no raw `peerId`, no `displayName`, no IP, no chat).",
+        "The post-match opt-in prompt on screen 77 records consent per Plan 23 and emits `SUBMIT_REPLAY_AUDIT` only when the prompt is accepted.",
+        "The doctrine explicitly defers the consumer (hosted ingestion service + admin review UI) to Phase 4 and names no terminal / CLI surface in M5.",
+        "Because the upload payload is self-authenticating via per-match HMAC, the future hosted service can re-verify any envelope offline without trusting the uploader."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/77-multiplayer-game"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/consent.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/lockstep-envelope.schema.json",
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/telemetry-event.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
     },
     {
       "id": "phase-3.01-multiplayer.18-mute-block-and-trust-banner",
@@ -36329,15 +37112,24 @@
         "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay",
         "phase-3.01-multiplayer.07-host-migration-heartbeat-election",
         "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
+        "phase-3.01-multiplayer.09-lockstep-envelope-and-mac",
         "phase-3.01-multiplayer.09-snapshot-resync-fallback",
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
         "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
         "phase-3.01-multiplayer.11-network-chaos-test-matrix",
+        "phase-3.01-multiplayer.11-turn-timer-and-stall-detection",
         "phase-3.01-multiplayer.12-network-chaos-harness",
+        "phase-3.01-multiplayer.12-visibility-preconditions-on-commands",
+        "phase-3.01-multiplayer.13-security-model-and-doctrine",
         "phase-3.01-multiplayer.13-signaling-rate-limiting",
         "phase-3.01-multiplayer.14-host-approval-and-moderation",
+        "phase-3.01-multiplayer.14-screen-multiplayer-game-status",
         "phase-3.01-multiplayer.15-display-name-validation",
+        "phase-3.01-multiplayer.15-pack-signature-and-build-attestation-policy",
         "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
+        "phase-3.01-multiplayer.16-peer-reputation-counter",
         "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
+        "phase-3.01-multiplayer.17-replay-audit-pipeline-contract",
         "phase-3.01-multiplayer.18-mute-block-and-trust-banner",
         "phase-3.01-multiplayer.19-report-bundle-and-export",
         "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary",
@@ -37156,6 +37948,62 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "phase-4.spectator-mode.00-requirements",
+      "kind": "task",
+      "status": "planned",
+      "title": "Spectator Mode — Requirements (Placeholder)",
+      "path": "tasks/phase-4/spectator-mode/00-requirements.md",
+      "moduleId": "phase-4.spectator-mode",
+      "modulePath": "tasks/phase-4/spectator-mode.md",
+      "description": "Placeholder task that pins the requirements every future spectator implementation must satisfy. Spectator mode is **out of M5 scope** per audit 07 Q140 and audit 26 Q526. Any subsequent implementation task in this module MUST cite [`docs/architecture/spectator-mode-requirements.md`](../../../docs/architecture/spectator-mode-requirements.md) in its Read First section and add one acceptance criterion per row of the requirement tables in §§ 2-3 of that doctrine. Plan 26 § System Improvements / Architecture / Spectator-stream verification.",
+      "inputs": [
+        "Plan 26 doctrine for envelope MAC, handshake binding, visibility precondition, pack signature, build attestation.",
+        "Plan 22 retention semantics; Plan 23 consent UX."
+      ],
+      "outputs": [
+        "This file is a contract placeholder. No code, schema, or screen package ships in M5. Future Phase-4 implementation tasks inherit the requirement tables from [`docs/architecture/spectator-mode-requirements.md`](../../../docs/architecture/spectator-mode-requirements.md)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/spectator-mode-requirements.md`](../../../docs/architecture/spectator-mode-requirements.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)",
+        "[`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)"
+      ],
+      "ownedPaths": [],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": true,
+      "ownedPathsOptOutReason": "placeholder; no implementation ships in M5; the Phase-4 follow-up tasks own the future spectator surface",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "acceptanceCriteria": [
+        "The doctrine doc enumerates all M5-inherited protections (envelope MAC, handshake binding, read-only client, visibility precondition, pack signature, build attestation).",
+        "The doctrine doc enumerates spectator-specific protections (multi-recipient fan-out integrity, late-join replay, spectator identity, consent UX, fog mode, identity disclosure).",
+        "The doctrine doc names spectator mode as out of M5 scope and defers implementation to Phase 4.",
+        "Any future implementation task in this module cites the doctrine in Read First and covers every row in §§ 2-3."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.13-security-model-and-doctrine"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,

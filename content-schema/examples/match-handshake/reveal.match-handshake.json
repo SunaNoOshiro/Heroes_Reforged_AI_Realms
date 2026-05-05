@@ -1,0 +1,15 @@
+{
+  "phase": "REVEAL",
+  "peerId": "11111111-2222-3333-4444-555555555555",
+  "nonce": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+  "contentHash": "fedcba9876543210",
+  "engineHash": "1122334455667788",
+  "packManifestDigest": "aabbccddeeff0011",
+  "bundleSha256": "abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+  "signaturePolicy": "required-ranked",
+  "packSignature": {
+    "scheme": "ed25519",
+    "keyId": "publisher-prime-2026",
+    "sig": "11223344556677881122334455667788112233445566778811223344556677881122334455667788112233445566778811223344556677881122334455667788"
+  }
+}

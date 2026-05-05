@@ -133,6 +133,11 @@
     "CHALLENGE_RESPONSE": "Signed signaling envelope payloadType emitted by a reconnecting peer to prove identity continuity per docs/architecture/dtls-fingerprint-pinning.md § 4; not a UI command. Owned by phase-3.01-multiplayer.27-dtls-fingerprint-pinning.",
     "CONNECTION_FAILED_RELAY_UNAVAILABLE": "phase-3.01-multiplayer.35-edge-defense-and-health-segregation owns the TURN-down dispatch per docs/architecture/turn-fallback-policy.md; surfaces the lobby `relayUnavailable` state.",
     "RATE_LIMITED": "Closed signaling-server reply payload per docs/architecture/signaling-rate-limits.md § 3 and content-schema/schemas/signaling-message.schema.json; not a UI command. Consumed by phase-3.01-multiplayer.35-edge-defense-and-health-segregation via `OnRateLimited`.",
-    "ROOM_FULL": "Closed signaling-server reply payload per docs/architecture/signaling-message-schema.md § 1 and content-schema/schemas/signaling-message.schema.json; not a UI command. Consumed by phase-3.01-multiplayer.35-edge-defense-and-health-segregation via `OnRoomFull`."
+    "ROOM_FULL": "Closed signaling-server reply payload per docs/architecture/signaling-message-schema.md § 1 and content-schema/schemas/signaling-message.schema.json; not a UI command. Consumed by phase-3.01-multiplayer.35-edge-defense-and-health-segregation via `OnRoomFull`.",
+    "LEAVE_MATCH": "phase-3.01-multiplayer.14-screen-multiplayer-game-status owns the in-match desync / quit dispatch per docs/architecture/security-model.md and docs/architecture/wiki/screens/77-multiplayer-game/interactions.md.",
+    "STALL_LIMIT_MS": "Constant from docs/architecture/turn-timer.md (default 90_000); not a command. Owned by phase-3.01-multiplayer.11-turn-timer-and-stall-detection.",
+    "WAITING_THRESHOLD_MS": "Constant from docs/architecture/turn-timer.md (default 30_000); not a command. Owned by phase-3.01-multiplayer.11-turn-timer-and-stall-detection.",
+    "SUBMIT_REPLAY_AUDIT": "phase-3.01-multiplayer.17-replay-audit-pipeline-contract owns the post-match opt-in upload dispatch per docs/architecture/replay-audit-pipeline.md.",
+    "TRUST_VIOLATION_DETECTED": "Closed dispatch payload per docs/architecture/command-stream-integrity.md § 6; not a UI command. Owned by phase-3.01-multiplayer.30-command-stream-hmac and phase-3.01-multiplayer.09-lockstep-envelope-and-mac."
   }
 }

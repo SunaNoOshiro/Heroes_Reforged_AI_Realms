@@ -112,7 +112,8 @@
       "screens": [
         "62-multiplayer-setup",
         "63-hotseat-turn-handoff",
-        "64-network-lobby"
+        "64-network-lobby",
+        "77-multiplayer-game"
       ]
     },
     {

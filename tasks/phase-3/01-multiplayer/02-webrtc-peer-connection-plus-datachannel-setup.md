@@ -13,6 +13,22 @@ Read First:
 - [`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)
 - [`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)
 - [`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)
+- [`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)
+- [`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
+
+### Plan 26 cross-cutting additions
+
+#### Match Handshake (Critical Fix 2)
+- The very first message exchanged on the open `commands`
+  DataChannel is the match-handshake `COMMIT` per
+  [`match-handshake.md`](../../../docs/architecture/match-handshake.md).
+  No in-game seq-zero envelope is permitted before both peers
+  exchange `ACCEPT`. Owning task:
+  [Task 10](./10-match-handshake-protocol.md).
+- DataChannel payloads from the first envelope onward are
+  envelope-wrapped per
+  [`lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md);
+  raw JSON never reaches the reducer.
 
 Inputs:
 - Signaling server (Task 1)

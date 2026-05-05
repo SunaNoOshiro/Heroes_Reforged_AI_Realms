@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/lockstep-envelope.schema.json",
+  "title": "LockstepEnvelope",
+  "description": "M5 lockstep wire envelope. Wraps every in-game command, per-turn state-hash payload, and bisect midpoint. Authenticated with HMAC-SHA-256 keyed by the per-match `matchKey` derived in match-handshake.md. Supersedes command-envelope.schema.json for the M5 multiplayer module. Authoritative doctrine: docs/architecture/lockstep-envelope.md. Owning task: tasks/phase-3/01-multiplayer/09-lockstep-envelope-and-mac.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["matchId", "matchEpoch", "seq", "playerId", "turn", "command", "mac"],
+  "properties": {
+    "matchId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "UUID-shape match identifier. Derived during the handshake as xxh64('matchId-v1' || nonceA || nonceB) and rendered into UUID v4 textual form. Receivers reject any envelope whose matchId does not match the locally pinned handshake output."
+    },
+    "matchEpoch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "description": "Match-epoch counter. Starts at 0 on first ACCEPT. Incremented on host migration / reconnect-replay per task 07. Old-epoch envelopes are rejected as stale."
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295,
+      "description": "Per-(playerId, matchEpoch) monotonic uint32. Validation rules in tasks/phase-3/01-multiplayer/03-input-only-lockstep-command-serialization-plus-sequencing.md § Sequence Validation: drop on seq <= lastApplied[playerId], reject duplicate (playerId, matchEpoch, seq), bounded out-of-order window MAX_OUT_OF_ORDER = 64."
+    },
+    "playerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "UUID-shape player identifier. Pinned at handshake. Cross-peer playerId values are rejected before the MAC check runs."
+    },
+    "turn": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295,
+      "description": "Issuance turn. Used by canonical intra-turn order (sort by (turn, playerId, seq)) and by the visibility precondition (which evaluates the issuing peer's projection at this turn)."
+    },
+    "command": {
+      "type": "object",
+      "description": "Inner record. Discriminator 'kind' selects the inner shape. For in-game commands the inner record validates against command.schema.json after the MAC check passes. For bisect midpoints the inner record validates against the BISECT_MIDPOINT shape pinned in docs/architecture/bisect-protocol.md."
+    },
+    "mac": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Lower-case-hex HMAC-SHA-256 (full 32 bytes / 64 hex chars) over canonical-JSON of the envelope with the mac field absent, keyed by matchKey = HKDF-SHA-256(salt='lockstep-mac-v1', ikm=nonceA||nonceB, length=32). A single mismatch dispatches TRUST_VIOLATION_DETECTED { kind: 'lockstepMacInvalid' } and aborts the session. Constant-time comparison only."
+    }
+  }
+}

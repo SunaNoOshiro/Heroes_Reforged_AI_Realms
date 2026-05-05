@@ -1,0 +1,12 @@
+{
+  "matchId": "550e8400-e29b-41d4-a716-446655440000",
+  "matchEpoch": 0,
+  "seq": 43,
+  "playerId": "11111111-2222-3333-4444-555555555555",
+  "turn": 7,
+  "command": {
+    "kind": "END_DAY",
+    "source": "manual"
+  },
+  "mac": "8a7f6e5d4c3b2a190f1e2d3c4b5a69788a7f6e5d4c3b2a190f1e2d3c4b5a6978"
+}

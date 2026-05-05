@@ -1,0 +1,14 @@
+{
+  "matchId": "550e8400-e29b-41d4-a716-446655440000",
+  "matchEpoch": 0,
+  "seq": 100,
+  "playerId": "22222222-3333-4444-5555-666666666666",
+  "turn": 12,
+  "command": {
+    "kind": "CAST_SPELL",
+    "spellId": "ember-lance",
+    "casterHeroId": "kaelis",
+    "targetTile": { "x": 8, "y": 9 }
+  },
+  "mac": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+}

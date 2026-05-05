@@ -10,6 +10,9 @@ Only Commands travel over the network — never state. Each command includes a s
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 - [`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)
+- [`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
+- [`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)
+- [`docs/architecture/turn-timer.md`](../../../docs/architecture/turn-timer.md)
 
 Inputs:
 - Command dispatcher (`01-engine-core.md` Task 6)
@@ -42,6 +45,44 @@ Owned Paths:
 
 Dependencies:
 - phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup
+- phase-3.01-multiplayer.09-lockstep-envelope-and-mac
+
+### Plan 26 cross-cutting additions
+
+#### Sequence Validation (Critical Fix 3)
+- Drop on `seq <= lastApplied[playerId]` (stale).
+- Reject duplicate `(playerId, matchEpoch, seq)` after delivery.
+- Buffer `seq > lastApplied + 1` until contiguous; reject with
+  `LOCKSTEP_SEQ_GAP` once gap exceeds `MAX_OUT_OF_ORDER = 64`.
+- Reject any `seq` whose `turn` differs from the receiver's known
+  `(turn, matchEpoch)` window.
+
+#### Canonical Intra-Turn Order (Critical Fix 3)
+- All envelopes for the same `turn` are sorted by
+  `(turn ascending, playerId lexicographic ascending, seq ascending)`
+  — stable sort — and the reducer applies them in that order
+  regardless of arrival order. This rule is part of the determinism
+  contract; the per-turn state-hash check operates on canonical
+  order, not arrival order.
+
+#### Wire-Shape Note (Critical Fix 1)
+- Wire shape moves from the legacy `command-envelope.schema.json`
+  to the M5 lockstep envelope
+  [`lockstep-envelope.schema.json`](../../../content-schema/schemas/lockstep-envelope.schema.json)
+  per [Task 09](./09-lockstep-envelope-and-mac.md). The envelope
+  adds the match identifier and the match-epoch counter and uses a
+  full 32-byte HMAC-SHA-256 keyed by the per-match key. The MAC
+  verify is the only entry point into the lockstep reducer queue
+  per
+  [`lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
+  § 7.
+
+#### Turn Timer & Stall Detection (Critical Fix 4)
+- A connected-but-idle peer escalates `WAITING → STALLED → AUTO_END_DAY`
+  per [`turn-timer.md`](../../../docs/architecture/turn-timer.md);
+  the auto-`END_DAY { source: 'auto-timeout' }` envelope is
+  canonical and rides this task's transport pipeline. Owning task:
+  [Task 11](./11-turn-timer-and-stall-detection.md).
 
 Acceptance Criteria:
 - 100 commands sent and received in sequence with no drops (on good connection)

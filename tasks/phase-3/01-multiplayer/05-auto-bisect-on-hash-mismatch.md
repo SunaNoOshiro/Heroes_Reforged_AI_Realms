@@ -9,6 +9,38 @@ When a desync is detected, automatically bisect the command log to find the firs
 
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
+- [`docs/architecture/bisect-protocol.md`](../../../docs/architecture/bisect-protocol.md)
+- [`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
+- [`docs/architecture/peer-reputation.md`](../../../docs/architecture/peer-reputation.md)
+
+### Plan 26 cross-cutting additions
+
+#### Byzantine Handling (Improvement / Bisect Protocol)
+- Every midpoint hash rides a lockstep envelope with the inner
+  command kind reserved for bisect midpoints per
+  [`bisect-protocol.md`](../../../docs/architecture/bisect-protocol.md);
+  cross-match replay rejected by match-identifier and match-key.
+- Both peers exchange their *own* per-prefix hash at every midpoint
+  so the report can attribute divergence rather than trust one
+  peer's claim about the other.
+- Per-step timeout 10 seconds; on miss, fallback to an
+  unverifiable-bisect outcome with the last-good prefix index and
+  the attributed peer pointing at the peer that timed out.
+
+#### Blame Attribution (Improvement / Blame Attribution)
+- Bisect emits an extended report carrying both peers' per-prefix
+  hashes and the offline canonical-replay hash; the report shape
+  extends the legacy fields additively.
+- The canonical replay hash is computed by the future Phase-4
+  hosted audit-pipeline service per
+  [`replay-audit-pipeline.md`](../../../docs/architecture/replay-audit-pipeline.md)
+  § 4; M5 ships the contract, not a terminal CLI.
+- Attribution confidence is `high` when only one peer's hash matches
+  canonical; `low` when neither matches; `ambiguous` on simultaneous
+  timeout.
+- The attributed peer feeds the signaling-side reputation counter
+  per [Task 16](./16-peer-reputation-counter.md) when divergence
+  occurs within the first 3 turns and confidence is high.
 
 Inputs:
 - Task 4, Replay API (`01-engine-core.md` Task 8)

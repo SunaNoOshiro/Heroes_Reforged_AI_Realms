@@ -591,6 +591,8 @@ function schemaForFile(filePath) {
   if (base.endsWith(".peer-allowlist.json")) return "peer-allowlist.schema.json";
   if (base.endsWith(".asset-index.json")) return "asset-index.schema.json";
   if (base.endsWith(".localization.json")) return "localization.schema.json";
+  if (base.endsWith(".lockstep-envelope.json")) return "lockstep-envelope.schema.json";
+  if (base.endsWith(".match-handshake.json")) return "match-handshake.schema.json";
 
   return null;
 }

@@ -88,6 +88,27 @@ every example pack against its schema.
 Use `sandboxed: true` for AI-generated or otherwise restricted content
 that cannot participate in ranked or trusted flows.
 
+### Signature Policy (Plan 26 — Multiplayer Mandate)
+
+Multiplayer matches enforce a closed `signaturePolicy` enum on the
+match handshake REVEAL phase per
+[`match-handshake.md`](./match-handshake.md):
+
+| Mode | Value | Behavior |
+| --- | --- | --- |
+| Friendly default | `optional` | Pack signature accepted but not required. |
+| Friendly with attestation | `required-friendly` | Pack signature required; mismatched build-attestation surfaces a UI warning (per [`build-attestation.md`](./build-attestation.md)) but match proceeds. |
+| Closed-beta / ranked | `required-ranked` | Pack signature required; `sandboxed: true` packs rejected at handshake; mismatched build-attestation rejected with `BUILD_ATTESTATION_MISMATCH` ABORT. |
+
+The `packManifestDigest` (canonical-JSON xxh64 over `manifest.json`)
+is exchanged at handshake **and re-validated at every turn-end**;
+a mid-match digest drift triggers `MID_MATCH_PACK_SWAP` desync
+abort. Owning task:
+[`tasks/phase-3/01-multiplayer/15-pack-signature-and-build-attestation-policy.md`](../../tasks/phase-3/01-multiplayer/15-pack-signature-and-build-attestation-policy.md).
+Information-secrecy limits inherent to symmetric input-only lockstep
+that the signature policy does **not** close are pinned in
+[`security-model.md`](./security-model.md).
+
 ### Trust UX
 
 The user-facing trust prompt, capability disclosure, signature-tier
