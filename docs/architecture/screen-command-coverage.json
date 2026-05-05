@@ -125,6 +125,11 @@
     "RECORD_PEER_CONTACT": "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display owns the per-handshake lastSeenAt refresh per docs/architecture/peer-trust.md.",
     "GRANT_CONSENT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the consent-grant write per docs/architecture/onboarding.md.",
     "RECORD_CONSENT_AUDIT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the per-transition audit-log append per docs/architecture/onboarding.md.",
-    "IMPORT_CONSENT_SNAPSHOT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the save-import re-prompt path per docs/architecture/onboarding.md."
+    "IMPORT_CONSENT_SNAPSHOT": "mvp.07-ui-shell.27-onboarding-consent-screen owns the save-import re-prompt path per docs/architecture/onboarding.md.",
+    "LEAVE_ROOM": "phase-3.01-multiplayer.26-signed-signaling-envelope owns the trust-violation forced-leave dispatch per docs/architecture/signaling-envelope.md § 5 and the trust-violation banner in docs/architecture/wiki/screens/64-network-lobby/spec.md § Trust.",
+    "RECORD_ABANDON_PENALTY": "phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect owns the abandon-penalty ring-buffer append per docs/architecture/abandon-penalty.md.",
+    "RECORD_CONTINUITY_CHALLENGE": "phase-3.01-multiplayer.27-dtls-fingerprint-pinning owns the continuity-challenge round-trip record per docs/architecture/dtls-fingerprint-pinning.md § 4.",
+    "PEER_DISCONNECTED": "Signaling server-emitted event wrapped in the signed signaling envelope per docs/architecture/signaling-envelope.md and quorum-attested per docs/architecture/abandon-penalty.md; not a UI command. Owned by phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect.",
+    "CHALLENGE_RESPONSE": "Signed signaling envelope payloadType emitted by a reconnecting peer to prove identity continuity per docs/architecture/dtls-fingerprint-pinning.md § 4; not a UI command. Owned by phase-3.01-multiplayer.27-dtls-fingerprint-pinning."
   }
 }

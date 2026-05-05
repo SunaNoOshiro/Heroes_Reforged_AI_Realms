@@ -28,6 +28,38 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
 | Launch | `network.launch` | navigation | `59-loading-screen` | `LAUNCH_NETWORK_GAME` | Host starts deterministic session. | Player rows slide in/out, ready seals stamp, chat messages scroll, hash mismatch flashes red, and launch fades to loading. |
 | Leave | `network.leave` | navigation | `60-confirmation-dialog` (then `62-multiplayer-setup`) | `REQUEST_CONFIRMATION` → `LEAVE_NETWORK_LOBBY_CONFIRMED` | Routes through `60-confirmation-dialog` per [`spec.md` § Click-Through Resistance](../60-confirmation-dialog/spec.md#click-through-resistance). Severity selector: `state.net.lobby.session.phase === 'in-game' ? 'critical' : 'warning'`. In-game leave shows the forfeit-penalty copy `multiplayer.disclosure.leaveForfeit`. On confirm, `LEAVE_NETWORK_LOBBY_CONFIRMED` runs the original disconnect path. | Confirmation modal mounts; on confirm, lobby fades to setup screen. |
 
+### Trust Violation
+
+`OnTrustViolation(peerId, kind)` mounts the trust-violation banner
+described in [`spec.md` § Trust](./spec.md). Behavior:
+
+1. Set `state.net.lobby.trustViolation = { peerId, kind, observedAt }`.
+2. Render the banner with the `kind`-specific localized message
+   (`ui.network-lobby.trust.<kind>`).
+3. Start the 5-second grace toast timer per
+   [`undo-policy.md`](../../../undo-policy.md).
+4. After 5 s with no `Stay (read-only)` click, dispatch
+   `LEAVE_ROOM`. If the user clicks `Stay (read-only)`, the
+   banner stays mounted but no further envelopes are consumed
+   from `peerId` and the room transitions to a read-only view
+   until the user manually leaves.
+
+`AwaitingDisconnectAttestationToast` is mounted by the
+`heartbeat-loss → quorum-attested PEER_DISCONNECTED` flow per
+[`abandon-penalty.md`](../../../abandon-penalty.md). On envelope
+success, dispatch `RECORD_ABANDON_PENALTY`; on timeout, neither
+peer is penalized.
+
+### Reconnect Continuity Challenge
+
+When a peer's connection drops and they re-signal, the host
+emits a `CHALLENGE` envelope. The roster row for the
+reconnecting peer renders `Verifying identity…`; on
+`CHALLENGE_RESPONSE` success and DTLS-fingerprint match, dispatch
+`PIN_DTLS_FINGERPRINT` and `RECORD_CONTINUITY_CHALLENGE`, then
+revert the row to its verified state. On either gate failing,
+the trust-violation banner takes over per the rule above.
+
 ### State Changes
 - `state.net.sessionId` refreshes `sessionId` after the owning reducer or local UI draft changes.
 - `state.net.lobby.players` refreshes `players` after the owning reducer or local UI draft changes.

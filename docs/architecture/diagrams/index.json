@@ -48,7 +48,7 @@
       "id": "multiplayer",
       "title": "Multiplayer",
       "icon": "🌐",
-      "diagrams": ["26-multiplayer-sync"]
+      "diagrams": ["26-multiplayer-sync", "31-reconnect-continuity-challenge"]
     },
     {
       "id": "ui-input",

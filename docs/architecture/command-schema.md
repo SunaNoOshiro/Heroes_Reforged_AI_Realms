@@ -697,6 +697,62 @@ persistence / runtime adapters, never the engine reducer.
   modal preceding any native permission prompt per
   [`permissions.md` § Just-In-Time (JIT) Rule](./permissions.md#just-in-time-jit-rule-plan-23--q448).
 
+## Multiplayer Trust & Identity Commands
+
+Commands surfaced by screens
+[`62-multiplayer-setup`](./wiki/screens/62-multiplayer-setup/) and
+[`64-network-lobby`](./wiki/screens/64-network-lobby/) per
+[`peer-identity.md`](./peer-identity.md),
+[`signaling-envelope.md`](./signaling-envelope.md),
+[`dtls-fingerprint-pinning.md`](./dtls-fingerprint-pinning.md),
+[`command-stream-integrity.md`](./command-stream-integrity.md), and
+[`abandon-penalty.md`](./abandon-penalty.md). These tokens drive
+identity, envelope-signing, fingerprint-pinning, trust-violation
+escalation, and abandon-penalty bookkeeping but do **not** enter the
+deterministic engine command log; they are dispatched against the
+`src/net/` adapters, not the engine reducer.
+
+- `MINT_SESSION_TOKEN` — host-only; mints a host-signed
+  [`session-token.schema.json`](../../content-schema/schemas/session-token.schema.json)
+  on `JOIN_ROOM`. Owned by
+  `tasks/phase-3/01-multiplayer/25-peer-keypair-and-session-token.md`.
+- `VERIFY_SIGNALING_ENVELOPE` — runtime-only; verifies an inbound
+  [`signaling-envelope.schema.json`](../../content-schema/schemas/signaling-envelope.schema.json)
+  against the pinned signer pubkey and the active session token.
+  Owned by `tasks/phase-3/01-multiplayer/26-signed-signaling-envelope.md`.
+- `ROTATE_PEER_KEYPAIR` — local-ui; user-triggered keypair rotation.
+  Deferred to M7 per [`peer-identity.md` § 10](./peer-identity.md#10-out-of-scope);
+  reserved here so the future UI flow has a stable token.
+- `PIN_DTLS_FINGERPRINT` — runtime-only; writes
+  `state.net.peers[peerId].dtlsFp` after `setLocalDescription` /
+  `setRemoteDescription` resolves. Owned by
+  `tasks/phase-3/01-multiplayer/27-dtls-fingerprint-pinning.md`.
+- `VERIFY_DTLS_FINGERPRINT` — runtime-only; compares the new SDP's
+  fingerprint against the pinned value on rejoin. Owned by the same
+  task.
+- `RECORD_CONTINUITY_CHALLENGE` — runtime-only; records the
+  `CHALLENGE` / `CHALLENGE_RESPONSE` round-trip per
+  [`dtls-fingerprint-pinning.md` § 4](./dtls-fingerprint-pinning.md#4-reconnect-continuity-challenge).
+  Owned by the same task.
+- `TRUST_VIOLATION_DETECTED` — runtime-only; closed `kind` enum
+  (`badSignature`, `nonceReplay`, `clockSkew`, `sessionTokenMismatch`,
+  `unknownSigner`, `payloadShapeMismatch`, `dtlsFingerprintMismatch`,
+  `missingDtlsFingerprint`, `weakDtlsFingerprint`,
+  `challengeResponseInvalid`, `commandReplayMismatch`,
+  `commandReplayBurst`, `commandMacInvalid`, `unexpectedDataChannel`).
+  Surfaces a localized banner in
+  [`64-network-lobby`](./wiki/screens/64-network-lobby/); the 5-second
+  grace toast pattern from [`undo-policy.md`](./undo-policy.md)
+  applies before the room transitions to `LEAVE_ROOM`. Owned by
+  `tasks/phase-3/01-multiplayer/26-signed-signaling-envelope.md`.
+- `RECORD_ABANDON_PENALTY` — runtime-only; appends an
+  [`abandon-penalty.schema.json`](../../content-schema/schemas/abandon-penalty.schema.json)
+  row to `state.profile.abandonHistory` (ring buffer, 64 entries).
+  Owned by
+  `tasks/phase-3/01-multiplayer/28-abandon-penalty-and-quorum-disconnect.md`.
+- `INSPECT_ABANDON_HISTORY` — local-ui; opens a read-only panel
+  rendering `state.profile.abandonHistory`. Owned by the same task.
+
 ## Field Visibility (Desync Redaction)
 
 Every command field declared above carries a closed

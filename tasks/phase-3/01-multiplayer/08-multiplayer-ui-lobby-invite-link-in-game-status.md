@@ -35,6 +35,11 @@ Outputs:
     [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake)
     both live in the URL **fragment**, never in the path or query
     string. The QR code encodes the full URL including the fragment.
+  - **Scheme**: invite links are `https://`-only per
+    [`transport-security.md` § 1](../../../docs/architecture/transport-security.md#1-listener-wss-only--https-only).
+    The deep-link parser rejects `http://` URLs unconditionally
+    (no `localhost` exception) and surfaces a localized
+    `ui.network-lobby.invite.insecureScheme` error.
   - **Response header**: the lobby page response sets
     `Referrer-Policy: no-referrer` so outbound links never leak the
     fragment via `Referer`.
@@ -107,6 +112,11 @@ Acceptance Criteria:
 - **QR encoding**: the QR code encodes the full URL (fragment
   included). QR is not subject to `Referer` hygiene; this is the
   documented divergence from the URL fragment rule.
+- **`https://`-only invite-link constraint**: pasting an `http://`
+  URL into the join field is rejected before any network call;
+  the parser surfaces the localized
+  `ui.network-lobby.invite.insecureScheme` error per
+  [`transport-security.md` § 1](../../../docs/architecture/transport-security.md#1-listener-wss-only--https-only).
 
 Network-Chaos Coverage:
 - Exercised by the consolidated network-chaos test matrix

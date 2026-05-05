@@ -1,0 +1,60 @@
+# Example reverse-proxy / edge config for the WebRTC signaling
+# server. Authoritative doctrine:
+#   docs/architecture/transport-security.md
+#   docs/architecture/web-headers.md
+#   docs/architecture/tls-observability.md
+#
+# This file is a documentation example; operators copy it into their
+# Caddy / Fly.io / Nginx config layer, replace the placeholders with
+# real values, and ship. The CI gates `npm run validate:transport`
+# and `npm run validate:headers` parse this file as the canonical
+# baseline.
+
+[listener]
+# WSS-only. Plain ws:// is rejected at the listener.
+scheme = "wss"
+address = "0.0.0.0:443"
+# Reject plain ws:// upgrades unconditionally outside test env.
+reject_plain_ws = true
+
+[tls]
+# TLS 1.2 floor. Weak-cipher fallback forbidden.
+min_version = "TLSv1.2"
+preferred_version = "TLSv1.3"
+# Cipher allowlist per transport-security.md § 2.
+ciphers = [
+  "ECDHE-ECDSA-AES128-GCM-SHA256",
+  "ECDHE-RSA-AES128-GCM-SHA256",
+  "ECDHE-ECDSA-CHACHA20-POLY1305",
+  "ECDHE-RSA-CHACHA20-POLY1305",
+]
+# Cert lifecycle: Let's Encrypt + auto-renew per § 6.
+cert_provider = "letsencrypt"
+auto_renew_days_before_expiry = 30
+expiry_alert_days = 14
+
+[headers]
+# HSTS per transport-security.md § 3 / web-headers.md § 1.
+"Strict-Transport-Security" = "max-age=63072000; includeSubDomains; preload"
+"Referrer-Policy" = "no-referrer"
+"X-Content-Type-Options" = "nosniff"
+"Permissions-Policy" = "camera=(), microphone=(), geolocation=()"
+# Origin allowlist per web-headers.md § 3. Replace with the
+# canonical web origin in production. Wildcards are forbidden.
+"Access-Control-Allow-Origin" = "https://heroes.example"
+
+[origin_allowlist]
+# Validate the WebSocket-upgrade Origin header against this list.
+# Wildcard origins are forbidden; mismatch returns 403.
+allowed = [
+  "https://heroes.example",
+]
+reject_status = 403
+
+[observability.tls]
+# TLS-error log shape per docs/architecture/tls-observability.md.
+# Bucketed IPs only; no UA tail; no SDP / cert content.
+ipv4_bucket = "/24"
+ipv6_bucket = "/64"
+sink = "stdout-json"
+per_bucket_rate_limit_per_60s = 1

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/signaling-envelope.schema.json",
+  "title": "SignalingEnvelope",
+  "description": "End-to-end signed envelope wrapping every WebRTC signaling frame after `JOIN_HANDSHAKE`. The signaling server forwards verbatim and verifies only shape + freshness; the receiving peer verifies the Ed25519 signature against the pinned `peerPubKey` (per `peer-identity.schema.json`) before consuming `payload`. Authoritative doctrine: `docs/architecture/signaling-envelope.md`. Fields excluded from the signature input: `signerId`, `sig`. Replay window: ±60 s on `iat`; per-`(signerId, sessionId)` ring buffer of 256 nonces.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "payloadType", "payload", "signerId", "sig", "nonce", "iat", "sessionTokenHash"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "payloadType": {
+      "enum": [
+        "JOIN_ROOM",
+        "OFFER",
+        "ANSWER",
+        "ICE_CANDIDATE",
+        "HOST_CHANGED",
+        "PEER_DISCONNECTED",
+        "CHALLENGE",
+        "CHALLENGE_RESPONSE"
+      ],
+      "description": "Closed enum; adding a value is an enum-lifecycle bump per `docs/architecture/enum-lifecycle-policy.md`."
+    },
+    "payload": {
+      "type": "object",
+      "description": "Inner message; per-kind shape is enforced by the consuming task's runtime schema, not this envelope."
+    },
+    "signerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "Sender's `peerId` from `peer-identity.schema.json`. The signaling server uses this to look up the room slot row; the receiver uses it to look up the pinned public key."
+    },
+    "sig": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{86}$",
+      "description": "Ed25519 signature over the canonical-JSON encoding of `[schemaVersion, payloadType, payload, nonce, iat, sessionTokenHash]`. Base64url-encoded, 64 raw bytes (86 url-safe chars without padding)."
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{22}$",
+      "description": "16-byte CSPRNG nonce, base64url-encoded (22 url-safe chars without padding). Tracked in the receiver's per-(signerId, sessionId) ring buffer of 256 entries."
+    },
+    "iat": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Sender's wall-clock at envelope mint, milliseconds since epoch. Validated within ±60 s of receiver wall-clock."
+    },
+    "sessionTokenHash": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "sha256(canonicalJson(session-token)) of the active session token (per `session-token.schema.json`), base64url-encoded, 32 raw bytes (43 url-safe chars without padding). The signaling server stores the hash and pre-filters envelopes that do not match the active session."
+    }
+  }
+}

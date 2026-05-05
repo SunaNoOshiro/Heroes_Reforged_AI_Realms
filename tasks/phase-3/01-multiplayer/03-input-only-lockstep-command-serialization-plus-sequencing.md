@@ -9,6 +9,7 @@ Only Commands travel over the network — never state. Each command includes a s
 
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
+- [`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)
 
 Inputs:
 - Command dispatcher (`01-engine-core.md` Task 6)
@@ -18,7 +19,18 @@ Outputs:
 - `src/net/webrtc/lockstep.ts`
 - `src/net/webrtc/constants.ts` (shared budget + queue-cap constants)
 - `LockstepTransport`: wraps `PeerConn`, handles command sequencing
-- Wire format: `{ seq: number, playerId: number, turn: number, command: Command }` (JSON)
+- Wire format: `{ schemaVersion, seq, playerId, turn, command, mac }` per
+  [`command-envelope.schema.json`](../../../content-schema/schemas/command-envelope.schema.json).
+  The `mac` is the truncated HMAC-SHA256 keyed by the per-session
+  key derived from `RTCDtlsTransport.exportKeyingMaterial("hr-cmd-mac", 32)`
+  (or the host-minted fallback per
+  [`command-stream-integrity.md` § 2a](../../../docs/architecture/command-stream-integrity.md#2a-fallback-key)).
+  Sign / verify primitives are owned by
+  [Task 30](./30-command-stream-hmac.md). Duplicate-`seq` policy
+  per
+  [`command-stream-integrity.md` § 4](../../../docs/architecture/command-stream-integrity.md#4-duplicate-seq-policy);
+  gap-`seq` policy per
+  [`command-stream-integrity.md` § 5](../../../docs/architecture/command-stream-integrity.md#5-gap-seq-policy).
 - Both peers must apply turn N's commands before processing turn N+1
 - Turn gate: local player presses "End Turn" in the UI, which sends
   canonical `END_DAY` through the command log, then waits for all peers

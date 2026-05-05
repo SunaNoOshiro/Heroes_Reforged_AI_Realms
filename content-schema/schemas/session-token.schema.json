@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/session-token.schema.json",
+  "title": "SessionToken",
+  "description": "Host-issued session token consumed by the signaling server to gate envelope relay (per `signaling-envelope.schema.json`). Minted on `JOIN_ROOM` and signed with the host's Ed25519 keypair (per `peer-identity.schema.json`); the joiner replays `sha256(canonicalJson(token))` on every outbound envelope. Authoritative doctrine: `docs/architecture/signaling-envelope.md` § 7. Token rate limits live in `docs/architecture/signaling-rate-limits.md` (Plan 29 scope).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "tokenId", "roomCode", "issuerPeerId", "subjectPeerId", "iat", "exp", "nonceWindow", "sig"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "tokenId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "Lower-case UUID v4; unique per mint."
+    },
+    "roomCode": {
+      "type": "string",
+      "pattern": "^[0-9A-HJ-NP-TV-Z]{8}$",
+      "description": "8-character upper-case Crockford-Base32 code per `docs/architecture/lobby-identifiers.md`."
+    },
+    "issuerPeerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "PeerId of the host that minted the token."
+    },
+    "subjectPeerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "PeerId of the joiner the token was issued to."
+    },
+    "iat": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Issued-at wall-clock, milliseconds since epoch."
+    },
+    "exp": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Expiry wall-clock, milliseconds since epoch. MUST satisfy `exp - iat <= 86400000` (24 h)."
+    },
+    "nonceWindow": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4096,
+      "default": 256,
+      "description": "Per-(signerId, tokenId) replay-window depth maintained by the signaling server. Must match the receiver's ring-buffer size in `signaling-envelope.md` § 4."
+    },
+    "sig": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{86}$",
+      "description": "Ed25519 signature over canonical-JSON encoding of `[schemaVersion, tokenId, roomCode, issuerPeerId, subjectPeerId, iat, exp, nonceWindow]`, signed with the issuer's keypair. Base64url-encoded, 64 raw bytes (86 url-safe chars without padding)."
+    }
+  }
+}

@@ -9,6 +9,8 @@ If the host player disconnects, a new host is elected. The new host publishes th
 
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
+- [`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)
+- [`docs/architecture/abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md)
 
 Inputs:
 - Task 6, heartbeat DataChannel (Task 2)
@@ -17,8 +19,20 @@ Outputs:
 - `src/net/webrtc/host-migration.ts`
 - Heartbeat sent every 2 seconds on unordered channel
 - If host heartbeat absent for 6 seconds: non-host peers elect new host by highest-priority peer ID
-- New host broadcasts `HOST_CHANGED` + full log to all peers
-- Signaling server updated with new host's peer ID
+- New host broadcasts a signed `HOST_CHANGED` envelope (signed by
+  the elected host's Ed25519 keypair per
+  [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md))
+  + full log to all peers. Receivers verify against the candidate-
+  host pool snapshot frozen at the last consistent turn; mismatched
+  signer dispatches
+  `TRUST_VIOLATION_DETECTED { kind: 'unknownSigner' }`.
+- Quorum-attested `PEER_DISCONNECTED` for the dropped host: the
+  new host wraps both its heartbeat-loss observation and the
+  signaling server's WebSocket-close timestamp into a host-signed
+  envelope per
+  [`abandon-penalty.md` § 1](../../../docs/architecture/abandon-penalty.md#1-quorum-rule).
+  Owned by [Task 28](./28-abandon-penalty-and-quorum-disconnect.md).
+- Signaling server updated with new host's peer ID.
 
 Owned Paths:
 - `src/net/webrtc/host-migration.ts`

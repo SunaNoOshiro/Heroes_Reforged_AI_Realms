@@ -74,6 +74,18 @@ both can fire on the same generation. Adapters under
 of these four classes; orchestration and UI code never read
 vendor-specific identifiers.
 
+## Transport
+
+The AI gateway and any direct provider calls reachable from the
+client run over **HTTPS only**, with the TLS floor, cipher
+allowlist, HSTS, anti-downgrade, and cert-lifecycle policy pinned
+by [`transport-security.md`](./transport-security.md). The required
+response headers (HSTS, `Access-Control-Allow-Origin` pinned to the
+canonical web origin — never `*`) are pinned by
+[`web-headers.md`](./web-headers.md). The AI-gateway adapter
+refuses to attach to an `http://` upstream regardless of
+environment.
+
 ## Why This Matters
 
 Provider-neutral boundaries make it easier to:

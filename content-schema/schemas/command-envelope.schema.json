@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/command-envelope.schema.json",
+  "title": "CommandEnvelope",
+  "description": "Wire envelope for every multiplayer-lockstep command on the `commands` DataChannel. The HMAC tag is the first 16 bytes of HMAC-SHA256 over canonical-JSON of `[schemaVersion, seq, playerId, turn, command]`, keyed by the per-session key derived from `RTCDtlsTransport.exportKeyingMaterial('hr-cmd-mac', 32)` (or the host-minted fallback per `docs/architecture/command-stream-integrity.md` § 2a). Authoritative doctrine: `docs/architecture/command-stream-integrity.md`. Wire-format owning task: `tasks/phase-3/01-multiplayer/03-input-only-lockstep-command-serialization-plus-sequencing.md`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "seq", "playerId", "turn", "command", "mac"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295,
+      "description": "Per-(peerId, sessionId) monotonic uint32. Receivers maintain a 1024-entry ring of accepted seqs; duplicates with mismatched mac escalate to TRUST_VIOLATION_DETECTED."
+    },
+    "playerId": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 255,
+      "description": "1-based player id; MUST match the channel's pinned peerId mapping. Cross-peer playerId values are rejected before the HMAC check runs."
+    },
+    "turn": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295,
+      "description": "Current GameState turn at command mint."
+    },
+    "command": {
+      "$ref": "command.schema.json",
+      "description": "Inner deterministic command shape; validated against `command.schema.json` after the HMAC check passes."
+    },
+    "mac": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{22}$",
+      "description": "Truncated HMAC-SHA256 (first 16 raw bytes / 22 url-safe base64 chars without padding) over the canonical-JSON-encoded `[schemaVersion, seq, playerId, turn, command]` array, keyed by the per-session HMAC key. A single mac mismatch dispatches TRUST_VIOLATION_DETECTED { kind: 'commandMacInvalid' } and aborts the session."
+    }
+  }
+}

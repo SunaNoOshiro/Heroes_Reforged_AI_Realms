@@ -9,6 +9,10 @@ When a player disconnects and reconnects, they request the missing command log r
 
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
+- [`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)
+- [`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)
+- [`docs/architecture/abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md)
+- [`docs/architecture/diagrams/31-reconnect-continuity-challenge.md`](../../../docs/architecture/diagrams/31-reconnect-continuity-challenge.md)
 
 Inputs:
 - Task 3, Replay API (`01-engine-core.md` Task 8)
@@ -16,10 +20,19 @@ Inputs:
 Outputs:
 - `src/net/webrtc/reconnection.ts`
 - Reconnect flow:
-  1. Peer re-connects to signaling server and rejoins room
-  2. Sends `LOG_REQUEST { fromSeq, toSeq }` to host via DataChannel
-  3. Host sends `LOG_RESPONSE { commands[] }` in chunks if needed
-  4. Peer replays commands, advances to current turn, resumes normal lockstep
+  1. Peer re-connects to signaling server and rejoins room.
+  2. Host emits a signed `CHALLENGE` envelope; reconnecting peer
+     replies with `CHALLENGE_RESPONSE` signed by the **same** Ed25519
+     keypair that signed the original `JOIN_ROOM`. Host verifies
+     the signature **and** compares the new SDP's DTLS fingerprint
+     against `state.net.peers[peerId].dtlsFp` per
+     [`dtls-fingerprint-pinning.md` § 4](../../../docs/architecture/dtls-fingerprint-pinning.md#4-reconnect-continuity-challenge).
+     Either gate failing aborts the rejoin and dispatches
+     `TRUST_VIOLATION_DETECTED { kind }`.
+  3. Sends `LOG_REQUEST { fromSeq, toSeq }` to host via DataChannel
+     (only after the continuity challenge passes).
+  4. Host sends `LOG_RESPONSE { commands[] }` in chunks if needed.
+  5. Peer replays commands, advances to current turn, resumes normal lockstep.
 
 Owned Paths:
 - `src/net/webrtc/reconnection.ts`
@@ -61,7 +74,14 @@ with these refinements (full framing in
   wins the combat). Combat resolves; the absent player's hero is
   treated as defeated; the still-present player resumes the
   adventure-map turn. The forfeit modal is localized via
-  `mp.combat.forfeit_modal`.
+  `mp.combat.forfeit_modal`. The forfeit path requires a verified
+  disconnect attestation (host-signed `PEER_DISCONNECTED` envelope
+  + signaling-server witness) per
+  [`abandon-penalty.md` § 1](../../../docs/architecture/abandon-penalty.md#1-quorum-rule);
+  if attestation does not arrive within 30 s, the surviving peer
+  surfaces `Disconnect attestation failed — match aborted` and
+  records no penalty against either peer (owned by
+  [Task 28](./28-abandon-penalty-and-quorum-disconnect.md)).
 - **No per-combat checkpoint** in MVP. The reconnecting peer
   replays the full pre-combat state plus commands; the
   deterministic reducer guarantees identical state. Phase-3 may

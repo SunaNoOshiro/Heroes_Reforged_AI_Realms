@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/abandon-penalty.schema.json",
+  "title": "AbandonPenaltyRecord",
+  "description": "One row of `state.profile.abandonHistory` (ring buffer, capped at 64 entries). Records a quorum-attested disconnect or forced-leave per `docs/architecture/abandon-penalty.md`. Persisted in IndexedDB `hr-profile.abandonHistory` per `docs/architecture/data-inventory.md`; wiped by `WIPE_LOCAL_DATA scope=profile|all`. Quorum requires at least one peer witness AND the signaling server's connection-close attestation; envelope signing is enforced by `signaling-envelope.schema.json`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "peerId", "sessionId", "observedAt", "kind", "quorumWitnessIds", "penaltyTier"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "peerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "PeerId the penalty is recorded against."
+    },
+    "sessionId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "SessionId the disconnect occurred under (per `signaling-envelope.md`)."
+    },
+    "observedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Wall-clock at which the recording peer first observed the disconnect (heartbeat-loss start, forced-leave click, or 120 s reconnect-grace expiry)."
+    },
+    "kind": {
+      "enum": ["heartbeat-loss", "forced-leave", "verified-disconnect"],
+      "description": "heartbeat-loss = both witnesses corroborate; forced-leave = peer voluntarily left mid-match; verified-disconnect = 120 s reconnect-grace elapsed without successful continuity-challenge round-trip."
+    },
+    "quorumWitnessIds": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "pattern": "^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|signaling-server)$",
+        "description": "Either a peer UUID or the literal `signaling-server` token; quorum requires at least one of each before consumption."
+      }
+    },
+    "penaltyTier": {
+      "enum": ["none", "cooldown-15min", "leaverboard-flag"],
+      "description": "Tier applied to the abandoning peer's local trust record; decay rule per `abandon-penalty.md` § 4."
+    }
+  }
+}

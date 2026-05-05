@@ -10,6 +10,9 @@ Establish a direct peer-to-peer WebRTC connection between two players. Use two D
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 - [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)
+- [`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)
+- [`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)
+- [`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)
 
 Inputs:
 - Signaling server (Task 1)
@@ -75,6 +78,33 @@ Acceptance Criteria:
   operators in
   [`ice-disclosure-policy.md` § 3](../../../docs/architecture/ice-disclosure-policy.md#3-mdns-expectation-matrix)
   (Chrome 120+, Firefox 121+, Safari 17+).
+- **Channel allowlist**: `ondatachannel` accepts only
+  `commands` and `heartbeat` (and `chat` per the chat-safety
+  reservation). Any other label closes the channel immediately
+  and dispatches
+  `TRUST_VIOLATION_DETECTED { kind: 'unexpectedDataChannel' }` per
+  [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands).
+- **DTLS fingerprint capture**: after `setLocalDescription` and
+  `setRemoteDescription` resolve, parse the `a=fingerprint:` line
+  per
+  [`dtls-fingerprint-pinning.md` § 1](../../../docs/architecture/dtls-fingerprint-pinning.md#1-extraction-rule)
+  and write to `state.net.peers[peerId].dtlsFp`. Mismatched
+  fingerprint on rejoin aborts via
+  `TRUST_VIOLATION_DETECTED { kind: 'dtlsFingerprintMismatch' }`.
+  Owned by [Task 27](./27-dtls-fingerprint-pinning.md).
+- **Session-key derivation**: on `commands` DataChannel open,
+  derive the per-session HMAC key via
+  `RTCDtlsTransport.exportKeyingMaterial("hr-cmd-mac", 32)`; cache
+  in `state.net.peers[peerId].cmdKey` as a non-extractable
+  `CryptoKey`. Browsers without `exportKeyingMaterial` fall back
+  to a host-minted 32-byte key delivered through the signed
+  signaling envelope per
+  [`command-stream-integrity.md` § 2a](../../../docs/architecture/command-stream-integrity.md#2a-fallback-key).
+  Owned by [Task 30](./30-command-stream-hmac.md).
+- **Envelope verification**: every inbound signaling frame is
+  unwrapped via the runtime in
+  [Task 26](./26-signed-signaling-envelope.md) before SDP / ICE
+  is consumed; failure aborts the handshake.
 
 Network-Chaos Coverage:
 - Exercised by the consolidated network-chaos test matrix

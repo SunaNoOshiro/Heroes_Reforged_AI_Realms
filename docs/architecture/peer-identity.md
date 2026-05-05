@@ -128,7 +128,38 @@ host verifies, then emits `APPROVE_PEER` or `REJECT_PEER`. A bad
 signature is a host-side rejection reason
 (`reason: "bad_signature"`).
 
-## 7. Out of scope
+## 7. Signed Signaling Envelope
+
+Beyond `JOIN_ROOM`, every signaling frame
+(`OFFER` / `ANSWER` / `ICE_CANDIDATE` / `HOST_CHANGED` /
+`PEER_DISCONNECTED` / `CHALLENGE` / `CHALLENGE_RESPONSE`) is wrapped
+in a signed envelope per
+[`signaling-envelope.md`](./signaling-envelope.md). The envelope
+re-uses the same Ed25519 keypair pinned in § 1; the receiver verifies
+`sig` against the pinned `peerPubKey` before consuming the inner
+message. A signaling-server compromise cannot forge any of these
+messages because the server does not hold any peer's private key.
+
+## 8. Session Token
+
+On `JOIN_ROOM` the host mints a `session-token.schema.json`
+(per [`signaling-envelope.md` § 7](./signaling-envelope.md#7-session-token))
+and signs it with its profile keypair. The joiner replays
+`sessionTokenHash` on every outbound envelope so the signaling
+server can pre-filter envelopes that do not belong to the active
+session.
+
+## 9. Reconnect Continuity Challenge
+
+On reconnect, the host issues a fresh nonce and the reconnecting
+peer signs it with the **same** keypair that signed the original
+`JOIN_ROOM`. Mismatched signer = reject. The full sequence lives
+in
+[`diagrams/31-reconnect-continuity-challenge.md`](./diagrams/31-reconnect-continuity-challenge.md);
+the DTLS-fingerprint half of the rejoin gate lives in
+[`dtls-fingerprint-pinning.md`](./dtls-fingerprint-pinning.md).
+
+## 10. Out of scope
 
 - **Rotation UI** — deferred to M7.
 - **WebCrypto Ed25519 polyfill** for browsers that lack native

@@ -306,6 +306,17 @@ Stage 6).
 - **No runtime mutation.** Pack materialization writes once. Live
   games never rewrite pack records based on telemetry.
 
+## Transport
+
+Stage 2 (provider call) and any direct upstream contact run over
+**HTTPS only**. TLS floor, cipher allowlist, HSTS, anti-downgrade,
+and cert-lifecycle policy are pinned by
+[`transport-security.md`](./transport-security.md); the AI-gateway
+adapter refuses to attach to an `http://` upstream regardless of
+environment. The required response headers
+(`Access-Control-Allow-Origin` pinned to the canonical web origin
+— never `*`) live in [`web-headers.md`](./web-headers.md).
+
 ## Why this matters
 
 Pinning the pipeline to typed boundaries — `GenerationRequest` →

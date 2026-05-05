@@ -39,6 +39,43 @@ Network lobby for hosted/joined multiplayer sessions, ready state, chat, content
 
 `PlayerSlotRowDotsMenu`, `HostCloseRoomButton`, and the per-slot moderation row are host-only — they render disabled (or hide entirely) for non-host peers. `PendingPeerModal` mounts when `state.net.lobby.pendingPeers.length > 0`. `JoinAttemptToast` is non-modal and surfaces aggregated `JOIN_ATTEMPT_REJECTED` counts at thresholds 1, 5, 20. `MutedBadge` renders next to a roster row when the local user has muted or blocked that peer. `ChatTrustBanner` mounts above the chat input on first lobby session and dismisses to `localStorage` per [`chat-safety.md` § 10](../../../chat-safety.md#10-trust-model-disclosure). `ChatPanelOverflowMenu` exposes "Save chat log" (`EXPORT_CHAT_LOG`). `ReportPeerDialog` mounts on `network.reportPeer` and produces a `report-bundle.schema.json`-conformant download.
 
+### Trust
+
+The lobby renders three identity-trust affordances:
+
+- **Verified-key icon** — appears next to every roster row whose
+  `peerPubKey` matches the signature on the latest signed signaling
+  envelope (per
+  [`signaling-envelope.md`](../../../signaling-envelope.md)). Rows
+  awaiting their first envelope render with a `(unverified)` suffix
+  on the display name.
+- **Trust-violation banner** — mounts above the player slot list
+  when `state.net.lobby.trustViolation` is set. Renders the
+  `kind`-specific localized message from
+  [`peer-identity.md`](../../../peer-identity.md),
+  [`signaling-envelope.md`](../../../signaling-envelope.md),
+  [`dtls-fingerprint-pinning.md`](../../../dtls-fingerprint-pinning.md),
+  [`command-stream-integrity.md`](../../../command-stream-integrity.md).
+  Uses the 5-second grace toast pattern from
+  [`undo-policy.md`](../../../undo-policy.md): the user sees the
+  banner, the room transitions to
+  `awaitingTrustViolationDecision`, and `LEAVE_ROOM` dispatches
+  after 5 s unless the user clicks `Stay (read-only)`.
+- **Reconnect-challenge UI** — while a peer reconnects, the row
+  shows `Verifying identity…` until the
+  `RECORD_CONTINUITY_CHALLENGE` round-trip resolves
+  (per [`diagrams/31-reconnect-continuity-challenge.md`](../../../diagrams/31-reconnect-continuity-challenge.md));
+  on success, the row reverts to the verified state. On failure,
+  the trust-violation banner takes over.
+
+`AwaitingDisconnectAttestationToast` mounts during the 30-second
+window between heartbeat-loss observation and the host-signed
+`PEER_DISCONNECTED` envelope (per
+[`abandon-penalty.md`](../../../abandon-penalty.md)). On envelope
+success, the toast flips to `Forfeit confirmed`; on timeout, the
+banner reads `Disconnect attestation failed — match aborted`
+and no penalty is recorded.
+
 ### Peer-Failure Error Contract
 
 When a peer connection fails (timeout, refused, network error, protocol

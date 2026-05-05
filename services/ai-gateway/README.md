@@ -19,3 +19,22 @@ contract, not on one provider SDK.
   `cause`).
 - [`retention.md`](./retention.md) — `promptHash` rule, ≤ 24 h
   response cache TTL, failure-path logger contract.
+
+## Transport
+
+This gateway is **HTTPS-only** in staging and production. Plain
+`http://` upstreams are forbidden; the adapter refuses to attach to
+an `http://` upstream regardless of environment.
+
+- TLS floor, cipher allowlist, HSTS, anti-downgrade, dev-cert
+  exclusion, and cert-lifecycle policy are pinned by
+  [`docs/architecture/transport-security.md`](../../docs/architecture/transport-security.md).
+- Required response headers (HSTS, `Access-Control-Allow-Origin`
+  pinned to the canonical web origin — never `*` —
+  `Referrer-Policy`, `Permissions-Policy`,
+  `X-Content-Type-Options`) are pinned by
+  [`docs/architecture/web-headers.md`](../../docs/architecture/web-headers.md).
+- Example reverse-proxy / edge config:
+  [`config/edge.example.toml`](./config/edge.example.toml)
+  (introduced by
+  [`tasks/phase-3/01-multiplayer/24-transport-security-edge-config.md`](../../tasks/phase-3/01-multiplayer/24-transport-security-edge-config.md)).

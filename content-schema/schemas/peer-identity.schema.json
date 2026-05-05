@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/peer-identity.schema.json",
+  "title": "PeerIdentity",
+  "description": "Per-profile peer identity record consumed by the M5 multiplayer lobby. Pairs a stable `peerId` (UUID) with the public half of a long-lived Ed25519 keypair generated on first profile launch. The private half lives in `state.profile.peerKeypair` per `docs/architecture/peer-identity.md` and never appears on the wire. Display name is normalized per `display-name-policy.md` and stored on every signaling envelope's signer record. Authoritative doctrine: `docs/architecture/peer-identity.md`, `docs/architecture/signaling-envelope.md`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "peerId", "publicKey", "alg", "createdAt"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "peerId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "Lower-case UUID v4 derived from the public key on first mint and persisted across sessions."
+    },
+    "publicKey": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "Ed25519 public key, base64url-encoded, 32 raw bytes (43 url-safe chars without padding)."
+    },
+    "alg": {
+      "const": "Ed25519",
+      "description": "Closed enum; only Ed25519 is supported in M5."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Wall-clock timestamp at first mint. Presentation-only; deterministic gameplay never reads this field."
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Best-effort label rendered next to the verified-key icon in the lobby. Validated per `docs/architecture/display-name-policy.md`. Never used for handshake; the public key is authoritative."
+    }
+  }
+}

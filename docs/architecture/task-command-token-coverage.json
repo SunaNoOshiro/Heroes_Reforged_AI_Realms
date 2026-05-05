@@ -78,6 +78,12 @@
     "POLICY_ACCEPTED": "Closed audit-log-entry type from content-schema/schemas/audit-log-entry.schema.json; not a UI command.",
     "OPT_IN_TOGGLED": "Closed audit-log-entry type from content-schema/schemas/audit-log-entry.schema.json; not a UI command.",
     "PROTOCOL_MISMATCH": "Closed peerFailureReason enum value from docs/architecture/wiki/screens/64-network-lobby/spec.md; not a UI command.",
-    "NETWORK_ERROR": "Closed peerFailureReason enum value from docs/architecture/wiki/screens/64-network-lobby/spec.md; not a UI command."
+    "NETWORK_ERROR": "Closed peerFailureReason enum value from docs/architecture/wiki/screens/64-network-lobby/spec.md; not a UI command.",
+    "NODE_ENV": "Node.js process-environment variable; not a command. Used by transport-security.md § 5 to gate dev vs. prod listener behavior.",
+    "NODE_TLS_REJECT_UNAUTHORIZED": "Node.js TLS-bypass environment variable; forbidden in non-test code paths per docs/architecture/transport-security.md § 2.",
+    "TRUST_VIOLATION_DETECTED": "Multiplayer trust-violation dispatch surface owned by phase-3.01-multiplayer.26-signed-signaling-envelope per docs/architecture/signaling-envelope.md § 5; closed `kind` enum spans dtls-fingerprint-pinning.md, command-stream-integrity.md, and signaling-envelope.md. Not a UI command; surfaced via the trust-violation banner in screens/64-network-lobby.",
+    "MINT_SESSION_TOKEN": "Multiplayer host-only token-mint command owned by phase-3.01-multiplayer.25-peer-keypair-and-session-token per docs/architecture/signaling-envelope.md § 7; not a UI command.",
+    "VERIFY_SIGNALING_ENVELOPE": "Multiplayer envelope-verification command owned by phase-3.01-multiplayer.26-signed-signaling-envelope per docs/architecture/signaling-envelope.md § 5; not a UI command.",
+    "ROTATE_PEER_KEYPAIR": "Multiplayer keypair-rotation command surface; reserved by phase-3.01-multiplayer.25-peer-keypair-and-session-token. UI flow deferred to M7 per docs/architecture/peer-identity.md § 10."
   }
 }

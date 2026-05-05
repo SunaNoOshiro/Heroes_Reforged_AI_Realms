@@ -1,4 +1,16 @@
 {
+  "heroes-reforged/abandon-penalty.schema.json": {
+    "heroes-reforged/abandon-penalty.schema.json#/properties/kind/enum": [
+      "forced-leave",
+      "heartbeat-loss",
+      "verified-disconnect"
+    ],
+    "heroes-reforged/abandon-penalty.schema.json#/properties/penaltyTier/enum": [
+      "cooldown-15min",
+      "leaverboard-flag",
+      "none"
+    ]
+  },
   "heroes-reforged/adventure-building.schema.json": {
     "heroes-reforged/adventure-building.schema.json#/$defs/economy/oneOf~10/properties/kind/const": [
       "none"
@@ -408,6 +420,59 @@
       "not"
     ]
   },
+  "heroes-reforged/consent-audit-log.schema.json": {
+    "heroes-reforged/consent-audit-log.schema.json#/$defs/ConsentAuditLogEntry/properties/fromState/enum": [
+      "denied",
+      "granted",
+      "revoked",
+      "unset"
+    ],
+    "heroes-reforged/consent-audit-log.schema.json#/$defs/ConsentAuditLogEntry/properties/method/enum": [
+      "explicit",
+      "import",
+      "legacy",
+      "session"
+    ],
+    "heroes-reforged/consent-audit-log.schema.json#/$defs/ConsentAuditLogEntry/properties/toState/enum": [
+      "denied",
+      "granted",
+      "revoked",
+      "unset"
+    ]
+  },
+  "heroes-reforged/consent.schema.json": {
+    "heroes-reforged/consent.schema.json#/$defs/ConsentScope/enum": [
+      "aiGeneration",
+      "analytics",
+      "crashReports",
+      "multiplayer",
+      "storage",
+      "telemetry",
+      "unsignedPacks"
+    ],
+    "heroes-reforged/consent.schema.json#/allOf~10/if/properties/state/const": [
+      "granted"
+    ],
+    "heroes-reforged/consent.schema.json#/allOf~11/if/properties/state/const": [
+      "revoked"
+    ],
+    "heroes-reforged/consent.schema.json#/properties/method/enum": [
+      "explicit",
+      "import",
+      "legacy",
+      "session"
+    ],
+    "heroes-reforged/consent.schema.json#/properties/state/enum": [
+      "denied",
+      "granted",
+      "revoked",
+      "unset"
+    ],
+    "heroes-reforged/consent.schema.json#/properties/tier/enum": [
+      "optional",
+      "required"
+    ]
+  },
   "heroes-reforged/content-report.schema.json": {
     "heroes-reforged/content-report.schema.json#/properties/reason/enum": [
       "harassment",
@@ -677,6 +742,12 @@
       "evil",
       "good",
       "neutral"
+    ],
+    "heroes-reforged/generated-faction.schema.json#/properties/moderation/properties/status/enum": [
+      "failed",
+      "passed",
+      "pending",
+      "skipped"
     ]
   },
   "heroes-reforged/generation-request.schema.json": {
@@ -736,6 +807,11 @@
       "mild",
       "none",
       "strong"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/contentRating/properties/overallRating/enum": [
+      "everyone",
+      "mature",
+      "teen"
     ],
     "heroes-reforged/manifest.schema.json#/properties/contentRating/properties/sexual/enum": [
       "explicit",
@@ -862,6 +938,17 @@
       "malware",
       "tampered",
       "user-revoked"
+    ]
+  },
+  "heroes-reforged/peer-allowlist.schema.json": {
+    "heroes-reforged/peer-allowlist.schema.json#/$defs/PeerEntry/properties/tier/enum": [
+      "friend",
+      "recent"
+    ]
+  },
+  "heroes-reforged/peer-identity.schema.json": {
+    "heroes-reforged/peer-identity.schema.json#/properties/alg/const": [
+      "Ed25519"
     ]
   },
   "heroes-reforged/privacy-options.schema.json": {
@@ -1052,6 +1139,18 @@
       "ai",
       "either",
       "human"
+    ]
+  },
+  "heroes-reforged/signaling-envelope.schema.json": {
+    "heroes-reforged/signaling-envelope.schema.json#/properties/payloadType/enum": [
+      "ANSWER",
+      "CHALLENGE",
+      "CHALLENGE_RESPONSE",
+      "HOST_CHANGED",
+      "ICE_CANDIDATE",
+      "JOIN_ROOM",
+      "OFFER",
+      "PEER_DISCONNECTED"
     ]
   },
   "heroes-reforged/signaling-error.schema.json": {

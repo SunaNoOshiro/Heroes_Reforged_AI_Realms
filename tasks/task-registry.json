@@ -3156,7 +3156,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 393
+      "downstreamTransitiveCount": 401
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3218,7 +3218,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 391
+      "downstreamTransitiveCount": 399
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3275,7 +3275,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 235
+      "downstreamTransitiveCount": 242
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3331,7 +3331,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 303
+      "downstreamTransitiveCount": 311
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3478,7 +3478,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 224
+      "downstreamTransitiveCount": 231
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -4377,7 +4377,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 298
+      "downstreamTransitiveCount": 306
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4435,7 +4435,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 219
+      "downstreamTransitiveCount": 227
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4499,7 +4499,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 159
+      "downstreamTransitiveCount": 165
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4557,7 +4557,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 164
+      "downstreamTransitiveCount": 170
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4618,7 +4618,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 210
+      "downstreamTransitiveCount": 218
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4679,7 +4679,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 269
+      "downstreamTransitiveCount": 277
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4753,7 +4753,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 150
+      "downstreamTransitiveCount": 156
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4838,7 +4838,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 119
+      "downstreamTransitiveCount": 125
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4939,7 +4939,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 116
+      "downstreamTransitiveCount": 122
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -5046,8 +5046,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 106
+      "downstreamDirectCount": 31,
+      "downstreamTransitiveCount": 112
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -5207,7 +5207,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 180
+      "downstreamTransitiveCount": 188
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5299,7 +5299,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 123
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5370,7 +5370,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 115
+      "downstreamTransitiveCount": 121
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5432,7 +5432,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 115
+      "downstreamTransitiveCount": 121
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -7313,8 +7313,8 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 23
+      "downstreamDirectCount": 6,
+      "downstreamTransitiveCount": 29
     },
     {
       "id": "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
@@ -7400,6 +7400,96 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
       "downstreamTransitiveCount": 19
+    },
+    {
+      "id": "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
+      "kind": "task",
+      "status": "planned",
+      "title": "Multiplayer Trust & Identity Schemas",
+      "path": "tasks/mvp/02-content-schemas/43-multiplayer-trust-and-identity-schemas.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Add the five schemas Plan 24 needs that have no existing surface: [`peer-identity.schema.json`](../../../content-schema/schemas/peer-identity.schema.json), [`signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json), [`session-token.schema.json`](../../../content-schema/schemas/session-token.schema.json), [`command-envelope.schema.json`](../../../content-schema/schemas/command-envelope.schema.json), and [`abandon-penalty.schema.json`](../../../content-schema/schemas/abandon-penalty.schema.json). Register them in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md) and [`content-schema/README.md`](../../../content-schema/README.md), and extend `scripts/check-repo-contracts.mjs` with the suffix mapping rows where canonical examples eventually land. Plan 24 § Critical Fixes 2–5.",
+      "inputs": [
+        "Closed `payloadType` enum (`JOIN_ROOM`, `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `HOST_CHANGED`, `PEER_DISCONNECTED`, `CHALLENGE`, `CHALLENGE_RESPONSE`).",
+        "Closed `kind` enum on `abandon-penalty.schema.json` (`heartbeat-loss`, `forced-leave`, `verified-disconnect`).",
+        "Closed `penaltyTier` enum (`none`, `cooldown-15min`, `leaverboard-flag`)."
+      ],
+      "outputs": [
+        "`content-schema/schemas/peer-identity.schema.json`",
+        "`content-schema/schemas/signaling-envelope.schema.json`",
+        "`content-schema/schemas/session-token.schema.json`",
+        "`content-schema/schemas/command-envelope.schema.json`",
+        "`content-schema/schemas/abandon-penalty.schema.json`",
+        "Registration rows in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md) and [`content-schema/README.md`](../../../content-schema/README.md)."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../../../docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)",
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)",
+        "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)",
+        "[`docs/architecture/abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/peer-identity.schema.json",
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/session-token.schema.json",
+        "content-schema/schemas/command-envelope.schema.json",
+        "content-schema/schemas/abandon-penalty.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "acceptanceCriteria": [
+        "Each schema declares `additionalProperties: false`.",
+        "`peer-identity.schema.json` `alg` is the const `Ed25519`; `publicKey` matches the 43-char base64url Ed25519-32-byte pattern.",
+        "`signaling-envelope.schema.json` `payloadType` enum equals exactly `[\"JOIN_ROOM\", \"OFFER\", \"ANSWER\", \"ICE_CANDIDATE\", \"HOST_CHANGED\", \"PEER_DISCONNECTED\", \"CHALLENGE\", \"CHALLENGE_RESPONSE\"]`.",
+        "`signaling-envelope.schema.json` `sig` matches the 86-char base64url Ed25519-64-byte pattern; `nonce` matches the 22-char base64url 16-byte pattern.",
+        "`session-token.schema.json` `nonceWindow` defaults to `256` and is bounded `[1, 4096]`.",
+        "`command-envelope.schema.json` `mac` matches the 22-char base64url truncated-HMAC pattern; `command` is a `$ref` to `command.schema.json`.",
+        "`abandon-penalty.schema.json` `kind` enum equals exactly `[\"heartbeat-loss\", \"forced-leave\", \"verified-disconnect\"]`; `penaltyTier` enum equals exactly `[\"none\", \"cooldown-15min\", \"leaverboard-flag\"]`; `quorumWitnessIds` requires at least one entry.",
+        "`npm run validate:contracts` passes.",
+        "`npm run validate:enums` and `npm run generate:enum-snapshot` agree (snapshot updated)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/abandon-penalty.schema.json",
+        "content-schema/schemas/command-envelope.schema.json",
+        "content-schema/schemas/peer-identity.schema.json",
+        "content-schema/schemas/session-token.schema.json",
+        "content-schema/schemas/signaling-envelope.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/abandon-penalty.schema.json",
+        "content-schema/schemas/command-envelope.schema.json",
+        "content-schema/schemas/peer-identity.schema.json",
+        "content-schema/schemas/session-token.schema.json",
+        "content-schema/schemas/signaling-envelope.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.41-error-and-audit-schemas"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "mvp.02-tooling.01-ui-smoke-harness",
@@ -8970,7 +9060,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 171
+      "downstreamTransitiveCount": 178
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -9030,7 +9120,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 110
+      "downstreamTransitiveCount": 117
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -9086,7 +9176,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 151
+      "downstreamTransitiveCount": 158
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -9149,7 +9239,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 109
+      "downstreamTransitiveCount": 116
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -9746,7 +9836,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 84
+      "downstreamTransitiveCount": 91
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -9898,7 +9988,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 110
+      "downstreamTransitiveCount": 117
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -10033,7 +10123,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 145
+      "downstreamTransitiveCount": 152
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -10109,7 +10199,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 109
+      "downstreamTransitiveCount": 116
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -10172,7 +10262,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 99
+      "downstreamTransitiveCount": 106
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -10238,7 +10328,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 79
+      "downstreamTransitiveCount": 86
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -10304,7 +10394,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 81
+      "downstreamTransitiveCount": 88
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -10382,7 +10472,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 66
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -10437,7 +10527,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 57
+      "downstreamTransitiveCount": 64
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -16444,7 +16534,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 88
+      "downstreamTransitiveCount": 95
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -16506,7 +16596,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 69
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -16654,7 +16744,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 63
+      "downstreamTransitiveCount": 70
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -16721,7 +16811,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 63
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -16857,7 +16947,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 63
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -16920,7 +17010,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 60
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -16993,7 +17083,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -17667,7 +17757,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 56
+      "downstreamTransitiveCount": 63
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -17755,7 +17845,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 55
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -17818,7 +17908,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 52
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -17900,7 +17990,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 52
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -17974,7 +18064,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -18079,7 +18169,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 47
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -18149,7 +18239,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 48
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -18244,7 +18334,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 25
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -18327,7 +18417,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 26
+      "downstreamTransitiveCount": 33
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -18405,7 +18495,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 39
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -18476,7 +18566,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 25
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -18968,7 +19058,8 @@
         "mvp.02-content-schemas.39-generated-faction-player-inspectable",
         "mvp.02-content-schemas.40-privacy-and-legal-docs",
         "mvp.02-content-schemas.41-error-and-audit-schemas",
-        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas"
+        "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -31003,13 +31094,21 @@
       ],
       "outputs": [
         "`services/signaling/src/server.ts`",
-        "Messages: `CREATE_ROOM`, `JOIN_ROOM`, `JOIN_HANDSHAKE`, `JOIN_REJECTED`, `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`, `KICK_PEER`, `PEER_KICKED`, `JOIN_ATTEMPT_REJECTED`, `CLOSE_ROOM`, `ROOM_EXPIRED`, `ROOM_CLOSED`, `RATE_LIMITED`, `PEER_CONNECTED`, `PEER_DISCONNECTED`",
+        "Messages: `CREATE_ROOM`, `JOIN_ROOM`, `JOIN_HANDSHAKE`, `JOIN_REJECTED`, `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`, `KICK_PEER`, `PEER_KICKED`, `JOIN_ATTEMPT_REJECTED`, `CLOSE_ROOM`, `ROOM_EXPIRED`, `ROOM_CLOSED`, `RATE_LIMITED`, `PEER_CONNECTED`, `PEER_DISCONNECTED`, `CHALLENGE`, `CHALLENGE_RESPONSE`, `HOST_CHANGED`. Every signaling frame after `JOIN_HANDSHAKE` is wrapped in the signed envelope per [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md): fields `signerId`, `sig`, `nonce`, `iat`, `sessionTokenHash` are mandatory on the wire. The server validates **shape + freshness** but does NOT verify the inner signature.",
         "Room ID: 8-character upper-case Crockford-Base32 code per [`lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
         "Room secret: 16 bytes, base64url-encoded — generated at `CREATE_ROOM`, embedded in invite URL fragment, rotated on empty-room (see [`multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake))",
         "Server memory: only room → peer mapping (with secret), room cool-down table, rate-limit buckets, and the per-room `peerDenylist` keyed on peer public keys",
         "HTTP route: `GET /turn-credential` (issued by Task 10; this task reserves the route surface)",
         "HTTP route: `GET /healthz` (returns aggregate rate-limit / active-room counters per [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md))",
-        "Deploy target: any stateless container (Fly.io, Railway) — TLS terminated at the edge Allowed Payloads:",
+        "Deploy target: any stateless container (Fly.io, Railway) — TLS terminated at the edge per [`transport-security.md`](../../../docs/architecture/transport-security.md); edge config example lives at [`services/signaling/config/edge.example.toml`](../../../services/signaling/config/edge.example.toml) (introduced by [Task 24](./24-transport-security-edge-config.md)) Transport:",
+        "**Listener**: WSS-only. Plain `ws://` is rejected at the listener. The bootstrap refuses to bind on `ws://` unless `process.env.NODE_ENV === 'test'`.",
+        "**TLS**: TLS 1.2 floor; cipher allowlist per [`transport-security.md` § 2](../../../docs/architecture/transport-security.md#2-tls-floor). Weak-cipher fallback is forbidden.",
+        "**HSTS**: edge emits `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` per [`transport-security.md` § 3](../../../docs/architecture/transport-security.md#3-hsts-at-the-edge).",
+        "**Cert lifecycle**: Let's Encrypt + auto-renew + alert on expiry < 14 days per [`transport-security.md` § 6](../../../docs/architecture/transport-security.md#6-cert-lifecycle).",
+        "**Anti-downgrade**: `NODE_TLS_REJECT_UNAUTHORIZED=0` is forbidden in any production env file or non-test code path.",
+        "**Dev vs Prod**: localhost dev loop may bind on `ws://`; release builds may not. CI gate `npm run validate:transport` enforces. Origin Allowlist:",
+        "WebSocket upgrade validates the `Origin` header against the canonical web origin per [`web-headers.md` § 3](../../../docs/architecture/web-headers.md#3-cors-allowlist); mismatch returns `403`. Wildcard origins are forbidden. Observability:",
+        "TLS-error log shape per [`tls-observability.md`](../../../docs/architecture/tls-observability.md); closed `kind` enum (`tls-handshake-failure | cert-mismatch | cipher-rejected`), PII-redacted (`/24` IPv4 / `/64` IPv6 buckets), no UA tail, no raw IP, no SDP / cert content. Allowed Payloads:",
         "The only payloads that traverse the signaling server are the protocol messages listed above. Pack hash, save hash, display names, chat content, and `typ host` / `typ srflx` ICE candidates destined for a pending peer MUST NOT traverse the signaling server. See [`signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md) for the canonical allow / deny list. Pre-Consent ICE Filtering:",
         "ICE candidates destined for a peer that has not yet been approved by the host (see Task 10) are filtered down to `typ relay` candidates only. Post-`APPROVE_PEER`, the full candidate set flows. See [`ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md). Rate Limiting:",
         "Per-IP, per-code, and global token-bucket throttles — full table in [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md).",
@@ -31032,7 +31131,11 @@
         "[`docs/architecture/signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md)",
         "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)",
         "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)",
-        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)"
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
+        "[`docs/architecture/transport-security.md`](../../../docs/architecture/transport-security.md)",
+        "[`docs/architecture/web-headers.md`](../../../docs/architecture/web-headers.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/tls-observability.md`](../../../docs/architecture/tls-observability.md)"
       ],
       "ownedPaths": [
         "services/signaling/src/server.ts",
@@ -31101,8 +31204,8 @@
         "mvp.10-heuristic-ai.11-ai-bench-harness"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 23
+      "downstreamDirectCount": 8,
+      "downstreamTransitiveCount": 30
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -31129,7 +31232,10 @@
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
-        "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)"
+        "[`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)",
+        "[`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)",
+        "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/peer-connection.ts"
@@ -31150,7 +31256,11 @@
         "Crossing payloads is rejected: a chat envelope sent on `commands` is rejected by the command-channel validator and a command-shaped payload sent on `chat` is rejected by the chat-channel validator. Per [`chat-safety.md` § 2](../../../docs/architecture/chat-safety.md#2-channel-reservation).",
         "ICE-gather timeout fires at 4 s when no host/srflx pair emerges; Task 10 wires the TURN-URL append on this signal.",
         "**Pre-consent ICE policy = relay-only**. The host's `RTCPeerConnection` MUST be created with `iceTransportPolicy: 'relay'` while the joiner is pre-consent (i.e. before Task 14's `APPROVE_PEER` fires). On `APPROVE_PEER` the host renegotiates with the default policy and `createOffer({ iceRestart: true })`. Per [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md).",
-        "**mDNS expectation table**: the implementation does not depend on mDNS masking, but the per-browser behavior is documented for operators in [`ice-disclosure-policy.md` § 3](../../../docs/architecture/ice-disclosure-policy.md#3-mdns-expectation-matrix) (Chrome 120+, Firefox 121+, Safari 17+). Network-Chaos Coverage:",
+        "**mDNS expectation table**: the implementation does not depend on mDNS masking, but the per-browser behavior is documented for operators in [`ice-disclosure-policy.md` § 3](../../../docs/architecture/ice-disclosure-policy.md#3-mdns-expectation-matrix) (Chrome 120+, Firefox 121+, Safari 17+).",
+        "**Channel allowlist**: `ondatachannel` accepts only `commands` and `heartbeat` (and `chat` per the chat-safety reservation). Any other label closes the channel immediately and dispatches `TRUST_VIOLATION_DETECTED { kind: 'unexpectedDataChannel' }` per [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands).",
+        "**DTLS fingerprint capture**: after `setLocalDescription` and `setRemoteDescription` resolve, parse the `a=fingerprint:` line per [`dtls-fingerprint-pinning.md` § 1](../../../docs/architecture/dtls-fingerprint-pinning.md#1-extraction-rule) and write to `state.net.peers[peerId].dtlsFp`. Mismatched fingerprint on rejoin aborts via `TRUST_VIOLATION_DETECTED { kind: 'dtlsFingerprintMismatch' }`. Owned by [Task 27](./27-dtls-fingerprint-pinning.md).",
+        "**Session-key derivation**: on `commands` DataChannel open, derive the per-session HMAC key via `RTCDtlsTransport.exportKeyingMaterial(\"hr-cmd-mac\", 32)`; cache in `state.net.peers[peerId].cmdKey` as a non-extractable `CryptoKey`. Browsers without `exportKeyingMaterial` fall back to a host-minted 32-byte key delivered through the signed signaling envelope per [`command-stream-integrity.md` § 2a](../../../docs/architecture/command-stream-integrity.md#2a-fallback-key). Owned by [Task 30](./30-command-stream-hmac.md).",
+        "**Envelope verification**: every inbound signaling frame is unwrapped via the runtime in [Task 26](./26-signed-signaling-envelope.md) before SDP / ICE is consumed; failure aborts the handshake. Network-Chaos Coverage:",
         "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md))."
       ],
       "verifyCommands": [
@@ -31194,12 +31304,13 @@
         "`src/net/webrtc/lockstep.ts`",
         "`src/net/webrtc/constants.ts` (shared budget + queue-cap constants)",
         "`LockstepTransport`: wraps `PeerConn`, handles command sequencing",
-        "Wire format: `{ seq: number, playerId: number, turn: number, command: Command }` (JSON)",
+        "Wire format: `{ schemaVersion, seq, playerId, turn, command, mac }` per [`command-envelope.schema.json`](../../../content-schema/schemas/command-envelope.schema.json). The `mac` is the truncated HMAC-SHA256 keyed by the per-session key derived from `RTCDtlsTransport.exportKeyingMaterial(\"hr-cmd-mac\", 32)` (or the host-minted fallback per [`command-stream-integrity.md` § 2a](../../../docs/architecture/command-stream-integrity.md#2a-fallback-key)). Sign / verify primitives are owned by [Task 30](./30-command-stream-hmac.md). Duplicate-`seq` policy per [`command-stream-integrity.md` § 4](../../../docs/architecture/command-stream-integrity.md#4-duplicate-seq-policy); gap-`seq` policy per [`command-stream-integrity.md` § 5](../../../docs/architecture/command-stream-integrity.md#5-gap-seq-policy).",
         "Both peers must apply turn N's commands before processing turn N+1",
         "Turn gate: local player presses \"End Turn\" in the UI, which sends canonical `END_DAY` through the command log, then waits for all peers to send their same-turn commands before advancing"
       ],
       "readFirst": [
-        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/lockstep.ts",
@@ -31238,9 +31349,13 @@
       ],
       "estimatedTime": "- 5 hours",
       "screenPackages": [],
-      "directSchemaPaths": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command-envelope.schema.json"
+      ],
       "screenSchemaPaths": [],
-      "schemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command-envelope.schema.json"
+      ],
       "taskDependencies": [
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup"
       ],
@@ -31389,13 +31504,18 @@
       "outputs": [
         "`src/net/webrtc/reconnection.ts`",
         "Reconnect flow:",
-        "Peer re-connects to signaling server and rejoins room",
-        "Sends `LOG_REQUEST { fromSeq, toSeq }` to host via DataChannel",
-        "Host sends `LOG_RESPONSE { commands[] }` in chunks if needed",
-        "Peer replays commands, advances to current turn, resumes normal lockstep"
+        "Peer re-connects to signaling server and rejoins room.",
+        "Host emits a signed `CHALLENGE` envelope; reconnecting peer replies with `CHALLENGE_RESPONSE` signed by the **same** Ed25519 keypair that signed the original `JOIN_ROOM`. Host verifies the signature **and** compares the new SDP's DTLS fingerprint against `state.net.peers[peerId].dtlsFp` per [`dtls-fingerprint-pinning.md` § 4](../../../docs/architecture/dtls-fingerprint-pinning.md#4-reconnect-continuity-challenge). Either gate failing aborts the rejoin and dispatches `TRUST_VIOLATION_DETECTED { kind }`.",
+        "Sends `LOG_REQUEST { fromSeq, toSeq }` to host via DataChannel (only after the continuity challenge passes).",
+        "Host sends `LOG_RESPONSE { commands[] }` in chunks if needed.",
+        "Peer replays commands, advances to current turn, resumes normal lockstep."
       ],
       "readFirst": [
-        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md)",
+        "[`docs/architecture/diagrams/31-reconnect-continuity-challenge.md`](../../../docs/architecture/diagrams/31-reconnect-continuity-challenge.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/reconnection.ts"
@@ -31453,11 +31573,14 @@
         "`src/net/webrtc/host-migration.ts`",
         "Heartbeat sent every 2 seconds on unordered channel",
         "If host heartbeat absent for 6 seconds: non-host peers elect new host by highest-priority peer ID",
-        "New host broadcasts `HOST_CHANGED` + full log to all peers",
-        "Signaling server updated with new host's peer ID"
+        "New host broadcasts a signed `HOST_CHANGED` envelope (signed by the elected host's Ed25519 keypair per [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)) + full log to all peers. Receivers verify against the candidate- host pool snapshot frozen at the last consistent turn; mismatched signer dispatches `TRUST_VIOLATION_DETECTED { kind: 'unknownSigner' }`.",
+        "Quorum-attested `PEER_DISCONNECTED` for the dropped host: the new host wraps both its heartbeat-loss observation and the signaling server's WebSocket-close timestamp into a host-signed envelope per [`abandon-penalty.md` § 1](../../../docs/architecture/abandon-penalty.md#1-quorum-rule). Owned by [Task 28](./28-abandon-penalty-and-quorum-disconnect.md).",
+        "Signaling server updated with new host's peer ID."
       ],
       "readFirst": [
-        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)"
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md)"
       ],
       "ownedPaths": [
         "src/net/webrtc/host-migration.ts"
@@ -31519,6 +31642,7 @@
         "`src/ui/components/MultiplayerLobby.tsx`",
         "Create room → show invite link (copy button) + QR code.",
         "**URL shape**: `https://heroes.example/lobby#r=<code>&s=<secret>`. The room code per [`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md) and the room secret per [`docs/architecture/multiplayer-security.md` § Room Secret + Handshake](../../../docs/architecture/multiplayer-security.md#room-secret--handshake) both live in the URL **fragment**, never in the path or query string. The QR code encodes the full URL including the fragment.",
+        "**Scheme**: invite links are `https://`-only per [`transport-security.md` § 1](../../../docs/architecture/transport-security.md#1-listener-wss-only--https-only). The deep-link parser rejects `http://` URLs unconditionally (no `localhost` exception) and surfaces a localized `ui.network-lobby.invite.insecureScheme` error.",
         "**Response header**: the lobby page response sets `Referrer-Policy: no-referrer` so outbound links never leak the fragment via `Referer`.",
         "**History scrub**: after the fragment is consumed, the client calls `history.replaceState(null, \"\", location.pathname)` to drop the code/secret from `location.hash` and from the in-session history entry.",
         "**Clipboard warning**: the share dialog renders a one-line localized note (`ui.network-lobby.copy.clipboardWarning`) indicating the code may sync via OS clipboard surfaces.",
@@ -31561,7 +31685,8 @@
         "**Referrer hygiene**: the lobby page response sets `Referrer-Policy: no-referrer`. A test asserts the header is present on a real fetch.",
         "**History scrub**: opening the lobby with `#r=...&s=...`, joining the room, and asserting `location.hash === \"\"` and the history entry has been replaced (no growth in `history.length`).",
         "**Clipboard warning copy**: the share dialog renders the localized warning via `ui.network-lobby.copy.clipboardWarning`.",
-        "**QR encoding**: the QR code encodes the full URL (fragment included). QR is not subject to `Referer` hygiene; this is the documented divergence from the URL fragment rule. Network-Chaos Coverage:",
+        "**QR encoding**: the QR code encodes the full URL (fragment included). QR is not subject to `Referer` hygiene; this is the documented divergence from the URL fragment rule.",
+        "**`https://`-only invite-link constraint**: pasting an `http://` URL into the join field is rejected before any network call; the parser surfaces the localized `ui.network-lobby.invite.insecureScheme` error per [`transport-security.md` § 1](../../../docs/architecture/transport-security.md#1-listener-wss-only--https-only). Network-Chaos Coverage:",
         "Exercised by the consolidated network-chaos test matrix ([`11-network-chaos-test-matrix.md`](./11-network-chaos-test-matrix.md)) — the stall-threshold UI states are asserted on every cell with a non-zero RTT or packet-loss value.",
         "Layout, bindings, and commands match `docs/architecture/wiki/screens/62-multiplayer-setup/mockup.html`, `docs/architecture/wiki/screens/62-multiplayer-setup/interactions.md`, and `docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md`.",
         "Layout, bindings, and commands match `docs/architecture/wiki/screens/64-network-lobby/mockup.html`, `docs/architecture/wiki/screens/64-network-lobby/interactions.md`, and `docs/architecture/wiki/screens/64-network-lobby/data-contracts.md`.",
@@ -32258,8 +32383,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 6
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 11
     },
     {
       "id": "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit",
@@ -32919,6 +33044,620 @@
         "mvp.07-ui-shell.27-onboarding-consent-screen",
         "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
         "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.24-transport-security-edge-config",
+      "kind": "task",
+      "status": "planned",
+      "title": "Transport Security — Edge Config",
+      "path": "tasks/phase-3/01-multiplayer/24-transport-security-edge-config.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Pin the **WSS-only signaling listener**, **HTTPS-only AI gateway**, and **HSTS / CSP / CORS / SRI** baseline at the edge. Author the example reverse-proxy configs and add CI gates that fail any regression on transport scheme, headers, or dev-cert leakage. Closes Plan 24 Critical Fix 1 + the headers / cert-lifecycle / cert-pinning items in System Improvements.",
+      "inputs": [
+        "Hosting platform edge config grammar (Caddyfile or Fly.io `fly.toml` `[[services]]` block).",
+        "Canonical signaling and AI-gateway hostnames (operator-provided)."
+      ],
+      "outputs": [
+        "`services/signaling/config/edge.example.toml` — example reverse-proxy / edge config: WSS listener, plain-WS rejection, HSTS header, cipher allowlist, `Origin` allowlist.",
+        "`services/ai-gateway/config/edge.example.toml` — example reverse-proxy / edge config: HTTPS listener, HSTS header, `Access-Control-Allow-Origin` pinned to canonical web origin.",
+        "`scripts/check-transport-security.mjs` — CI gate (`npm run validate:transport`). Greps services for any `ws://` / `http://` URL literal (excluding test fixtures with the `// transport:test-only` sentinel comment); asserts edge configs include HSTS with `max-age >= 31536000` and `includeSubDomains`; asserts no `NODE_TLS_REJECT_UNAUTHORIZED` outside `*.test.*`; asserts no `*.dev.crt` / `localhost.crt` / `mkcert*.pem` references in production env files.",
+        "`scripts/check-web-headers.mjs` — CI gate (`npm run validate:headers`). Parses each edge config and asserts every required header in [`web-headers.md` § 1](../../../docs/architecture/web-headers.md#1-required-headers) is present with conformant values; rejects `Access-Control-Allow-Origin: *`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/transport-security.md`](../../../docs/architecture/transport-security.md)",
+        "[`docs/architecture/web-headers.md`](../../../docs/architecture/web-headers.md)",
+        "[`docs/architecture/tls-observability.md`](../../../docs/architecture/tls-observability.md)",
+        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)"
+      ],
+      "ownedPaths": [
+        "services/signaling/config/edge.example.toml",
+        "services/ai-gateway/config/edge.example.toml",
+        "scripts/check-transport-security.mjs",
+        "scripts/check-web-headers.mjs",
+        "services/signaling/src/server.ts",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/src/server.ts",
+        "package.json"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "acceptanceCriteria": [
+        "The signaling-server bootstrap refuses to bind on `ws://` unless `process.env.NODE_ENV === 'test'`; refusal surfaces a structured error with `errorCode: 'tls.bootstrap.plainWsForbidden'`.",
+        "The AI-gateway adapter refuses to attach to an `http://` upstream regardless of environment (verified by unit test).",
+        "`services/signaling/config/edge.example.toml` and `services/ai-gateway/config/edge.example.toml` both include: `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`, the cipher allowlist from [`transport-security.md` § 2](../../../docs/architecture/transport-security.md#2-tls-floor), and an `Origin` / `Access-Control-Allow-Origin` allowlist pinned to the canonical web origin.",
+        "`npm run validate:transport` fails on any `ws://` literal in `services/signaling/` (excluding sentinel-marked fixtures); fails on any `http://` literal in `services/ai-gateway/`; fails on `NODE_TLS_REJECT_UNAUTHORIZED=0` in production env; fails on any `*.dev.crt` / `localhost.crt` / `mkcert*.pem` reference in production env files.",
+        "`npm run validate:headers` fails on a missing or weak HSTS, on `Access-Control-Allow-Origin: *`, or on a missing required header from [`web-headers.md` § 1](../../../docs/architecture/web-headers.md#1-required-headers).",
+        "Both gates wired into `npm run validate`; the wiring is additive (no rename or removal of existing `validate:*` scripts).",
+        "The cert-lifecycle subsection of [`transport-security.md` § 6](../../../docs/architecture/transport-security.md#6-cert-lifecycle) is referenced from this task's verifyCommands runbook so an operator picking up the task can find the renewal cadence.",
+        "The cert-pinning N/A note in [`transport-security.md` § 7](../../../docs/architecture/transport-security.md#7-cert-pinning) is enforced: any new task whose `ownedPaths` include a native-shell directory must reference that section. CI gate reserved here; native-shell directories do not yet exist, so the gate is documented but not load-bearing.",
+        "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The bootstrap `ws://` refusal contributed by this task is **additive**: it MUST NOT rewrite Task 01's request-handler entrypoint, the message-envelope shape, or the in-memory room-table layout. The new call site slots in alongside the existing rate-limit and approval hooks.",
+        "**Shared-ownership split with repo-tooling**: `package.json` is **owned by** the repo-tooling task layer. The `validate:transport` and `validate:headers` script entries contributed by this task are **additive**; they MUST NOT rename or remove existing `validate:*` scripts."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 5
+    },
+    {
+      "id": "phase-3.01-multiplayer.25-peer-keypair-and-session-token",
+      "kind": "task",
+      "status": "planned",
+      "title": "Peer Keypair & Session Token",
+      "path": "tasks/phase-3/01-multiplayer/25-peer-keypair-and-session-token.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Implement the runtime primitives behind the Plan-24 identity model: keypair generation / persistence / load / rotate, host-side session- token mint, joiner-side token replay, and the canonicalized sign / verify primitives consumed by every signed signaling envelope. Builds the `src/net/identity/` surface; consumed by [Task 26](./26-signed-signaling-envelope.md), [Task 27](./27-dtls-fingerprint-pinning.md), and [Task 28](./28-abandon-penalty-and-quorum-disconnect.md). Plan 24 § Critical Fix 2.",
+      "inputs": [
+        "WebCrypto Ed25519 (Chrome 120+, Firefox 121+, Safari 17+).",
+        "IndexedDB profile slice (`hr-profile.peerIdentity`).",
+        "Canonical-JSON encoder per [`determinism.md` § Canonical JSON](../../../docs/architecture/determinism.md#canonical-json)."
+      ],
+      "outputs": [
+        "`src/net/identity/keypair.ts` — `mintPeerKeypair()`, `loadPeerKeypair()`, `rotatePeerKeypair()`, plus a `getPeerId(publicKey): PeerId` derivation that emits a stable UUID v4 from the public key bytes.",
+        "`src/net/identity/session-token.ts` — host-side `mintSessionToken`, joiner-side `loadSessionToken`, `hashSessionToken`, and a `verifySessionToken(token, hostPublicKey)` primitive.",
+        "`src/net/identity/envelope.ts` — `canonicalizeEnvelope`, `signEnvelope`, `verifyEnvelope` primitives over the signaling-envelope shape.",
+        "`src/net/identity/__tests__/*.test.ts` — canonicalization parity (browser vs. node), signature roundtrip, replay rejection, clock-skew tolerance, tampered-envelope rejection."
+      ],
+      "readFirst": [
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/multiplayer-security.md`](../../../docs/architecture/multiplayer-security.md)",
+        "[`docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md`](../../../docs/architecture/wiki/screens/62-multiplayer-setup/data-contracts.md)",
+        "[`content-schema/schemas/peer-identity.schema.json`](../../../content-schema/schemas/peer-identity.schema.json)",
+        "[`content-schema/schemas/session-token.schema.json`](../../../content-schema/schemas/session-token.schema.json)",
+        "[`content-schema/schemas/signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/net/identity/keypair.ts",
+        "src/net/identity/session-token.ts",
+        "src/net/identity/envelope.ts",
+        "src/net/identity/__tests__/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
+        "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`mintPeerKeypair()` returns a fresh Ed25519 keypair via WebCrypto; the private key never enters logs, telemetry, or any structured payload outside IndexedDB.",
+        "`loadPeerKeypair()` lazily generates a keypair on first profile load and persists `state.profile.peerKeypair`; subsequent loads return the same key. Conforms to [`peer-identity.schema.json`](../../../content-schema/schemas/peer-identity.schema.json).",
+        "`rotatePeerKeypair()` mints a fresh keypair and overwrites the profile slice; the previous keypair is irrecoverable. Surfaced via the future `ROTATE_PEER_KEYPAIR` command (M7-deferred per [`peer-identity.md` § 10](../../../docs/architecture/peer-identity.md#10-out-of-scope)).",
+        "`mintSessionToken({ hostKey, roomCode, subjectPeerId })` returns a [`session-token.schema.json`](../../../content-schema/schemas/session-token.schema.json)-conformant token with `iat` ≤ wall-clock and `exp - iat <= 86400000` (24 h). Surfaced via `MINT_SESSION_TOKEN` per [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands).",
+        "`hashSessionToken(token)` returns the canonical `sha256(canonicalJson(token))` value, base64url-encoded; matches the `sessionTokenHash` field on every envelope per [`signaling-envelope.md` § 3](../../../docs/architecture/signaling-envelope.md#3-canonicalization-rule).",
+        "`signEnvelope(payload, key)` and `verifyEnvelope(env, pubKey)` produce / consume conformant [`signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json) records. The signature input is the canonical-JSON encoding of `[schemaVersion, payloadType, payload, nonce, iat, sessionTokenHash]`.",
+        "Cross-environment parity test: the same `(privateKey, payload, nonce, iat, sessionTokenHash)` tuple produces a signature accepted by `verifyEnvelope` on Chrome, Firefox, Safari, and Node.js (Playwright cross-engine job).",
+        "Tampered-envelope rejection test: flipping any bit in the canonicalized input yields `verifyEnvelope === false`.",
+        "Replay-rejection test: two envelopes with identical `nonce` inside the per-`(signerId, sessionId)` 256-entry ring yield `verifyEnvelope === false` on the second consumption.",
+        "Clock-skew test: `iat` outside `±60_000` ms of the receiver's wall-clock is rejected before signature check; the rejection reason is `clockSkew`.",
+        "The implementation imports no PCG32 RNG; nonces are CSPRNG via `crypto.getRandomValues`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/62-multiplayer-setup"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/peer-identity.schema.json",
+        "content-schema/schemas/session-token.schema.json",
+        "content-schema/schemas/signaling-envelope.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-identity.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/session-token.schema.json",
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
+        "phase-3.01-multiplayer.16-peer-keypair-and-denylist"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 8
+    },
+    {
+      "id": "phase-3.01-multiplayer.26-signed-signaling-envelope",
+      "kind": "task",
+      "status": "planned",
+      "title": "Signed Signaling Envelope",
+      "path": "tasks/phase-3/01-multiplayer/26-signed-signaling-envelope.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Wrap every signaling frame after `JOIN_HANDSHAKE` in the signed envelope contract from [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md). Verify on consumption; surface `TRUST_VIOLATION_DETECTED` with a closed `kind` enum on any failure. Touchpoints in tasks 01, 02, 06, 07, and 08 are already extended to consume the envelope; this task owns the runtime wrap / verify wiring + the trust-violation banner. Plan 24 § Critical Fix 2.",
+      "inputs": [
+        "`src/net/identity/` primitives from [Task 25](./25-peer-keypair-and-session-token.md).",
+        "Signaling-server message list per [Task 1](./01-signaling-server-node-js-websocket-lobby.md)."
+      ],
+      "outputs": [
+        "`src/net/signaling/wrap.ts` — `wrapEnvelope(payloadType, payload, ctx)`: wraps every outbound signaling message in a signed envelope; consumed by tasks 02, 06, 07, 08.",
+        "`src/net/signaling/verify.ts` — `verifyInboundEnvelope(env, ctx)`: runs the seven-step verification order from [`signaling-envelope.md` § 5](../../../docs/architecture/signaling-envelope.md#5-verification-order); on failure dispatches `TRUST_VIOLATION_DETECTED { kind }` and aborts the session.",
+        "`src/net/signaling/__tests__/*.test.ts` — verification-order parity, forged-envelope rejection at every relay-consumer touchpoint."
+      ],
+      "readFirst": [
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
+        "[`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md)",
+        "[`content-schema/schemas/signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/net/signaling/wrap.ts",
+        "src/net/signaling/verify.ts",
+        "src/net/signaling/__tests__/",
+        "services/signaling/src/server.ts",
+        "signaling-envelope.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "services/signaling/src/server.ts",
+        "signaling-envelope.md"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.25-peer-keypair-and-session-token"
+      ],
+      "acceptanceCriteria": [
+        "Every outbound signaling frame after `JOIN_HANDSHAKE` is wrapped in a [`signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json)-conformant envelope before transit (verified by integration test against the existing signaling fixture).",
+        "Every inbound envelope runs the seven-step verification order from [`signaling-envelope.md` § 5](../../../docs/architecture/signaling-envelope.md#5-verification-order); first failure aborts the session and dispatches `TRUST_VIOLATION_DETECTED { kind }` per [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands).",
+        "`MINT_SESSION_TOKEN` and `VERIFY_SIGNALING_ENVELOPE` dispatches are routed exclusively to `src/net/identity/` and `src/net/signaling/`; never enter the engine reducer.",
+        "`64-network-lobby` mounts the trust-violation banner on every failed verification per [`spec.md` § Trust](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md); the 5-second grace toast pattern from [`undo-policy.md`](../../../docs/architecture/undo-policy.md) applies before `LEAVE_ROOM` dispatches.",
+        "Forged-envelope test: a valid-shape envelope with a wrong signature is rejected at every relay-consumer touchpoint (Task 02 ICE relay, Task 06 reconnect log replay, Task 07 host migration, Task 08 invite-link consumer). The test fixture reuses the canonicalization parity vectors from Task 25.",
+        "Replay-burst test: 4 envelopes with identical `nonce` inside the 30-second window dispatch `TRUST_VIOLATION_DETECTED { kind: 'nonceReplay' }` on the third.",
+        "Server pre-filter test: a malformed envelope (missing required field) is rejected at the signaling server before relay; the rejection emits a closed [`signaling-error.schema.json`](../../../content-schema/schemas/signaling-error.schema.json) payload to the sender.",
+        "**Shared-ownership split with Task 01**: Task 01 is the **primary owner** of `services/signaling/src/server.ts`. The envelope pre-filter wiring is **additive**: it MUST NOT rewrite Task 01's request-handler entrypoint, the existing message envelope, or the room-table shape; the pre-filter slots in alongside the rate-limit hook from Task 13."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/signaling-error.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.25-peer-keypair-and-session-token"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.25-peer-keypair-and-session-token"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 7
+    },
+    {
+      "id": "phase-3.01-multiplayer.27-dtls-fingerprint-pinning",
+      "kind": "task",
+      "status": "planned",
+      "title": "DTLS Fingerprint Pinning",
+      "path": "tasks/phase-3/01-multiplayer/27-dtls-fingerprint-pinning.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Extract and pin DTLS fingerprints per `peerId`, run the reconnect continuity challenge (signed `CHALLENGE` / `CHALLENGE_RESPONSE`), and abort on either gate failing. Implements the doctrine from [`dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md) and the diagram in [`diagrams/31-reconnect-continuity-challenge.md`](../../../docs/architecture/diagrams/31-reconnect-continuity-challenge.md). Plan 24 § Critical Fix 3.",
+      "inputs": [
+        "`RTCPeerConnection.localDescription` / `remoteDescription` SDP (Chrome 120+, Firefox 121+, Safari 17+).",
+        "`src/net/identity/` primitives from [Task 25](./25-peer-keypair-and-session-token.md).",
+        "Signed envelope wrap / verify from [Task 26](./26-signed-signaling-envelope.md)."
+      ],
+      "outputs": [
+        "`src/net/dtls/fingerprint.ts` — `extractFromSdp(sdp): string` (RFC 8122; sha-256 only) and `compare(a, b): boolean` (constant-time string-equals on the canonical normalized form).",
+        "`src/net/dtls/continuity.ts` — `issueChallenge(peerId)`, `verifyChallengeResponse(env, originalPubKey)`, plus the `state.net.peers[peerId].dtlsFp` and `state.net.peers[peerId].nonceRing` slice updates.",
+        "`src/net/dtls/__tests__/*.test.ts` — fingerprint extraction, weak-hash rejection, mismatch detection on rejoin, continuity- challenge round-trip."
+      ],
+      "readFirst": [
+        "[`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)",
+        "[`docs/architecture/diagrams/31-reconnect-continuity-challenge.md`](../../../docs/architecture/diagrams/31-reconnect-continuity-challenge.md)",
+        "[`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/spec.md`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md)"
+      ],
+      "ownedPaths": [
+        "src/net/dtls/fingerprint.ts",
+        "src/net/dtls/continuity.ts",
+        "src/net/dtls/__tests__/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.26-signed-signaling-envelope"
+      ],
+      "acceptanceCriteria": [
+        "`extractFromSdp(sdp)` parses the `a=fingerprint:` attribute per [`dtls-fingerprint-pinning.md` § 1](../../../docs/architecture/dtls-fingerprint-pinning.md#1-extraction-rule); `sha-1` / `md5` algorithms are rejected with `TRUST_VIOLATION_DETECTED { kind: 'weakDtlsFingerprint' }`; missing `a=fingerprint:` line returns `null` and dispatches `{ kind: 'missingDtlsFingerprint' }`.",
+        "On initial handshake, `state.net.peers[peerId].dtlsFp` is populated after `setLocalDescription` and `setRemoteDescription` resolve. Surfaced via `PIN_DTLS_FINGERPRINT` per [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands).",
+        "On reconnect (`LOG_REQUEST` flow per [Task 06](./06-reconnection-log-range-request-plus-replay.md)), the new SDP's fingerprint is compared to the stored value; mismatch dispatches `TRUST_VIOLATION_DETECTED { kind: 'dtlsFingerprintMismatch', peerId }` and aborts the rejoin. Surfaced via `VERIFY_DTLS_FINGERPRINT`.",
+        "`issueChallenge(peerId)` mints a fresh 16-byte CSPRNG nonce, wraps it in a signed envelope (`payloadType: 'CHALLENGE'`), and records the outstanding challenge in `state.net.peers[peerId].pendingChallenge`.",
+        "`verifyChallengeResponse(env, originalPubKey)` confirms (a) the envelope's outer signature passes, and (b) the inner `payload.sig` is an Ed25519 signature over the original nonce by the **same** keypair that signed the original `JOIN_ROOM`. Mismatched signer dispatches `TRUST_VIOLATION_DETECTED { kind: 'challengeResponseInvalid' }`.",
+        "Both gates (continuity challenge AND fingerprint match) MUST pass before re-pinning the new SDP fingerprint and emitting `RECORD_CONTINUITY_CHALLENGE` per [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands).",
+        "Trust-violation banner on [`64-network-lobby`](../../../docs/architecture/wiki/screens/64-network-lobby/spec.md) renders the 5-second grace toast on every fingerprint / challenge failure.",
+        "Simulation test: a DTLS-fingerprint swap mid-reconnect dispatches `TRUST_VIOLATION_DETECTED` and the rejoin is rejected.",
+        "Browser parity test: `compare(a, b)` returns `true` for the same canonical fingerprint string regardless of SDP origin (Chrome 120+, Firefox 121+, Safari 17+).",
+        "Comparison is constant-time per [`crypto-rules.md` § 1](../../../docs/architecture/crypto-rules.md#1-compare--constant-time-always); no `===` / `Buffer.compare` shortcut."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.26-signed-signaling-envelope"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.26-signed-signaling-envelope"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect",
+      "kind": "task",
+      "status": "planned",
+      "title": "Abandon Penalty & Quorum-Attested Disconnect",
+      "path": "tasks/phase-3/01-multiplayer/28-abandon-penalty-and-quorum-disconnect.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Implement the quorum-attested `PEER_DISCONNECTED` envelope, the `state.profile.abandonHistory` ring buffer, and the abandon-penalty tier ladder per [`abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md). Closes the disconnect-spoof / forfeit-fraud window where a peer about to lose can fake the opponent's drop and claim a win-on- timeout. Plan 24 § Critical Fix 5.",
+      "inputs": [
+        "Heartbeat-loss observation from [Task 03](./03-input-only-lockstep-command-serialization-plus-sequencing.md).",
+        "Signed envelope wrap / verify from [Task 26](./26-signed-signaling-envelope.md).",
+        "Continuity challenge from [Task 27](./27-dtls-fingerprint-pinning.md).",
+        "Heartbeat / host-election state from [Task 07](./07-host-migration-heartbeat-election.md)."
+      ],
+      "outputs": [
+        "`src/net/abandon/penalty.ts` — `recordAbandonPenalty`, `inspectAbandonHistory`, ring-buffer pruning at 64 entries, decay rule per [`abandon-penalty.md` § 4](../../../docs/architecture/abandon-penalty.md#4-penalty-tiers).",
+        "`src/net/abandon/quorum.ts` — `verifyDisconnectAttestation(env)`: consumes a host-signed `PEER_DISCONNECTED` envelope and asserts both witness conditions (peer heartbeat-loss observation + signaling-server `signalingObservedAt` timestamp); enforces the 30 s attestation timeout.",
+        "`src/net/abandon/__tests__/*.test.ts` — coverage for genuine disconnect, forged envelope rejection, and attestation timeout."
+      ],
+      "readFirst": [
+        "[`docs/architecture/abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/peer-trust.md`](../../../docs/architecture/peer-trust.md)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/interactions.md`](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md)",
+        "[`content-schema/schemas/abandon-penalty.schema.json`](../../../content-schema/schemas/abandon-penalty.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/net/abandon/penalty.ts",
+        "src/net/abandon/quorum.ts",
+        "src/net/abandon/__tests__/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.26-signed-signaling-envelope",
+        "phase-3.01-multiplayer.27-dtls-fingerprint-pinning"
+      ],
+      "acceptanceCriteria": [
+        "On heartbeat loss ≥ 30 s the surviving peer enters `awaitingDisconnectAttestation` state and renders `Awaiting disconnect attestation…` per [`64-network-lobby/interactions.md` § Trust Violation](../../../docs/architecture/wiki/screens/64-network-lobby/interactions.md).",
+        "The signaling server's WebSocket-close timestamp is wrapped into a host-signed `PEER_DISCONNECTED` envelope per [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md); the surviving peer verifies both witnesses before consumption.",
+        "Verified disconnect dispatches `RECORD_ABANDON_PENALTY` per [`docs/architecture/command-schema.md` § Multiplayer Trust & Identity Commands](../../../docs/architecture/command-schema.md#multiplayer-trust--identity-commands) and writes a [`abandon-penalty.schema.json`](../../../content-schema/schemas/abandon-penalty.schema.json)-conformant row to `state.profile.abandonHistory`.",
+        "Abandon-history ring buffer is capped at 64 entries; older entries are dropped on push.",
+        "Decay rule: one tier-step decay per 5 clean sessions for `cooldown-15min`, per 10 clean sessions for `leaverboard-flag`.",
+        "Forged-envelope test: a `PEER_DISCONNECTED` envelope from a non-host peer is rejected by the envelope verification step (Task 26); no penalty is recorded.",
+        "Attestation-timeout test: 30 s with no signaling-server attestation surfaces `Disconnect attestation failed — match aborted`; no penalty is recorded against either peer.",
+        "`INSPECT_ABANDON_HISTORY` opens a read-only panel rendering `state.profile.abandonHistory`; the panel never enters the deterministic engine command log.",
+        "The implementation imports no PCG32 RNG; the only wall-clock read is via the privileged signaling-clock helper per [`determinism.md` § Wall-clock readers](../../../docs/architecture/determinism.md#wall-clock-readers)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/64-network-lobby"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/abandon-penalty.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/abandon-penalty.schema.json",
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.26-signed-signaling-envelope",
+        "phase-3.01-multiplayer.27-dtls-fingerprint-pinning"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.26-signed-signaling-envelope",
+        "phase-3.01-multiplayer.27-dtls-fingerprint-pinning"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.29-tls-observability",
+      "kind": "task",
+      "status": "planned",
+      "title": "TLS Observability",
+      "path": "tasks/phase-3/01-multiplayer/29-tls-observability.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Wire the redacted TLS-error log shape from [`tls-observability.md`](../../../docs/architecture/tls-observability.md) through the signaling server's structured logger. Per-IP-bucket rate aggregation; closed `errorCode` enum; no raw IP / UA / SDP / cert in any sample emission. Plan 24 § System Improvements — Observability.",
+      "inputs": [
+        "Edge-config TLS hooks (per [Task 24](./24-transport-security-edge-config.md)).",
+        "Signaling-server structured logger from [Task 1](./01-signaling-server-node-js-websocket-lobby.md).",
+        "IP-bucket helper (`/24` IPv4, `/64` IPv6)."
+      ],
+      "outputs": [
+        "`services/signaling/observability/tls.ts` — `emitTlsEvent({ kind, tlsVersion, cipher, ip, errorCode })` that bucketizes the IP and emits the closed shape from [`tls-observability.md` § 2](../../../docs/architecture/tls-observability.md#2-log-shape).",
+        "`services/signaling/observability/__tests__/tls.test.ts` — IPv4 / IPv6 bucket assertions, raw-IP / UA / SDP / cert redaction assertion, per-bucket rate-aggregation cap (1 entry / 60 s)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/tls-observability.md`](../../../docs/architecture/tls-observability.md)",
+        "[`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)",
+        "[`docs/architecture/observability.md`](../../../docs/architecture/observability.md)",
+        "[`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)"
+      ],
+      "ownedPaths": [
+        "services/signaling/observability/tls.ts",
+        "services/signaling/observability/__tests__/",
+        "scripts/check-transport-security.mjs",
+        "/24",
+        "/64"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "scripts/check-transport-security.mjs",
+        "/24",
+        "/64"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.24-transport-security-edge-config"
+      ],
+      "acceptanceCriteria": [
+        "`emitTlsEvent` emits a structured JSON line with the exact shape from [`tls-observability.md` § 2](../../../docs/architecture/tls-observability.md#2-log-shape): `{ ts, kind, tlsVersion, cipher, ipBucket, errorCode }`.",
+        "The `kind` enum is closed to `tls-handshake-failure | cert-mismatch | cipher-rejected`.",
+        "The `errorCode` enum is closed per [`tls-observability.md` § 4](../../../docs/architecture/tls-observability.md#4-closed-errorcode-enum); unknown codes throw at compile time (TypeScript) and runtime (test).",
+        "IPv4 `203.0.113.42` → `ipBucket === \"203.0.113.0/24\"`.",
+        "IPv6 `2001:db8:abcd:1234::1` → `ipBucket === \"2001:db8:abcd:1234::/64\"`.",
+        "The output line MUST NOT contain raw IP, UA tail, SDP body, cert chain, or handshake-duration timing; the redaction test asserts none of these substrings appear in any sample emission.",
+        "Per-bucket rate-aggregation: a single `ipBucket` never emits more than 1 entry per 60 s; subsequent events in the same bucket are coalesced into a `count` field.",
+        "The validate hook fed into `npm run validate:transport` (Task 24) asserts the bucket / redaction invariants on a fixture corpus.",
+        "**Shared-ownership split with Task 24**: Task 24 is the **primary owner** of `scripts/check-transport-security.mjs`. The TLS-bucket assertion wiring is **additive**: it MUST NOT rewrite Task 24's grep gates or HSTS assertions."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 3 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.24-transport-security-edge-config"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.24-transport-security-edge-config"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.30-command-stream-hmac",
+      "kind": "task",
+      "status": "planned",
+      "title": "Command Stream HMAC",
+      "path": "tasks/phase-3/01-multiplayer/30-command-stream-hmac.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Derive a per-session HMAC key from the DTLS exporter and HMAC every `{ seq, playerId, turn, command }` envelope on the lockstep DataChannel; enforce the duplicate-`seq` policy per [`command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md). Closes the bit-tampering and replay-injection windows that DTLS alone cannot close once a peer client is compromised. Plan 24 § Critical Fix 4.",
+      "inputs": [
+        "`RTCDtlsTransport.exportKeyingMaterial` (Chrome 120+, Firefox 121+; Safari fallback path lives in [`command-stream-integrity.md` § 2a](../../../docs/architecture/command-stream-integrity.md#2a-fallback-key)).",
+        "Signed envelope wrap / verify from [Task 26](./26-signed-signaling-envelope.md) (the fallback key is delivered through it).",
+        "Lockstep wire format from [Task 03](./03-input-only-lockstep-command-serialization-plus-sequencing.md)."
+      ],
+      "outputs": [
+        "`src/net/commands/mac.ts` — `deriveSessionKey(rtcDtls)`, `signCommandEnvelope(env, key)`, `verifyCommandEnvelope(env, key)` over the [`command-envelope.schema.json`](../../../content-schema/schemas/command-envelope.schema.json) shape.",
+        "`src/net/commands/__tests__/*.test.ts` — bit-tamper detection, replay rejection, duplicate-`seq` policy, gap-`seq` policy, cross-session-key isolation."
+      ],
+      "readFirst": [
+        "[`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)",
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
+        "[`content-schema/schemas/command-envelope.schema.json`](../../../content-schema/schemas/command-envelope.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/net/commands/mac.ts",
+        "src/net/commands/__tests__/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.01-multiplayer.27-dtls-fingerprint-pinning"
+      ],
+      "acceptanceCriteria": [
+        "`deriveSessionKey(rtcDtls)` returns a non-extractable `CryptoKey` derived from `exportKeyingMaterial(\"hr-cmd-mac\", 32)`. Cached in `state.net.peers[peerId].cmdKey`. The key MUST NOT be exported, logged, or cross the network in any form.",
+        "Browsers without `exportKeyingMaterial` use the host-minted fallback key delivered through the signed signaling envelope per [`command-stream-integrity.md` § 2a](../../../docs/architecture/command-stream-integrity.md#2a-fallback-key). Falling back emits a structured `tls-observability` warning.",
+        "`signCommandEnvelope` HMACs canonical-JSON of `[schemaVersion, seq, playerId, turn, command]` with HMAC-SHA256; the wire `mac` is the first 16 bytes, base64url-encoded (22 url-safe chars without padding).",
+        "`verifyCommandEnvelope` runs the verification order from [`command-stream-integrity.md` § 6](../../../docs/architecture/command-stream-integrity.md#6-verification-order): schema-shape, `playerId` matches the channel's pinned `peerId`, `seq` not duplicated, `mac` matches, inner `command` validates against `command.schema.json`.",
+        "A single `mac` mismatch dispatches `TRUST_VIOLATION_DETECTED { kind: 'commandMacInvalid' }` immediately; there is no per-burst threshold.",
+        "Duplicate-`seq` policy: a duplicate with mismatched `mac` dispatches `TRUST_VIOLATION_DETECTED { kind: 'commandReplayMismatch' }`; drop count > 3 in 30 s dispatches `{ kind: 'commandReplayBurst' }`.",
+        "Gap-`seq` policy: queues envelopes up to 2 turns wall-clock, then transitions into the bisect path ([Task 5](./05-auto-bisect-on-hash-mismatch.md)) without escalating to `TRUST_VIOLATION_DETECTED`.",
+        "Tamper test: flipping any bit in `seq` / `playerId` / `turn` / `command` / `mac` causes `verifyCommandEnvelope` to return `false`.",
+        "Cross-session-key isolation test: a `mac` from session A is rejected when verified with session B's key.",
+        "Telemetry counter `macFailureCount` flows into the desync- detection telemetry per [`docs/architecture/desync-redaction.md`](../../../docs/architecture/desync-redaction.md); no raw peer identity is logged."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command-envelope.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command-envelope.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.27-dtls-fingerprint-pinning"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.27-dtls-fingerprint-pinning"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -35054,7 +35793,14 @@
         "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary",
         "phase-3.01-multiplayer.21-peer-failure-ui-contract",
         "phase-3.01-multiplayer.22-desync-redaction-acceptance",
-        "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display"
+        "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display",
+        "phase-3.01-multiplayer.24-transport-security-edge-config",
+        "phase-3.01-multiplayer.25-peer-keypair-and-session-token",
+        "phase-3.01-multiplayer.26-signed-signaling-envelope",
+        "phase-3.01-multiplayer.27-dtls-fingerprint-pinning",
+        "phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect",
+        "phase-3.01-multiplayer.29-tls-observability",
+        "phase-3.01-multiplayer.30-command-stream-hmac"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -35587,6 +36333,7 @@
         "mvp.02-content-schemas.40-privacy-and-legal-docs",
         "mvp.02-content-schemas.41-error-and-audit-schemas",
         "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
+        "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",

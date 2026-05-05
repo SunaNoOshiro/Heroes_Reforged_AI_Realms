@@ -16,6 +16,10 @@ Read First:
 - [`docs/architecture/signaling-audit-log.md`](../../../docs/architecture/signaling-audit-log.md)
 - [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)
 - [`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)
+- [`docs/architecture/transport-security.md`](../../../docs/architecture/transport-security.md)
+- [`docs/architecture/web-headers.md`](../../../docs/architecture/web-headers.md)
+- [`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)
+- [`docs/architecture/tls-observability.md`](../../../docs/architecture/tls-observability.md)
 
 Inputs:
 - Node.js 20, `ws` library
@@ -27,7 +31,13 @@ Outputs:
   `PEER_PENDING`, `APPROVE_PEER`, `REJECT_PEER`, `PEER_REJECTED`,
   `KICK_PEER`, `PEER_KICKED`, `JOIN_ATTEMPT_REJECTED`,
   `CLOSE_ROOM`, `ROOM_EXPIRED`, `ROOM_CLOSED`, `RATE_LIMITED`,
-  `PEER_CONNECTED`, `PEER_DISCONNECTED`
+  `PEER_CONNECTED`, `PEER_DISCONNECTED`, `CHALLENGE`,
+  `CHALLENGE_RESPONSE`, `HOST_CHANGED`. Every signaling frame
+  after `JOIN_HANDSHAKE` is wrapped in the signed envelope per
+  [`signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md):
+  fields `signerId`, `sig`, `nonce`, `iat`, `sessionTokenHash`
+  are mandatory on the wire. The server validates **shape +
+  freshness** but does NOT verify the inner signature.
 - Room ID: 8-character upper-case Crockford-Base32 code per
   [`lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)
 - Room secret: 16 bytes, base64url-encoded — generated at
@@ -43,7 +53,44 @@ Outputs:
   active-room counters per
   [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md))
 - Deploy target: any stateless container (Fly.io, Railway) — TLS
-  terminated at the edge
+  terminated at the edge per
+  [`transport-security.md`](../../../docs/architecture/transport-security.md);
+  edge config example lives at
+  [`services/signaling/config/edge.example.toml`](../../../services/signaling/config/edge.example.toml)
+  (introduced by [Task 24](./24-transport-security-edge-config.md))
+
+Transport:
+- **Listener**: WSS-only. Plain `ws://` is rejected at the
+  listener. The bootstrap refuses to bind on `ws://` unless
+  `process.env.NODE_ENV === 'test'`.
+- **TLS**: TLS 1.2 floor; cipher allowlist per
+  [`transport-security.md` § 2](../../../docs/architecture/transport-security.md#2-tls-floor).
+  Weak-cipher fallback is forbidden.
+- **HSTS**: edge emits
+  `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`
+  per
+  [`transport-security.md` § 3](../../../docs/architecture/transport-security.md#3-hsts-at-the-edge).
+- **Cert lifecycle**: Let's Encrypt + auto-renew + alert on
+  expiry < 14 days per
+  [`transport-security.md` § 6](../../../docs/architecture/transport-security.md#6-cert-lifecycle).
+- **Anti-downgrade**: `NODE_TLS_REJECT_UNAUTHORIZED=0` is forbidden
+  in any production env file or non-test code path.
+- **Dev vs Prod**: localhost dev loop may bind on `ws://`; release
+  builds may not. CI gate `npm run validate:transport` enforces.
+
+Origin Allowlist:
+- WebSocket upgrade validates the `Origin` header against the
+  canonical web origin per
+  [`web-headers.md` § 3](../../../docs/architecture/web-headers.md#3-cors-allowlist);
+  mismatch returns `403`. Wildcard origins are forbidden.
+
+Observability:
+- TLS-error log shape per
+  [`tls-observability.md`](../../../docs/architecture/tls-observability.md);
+  closed `kind` enum
+  (`tls-handshake-failure | cert-mismatch | cipher-rejected`),
+  PII-redacted (`/24` IPv4 / `/64` IPv6 buckets), no UA tail, no
+  raw IP, no SDP / cert content.
 
 Allowed Payloads:
 - The only payloads that traverse the signaling server are the
