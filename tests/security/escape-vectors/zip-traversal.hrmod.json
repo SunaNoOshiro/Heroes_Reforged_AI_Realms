@@ -1,0 +1,12 @@
+{
+  "fixtureClass": "zip-archive",
+  "stresses": "zip path-traversal sanitiser",
+  "expectedRefusalCode": "pack.error.archive.path-traversal",
+  "input": {
+    "entries": [
+      { "path": "../../../etc/passwd", "compressedBytes": 32, "uncompressedBytes": 32 },
+      { "path": "manifest.json", "compressedBytes": 16, "uncompressedBytes": 16 }
+    ]
+  },
+  "notes": "Exercises sanitizeArchiveEntry(path) per tasks/phase-2/05-mod-system/01-zip-pack-loader-jszip-plus-manifest-parser.md. Refuses before any decompression of the offending entry."
+}

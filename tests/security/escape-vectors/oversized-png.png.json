@@ -1,0 +1,10 @@
+{
+  "fixtureClass": "image-png",
+  "stresses": "image dim cap (maxImageWidth: 4096, maxImageHeight: 4096, maxImagePixels: 16_777_216)",
+  "expectedRefusalCode": "pack.error.asset.dim-cap",
+  "input": {
+    "magicHexBytes": "89 50 4E 47 0D 0A 1A 0A",
+    "ihdr": { "width": 30000, "height": 30000, "bitDepth": 8, "colorType": 6 }
+  },
+  "notes": "30000x30000 RGBA PNG would expand to ~3.6 GB after createImageBitmap. Pre-flight parses the IHDR width/height and refuses before any decoder allocation."
+}

@@ -198,6 +198,67 @@ flagged in audit 21 (Q390). Cross-link:
 [`ugc-safety.md` § External URL Ban](./ugc-safety.md#1-external-url-ban),
 [`asset-index.schema.json`](../../content-schema/schemas/asset-index.schema.json).
 
+## Asset Rule
+
+Every binary asset is bound by:
+
+- the closed `kind` enum on `asset-index.schema.json`, pinned by
+  [`asset-policy.md`](./asset-policy.md);
+- the closed extension allowlist (`png`, `webp`, `ogg`, `mp3`,
+  `json`);
+- the per-asset `sha256` field (required), verified before any
+  decoder runs per
+  [`asset-loading.md` § 2 Pre-flight Pipeline](./asset-loading.md#2-pre-flight-pipeline);
+- the per-decoder cap table in
+  [`asset-loading.md` § 1](./asset-loading.md#1-cap-table)
+  (image dim, audio duration / channels / sample rate, asset bytes);
+- the per-pack budget in [`asset-loading.md` § 1.2](./asset-loading.md#12-per-pack-budgets)
+  (concurrency, rate, residency, max assets per pack).
+
+Pack assets MAY NOT include `svg`, `font/*`, `video/*`, or
+`text/html` — see [`asset-policy.md` § 2](./asset-policy.md#2-forbidden-kinds)
+for the CVE classes those forbidden formats avoid.
+
+## Native-Target Jail Rule
+
+The codebase ships only a browser target today. Any future native
+wrapper (Tauri, Electron, etc.) MUST resolve assets through the
+same `pack://<packId>/` virtual scheme used by the browser
+loader. Raw `file://` reads from a native wrapper are forbidden.
+The rule pre-empts the path-traversal surface that opens the
+moment a desktop bundle gains direct filesystem access. Pinned by
+[`sandbox-model.md` § 2](./sandbox-model.md#2-capability-matrix)
+("Any other URL scheme" row — refuse for every tier) and the
+`baseUrl` scheme constraint on
+[`manifest.schema.json`](../../content-schema/schemas/manifest.schema.json).
+
+## Templating Rule
+
+Localization is safe by construction: only ICU `{var}`
+placeholders are evaluated. Any other syntax (Mustache `{{…}}`,
+EJS `<%= … %>`, Handlebars `{{#…}}`, Pug `#{…}`) is rendered as
+literal text. Adding a general-purpose templating engine
+(`handlebars`, `mustache`, `ejs`, `pug`, `eta`, etc.) to the
+codebase is forbidden by the dependency policy
+([`dependency-policy.md`](./dependency-policy.md)) and the
+ESLint `no-restricted-imports` rule. The rule closes the eval
+class that re-opens the moment a string-to-JS compiler enters
+the bundle.
+
+## Trust Tiers
+
+`manifest.trustTier` is a closed enum (`canonical |
+community-signed | sandboxed`) that the loader either reads
+directly (when the manifest declares it and the signature
+verifies) or derives per
+[`sandbox-model.md` § 1](./sandbox-model.md#1-trust-tiers). The
+boolean `manifest.sandboxed` is preserved as a derived flag:
+`sandboxed === (trustTier === "sandboxed")`. The capability
+matrix that consumes the tier is owned by
+[`sandbox-model.md` § 2](./sandbox-model.md#2-capability-matrix);
+the override-precedence trust-floor rule is owned by
+[`sandbox-model.md` § 3](./sandbox-model.md#3-override-precedence-trust-rule).
+
 ## Override Precedence
 
 When a pack declares `dependencies[]` and `overrides[]`, resolution

@@ -1,0 +1,9 @@
+{
+  "fixtureClass": "json-payload",
+  "stresses": "JSON parser-hardening: prototype-pollution key rejection",
+  "expectedRefusalCode": "parser.error.proto-pollution",
+  "input": {
+    "rawJson": "{\"__proto__\":{\"polluted\":true},\"id\":\"victim\"}"
+  },
+  "notes": "Parser must refuse keys named __proto__, prototype, constructor before the object is materialised. Reference: docs/architecture/parser-hardening.md."
+}

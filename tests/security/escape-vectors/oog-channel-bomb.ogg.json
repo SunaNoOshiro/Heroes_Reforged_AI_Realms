@@ -1,0 +1,14 @@
+{
+  "fixtureClass": "audio-ogg",
+  "stresses": "audio caps (maxAudioChannels: 2, maxAudioSampleRate: 48_000, maxAudioDurationMs: 60_000)",
+  "expectedRefusalCode": "pack.error.asset.audio-cap",
+  "input": {
+    "magicHexBytes": "4F 67 67 53",
+    "vorbisIdentification": {
+      "channels": 8,
+      "sampleRate": 384000,
+      "declaredDurationMs": 600000
+    }
+  },
+  "notes": "Refuses on the channel count from the Vorbis identification header before decodeAudioData runs."
+}

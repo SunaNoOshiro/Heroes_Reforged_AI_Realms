@@ -1,0 +1,11 @@
+{
+  "fixtureClass": "image-png",
+  "stresses": "PNG magic-byte / IHDR pre-flight",
+  "expectedRefusalCode": "pack.error.asset.mime-mismatch",
+  "input": {
+    "magicHexBytes": "89 50 4E 47 0D 0A 1A 0A",
+    "ihdrTruncatedAfterBytes": 4,
+    "totalBytes": 16
+  },
+  "notes": "Bytes start with the PNG signature but the IHDR chunk is truncated; the pre-flight cap parser cannot read width/height and must refuse before createImageBitmap runs."
+}

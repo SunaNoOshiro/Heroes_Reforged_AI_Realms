@@ -131,6 +131,16 @@ Acceptance Criteria:
   walk and toast emission. Per-store byte budgets and the
   eviction order are pinned in
   [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md).
+- **Pack partition.** Any key written on behalf of pack `<id>`
+  MUST be prefixed `pack:<id>:`. The wrapper exposes a
+  `forPack(packId)` view that returns a scoped get/set/delete/list
+  surface; reads from that surface are filtered to the prefix and
+  refuse cross-prefix reads with `storage.error.cross-prefix`.
+  Rule pinned in
+  [`docs/architecture/sandbox-model.md` § 2](../../../docs/architecture/sandbox-model.md#2-capability-matrix)
+  ("`IndexedDB` write" / "Cross-prefix `IndexedDB` read" rows).
+  Engine-internal stores (`saves`, `scenarios`, `content` host
+  records) are not subject to the prefix.
 
 Verify:
 - npm run validate

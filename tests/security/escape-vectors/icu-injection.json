@@ -1,0 +1,12 @@
+{
+  "fixtureClass": "localization",
+  "stresses": "Templating Rule — only ICU {var} placeholders are evaluated",
+  "expectedRefusalCode": "pack.error.locale.template-syntax",
+  "input": {
+    "localizationEntries": {
+      "ui.welcome": "Hello {{constructor.constructor('return process')()}}",
+      "ui.score": "Score: <%= score %>"
+    }
+  },
+  "notes": "Mustache- and EJS-style templating syntax in localization values is rendered as literal text per pack-contract.md § Templating Rule; an authoring tool that emits these strings is refused at pack-validation time."
+}

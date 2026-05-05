@@ -1992,8 +1992,8 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 11
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 13
     },
     {
       "id": "mvp.00-core-architecture.22-02-production-build-policy",
@@ -2113,6 +2113,159 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.00-core-architecture.22-04-shipped-csp-and-trusted-types",
+      "kind": "task",
+      "status": "planned",
+      "title": "Shipped CSP & Trusted Types",
+      "path": "tasks/mvp/00-core-architecture/22-04-shipped-csp-and-trusted-types.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Ship a deny-by-default Content Security Policy and a single Trusted Types policy on the host HTML so every other defence layer (no-eval, no-remote-fetch, no-inline-script, no-dynamic-DOM) is enforced at the browser layer, not just by intent. Owns the `<meta>` tag in the canonical HTML, the static-host header contract, the `canonical-policy` Trusted Types policy registration, and the build-time CSP-assertion gate. Plan 28 § Tasks — Shipped CSP.",
+      "inputs": [
+        "The policy text and per-directive rationale in [`docs/architecture/csp.md` § 1](../../../docs/architecture/csp.md#1-shipped-policy).",
+        "The Trusted Types policy stub in [`docs/architecture/csp.md` § 2](../../../docs/architecture/csp.md#2-trusted-types-policy).",
+        "The bundled HTML produced by the Plan 30 build pipeline (this task only owns the meta tag + policy registration; the build pipeline owns header emission)."
+      ],
+      "outputs": [
+        "`docs/architecture/csp.md` — already authored under Plan 28.",
+        "`index.html` `<meta http-equiv=\"Content-Security-Policy\">` carrying the policy text byte-for-byte.",
+        "`src/runtime/security/trusted-types.ts` — registers the `canonical-policy` Trusted Types policy at boot. `createScript` and `createScriptURL` throw; `createHTML` defers to the formatter pipeline.",
+        "`scripts/check-csp.mjs` — CI gate that asserts (1) the bundled `index.html` `<meta>` CSP matches `csp.md` § 1 byte-for-byte, (2) the bundled JS contains no `eval(`, `new Function(`, `setTimeout(\"…\")`, `setInterval(\"…\")`, or inline `<script>` content, (3) `trustedTypes.createPolicy` is called exactly once with the name `canonical-policy`, and (4) the static-host CSP header (when emitted by the build pipeline) matches the meta tag."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../../../docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md)",
+        "[`docs/architecture/csp.md`](../../../docs/architecture/csp.md)",
+        "[`docs/architecture/worker-csp.md`](../../../docs/architecture/worker-csp.md)",
+        "[`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/csp.md",
+        "src/runtime/security/trusted-types.ts",
+        "scripts/check-csp.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "acceptanceCriteria": [
+        "`index.html` ships a `<meta http-equiv=\"Content-Security-Policy\">` whose content matches [`csp.md` § 1](../../../docs/architecture/csp.md#1-shipped-policy) byte-for-byte.",
+        "`src/runtime/security/trusted-types.ts` registers exactly one Trusted Types policy named `canonical-policy`. `createScript` and `createScriptURL` throw with a fixed message that the CI gate greps for. `createHTML` returns `formatTrustedHtml(input)` per [`error-formatter.md`](../../../docs/architecture/error-formatter.md).",
+        "`scripts/check-csp.mjs` runs as part of `npm run validate` and fails on any of: meta tag drift, banned dynamic-eval pattern in the bundled JS, missing or extra `createPolicy` call, or static-host header drift.",
+        "The CSP-assertion gate is wired into `npm run validate` after `validate:build-attestation`.",
+        "Refusal codes for the gate are registered in [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md) under `build.error.csp.*`."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-01-error-formatter-contract"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "mvp.00-core-architecture.22-05-security-tests-escape-vectors-corpus",
+      "kind": "task",
+      "status": "planned",
+      "title": "Security Tests — Escape-Vectors Corpus & CI Gate",
+      "path": "tasks/mvp/00-core-architecture/22-05-security-tests-escape-vectors-corpus.md",
+      "moduleId": "mvp.00-core-architecture",
+      "modulePath": "tasks/mvp/00-core-architecture.md",
+      "description": "Build the `tests/security/escape-vectors/` fixture corpus and the CI driver that runs every fixture through the real loader and asserts a closed-code refusal. The corpus closes the regression gap on every cap, sanitiser, magic-byte check, and trust gate authored by Plan 28 — once it is wired into CI, drift on any loader rule fails the build instead of silently regressing. Plan 28 § Tasks — security-fuzz / escape-vector corpus.",
+      "inputs": [
+        "The cap table in [`asset-loading.md` § 1](../../../docs/architecture/asset-loading.md#1-cap-table).",
+        "The forbidden-kind table in [`asset-policy.md` § 2](../../../docs/architecture/asset-policy.md#2-forbidden-kinds).",
+        "The closed error-code list in [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)."
+      ],
+      "outputs": [
+        "`tests/security/escape-vectors/` — payload-class README plus per-class fixture files (text-only descriptors at this stage; binary fixtures are produced by the loader tasks at CI time):",
+        "`zip-traversal.hrmod.json` — entry path containing `..`.",
+        "`zip-bomb.hrmod.json` — declared-ratio descriptor.",
+        "`proto-pollution.json` — JSON with `__proto__` / `constructor` keys.",
+        "`bigint-confusion.json` — JSON with stringified bigint values.",
+        "`malformed-png.png.json` — PNG-magic header with truncated IHDR.",
+        "`oversized-png.png.json` — declared-dim descriptor over `maxImageWidth`.",
+        "`oog-channel-bomb.ogg.json` — declared-channel descriptor over `maxAudioChannels`.",
+        "`icu-injection.json` — localization payload with non-ICU template syntax.",
+        "`mime-polyglot.bin.json` — descriptor for a polyglot payload that fails the magic-byte gate.",
+        "`tests/security/run.mjs` — driver that loads every fixture through the real loader (or its scaffold) and asserts the documented refusal code.",
+        "`package.json` — script `\"test:security\": \"node tests/security/run.mjs\"`."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../../../docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md)",
+        "[`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)",
+        "[`docs/architecture/asset-policy.md`](../../../docs/architecture/asset-policy.md)",
+        "[`docs/architecture/sandbox-model.md`](../../../docs/architecture/sandbox-model.md)",
+        "[`docs/architecture/parser-hardening.md`](../../../docs/architecture/parser-hardening.md)",
+        "[`tests/security/escape-vectors/README.md`](../../../tests/security/escape-vectors/README.md)"
+      ],
+      "ownedPaths": [
+        "tests/security/escape-vectors/",
+        "tests/security/run.mjs",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.00-core-architecture.22-04-shipped-csp-and-trusted-types",
+        "mvp.02b-asset-pipeline.05-async-asset-loader-with-caching",
+        "mvp.02b-asset-pipeline.04-asset-registry-id-based-resolution-no-hardcoded-paths",
+        "mvp.08-persistence.16-parser-hardening"
+      ],
+      "acceptanceCriteria": [
+        "`tests/security/escape-vectors/README.md` enumerates every payload class with its expected refusal code, cross-linking [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md) by anchor.",
+        "Each fixture descriptor names the cap or sanitiser it stresses.",
+        "`tests/security/run.mjs` exits non-zero on the first fixture that does not refuse with the declared code.",
+        "`npm run test:security` is wired into CI immediately after `npm run validate`.",
+        "Coverage table in `README.md` lists at least one fixture per closed `pack.error.asset.*`, `pack.error.archive.*`, and `parser.error.*` code emitted by the loaders Plan 28 names.",
+        "Adding a new cap or refusal code requires either a fixture in this corpus or a documented exemption in `README.md`; CI surfaces the gap as `security-tests.error.uncovered-refusal-code`.",
+        "**Shared-path scope.** Edits to `package.json` are **additive** — the task adds the `test:security` script row only and **must not** rewrite or remove existing scripts. The primary contract for `package.json` is **owned by** [`tasks/mvp/00-core-architecture/22-02-production-build-policy.md`](./22-02-production-build-policy.md); this task's edit is a script-row addition under that primary ownership."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.00-core-architecture.22-04-shipped-csp-and-trusted-types",
+        "mvp.02b-asset-pipeline.04-asset-registry-id-based-resolution-no-hardcoded-paths",
+        "mvp.02b-asset-pipeline.05-async-asset-loader-with-caching",
+        "mvp.08-persistence.16-parser-hardening"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.00-core-architecture.22-04-shipped-csp-and-trusted-types",
+        "mvp.02b-asset-pipeline.04-asset-registry-id-based-resolution-no-hardcoded-paths",
+        "mvp.02b-asset-pipeline.05-async-asset-loader-with-caching",
+        "mvp.08-persistence.16-parser-hardening"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,
@@ -3173,7 +3326,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 420
+      "downstreamTransitiveCount": 422
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3235,7 +3388,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 418
+      "downstreamTransitiveCount": 420
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3292,7 +3445,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 255
+      "downstreamTransitiveCount": 256
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3348,7 +3501,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 329
+      "downstreamTransitiveCount": 331
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3407,7 +3560,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 94
+      "downstreamTransitiveCount": 95
     },
     {
       "id": "mvp.01-engine-core.06-command-dispatcher",
@@ -4394,7 +4547,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 324
+      "downstreamTransitiveCount": 326
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4452,7 +4605,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 245
+      "downstreamTransitiveCount": 247
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4516,7 +4669,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 171
+      "downstreamTransitiveCount": 173
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4574,7 +4727,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 176
+      "downstreamTransitiveCount": 178
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4635,7 +4788,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 236
+      "downstreamTransitiveCount": 238
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4696,7 +4849,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 295
+      "downstreamTransitiveCount": 297
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4770,7 +4923,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 162
+      "downstreamTransitiveCount": 164
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4855,7 +5008,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 131
+      "downstreamTransitiveCount": 133
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4956,7 +5109,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 128
+      "downstreamTransitiveCount": 130
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -5064,7 +5217,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 33,
-      "downstreamTransitiveCount": 118
+      "downstreamTransitiveCount": 120
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -5224,7 +5377,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 206
+      "downstreamTransitiveCount": 208
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5316,7 +5469,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 135
+      "downstreamTransitiveCount": 137
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5387,7 +5540,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 127
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5449,7 +5602,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 127
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -8098,7 +8251,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 36
+      "downstreamTransitiveCount": 37
     },
     {
       "id": "mvp.02b-asset-pipeline.02-animation-definition-json-format",
@@ -8233,7 +8386,9 @@
         "`AssetRegistry`: ```typescript class AssetRegistry { // Called when a pack is loaded registerPack(packId: string, baseUrl: string, manifest: Manifest): void unregisterPack(packId: string): void // Resolution (used by renderer and sound system) resolveSprite(unitId: string): string // → URL to sprite sheet PNG resolvePortrait(entityId: string): string // → URL to portrait PNG resolveIcon(entityId: string): string // → URL to icon PNG resolveAnimation(unitId: string, sequence: string): AnimationDef resolveSound(eventId: string): string | null // → URL to .ogg or null resolveTownBg(factionId: string): string resolveSiegeBg(factionId: string, fortLevel: number): string resolveBattleBg(terrainId: string): string // Fallback chain: faction pack → shared pack → placeholder resolveWithFallback(id: string, type: AssetType): string } ``` Why this is risky: If ANY renderer code imports a path directly (e.g., `import spriteUrl from '../assets/emberwild/ash-hound.png'`), hot-swap breaks. Enforce this with an ESLint rule."
       ],
       "readFirst": [
-        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)"
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
+        "[`docs/architecture/sandbox-model.md`](../../../docs/architecture/sandbox-model.md)",
+        "[`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)"
       ],
       "ownedPaths": [
         "src/engine/asset-registry.ts"
@@ -8255,7 +8410,11 @@
         "**Retry policy.** On `404` / fetch failure, the resolver retries exactly once with 500 ms backoff. Subsequent failures within the same session use the placeholder without further retry.",
         "**User notification.** A non-modal toast \"Some visuals couldn't load\" is emitted at most once per session, not per asset.",
         "**Gameplay vs presentation boundary.** The resolver returns *pixels / audio* only. Frame timing, hitbox geometry, and projectile speed are gameplay records loaded pre-session — never streamed assets. Cross-cutting policy in [`docs/architecture/edge-cases-policy.md` § 12](../../../docs/architecture/edge-cases-policy.md#12-asset-load-failure-q215).",
-        "**Per-asset integrity.** The resolver returns the verified asset only. Hash verification is owned by [`mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script`](./13-per-asset-integrity-and-build-script.md); this resolver consumes its outcome rather than re-implementing hashing."
+        "**Per-asset integrity.** The resolver returns the verified asset only. Hash verification is owned by [`mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script`](./13-per-asset-integrity-and-build-script.md); this resolver consumes its outcome rather than re-implementing hashing.",
+        "**`baseUrl` scheme constraint.** `registerPack(packId, baseUrl, manifest)` MUST refuse any `baseUrl` that does not match `^(blob:|pack://|/)`. `http:`, `https:`, `file:`, `data:`, and any cross-origin URL are rejected with `pack.error.manifest.base-url-scheme`. Constraint pinned in `manifest.schema.json` `baseUrl.pattern`.",
+        "**Trust-tier recording.** Every `registerPack` call records the derived `trustTier` (`canonical | community-signed | sandboxed`) per [`sandbox-model.md` § 1](../../../docs/architecture/sandbox-model.md#1-trust-tiers). The tier is read by every override and capability gate; do not re-derive it elsewhere.",
+        "**Closed kind enum at registration.** The registry refuses any asset whose `kind` is outside `asset-index.schema.json` `kind` enum at registration time, before any fetch is queued. Refusal code: `pack.error.asset.kind-forbidden`.",
+        "**Tier-aware override precedence.** When two packs claim the same record id, the resolver applies the trust-floor rule from [`sandbox-model.md` § 3](../../../docs/architecture/sandbox-model.md#3-override-precedence-trust-rule) **before** the load-order rule. A `sandboxed` pack cannot shadow a record owned by a `canonical` or `community-signed` pack; refusal code `override.sandboxed-shadow-canonical` (existing) or `override.community-shadow-canonical` (new)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -8280,8 +8439,8 @@
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 11
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 12
     },
     {
       "id": "mvp.02b-asset-pipeline.05-async-asset-loader-with-caching",
@@ -8300,7 +8459,10 @@
         "`AssetLoader`: ```typescript class AssetLoader { loadTexture(id: string): Promise<WebGLTexture> loadAudio(id: string): Promise<AudioBuffer> loadAnimation(id: string): Promise<AnimationDef> preloadPack(packId: string, onProgress: (pct: number) => void): Promise<void> evictPack(packId: string): void // free GPU memory + audio buffers getTexture(id: string): WebGLTexture | null // sync, returns null if not loaded } ```"
       ],
       "readFirst": [
-        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)"
+        "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
+        "[`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)",
+        "[`docs/architecture/asset-policy.md`](../../../docs/architecture/asset-policy.md)",
+        "[`docs/architecture/worker-csp.md`](../../../docs/architecture/worker-csp.md)"
       ],
       "ownedPaths": [
         "src/renderer/asset-loader.ts"
@@ -8316,7 +8478,17 @@
         "Accessing an unloaded texture returns a placeholder (not a crash)",
         "Preloading a pack reports correct progress percentage",
         "`evictPack(\"emberwild-faction\")` frees Emberwild textures from GPU memory (verify with browser memory profiler)",
-        "Cache hit: same asset loaded twice → second call returns in < 1ms"
+        "Cache hit: same asset loaded twice → second call returns in < 1ms",
+        "**Pre-flight pipeline ordering.** Every binary asset runs through `bytes → magic-byte check → cap pre-flight → SHA-256 verify → decoder` in the order pinned by [`docs/architecture/asset-loading.md` § 2](../../../docs/architecture/asset-loading.md#2-pre-flight-pipeline). Reordering any gate is a CI failure.",
+        "**Per-asset hash check precedes decode.** The loader recomputes the SHA-256 of fetched bytes and compares against `assets/index.json[].sha256` before any decoder runs. Mismatch returns `Result.err(\"pack.error.asset.integrity\", { assetId, expected, observed })`.",
+        "**MIME magic-byte gate.** The loader compares the first bytes of every fetched asset against the per-kind magic table in [`asset-loading.md` § 4](../../../docs/architecture/asset-loading.md#4-magic-byte-table) (PNG `89 50 4E 47`, OGG `4F 67 67 53`, WebP `52 49 46 46 … 57 45 42 50`, JSON `{` after BOM strip). Mismatch → `Result.err(\"pack.error.asset.mime-mismatch\", { expected, observed })`. The `pack://` virtual fetcher synthesises `X-Content-Type-Options: nosniff` on every response.",
+        "**Image dim pre-flight.** For PNG/WebP, the loader parses the PNG IHDR / WebP VP8X width and height before `createImageBitmap` and refuses on `maxImageWidth: 4096`, `maxImageHeight: 4096`, `maxImagePixels: 16_777_216` per [`asset-loading.md` § 1.1](../../../docs/architecture/asset-loading.md#1-cap-table). Refusal code: `pack.error.asset.dim-cap`.",
+        "**Audio header pre-flight.** For OGG, the loader parses the Vorbis identification header for `sampleRate` and `channels` before `decodeAudioData`. Refuses on `maxAudioChannels: 2`, `maxAudioSampleRate: 48_000`. Duration is verified after decode-into-Worker; on `maxAudioDurationMs: 60_000` overage the buffer is freed and the call refuses with `pack.error.asset.audio-cap`.",
+        "**Per-pack fetch concurrency + rate cap.** The loader runs a per-pack token bucket: at most `maxConcurrentFetches: 8` in-flight fetches and `maxFetchesPerSecondPerPack: 32`. Excess requests queue FIFO. A queue stalled > 5 s emits `pack.error.asset.fetch-rate`.",
+        "**Per-pack memory budget.** The loader's cache attributes resident bytes to the owning `packId`; LRU within the pack fires before global pressure. Per-pack ceiling: `maxResidentBytesPerPack: 64 MB` (32 MB for sandboxed packs per [`sandbox-model.md` § 2](../../../docs/architecture/sandbox-model.md#2-capability-matrix)).",
+        "**Off-main-thread decode.** Image decode runs in a Worker using `createImageBitmap` over a transferred `ArrayBuffer`; audio decode runs inside an `AudioWorklet`. Both adopt the Worker security profile in [`worker-csp.md`](../../../docs/architecture/worker-csp.md); Worker crashes follow the restart-with-last-known-good policy in that doc.",
+        "**Closed-kind enforcement.** The loader refuses any asset whose declared `kind` is outside the closed enum on `asset-index.schema.json`; refusal code `pack.error.asset.kind-forbidden` per [`asset-policy.md` § 2](../../../docs/architecture/asset-policy.md#2-forbidden-kinds).",
+        "**Security-test corpus.** The fixtures under [`tests/security/escape-vectors/`](../../../tests/security/escape-vectors/) run through the loader and assert `Result.err` with stable codes for every cap above."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -8335,8 +8507,8 @@
         "mvp.02b-asset-pipeline.04-asset-registry-id-based-resolution-no-hardcoded-paths"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 9
+      "downstreamDirectCount": 7,
+      "downstreamTransitiveCount": 10
     },
     {
       "id": "mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present",
@@ -15397,7 +15569,8 @@
         "`list()` over a fixture of N saves issues exactly N manifest reads and zero payload reads (assert via mock counter).",
         "`set()` on a quota-exceeded environment returns `Result.err(StorageError { code: 'QUOTA_EXCEEDED' })` only after the eviction module has walked the documented order without freeing enough space; raw `DOMException`s never escape.",
         "`getQuotaUsage()` returns a `{ used, quota }` reading consistent with `navigator.storage.estimate()`.",
-        "The wrapper depends on the eviction module ([`09-quota-handling.md`](./09-quota-handling.md)) for the LRU walk and toast emission. Per-store byte budgets and the eviction order are pinned in [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md)."
+        "The wrapper depends on the eviction module ([`09-quota-handling.md`](./09-quota-handling.md)) for the LRU walk and toast emission. Per-store byte budgets and the eviction order are pinned in [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md).",
+        "**Pack partition.** Any key written on behalf of pack `<id>` MUST be prefixed `pack:<id>:`. The wrapper exposes a `forPack(packId)` view that returns a scoped get/set/delete/list surface; reads from that surface are filtered to the prefix and refuse cross-prefix reads with `storage.error.cross-prefix`. Rule pinned in [`docs/architecture/sandbox-model.md` § 2](../../../docs/architecture/sandbox-model.md#2-capability-matrix) (\"`IndexedDB` write\" / \"Cross-prefix `IndexedDB` read\" rows). Engine-internal stores (`saves`, `scenarios`, `content` host records) are not subject to the prefix."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -15421,7 +15594,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 66
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -16635,8 +16808,8 @@
         "mvp.08-persistence.01-indexeddb-wrapper"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 8
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 9
     },
     {
       "id": "mvp.08-persistence.17-pre-replay-command-validation",
@@ -18609,7 +18782,8 @@
         "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md)",
         "[`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)",
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
-        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)"
+        "[`docs/architecture/performance.md`](../../../docs/architecture/performance.md)",
+        "[`docs/architecture/worker-csp.md`](../../../docs/architecture/worker-csp.md)"
       ],
       "ownedPaths": [
         "src/ai/bots/ai-worker.ts",
@@ -18655,6 +18829,7 @@
         "\"Lord with view containing 0 ready heroes returns `END_DAY` within 6 s hard timeout\".",
         "`AI_TRACE_REQUEST` / `AI_TRACE_RESULT` message handlers are additive surfaces (owned by task 08) that do not affect `COMPUTE_MOVE` semantics. The trace return for input `(view, rngSeed)` is itself deterministic; calling it mid-game is allowed but **not** part of the canonical command log.",
         "Error path: on uncaught worker exception, the worker emits `AI_ERROR` and the client resolves with the per-difficulty no-action fallback so the dispatcher always advances.",
+        "**Worker security profile.** The Worker adopts the per-Worker CSP, structured-clone-only message bus, crash-recovery, and responsiveness-timeout contract pinned in [`docs/architecture/worker-csp.md`](../../../docs/architecture/worker-csp.md). No `eval`, no `Function`, no remote `importScripts()`. A Worker crash restarts under the last-known-good policy in that doc; a crash-loop (3× same `kind` per session) surfaces `Result.err(\"worker.crash-loop\", …)` and the client returns the per-difficulty no-action fallback.",
         "Shared-path extensions to `src/ai/bots/ai-worker.ts` and `src/ai/bots/ai-client.ts` are **additive**: this task **must not** be rewritten when downstream tasks add the `AI_TRACE_REQUEST` / `AI_TRACE_RESULT` handlers (primary contract for those handlers is **owned by** [`08-ai-inspector-dev-screen.md`](./08-ai-inspector-dev-screen.md)) or the `BotProvider` interface (primary contract **owned by** [`10-bot-provider-interface.md`](./10-bot-provider-interface.md)). Trace handlers and the BotProvider wrapper extend the worker surface without rewriting the `COMPUTE_MOVE` semantics owned here."
       ],
       "verifyCommands": [
@@ -23024,7 +23199,9 @@
       ],
       "readFirst": [
         "[`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)",
-        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)"
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)",
+        "[`docs/architecture/parser-hardening.md`](../../../docs/architecture/parser-hardening.md)"
       ],
       "ownedPaths": [
         "src/content-runtime/mod-loader.ts"
@@ -23042,7 +23219,14 @@
         "ZIP with missing `manifest.json` returns `Err(\"Missing manifest\")`",
         "ZIP with invalid manifest JSON returns `Err` with parse error details",
         "ZIP with multiple manifest files returns `Err`",
-        "Canonical record folders are discoverable without a separate `files[]` inventory in the manifest"
+        "Canonical record folders are discoverable without a separate `files[]` inventory in the manifest",
+        "**`sanitizeArchiveEntry(path)` rejects** entries containing `..`, leading `/` or backslashes, NUL bytes, or symlink flags. Refusal code: `pack.error.archive.path-traversal`. Run before any decompression of that entry.",
+        "**Compressed-size cap.** `maxCompressedBytes: 64 MB`. Streaming ZIP read refuses on `pack.error.archive.too-large` once the cumulative compressed bytes exceed the cap.",
+        "**Uncompressed-size cap.** `maxUncompressedBytes: 512 MB`. Refusal code: `pack.error.archive.uncompressed-too-large`.",
+        "**Decompression-ratio cap.** `maxDecompressionRatio: 200:1`. The check fires per-entry on the first chunk that crosses the ratio threshold so a zip-bomb refuses early. Refusal code: `pack.error.archive.ratio`.",
+        "**Entry-count cap.** `maxEntries: 20_000`. Refusal code: `pack.error.archive.entry-count`.",
+        "**Verification ordering.** Caps and traversal sanitiser run **before** schema parsing per [`pack-contract.md` § Verification Ordering](../../../docs/architecture/pack-contract.md#verification-ordering).",
+        "**Security-test fixture.** Loading [`tests/security/escape-vectors/zip-traversal.hrmod.json`](../../../tests/security/escape-vectors/zip-traversal.hrmod.json) refuses with `pack.error.archive.path-traversal`; loading `zip-bomb.hrmod.json` refuses with one of `pack.error.archive.ratio`, `pack.error.archive.uncompressed-too-large`, or `pack.error.archive.too-large`."
       ],
       "verifyCommands": [
         "npm run validate",

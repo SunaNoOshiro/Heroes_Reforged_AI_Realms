@@ -13,7 +13,23 @@
     "id": { "type": "string" },
     "mixGroup": { "type": "string" },
     "events": { "type": "object", "additionalProperties": { "type": "string" } },
-    "fallbacks": { "type": "object", "additionalProperties": { "type": "string" } }
+    "fallbacks": { "type": "object", "additionalProperties": { "type": "string" } },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 60000,
+      "description": "Optional author-declared decoded-buffer duration in milliseconds. Bounded by `asset-loading.md` § 1.1 `maxAudioDurationMs`. When absent, the loader applies the same cap to the post-decode buffer length and refuses on overage with `pack.error.asset.audio-cap`."
+    },
+    "channels": {
+      "type": "integer",
+      "enum": [1, 2],
+      "description": "Optional author-declared channel count. Bounded by `asset-loading.md` § 1.1 `maxAudioChannels`. When absent, the loader applies the same cap to the decoded `AudioBuffer.numberOfChannels`."
+    },
+    "sampleRate": {
+      "type": "integer",
+      "enum": [22050, 44100, 48000],
+      "description": "Optional author-declared sample rate. Bounded by `asset-loading.md` § 1.1 `maxAudioSampleRate`. When absent, the loader applies the same cap to the decoded `AudioBuffer.sampleRate`."
+    }
   },
   "additionalProperties": true
 }

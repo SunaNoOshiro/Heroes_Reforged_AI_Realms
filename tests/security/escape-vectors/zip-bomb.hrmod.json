@@ -1,0 +1,19 @@
+{
+  "fixtureClass": "zip-archive",
+  "stresses": "decompression-ratio cap (200:1) and uncompressed-size cap (512 MB)",
+  "expectedRefusalCode": "pack.error.archive.ratio",
+  "altRefusalCodes": [
+    "pack.error.archive.uncompressed-too-large",
+    "pack.error.archive.too-large"
+  ],
+  "input": {
+    "entries": [
+      {
+        "path": "manifest.json",
+        "compressedBytes": 1024,
+        "uncompressedBytes": 1073741824
+      }
+    ]
+  },
+  "notes": "Refuses on the first chunk that crosses the ratio threshold; the loader does not need to allocate the full uncompressed buffer to detect the bomb."
+}

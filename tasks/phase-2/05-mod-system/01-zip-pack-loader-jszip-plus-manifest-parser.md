@@ -10,6 +10,8 @@ Load a `.hrmod` file (ZIP with JSON contents) and parse its manifest. Validate t
 Read First:
 - [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)
 - [`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)
+- [`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)
+- [`docs/architecture/parser-hardening.md`](../../../docs/architecture/parser-hardening.md)
 
 Inputs:
 - `.hrmod` file (ZIP) — user-provided
@@ -57,6 +59,30 @@ Acceptance Criteria:
 - ZIP with multiple manifest files returns `Err`
 - Canonical record folders are discoverable without a separate `files[]`
   inventory in the manifest
+- **`sanitizeArchiveEntry(path)` rejects** entries containing `..`,
+  leading `/` or backslashes, NUL bytes, or symlink flags. Refusal
+  code: `pack.error.archive.path-traversal`. Run before any
+  decompression of that entry.
+- **Compressed-size cap.** `maxCompressedBytes: 64 MB`. Streaming
+  ZIP read refuses on `pack.error.archive.too-large` once the
+  cumulative compressed bytes exceed the cap.
+- **Uncompressed-size cap.** `maxUncompressedBytes: 512 MB`.
+  Refusal code: `pack.error.archive.uncompressed-too-large`.
+- **Decompression-ratio cap.** `maxDecompressionRatio: 200:1`.
+  The check fires per-entry on the first chunk that crosses the
+  ratio threshold so a zip-bomb refuses early. Refusal code:
+  `pack.error.archive.ratio`.
+- **Entry-count cap.** `maxEntries: 20_000`. Refusal code:
+  `pack.error.archive.entry-count`.
+- **Verification ordering.** Caps and traversal sanitiser run
+  **before** schema parsing per
+  [`pack-contract.md` § Verification Ordering](../../../docs/architecture/pack-contract.md#verification-ordering).
+- **Security-test fixture.** Loading
+  [`tests/security/escape-vectors/zip-traversal.hrmod.json`](../../../tests/security/escape-vectors/zip-traversal.hrmod.json)
+  refuses with `pack.error.archive.path-traversal`; loading
+  `zip-bomb.hrmod.json` refuses with one of `pack.error.archive.ratio`,
+  `pack.error.archive.uncompressed-too-large`, or
+  `pack.error.archive.too-large`.
 
 Verify:
 - npm run validate

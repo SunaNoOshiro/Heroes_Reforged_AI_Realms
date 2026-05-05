@@ -104,7 +104,7 @@
       "type": "array",
       "uniqueItems": true,
       "default": ["scripts.none"],
-      "description": "Closed enum of pack capabilities. Default-deny: a pack that omits this field is treated as `[\"scripts.none\"]`. Capability declarations are load-bearing per `ugc-safety.md` § Capability Enforcement; the loader applies byte-level sniffs when `scripts.none` is declared.",
+      "description": "Closed enum of pack capabilities. Default-deny: a pack that omits this field is treated as `[\"scripts.none\"]`. Capability declarations are load-bearing per `ugc-safety.md` § Capability Enforcement; the loader applies byte-level sniffs when `scripts.none` is declared. Any `scripts.*` token other than `scripts.none` is rejected at validation time unless `pack-scripting.md` § 1 enumerates it in a versioned row.",
       "items": {
         "type": "string",
         "enum": [
@@ -168,6 +168,16 @@
       "description": "Optional pack-side signature policy hint. Pack loaders consult `publisher-registry` and the runtime context (single-player / friendly MP / ranked MP) to decide refusal. See `pack-signing.md` § 5."
     },
     "sandboxed": { "type": "boolean" },
+    "trustTier": {
+      "type": "string",
+      "enum": ["canonical", "community-signed", "sandboxed"],
+      "description": "Optional declared trust tier. When present and signature-verified, the loader treats it as authoritative; otherwise the loader derives the tier per `sandbox-model.md` § 1. Default for any pack that omits the field: `sandboxed`. The `manifest.sandboxed` boolean is derived: `sandboxed === (trustTier === \"sandboxed\")`."
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "Optional override for the asset-resolution base URL. Constrained to `blob:`, the new `pack://<packId>/` virtual scheme, or a same-origin absolute path (`/...`). `http:`, `https:`, `file:`, `data:`, and any cross-origin URL are rejected by `AssetRegistry.registerPack`. See `sandbox-model.md` § 2 (capability matrix) and `asset-loading.md` § 2 (pre-flight pipeline).",
+      "pattern": "^(blob:|pack://|/)"
+    },
     "contentRating": {
       "type": "object",
       "description": "Optional author-asserted content rating. Advisory only; not consumed by gameplay or matchmaking gates in v1. Surfaced by screen 72 (pack-trust prompt) under \"Author-declared content\" per `pack-trust.md` § Content Rating. The `overallRating` aggregate is consumed by `config.player.ageGate` per `docs/architecture/age-gate.md`: `under13` profiles filter out packs whose `overallRating` is above `everyone`.",

@@ -34,6 +34,7 @@ Read First:
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 - [`docs/architecture/performance.md`](../../../docs/architecture/performance.md)
+- [`docs/architecture/worker-csp.md`](../../../docs/architecture/worker-csp.md)
 
 Inputs:
 - All AI modules (Tasks 1–5)
@@ -121,6 +122,15 @@ Acceptance Criteria:
 - Error path: on uncaught worker exception, the worker emits
   `AI_ERROR` and the client resolves with the per-difficulty
   no-action fallback so the dispatcher always advances.
+- **Worker security profile.** The Worker adopts the per-Worker
+  CSP, structured-clone-only message bus, crash-recovery, and
+  responsiveness-timeout contract pinned in
+  [`docs/architecture/worker-csp.md`](../../../docs/architecture/worker-csp.md).
+  No `eval`, no `Function`, no remote `importScripts()`. A
+  Worker crash restarts under the last-known-good policy in that
+  doc; a crash-loop (3× same `kind` per session) surfaces
+  `Result.err("worker.crash-loop", …)` and the client returns
+  the per-difficulty no-action fallback.
 - Shared-path extensions to `src/ai/bots/ai-worker.ts` and
   `src/ai/bots/ai-client.ts` are **additive**: this task **must
   not** be rewritten when downstream tasks add the

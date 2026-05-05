@@ -42,6 +42,20 @@ match the validation pipeline stages in
 | `pack.error.canonical.missing` | fatal | `pack.error.canonical.missing` | Canonical-packs registry entry has `required: true` but no matching pack is loaded. |
 | `pack.error.canonical.mismatch` | fatal | `pack.error.canonical.mismatch` | Canonical-packs registry pinned `version`, `signatureKeyId`, or `contentHash` does not match the loaded pack. |
 | `pack.error.locale.unordered` | fatal | `pack.error.locale.unordered` | Two packs define the same locale key without a dep edge between them. |
+| `pack.error.locale.template-syntax` | fatal | `pack.error.locale.template-syntax` | Localization payload contains template syntax other than ICU `{var}` (Mustache, EJS, Handlebars, Pug). See [`pack-contract.md` § Templating Rule](./pack-contract.md#templating-rule). |
+| `pack.error.asset.kind-forbidden` | fatal | `pack.error.asset.kind-forbidden` | `assets/index.json` declares a `kind` outside the closed enum, or one of the forbidden kinds (`svg`, `font`, `video`, `html`, `wasm`, `js`, `mjs`, `cjs`, `ts`). See [`asset-policy.md` § 2](./asset-policy.md#2-forbidden-kinds). |
+| `pack.error.asset.mime-mismatch` | fatal | `pack.error.asset.mime-mismatch` | Magic-byte gate refused: declared `kind` does not match the observed first bytes per [`asset-loading.md` § 4](./asset-loading.md#4-magic-byte-table). |
+| `pack.error.asset.too-large` | fatal | `pack.error.asset.too-large` | Asset bytes exceed `maxAssetBytes` (32 MB) per [`asset-loading.md` § 1.1](./asset-loading.md#11-per-asset-decoder-caps), or per-pack residency exceeded. |
+| `pack.error.asset.dim-cap` | fatal | `pack.error.asset.dim-cap` | Image dim pre-flight refused on `maxImageWidth`, `maxImageHeight`, or `maxImagePixels` per [`asset-loading.md` § 1.1](./asset-loading.md#11-per-asset-decoder-caps). |
+| `pack.error.asset.audio-cap` | fatal | `pack.error.asset.audio-cap` | Audio header pre-flight or post-decode check refused on `maxAudioChannels`, `maxAudioSampleRate`, or `maxAudioDurationMs` per [`asset-loading.md` § 1.1](./asset-loading.md#11-per-asset-decoder-caps). |
+| `pack.error.asset.fetch-rate` | fatal | `pack.error.asset.fetch-rate` | Per-pack token bucket exhausted (`maxConcurrentFetches`, `maxFetchesPerSecondPerPack`); request queued > 5 s per [`asset-loading.md` § 1.2](./asset-loading.md#12-per-pack-budgets). |
+| `pack.error.manifest.base-url-scheme` | fatal | `pack.error.manifest.base-url-scheme` | `manifest.baseUrl` is not `blob:`, `pack://`, or a same-origin absolute path; `http:`, `https:`, `file:`, `data:`, and any cross-origin URL are rejected. See [`sandbox-model.md` § 2](./sandbox-model.md#2-capability-matrix). |
+| `pack.error.signing.tier-mismatch` | fatal | `pack.error.signing.tier-mismatch` | Manifest declares `trustTier: "canonical"` (or `"community-signed"`) but the verified signature key is not registered for that tier. See [`sandbox-model.md` § 5](./sandbox-model.md#5-schema-seam). |
+| `pack.error.archive.path-traversal` | fatal | `pack.error.archive.path-traversal` | ZIP entry path contains `..`, leading `/`, backslashes, NUL bytes, or symlink flags. See [`pack-contract.md` § Archive Rule](./pack-contract.md#archive-rule). |
+| `pack.error.archive.too-large` | fatal | `pack.error.archive.too-large` | Cumulative compressed bytes exceed `maxCompressedBytes` (64 MB). |
+| `pack.error.archive.uncompressed-too-large` | fatal | `pack.error.archive.uncompressed-too-large` | Cumulative uncompressed bytes exceed `maxUncompressedBytes` (512 MB). |
+| `pack.error.archive.ratio` | fatal | `pack.error.archive.ratio` | Decompression ratio exceeds `maxDecompressionRatio` (200:1). |
+| `pack.error.archive.entry-count` | fatal | `pack.error.archive.entry-count` | ZIP entry count exceeds `maxEntries` (20 000). |
 
 ## Severity
 

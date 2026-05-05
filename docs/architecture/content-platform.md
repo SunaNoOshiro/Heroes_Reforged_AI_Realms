@@ -49,7 +49,9 @@ multiple faction manifests into one mega-pack when separate
   [`pack-resolver.md`](./pack-resolver.md))
 - capability checks
 - override precedence
-  ([`content-system-policy.md` § 3](./content-system-policy.md#3-override-precedence))
+  ([`content-system-policy.md` § 3](./content-system-policy.md#3-override-precedence);
+  trust-floor rule pinned in
+  [`sandbox-model.md` § 3](./sandbox-model.md#3-override-precedence-trust-rule))
 - asset indirection
 - per-asset integrity verification
   ([`content-system-policy.md` § 4](./content-system-policy.md#4-asset-integrity))

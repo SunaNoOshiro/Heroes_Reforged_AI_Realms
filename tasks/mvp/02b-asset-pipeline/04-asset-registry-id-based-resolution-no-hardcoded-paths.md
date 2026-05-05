@@ -11,6 +11,8 @@ This is the most important architectural constraint in the asset system. Violati
 
 Read First:
 - [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)
+- [`docs/architecture/sandbox-model.md`](../../../docs/architecture/sandbox-model.md)
+- [`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)
 
 Inputs:
 - `PackRegistry` (Task 1)
@@ -64,6 +66,29 @@ Acceptance Criteria:
   [`mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script`](./13-per-asset-integrity-and-build-script.md);
   this resolver consumes its outcome rather than re-implementing
   hashing.
+- **`baseUrl` scheme constraint.** `registerPack(packId, baseUrl,
+  manifest)` MUST refuse any `baseUrl` that does not match
+  `^(blob:|pack://|/)`. `http:`, `https:`, `file:`, `data:`, and
+  any cross-origin URL are rejected with
+  `pack.error.manifest.base-url-scheme`. Constraint pinned in
+  `manifest.schema.json` `baseUrl.pattern`.
+- **Trust-tier recording.** Every `registerPack` call records the
+  derived `trustTier` (`canonical | community-signed | sandboxed`)
+  per [`sandbox-model.md` § 1](../../../docs/architecture/sandbox-model.md#1-trust-tiers).
+  The tier is read by every override and capability gate; do not
+  re-derive it elsewhere.
+- **Closed kind enum at registration.** The registry refuses any
+  asset whose `kind` is outside `asset-index.schema.json` `kind`
+  enum at registration time, before any fetch is queued. Refusal
+  code: `pack.error.asset.kind-forbidden`.
+- **Tier-aware override precedence.** When two packs claim the
+  same record id, the resolver applies the trust-floor rule from
+  [`sandbox-model.md` § 3](../../../docs/architecture/sandbox-model.md#3-override-precedence-trust-rule)
+  **before** the load-order rule. A `sandboxed` pack cannot
+  shadow a record owned by a `canonical` or `community-signed`
+  pack; refusal code
+  `override.sandboxed-shadow-canonical` (existing) or
+  `override.community-shadow-canonical` (new).
 
 Verify:
 - npm run validate

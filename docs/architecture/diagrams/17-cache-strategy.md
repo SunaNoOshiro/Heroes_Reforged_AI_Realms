@@ -52,3 +52,27 @@ flowchart LR
 texture / atlas cache sees the texture cap; the audio cache sees
 the audio cap; etc. Crossing **any** category cap triggers
 eviction within that category, independently of other categories.
+
+## Per-Pack Accounting Bucket
+
+Each cached asset is attributed to its owning `packId`. The cache
+keeps a **per-pack residency bucket** in addition to the global
+tier accounting. Eviction order:
+
+1. **Per-pack LRU first.** If pack `P` exceeds
+   `maxResidentBytesPerPack` (64 MB canonical / 32 MB sandboxed,
+   per [`asset-loading.md` § 1.2](../asset-loading.md#12-per-pack-budgets)),
+   evict the oldest non-Pinned asset belonging to `P` until the
+   pack's bucket is back under cap, regardless of global pressure.
+2. **Global tier eviction next.** Once every per-pack bucket is
+   under cap, the global Cold/Warm/Pinned rules above run.
+
+The per-pack first rule prevents one pack from monopolising the
+Pinned tier — a common attack mode where a hostile pack pins
+"current hero / town / UI" entries until the global LRU never
+fires inside that pack.
+
+Atlas-tracker bytes (renderer atlas pages) are likewise attributed
+to the owning `packId` so a renderer-resident atlas counts against
+the pack's bucket. Owning task:
+[`tasks/mvp/06-renderer/`](../../../tasks/mvp/06-renderer/).

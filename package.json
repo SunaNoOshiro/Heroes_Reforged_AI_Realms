@@ -36,6 +36,7 @@
     "generate:enum-snapshot": "node scripts/snapshot-enums.mjs",
     "validate": "npm run generate:task-registry && npm run validate:links && npm run validate:contracts && npm run validate:contracts-ts && npm run validate:cross-refs && npm run validate:commands && npm run validate:tasks && npm run validate:arch && npm run validate:ui-components && npm run validate:animation-budgets && npm run validate:enums && npm run validate:balance && npm run validate:error-codes && npm run validate:provenance && npm run validate:runtime-requirements && npm run validate:deferred && npm run validate:diagram-task-parity && npm run validate:error-ux && npm run validate:build-attestation && npm run validate:no-stochastic-preview && npm run validate:unused-scripts && npm run build:asset-index -- --check",
     "test": "node --test scripts/__tests__/*.test.mjs",
+    "test:security": "node tests/security/run.mjs",
     "test:ui-smoke": "vitest --browser run -- src/ui/**/*.smoke.test.ts",
     "test:golden": "vitest run src/engine/__tests__/golden.test.ts",
     "test:replays": "vitest run src/engine/__tests__/replays.test.ts",

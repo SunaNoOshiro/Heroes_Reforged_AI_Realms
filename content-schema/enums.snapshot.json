@@ -72,6 +72,20 @@
     ]
   },
   "heroes-reforged/asset-index.schema.json": {
+    "heroes-reforged/asset-index.schema.json#/properties/assets/items/properties/kind/enum": [
+      "ambient",
+      "animation",
+      "atlas",
+      "audio",
+      "audio-bank",
+      "data",
+      "image",
+      "music",
+      "sound",
+      "sprite",
+      "theme",
+      "tile"
+    ],
     "heroes-reforged/asset-index.schema.json#/properties/pathScheme/const": [
       "pack-relative"
     ]
@@ -840,6 +854,16 @@
     "heroes-reforged/manifest.schema.json#/properties/signature/properties/scheme/enum": [
       "ed25519"
     ],
+    "heroes-reforged/manifest.schema.json#/properties/signaturePolicy/enum": [
+      "optional",
+      "required-friendly",
+      "required-ranked"
+    ],
+    "heroes-reforged/manifest.schema.json#/properties/trustTier/enum": [
+      "canonical",
+      "community-signed",
+      "sandboxed"
+    ],
     "heroes-reforged/manifest.schema.json#/properties/type/enum": [
       "asset-pack",
       "faction-pack",
@@ -900,6 +924,39 @@
     ],
     "heroes-reforged/map-trigger.schema.json#/properties/when/oneOf~16/properties/kind/const": [
       "on_object_owned"
+    ]
+  },
+  "heroes-reforged/match-handshake.schema.json": {
+    "heroes-reforged/match-handshake.schema.json#/$defs/Abort/properties/phase/const": [
+      "ABORT"
+    ],
+    "heroes-reforged/match-handshake.schema.json#/$defs/Abort/properties/reason/enum": [
+      "BUILD_ATTESTATION_MISMATCH",
+      "COMMIT_MISMATCH",
+      "CONTENT_HASH_MISMATCH",
+      "ENGINE_HASH_MISMATCH",
+      "HANDSHAKE_TIMEOUT",
+      "PACK_DIGEST_MISMATCH",
+      "PACK_SIGNATURE_INVALID",
+      "PACK_SIGNATURE_REQUIRED",
+      "PROTOCOL_ERROR"
+    ],
+    "heroes-reforged/match-handshake.schema.json#/$defs/Accept/properties/phase/const": [
+      "ACCEPT"
+    ],
+    "heroes-reforged/match-handshake.schema.json#/$defs/Commit/properties/phase/const": [
+      "COMMIT"
+    ],
+    "heroes-reforged/match-handshake.schema.json#/$defs/Reveal/properties/packSignature/properties/scheme/const": [
+      "ed25519"
+    ],
+    "heroes-reforged/match-handshake.schema.json#/$defs/Reveal/properties/phase/const": [
+      "REVEAL"
+    ],
+    "heroes-reforged/match-handshake.schema.json#/$defs/Reveal/properties/signaturePolicy/enum": [
+      "optional",
+      "required-friendly",
+      "required-ranked"
     ]
   },
   "heroes-reforged/modal-entry.schema.json": {
@@ -1098,6 +1155,16 @@
       "ed25519"
     ]
   },
+  "heroes-reforged/save-envelope.schema.json": {
+    "heroes-reforged/save-envelope.schema.json#/properties/intent/enum": [
+      "fixture",
+      "replay",
+      "save"
+    ],
+    "heroes-reforged/save-envelope.schema.json#/properties/signature/properties/scheme/enum": [
+      "ed25519"
+    ]
+  },
   "heroes-reforged/save.schema.json": {
     "heroes-reforged/save.schema.json#/properties/metadata/properties/displayNameMode/enum": [
       "clear",
@@ -1177,6 +1244,125 @@
       "JOIN_FAILED",
       "RATE_LIMITED",
       "SERVER_ERROR"
+    ]
+  },
+  "heroes-reforged/signaling-message.schema.json": {
+    "heroes-reforged/signaling-message.schema.json#/$defs/Answer/properties/type/const": [
+      "ANSWER"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/ApprovePeer/properties/type/const": [
+      "APPROVE_PEER"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/Challenge/properties/type/const": [
+      "CHALLENGE"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/ChallengeResponse/properties/type/const": [
+      "CHALLENGE_RESPONSE"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/CloseRoom/properties/type/const": [
+      "CLOSE_ROOM"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/CreateRoom/properties/type/const": [
+      "CREATE_ROOM"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/Error/properties/code/enum": [
+      "capacity",
+      "captcha_required",
+      "code_locked",
+      "global_limit",
+      "internal",
+      "ip_blocklisted",
+      "rate_limited",
+      "validation_failed"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/Error/properties/type/const": [
+      "ERROR"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/HostChanged/properties/type/const": [
+      "HOST_CHANGED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/IceCandidate/properties/type/const": [
+      "ICE_CANDIDATE"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/JoinAttemptRejected/properties/type/const": [
+      "JOIN_ATTEMPT_REJECTED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/JoinHandshake/properties/type/const": [
+      "JOIN_HANDSHAKE"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/JoinRejected/properties/type/const": [
+      "JOIN_REJECTED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/JoinRoom/properties/type/const": [
+      "JOIN_ROOM"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/KickPeer/properties/type/const": [
+      "KICK_PEER"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/Offer/properties/type/const": [
+      "OFFER"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/PeerConnected/properties/type/const": [
+      "PEER_CONNECTED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/PeerDisconnected/properties/type/const": [
+      "PEER_DISCONNECTED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/PeerKicked/properties/type/const": [
+      "PEER_KICKED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/PeerPending/properties/type/const": [
+      "PEER_PENDING"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/PeerRejected/properties/reason/enum": [
+      "denylisted",
+      "rejected"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/PeerRejected/properties/type/const": [
+      "PEER_REJECTED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RateLimited/properties/reason/enum": [
+      "create_flood",
+      "global",
+      "join_flood",
+      "per_connection_burst",
+      "prefix_socket_cap",
+      "wrong_code"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RateLimited/properties/tier/enum": [
+      "global",
+      "per_code",
+      "per_connection",
+      "per_ip",
+      "per_prefix"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RateLimited/properties/type/const": [
+      "RATE_LIMITED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RejectPeer/properties/type/const": [
+      "REJECT_PEER"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RequestTurnRefresh/properties/type/const": [
+      "REQUEST_TURN_REFRESH"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RoomClosed/properties/reason/enum": [
+      "host_closed"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RoomClosed/properties/type/const": [
+      "ROOM_CLOSED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RoomExpired/properties/reason/enum": [
+      "idle",
+      "max_lifetime"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RoomExpired/properties/type/const": [
+      "ROOM_EXPIRED"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/RoomFull/properties/type/const": [
+      "ROOM_FULL"
+    ],
+    "heroes-reforged/signaling-message.schema.json#/$defs/TurnCredentials/properties/type/const": [
+      "TURN_CREDENTIALS"
     ]
   },
   "heroes-reforged/signature-error.schema.json": {

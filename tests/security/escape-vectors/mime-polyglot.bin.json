@@ -1,0 +1,11 @@
+{
+  "fixtureClass": "polyglot-payload",
+  "stresses": "MIME magic-byte gate — declared kind vs. observed magic bytes",
+  "expectedRefusalCode": "pack.error.asset.mime-mismatch",
+  "input": {
+    "declaredKind": "sprite",
+    "magicHexBytes": "47 49 46 38 39 61",
+    "trailingHtmlComment": "<script>alert(1)</script>"
+  },
+  "notes": "Declared kind is sprite (PNG/WebP) but observed magic bytes are GIF89a; the loader refuses before any decoder runs. The trailing HTML payload is irrelevant — the gate fires on the magic-byte mismatch alone."
+}

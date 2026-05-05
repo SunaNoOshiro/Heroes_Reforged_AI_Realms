@@ -1,0 +1,9 @@
+{
+  "fixtureClass": "json-payload",
+  "stresses": "JSON parser-hardening: numeric-magnitude cap",
+  "expectedRefusalCode": "parser.error.numeric-magnitude",
+  "input": {
+    "rawJson": "{\"id\":\"victim\",\"resources\":99999999999999999999999999999999}"
+  },
+  "notes": "Numeric value exceeds maxNumericMagnitude per docs/architecture/parser-hardening.md; parser must refuse before the number is coerced to JS Number (silent precision loss)."
+}

@@ -32,7 +32,24 @@
         ],
         "properties": {
           "id":   { "type": "string" },
-          "kind": { "type": "string" },
+          "kind": {
+            "type": "string",
+            "description": "Closed asset-kind enum. New kinds require a schema change plus an amendment to `asset-policy.md` and `asset-loading.md`. Forbidden kinds (svg, font, video, html, wasm, js, mjs, cjs, ts) are rejected at schema time per `asset-policy.md` § 2.",
+            "enum": [
+              "image",
+              "sprite",
+              "atlas",
+              "tile",
+              "audio",
+              "audio-bank",
+              "sound",
+              "music",
+              "ambient",
+              "animation",
+              "theme",
+              "data"
+            ]
+          },
           "path": {
             "type": "string",
             "description": "Pack-relative path. Forbids absolute schemes, leading slashes, parent-directory escapes, and any extension outside the closed allowlist (png, webp, ogg, mp3, json). See `ugc-safety.md` § Binary Asset Validators.",
