@@ -130,6 +130,74 @@ HMAC keyed by a server-issued match secret. See
 [`docs/architecture/determinism.md`](./determinism.md) §
 "Tamper detection vs. forgery".
 
+## Envelope, Intent Discriminator & MAC Phase-In
+
+> Source: Plan 27 § Critical Fix 4.
+
+The on-disk save artifact is wrapped in
+[`save-envelope.schema.json`](../../content-schema/schemas/save-envelope.schema.json).
+The envelope shape is `{ envelopeVersion, intent, saveVersion,
+engineHash, contentPackHashes, body, mac?, signature? }`.
+
+`intent` is a discriminated union over `save | replay | fixture`:
+
+- **`save`**: device-local. Carries `mac` in M5+ (after cloud-sync
+  opt-in); absent in M4. Player-identifying metadata is preserved
+  in `body.metadata`.
+- **`replay`**: shared / exported. Player-identifying fields are
+  stripped on the conversion: `name`, `slotId`, `createdAt`,
+  `savedAt`, and any user-supplied annotations. `replayCreatedAt`
+  replaces `createdAt`. The `mac` field is absent — replays are
+  unsigned by design.
+- **`fixture`**: canonical engine fixture. Requires `signature`
+  (Ed25519 by an `engine-fixture` key); `mac` is absent. Used by
+  the golden-fixture suite and the AI-tournament harness.
+
+Migrators apply only to `body` (the inner save record). The
+envelope itself is not migrated; new envelope fields are additive
+under `envelopeVersion = 1`. A future `envelopeVersion = 2` would
+gate a breaking outer-shape change behind an explicit envelope
+migrator chain (none exists today).
+
+`saveVersion` is part of the canonical-JSON input to the optional
+`mac` per [`save-envelope-mac.md`](./save-envelope-mac.md) § 4.
+A tampered `saveVersion` with MAC enabled invalidates the MAC and
+the loader refuses the save with `MAC_MISMATCH`. Without MAC (M4),
+a tampered `saveVersion` falls into the "no migrator available" →
+reject branch — the only unsigned defense available.
+
+### Replay-intent migration skip
+
+When migrating an envelope with `intent === "replay"`, MAC re-
+derivation is skipped because replays are unsigned. When migrating
+an envelope with `intent === "fixture"`, the migration produces a
+new canonical message that requires a fresh signature by an
+`engine-fixture` key after migration. Migrators MUST NOT silently
+re-emit a fixture envelope without re-signing.
+
+## MAC Phase-In Plan
+
+> Source: Plan 27 § Improvement: Save-Envelope MAC Phase-In.
+
+The `mac` field on the envelope is **optional in M4** — saves are
+device-local, IndexedDB-bound, and not exposed across installations.
+The seam exists so that M5 (cloud sync) and M5+ (shared replays /
+leaderboards) can flip `mac` to required without a breaking save-
+format change.
+
+| Milestone | `mac` requirement |
+| --- | --- |
+| M4 | optional; not produced; not verified |
+| M5 (cloud-sync opt-in) | required when `intent === "save"` AND user opted into cloud sync |
+| M5+ (shared replays) | `intent === "fixture"` requires `signature` instead of `mac` |
+| M6+ | required for every `intent === "save"` envelope |
+
+The toggle is a runtime config, not a schema change. The schema
+keeps `mac` as optional indefinitely so older fixtures and dev-mode
+flows remain valid; the runtime decides whether to require it.
+Authoritative doctrine:
+[`save-envelope-mac.md`](./save-envelope-mac.md).
+
 ## Authoring Checklist
 
 When you ship a new `saveVersion`:

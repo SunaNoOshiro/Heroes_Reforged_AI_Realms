@@ -3173,7 +3173,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 413
+      "downstreamTransitiveCount": 420
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3235,7 +3235,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 411
+      "downstreamTransitiveCount": 418
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3292,7 +3292,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 254
+      "downstreamTransitiveCount": 255
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3348,7 +3348,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 323
+      "downstreamTransitiveCount": 329
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3495,7 +3495,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 243
+      "downstreamTransitiveCount": 244
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -4394,7 +4394,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 318
+      "downstreamTransitiveCount": 324
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4452,7 +4452,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 239
+      "downstreamTransitiveCount": 245
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4516,7 +4516,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 165
+      "downstreamTransitiveCount": 171
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4574,7 +4574,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 170
+      "downstreamTransitiveCount": 176
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4635,7 +4635,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 230
+      "downstreamTransitiveCount": 236
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4696,7 +4696,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 289
+      "downstreamTransitiveCount": 295
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4770,7 +4770,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 156
+      "downstreamTransitiveCount": 162
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -4855,7 +4855,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 125
+      "downstreamTransitiveCount": 131
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -4956,7 +4956,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 122
+      "downstreamTransitiveCount": 128
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -5063,8 +5063,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 31,
-      "downstreamTransitiveCount": 112
+      "downstreamDirectCount": 33,
+      "downstreamTransitiveCount": 118
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -5224,7 +5224,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 200
+      "downstreamTransitiveCount": 206
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5316,7 +5316,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 135
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5387,7 +5387,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 121
+      "downstreamTransitiveCount": 127
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5449,7 +5449,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 121
+      "downstreamTransitiveCount": 127
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -6443,8 +6443,8 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 50
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 54
     },
     {
       "id": "mvp.02-content-schemas.29-publisher-registry-schema",
@@ -6516,8 +6516,8 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 15
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "mvp.02-content-schemas.30-pack-revocation-list-schema",
@@ -6590,8 +6590,8 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 15
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "mvp.02-content-schemas.31-trust-store-schema",
@@ -6663,8 +6663,8 @@
         "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 15
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 17
     },
     {
       "id": "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint",
@@ -7507,6 +7507,173 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
       "downstreamTransitiveCount": 22
+    },
+    {
+      "id": "mvp.02-content-schemas.44-pack-signing-verifier",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pack-Signing Verifier — Canonical Message + Six-Step Pipeline",
+      "path": "tasks/mvp/02-content-schemas/44-pack-signing-verifier.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Author the `pack-signing.md` doctrine and implement the verifier that consumes it. The verifier is a pure function over a parsed manifest plus the publisher registry, revocation list, and trust store; it returns either a trust tier or a closed rejection reason. This task closes Plan 27 § Critical Fix 2 and registers the canonical-message tool both signers and verifiers consume.",
+      "inputs": [
+        "Parsed `manifest.json` from a pack archive.",
+        "Publisher registry (known-good keys).",
+        "Pack revocation list (revoked content hashes / keys).",
+        "Trust store (per-installation TOFU bindings)."
+      ],
+      "outputs": [
+        "`docs/architecture/pack-signing.md` (already authored at task-creation time; this task owns its evolution).",
+        "`src/content-runtime/signature-verifier.ts` — pure function `verifyPackSignature(manifest, publisherRegistry, revocationList, trustStore) → { ok, trustTier | reason }`.",
+        "`tools/scripts/canonical-pack-message.ts` — CLI that prints the canonical-JSON of the signed message and (with `--sign <keyfile>`) emits the corresponding `signature.value`. Used by both signers and the CI golden-test rebuilder.",
+        "`content-schema/examples/pack-signing/` — fixture set covering every branch of the verifier: `signed-canonical`, `signed-third-party`, `unsigned-sandboxed`, `tampered-manifest`, `tampered-asset-index`, `revoked-key`, `unknown-key-id`, `swapped-key-id-without-rotation-proof`, `signature-stripped-after-tofu`, `valid-rotation-K1-to-K2`, `rotation-proof-invalid`, `downgrade-without-confirm`, `dep-unsigned-taints-parent`, `dep-revoked-rejects-parent`.",
+        "`scripts/check-pack-signing.mjs` — golden test runner; asserts every fixture maps to the expected outcome."
+      ],
+      "readFirst": [
+        "[`docs/architecture/pack-signing.md`](../../../docs/architecture/pack-signing.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/crypto-rules.md`](../../../docs/architecture/crypto-rules.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`content-schema/schemas/manifest.schema.json`](../../../content-schema/schemas/manifest.schema.json)",
+        "[`content-schema/schemas/publisher-registry.schema.json`](../../../content-schema/schemas/publisher-registry.schema.json)",
+        "[`content-schema/schemas/pack-revocation-list.schema.json`](../../../content-schema/schemas/pack-revocation-list.schema.json)",
+        "[`content-schema/schemas/trust-store.schema.json`](../../../content-schema/schemas/trust-store.schema.json)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/pack-signing.md",
+        "src/content-runtime/signature-verifier.ts",
+        "tools/scripts/canonical-pack-message.ts",
+        "content-schema/examples/pack-signing/",
+        "scripts/check-pack-signing.mjs",
+        "content-schema/schemas/manifest.schema.json",
+        "tasks/mvp/02-content-schemas/38-manifest-ai-provenance-and-capabilities-default.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "tasks/mvp/02-content-schemas/38-manifest-ai-provenance-and-capabilities-default.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema"
+      ],
+      "acceptanceCriteria": [
+        "The verifier consumes the canonical-message bytes produced by `tools/scripts/canonical-pack-message.ts`; it never re-derives them from a tampered manifest.",
+        "Comparison uses `globalThis.crypto.subtle.verify('Ed25519', …)`; no `node:crypto` import in the deterministic engine path.",
+        "The six-step pipeline (archive-integrity → parser-hardening → schema-parse → signature-verify → publisher-registry lookup → asset extraction) is wired into the pack-load surface in `src/content-runtime/`.",
+        "Every fixture in `content-schema/examples/pack-signing/` produces the expected `{ ok, trustTier | reason }` outcome under `npm run validate:pack-signing`; the gate is wired into `npm run validate`.",
+        "The TOFU branch consults [`trust-store.schema.json`](../../../content-schema/schemas/trust-store.schema.json) and rejects `SIGNATURE_STRIPPED` when a previously-signed pack presents unsigned.",
+        "The rotation branch verifies `rotationProof` against `previousKeyId` and updates the trust-store's `rotationHistory` ring buffer.",
+        "Dependency Trust Propagation (Plan 27 Improvement) reduces a signed parent's tier to the minimum of its own tier and every transitive dependency's tier.",
+        "The verifier does **not** distinguish \"wrong key\" from \"no such key\" at the wire / UI surface; both collapse to `INVALID_SIGNATURE` per [`crypto-rules.md`](../../../docs/architecture/crypto-rules.md).",
+        "The shared-ownership additions to `manifest.schema.json` are strictly additive; pre-existing required-field semantics must not be subject to any rewrite or relaxation. Primary owner of the manifest schema is [`tasks/mvp/02-content-schemas/38-manifest-ai-provenance-and-capabilities-default.md`](./38-manifest-ai-provenance-and-capabilities-default.md)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/pack-revocation-list.schema.json",
+        "content-schema/schemas/publisher-registry.schema.json",
+        "content-schema/schemas/trust-store.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.29-publisher-registry-schema",
+        "mvp.02-content-schemas.30-pack-revocation-list-schema",
+        "mvp.02-content-schemas.31-trust-store-schema"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 15
+    },
+    {
+      "id": "mvp.02-content-schemas.45-reproducible-archive",
+      "kind": "task",
+      "status": "planned",
+      "title": "Reproducible `.hrmod` Archive Contract",
+      "path": "tasks/mvp/02-content-schemas/45-reproducible-archive.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Pin `.hrmod` ZIP determinism and ship the CI gate that re-builds canonical fixtures and re-hashes the ZIP bytes against a recorded `archiveHash`. Closes Plan 27 § Improvement: Reproducible-Archive Contract.",
+      "inputs": [
+        "Canonical pack source under `resources/packs/<id>/`.",
+        "Per-pack `signedBuild.json` published alongside the `.hrmod` archive."
+      ],
+      "outputs": [
+        "`tools/scripts/build-pack.ts` — canonical pack-build script with the determinism rules pinned (entry order, timestamps, compression level, extra fields, external attributes).",
+        "`tools/lint/reproducible-archive.ts` — re-builds a fixture pack from source, asserts the resulting ZIP bytes SHA-256 equals the pinned `archiveHash`.",
+        "`signedBuild.json` schema and per-canonical-pack release artifact.",
+        "`scripts/check-reproducible-archive.mjs` — wraps the lint as a CI gate."
+      ],
+      "readFirst": [
+        "[`docs/architecture/reproducible-archive.md`](../../../docs/architecture/reproducible-archive.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/pack-signing.md`](../../../docs/architecture/pack-signing.md)",
+        "[`docs/architecture/atlas-pipeline.md`](../../../docs/architecture/atlas-pipeline.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/reproducible-archive.md",
+        "tools/scripts/build-pack.ts",
+        "tools/lint/reproducible-archive.ts",
+        "scripts/check-reproducible-archive.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.02-content-schemas.44-pack-signing-verifier"
+      ],
+      "acceptanceCriteria": [
+        "The build script emits byte-stable `.hrmod` archives across invocations on the same input tree (verified by hashing the output twice and asserting equal bytes).",
+        "Lexicographic entry order, ZIP-epoch timestamps, DEFLATE level 6, empty extra fields, and the pinned external attributes are verified by parsing the produced ZIP byte-for-byte.",
+        "Each canonical pack ships a `signedBuild.json` declaring `{ packId, version, archiveHash, signedCanonicalMessage, signature, keyId, builtAt, builderToolVersion }`.",
+        "The CI gate `npm run validate:reproducible-archive` re-builds every canonical pack fixture under `resources/packs/`; the produced SHA-256 must match the recorded `archiveHash`.",
+        "The gate is wired into `npm run validate`.",
+        "Whole-archive signing is **not** introduced; the canonical signed message remains manifest + `assetDigest` per [`pack-signing.md` § 1](../../../docs/architecture/pack-signing.md)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02-content-schemas.44-pack-signing-verifier"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.44-pack-signing-verifier"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 14
     },
     {
       "id": "mvp.02-tooling.01-ui-smoke-harness",
@@ -9077,7 +9244,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 190
+      "downstreamTransitiveCount": 191
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -9137,7 +9304,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 130
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -9193,7 +9360,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 170
+      "downstreamTransitiveCount": 171
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -9256,7 +9423,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 128
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -9853,7 +10020,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 103
+      "downstreamTransitiveCount": 104
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -10005,7 +10172,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 130
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -10140,7 +10307,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 164
+      "downstreamTransitiveCount": 165
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -10216,7 +10383,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 128
+      "downstreamTransitiveCount": 129
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -10279,7 +10446,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 118
+      "downstreamTransitiveCount": 119
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -10345,7 +10512,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 98
+      "downstreamTransitiveCount": 99
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -10411,7 +10578,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 100
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -10489,7 +10656,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 78
+      "downstreamTransitiveCount": 79
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -10544,7 +10711,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 77
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -15253,8 +15420,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 61
+      "downstreamDirectCount": 12,
+      "downstreamTransitiveCount": 66
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -16402,6 +16569,338 @@
       "downstreamTransitiveCount": 6
     },
     {
+      "id": "mvp.08-persistence.16-parser-hardening",
+      "kind": "task",
+      "status": "planned",
+      "title": "Parser Hardening — Save & Pack-Archive Caps",
+      "path": "tasks/mvp/08-persistence/16-parser-hardening.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Author the parser-hardening doctrine and the two thin wrappers that own every `JSON.parse` and `DecompressionStream` call against untrusted input. Plan 27 § Critical Fix 1.",
+      "inputs": [
+        "Save bytes from IndexedDB read or `*.hrsa.json` import.",
+        "`.hrmod` archive bytes plus the inner `manifest.json` and every record file."
+      ],
+      "outputs": [
+        "`src/persistence/parser.ts` — `parseSaveBytes(raw, limits) → { ok, value | reason }`",
+        "`src/content-runtime/parser.ts` — `parsePackBytes(raw, limits) → { ok, value | reason }`",
+        "`tools/lint/no-direct-json-parse.ts` — AST lint that refuses direct `JSON.parse` imports outside the two parser modules under `src/persistence/`, `src/content-runtime/`, `src/engine/`, `src/rules/`.",
+        "`content-schema/examples/save-malformed/` — fixture set covering oversized array, deep nesting, non-integer numeric, oversized string, decompression-ratio bomb. Each fixture pairs with the expected rejection reason.",
+        "`scripts/check-parser-hardening.mjs` — golden test runner; asserts each fixture rejects with the expected reason **before** the schema validator or the reducer is reached."
+      ],
+      "readFirst": [
+        "[`docs/architecture/parser-hardening.md`](../../../docs/architecture/parser-hardening.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)",
+        "[`docs/architecture/diagrams/25-load-flow.md`](../../../docs/architecture/diagrams/25-load-flow.md)"
+      ],
+      "ownedPaths": [
+        "docs/architecture/parser-hardening.md",
+        "src/persistence/parser.ts",
+        "src/content-runtime/parser.ts",
+        "tools/lint/no-direct-json-parse.ts",
+        "content-schema/examples/save-malformed/",
+        "scripts/check-parser-hardening.mjs"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "acceptanceCriteria": [
+        "Every cap from `parser-hardening.md` § 2 is enforced as a streaming rejection (the parser cancels the stream the moment any cap is exceeded; it never buffers the full payload then checks).",
+        "The closed `ParserRejection` vocabulary in `parser-hardening.md` § 3 is the only rejection surface; rejection records carry the cap name and the offending position (byte offset for compression caps, JSON pointer for structural caps).",
+        "Rejection records do **not** include the rejected bytes themselves.",
+        "Schema parse runs only after every cap accepts.",
+        "The `no-direct-json-parse` lint rejects any direct `JSON.parse` import under `src/persistence/`, `src/content-runtime/`, `src/engine/`, `src/rules/` outside the two parser modules.",
+        "`npm run validate:parser-hardening` runs the golden test set; each malformed fixture produces the expected rejection reason; the CI gate fails if any fixture's reason changes.",
+        "The verify gate is wired into `npm run validate` so a regression is caught at PR time."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 8
+    },
+    {
+      "id": "mvp.08-persistence.17-pre-replay-command-validation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Pre-Replay Command-Log Validation",
+      "path": "tasks/mvp/08-persistence/17-pre-replay-command-validation.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Run the entire `commandLog` against `command.schema.json` and the active pack registry **before** the reducer is invoked. A malformed command surfaces at a clean rejection point with full context instead of mid-replay, so a 300-turn match never aborts at turn 200 with a half-loaded state. Plan 27 § Critical Fix 3.",
+      "inputs": [
+        "Loaded `SaveEnvelope.body.commandLog` after parser-hardening, schema validation, migration chain, and pack-hash gate succeed.",
+        "Active pack registry (the resolver's output of unit / spell / faction / hero / artifact IDs)."
+      ],
+      "outputs": [
+        "`src/persistence/validate-command-log.ts` — pure function `validateCommandLog(log, registry, expectedTurnRange) → { ok, log | reason, index, context }`",
+        "Wiring into the load pipeline so the reducer never sees an un-pre-validated entry.",
+        "Closed lowercase rejection-reason enum (`schemaInvalid`, `unknownUnit`, `unknownSpell`, `unknownFaction`, `unknownHero`, `unknownArtifact`, `turnOutOfRange`, `negativeNumeric`, `nonIntegerNumeric`) — full vocabulary pinned in `parser-hardening.md` cross-link.",
+        "Golden tests in `scripts/check-command-log-validation.mjs`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/parser-hardening.md`](../../../docs/architecture/parser-hardening.md)",
+        "[`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/diagrams/25-load-flow.md`](../../../docs/architecture/diagrams/25-load-flow.md)",
+        "[`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json)",
+        "[`content-schema/schemas/save.schema.json`](../../../content-schema/schemas/save.schema.json)"
+      ],
+      "ownedPaths": [
+        "src/persistence/validate-command-log.ts",
+        "scripts/check-command-log-validation.mjs",
+        "content-schema/schemas/save.schema.json",
+        "tasks/mvp/02-content-schemas/28-save-schema.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/save.schema.json",
+        "tasks/mvp/02-content-schemas/28-save-schema.md"
+      ],
+      "dependencies": [
+        "mvp.08-persistence.16-parser-hardening",
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`validateCommandLog` is pure-deterministic: same inputs always produce the same `ok` / `reason` / `index`.",
+        "The function walks every entry once; on first failure it returns the failing index plus the failing command kind in `context`.",
+        "Hooked into the load pipeline immediately after the pack-hash gate succeeds and before the reducer is invoked. The reducer never sees an unvalidated command.",
+        "The Save/Load screen surfaces the failing index and command kind via the existing [55-save-load](../../../docs/architecture/wiki/screens/55-save-load/data-contracts.md) failure-mode table.",
+        "Golden tests pass under `npm run validate:command-log`; wired into `npm run validate`.",
+        "The shared-ownership additions to `save.schema.json` are pinned with `additionalProperties: false` on the envelope-body shape and with `maxItems` on every array field that can grow without bound. Contributions are strictly additive; pre-existing schema fields and constraints must not be rewriting (no rewrite, no relax). Primary owner of the schema file remains [`tasks/mvp/02-content-schemas/28-save-schema.md`](../../mvp/02-content-schemas/28-save-schema.md)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/55-save-load"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/save.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/save.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.08-persistence.16-parser-hardening"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.08-persistence.16-parser-hardening"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.08-persistence.18-save-envelope-and-intent",
+      "kind": "task",
+      "status": "planned",
+      "title": "Save Envelope & `intent` Discriminator",
+      "path": "tasks/mvp/08-persistence/18-save-envelope-and-intent.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Author the `save-envelope.schema.json` outer wrapper and wire the `intent` discriminator (`save | replay | fixture`) into the load / export pipeline. The envelope is the surface that future cloud-sync and shared-replay flows extend; M4 produces unsigned envelopes and M5+ flips the `mac` field to required for `intent === \"save\"` per [`save-envelope-mac.md`](../../../docs/architecture/save-envelope-mac.md). Plan 27 § Critical Fix 4.",
+      "inputs": [
+        "Migrated `SaveRecord.body` from [`tasks/mvp/08-persistence/02-log-only-save-format.md`](./02-log-only-save-format.md).",
+        "Active pack registry (`contentPackHashes`)."
+      ],
+      "outputs": [
+        "`content-schema/schemas/save-envelope.schema.json` (already authored at task-creation time; this task owns its evolution).",
+        "`content-schema/examples/save-envelope/` — fixtures: `canonical-save-no-mac`, `canonical-save-with-mac`, `canonical-replay-stripped`, `canonical-fixture-signed`.",
+        "`src/persistence/envelope.ts` — `wrap(body, intent, opts)` and `unwrap(envelope, opts) → { ok, body | reason }`.",
+        "`IntentBadge` component on screen 55 (Save/Load) per [`docs/architecture/wiki/screens/55-save-load/spec.md`](../../../docs/architecture/wiki/screens/55-save-load/spec.md)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md)",
+        "[`docs/architecture/save-envelope-mac.md`](../../../docs/architecture/save-envelope-mac.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`content-schema/schemas/save-envelope.schema.json`](../../../content-schema/schemas/save-envelope.schema.json)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/save-envelope.schema.json",
+        "content-schema/examples/save-envelope/",
+        "src/persistence/envelope.ts",
+        "docs/architecture/wiki/screens/55-save-load/spec.md",
+        "tasks/mvp/08-persistence/03-save-load-ui.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/wiki/screens/55-save-load/spec.md",
+        "tasks/mvp/08-persistence/03-save-load-ui.md"
+      ],
+      "dependencies": [
+        "mvp.08-persistence.16-parser-hardening",
+        "mvp.02-content-schemas.28-save-schema"
+      ],
+      "acceptanceCriteria": [
+        "The schema validates each canonical envelope fixture.",
+        "`wrap` produces an envelope whose `body` validates against `save.schema.json`.",
+        "`unwrap` rejects an envelope whose `intent === \"fixture\"` is missing `signature`, with closed reason `fixtureNotSigned`.",
+        "Converting `intent: \"save\"` to `intent: \"replay\"` strips the player-identifying fields declared in [`save-migration.md` § Privacy strip on replay export](../../../docs/architecture/save-migration.md); the resulting envelope validates and contains no `metadata.playerName`, `metadata.playerHash`, `metadata.playerLabel`, or `metadata.thumbnail`.",
+        "An envelope with a tampered `saveVersion` and a present `mac` fails verification under the M5+ MAC contract (M4: `mac` is absent, this branch is gated off).",
+        "The `IntentBadge` component renders distinct badges for `save | replay | fixture` per the screen 55 spec. The badge is an additive entry on the screen package; the existing component rows must not be rewriting (no rewrite, no relax). Primary owner of the screen package is [`tasks/mvp/08-persistence/03-save-load-ui.md`](./03-save-load-ui.md)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/55-save-load"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/save-envelope.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/save-envelope.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.08-persistence.16-parser-hardening"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.28-save-schema",
+        "mvp.08-persistence.16-parser-hardening"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 6
+    },
+    {
+      "id": "mvp.08-persistence.19-save-envelope-mac-phase-in",
+      "kind": "task",
+      "status": "planned",
+      "title": "Save-Envelope MAC Phase-In (M5)",
+      "path": "tasks/mvp/08-persistence/19-save-envelope-mac-phase-in.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Implement HMAC-SHA-256 over canonical-JSON of the save envelope under a per-installation `deviceKey`, with re-key on cloud-sync opt-in. The schema seam is in place from [`tasks/mvp/08-persistence/18-save-envelope-and-intent.md`](./18-save-envelope-and-intent.md); this task ships the M5 implementation and the cross-installation re-key flow that cloud sync depends on. Plan 27 § Improvement — deferred from MVP. Plan 27 § Improvement: Save-Envelope MAC Phase-In.",
+      "inputs": [
+        "Save envelope from [`tasks/mvp/08-persistence/18-save-envelope-and-intent.md`](./18-save-envelope-and-intent.md).",
+        "Per-installation `userInstallationSeed` from IndexedDB `hr-profile.keys`.",
+        "(M5 cloud-sync only) per-account credential."
+      ],
+      "outputs": [
+        "`src/persistence/mac.ts` — `signEnvelope(envelope, deviceKey)` and `verifyEnvelope(envelope, deviceKey) → { ok | reason }`.",
+        "`src/persistence/keys.ts` — `getOrCreateInstallationSeed()` plus `deriveDeviceKey()` and (M5+) `deriveAccountKey()`.",
+        "(M5+) the cloud-sync re-key flow that converts a `deviceKey`-MAC'd envelope to an `accountKey`-MAC'd envelope."
+      ],
+      "readFirst": [
+        "[`docs/architecture/save-envelope-mac.md`](../../../docs/architecture/save-envelope-mac.md)",
+        "[`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md)",
+        "[`docs/architecture/crypto-rules.md`](../../../docs/architecture/crypto-rules.md)",
+        "[`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)",
+        "[`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)"
+      ],
+      "ownedPaths": [
+        "src/persistence/mac.ts",
+        "src/persistence/keys.ts"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "mvp.08-persistence.18-save-envelope-and-intent",
+        "mvp.08-persistence.16-parser-hardening"
+      ],
+      "acceptanceCriteria": [
+        "`userInstallationSeed` is generated once via `crypto.getRandomValues(32)` and stored under `hr-profile.keys` record id `save-envelope-mac.v1.seed` per [`data-inventory.md`](../../../docs/architecture/data-inventory.md).",
+        "The seed is wiped by `WIPE_LOCAL_DATA scope=profile|all`.",
+        "HMAC-SHA-256 input is canonical-JSON of `{ envelopeVersion, intent, saveVersion, engineHash, contentPackHashes, body }` (the `mac` field itself is excluded when computing).",
+        "Comparison is constant-time per [`crypto-rules.md`](../../../docs/architecture/crypto-rules.md).",
+        "A tampered `saveVersion` invalidates the MAC; loader refuses with `MAC_MISMATCH`; there is no override path.",
+        "A save MAC'd on installation A cannot load on installation B (different `deviceKey`); the cloud-sync re-key flow is the only sanctioned cross-installation path.",
+        "The toggle is runtime-config-driven, not schema-driven; the schema keeps `mac` optional indefinitely."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.08-persistence.16-parser-hardening",
+        "mvp.08-persistence.18-save-envelope-and-intent"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.16-parser-hardening",
+        "mvp.08-persistence.18-save-envelope-and-intent"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "mvp.08-persistence.27-undo-soft-delete",
       "kind": "task",
       "status": "planned",
@@ -16551,7 +17050,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 107
+      "downstreamTransitiveCount": 108
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -16613,7 +17112,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 88
+      "downstreamTransitiveCount": 89
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -16761,7 +17260,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 82
+      "downstreamTransitiveCount": 83
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -16828,7 +17327,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -16964,7 +17463,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -17027,7 +17526,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 79
+      "downstreamTransitiveCount": 80
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -17100,7 +17599,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 73
+      "downstreamTransitiveCount": 74
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -17774,7 +18273,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -17862,7 +18361,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 74
+      "downstreamTransitiveCount": 75
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -17925,7 +18424,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 72
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -18007,7 +18506,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 71
+      "downstreamTransitiveCount": 72
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -18081,7 +18580,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -18186,7 +18685,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 66
+      "downstreamTransitiveCount": 67
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -18256,7 +18755,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 68
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -18351,7 +18850,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -18434,7 +18933,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 46
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -18512,7 +19011,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 58
+      "downstreamTransitiveCount": 59
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -18583,7 +19082,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 44
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -19076,7 +19575,9 @@
         "mvp.02-content-schemas.40-privacy-and-legal-docs",
         "mvp.02-content-schemas.41-error-and-audit-schemas",
         "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
-        "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas"
+        "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
+        "mvp.02-content-schemas.44-pack-signing-verifier",
+        "mvp.02-content-schemas.45-reproducible-archive"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -31253,7 +31754,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 42
+      "downstreamTransitiveCount": 43
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -31337,7 +31838,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 30
+      "downstreamTransitiveCount": 31
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -32030,8 +32531,8 @@
         "phase-3.01-multiplayer.15-pack-signature-and-build-attestation-policy"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 18
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 19
     },
     {
       "id": "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
@@ -32540,7 +33041,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 21
+      "downstreamTransitiveCount": 22
     },
     {
       "id": "phase-3.01-multiplayer.13-signaling-rate-limiting",
@@ -32977,7 +33478,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
@@ -34991,6 +35492,88 @@
         "phase-3.01-multiplayer.31-signaling-message-schema-and-validation",
         "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
         "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.36-resumed-from-save",
+      "kind": "task",
+      "status": "planned",
+      "title": "Resumed-from-Save Multiplayer Handshake",
+      "path": "tasks/phase-3/01-multiplayer/36-resumed-from-save.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Extend the three-phase commit-reveal handshake (Plan 26 Critical Fix 2) to support resuming a saved match into a fresh multiplayer session. Both peers compute their loaded-from-disk `stateHash` from the replayed `commandLog` *before* the first resumed turn and exchange it via the REVEAL frame; mismatch refuses to start. Plan 27 § Improvement: MP Load-Resume Protocol.",
+      "inputs": [
+        "Save envelope agreed out-of-band (the handshake does not transport the body).",
+        "Per-peer post-replay `stateHash`."
+      ],
+      "outputs": [
+        "Extended handshake schema with `resumedFromSave: { saveId, loadedStateHash } | null` on the reveal frame.",
+        "New abort reasons (named `resumeStateHashMismatch` and `resumePackHashesMismatch`) added to the existing closed enum on the abort frame.",
+        "`content-schema/examples/match-handshake/resumed-from-save-*.json` fixtures: `matching-state-hash`, `mismatching-state-hash`, `mismatching-pack-hashes`.",
+        "Wired through the existing match-handshake validator."
+      ],
+      "readFirst": [
+        "[`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)",
+        "[`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)",
+        "[`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md)",
+        "[`content-schema/schemas/match-handshake.schema.json`](../../../content-schema/schemas/match-handshake.schema.json)",
+        "[`content-schema/schemas/save-envelope.schema.json`](../../../content-schema/schemas/save-envelope.schema.json)"
+      ],
+      "ownedPaths": [
+        "content-schema/examples/match-handshake/resumed-from-save-matching-state-hash.match-handshake.json",
+        "content-schema/examples/match-handshake/resumed-from-save-mismatching-state-hash.match-handshake.json",
+        "content-schema/examples/match-handshake/resumed-from-save-mismatching-pack-hashes.match-handshake.json",
+        "docs/architecture/match-handshake.md",
+        "tasks/phase-3/01-multiplayer/10-match-handshake-protocol.md",
+        "content-schema/schemas/match-handshake.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/match-handshake.md",
+        "tasks/phase-3/01-multiplayer/10-match-handshake-protocol.md",
+        "content-schema/schemas/match-handshake.schema.json"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.10-match-handshake-protocol",
+        "mvp.08-persistence.18-save-envelope-and-intent"
+      ],
+      "acceptanceCriteria": [
+        "The handshake schema accepts a REVEAL with `resumedFromSave: null` (fresh match, unchanged behavior) and with `resumedFromSave: { saveId, loadedStateHash }` (resume mode).",
+        "Mismatching `loadedStateHash` between peers produces an abort frame whose closed reason is `resumeStateHashMismatch`.",
+        "Mismatching `contentPackHashes` between peers produces an abort frame whose closed reason is `resumePackHashesMismatch`.",
+        "A peer's local save MAC (M5+) is **not** accepted as authentication between peers; each peer verifies its own copy locally, then proves agreement by exchanging the post-replay `stateHash`.",
+        "The shared-ownership additions to `match-handshake.md` and `match-handshake.schema.json` are strictly additive; pre-existing fields and sections must not be rewriting (no rewrite, no relax). Primary owner of both artifacts is [`tasks/phase-3/01-multiplayer/10-match-handshake-protocol.md`](./10-match-handshake-protocol.md).",
+        "`npm run validate:handshake` covers the three new fixtures and the new abort reasons."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 5 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/save-envelope.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/match-handshake.schema.json",
+        "content-schema/schemas/save-envelope.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.18-save-envelope-and-intent",
+        "phase-3.01-multiplayer.10-match-handshake-protocol"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.18-save-envelope-and-intent",
+        "phase-3.01-multiplayer.10-match-handshake-protocol"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
@@ -37147,7 +37730,8 @@
         "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
         "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance",
         "phase-3.01-multiplayer.34-turn-server-hardening",
-        "phase-3.01-multiplayer.35-edge-defense-and-health-segregation"
+        "phase-3.01-multiplayer.35-edge-defense-and-health-segregation",
+        "phase-3.01-multiplayer.36-resumed-from-save"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -37681,6 +38265,8 @@
         "mvp.02-content-schemas.41-error-and-audit-schemas",
         "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
         "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
+        "mvp.02-content-schemas.44-pack-signing-verifier",
+        "mvp.02-content-schemas.45-reproducible-archive",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",

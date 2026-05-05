@@ -235,6 +235,39 @@ covers the entire pack tree) per
 
 ---
 
+## 7a. Resumed-from-Save Mode
+
+> Source: Plan 27 § Improvement: MP Load-Resume Protocol.
+
+Two peers may agree to resume a saved match into a fresh
+multiplayer session. Resume mode is a strict superset of the
+fresh-match handshake — the COMMIT and REVEAL phases are unchanged
+— with one extra agreement step before ACCEPT:
+
+1. Both peers load the same save envelope (out-of-band; the
+   handshake does not transport the save body).
+2. Both peers compute their loaded-from-disk `stateHash` from the
+   replayed `commandLog` per
+   [`save-migration.md`](./save-migration.md) § Tamper Detection.
+3. Each peer attaches `resumedFromSave: { saveId, loadedStateHash }`
+   to its REVEAL frame.
+4. The receiver compares the opponent's `loadedStateHash` to its
+   own; mismatch dispatches
+   `ABORT { reason: "RESUME_STATE_HASH_MISMATCH" }`.
+5. The receiver also compares the opponent's `contentPackHashes`
+   set (from REVEAL's existing `packManifestDigest` and the
+   companion `contentPackHashes` if the save adds packs);
+   mismatch dispatches
+   `ABORT { reason: "RESUME_PACK_HASHES_MISMATCH" }`.
+
+A fresh match (no save) sends `resumedFromSave: null`. The save's
+own `mac` (when M5+ enables it) is **not** accepted as
+authentication between peers — peers verify their own copy
+locally, then prove agreement by exchanging the post-replay
+`stateHash`. The resume handshake is independent of the save
+envelope's per-installation MAC because each peer re-verifies the
+save under its own `deviceKey`.
+
 ## 8. Single-player and replay
 
 The handshake is **multiplayer-only**. In single-player and in

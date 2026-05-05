@@ -205,6 +205,93 @@ A malicious peer:
 
 ---
 
+## 5a. Save threat model
+
+> Source: Plan 27 § Improvement: Save & Pack Threat Model.
+
+The save loader assumes hostile input. `xxh64` over canonical-JSON
+detects accidental corruption only — it is **not** a signature
+and **not** a MAC. Determinism + post-replay state-hash equality
+is the integrity backstop, not the integrity *primitive*.
+
+Defenses run in this order:
+
+1. Parser hardening — size / ratio / depth / array caps per
+   [`parser-hardening.md`](./parser-hardening.md).
+2. `save-envelope.schema.json` validation — `intent` discriminator,
+   `saveVersion` range, capped `contentPackHashes`.
+3. `save.schema.json` validation — capped `commandLog`, integer-
+   only numerics, per-field bounds.
+4. Pack-hash gate — `contentPackHashes` matches the pack registry
+   active at load time.
+5. Pre-replay command-log validation — every command resolves
+   against the active registry before the reducer runs.
+6. Reducer replay — pure, deterministic.
+7. Post-replay state-hash check — must equal the saved hash.
+8. (M5+) Save-envelope MAC — keyed integrity per
+   [`save-envelope-mac.md`](./save-envelope-mac.md); refuses on
+   `MAC_MISMATCH` with no override path.
+
+A tampered save that survives all gates either matches the saved
+`stateHash` (in which case it is functionally equivalent to a
+legitimate save by the determinism contract) or fails the final
+hash gate. The single-player threat model is **"the player can
+edit their own save and the only victim is themselves"**; cloud-
+sync / leaderboard / shared-replay paths require the M5+ MAC
+before they ship.
+
+## 5b. Pack threat model
+
+> Source: Plan 27 § Improvement: Save & Pack Threat Model.
+
+The pack loader assumes hostile input even from the local filesystem.
+Defenses run in this order:
+
+1. Archive integrity — ZIP CRC over each entry.
+2. Parser hardening — same caps as the save loader, scaled up
+   per [`parser-hardening.md`](./parser-hardening.md).
+3. Manifest schema-parse — `manifest.schema.json` validation.
+4. Signature verify — Ed25519 over the canonical signed message
+   per [`pack-signing.md`](./pack-signing.md) § 1; consults
+   publisher registry, revocation list, and trust store.
+5. Publisher-registry lookup — assigns the trust tier
+   (`canonical | thirdParty | sandboxed`).
+6. Trust-store / TOFU consultation — refuses
+   `SIGNATURE_STRIPPED`, refuses `UNKNOWN_KEY_ID` without rotation
+   proof, refuses `DOWNGRADE_REFUSED` without explicit confirm.
+7. Asset extraction — last step; each binary asset's `sha256`
+   verified against `assets/index.json` before exposure.
+
+Failure at any gate refuses the load with a closed reason. The
+pack's effective trust tier is the **minimum** of its own tier and
+every transitive dependency's tier (Dependency Trust Propagation,
+[`pack-signing.md` § 9](./pack-signing.md)).
+
+## 5c. What this codebase does NOT protect
+
+> Source: Plan 27 § Improvement: Save & Pack Threat Model.
+
+Cross-referenced from § 4 Inherent limits:
+
+- **Single-player saves are not authenticated.** Any save loaded
+  into a single-player session can be tampered without consequence.
+  The fix is not to "protect single-player from cheating"; it is
+  to keep multiplayer / leaderboard / shared-replay paths gated
+  behind the optional save-envelope MAC and never to extend
+  single-player credentials to those paths.
+- **No save-format claim against a hostile server.** Cloud-sync /
+  leaderboard / shared-replay require the M5+ MAC. Until they
+  ship, no claim is made against an attacker who controls a
+  third-party server.
+- **Software-key publisher signing.** A publisher whose private
+  Ed25519 key is stolen can be impersonated until the next
+  revocation-list update reaches each user. Hardware-key signing
+  is out of scope for M4–M5.
+- **Asset-bypass via re-zipping.** Per-asset `sha256` plus the
+  manifest-bound `assetDigest` block byte-substitution — but a
+  fully re-built signed pack from a stolen private key is
+  indistinguishable from a legitimate update without revocation.
+
 ## 6. Required reading order for downstream features
 
 Any new feature that touches the multiplayer surface must read, in

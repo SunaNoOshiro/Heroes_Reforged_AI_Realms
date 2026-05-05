@@ -55,9 +55,20 @@ flowchart TD
 The size and ratio pre-checks, the four schema-validate terminals
 (`schema_invalid`, `too-new`, `no-migration`, `tamper`), and the
 quarantine staging step are all owned by
-[`pack-trust.md`](../pack-trust.md). Compatibility is reported as a
-discriminated union (`ok | skew | tamper | unsupported`) so screen
-55 and screen 70 surface skew vs. tamper distinctly.
+[`pack-trust.md`](../pack-trust.md). The full table of parser caps
+(`maxCompressedBytes`, `maxUncompressedBytes`,
+`maxDecompressionRatio`, `maxDepth`, `maxStringLength`,
+`maxArrayLength`, `maxObjectKeys`, `maxNumericMagnitude`) and the
+closed rejection vocabulary (`OVER_COMPRESSED`, `OVER_RATIO`,
+`OVER_DEPTH`, ...) are pinned in
+[`parser-hardening.md`](../parser-hardening.md); the size and ratio
+nodes in this diagram are the first two caps from that table.
+Compatibility is reported as a discriminated union
+(`ok | skew | tamper | unsupported`) so screen 55 and screen 70
+surface skew vs. tamper distinctly. Pre-replay command-log
+validation (per Plan 27 Critical Fix 3) runs between the migration
+chain and the reducer replay so a malformed command surfaces at a
+clean rejection point with full context, not mid-replay.
 
 ## Why Replay Commands?
 

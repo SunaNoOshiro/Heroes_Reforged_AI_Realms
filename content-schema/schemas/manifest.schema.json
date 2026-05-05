@@ -136,12 +136,36 @@
     "signature": {
       "type": "object",
       "required": ["scheme", "keyId", "value"],
+      "description": "Optional Ed25519 signature over the canonical signed message defined in `pack-signing.md` § 1: canonical-JSON of `{ id, version, contentHash, engineHash, dependencies, capabilities, sandboxed, assetDigest, previousKeyId }`. The verification order is pinned in `pack-signing.md` § 2. Comparison is constant-time per `crypto-rules.md`.",
       "properties": {
         "scheme": { "type": "string", "enum": ["ed25519"] },
         "keyId":  { "type": "string", "minLength": 1 },
-        "value":  { "type": "string", "minLength": 1 }
+        "value":  {
+          "type": "string",
+          "pattern": "^[a-f0-9]{128}$",
+          "description": "Lower-case hex Ed25519 signature (64 bytes / 128 hex chars). Tighter than `minLength: 1` so the schema rejects truncated or off-format signatures before the verifier runs."
+        }
       },
       "additionalProperties": false
+    },
+    "assetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$",
+      "description": "Optional xxh64 digest of the canonical-JSON of `assets/index.json`. Required field of the canonical signed message in `pack-signing.md` § 1; binds binary asset bytes (each row carries its own `sha256`) to the manifest signature so a swapped sprite invalidates the Ed25519 signature."
+    },
+    "previousKeyId": {
+      "type": ["string", "null"],
+      "description": "Optional rotation marker. When non-null, declares a prior `keyId` that the verifier must consult against the trust store; combined with `rotationProof`, lets a publisher rotate keys without breaking TOFU. See `pack-signing.md` § 7 Key rotation."
+    },
+    "rotationProof": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{128}$",
+      "description": "Optional Ed25519 signature by `previousKeyId` over canonical-JSON of `{ packId, newKeyId, validFrom }`. Required when `previousKeyId` is non-null. See `pack-signing.md` § 7."
+    },
+    "signaturePolicy": {
+      "type": "string",
+      "enum": ["optional", "required-friendly", "required-ranked"],
+      "description": "Optional pack-side signature policy hint. Pack loaders consult `publisher-registry` and the runtime context (single-player / friendly MP / ranked MP) to decide refusal. See `pack-signing.md` § 5."
     },
     "sandboxed": { "type": "boolean" },
     "contentRating": {

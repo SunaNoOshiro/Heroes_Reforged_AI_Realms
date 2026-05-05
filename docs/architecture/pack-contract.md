@@ -290,6 +290,72 @@ is explicitly revised to require it.
 `src/engine/` consumes resolved ids and registries. It does not own
 pack loading.
 
+## Verification Ordering
+
+The pack-load pipeline runs gates in a fixed order. Reordering is a
+threat-model violation — a tampered manifest can exercise schema-
+parser bugs or asset-extraction path-traversal before the signature
+gate fires. The pinned order:
+
+1. **archive integrity** — ZIP CRC over each entry.
+2. **parser hardening** — size / ratio / depth / array caps per
+   [`parser-hardening.md`](./parser-hardening.md).
+3. **manifest schema-parse** — `manifest.schema.json` validation.
+4. **signature verify** — Ed25519 over the canonical signed message
+   per [`pack-signing.md`](./pack-signing.md) § 1; constant-time
+   comparison; consults the publisher registry, revocation list,
+   and trust store.
+5. **publisher-registry lookup** — assigns the trust tier
+   (`canonical | thirdParty | sandboxed`).
+6. **asset extraction** — last step; each binary asset's `sha256`
+   is verified against `assets/index.json` before the bytes are
+   exposed to the renderer or audio engine.
+
+Authoritative doctrine: [`pack-signing.md`](./pack-signing.md) § 2.
+
+## Versioning
+
+`manifest.version` is constrained to the SemVer pattern
+`^\d+\.\d+\.\d+(-[a-z0-9.-]+)?$`. The pack loader compares the
+incoming version to the trust-store-pinned version on each install:
+
+- `incoming > installed` → install proceeds (upgrade path).
+- `incoming === installed` and the canonical signed message bytes
+  match → no-op.
+- `incoming < installed` → loader surfaces `DOWNGRADE_REFUSED` to
+  the trust-prompt UI; the user can explicitly confirm the
+  downgrade. Confirmation is recorded in the trust-store audit
+  log.
+
+The downgrade-refuse rule closes the substitute-known-vulnerable-
+older-version attack. Authoritative doctrine:
+[`pack-signing.md` § 8](./pack-signing.md).
+
+## Trust-on-First-Use (TOFU)
+
+Once a pack with `(packId, keyId = K)` is installed, the local
+trust store records `(packId, K, signaturePolicy = "required")`.
+Subsequent installs of the same `packId` MUST present a valid
+signature against `K` (or a key reachable via the rotation chain).
+A subsequent install that omits `signature` is rejected with
+`SIGNATURE_STRIPPED` rather than silently downgraded to sandboxed.
+
+The trust store is per-installation and never synced;
+[`trust-store.schema.json`](../../content-schema/schemas/trust-store.schema.json)
+owns the persisted shape. Bootstrap (wipe / reset / new device)
+re-bootstraps the binding on first install. Authoritative doctrine:
+[`pack-signing.md` § 6](./pack-signing.md).
+
+## Reproducible Archive
+
+Canonical packs ship as byte-stable `.hrmod` ZIPs. The build script
+pins entry order, timestamps, compression level, and external
+attributes; a sibling `signedBuild.json` records the expected
+`archiveHash` plus the canonical signed message bytes. Third-party
+auditors can rebuild a canonical pack from source and confirm the
+SHA-256 matches the published artifact. Authoritative doctrine:
+[`reproducible-archive.md`](./reproducible-archive.md).
+
 ## Asset Fallback And Placeholders
 
 Pack content can be incomplete (mid-development) or corrupt at

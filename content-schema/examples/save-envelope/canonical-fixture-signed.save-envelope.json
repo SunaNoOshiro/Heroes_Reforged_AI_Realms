@@ -1,0 +1,53 @@
+{
+  "envelopeVersion": 1,
+  "intent": "fixture",
+  "saveVersion": 1,
+  "engineHash": "0a1b2c3d4e5f6789",
+  "contentPackHashes": [
+    {
+      "id": "core_baseline",
+      "version": "1.0.0",
+      "contentHash": "9b40e2af0001b801",
+      "required": true
+    }
+  ],
+  "body": {
+    "$schema": "heroes-reforged/save.schema.json",
+    "schemaVersion": 1,
+    "saveVersion": 1,
+    "minRuntimeSaveVersion": 1,
+    "maxRuntimeSaveVersion": 1,
+    "engineHash": "0a1b2c3d4e5f6789",
+    "rulesetId": "core_baseline",
+    "seed": "12345",
+    "packHashes": [
+      {
+        "id": "core_baseline",
+        "version": "1.0.0",
+        "contentHash": "9b40e2af0001b801",
+        "required": true
+      }
+    ],
+    "commandLog": [
+      {
+        "kind": "END_DAY",
+        "metadata": {
+          "turn": 0,
+          "playerId": 0,
+          "nonce": "0:0:0"
+        }
+      }
+    ],
+    "stateHash": "0000000000000000",
+    "metadata": {
+      "name": "Engine fixture: empty-day",
+      "savedAt": 1700000000,
+      "turnNumber": 1
+    }
+  },
+  "signature": {
+    "scheme": "ed25519",
+    "keyId": "engine-fixture-key-v1",
+    "value": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

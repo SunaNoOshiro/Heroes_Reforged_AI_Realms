@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/save-envelope.schema.json",
+  "title": "SaveEnvelope",
+  "description": "Outer wrapper around an exportable save record. Carries the `intent` discriminator (save vs replay vs fixture), the per-installation `mac` seam (M5+, optional in M4), and the canonical `engineHash` + `contentPackHashes` pin. Authoritative doctrine: docs/architecture/save-envelope-mac.md and docs/architecture/save-migration.md. Owning task: tasks/mvp/08-persistence/18-save-envelope-and-intent.md.",
+  "type": "object",
+  "required": [
+    "envelopeVersion",
+    "intent",
+    "saveVersion",
+    "engineHash",
+    "contentPackHashes",
+    "body"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "envelopeVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9999,
+      "description": "Envelope-format revision counter, independent of the inner save body's `saveVersion`. Currently `1`."
+    },
+    "intent": {
+      "type": "string",
+      "enum": ["save", "replay", "fixture"],
+      "description": "Discriminator. `save` is device-local and may carry `mac`. `replay` is shared/exported and strips player-identifying fields per save-migration.md § Privacy strip on replay export. `fixture` is canonical-engine-fixture and requires `signature` (Ed25519 by an engine-fixture key)."
+    },
+    "saveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9999,
+      "description": "Inner save body's schema version. Range-checked here independently of `save.schema.json` so an out-of-range version is rejected before migrators run. Bound to the optional `mac` once MAC is enabled (save-envelope-mac.md § 4)."
+    },
+    "engineHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$",
+      "description": "16-hex-char xxh64 digest of the engine build that authored the save. Pinned per `engine-hash.md`."
+    },
+    "contentPackHashes": {
+      "type": "array",
+      "maxItems": 256,
+      "description": "Closed list of pack identity records present at save time. Capped to bound parser memory before schema validation runs. Same shape as `save.schema.json:packHashes`.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "version", "contentHash"],
+        "properties": {
+          "id":          { "type": "string", "minLength": 1 },
+          "version":     { "type": "string", "minLength": 1 },
+          "contentHash": { "type": "string", "pattern": "^[a-f0-9]{16}$" },
+          "required":    { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "body": {
+      "type": "object",
+      "description": "Inner save record validated against `save.schema.json` after envelope acceptance. Treated opaquely at the envelope layer."
+    },
+    "mac": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "Optional HMAC-SHA-256 over canonical-JSON of `{ envelopeVersion, intent, saveVersion, engineHash, contentPackHashes, body }`. Absent in M4. Required in M5+ when `intent === \"save\"` AND user opted into cloud sync. See save-envelope-mac.md."
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "keyId", "value"],
+      "description": "Optional Ed25519 signature. Present only when `intent === \"fixture\"` and the fixture is canonical (signed by an `engine-fixture` key). Verified per pack-signing.md § Verification order.",
+      "properties": {
+        "scheme": { "type": "string", "enum": ["ed25519"] },
+        "keyId":  { "type": "string", "minLength": 1 },
+        "value":  { "type": "string", "pattern": "^[a-f0-9]{128}$" }
+      }
+    }
+  }
+}
