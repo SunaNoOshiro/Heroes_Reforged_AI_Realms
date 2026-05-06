@@ -53,14 +53,9 @@ GET /turn-credential
 
 ## Rotation Policy
 
-- **Shared secret rotation**: every 30 days. Rotation is zero-downtime
-  because the server accepts both the previous and current secret for
-  a 5-minute overlap window.
-- **Per-room username rotation**: implicit via `unixTsExpiry` — each
-  username is one-shot for the 600-second TTL.
-- **Provider rotation**: documented in this file; switching from
-  Cloudflare to coturn (or vice versa) is a single env-var swap on
-  the signaling deployment.
+Rotation: see
+[`docs/architecture/turn-credentials.md` § 9](../../docs/architecture/turn-credentials.md#9-rotation)
+(canonical, 7-day).
 
 ---
 

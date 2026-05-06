@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/dispatcher-validation-error.schema.json",
   "title": "DispatcherValidationError",
-  "description": "Closed taxonomy of structured errors returned by the runtime command dispatcher (oneOf over `code`). Distinct from heroes-reforged/validation-error.schema.json which covers JSON-Schema/Zod record validation surfaced by the CI repo-contract checker. Codes here are the typed reasons commands are rejected pre-dispatch (Gate 0–3) and post-dispatch (single-flight). See docs/architecture/edge-cases-policy.md § 11 and docs/architecture/command-schema.md § Validation Framework.",
+  "description": "Closed taxonomy of structured errors returned by the runtime command dispatcher (oneOf over `code`). Distinct from heroes-reforged/validation-error.schema.json which covers JSON-Schema/Zod record validation surfaced by the CI repo-contract checker. Codes here are the typed reasons commands are rejected pre-dispatch (Gate 0–3) and post-dispatch (single-flight). See docs/architecture/edge-cases-policy.md § 11 and docs/architecture/command-schema.md § Validation Framework. See docs/architecture/error-schema-map.md for the layer / consumer / owning-plan map across all error-shaped schemas.",
   "type": "object",
   "required": ["code"],
   "oneOf": [

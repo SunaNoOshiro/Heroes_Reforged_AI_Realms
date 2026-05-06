@@ -668,6 +668,22 @@
       "saves"
     ]
   },
+  "heroes-reforged/error-envelope.schema.json": {
+    "heroes-reforged/error-envelope.schema.json#/properties/error/enum": [
+      "BUDGET_EXCEEDED",
+      "INTERNAL",
+      "RATE_LIMITED",
+      "SERVICE_PAUSED",
+      "UNAVAILABLE",
+      "VALIDATION_FAILED"
+    ],
+    "heroes-reforged/error-envelope.schema.json#/properties/scope/enum": [
+      "account",
+      "global",
+      "ip",
+      "session"
+    ]
+  },
   "heroes-reforged/error-state.schema.json": {
     "heroes-reforged/error-state.schema.json#/properties/severity/enum": [
       "error",
@@ -807,6 +823,21 @@
       "icu",
       "literal",
       "named"
+    ]
+  },
+  "heroes-reforged/log-record.schema.json": {
+    "heroes-reforged/log-record.schema.json#/properties/channel/enum": [
+      "access",
+      "app",
+      "audit",
+      "security"
+    ],
+    "heroes-reforged/log-record.schema.json#/properties/severity/enum": [
+      "debug",
+      "error",
+      "fatal",
+      "info",
+      "warn"
     ]
   },
   "heroes-reforged/manifest.schema.json": {
@@ -1208,6 +1239,65 @@
       "human"
     ]
   },
+  "heroes-reforged/security-event.schema.json": {
+    "heroes-reforged/security-event.schema.json#/allOf~10/if/properties/kind/const": [
+      "signature_failure"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~11/if/properties/kind/const": [
+      "content_hash_mismatch"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~110/if/properties/kind/const": [
+      "save_load_invalid"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~111/if/properties/kind/const": [
+      "pack_traversal_attempt"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~12/if/properties/kind/const": [
+      "schema_violation"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~13/if/properties/kind/const": [
+      "rate_limit_exceeded"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~14/if/properties/kind/const": [
+      "worker_message_invalid"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~15/if/properties/kind/const": [
+      "signaling_message_invalid"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~16/if/properties/kind/const": [
+      "peer_message_invalid"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~17/if/properties/kind/const": [
+      "moderation_block"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~18/if/properties/kind/const": [
+      "prompt_injection_suspected"
+    ],
+    "heroes-reforged/security-event.schema.json#/allOf~19/if/properties/kind/const": [
+      "oversize_payload"
+    ],
+    "heroes-reforged/security-event.schema.json#/properties/kind/enum": [
+      "auth_failure",
+      "content_hash_mismatch",
+      "moderation_block",
+      "oversize_payload",
+      "pack_traversal_attempt",
+      "peer_message_invalid",
+      "prompt_injection_suspected",
+      "rate_limit_exceeded",
+      "save_load_invalid",
+      "schema_violation",
+      "signaling_message_invalid",
+      "signature_failure",
+      "worker_message_invalid"
+    ],
+    "heroes-reforged/security-event.schema.json#/properties/severity/enum": [
+      "critical",
+      "error",
+      "info",
+      "warn"
+    ]
+  },
   "heroes-reforged/signaling-envelope.schema.json": {
     "heroes-reforged/signaling-envelope.schema.json#/properties/payloadType/enum": [
       "ANSWER",
@@ -1564,6 +1654,52 @@
       "fail",
       "pass",
       "warn"
+    ]
+  },
+  "heroes-reforged/worker-message.schema.json": {
+    "heroes-reforged/worker-message.schema.json#/$defs/AbortPayload/properties/kind/const": [
+      "ABORT"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/AiErrorPayload/properties/kind/const": [
+      "AI_ERROR"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/AiTraceRequestPayload/properties/kind/const": [
+      "AI_TRACE_REQUEST"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/AiTraceRequestPayload/properties/verbosity/enum": [
+      "full",
+      "summary"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/AiTraceResultPayload/properties/kind/const": [
+      "AI_TRACE_RESULT"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/ComputeMovePayload/properties/difficulty/enum": [
+      "easy",
+      "hard",
+      "impossible",
+      "normal"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/ComputeMovePayload/properties/kind/const": [
+      "COMPUTE_MOVE"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/MoveResultPayload/properties/kind/const": [
+      "MOVE_RESULT"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/PingPayload/properties/kind/const": [
+      "PING"
+    ],
+    "heroes-reforged/worker-message.schema.json#/$defs/PongPayload/properties/kind/const": [
+      "PONG"
+    ],
+    "heroes-reforged/worker-message.schema.json#/properties/kind/enum": [
+      "ABORT",
+      "AI_ERROR",
+      "AI_TRACE_REQUEST",
+      "AI_TRACE_RESULT",
+      "COMPUTE_MOVE",
+      "MOVE_RESULT",
+      "PING",
+      "PONG"
     ]
   }
 }

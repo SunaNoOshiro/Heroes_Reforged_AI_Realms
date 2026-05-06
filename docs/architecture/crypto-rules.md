@@ -1,5 +1,12 @@
 # Crypto Rules
 
+> The full primitive table (which algorithm is used for which
+> surface, plus rotation cadence) lives in
+> [`crypto-primitives.md`](./crypto-primitives.md). This doc
+> governs the **failure-collapse** rules and the closed
+> `signature-error.schema.json` taxonomy; read both when adding a
+> new comparison call site.
+
 Three mandatory rules covering every secret comparison shipped by the
 project. Plan 27 (save tampering & pack signing), Plan 25 (TURN
 credentials & signaling abuse), and any future auth surface inherit

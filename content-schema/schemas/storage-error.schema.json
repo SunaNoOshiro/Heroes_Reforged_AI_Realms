@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/storage-error.schema.json",
   "title": "StorageError",
-  "description": "Closed taxonomy of structured errors returned by the IndexedDB wrapper boundary. Every wrapper write returns Result<void, StorageError>. See docs/architecture/storage-policy.md and docs/architecture/edge-cases-policy.md § 15.",
+  "description": "Closed taxonomy of structured errors returned by the IndexedDB wrapper boundary. Every wrapper write returns Result<void, StorageError>. See docs/architecture/storage-policy.md and docs/architecture/edge-cases-policy.md § 15. See docs/architecture/error-schema-map.md for the layer / consumer / owning-plan map across all error-shaped schemas.",
   "type": "object",
   "required": ["code"],
   "oneOf": [

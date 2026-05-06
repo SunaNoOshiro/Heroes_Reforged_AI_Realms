@@ -1,5 +1,9 @@
 # Pack Contract
 
+> Crypto primitives in use here (asset bytes integrity = SHA-256)
+> are catalogued in
+> [`crypto-primitives.md`](./crypto-primitives.md).
+
 This file is the canonical source of truth for pack layout, manifest
 rules, archive rules, and trust metadata.
 

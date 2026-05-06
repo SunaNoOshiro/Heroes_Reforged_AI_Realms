@@ -24,6 +24,14 @@ Cross-cutting framing in
 | `content` | 100 MB | 90 MB | Pack metadata cache. LRU-evicted on demand. |
 | `ai-cache` | 200 MB | 180 MB | Streamed AI-generated assets. LRU-evicted on demand. |
 
+The static budget gate
+[`scripts/check-storage-budget.mjs`](../../scripts/check-storage-budget.mjs)
+(`npm run validate:storage-budget`) sums the numeric soft caps in
+this table and asserts the total fits within
+[RR-05](./runtime-requirements.md#rr-05-storage--indexeddb--50-mb-opfs-preferred-when-present)
+times a documented headroom multiplier. Adding a new bounded
+store updates this table; the validator catches silent drift.
+
 The wrapper exposes `getQuotaUsage()` so the Save / Load screen can
 render a percentage indicator independent of these per-store
 budgets.

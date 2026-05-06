@@ -193,23 +193,34 @@ Notes:
 
 ## 6. AI Compute Budget
 
+The per-difficulty search-budget table (`maxNodes`, `maxDepth`,
+`wallClockHardMs`) is owned by
+[`ai-contract.md` § 4](./ai-contract.md#4-per-turn-budget-table).
+Read that table for the constants; do not duplicate them here.
+
 AI search budgets are **deterministic**: identical seed + state +
 budget on two machines must produce identical commands. The
-contract:
+deterministic contract is:
 
-- AI workers stop when `nodesExpanded >= maxNodes(difficulty,
-  mapDims)` **or** `searchDepth >= maxDepth(difficulty)`,
-  whichever fires first.
-- The wall-clock timer remains, **but only as a watchdog** that
-  logs a warning if an AI move exceeds 2 s on the current machine.
-  It **never truncates** the search.
-- An over-budget difficulty level is a **bug** in
-  [`tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md`](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md).
-  Tune the difficulty constants until the bench-harness Scenario C
-  AI-vs-AI run keeps every move under 2 s on the Minimum-spec tier.
+- AI workers stop when `nodesExpanded >= maxNodes` or
+  `searchDepth >= maxDepth`, whichever fires first.
+- The wall-clock hard timeout (`wallClockHardMs` in the table)
+  fires the cancellation path; on fire, the worker returns a valid
+  `Command` (best-found if any scored, otherwise the per-difficulty
+  no-action fallback). The chosen `Command` is logged once and
+  replays bit-identically from the log without re-running the
+  search.
+- An over-budget difficulty level is a **bug** in the implementing
+  task ([Pawn / Knight](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md),
+  Grand Master / Lord / Immortal — see ai-contract.md § 4
+  Implementing tasks). Tune the difficulty constants in the
+  ai-contract table until the bench-harness Scenario C AI-vs-AI
+  run keeps every move under its `wallClockHardMs` on the
+  Minimum-spec tier.
 
 This rule is part of the determinism contract; see
-[`docs/architecture/determinism.md`](./determinism.md).
+[`docs/architecture/determinism.md`](./determinism.md) and
+[`ai-contract.md` § 6 (AI Determinism Under Wall-Clock Budgets)](./ai-contract.md#6-parallelism).
 
 ---
 

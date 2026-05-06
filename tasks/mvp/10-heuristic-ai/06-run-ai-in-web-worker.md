@@ -50,7 +50,12 @@ Outputs:
 - Message out `MOVE_RESULT`:
   `{ type: "MOVE_RESULT", requestId, command: Command, nodesExpanded: number, searchDepthReached: number }`
 - Error path `AI_ERROR`:
-  `{ type: "AI_ERROR", requestId, reason: string }`
+  `{ type: "AI_ERROR", requestId, reason: string }`. The closed
+  envelope `kind` enum has **8 values**:
+  `COMPUTE_MOVE`, `MOVE_RESULT`, `ABORT`, `PING`, `PONG`,
+  `AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT`. The two
+  `AI_TRACE_*` tokens are dev-only (see
+  [`docs/architecture/ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol)).
 - `src/ai/bots/ai-client.ts` — thin wrapper used by the UI:
   - `requestAIMove(view: AdventureView, difficulty: DifficultyLevel, signal?: AbortSignal): Promise<Command>`
   - The client calls `aiPlayerView` before sending `COMPUTE_MOVE`;

@@ -1,5 +1,8 @@
 # Determinism
 
+> State-hash primitive (xxh64) is catalogued in
+> [`crypto-primitives.md`](./crypto-primitives.md).
+
 Hard constraint: the same seed, the same commands, and the same content
 hashes produce the same state on any machine, any time.
 
@@ -82,11 +85,21 @@ by difficulty and map size:
   machine. It never truncates the search. An over-budget
   difficulty level is a bug, tuned against the bench harness's
   Scenario C — not silently absorbed at runtime.
-- The per-difficulty `maxNodes` / `maxDepth` constants are owned
-  by
-  [`tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md`](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md).
+- The per-difficulty `maxNodes` / `maxDepth` constants are pinned
+  in
+  [`ai-contract.md` § 4 Per-Turn Budget Table](./ai-contract.md#4-per-turn-budget-table)
+  (the **only authoritative source**). The implementing tasks
+  ([Pawn / Knight](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md),
+  Grand Master, Lord, Immortal — see ai-contract.md § 4 Implementing
+  tasks) cite that table; do not duplicate the numbers elsewhere.
   The worker-side enforcement is owned by
   [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md).
+- Wall-clock hard-timeout fallbacks are permitted **only** in the
+  broadcaster-elected AI worker; non-broadcaster peers consume the
+  resulting `Command` from the lockstep log. See
+  [`ai-contract.md` § 6 (AI Determinism Under Wall-Clock Budgets)](./ai-contract.md#ai-determinism-under-wall-clock-budgets)
+  for the structural rule that keeps replay deterministic even
+  when machine speed determines whether `wallClockHardMs` fires.
 
 The fuzz harness
 ([`tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](../../tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md))

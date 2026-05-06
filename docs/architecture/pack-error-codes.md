@@ -14,6 +14,10 @@ once the runtime begins (Task
 [02b-16](../../tasks/mvp/02b-asset-pipeline/16-pack-error-code-catalog.md)).
 Until then, this doc is the single source.
 
+See [`error-schema-map.md`](./error-schema-map.md) for the
+layer / consumer / owning-plan map across all error-shaped
+artifacts in the repo.
+
 ## Code Convention
 
 Every code is a stable string namespaced as `pack.error.<area>.<reason>`.

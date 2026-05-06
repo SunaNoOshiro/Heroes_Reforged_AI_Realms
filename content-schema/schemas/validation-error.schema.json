@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/validation-error.schema.json",
   "title": "ValidationError",
-  "description": "Canonical, transport-friendly error record produced by every validator in the project (CI repo-contract checker, runtime Zod adapter, engine pre-dispatch validator, AI generation feedback loop). Replaces ad-hoc string errors so that editors, IDE integrations, and the Phase-3 AI feedback loop can consume failures generically. Errors are presentation-side only — they do not enter saves, replays, or the canonical state hash.",
+  "description": "Canonical, transport-friendly error record produced by every validator in the project (CI repo-contract checker, runtime Zod adapter, engine pre-dispatch validator, AI generation feedback loop). Replaces ad-hoc string errors so that editors, IDE integrations, and the Phase-3 AI feedback loop can consume failures generically. Errors are presentation-side only — they do not enter saves, replays, or the canonical state hash. See docs/architecture/error-schema-map.md for the layer / consumer / owning-plan map across all error-shaped schemas.",
   "type": "object",
   "required": [
     "schemaId",

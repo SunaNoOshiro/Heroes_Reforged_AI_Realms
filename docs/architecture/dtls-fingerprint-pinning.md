@@ -1,5 +1,9 @@
 # DTLS Fingerprint Pinning
 
+> Crypto primitive in use here (SHA-256 DTLS fingerprint, RFC 8122
+> floor) is catalogued in
+> [`crypto-primitives.md`](./crypto-primitives.md).
+
 Canonical doctrine for **DTLS-fingerprint pinning per `peerId`**, the
 **reconnect continuity challenge**, and **identity continuity** across
 WebRTC PeerConnection lifecycles. Closes the SDP-swap window that

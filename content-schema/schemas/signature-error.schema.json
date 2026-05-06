@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/signature-error.schema.json",
   "title": "Signature Error",
-  "description": "Closed pack-signature error vocabulary. Per `docs/architecture/crypto-rules.md`, every signature-comparison failure collapses to `INVALID_SIGNATURE`; the explicit `SIGNATURE_DISABLED` code is reserved for the documented \"feature off\" state. The structure carries no key id, no attempted value, and no algorithm name on the wire.",
+  "description": "Closed pack-signature error vocabulary. Per `docs/architecture/crypto-rules.md`, every signature-comparison failure collapses to `INVALID_SIGNATURE`; the explicit `SIGNATURE_DISABLED` code is reserved for the documented \"feature off\" state. The structure carries no key id, no attempted value, and no algorithm name on the wire. See `docs/architecture/error-schema-map.md` for the layer / consumer / owning-plan map across all error-shaped schemas.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schemaVersion", "code", "errorId"],

@@ -111,7 +111,12 @@ Locked entries do not change without a `DEC-NNN` entry in
   [`tasks/mvp/08-persistence/01-indexeddb-wrapper.md`](../../tasks/mvp/08-persistence/01-indexeddb-wrapper.md)
   and
   [`docs/architecture/storage-policy.md`](./storage-policy.md).
-- **Verification:** persistence-suite quota fixtures.
+- **Verification:** persistence-suite quota fixtures, plus the
+  static budget gate
+  [`scripts/check-storage-budget.mjs`](../../scripts/check-storage-budget.mjs)
+  (`npm run validate:storage-budget`) which sums the per-store
+  soft caps from `storage-policy.md` and asserts they fit within
+  this floor times a documented headroom multiplier.
 
 ## RR-06: Time source — `performance.now()` monotonic, capped per frame
 

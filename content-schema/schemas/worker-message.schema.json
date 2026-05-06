@@ -8,8 +8,17 @@
   "required": ["kind", "version", "correlationId", "payload"],
   "properties": {
     "kind": {
-      "enum": ["COMPUTE_MOVE", "MOVE_RESULT", "ABORT", "PING", "PONG"],
-      "description": "Closed message kinds. `COMPUTE_MOVE` is main → worker; `MOVE_RESULT` is worker → main; `ABORT` cancels an in-flight computation; `PING` / `PONG` is a liveness check."
+      "enum": [
+        "COMPUTE_MOVE",
+        "MOVE_RESULT",
+        "ABORT",
+        "PING",
+        "PONG",
+        "AI_ERROR",
+        "AI_TRACE_REQUEST",
+        "AI_TRACE_RESULT"
+      ],
+      "description": "Closed message kinds. `COMPUTE_MOVE` is main → worker; `MOVE_RESULT` is worker → main; `ABORT` cancels an in-flight computation; `PING` / `PONG` is a liveness check; `AI_ERROR` is the worker → main error path per `docs/architecture/ai-contract.md` § 3; `AI_TRACE_REQUEST` and `AI_TRACE_RESULT` are dev-only tokens gated behind the AI inspector overlay build flag (`tasks/mvp/10-heuristic-ai/08-ai-inspector-dev-screen.md`) and MUST NOT be emitted in production builds."
     },
     "version": {
       "type": "integer",
@@ -28,7 +37,10 @@
         { "$ref": "#/$defs/MoveResultPayload" },
         { "$ref": "#/$defs/AbortPayload" },
         { "$ref": "#/$defs/PingPayload" },
-        { "$ref": "#/$defs/PongPayload" }
+        { "$ref": "#/$defs/PongPayload" },
+        { "$ref": "#/$defs/AiErrorPayload" },
+        { "$ref": "#/$defs/AiTraceRequestPayload" },
+        { "$ref": "#/$defs/AiTraceResultPayload" }
       ]
     }
   },
@@ -92,6 +104,79 @@
       "properties": {
         "kind": { "const": "PONG" }
       }
+    },
+    "AiErrorPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "requestId", "reason"],
+      "properties": {
+        "kind": { "const": "AI_ERROR" },
+        "requestId": {
+          "type": "string",
+          "description": "Echoes the `correlationId` of the failing request. Used by the dispatcher to fall back per `docs/architecture/ai-contract.md` § 4."
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Short failure reason. Sanitized for log surfaces; no caller-controlled bytes."
+        },
+        "code": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Optional machine-readable error code; consumers MAY route on this without parsing `reason`."
+        },
+        "details": {
+          "type": "object",
+          "description": "Optional structured details bag; opaque to the dispatcher."
+        }
+      }
+    },
+    "AiTraceRequestPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "requestId"],
+      "properties": {
+        "kind": { "const": "AI_TRACE_REQUEST" },
+        "requestId": {
+          "type": "string",
+          "description": "Trace-request correlation id, scoped to the dev-only AI inspector overlay per `docs/architecture/ai-contract.md` § 7."
+        },
+        "verbosity": {
+          "enum": ["summary", "full"],
+          "description": "Optional trace verbosity hint. Dev-only token."
+        }
+      },
+      "description": "Dev-only message gated behind the AI inspector overlay build flag. MUST NOT be emitted in production builds."
+    },
+    "AiTraceResultPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "requestId", "wants", "scored", "command", "reasoning"],
+      "properties": {
+        "kind": { "const": "AI_TRACE_RESULT" },
+        "requestId": {
+          "type": "string",
+          "description": "Echoes the originating `AI_TRACE_REQUEST` requestId."
+        },
+        "wants": {
+          "type": "array",
+          "description": "Want-engine output snapshot per `tasks/mvp/10-heuristic-ai/02-wants-engine-strategic-action-prioritization.md`."
+        },
+        "scored": {
+          "type": "array",
+          "description": "ScoredAction snapshot per `docs/architecture/ai-contract.md` § 7."
+        },
+        "command": {
+          "type": "object",
+          "description": "Chosen Command record. Validated against `command.schema.json` separately at the dispatcher."
+        },
+        "reasoning": {
+          "type": "string",
+          "maxLength": 4096,
+          "description": "Free-form reasoning string consumed by the dev-only inspector screen."
+        }
+      },
+      "description": "Dev-only message gated behind the AI inspector overlay build flag. MUST NOT be emitted in production builds."
     }
   }
 }

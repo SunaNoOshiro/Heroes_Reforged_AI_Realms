@@ -153,3 +153,21 @@ declarations and JSON Schema ↔ Zod parity rules live in
 behaviour on a mismatch (refuse / migrate / degrade across offline,
 multiplayer, trusted-replay contexts) lives in
 [`version-policy.md`](./version-policy.md).
+
+## Supersession
+
+Schemas replaced by a successor carry the
+`x-supersededBy: "<schema-id>"` and
+`x-supersededReason: "<plan-id>"` annotations. The validator
+[`scripts/check-supersession.mjs`](../../scripts/check-supersession.mjs)
+(wired in via `npm run validate:supersession` and `npm run validate`)
+enforces that:
+
+1. every `x-supersededBy` target resolves to a known schema id,
+2. canonical example fixtures are not authored under a superseded
+   schema, and
+3. task `Owned Paths` only cite a superseded schema when the citing
+   task body references the supersession authority.
+
+Today, `command-envelope.schema.json` is superseded by
+`lockstep-envelope.schema.json` per Plan 26.

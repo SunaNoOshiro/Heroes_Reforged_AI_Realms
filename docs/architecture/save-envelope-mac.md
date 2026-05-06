@@ -3,6 +3,9 @@
 > Source plan:
 > [`docs/implementation-plans/27-save-tampering-and-pack-signing-plan.md`](../implementation-plans/27-save-tampering-and-pack-signing-plan.md)
 > § Improvement: Save-Envelope MAC.
+>
+> Crypto primitive in use here (HMAC-SHA-256) is catalogued in
+> [`crypto-primitives.md`](./crypto-primitives.md).
 
 This document pins the M5+ contract for keyed integrity on save
 envelopes. It is **doc-only in M4** — the schema seam is in place

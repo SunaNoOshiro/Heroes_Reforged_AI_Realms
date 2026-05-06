@@ -30,21 +30,26 @@ Inputs:
   `content-schema/examples/packs/<example>/sprites/...`.
 
 Outputs:
-- `tools/atlas/pack.ts` — CLI invocation wrapper that:
+- `scripts/atlas/pack.mjs` — CLI invocation wrapper that:
   - sorts frames lexicographically by absolute pack-relative path,
   - invokes `free-tex-packer-cli` with the pinned `--seed` and
     flags taken from `<pack>/atlas-manifest.json`,
   - writes `<pack>/atlases/<entityId>.png` and
     `<pack>/atlases/<entityId>.atlas.json`.
-- `tools/atlas/README.md` — invocation docs and pinned tool
+- `scripts/atlas/README.md` — invocation docs and pinned tool
   version reference.
 - `npm run pack:build` script entry wired into `package.json`.
 - `content-schema/schemas/atlas.schema.json` — author-side metadata
   schema.
 
 Owned Paths:
-- `tools/atlas/`
+- `scripts/atlas/`
 - `content-schema/schemas/atlas.schema.json`
+
+Note: `scripts/atlas/pack.mjs` is the canonical entry point until the
+Vite/TS bootstrap (mvp.01-engine-core.02) lands; once it does, the
+script ports in place per
+[`docs/architecture/testing-conventions.md` § 8](../../../docs/architecture/testing-conventions.md).
 
 Dependencies:
 - mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform

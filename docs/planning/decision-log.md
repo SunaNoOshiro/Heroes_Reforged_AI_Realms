@@ -98,3 +98,26 @@ the prior entry with `Superseded by: DEC-NNN`.
 4. If you patched a canonical source, also update its inline
    reference back to this log so readers reach the rationale in one
    hop.
+
+---
+
+## Module-Name Aliases
+
+Plan authors repeatedly named folders that don't exist in the repo
+(`tasks/mvp/01-foundations/`, `tasks/mvp/02-rules-engine/`,
+`tasks/mvp/00-foundation/`, `tasks/phase-1/<schema>/`). The implementer
+of each plan reverse-engineered the closest existing folder. This
+table pins the canonical mapping so future plan authors see the
+target folder before naming new work. Closes Plan 32 § PI-2.
+
+| Aspirational | Canonical | Rationale |
+|---|---|---|
+| `tasks/mvp/01-foundations/` | [`tasks/mvp/00-core-architecture/`](../../tasks/mvp/00-core-architecture/) | Foundations / engine-core contracts (state shape, command queue, RNG streams, ID allocator) live in `00-core-architecture` per [`docs/architecture/state-flow.md`](../architecture/state-flow.md). |
+| `tasks/mvp/02-rules-engine/` | [`tasks/mvp/02-content-schemas/`](../../tasks/mvp/02-content-schemas/) | Rules / formulas land as schemas + Zod validators inside `02-content-schemas`; there is no separate "rules-engine" task module. |
+| `tasks/mvp/00-foundation/` | [`tasks/mvp/00-core-architecture/`](../../tasks/mvp/00-core-architecture/) | Same target as `01-foundations`; the canonical singular form is `00-core-architecture`. |
+| `tasks/phase-1/<schema>/` | [`tasks/mvp/02-content-schemas/`](../../tasks/mvp/02-content-schemas/) | The repo collapses Phase-1 schema work into the MVP `02-content-schemas` module; there is no `phase-1` directory. |
+| `services/multiplayer/` | `src/net/webrtc/` (runtime, reserved) + [`services/signaling/`](../../services/signaling/) (server) | Multiplayer runtime code lives under the reserved `src/net/webrtc/` path (folder created when M5 runtime work lands); the optional signaling server adapter lives under `services/signaling/`. The legacy `services/multiplayer/` folder holds only operational config (e.g. TURN). |
+
+Plan authors: read this table before adding `Owned Paths` entries
+that name a new folder. Append rows here when a new aspirational
+name surfaces; do not retroactively rename existing tasks.

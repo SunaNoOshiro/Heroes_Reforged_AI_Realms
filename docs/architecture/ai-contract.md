@@ -141,6 +141,25 @@ Lifecycle:
   reason }` and the dispatcher falls back to `END_HERO_TURN` /
   `END_DAY` per § 4.
 
+The closed envelope schema is
+[`content-schema/schemas/worker-message.schema.json`](../../content-schema/schemas/worker-message.schema.json).
+Every `kind` value is reflected in the `kind` enum and the matching
+`payload` `oneOf` branch:
+
+| `kind`              | Direction       | Owner task                                                                                                       | Notes                                              |
+|---------------------|-----------------|------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| `COMPUTE_MOVE`      | main → worker   | [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md) | Carries `stateView` + `difficulty`.                |
+| `MOVE_RESULT`       | worker → main   | [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md) | Carries the chosen `Command` + optional log.       |
+| `ABORT`             | main → worker   | [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md) | Cancellation gate per § 5.                         |
+| `PING` / `PONG`     | bidirectional   | [`tasks/phase-3/05-observability/02-worker-message-validation.md`](../../tasks/phase-3/05-observability/02-worker-message-validation.md) | Liveness only.                                     |
+| `AI_ERROR`          | worker → main   | [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md) | Drives the per-difficulty no-action fallback in § 4. |
+| `AI_TRACE_REQUEST`  | main → worker   | [`tasks/mvp/10-heuristic-ai/08-ai-inspector-dev-screen.md`](../../tasks/mvp/10-heuristic-ai/08-ai-inspector-dev-screen.md) | **Dev-only**, gated by the AI inspector overlay build flag. |
+| `AI_TRACE_RESULT`   | worker → main   | [`tasks/mvp/10-heuristic-ai/08-ai-inspector-dev-screen.md`](../../tasks/mvp/10-heuristic-ai/08-ai-inspector-dev-screen.md) | **Dev-only**, gated by the AI inspector overlay build flag. |
+
+`AI_TRACE_REQUEST` and `AI_TRACE_RESULT` MUST NOT be emitted in
+production builds. The build-flag gate is the structural protection
+against trace bytes leaking into the canonical command log.
+
 Implementing task:
 [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md).
 
@@ -152,13 +171,19 @@ Per-call budgets remain in their respective tasks (50 ms threat
 map, 5 ms per `evaluateActions`). The whole-turn aggregate cap
 below replaces the previous single 2 s hard timeout.
 
-| Difficulty   | Per-turn budget | Hard timeout | No-action fallback |
-|--------------|-----------------|--------------|--------------------|
-| Pawn         | 200 ms          | 500 ms       | `END_HERO_TURN`    |
-| Knight       | 500 ms          | 1 s          | `END_HERO_TURN`    |
-| Grand Master | 1 s             | 2 s          | `END_HERO_TURN`    |
-| Lord         | 2 s             | 4 s          | best-of-MCTS-rollouts so far, else `END_HERO_TURN` |
-| Immortal     | 3 s             | 6 s          | best-of-MCTS-rollouts so far, else `END_HERO_TURN` |
+| Difficulty   | `maxNodes`     | `maxDepth`     | `wallClockHardMs` | Per-turn budget (soft) | No-action fallback |
+|--------------|----------------|----------------|-------------------|------------------------|--------------------|
+| Pawn         | 4 000          | 3              | 500               | 200 ms                 | `END_HERO_TURN`    |
+| Knight       | 16 000         | 5              | 1 000             | 500 ms                 | `END_HERO_TURN`    |
+| Grand Master | (set by M3)    | (set by M3)    | 2 000             | 1 s                    | `END_HERO_TURN`    |
+| Lord         | (set by M7)    | (set by M7)    | 4 000             | 2 s                    | best-of-MCTS-rollouts so far, else `END_HERO_TURN` |
+| Immortal     | (set by M7)    | (set by M7)    | 6 000             | 3 s                    | best-of-MCTS-rollouts so far, else `END_HERO_TURN` |
+
+This table is the **only authoritative source** for AI search-budget
+constants. Implementing tasks (heuristic, MCTS, performance docs)
+import the values from here; do not re-state them elsewhere. The
+`(set by Mn)` entries are filled in by the listed implementing task
+when the matching milestone lands.
 
 Rules:
 
@@ -234,6 +259,42 @@ This rule complements
 Multi-worker parallel pre-warming is policy-only in MVP — no
 optimization is implemented. Promotion is opt-in for M7 if
 profiling demands it.
+
+### AI Determinism Under Wall-Clock Budgets
+
+Wall-clock hard timeouts (`wallClockHardMs` per § 4) introduce a
+non-deterministic decision point: machine speed determines whether
+the timeout fires before search converges. The replay invariant
+holds anyway because the chosen `Command` is logged and replays
+read from the log — but only if exactly **one** AI search produces
+the command for a given (turn, player) pair. This section pins
+the structural rule that keeps that invariant true across all
+play modes:
+
+- **Wall-clock budgets are permitted only in the broadcaster-elected
+  AI worker** per
+  [`tasks/phase-3/01-multiplayer/07-host-migration-heartbeat-election.md`](../../tasks/phase-3/01-multiplayer/07-host-migration-heartbeat-election.md).
+  The broadcaster runs the search; the chosen `Command` is logged
+  to the lockstep stream.
+- **Non-broadcaster peers MUST NOT re-run AI search.** They consume
+  the broadcast `Command` from the lockstep log. Independently
+  re-running search on each peer would diverge the moment any
+  peer's wall-clock fires before another's.
+- **Single-player and friendly-MP-bot paths route through the same
+  broadcaster gate**: the local player is the "broadcaster" by
+  definition in single-player; friendly MP elects a broadcaster
+  per the heartbeat-election task above.
+- The rule is enforced by the existing `botRngStreamId` model
+  pinned by Plan 07 § Bot RNG Sub-Streams: only the elected
+  broadcaster mints `botRngStreamId` consumers; other peers read
+  the resulting `Command` from the log without minting their own
+  RNG draws.
+
+Future N-peer mesh designs (deferred per Plan 07 / `glossary.md`
+M7 sketches) MUST preserve this rule: if a feature lets each peer
+run its own AI search under a wall-clock budget, the feature is
+incompatible with deterministic replay and is rejected at design
+review.
 
 ---
 

@@ -3,6 +3,9 @@
 > Source plan:
 > [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)
 > § Critical Fix 3.
+>
+> Crypto primitive in use here (HMAC-SHA-1, RFC 5766 mandate) is
+> catalogued in [`crypto-primitives.md`](./crypto-primitives.md).
 
 This file is the canonical doctrine for **how TURN credentials are
 provisioned, scoped, transported, rotated, and revoked** in M5. It

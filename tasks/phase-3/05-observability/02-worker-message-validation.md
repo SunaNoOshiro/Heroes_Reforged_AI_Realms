@@ -43,7 +43,11 @@ Dependencies:
 
 Acceptance Criteria:
 - Every inbound `postMessage` is `Zod.parse`-validated against
-  [`worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json).
+  [`worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json),
+  whose `kind` enum has **8 values** —
+  `COMPUTE_MOVE`, `MOVE_RESULT`, `ABORT`, `PING`, `PONG`,
+  `AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT` — per
+  [`docs/architecture/ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol).
 - `event.source` is checked; messages from any source other
   than the spawned worker reference are dropped without
   reaching the reducer.

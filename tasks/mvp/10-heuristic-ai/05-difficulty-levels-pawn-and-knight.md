@@ -23,7 +23,10 @@ Outputs:
 - `DifficultyLevel`: `"pawn" | "knight"`
 - `applyDifficulty(action: Command, alternatives: Command[], difficulty: DifficultyLevel, rng: Rng): Command`
 - Per-difficulty deterministic search budget constants consumed
-  by `mvp.10-heuristic-ai.06-run-ai-in-web-worker`:
+  by `mvp.10-heuristic-ai.06-run-ai-in-web-worker`. The
+  constants are owned by
+  [`ai-contract.md` § 4 Per-Turn Budget Table](../../../docs/architecture/ai-contract.md#4-per-turn-budget-table)
+  — that table is the **only authoritative source**:
   - `pawn`:  `maxNodes = 4 000`,  `maxDepth = 3`
   - `knight`: `maxNodes = 16 000`, `maxDepth = 5`
 - `searchBudgetFor(difficulty: DifficultyLevel, mapDims: { width: number, height: number }): { maxNodes: number, maxDepth: number }`

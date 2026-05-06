@@ -3355,7 +3355,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 422
+      "downstreamTransitiveCount": 431
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3417,7 +3417,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 420
+      "downstreamTransitiveCount": 429
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -3474,7 +3474,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 256
+      "downstreamTransitiveCount": 258
     },
     {
       "id": "mvp.01-engine-core.04-implement-fixed-point-math-library",
@@ -3530,7 +3530,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 331
+      "downstreamTransitiveCount": 339
     },
     {
       "id": "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine",
@@ -3677,7 +3677,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 30,
-      "downstreamTransitiveCount": 244
+      "downstreamTransitiveCount": 246
     },
     {
       "id": "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist",
@@ -4576,7 +4576,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 326
+      "downstreamTransitiveCount": 334
     },
     {
       "id": "mvp.02-content-schemas.02-faction-schema",
@@ -4634,7 +4634,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 15,
-      "downstreamTransitiveCount": 247
+      "downstreamTransitiveCount": 255
     },
     {
       "id": "mvp.02-content-schemas.03-spell-schema",
@@ -4698,7 +4698,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 173
+      "downstreamTransitiveCount": 215
     },
     {
       "id": "mvp.02-content-schemas.04-artifact-schema",
@@ -4756,7 +4756,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 178
+      "downstreamTransitiveCount": 220
     },
     {
       "id": "mvp.02-content-schemas.05-building-schema",
@@ -4817,7 +4817,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 238
+      "downstreamTransitiveCount": 246
     },
     {
       "id": "mvp.02-content-schemas.06-ruleset-schema",
@@ -4878,7 +4878,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 18,
-      "downstreamTransitiveCount": 297
+      "downstreamTransitiveCount": 305
     },
     {
       "id": "mvp.02-content-schemas.07-hero-schema",
@@ -4952,7 +4952,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 14,
-      "downstreamTransitiveCount": 164
+      "downstreamTransitiveCount": 206
     },
     {
       "id": "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas",
@@ -5037,7 +5037,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 133
+      "downstreamTransitiveCount": 175
     },
     {
       "id": "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas",
@@ -5138,7 +5138,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 130
+      "downstreamTransitiveCount": 172
     },
     {
       "id": "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
@@ -5245,8 +5245,8 @@
         "mvp.02-content-schemas.15-world-schema"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 33,
-      "downstreamTransitiveCount": 120
+      "downstreamDirectCount": 35,
+      "downstreamTransitiveCount": 162
     },
     {
       "id": "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub",
@@ -5336,7 +5336,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 32
+      "downstreamTransitiveCount": 77
     },
     {
       "id": "mvp.02-content-schemas.12-formula-dsl",
@@ -5406,7 +5406,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 208
+      "downstreamTransitiveCount": 216
     },
     {
       "id": "mvp.02-content-schemas.13-effect-registry",
@@ -5498,7 +5498,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 137
+      "downstreamTransitiveCount": 179
     },
     {
       "id": "mvp.02-content-schemas.14-localization-schema",
@@ -5569,7 +5569,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 171
     },
     {
       "id": "mvp.02-content-schemas.15-world-schema",
@@ -5631,7 +5631,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 171
     },
     {
       "id": "mvp.02-content-schemas.16-quest-schema",
@@ -6158,7 +6158,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 16
+      "downstreamTransitiveCount": 64
     },
     {
       "id": "mvp.02-content-schemas.23-schema-migration-policy-and-example",
@@ -6228,7 +6228,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 15
+      "downstreamTransitiveCount": 63
     },
     {
       "id": "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate",
@@ -6306,8 +6306,8 @@
         "mvp.02-content-schemas.23-schema-migration-policy-and-example"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 14
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 62
     },
     {
       "id": "mvp.02-content-schemas.25-default-declarations-and-zod-parity",
@@ -6626,7 +6626,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 54
+      "downstreamTransitiveCount": 55
     },
     {
       "id": "mvp.02-content-schemas.29-publisher-registry-schema",
@@ -7176,7 +7176,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 15
+      "downstreamTransitiveCount": 16
     },
     {
       "id": "mvp.02-content-schemas.37-localization-interpolation-block",
@@ -7852,6 +7852,170 @@
       "moduleDependencies": [],
       "resolvedDependencies": [
         "mvp.02-content-schemas.44-pack-signing-verifier"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 14
+    },
+    {
+      "id": "mvp.02-content-schemas.46-worker-message-envelope-reconciliation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Worker-Message Envelope Reconciliation (8-Kind Enum)",
+      "path": "tasks/mvp/02-content-schemas/46-worker-message-envelope-reconciliation.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Reconcile [`content-schema/schemas/worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json) with the AI worker token coverage table by extending the `kind` enum **additively** to include `AI_ERROR`, `AI_TRACE_REQUEST`, and `AI_TRACE_RESULT`. Closes Plan 32 § CF-1 (Reconcile the AI worker envelope). The two `AI_TRACE_*` tokens are dev-only and gated behind the AI inspector overlay build flag; production builds MUST NOT emit them.",
+      "inputs": [
+        "Existing `worker-message.schema.json` envelope.",
+        "Plan 10 token list (`AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT`).",
+        "Existing canonical examples under `content-schema/examples/worker-message/`."
+      ],
+      "outputs": [
+        "Three additional `kind` enum values (`AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT`) in the worker-message schema (8 values total) with matching `$defs` payload branches per Plan 32 § CF-1 required-field shapes.",
+        "Refreshed enum snapshot via `npm run generate:enum-snapshot`.",
+        "Per-kind reference table in [`docs/architecture/ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol) listing all 8 kinds and their owning tasks."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)",
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md)",
+        "[`docs/architecture/task-command-token-coverage.json`](../../../docs/architecture/task-command-token-coverage.json)",
+        "[`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../mvp/10-heuristic-ai/06-run-ai-in-web-worker.md)",
+        "[`tasks/phase-3/05-observability/02-worker-message-validation.md`](../../phase-3/05-observability/02-worker-message-validation.md)"
+      ],
+      "ownedPaths": [
+        "content-schema/schemas/worker-message.schema.json",
+        "tasks/phase-3/05-observability/02-worker-message-validation.md",
+        "content-schema/enums.snapshot.json",
+        "tasks/mvp/02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md",
+        "docs/architecture/ai-contract.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": true,
+      "ownedPathsOptOutReason": "this task is a doctrine reconciliation that ships only as additive extensions to schemas and docs primary-owned elsewhere; see Owned Paths (shared) for the per-file primary owners",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/worker-message.schema.json",
+        "tasks/phase-3/05-observability/02-worker-message-validation.md",
+        "content-schema/enums.snapshot.json",
+        "tasks/mvp/02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md",
+        "docs/architecture/ai-contract.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate"
+      ],
+      "acceptanceCriteria": [
+        "The `kind` enum in `worker-message.schema.json` carries exactly 8 values: `COMPUTE_MOVE`, `MOVE_RESULT`, `ABORT`, `PING`, `PONG`, `AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT`.",
+        "`AI_ERROR` payload branch requires `requestId` and `reason: string`; `code` and `details` are optional.",
+        "`AI_TRACE_REQUEST` payload branch requires `requestId`; optional `verbosity`. The schema description marks it dev-only.",
+        "`AI_TRACE_RESULT` payload branch requires `requestId`, `wants`, `scored`, `command`, `reasoning`. The schema description marks it dev-only.",
+        "`npm run generate:enum-snapshot` produces a clean diff that lands in the same change.",
+        "`npm run validate:enums` passes.",
+        "Existing canonical examples under `content-schema/examples/worker-message/` remain valid.",
+        "[`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../mvp/10-heuristic-ai/06-run-ai-in-web-worker.md) and [`tasks/phase-3/05-observability/02-worker-message-validation.md`](../../phase-3/05-observability/02-worker-message-validation.md) cite the 8-kind enum.",
+        "The `AI_TRACE_REQUEST` and `AI_TRACE_RESULT` descriptions declare them dev-only and gated behind the AI inspector overlay build flag. Owned Paths (shared) acceptance:",
+        "The worker-message schema is **owned by** `phase-3.05-observability.02-worker-message-validation` (the primary contract). This task is **additive**: three new `kind` enum values and matching `$defs` branches are appended; this task must not rewrite the pre-existing `COMPUTE_MOVE` / `MOVE_RESULT` / `ABORT` / `PING` / `PONG` shapes.",
+        "The enum snapshot is **owned by** `mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate` (the primary contract). This task regenerates the snapshot **additively** for the three new values and must not remove or alias any existing entries.",
+        "The AI contract doc is **owned by** the AI module index. This task adds the per-kind reference table **additively** and must not rewrite earlier semantics."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/worker-message.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/worker-message.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas",
+        "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 61
+    },
+    {
+      "id": "mvp.02-content-schemas.47-supersession-annotations-and-validator",
+      "kind": "task",
+      "status": "planned",
+      "title": "Supersession Annotations and Validator",
+      "path": "tasks/mvp/02-content-schemas/47-supersession-annotations-and-validator.md",
+      "moduleId": "mvp.02-content-schemas",
+      "modulePath": "tasks/mvp/02-content-schemas.md",
+      "description": "Pin a machine-readable supersession convention for schemas under `content-schema/schemas/` so superseded schemas surface failures at CI time instead of at first runtime. Closes Plan 32 § NC-2 (Make the supersession graph machine-readable). The convention: each superseded schema carries a top-level `\"x-supersededBy\": \"<schema-id>\"` annotation paired with `\"x-supersededReason\": \"<plan-id>\"`. The companion validator [`scripts/check-supersession.mjs`](../../../scripts/check-supersession.mjs) fails when a task `Owned Paths` cites a superseded schema without referencing the supersession authority, when a canonical example fixture is authored under a superseded schema, or when an annotation points at an unknown target.",
+      "inputs": [
+        "Existing schemas under `content-schema/schemas/`.",
+        "The supersession declarations in Plan 25 (TURN rotation, HTTP `/turn-credential` route) and Plan 26 (`command-envelope.schema.json` → `lockstep-envelope.schema.json`)."
+      ],
+      "outputs": [
+        "Top-level `x-supersededBy` and `x-supersededReason` annotations on every landed-but-replaced schema.",
+        "[`scripts/check-supersession.mjs`](../../../scripts/check-supersession.mjs) validator with the three invariants above.",
+        "`validate:supersession` npm script wired into `npm run validate`.",
+        "Footer entry in [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md) documenting the convention and listing currently-superseded schemas."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § NC-2",
+        "[`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)",
+        "[`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../../../docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)"
+      ],
+      "ownedPaths": [
+        "scripts/check-supersession.mjs",
+        "content-schema/schemas/command-envelope.schema.json",
+        "tasks/mvp/02-content-schemas/43-multiplayer-trust-and-identity-schemas.md",
+        "docs/architecture/schema-matrix.md",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/command-envelope.schema.json",
+        "tasks/mvp/02-content-schemas/43-multiplayer-trust-and-identity-schemas.md",
+        "docs/architecture/schema-matrix.md",
+        "package.json"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "acceptanceCriteria": [
+        "`command-envelope.schema.json` carries `x-supersededBy = \"heroes-reforged/lockstep-envelope.schema.json\"` and `x-supersededReason = \"plan-26\"`.",
+        "`npm run validate:supersession` exits 0 with the current schemas.",
+        "`npm run validate:supersession` exits non-zero when an `x-supersededBy` target does not resolve to a known schema, when a canonical example is authored under a superseded schema folder, or when a task `Owned Paths` cites a superseded schema without referencing the supersession authority.",
+        "The validator is documented in [`schema-matrix.md`](../../../docs/architecture/schema-matrix.md) Supersession section.",
+        "The validator is wired into the `validate` aggregate. Owned Paths (shared) acceptance:",
+        "The command-envelope schema is **owned by** `mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas` (the primary contract). This task is **additive**: only the `x-supersededBy` and `x-supersededReason` annotations are appended; this task must not rewrite the existing required fields, properties, or patterns.",
+        "The schema-matrix doc is **owned by** the schema module. This task is **additive**: a single Supersession footer section is appended; this task must not rewrite the existing tables.",
+        "`package.json` is **owned by** the repo root. This task is **additive**: only the `validate:supersession` script entry and one segment in the `validate` aggregate are appended; this task must not rewrite any existing entry."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command-envelope.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command-envelope.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.10-zod-validators-for-all-schemas"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -9390,6 +9554,72 @@
         "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist"
       ],
       "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 3
+    },
+    {
+      "id": "mvp.02b-asset-pipeline.18-asset-loader-canary",
+      "kind": "task",
+      "status": "planned",
+      "title": "Asset Loader Canary",
+      "path": "tasks/mvp/02b-asset-pipeline/18-asset-loader-canary.md",
+      "moduleId": "mvp.02b-asset-pipeline",
+      "modulePath": "tasks/mvp/02b-asset-pipeline.md",
+      "description": "Per-cluster canary task that **reserves the asset-loader contract** and asserts the closed refusal codes fire on each escape-vector fixture. Closes Plan 32 § PI-4 (Doctrine canary tasks per cluster) for the asset loader cluster. The canary runs one descriptor from [`tests/security/escape-vectors/`](../../../tests/security/escape-vectors/) through a stub loader and asserts the matching closed refusal code from [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md). Failing loudly here means a schema change that desyncs from the loader can be caught before any pack actually fails to load.",
+      "inputs": [
+        "Escape-vector fixture descriptors under `tests/security/escape-vectors/`.",
+        "Closed refusal-code surface in [`pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)."
+      ],
+      "outputs": [
+        "A canary test under `src/content-runtime/__tests__/asset-loader-canary.test.ts` (reserved today; populated when the runtime cluster lands)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)",
+        "[`docs/architecture/sandbox-model.md`](../../../docs/architecture/sandbox-model.md)",
+        "[`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)",
+        "[`tests/security/escape-vectors/README.md`](../../../tests/security/escape-vectors/README.md)",
+        "[`tasks/mvp/02b-asset-pipeline/17-binary-asset-validators.md`](./17-binary-asset-validators.md)",
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § PI-4"
+      ],
+      "ownedPaths": [
+        "src/content-runtime/__tests__/asset-loader-canary.test.ts",
+        "tests/security/escape-vectors/",
+        "tasks/mvp/00-core-architecture/22-05-security-tests-escape-vectors-corpus.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "tests/security/escape-vectors/",
+        "tasks/mvp/00-core-architecture/22-05-security-tests-escape-vectors-corpus.md"
+      ],
+      "dependencies": [
+        "mvp.02b-asset-pipeline.17-binary-asset-validators"
+      ],
+      "acceptanceCriteria": [
+        "A canary test exists in this task's owned path (reserved today, populated when the runtime cluster lands).",
+        "The canary runs at least one `tests/security/escape-vectors/` fixture descriptor through the stub loader and asserts the matching closed refusal code from `pack-error-codes.md`.",
+        "`validate:tasks` passes; the task is registered in `tasks/task-registry.json`.",
+        "When the loader contract is changed in a way that breaks the canary, this test must fail before any pack-load surface is affected. Owned Paths (shared) acceptance:",
+        "The escape-vectors corpus is **owned by** `mvp.00-core-architecture.22-05-security-tests-escape-vectors-corpus` (the primary contract). This canary is **additive**: it references one descriptor per cluster; this task must not rewrite or remove any existing fixture."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.02b-asset-pipeline.17-binary-asset-validators"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02b-asset-pipeline.17-binary-asset-validators"
+      ],
+      "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 2
     },
@@ -9445,7 +9675,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 7,
-      "downstreamTransitiveCount": 191
+      "downstreamTransitiveCount": 193
     },
     {
       "id": "mvp.03-map-system.02-tile-type-registry",
@@ -9505,7 +9735,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 130
+      "downstreamTransitiveCount": 132
     },
     {
       "id": "mvp.03-map-system.03-layered-tile-storage",
@@ -9561,7 +9791,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 171
+      "downstreamTransitiveCount": 173
     },
     {
       "id": "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc",
@@ -9624,7 +9854,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 131
     },
     {
       "id": "mvp.03-map-system.05-fog-of-war",
@@ -10221,7 +10451,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 104
+      "downstreamTransitiveCount": 106
     },
     {
       "id": "mvp.04-faction-emberwild.03-emberwild-hero-roster",
@@ -10373,7 +10603,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 130
+      "downstreamTransitiveCount": 132
     },
     {
       "id": "mvp.04-faction-emberwild.05-content-loader-validate-on-load",
@@ -10508,7 +10738,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 32,
-      "downstreamTransitiveCount": 165
+      "downstreamTransitiveCount": 167
     },
     {
       "id": "mvp.05-adventure-map.02-turn-structure",
@@ -10584,7 +10814,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 11,
-      "downstreamTransitiveCount": 129
+      "downstreamTransitiveCount": 131
     },
     {
       "id": "mvp.05-adventure-map.03-hero-movement",
@@ -10647,7 +10877,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 119
+      "downstreamTransitiveCount": 121
     },
     {
       "id": "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income",
@@ -10713,7 +10943,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 99
+      "downstreamTransitiveCount": 101
     },
     {
       "id": "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild",
@@ -10779,7 +11009,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 13,
-      "downstreamTransitiveCount": 101
+      "downstreamTransitiveCount": 103
     },
     {
       "id": "mvp.05-adventure-map.06-auto-resolve-combat",
@@ -10857,7 +11087,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 79
+      "downstreamTransitiveCount": 81
     },
     {
       "id": "mvp.05-adventure-map.07-victory-defeat-conditions",
@@ -10912,7 +11142,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 77
+      "downstreamTransitiveCount": 79
     },
     {
       "id": "mvp.05-adventure-map.08-7-day-playable-smoke-test",
@@ -12646,11 +12876,11 @@
         "Example pack `content-schema/examples/packs/<example>/sprites/...`."
       ],
       "outputs": [
-        "`tools/atlas/pack.ts` — CLI invocation wrapper that:",
+        "`scripts/atlas/pack.mjs` — CLI invocation wrapper that:",
         "sorts frames lexicographically by absolute pack-relative path,",
         "invokes `free-tex-packer-cli` with the pinned `--seed` and flags taken from `<pack>/atlas-manifest.json`,",
         "writes `<pack>/atlases/<entityId>.png` and `<pack>/atlases/<entityId>.atlas.json`.",
-        "`tools/atlas/README.md` — invocation docs and pinned tool version reference.",
+        "`scripts/atlas/README.md` — invocation docs and pinned tool version reference.",
         "`npm run pack:build` script entry wired into `package.json`.",
         "`content-schema/schemas/atlas.schema.json` — author-side metadata schema."
       ],
@@ -12660,8 +12890,10 @@
         "[`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)"
       ],
       "ownedPaths": [
-        "tools/atlas/",
-        "content-schema/schemas/atlas.schema.json"
+        "scripts/atlas/",
+        "content-schema/schemas/atlas.schema.json",
+        "scripts/atlas/pack.mjs",
+        "docs/architecture/testing-conventions.md"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
@@ -15622,8 +15854,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 67
+      "downstreamDirectCount": 13,
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.08-persistence.02-log-only-save-format",
@@ -16837,8 +17069,8 @@
         "mvp.08-persistence.01-indexeddb-wrapper"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 9
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 10
     },
     {
       "id": "mvp.08-persistence.17-pre-replay-command-validation",
@@ -17030,8 +17262,8 @@
         "mvp.08-persistence.16-parser-hardening"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 6
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 7
     },
     {
       "id": "mvp.08-persistence.19-save-envelope-mac-phase-in",
@@ -17189,6 +17421,147 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "mvp.08-persistence.28-storage-budget-validator",
+      "kind": "task",
+      "status": "planned",
+      "title": "Storage Budget Validator",
+      "path": "tasks/mvp/08-persistence/28-storage-budget-validator.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Pin a CI gate that totals the per-store soft caps declared in [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md) § Per-Store Byte Budgets and asserts the sum fits within the [RR-05](../../../docs/architecture/runtime-requirements.md#rr-05-storage--indexeddb--50-mb-opfs-preferred-when-present) IndexedDB-quota floor times a documented headroom multiplier. Closes Plan 32 § PI-7 (Storage budget aggregator). Plans 21, 22, 23, 24 each added per-store budgets without an aggregator; this task is the aggregator.",
+      "inputs": [
+        "`docs/architecture/storage-policy.md` § Per-Store Byte Budgets table.",
+        "`docs/architecture/runtime-requirements.md` RR-05 floor."
+      ],
+      "outputs": [
+        "[`scripts/check-storage-budget.mjs`](../../../scripts/check-storage-budget.mjs) — parses the table, sums numeric caps, fails when the total exceeds the documented headroom ceiling.",
+        "`validate:storage-budget` npm script wired into `npm run validate`.",
+        "One-line backlink in `runtime-requirements.md` RR-05 and `storage-policy.md` § Per-Store Byte Budgets pointing at the validator."
+      ],
+      "readFirst": [
+        "[`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md)",
+        "[`docs/architecture/runtime-requirements.md`](../../../docs/architecture/runtime-requirements.md) § RR-05",
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § PI-7"
+      ],
+      "ownedPaths": [
+        "scripts/check-storage-budget.mjs",
+        "package.json",
+        "docs/architecture/runtime-requirements.md",
+        "docs/architecture/storage-policy.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "package.json",
+        "docs/architecture/runtime-requirements.md",
+        "docs/architecture/storage-policy.md"
+      ],
+      "dependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "acceptanceCriteria": [
+        "`npm run validate:storage-budget` passes against the current `storage-policy.md` table.",
+        "Adding a fake 1 GB store to the table fails the validator with a clear \"summed soft caps … exceed ceiling …\" message.",
+        "`runtime-requirements.md` RR-05 verification entry references the validator.",
+        "`storage-policy.md` § Per-Store Byte Budgets table references the validator.",
+        "The headroom multiplier is documented in the script header per Plan 32 § PI-7 Risk Notes; tightening it once real overhead numbers surface is a follow-up. Owned Paths (shared) acceptance:",
+        "`package.json` is **owned by** the repo root (the primary contract). This task is **additive**: only one new `validate:storage-budget` script entry plus one segment in the `validate` aggregate are appended; this task must not rewrite any existing entry.",
+        "`runtime-requirements.md` and `storage-policy.md` are **owned by** the persistence module (the primary contract). This task is **additive**: one-line backlinks to the validator are appended to RR-05 and the per-store byte budgets table; this task must not rewrite the existing tables and floors."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.01-indexeddb-wrapper"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.08-persistence.29-save-envelope-canary",
+      "kind": "task",
+      "status": "planned",
+      "title": "Save Envelope Canary",
+      "path": "tasks/mvp/08-persistence/29-save-envelope-canary.md",
+      "moduleId": "mvp.08-persistence",
+      "modulePath": "tasks/mvp/08-persistence.md",
+      "description": "Per-cluster canary task that **reserves the save-envelope contract** and asserts the canonical refusal codes fire on each malformed fixture. Closes Plan 32 § PI-4 (Doctrine canary tasks per cluster) for the save cluster. The canary parses a canonical `save-envelope` example, runs the parser-hardening cap table from [`tasks/mvp/08-persistence/16-parser-hardening.md`](./16-parser-hardening.md), and asserts each malformed fixture produces the matching `storage-error` code. Failing loudly here means a schema change that desyncs from the loader can be caught before any UI surface is touched.",
+      "inputs": [
+        "Canonical example under `content-schema/examples/save-envelope/` (when the schema's example landing task ships its example folder).",
+        "Closed failure-code surface in [`content-schema/schemas/storage-error.schema.json`](../../../content-schema/schemas/storage-error.schema.json).",
+        "Parser-hardening cap table from Task 16."
+      ],
+      "outputs": [
+        "A canary test under `src/persistence/__tests__/save-envelope-canary.test.ts` (reserved today; populated when the runtime cluster lands)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/save-envelope-mac.md`](../../../docs/architecture/save-envelope-mac.md)",
+        "[`content-schema/schemas/save-envelope.schema.json`](../../../content-schema/schemas/save-envelope.schema.json)",
+        "[`tasks/mvp/08-persistence/16-parser-hardening.md`](./16-parser-hardening.md)",
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § PI-4"
+      ],
+      "ownedPaths": [
+        "src/persistence/__tests__/save-envelope-canary.test.ts",
+        "content-schema/schemas/save-envelope.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/save-envelope.schema.json"
+      ],
+      "dependencies": [
+        "mvp.08-persistence.16-parser-hardening",
+        "mvp.08-persistence.18-save-envelope-and-intent"
+      ],
+      "acceptanceCriteria": [
+        "A canary test exists in this task's owned path (reserved today, populated when the runtime cluster lands).",
+        "The canary parses the canonical save-envelope example successfully and asserts the parser-hardening cap table refusal codes fire on each malformed fixture.",
+        "`validate:tasks` passes; the task is registered in `tasks/task-registry.json`.",
+        "When the schema is changed in a way that breaks the canary's cluster contract, this test must fail before any consumer is affected. Owned Paths (shared) acceptance:",
+        "The save-envelope schema is **owned by** `mvp.08-persistence.18-save-envelope-and-intent` (the primary contract). This canary is **additive**: it reserves a contract reference; this task must not rewrite the schema itself."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/save-envelope.schema.json",
+        "content-schema/schemas/storage-error.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/save-envelope.schema.json",
+        "content-schema/schemas/storage-error.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.08-persistence.16-parser-hardening",
+        "mvp.08-persistence.18-save-envelope-and-intent"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.08-persistence.16-parser-hardening",
+        "mvp.08-persistence.18-save-envelope-and-intent"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order",
       "kind": "task",
       "status": "planned",
@@ -17252,7 +17625,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 19,
-      "downstreamTransitiveCount": 108
+      "downstreamTransitiveCount": 110
     },
     {
       "id": "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale",
@@ -17314,7 +17687,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 89
+      "downstreamTransitiveCount": 91
     },
     {
       "id": "mvp.09-tactical-combat.02a-defend-damage-reduction",
@@ -17462,7 +17835,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 83
+      "downstreamTransitiveCount": 85
     },
     {
       "id": "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit",
@@ -17529,7 +17902,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 78
     },
     {
       "id": "mvp.09-tactical-combat.04a-tactical-pathfinder",
@@ -17665,7 +18038,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 78
     },
     {
       "id": "mvp.09-tactical-combat.06-morale-and-luck-rolls",
@@ -17728,7 +18101,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 80
+      "downstreamTransitiveCount": 82
     },
     {
       "id": "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation",
@@ -17801,7 +18174,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 74
+      "downstreamTransitiveCount": 76
     },
     {
       "id": "mvp.09-tactical-combat.08-battle-end-condition",
@@ -18475,7 +18848,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 76
+      "downstreamTransitiveCount": 78
     },
     {
       "id": "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization",
@@ -18563,7 +18936,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 75
+      "downstreamTransitiveCount": 77
     },
     {
       "id": "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -18626,7 +18999,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 72
+      "downstreamTransitiveCount": 74
     },
     {
       "id": "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring",
@@ -18708,7 +19081,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 72
+      "downstreamTransitiveCount": 74
     },
     {
       "id": "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight",
@@ -18726,7 +19099,7 @@
         "`src/ai/bots/difficulty.ts`",
         "`DifficultyLevel`: `\"pawn\" | \"knight\"`",
         "`applyDifficulty(action: Command, alternatives: Command[], difficulty: DifficultyLevel, rng: Rng): Command`",
-        "Per-difficulty deterministic search budget constants consumed by `mvp.10-heuristic-ai.06-run-ai-in-web-worker`:",
+        "Per-difficulty deterministic search budget constants consumed by `mvp.10-heuristic-ai.06-run-ai-in-web-worker`. The constants are owned by [`ai-contract.md` § 4 Per-Turn Budget Table](../../../docs/architecture/ai-contract.md#4-per-turn-budget-table) — that table is the **only authoritative source**:",
         "`pawn`: `maxNodes = 4 000`, `maxDepth = 3`",
         "`knight`: `maxNodes = 16 000`, `maxDepth = 5`",
         "`searchBudgetFor(difficulty: DifficultyLevel, mapDims: { width: number, height: number }): { maxNodes: number, maxDepth: number }` scales `maxNodes` linearly with `width * height / (128*128)` so budgets stay proportional on smaller maps. The function is pure and deterministic.",
@@ -18782,7 +19155,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 70
     },
     {
       "id": "mvp.10-heuristic-ai.06-run-ai-in-web-worker",
@@ -18802,7 +19175,7 @@
         "`src/ai/bots/ai-worker.ts` (Web Worker entry point)",
         "Message in `COMPUTE_MOVE`: `{ type: \"COMPUTE_MOVE\", requestId, view: AdventureView, difficulty: DifficultyLevel, searchBudget: { maxNodes: number, maxDepth: number }, cheats?: AiCheats, rngSeed: string }`",
         "Message out `MOVE_RESULT`: `{ type: \"MOVE_RESULT\", requestId, command: Command, nodesExpanded: number, searchDepthReached: number }`",
-        "Error path `AI_ERROR`: `{ type: \"AI_ERROR\", requestId, reason: string }`",
+        "Error path `AI_ERROR`: `{ type: \"AI_ERROR\", requestId, reason: string }`. The closed envelope `kind` enum has **8 values**: `COMPUTE_MOVE`, `MOVE_RESULT`, `ABORT`, `PING`, `PONG`, `AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT`. The two `AI_TRACE_*` tokens are dev-only (see [`docs/architecture/ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol)).",
         "`src/ai/bots/ai-client.ts` — thin wrapper used by the UI:",
         "`requestAIMove(view: AdventureView, difficulty: DifficultyLevel, signal?: AbortSignal): Promise<Command>`",
         "The client calls `aiPlayerView` before sending `COMPUTE_MOVE`; raw `AdventureState` never crosses the worker boundary."
@@ -18889,7 +19262,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 67
+      "downstreamTransitiveCount": 69
     },
     {
       "id": "mvp.10-heuristic-ai.07-ai-player-view-projection",
@@ -18959,7 +19332,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 68
+      "downstreamTransitiveCount": 70
     },
     {
       "id": "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
@@ -19054,7 +19427,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "mvp.10-heuristic-ai.09-ai-decision-log-channel",
@@ -19137,7 +19510,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 46
+      "downstreamTransitiveCount": 48
     },
     {
       "id": "mvp.10-heuristic-ai.10-bot-provider-interface",
@@ -19215,7 +19588,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 59
+      "downstreamTransitiveCount": 61
     },
     {
       "id": "mvp.10-heuristic-ai.11-ai-bench-harness",
@@ -19286,7 +19659,76 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 45
+      "downstreamTransitiveCount": 47
+    },
+    {
+      "id": "mvp.10-heuristic-ai.12-worker-envelope-canary",
+      "kind": "task",
+      "status": "planned",
+      "title": "Worker Envelope Canary",
+      "path": "tasks/mvp/10-heuristic-ai/12-worker-envelope-canary.md",
+      "moduleId": "mvp.10-heuristic-ai",
+      "modulePath": "tasks/mvp/10-heuristic-ai.md",
+      "description": "Per-cluster canary task that **reserves the worker-envelope contract** and asserts each closed `kind` round-trips through the parser. Closes Plan 32 § PI-4 (Doctrine canary tasks per cluster) for the AI worker cluster. The canary round-trips a `COMPUTE_MOVE` and a `MOVE_RESULT`, plus an `AI_ERROR` (per Plan 32 § CF-1) and asserts each is accepted. The 8-kind enum ([`docs/architecture/ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol)) is the contract this canary protects: any schema change that breaks the canary fails CI before the consumer ([`tasks/phase-3/05-observability/02-worker-message-validation.md`](../../phase-3/05-observability/02-worker-message-validation.md)) can desync.",
+      "inputs": [
+        "Canonical examples under `content-schema/examples/worker-message/`.",
+        "8-kind enum from `worker-message.schema.json`."
+      ],
+      "outputs": [
+        "A canary test under `src/ai/worker/__tests__/envelope-canary.test.ts` (reserved today; populated when the runtime cluster lands)."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 3 Worker Protocol",
+        "[`content-schema/schemas/worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json)",
+        "[`tasks/mvp/02-content-schemas/46-worker-message-envelope-reconciliation.md`](../../mvp/02-content-schemas/46-worker-message-envelope-reconciliation.md)",
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § PI-4"
+      ],
+      "ownedPaths": [
+        "src/ai/worker/__tests__/envelope-canary.test.ts",
+        "content-schema/schemas/worker-message.schema.json",
+        "tasks/mvp/02-content-schemas/46-worker-message-envelope-reconciliation.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/worker-message.schema.json",
+        "tasks/mvp/02-content-schemas/46-worker-message-envelope-reconciliation.md"
+      ],
+      "dependencies": [
+        "mvp.02-content-schemas.46-worker-message-envelope-reconciliation"
+      ],
+      "acceptanceCriteria": [
+        "A canary test exists in this task's owned path (reserved today, populated when the runtime cluster lands).",
+        "The canary round-trips at minimum `COMPUTE_MOVE`, `MOVE_RESULT`, and `AI_ERROR`; each canonical example parses successfully.",
+        "The canary asserts the 8-kind enum matches [`ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol).",
+        "`validate:tasks` passes; the task is registered in `tasks/task-registry.json`.",
+        "When the schema is changed in a way that breaks the canary's cluster contract, this test must fail before any consumer is affected. Owned Paths (shared) acceptance:",
+        "The worker-message schema is **owned by** `mvp.02-content-schemas.46-worker-message-envelope-reconciliation` for its envelope-reconciliation extension and by `phase-3.05-observability.02-worker-message-validation` for the validator surface (the primary contract). This canary is **additive**: it reserves a contract reference; this task must not rewrite the schema itself."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/worker-message.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/worker-message.schema.json"
+      ],
+      "taskDependencies": [
+        "mvp.02-content-schemas.46-worker-message-envelope-reconciliation"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.02-content-schemas.46-worker-message-envelope-reconciliation"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 2,
+      "downstreamTransitiveCount": 47
     },
     {
       "id": "phase-2.01-spells-artifacts.00-hero-leveling",
@@ -19781,7 +20223,9 @@
         "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas",
         "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
         "mvp.02-content-schemas.44-pack-signing-verifier",
-        "mvp.02-content-schemas.45-reproducible-archive"
+        "mvp.02-content-schemas.45-reproducible-archive",
+        "mvp.02-content-schemas.46-worker-message-envelope-reconciliation",
+        "mvp.02-content-schemas.47-supersession-annotations-and-validator"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
@@ -32038,11 +32482,12 @@
         "mvp.10-heuristic-ai.08-ai-inspector-dev-screen",
         "mvp.10-heuristic-ai.09-ai-decision-log-channel",
         "mvp.10-heuristic-ai.10-bot-provider-interface",
-        "mvp.10-heuristic-ai.11-ai-bench-harness"
+        "mvp.10-heuristic-ai.11-ai-bench-harness",
+        "mvp.10-heuristic-ai.12-worker-envelope-canary"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 9,
-      "downstreamTransitiveCount": 43
+      "downstreamTransitiveCount": 45
     },
     {
       "id": "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup",
@@ -32126,7 +32571,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 10,
-      "downstreamTransitiveCount": 31
+      "downstreamTransitiveCount": 32
     },
     {
       "id": "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing",
@@ -32214,7 +32659,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 12
+      "downstreamTransitiveCount": 13
     },
     {
       "id": "phase-3.01-multiplayer.04-per-turn-hash-exchange-plus-desync-detection",
@@ -32410,7 +32855,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 7
+      "downstreamTransitiveCount": 8
     },
     {
       "id": "phase-3.01-multiplayer.07-host-migration-heartbeat-election",
@@ -32476,8 +32921,8 @@
         "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 3,
-      "downstreamTransitiveCount": 6
+      "downstreamDirectCount": 4,
+      "downstreamTransitiveCount": 7
     },
     {
       "id": "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status",
@@ -32668,7 +33113,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 6,
-      "downstreamTransitiveCount": 17
+      "downstreamTransitiveCount": 18
     },
     {
       "id": "phase-3.01-multiplayer.09-snapshot-resync-fallback",
@@ -32820,7 +33265,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 5,
-      "downstreamTransitiveCount": 19
+      "downstreamTransitiveCount": 20
     },
     {
       "id": "phase-3.01-multiplayer.10-turn-fallback-and-credentials",
@@ -33329,7 +33774,7 @@
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 8,
-      "downstreamTransitiveCount": 22
+      "downstreamTransitiveCount": 23
     },
     {
       "id": "phase-3.01-multiplayer.13-signaling-rate-limiting",
@@ -33772,7 +34217,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 20
+      "downstreamTransitiveCount": 21
     },
     {
       "id": "phase-3.01-multiplayer.16-peer-keypair-and-denylist",
@@ -35372,8 +35817,8 @@
         "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 8
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 9
     },
     {
       "id": "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations",
@@ -35874,6 +36319,151 @@
       "downstreamTransitiveCount": 4
     },
     {
+      "id": "phase-3.01-multiplayer.37-broadcaster-ai-determinism-rule",
+      "kind": "task",
+      "status": "planned",
+      "title": "Broadcaster AI Determinism Rule (Wall-Clock Budgets)",
+      "path": "tasks/phase-3/01-multiplayer/37-broadcaster-ai-determinism-rule.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Pin the structural rule that keeps deterministic replay safe under wall-clock-driven AI fallbacks. Closes Plan 32 § CF-3 (Pin the AI broadcaster rule for wall-clock budgets). The doctrine — that wall-clock budgets are permitted only in the broadcaster-elected AI worker, that non-broadcaster peers MUST NOT re-run AI search, that single-player and friendly-MP-bot paths route through the same broadcaster gate, and that the rule is enforced via the `botRngStreamId` model — lives in [`docs/architecture/ai-contract.md` § 6 (AI Determinism Under Wall-Clock Budgets)](../../../docs/architecture/ai-contract.md#ai-determinism-under-wall-clock-budgets). This task owns enforcement of that rule once the M5 multiplayer runtime begins.",
+      "inputs": [
+        "Broadcaster election state from [`07-host-migration-heartbeat-election.md`](./07-host-migration-heartbeat-election.md).",
+        "`botRngStreamId` model from Plan 07 § Bot RNG Sub-Streams.",
+        "AI worker boundary from [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../mvp/10-heuristic-ai/06-run-ai-in-web-worker.md)."
+      ],
+      "outputs": [
+        "Enforcement at the dispatcher: a non-broadcaster peer's `requestAIMove` short-circuits to \"consume from log\" instead of spawning a worker search.",
+        "Cross-link in [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md) § AI Compute Budget pointing at ai-contract § 6.",
+        "Tests asserting:",
+        "non-broadcaster peer never calls into the AI worker boundary,",
+        "single-player path runs AI search exactly once and logs the chosen `Command`,",
+        "replay reads the logged `Command` without re-running search."
+      ],
+      "readFirst": [
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md) § 4 Per-Turn Budget Table, § 6 Parallelism + AI Determinism Under Wall-Clock Budgets",
+        "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md) § AI Compute Budget",
+        "[`tasks/phase-3/01-multiplayer/07-host-migration-heartbeat-election.md`](./07-host-migration-heartbeat-election.md)",
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § CF-3"
+      ],
+      "ownedPaths": [
+        "src/net/webrtc/",
+        "docs/architecture/ai-contract.md",
+        "docs/architecture/determinism.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "docs/architecture/ai-contract.md",
+        "docs/architecture/determinism.md"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.07-host-migration-heartbeat-election"
+      ],
+      "acceptanceCriteria": [
+        "`ai-contract.md` § 6 carries the normative \"AI Determinism Under Wall-Clock Budgets\" section listing the four rules from Plan 32 § CF-3.",
+        "`determinism.md` § AI Compute Budget references the new section.",
+        "`npm run validate:links` passes.",
+        "Once the multiplayer runtime begins, any code path that lets a non-broadcaster peer run an AI search is rejected at review and by the test added by this task. Owned Paths (shared) acceptance:",
+        "The AI contract doc is **owned by** the AI module index. This task is **additive**: the § 6 \"AI Determinism Under Wall-Clock Budgets\" subsection is appended; this task must not rewrite the earlier § 6 Parallelism semantics.",
+        "The determinism doc is **owned by** the engine determinism module. This task is **additive**: a one-line cross-reference to ai-contract § 6 is appended; this task must not rewrite the earlier rules."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.07-host-migration-heartbeat-election"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.07-host-migration-heartbeat-election"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
+      "id": "phase-3.01-multiplayer.38-signaling-envelope-canary",
+      "kind": "task",
+      "status": "planned",
+      "title": "Signaling Envelope Canary",
+      "path": "tasks/phase-3/01-multiplayer/38-signaling-envelope-canary.md",
+      "moduleId": "phase-3.01-multiplayer",
+      "modulePath": "tasks/phase-3/01-multiplayer.md",
+      "description": "Per-cluster canary task that **reserves the signaling-envelope contract** and asserts the closed failure surface fires on each malformed fixture. Closes Plan 32 § PI-4 (Doctrine canary tasks per cluster) for the signaling cluster. The canary is intentionally tiny: parse one canonical `signaling-message` example, dispatch it through a stub `verifySignalingEnvelope`, and assert each malformed fixture produces the matching closed refusal code. The point is to fail loudly the moment a new schema change desyncs from its consumer — before any runtime work has even started.",
+      "inputs": [
+        "Canonical examples under `content-schema/examples/signaling-message/`.",
+        "Closed failure-code surface in [`content-schema/schemas/signaling-error.schema.json`](../../../content-schema/schemas/signaling-error.schema.json)."
+      ],
+      "outputs": [
+        "A canary test under `services/signaling/__tests__/envelope-canary.test.mjs` (when the runtime lands) that round-trips canonical examples and asserts the malformed-fixture code map.",
+        "Today: no runtime to exercise. The verify commands no-op (echo + exit 0) until the cluster's first runtime task lands; the acceptance is contract reservation, not execution."
+      ],
+      "readFirst": [
+        "[`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)",
+        "[`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)",
+        "[`content-schema/schemas/signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json)",
+        "[`content-schema/schemas/signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json)",
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § PI-4"
+      ],
+      "ownedPaths": [
+        "services/signaling/__tests__/envelope-canary.test.mjs",
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
+      "dependencies": [
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "acceptanceCriteria": [
+        "A canary test exists in this task's owned path (reserved today, populated when the runtime cluster lands).",
+        "The canary parses each canonical example successfully and rejects each malformed fixture with the expected `signaling-error` code.",
+        "`validate:tasks` passes; the task is registered in `tasks/task-registry.json`.",
+        "When the schema is changed in a way that breaks the canary's cluster contract, this test must fail before any consumer is affected. Owned Paths (shared) acceptance:",
+        "The signaling envelope and message schemas are **owned by** the multiplayer schema task `phase-3.01-multiplayer.31-signaling-message-schema-and-validation` (the primary contract). This canary is **additive**: it reserves a contract reference; this task must not rewrite the schemas themselves."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/signaling-envelope.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/signaling-message.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.01-multiplayer.31-signaling-message-schema-and-validation"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 4
+    },
+    {
       "id": "phase-3.02-ai-generation.00-generation-io-schemas",
       "kind": "task",
       "status": "planned",
@@ -35940,7 +36530,7 @@
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 14
+      "downstreamTransitiveCount": 15
     },
     {
       "id": "phase-3.02-ai-generation.00b-balance-constraints-schema",
@@ -36001,8 +36591,8 @@
         "phase-3.02-ai-generation.00-generation-io-schemas"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 2,
-      "downstreamTransitiveCount": 10
+      "downstreamDirectCount": 3,
+      "downstreamTransitiveCount": 11
     },
     {
       "id": "phase-3.02-ai-generation.00c-generation-config-schema",
@@ -37197,6 +37787,85 @@
       "downstreamTransitiveCount": 0
     },
     {
+      "id": "phase-3.02-ai-generation.11-balance-corridor-parity",
+      "kind": "task",
+      "status": "planned",
+      "title": "Balance-Corridor Parity (`corridor.json` SSOT)",
+      "path": "tasks/phase-3/02-ai-generation/11-balance-corridor-parity.md",
+      "moduleId": "phase-3.02-ai-generation",
+      "modulePath": "tasks/phase-3/02-ai-generation.md",
+      "description": "Pin [`content-schema/balance/corridor.json`](../../../content-schema/balance/corridor.json) as the **single source of truth** for per-tier numeric bounds (hp, attack, defense, damageMin, damageMax, speed). Closes Plan 32 § NC-3 (Fold balance corridor data into one source). The companion fixture [`content-schema/examples/balance-constraints/canonical.balance-constraints.json`](../../../content-schema/examples/balance-constraints/canonical.balance-constraints.json) remains shape-validatable against [`balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json), but its `tierCorridors` block is now *generated* from `corridor.json` by [`scripts/build-balance-constraints.mjs`](../../../scripts/build-balance-constraints.mjs). A new validator [`scripts/check-balance-corridor-parity.mjs`](../../../scripts/check-balance-corridor-parity.mjs) asserts the two files are numerically identical and is wired into `npm run validate` via `validate:balance-corridor-parity`. A pure JSON-Schema `$ref` from `balance-constraints.schema.json` to `corridor.json` is incompatible with the AJV loader (canonical data file, not a schema), so the generator-script approach was chosen per Plan 32 § Risk Notes.",
+      "inputs": [
+        "[`content-schema/balance/corridor.json`](../../../content-schema/balance/corridor.json)",
+        "[`content-schema/schemas/balance-constraints.schema.json`](../../../content-schema/schemas/balance-constraints.schema.json)",
+        "[`content-schema/examples/balance-constraints/canonical.balance-constraints.json`](../../../content-schema/examples/balance-constraints/canonical.balance-constraints.json)"
+      ],
+      "outputs": [
+        "[`scripts/build-balance-constraints.mjs`](../../../scripts/build-balance-constraints.mjs) — regenerates the canonical example from `corridor.json`.",
+        "[`scripts/check-balance-corridor-parity.mjs`](../../../scripts/check-balance-corridor-parity.mjs) — read-only parity check; fails if the example drifted.",
+        "`validate:balance-corridor-parity` npm script wired into `npm run validate`.",
+        "`build:balance-constraints` npm script for manual regeneration."
+      ],
+      "readFirst": [
+        "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § NC-3",
+        "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md) § balance corridor",
+        "[`tasks/phase-3/02-ai-generation/00b-balance-constraints-schema.md`](./00b-balance-constraints-schema.md)"
+      ],
+      "ownedPaths": [
+        "scripts/build-balance-constraints.mjs",
+        "scripts/check-balance-corridor-parity.mjs",
+        "content-schema/examples/balance-constraints/canonical.balance-constraints.json",
+        "tasks/phase-3/02-ai-generation/00b-balance-constraints-schema.md",
+        "corridor.json",
+        "package.json"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "content-schema/examples/balance-constraints/canonical.balance-constraints.json",
+        "tasks/phase-3/02-ai-generation/00b-balance-constraints-schema.md",
+        "corridor.json",
+        "package.json"
+      ],
+      "dependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema"
+      ],
+      "acceptanceCriteria": [
+        "A grep for `\"hp\": { \"lo\":` (or any per-tier corridor numeric bound) inside `content-schema/schemas/` returns zero hits — the schema carries shape only.",
+        "`corridor.json` carries the per-tier numbers; the canonical example duplicates them only because the generator emits them.",
+        "`npm run build:balance-constraints` regenerates the example with zero diff against the committed file.",
+        "`npm run validate:balance-corridor-parity` exits 0 today.",
+        "The validator exits non-zero when an editor changes the example's `tierCorridors` without re-running the generator.",
+        "`npm run validate:balance` (existing balance gate) still passes. Owned Paths (shared) acceptance:",
+        "The balance-constraints canonical example is **owned by** `phase-3.02-ai-generation.00b-balance-constraints-schema` (the primary contract). This task is **additive**: the example is regenerated mechanically from `corridor.json`; this task must not rewrite the `maxHp` / `maxAtk` / `maxDef` / `maxAbilitiesPerUnit` hard caps.",
+        "`package.json` is **owned by** the repo root. This task is **additive**: two new script entries plus one segment in the `validate` aggregate are appended; this task must not rewrite any existing entry."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 2 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/balance-constraints.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.02-ai-generation.00b-balance-constraints-schema"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
       "id": "phase-3.03-mcts-ai.01a-mcts-tree-state-and-root-expansion",
       "kind": "task",
       "status": "planned",
@@ -38025,7 +38694,9 @@
         "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance",
         "phase-3.01-multiplayer.34-turn-server-hardening",
         "phase-3.01-multiplayer.35-edge-defense-and-health-segregation",
-        "phase-3.01-multiplayer.36-resumed-from-save"
+        "phase-3.01-multiplayer.36-resumed-from-save",
+        "phase-3.01-multiplayer.37-broadcaster-ai-determinism-rule",
+        "phase-3.01-multiplayer.38-signaling-envelope-canary"
       ],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 2,
@@ -38431,6 +39102,7 @@
         "mvp.10-heuristic-ai.09-ai-decision-log-channel",
         "mvp.10-heuristic-ai.10-bot-provider-interface",
         "mvp.10-heuristic-ai.11-ai-bench-harness",
+        "mvp.10-heuristic-ai.12-worker-envelope-canary",
         "phase-2.02-strategic-ai.01-resource-deficit-detector",
         "phase-2.02-strategic-ai.02-town-building-planner",
         "phase-2.02-strategic-ai.03-multi-hero-role-assignment",
@@ -38561,6 +39233,8 @@
         "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas",
         "mvp.02-content-schemas.44-pack-signing-verifier",
         "mvp.02-content-schemas.45-reproducible-archive",
+        "mvp.02-content-schemas.46-worker-message-envelope-reconciliation",
+        "mvp.02-content-schemas.47-supersession-annotations-and-validator",
         "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
         "mvp.02b-asset-pipeline.02-animation-definition-json-format",
         "mvp.02b-asset-pipeline.03-sound-manifest-format",
@@ -38578,6 +39252,7 @@
         "mvp.02b-asset-pipeline.15-balance-corridor-validator",
         "mvp.02b-asset-pipeline.16-pack-error-code-catalog",
         "mvp.02b-asset-pipeline.17-binary-asset-validators",
+        "mvp.02b-asset-pipeline.18-asset-loader-canary",
         "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser",
         "phase-2.05-mod-system.02-ed25519-signature-verification",
         "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs",
@@ -38953,7 +39628,7 @@
         "phase-3.05-observability.01-shared-logger-and-redaction"
       ],
       "acceptanceCriteria": [
-        "Every inbound `postMessage` is `Zod.parse`-validated against [`worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json).",
+        "Every inbound `postMessage` is `Zod.parse`-validated against [`worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json), whose `kind` enum has **8 values** — `COMPUTE_MOVE`, `MOVE_RESULT`, `ABORT`, `PING`, `PONG`, `AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT` — per [`docs/architecture/ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol).",
         "`event.source` is checked; messages from any source other than the spawned worker reference are dropped without reaching the reducer.",
         "Invalid messages emit `SecurityEvent { kind: 'worker_message_invalid', messageKind, envelopeVersion }` via `securityLog()` and do not enter the reducer.",
         "Envelope `version` field gates parsing; mismatched version drops the message.",

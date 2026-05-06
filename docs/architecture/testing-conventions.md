@@ -179,3 +179,16 @@ that is a bug — add the row in the same PR.
   [`testing/coverage-policy.md`](./testing/coverage-policy.md),
   [`testing/ui-smoke-contract.md`](./testing/ui-smoke-contract.md),
   and [`testing/ai-tournament-harness.md`](./testing/ai-tournament-harness.md).
+
+---
+
+## 8. Script and test file extensions
+
+Pinned per Plan 32 § PI-3:
+
+- All scripts under `scripts/` ship as `.mjs` until Task
+  [`mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`](../../tasks/mvp/01-engine-core/02-set-up-vite-plus-typescript-strict-mode-per-module.md)
+  (the Vite/TS bootstrap) lands. Once it does, scripts migrate
+  `.mjs` → `.ts` in batches per module under a new follow-up task.
+- Tests under `src/**/__tests__/` are permitted as `.ts` and run
+  via `node --experimental-strip-types --test`.

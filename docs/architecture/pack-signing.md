@@ -3,6 +3,10 @@
 > Source plan:
 > [`docs/implementation-plans/27-save-tampering-and-pack-signing-plan.md`](../implementation-plans/27-save-tampering-and-pack-signing-plan.md)
 > § Critical Fix 2, Critical Fix 6, Improvement: Dependency Trust Propagation.
+>
+> Crypto primitives in use here (Ed25519 pack signature; xxh64
+> manifest digest over canonical-JSON) are catalogued in
+> [`crypto-primitives.md`](./crypto-primitives.md).
 
 Canonical doctrine for the Ed25519 signature carried by every signed
 content pack. This document fills the gap that

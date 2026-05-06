@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/provider-failure.schema.json",
   "title": "Provider Failure",
-  "description": "Closed taxonomy of provider transport-layer failures so the Generation UI can render distinct recovery actions instead of a generic 'failed' message. Independent of the shape/coherence/balance retry classes — both can fire on the same generation. Four classes: `transport` (auto-retry with backoff), `auth` (re-auth flow, no retry), `quota` (cool-down timer in UI), `content-policy` (re-prompt UX, no auto-retry).",
+  "description": "Closed taxonomy of provider transport-layer failures so the Generation UI can render distinct recovery actions instead of a generic 'failed' message. Independent of the shape/coherence/balance retry classes — both can fire on the same generation. Four classes: `transport` (auto-retry with backoff), `auth` (re-auth flow, no retry), `quota` (cool-down timer in UI), `content-policy` (re-prompt UX, no auto-retry). See docs/architecture/error-schema-map.md for the layer / consumer / owning-plan map across all error-shaped schemas.",
   "type": "object",
   "required": ["kind"],
   "oneOf": [

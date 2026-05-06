@@ -3,6 +3,9 @@
 > Source plan:
 > [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
 > § Critical Fix 1.
+>
+> Crypto primitive in use here (HMAC-SHA-256 per-match) is
+> catalogued in [`crypto-primitives.md`](./crypto-primitives.md).
 
 Canonical wire-shape doctrine for the M5 lockstep DataChannel. Every
 in-game command, every per-turn state-hash payload, and every bisect

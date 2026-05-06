@@ -2,7 +2,12 @@
 
 This repo is mostly planning and contracts, not runtime code.
 
-Read first if you need to understand the full project:
+Read first if you need to understand the full project. The list is
+clustered by concern; intra-cluster numbering is stable so new
+entries append within a cluster rather than renumbering the whole
+list.
+
+### Read first — Determinism core (1–4)
 
 1. [README.md](README.md)
 2. [docs/architecture/overview.md](docs/architecture/overview.md)
@@ -13,6 +18,9 @@ Read first if you need to understand the full project:
    overflow & saturation, negative resources, save gating,
    mid-combat disconnect, locale swap, asset-load failure,
    wall-clock readers, tab backgrounding, storage quota
+
+### Read first — Content platform (5–9)
+
 5. [docs/architecture/content-platform.md](docs/architecture/content-platform.md)
 6. [docs/architecture/pack-contract.md](docs/architecture/pack-contract.md)
 7. [docs/architecture/content-system-policy.md](docs/architecture/content-system-policy.md)
@@ -24,6 +32,9 @@ Read first if you need to understand the full project:
 8. [docs/architecture/schema-matrix.md](docs/architecture/schema-matrix.md)
 9. [docs/architecture/effect-registry.md](docs/architecture/effect-registry.md)
 10. [docs/architecture/glossary.md](docs/architecture/glossary.md)
+
+### Read first — UI surface (11–28)
+
 11. [docs/architecture/ui-technology-choice.md](docs/architecture/ui-technology-choice.md)
     — DOM-side framework, state binding, z-stack, localization, fonts,
     build flags
@@ -75,6 +86,9 @@ Read first if you need to understand the full project:
     package numbers follow that group order, and the wiki sidebar renders
     those groups directly. Read all five package files together when
     implementing a UI component.
+
+### Read first — Engine support (29–34)
+
 29. [docs/architecture/side-effect-matrix.md](docs/architecture/side-effect-matrix.md)
     — per-`src/<module>` ledger of permitted vs. forbidden side
     effects. Read with [determinism.md](docs/architecture/determinism.md)
@@ -94,6 +108,9 @@ Read first if you need to understand the full project:
     asset-index → schema-validate → registry-rebuild → engine-reload).
 34. [docs/architecture/asset-path-resolution.md](docs/architecture/asset-path-resolution.md)
     — editor-time string lookups vs runtime registry resolution.
+
+### Read first — Operations (35–38)
+
 35. [docs/architecture/runtime-requirements.md](docs/architecture/runtime-requirements.md)
     — load-bearing runtime preconditions (UI shell, WebGL2 floor,
     Web Workers, Web Crypto, IndexedDB quota, time source, gzip pin,
@@ -108,6 +125,9 @@ Read first if you need to understand the full project:
 38. [docs/operations/rollback-playbook.md](docs/operations/rollback-playbook.md)
     — content / engine / save rollback, kill-switch policy, hot-fix
     migration, incident-response RACI.
+
+### Read first — Decision and policy registers (39–47)
+
 39. [docs/planning/decision-log.md](docs/planning/decision-log.md)
     — append-only register of locked decisions; provenance gate for
     `docs/archive/AUDIT-*` claims.
@@ -334,6 +354,12 @@ Preferred stack when implementation starts:
   it owns the SPDX allow/deny list, the dependency-add rubric, and
   the CVE-response window. The repo's own license is `MIT`; see
   [`LICENSE`](LICENSE).
+- when authoring a new script or test: scripts under `scripts/`
+  ship as `.mjs` until the Vite/TS bootstrap
+  ([`mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`](tasks/mvp/01-engine-core/02-set-up-vite-plus-typescript-strict-mode-per-module.md))
+  lands; tests under `src/**/__tests__/` are permitted as `.ts`
+  and run via `node --experimental-strip-types --test`. Detail in
+  [`testing-conventions.md` § 8](docs/architecture/testing-conventions.md).
 
 ### Task-System Script Map
 

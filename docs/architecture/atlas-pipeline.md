@@ -100,8 +100,11 @@ need to know how it was produced.
 ## Owned By
 
 - [`tasks/mvp/06-renderer/09-atlas-pipeline.md`](../../tasks/mvp/06-renderer/09-atlas-pipeline.md)
-  — implementation task. Owns `tools/atlas/`, the pinned
+  — implementation task. Owns `scripts/atlas/`, the pinned
   `free-tex-packer-cli` invocation, and the byte-equal CI fixture.
+  The CLI lives at `scripts/atlas/pack.mjs` until the Vite/TS
+  bootstrap lands; see
+  [`testing-conventions.md` § 8](./testing-conventions.md).
 - [`content-schema/schemas/atlas.schema.json`](../../content-schema/schemas/atlas.schema.json)
   — metadata schema for `atlas-manifest.json`.
 
