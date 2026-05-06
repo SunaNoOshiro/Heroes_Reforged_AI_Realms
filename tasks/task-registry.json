@@ -1921,6 +1921,18 @@
       ]
     },
     {
+      "id": "phase-3.05-observability",
+      "kind": "module",
+      "status": "planned",
+      "title": "Module: Observability & Trust Boundaries",
+      "path": "tasks/phase-3/05-observability.md",
+      "milestone": "M6 — Operational Readiness",
+      "totalEstimate": "~14 hours",
+      "exitCriteria": "- `services/shared/logger.ts` is the single sanctioned emit path",
+      "lintTags": [],
+      "taskLinks": []
+    },
+    {
       "id": "phase-4.spectator-mode",
       "kind": "module",
       "status": "planned",
@@ -38817,6 +38829,269 @@
       "resolvedDependencies": [
         "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status"
       ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "phase-3.05-observability.01-shared-logger-and-redaction",
+      "kind": "task",
+      "status": "planned",
+      "title": "Shared Logger and Redaction Pipeline",
+      "path": "tasks/phase-3/05-observability/01-shared-logger-and-redaction.md",
+      "moduleId": "phase-3.05-observability",
+      "modulePath": "tasks/phase-3/05-observability.md",
+      "description": "Land the single sanctioned emission path for every backend service. Pin **pino** as the logger; expose `appLog`, `accessLog`, `auditLog`, `securityLog`, `safeLog` from [`services/shared/logger.ts`](../../../services/shared/logger.ts). Validate every emitted record against [`content-schema/schemas/log-record.schema.json`](../../../content-schema/schemas/log-record.schema.json) and every security event against [`content-schema/schemas/security-event.schema.json`](../../../content-schema/schemas/security-event.schema.json). Direct `console.*` and direct `pino()` imports outside this file are refused by the lint rule named in [`docs/architecture/fail-loud.md`](../../../docs/architecture/fail-loud.md) § 5.",
+      "inputs": [
+        "[`content-schema/schemas/log-record.schema.json`](../../../content-schema/schemas/log-record.schema.json)",
+        "[`content-schema/schemas/security-event.schema.json`](../../../content-schema/schemas/security-event.schema.json)",
+        "[`services/shared/logger.ts`](../../../services/shared/logger.ts) public-surface stub.",
+        "[`services/shared/redact.ts`](../../../services/shared/redact.ts) deny-list helper.",
+        "[`services/shared/log-channels.ts`](../../../services/shared/log-channels.ts) closed channel enum."
+      ],
+      "outputs": [
+        "`services/shared/logger.ts` — pino instance with `redact: ['req.headers.authorization', 'req.body.prompt', 'req.body.theme', 'metadata.playerName', '*.apiKey', '*.token']`; `formatters.level` returns the closed severity enum; `base.service` set per service.",
+        "`services/shared/__tests__/logger.test.ts` — fixture-driven tests asserting:",
+        "every emission validates against `log-record.schema.json`,",
+        "the deny list scrubs the listed fields,",
+        "`securityLog()` validates against `security-event.schema.json` before emission,",
+        "direct `console.error` from a `services/**/*.ts` file fails the lint pass.",
+        "Lint extension in `scripts/check-repo-contracts.mjs`:",
+        "refuses `import \"pino\"` outside `services/shared/logger.ts`,",
+        "refuses `console.{log,info,warn,error,debug}(` under `services/**/*.ts` (except `services/shared/logger.ts` itself),",
+        "refuses `dangerouslySetInnerHTML` under `src/`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/trust-boundaries.md`](../../../docs/architecture/trust-boundaries.md)",
+        "[`docs/architecture/fail-loud.md`](../../../docs/architecture/fail-loud.md)",
+        "[`docs/operations/services-runtime-rules.md`](../../../docs/operations/services-runtime-rules.md)"
+      ],
+      "ownedPaths": [
+        "services/shared/logger.ts",
+        "services/shared/redact.ts",
+        "services/shared/log-channels.ts",
+        "services/shared/__tests__/logger.test.ts",
+        "content-schema/schemas/log-record.schema.json",
+        "content-schema/schemas/security-event.schema.json",
+        "content-schema/examples/log-record/",
+        "content-schema/examples/security-event/",
+        "docs/operations/services-runtime-rules.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "Every backend emission flows through one of `appLog`, `accessLog`, `auditLog`, `securityLog`, `safeLog`.",
+        "Every emitted `LogRecord` validates against [`log-record.schema.json`](../../../content-schema/schemas/log-record.schema.json).",
+        "Every emitted `SecurityEvent` validates against [`security-event.schema.json`](../../../content-schema/schemas/security-event.schema.json) before reaching the transport.",
+        "The redactor strips every field in the deny list: `authorization`, `apiKey`, `token`, `password`, `prompt`, `theme`, `playerName`, `chatText`, `ip`, `cookie`, `set-cookie`.",
+        "Lint refuses direct `pino()` import outside `services/shared/logger.ts`.",
+        "Lint refuses any `console.*` call under `services/**` other than `services/shared/logger.ts` itself.",
+        "Lint refuses `dangerouslySetInnerHTML` under `src/`.",
+        "Channel set is closed to `app` / `access` / `audit` / `security` per [`log-channels.ts`](../../../services/shared/log-channels.ts)."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/log-record.schema.json",
+        "content-schema/schemas/security-event.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/log-record.schema.json",
+        "content-schema/schemas/security-event.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
+    },
+    {
+      "id": "phase-3.05-observability.02-worker-message-validation",
+      "kind": "task",
+      "status": "planned",
+      "title": "Worker-Message Boundary Validation",
+      "path": "tasks/phase-3/05-observability/02-worker-message-validation.md",
+      "moduleId": "phase-3.05-observability",
+      "modulePath": "tasks/phase-3/05-observability.md",
+      "description": "Land the closed envelope for every `postMessage` between the main thread and the AI bot Web Worker. Both ends `Zod.parse` against [`content-schema/schemas/worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json) before dispatch; the inner `payload.command` is validated against [`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json) before the reducer is invoked. Mismatched `version` drops the message and emits `SecurityEvent { kind: 'worker_message_invalid' }`.",
+      "inputs": [
+        "[`content-schema/schemas/worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json)",
+        "[`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json)",
+        "[`services/shared/logger.ts`](../../../services/shared/logger.ts) `securityLog()` helper from Task 01."
+      ],
+      "outputs": [
+        "`src/ai/worker/envelope.ts` — typed parser that re-uses the schema; throws `TrustViolationError` per [`docs/architecture/fail-loud.md`](../../../docs/architecture/fail-loud.md) on mismatch; on the main-thread side dispatches `securityLog({ kind: 'worker_message_invalid' })`.",
+        "`src/ai/worker/__tests__/envelope.test.ts` — fixtures from `content-schema/examples/worker-message/` round-trip through the parser; rejected fixtures emit the expected SecurityEvent."
+      ],
+      "readFirst": [
+        "[`docs/architecture/trust-boundaries.md`](../../../docs/architecture/trust-boundaries.md) § 4",
+        "[`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md)",
+        "[`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../mvp/10-heuristic-ai/06-run-ai-in-web-worker.md)"
+      ],
+      "ownedPaths": [
+        "src/ai/worker/envelope.ts",
+        "src/ai/worker/__tests__/envelope.test.ts",
+        "content-schema/schemas/worker-message.schema.json",
+        "content-schema/examples/worker-message/"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "phase-3.05-observability.01-shared-logger-and-redaction"
+      ],
+      "acceptanceCriteria": [
+        "Every inbound `postMessage` is `Zod.parse`-validated against [`worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json).",
+        "`event.source` is checked; messages from any source other than the spawned worker reference are dropped without reaching the reducer.",
+        "Invalid messages emit `SecurityEvent { kind: 'worker_message_invalid', messageKind, envelopeVersion }` via `securityLog()` and do not enter the reducer.",
+        "Envelope `version` field gates parsing; mismatched version drops the message.",
+        "Inner `payload.command` is validated against [`command.schema.json`](../../../content-schema/schemas/command.schema.json) before reducer dispatch."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/worker-message.schema.json"
+      ],
+      "screenSchemaPaths": [],
+      "schemaPaths": [
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/worker-message.schema.json"
+      ],
+      "taskDependencies": [
+        "phase-3.05-observability.01-shared-logger-and-redaction"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "phase-3.05-observability.01-shared-logger-and-redaction"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "phase-3.05-observability.03-untrusted-string-schemas",
+      "kind": "task",
+      "status": "planned",
+      "title": "Untrusted-String Schemas (Display Name + Room Code + Case ID)",
+      "path": "tasks/phase-3/05-observability/03-untrusted-string-schemas.md",
+      "moduleId": "phase-3.05-observability",
+      "modulePath": "tasks/phase-3/05-observability.md",
+      "description": "Wire the per-string schemas from [`docs/architecture/untrusted-strings.md`](../../../docs/architecture/untrusted-strings.md) into the runtime ingest paths. Validate [`content-schema/schemas/display-name.schema.json`](../../../content-schema/schemas/display-name.schema.json) on every save load and every profile-edit submit; [`content-schema/schemas/room-code.schema.json`](../../../content-schema/schemas/room-code.schema.json) on every join attempt; [`content-schema/schemas/case-id.schema.json`](../../../content-schema/schemas/case-id.schema.json) on every player-report submission.",
+      "inputs": [
+        "[`content-schema/schemas/display-name.schema.json`](../../../content-schema/schemas/display-name.schema.json)",
+        "[`content-schema/schemas/room-code.schema.json`](../../../content-schema/schemas/room-code.schema.json)",
+        "[`content-schema/schemas/case-id.schema.json`](../../../content-schema/schemas/case-id.schema.json)",
+        "[`src/ui/sanitize.ts`](../../../src/ui/sanitize.ts) NFC helper."
+      ],
+      "outputs": [
+        "`src/ui/profile/validate-display-name.ts` — pure helper that NFC-normalizes and validates; rejects with a typed error carrying the violated allow-list class.",
+        "`src/net/lobby/validate-room-code.ts` — pure helper that validates the 8-char Crockford-Base32 pattern and rejects invalid codes before issuing a `JOIN_ROOM` envelope.",
+        "`src/ui/report/validate-case-id.ts` — pure helper that validates the 64-char lowercase-hex pattern.",
+        "Per-helper unit tests under `src/ui/profile/__tests__/`, `src/net/lobby/__tests__/`, `src/ui/report/__tests__/`."
+      ],
+      "readFirst": [
+        "[`docs/architecture/untrusted-strings.md`](../../../docs/architecture/untrusted-strings.md)",
+        "[`docs/architecture/display-name-policy.md`](../../../docs/architecture/display-name-policy.md)",
+        "[`docs/architecture/lobby-identifiers.md`](../../../docs/architecture/lobby-identifiers.md)",
+        "[`docs/architecture/trust-boundaries.md`](../../../docs/architecture/trust-boundaries.md)",
+        "[`docs/architecture/wiki/screens/62-multiplayer-setup/`](../../../docs/architecture/wiki/screens/62-multiplayer-setup/)",
+        "[`docs/architecture/wiki/screens/64-network-lobby/`](../../../docs/architecture/wiki/screens/64-network-lobby/)",
+        "[`docs/architecture/wiki/screens/75-content-report/`](../../../docs/architecture/wiki/screens/75-content-report/)"
+      ],
+      "ownedPaths": [
+        "src/ui/profile/validate-display-name.ts",
+        "src/ui/profile/__tests__/validate-display-name.test.ts",
+        "src/net/lobby/validate-room-code.ts",
+        "src/net/lobby/__tests__/validate-room-code.test.ts",
+        "src/ui/report/validate-case-id.ts",
+        "src/ui/report/__tests__/validate-case-id.test.ts",
+        "content-schema/schemas/display-name.schema.json",
+        "content-schema/schemas/room-code.schema.json",
+        "content-schema/schemas/case-id.schema.json",
+        "src/ui/sanitize.ts",
+        "docs/architecture/untrusted-strings.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [],
+      "dependencies": [
+        "None"
+      ],
+      "acceptanceCriteria": [
+        "`validate-display-name.ts` rejects strings that fail the NFC + 24-char + character-class allow-list per [`display-name.schema.json`](../../../content-schema/schemas/display-name.schema.json).",
+        "`validate-room-code.ts` rejects strings that fail the 8-char Crockford-Base32 pattern per [`room-code.schema.json`](../../../content-schema/schemas/room-code.schema.json).",
+        "`validate-case-id.ts` rejects strings that fail the 64-char lowercase-hex pattern per [`case-id.schema.json`](../../../content-schema/schemas/case-id.schema.json).",
+        "All three helpers are pure; no I/O, no DOM, no logger import.",
+        "Lint refuses `dangerouslySetInnerHTML` under `src/` (covered by the Task 01 lint extension; this task's tests confirm the rule fires on a deliberate violation fixture).",
+        "The display-name validator is wired to the [`docs/architecture/wiki/screens/62-multiplayer-setup/`](../../../docs/architecture/wiki/screens/62-multiplayer-setup/) profile-edit submit handler; the room-code validator is wired to the [`docs/architecture/wiki/screens/64-network-lobby/`](../../../docs/architecture/wiki/screens/64-network-lobby/) join-room handler; the case-id validator is wired to the [`docs/architecture/wiki/screens/75-content-report/`](../../../docs/architecture/wiki/screens/75-content-report/) submit handler."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm test"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [
+        "docs/architecture/wiki/screens/62-multiplayer-setup",
+        "docs/architecture/wiki/screens/64-network-lobby",
+        "docs/architecture/wiki/screens/75-content-report"
+      ],
+      "directSchemaPaths": [
+        "content-schema/schemas/case-id.schema.json",
+        "content-schema/schemas/display-name.schema.json",
+        "content-schema/schemas/room-code.schema.json"
+      ],
+      "screenSchemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "schemaPaths": [
+        "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/case-id.schema.json",
+        "content-schema/schemas/chat-message.schema.json",
+        "content-schema/schemas/content-report.schema.json",
+        "content-schema/schemas/display-name.schema.json",
+        "content-schema/schemas/faction.schema.json",
+        "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/manifest.schema.json",
+        "content-schema/schemas/peer-allowlist.schema.json",
+        "content-schema/schemas/report-bundle.schema.json",
+        "content-schema/schemas/room-code.schema.json",
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json",
+        "content-schema/schemas/signaling-error.schema.json",
+        "content-schema/schemas/world.schema.json"
+      ],
+      "taskDependencies": [],
+      "moduleDependencies": [],
+      "resolvedDependencies": [],
       "unresolvedDependencies": [],
       "downstreamDirectCount": 0,
       "downstreamTransitiveCount": 0

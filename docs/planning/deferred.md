@@ -43,6 +43,7 @@ citing a `DEF-NNN`.
 | DEF-014 | Public revocation-list service deployment | phase-3 | [`rollback-playbook.md`](../operations/rollback-playbook.md) | The signed revocation-list contract is in 1.x; the hosted service deployment is a Phase-3 ops item. |
 | DEF-015 | Cross-engine Playwright parity for Safari + Firefox | phase-3 | plan 17 §5 Group D | Chromium parity is the 1.x gate; Safari and Firefox are gated behind an env flag until the M0 cross-env CI job is stable. |
 | DEF-016 | Dedicated lobby browser / friend list | phase-3 | [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md) | The 1.x multiplayer entry-point is invite-link only; a discoverable lobby is Phase-3. |
+| DEF-017 | Hosted AI gateway runtime | phase-3 | [`services/ai-gateway/README.md`](../../services/ai-gateway/README.md), [`ai-integration.md`](../architecture/ai-integration.md) | The gateway is **optional infrastructure**, not a 1.x feature. The 1.x AI-generation path is **BYO-key** per [plan 29](../implementation-plans/29-rate-limiting-and-secret-management-plan.md): the player supplies their own provider API key, the browser calls the provider directly, no project-side secret exists. The hosted gateway lands only if/when the project pays for a shared key — Phase-3 ops item. Today: contracts + retention rules only; no runtime. |
 
 ---
 

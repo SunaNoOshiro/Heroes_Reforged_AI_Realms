@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schemas/security-event.schema.json",
+  "kind": "content_hash_mismatch",
+  "ts": "2026-05-05T12:00:01.000Z",
+  "service": "ai-gateway",
+  "correlationId": "0e02b2c3-d479-4cc4-a372-0e02b2c3d479",
+  "severity": "error",
+  "packId": "example.pack",
+  "expected": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+  "actual": "feedfacefeedfacefeedfacefeedfacefeedfacefeedfacefeedfacefeedface"
+}

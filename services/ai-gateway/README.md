@@ -1,5 +1,14 @@
 # services/ai-gateway
 
+> **Status: scaffolding only. Optional, out of scope for 1.x.**
+> Tracked as
+> [`DEF-017`](../../docs/planning/deferred.md) — Phase-3 deferred.
+> The 1.x AI-generation path is **BYO-key**: the player
+> supplies their own provider API key and the browser calls the
+> provider directly. The hosted gateway lands only if/when the
+> project ships a shared, project-paid key. Today this directory
+> carries contracts + retention rules; no runtime.
+
 Optional backend boundary for provider-backed AI generation and
 moderation.
 

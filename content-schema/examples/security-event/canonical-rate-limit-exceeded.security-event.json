@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schemas/security-event.schema.json",
+  "kind": "rate_limit_exceeded",
+  "ts": "2026-05-05T12:00:02.000Z",
+  "service": "signaling",
+  "correlationId": "1d3a2c8f-2b97-4f11-b890-0e02b2c3d479",
+  "severity": "info",
+  "routeId": "create_room"
+}

@@ -131,6 +131,22 @@ Read first if you need to understand the full project:
     codebase, and product gating for ranked / tournament / spectator
     modes. Cross-linked from `determinism.md`, `pack-contract.md`,
     and the `77-multiplayer-game` screen package.
+46. [docs/architecture/trust-boundaries.md](docs/architecture/trust-boundaries.md)
+    — single trust contract: the "client is fully untrusted" axiom,
+    the trusted-core declaration, the per-component "trusts /
+    does not trust" matrix, the worker-boundary detail, the player-
+    report correlation rule, and the identity gap. Companion docs:
+    [`authority.md`](docs/architecture/authority.md),
+    [`untrusted-strings.md`](docs/architecture/untrusted-strings.md),
+    [`fail-loud.md`](docs/architecture/fail-loud.md),
+    [`desktop-sandboxing.md`](docs/architecture/desktop-sandboxing.md).
+47. [SECURITY.md](SECURITY.md) — disclosure surface + GDPR
+    72-hour breach trigger. Operational machinery is folded
+    into one doc:
+    [`docs/operations/services-runtime-rules.md`](docs/operations/services-runtime-rules.md)
+    (logger pipeline, channel + retention, spike thresholds,
+    SLOs, containment runbooks, crash-report rules,
+    metrics-endpoint contract).
 
 For a single browseable view of architecture docs, general flow diagrams,
 and numbered UI screen packages, open
@@ -167,6 +183,13 @@ viewer.
   hidden information without first reading
   [`security-model.md`](docs/architecture/security-model.md) and
   gating it behind the friendly / closed-beta product surface
+- every byte from a peer browser, DataChannel, WebSocket frame,
+  pack archive, save file, AI prompt, AI completion, or worker
+  `postMessage` is **adversarial input** until validated by a named
+  gate per
+  [`trust-boundaries.md`](docs/architecture/trust-boundaries.md)
+  § 3 — the "client is fully untrusted" axiom subsumes every
+  per-component rule below it
 
 ## Folder Guide
 

@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schemas/security-event.schema.json",
+  "kind": "signature_failure",
+  "ts": "2026-05-05T12:00:00.000Z",
+  "service": "ai-gateway",
+  "correlationId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "severity": "error",
+  "packId": "example.pack",
+  "keyId": "anthropic-2026-q2"
+}

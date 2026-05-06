@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/log-record.schema.json",
+  "title": "LogRecord",
+  "description": "Structured log line emitted by `services/shared/logger.ts`. Every record produced by `services/signaling/`, `services/ai-gateway/`, `services/turn/`, or any future backend service MUST validate against this shape before emission. The `redactedFields` allow-list is the only place free-form fields may live; everything else is closed and per-channel.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ts", "severity", "channel", "service", "correlationId", "event"],
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp at log emission. Wall-clock; never used for gameplay determinism. The logger sets this; callers do not."
+    },
+    "severity": {
+      "enum": ["debug", "info", "warn", "error", "fatal"],
+      "description": "Closed severity ladder. `fatal` is reserved for unrecoverable startup / config failure. `error` carries an `errorId` referenced by the player-facing surface."
+    },
+    "channel": {
+      "enum": ["app", "access", "audit", "security"],
+      "description": "Closed log channel. `app` = developer runtime; `access` = inbound HTTP / WebSocket; `audit` = consent / wipe / policy events; `security` = SecurityEvent records. Retention + access policy differs per channel; see `docs/operations/log-retention.md` and `docs/operations/access-control.md`."
+    },
+    "service": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Emitting service name; `signaling`, `ai-gateway`, `turn`. Pinned by the logger `base.service`."
+    },
+    "correlationId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "UUID v4 generated at the entry point of each request / WebSocket connection / worker message. Carried through downstream emissions so a single trace stitches across services."
+    },
+    "event": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Snake-case event name; `room_created`, `signature_failure`, `request_completed`. Closed per service via the service-side enum."
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          { "type": "string", "maxLength": 256 },
+          { "type": "integer" },
+          { "type": "number" },
+          { "type": "boolean" },
+          { "type": "null" }
+        ]
+      },
+      "description": "Structured payload. The logger redact-pass strips any field name listed in the central deny-list (`req.headers.authorization`, `req.body.prompt`, `req.body.theme`, `metadata.playerName`, `apiKey`, `token`, `password`) before emission. Free-form strings are capped at 256 chars to bound log volume."
+    },
+    "errorId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "Optional. Set when the record is correlated with a thrown error so the player-facing toast and the log line carry the same id."
+    },
+    "caseId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Optional. Player-side report case id (256-bit random hex) per `case-id.schema.json`. Tags every record for the reported session so the maintainer can fetch the trace from a single id with no PII."
+    }
+  }
+}

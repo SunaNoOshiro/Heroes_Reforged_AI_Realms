@@ -68,10 +68,16 @@ Use these when needed:
 
 - [docs/architecture/master-plan.md](docs/architecture/master-plan.md)
 - [docs/architecture/ai-integration.md](docs/architecture/ai-integration.md)
+- [docs/architecture/trust-boundaries.md](docs/architecture/trust-boundaries.md)
+  — single trust contract; companion to
+  [`SECURITY.md`](SECURITY.md).
 - [content-schema/README.md](content-schema/README.md)
 - [tasks/README.md](tasks/README.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md) — cookbook for new schemas,
   effect kinds, tasks, and formulas.
+
+Security: see [SECURITY.md](SECURITY.md) for the disclosure
+surface, severity matrix, and supported-versions table.
 
 ## Non-Negotiables
 

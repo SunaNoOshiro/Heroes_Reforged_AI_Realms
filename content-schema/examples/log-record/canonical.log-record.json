@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schemas/log-record.schema.json",
+  "ts": "2026-05-05T12:00:00.000Z",
+  "severity": "info",
+  "channel": "access",
+  "service": "signaling",
+  "correlationId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "event": "request_completed",
+  "fields": {
+    "routeId": "join_room",
+    "durationMs": 12,
+    "outcome": "ok"
+  }
+}

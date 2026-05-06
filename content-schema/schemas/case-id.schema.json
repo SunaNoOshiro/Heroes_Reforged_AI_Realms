@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/case-id.schema.json",
+  "title": "CaseId",
+  "description": "256-bit random identifier used for in-app player reports. Generated locally via `crypto.getRandomValues(new Uint8Array(32))` and rendered as 64 lowercase hex characters. **Never derived from `playerName`, IP, or any other PII.** Players hand the case id to the maintainer; the maintainer uses it as a key into the `security` log channel via the `caseId` field on `LogRecord`. Cross-link: `docs/architecture/trust-boundaries.md` § 5, plan 19 (chat safety).",
+  "type": "string",
+  "pattern": "^[0-9a-f]{64}$",
+  "minLength": 64,
+  "maxLength": 64
+}

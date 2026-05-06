@@ -10,6 +10,10 @@ game.
 3. Gameplay and presentation stay separate.
 4. Packs are the extension boundary.
 5. Stable IDs are public API.
+6. Every byte from a peer, browser, DataChannel, WebSocket frame,
+   pack archive, save file, AI prompt, or worker message is
+   adversarial input until validated by a named gate. See
+   [`trust-boundaries.md`](./trust-boundaries.md).
 
 ## What The Engine Should Know
 

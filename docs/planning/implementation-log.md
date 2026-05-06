@@ -1064,6 +1064,92 @@ Closed the doctrine and contract gaps from
 Implementation report:
 [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-report.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-report.md).
 
+### Trust Boundaries and Logging / Monitoring
+
+[`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md):
+
+- **Single trust contract** —
+  [`docs/architecture/trust-boundaries.md`](../architecture/trust-boundaries.md)
+  with the "client is fully untrusted" axiom, trusted-core
+  declaration, per-component "trusts / does not trust" matrix,
+  worker boundary detail, player-report correlation rule, and
+  identity gap. Companion zone diagram at
+  [`docs/architecture/diagrams/trust-zones.md`](../architecture/diagrams/trust-zones.md).
+- **Authority + fail-loud doctrine** —
+  [`docs/architecture/authority.md`](../architecture/authority.md)
+  consolidates legality, RNG, content, sandbox, lockstep, host
+  migration, signature, moderation, save, and identity authorities
+  (identity row marked GAP).
+  [`docs/architecture/fail-loud.md`](../architecture/fail-loud.md)
+  + [`src/shared/assert.ts`](../../src/shared/assert.ts) name the
+  `TrustViolationError` helper and the four lint rules (empty
+  catch, default-coalesce on required field, `as any` in
+  trusted code, direct `console.*` in `services/`).
+- **Untrusted-string contract** —
+  [`docs/architecture/untrusted-strings.md`](../architecture/untrusted-strings.md)
+  + per-string schemas
+  [`display-name`](../../content-schema/schemas/display-name.schema.json),
+  [`room-code`](../../content-schema/schemas/room-code.schema.json),
+  [`case-id`](../../content-schema/schemas/case-id.schema.json),
+  + ingest helper [`src/ui/sanitize.ts`](../../src/ui/sanitize.ts).
+- **Pre-emptive desktop sandboxing** —
+  [`docs/architecture/desktop-sandboxing.md`](../architecture/desktop-sandboxing.md)
+  pins Tauri / Electron rules so a future desktop wrapper does
+  not gain unscoped filesystem access.
+- **Centralized logger contract** —
+  [`content-schema/schemas/log-record.schema.json`](../../content-schema/schemas/log-record.schema.json),
+  [`content-schema/schemas/security-event.schema.json`](../../content-schema/schemas/security-event.schema.json),
+  [`content-schema/schemas/worker-message.schema.json`](../../content-schema/schemas/worker-message.schema.json)
+  with canonical example fixtures. Shared service stubs:
+  [`services/shared/logger.ts`](../../services/shared/logger.ts)
+  (pino + redact public surface),
+  [`services/shared/redact.ts`](../../services/shared/redact.ts)
+  (recursive deny-list scrubber),
+  [`services/shared/log-channels.ts`](../../services/shared/log-channels.ts)
+  (closed channel enum).
+- **Operations stack — folded into one doc** —
+  [`docs/operations/services-runtime-rules.md`](../operations/services-runtime-rules.md)
+  collapses logger pipeline, channel + retention, spike
+  thresholds, SLO targets, containment runbooks, crash-report
+  rules, and metrics-endpoint contract into a single ~150-line
+  rules doc. The original plan called for seven separate docs
+  (observability, log-retention, integrity-monitoring, alerting,
+  slo, incident-response, crash-reports, dashboards/, audit-log)
+  plus an `oncall.md` and `access-control.md`; for a solo
+  pre-runtime maintainer that volume is speculative. Tamper-
+  evident audit log (schema + writer + daily-root export) is
+  dropped entirely — the maintainer signs their own packs and
+  the audit is git history.
+- **Top-level disclosure surface** —
+  [`SECURITY.md`](../../SECURITY.md) carries the disclosure
+  contact + GDPR 72-hour breach trigger; severity matrix and
+  supported-versions table are intentionally omitted (they
+  imply ack timelines a solo maintainer cannot promise).
+- **Owning tasks** at
+  [`tasks/phase-3/05-observability/`](../../tasks/phase-3/05-observability/):
+  - `01-shared-logger-and-redaction.md` — pino + redact +
+    `LogRecord` / `SecurityEvent` schemas + lint rules.
+  - `02-worker-message-validation.md` — closed envelope +
+    `event.source` check + `worker_message_invalid` emit path.
+  - `03-untrusted-string-schemas.md` — display-name / room-code
+    / case-id validators wired to multiplayer-setup, network-lobby,
+    and content-report screens.
+- **Cross-links** —
+  [`CLAUDE.md`](../../CLAUDE.md) "Read first" list extended with
+  trust-boundaries and SECURITY.md;
+  [`docs/architecture/overview.md`](../architecture/overview.md)
+  Core Rules + [`master-plan.md`](../architecture/master-plan.md)
+  Non-Negotiables both gain the "client is untrusted" axiom;
+  [`README.md`](../../README.md) "Read First" list cross-links
+  trust-boundaries.md and surfaces SECURITY.md.
+- **Validation** —
+  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
+  extended with example-record suffix mappings for the four new
+  object schemas. `npm run validate` and `npm test` are green.
+
+Implementation report:
+[`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-report.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-report.md).
+
 ## Recommended Next Steps
 
 Suggested order:

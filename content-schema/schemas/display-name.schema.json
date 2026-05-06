@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/display-name.schema.json",
+  "title": "DisplayName",
+  "description": "Player-supplied display name. NFC-normalized at ingest, capped at 24 characters, and restricted to a closed character allow-list (Unicode letter, digit, separator, plus a small punctuation set). Cross-link: `docs/architecture/display-name-policy.md`, `docs/architecture/untrusted-strings.md`. The local profile field is `state.profile.displayName`; the multiplayer `signaling-payload-policy.md` separately bans transmission over the signaling channel — this schema validates the local field shape.",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 24,
+  "pattern": "^[\\p{L}\\p{N}\\p{Zs}._\\-]+$"
+}

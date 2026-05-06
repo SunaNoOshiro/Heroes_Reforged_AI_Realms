@@ -22,6 +22,10 @@ presentation packs without changing engine code.
 4. Packs are the extension boundary.
 5. Stable IDs are public API.
 6. Schema evolution is additive-first and migration-backed.
+7. Every byte from a peer, browser, DataChannel, WebSocket frame,
+   pack archive, save file, AI prompt, or worker message is
+   adversarial input until validated by a named gate. See
+   [`trust-boundaries.md`](./trust-boundaries.md).
 
 ## Repo Shape
 

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/worker-message.schema.json",
+  "title": "WorkerMessage",
+  "description": "Closed envelope for every `postMessage` between the main thread and the AI bot Web Worker (`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`). Both ends `Zod.parse` against this schema before dispatch; the inner `payload.command` is additionally validated against `command.schema.json` before the reducer is invoked. Mismatched `version` drops the message and emits `SecurityEvent { kind: 'worker_message_invalid' }`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "version", "correlationId", "payload"],
+  "properties": {
+    "kind": {
+      "enum": ["COMPUTE_MOVE", "MOVE_RESULT", "ABORT", "PING", "PONG"],
+      "description": "Closed message kinds. `COMPUTE_MOVE` is main → worker; `MOVE_RESULT` is worker → main; `ABORT` cancels an in-flight computation; `PING` / `PONG` is a liveness check."
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1,
+      "description": "Envelope version. Pinned at 1 today; incrementing this value invalidates every older worker bundle and forces a reload via the `version_mismatch` SecurityEvent path."
+    },
+    "correlationId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "UUID v4 minted on the `COMPUTE_MOVE` and echoed by `MOVE_RESULT`. Used for log correlation and to drop late results from a cancelled computation."
+    },
+    "payload": {
+      "oneOf": [
+        { "$ref": "#/$defs/ComputeMovePayload" },
+        { "$ref": "#/$defs/MoveResultPayload" },
+        { "$ref": "#/$defs/AbortPayload" },
+        { "$ref": "#/$defs/PingPayload" },
+        { "$ref": "#/$defs/PongPayload" }
+      ]
+    }
+  },
+  "$defs": {
+    "ComputeMovePayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "stateView", "difficulty"],
+      "properties": {
+        "kind": { "const": "COMPUTE_MOVE" },
+        "stateView": {
+          "type": "object",
+          "description": "AdventureState projection per `docs/architecture/ai-contract.md`. The reducer view is opaque to the worker; the schema does not pin its shape. The main thread MUST validate against the canonical adventure-state contract before posting."
+        },
+        "difficulty": {
+          "enum": ["easy", "normal", "hard", "impossible"]
+        }
+      }
+    },
+    "MoveResultPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "command"],
+      "properties": {
+        "kind": { "const": "MOVE_RESULT" },
+        "command": {
+          "type": "object",
+          "description": "Command record. Validated against `command.schema.json` before reducer dispatch; this layer only confirms the envelope shape."
+        },
+        "decisionLog": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "description": "Optional decision-log lines per `ai-contract.md`."
+        }
+      }
+    },
+    "AbortPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "const": "ABORT" }
+      }
+    },
+    "PingPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "const": "PING" }
+      }
+    },
+    "PongPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "const": "PONG" }
+      }
+    }
+  }
+}

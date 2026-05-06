@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schemas/worker-message.schema.json",
+  "kind": "COMPUTE_MOVE",
+  "version": 1,
+  "correlationId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "payload": {
+    "kind": "COMPUTE_MOVE",
+    "stateView": {},
+    "difficulty": "normal"
+  }
+}

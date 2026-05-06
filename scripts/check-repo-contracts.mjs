@@ -595,6 +595,9 @@ function schemaForFile(filePath) {
   if (base.endsWith(".match-handshake.json")) return "match-handshake.schema.json";
   if (base.endsWith(".save-envelope.json")) return "save-envelope.schema.json";
   if (base.endsWith(".error-envelope.json")) return "error-envelope.schema.json";
+  if (base.endsWith(".log-record.json")) return "log-record.schema.json";
+  if (base.endsWith(".security-event.json")) return "security-event.schema.json";
+  if (base.endsWith(".worker-message.json")) return "worker-message.schema.json";
 
   return null;
 }

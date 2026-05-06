@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heroes-reforged/security-event.schema.json",
+  "title": "SecurityEvent",
+  "description": "Closed registry of security-relevant events emitted via `services/shared/logger.ts → securityLog()`. Every named integrity-failure surface in `docs/architecture/trust-boundaries.md` § 3 emits one of these. The kind enum is closed; adding a new surface requires extending this schema, the trust-boundaries matrix, and `docs/operations/integrity-monitoring.md` (sampling window + alert mapping).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "ts", "service", "correlationId", "severity"],
+  "properties": {
+    "kind": {
+      "enum": [
+        "signature_failure",
+        "content_hash_mismatch",
+        "schema_violation",
+        "rate_limit_exceeded",
+        "auth_failure",
+        "pack_traversal_attempt",
+        "worker_message_invalid",
+        "signaling_message_invalid",
+        "prompt_injection_suspected",
+        "moderation_block",
+        "peer_message_invalid",
+        "save_load_invalid",
+        "oversize_payload"
+      ],
+      "description": "Closed discriminator. Each kind maps to a row in `docs/architecture/trust-boundaries.md` § 3 and a sampling rule in `docs/operations/integrity-monitoring.md`."
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "service": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "correlationId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "severity": {
+      "enum": ["info", "warn", "error", "critical"],
+      "description": "Per-kind severity. `info` for `rate_limit_exceeded` (expected attacker noise). `warn` for `schema_violation`, `signaling_message_invalid`, `worker_message_invalid`, `peer_message_invalid`, `oversize_payload`. `error` for `signature_failure`, `content_hash_mismatch`, `auth_failure`, `prompt_injection_suspected`, `moderation_block`, `save_load_invalid`, `pack_traversal_attempt`. `critical` is reserved for confirmed signing-key compromise (set by the on-call playbook, not by an emitter)."
+    },
+    "packId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9._-]*$",
+      "description": "Required for `signature_failure`, `content_hash_mismatch`, `pack_traversal_attempt`."
+    },
+    "keyId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "description": "Required for `signature_failure`."
+    },
+    "expected": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "Required for `content_hash_mismatch` (expected SHA-256, hex)."
+    },
+    "actual": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "Required for `content_hash_mismatch` (actual SHA-256, hex)."
+    },
+    "schemaPath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Required for `schema_violation`. Pointer into the failing schema (`#/properties/...`)."
+    },
+    "errorPointer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "routeId": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Required for `rate_limit_exceeded`. The hashed prefix bucket the limiter saw, never the offending IP."
+    },
+    "messageKind": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Required for `signaling_message_invalid`, `worker_message_invalid`, `peer_message_invalid`."
+    },
+    "envelopeVersion": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "classifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Required for `moderation_block`, `prompt_injection_suspected`. Identifier of the classifier that fired."
+    },
+    "requestId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "Required for `moderation_block`, `prompt_injection_suspected`."
+    },
+    "promptLength": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Optional; emitted instead of prompt content for `prompt_injection_suspected`."
+    },
+    "byteSize": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Required for `oversize_payload`."
+    },
+    "cap": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Required for `oversize_payload`."
+    },
+    "saveSlot": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Required for `save_load_invalid`."
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[a-z0-9_]+$",
+      "description": "Optional short reason code (snake_case). Free-form strings forbidden."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "signature_failure" } }, "required": ["kind"] },
+      "then": { "required": ["packId", "keyId"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "content_hash_mismatch" } }, "required": ["kind"] },
+      "then": { "required": ["packId", "expected", "actual"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "schema_violation" } }, "required": ["kind"] },
+      "then": { "required": ["schemaPath"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "rate_limit_exceeded" } }, "required": ["kind"] },
+      "then": { "required": ["routeId"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "worker_message_invalid" } }, "required": ["kind"] },
+      "then": { "required": ["messageKind"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "signaling_message_invalid" } }, "required": ["kind"] },
+      "then": { "required": ["messageKind"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "peer_message_invalid" } }, "required": ["kind"] },
+      "then": { "required": ["messageKind"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "moderation_block" } }, "required": ["kind"] },
+      "then": { "required": ["requestId", "classifier"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "prompt_injection_suspected" } }, "required": ["kind"] },
+      "then": { "required": ["requestId", "classifier"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "oversize_payload" } }, "required": ["kind"] },
+      "then": { "required": ["byteSize", "cap"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "save_load_invalid" } }, "required": ["kind"] },
+      "then": { "required": ["saveSlot"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "pack_traversal_attempt" } }, "required": ["kind"] },
+      "then": { "required": ["packId"] }
+    }
+  ]
+}

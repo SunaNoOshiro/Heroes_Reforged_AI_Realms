@@ -28,6 +28,18 @@ against a local checkout.
   write-up window is **14 days** after remediation, with credit
   (or anonymous on request).
 
-The pack-signing-key recovery procedure (the only project-specific
-playbook today) lives in
+The pack-signing-key recovery procedure lives in
 [`docs/operations/pack-signing-key.md`](docs/operations/pack-signing-key.md) § 6.
+
+## GDPR
+
+If a leak involves personal data, GDPR Article 33 requires
+notifying the supervisory authority within **72 hours**. The
+containment runbook for that path is
+[`docs/operations/services-runtime-rules.md`](docs/operations/services-runtime-rules.md) § 7
+("Mass-PII leak").
+
+## Cross-references
+
+- [`docs/architecture/trust-boundaries.md`](docs/architecture/trust-boundaries.md) — single trust contract.
+- [`docs/operations/services-runtime-rules.md`](docs/operations/services-runtime-rules.md) — when services run, this is the single rules doc (logger, channels, sampling, SLOs, containment runbooks).
