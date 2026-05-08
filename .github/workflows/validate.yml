@@ -2,9 +2,6 @@ name: Validate Repo Contracts
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
 
 concurrency:
   group: validate-${{ github.workflow }}-${{ github.ref }}

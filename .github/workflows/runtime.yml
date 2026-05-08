@@ -14,9 +14,6 @@ name: Runtime Quality Gates
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
 
 concurrency:
   group: runtime-${{ github.workflow }}-${{ github.ref }}

@@ -15,9 +15,6 @@ name: Recheck Newly-Done Tasks
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
 
 concurrency:
   group: recheck-${{ github.workflow }}-${{ github.ref }}

@@ -23,15 +23,6 @@ on:
       - 'src/rules/**'
       - 'resources/**/pack.*'
       - 'tests/multiplayer/chaos/**'
-  push:
-    branches:
-      - main
-    paths:
-      - 'src/net/webrtc/**'
-      - 'src/engine/**'
-      - 'src/rules/**'
-      - 'resources/**/pack.*'
-      - 'tests/multiplayer/chaos/**'
 
 concurrency:
   group: multiplayer-determinism-${{ github.workflow }}-${{ github.ref }}
