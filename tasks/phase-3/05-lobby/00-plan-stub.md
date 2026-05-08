@@ -1,7 +1,5 @@
 # Lobby discovery — plan stub
 
-Status: blocked
-
 Blocked Reason:
 - Implementation plan 18
   ([`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../../../docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md))

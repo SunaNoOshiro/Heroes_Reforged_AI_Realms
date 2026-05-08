@@ -195,7 +195,7 @@ under `system-dialogs`.
   cross-refs, commands, tasks, arch, ui-components,
   animation-budgets, enums, balance, error-codes, provenance,
   runtime-requirements, deferred, diagram-task-parity,
-  error-ux, build:asset-index --check).
+  error-ux, generate:asset-index --check).
 - `npm run all` — passed (validate + generate:wiki +
   generate:task-system-report).
 - `npm test` — 32/32 tests passing.

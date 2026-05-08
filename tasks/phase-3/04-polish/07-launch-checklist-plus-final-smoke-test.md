@@ -1,7 +1,5 @@
 # Launch Checklist + Final Smoke Test
 
-Status: planned
-
 Module: [Polish (M7)](../04-polish.md)
 
 Description:

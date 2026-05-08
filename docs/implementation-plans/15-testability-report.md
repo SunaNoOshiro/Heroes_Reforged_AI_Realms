@@ -142,7 +142,7 @@ test scaffolding.
 - `tasks/mvp/01-engine-core/10-github-actions-ci.md` — added
   `npm run test:ui-smoke`, `npm run test:golden`,
   `npm run test:coverage`, `npm run test:replays`, and the non-gating
-  `bench:engine` step to outputs and acceptance.
+  `test:bench:engine` step to outputs and acceptance.
 - `tasks/phase-3/01-multiplayer/03-input-only-lockstep-command-serialization-plus-sequencing.md`
 - `tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md`
 - `tasks/phase-3/01-multiplayer/06-reconnection-log-range-request-plus-replay.md`
@@ -159,7 +159,7 @@ test scaffolding.
 ### package.json
 
 - Added scripts: `test:ui-smoke`, `test:golden`, `test:replays`,
-  `test:coverage`, `bench:engine`, `golden:bless`. None of these
+  `test:coverage`, `test:bench:engine`, `test:golden:bless`. None of these
   scripts are invoked by `npm run all`; they are wired into the CI
   pipeline by `mvp.01-engine-core.10-github-actions-ci`.
 
@@ -246,7 +246,7 @@ None. `npm run all` and `npm test` both pass.
 - validate:enums → enum snapshot check passed
 - validate:balance → 0 violations
 - validate:error-codes → 0 unknown codes referenced
-- build:asset-index --check → 0 drifted packs
+- generate:asset-index --check → 0 drifted packs
 - generate:wiki → 60 docs, 27 diagrams, 69 screens
 - generate:task-system-report → wrote
   `docs/planning/task-system-report.md`

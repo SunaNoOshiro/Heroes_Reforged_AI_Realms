@@ -1,7 +1,5 @@
 # Command Hook — UI → Dispatch → Re-render
 
-Status: planned
-
 Module: [UI Shell (M1)](../07-ui-shell.md)
 
 Description:

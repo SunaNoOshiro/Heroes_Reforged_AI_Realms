@@ -1,7 +1,5 @@
 # Command Field Visibility and Desync Redaction
 
-Status: planned
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

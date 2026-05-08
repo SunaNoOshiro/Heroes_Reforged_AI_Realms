@@ -1,7 +1,5 @@
 # Balance Constraints Schema (single source of truth for caps)
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

@@ -1,7 +1,5 @@
 # New Faction Scaffold Script
 
-Status: planned
-
 Module: [Asset Pipeline & Content Pack Architecture (M0/M1)](../02b-asset-pipeline.md)
 
 Description:
@@ -51,7 +49,7 @@ Acceptance Criteria:
 - Script idempotent: running twice doesn't overwrite existing files
 - Generated `assets/index.json` includes a deterministic `sha256`
   placeholder for every stub asset; running
-  `npm run build:asset-index` after authors add real files rewrites
+  `npm run generate:asset-index` after authors add real files rewrites
   the placeholder with the on-disk digest. Per-asset integrity rules
   in [`content-system-policy.md` § 4](../../../docs/architecture/content-system-policy.md#4-asset-integrity).
 

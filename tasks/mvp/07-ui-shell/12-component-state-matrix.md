@@ -1,7 +1,5 @@
 # Component-State Matrix + Cross-Screen UI Contract
 
-Status: planned
-
 Module: [UI Shell (M1)](../07-ui-shell.md)
 
 Description:

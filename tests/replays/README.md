@@ -22,7 +22,7 @@ human description in `notes`. The replay format itself is owned by
   rewrite the bytes inside.
 - A replay's `expectedFinalStateHash` is updated only when the
   underlying mechanics change is intentional and reviewed; the
-  update is the same force-of-will action as a `golden:bless`.
+  update is the same force-of-will action as a `test:golden:bless`.
 
 ## Initial Corpus
 

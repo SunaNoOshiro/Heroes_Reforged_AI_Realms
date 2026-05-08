@@ -1,7 +1,5 @@
 # Screen View-Model Types Generation
 
-Status: planned
-
 Module: [UI Shell (M1)](../07-ui-shell.md)
 
 Description:

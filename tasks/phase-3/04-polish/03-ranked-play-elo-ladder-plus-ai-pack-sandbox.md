@@ -1,7 +1,5 @@
 # Ranked Play — ELO Ladder + AI-Pack Sandbox
 
-Status: planned
-
 Module: [Polish (M7)](../04-polish.md)
 
 Description:

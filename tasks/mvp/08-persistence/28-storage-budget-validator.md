@@ -1,7 +1,5 @@
 # Storage Budget Validator
 
-Status: planned
-
 Module: [Persistence (M3 / M4)](../08-persistence.md)
 
 Description:

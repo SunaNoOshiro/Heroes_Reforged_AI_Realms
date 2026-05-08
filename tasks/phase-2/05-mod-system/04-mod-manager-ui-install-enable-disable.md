@@ -1,7 +1,5 @@
 # Mod Manager UI — Install, Enable, Disable
 
-Status: planned
-
 Module: [Pack Runtime / Mod System (M4)](../05-mod-system.md)
 
 Description:

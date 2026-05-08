@@ -1,7 +1,5 @@
 # safeUserText Helper And JSX / localStorage Lint
 
-Status: planned
-
 Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 
 Description:

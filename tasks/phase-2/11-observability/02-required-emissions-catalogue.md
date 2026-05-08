@@ -1,7 +1,5 @@
 # Required emissions catalogue + telemetry-event schema validation
 
-Status: planned
-
 Module: [Observability (Phase 2)](../11-observability.md)
 
 Description:

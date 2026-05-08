@@ -1,7 +1,5 @@
 # HUD — Resource Bar, End-Turn Button, Mini-Map Stub
 
-Status: planned
-
 Module: [UI Shell (M1)](../07-ui-shell.md)
 
 Description:

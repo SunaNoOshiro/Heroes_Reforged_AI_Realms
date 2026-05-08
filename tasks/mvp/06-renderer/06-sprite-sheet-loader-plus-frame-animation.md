@@ -1,7 +1,5 @@
 # Sprite Sheet Loader + Frame Animation
 
-Status: planned
-
 Module: [Renderer (M1/M2)](../06-renderer.md)
 
 Description:

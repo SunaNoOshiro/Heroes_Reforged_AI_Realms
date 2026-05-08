@@ -1,7 +1,5 @@
 # Provider Failure Taxonomy (transport / auth / quota / content-policy)
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

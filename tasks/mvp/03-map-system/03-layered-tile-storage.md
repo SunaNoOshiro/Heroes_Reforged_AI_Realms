@@ -1,7 +1,5 @@
 # Layered Tile Storage
 
-Status: planned
-
 Module: [Map System (M1)](../03-map-system.md)
 
 Description:

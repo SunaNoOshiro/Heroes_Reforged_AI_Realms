@@ -1,7 +1,5 @@
 # Ranged Attack — Obstacle Check, Range Limit
 
-Status: planned
-
 Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Upgrade Army Stack Command
 
-Status: planned
-
 Module: [Adventure Map (M1)](../05-adventure-map.md)
 
 Description:

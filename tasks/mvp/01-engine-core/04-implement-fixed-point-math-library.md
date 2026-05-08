@@ -1,7 +1,5 @@
 # Implement fixed-point math library
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

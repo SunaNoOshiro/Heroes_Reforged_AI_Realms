@@ -1,7 +1,5 @@
 # Version pinning + action SHA-pinning + workflow hygiene
 
-Status: done
-
 Module: [Build Pipeline & Supply-Chain Hygiene (Phase 2)](../13-build-pipeline.md)
 
 Description:

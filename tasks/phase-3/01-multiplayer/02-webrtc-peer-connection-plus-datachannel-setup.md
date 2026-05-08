@@ -1,7 +1,5 @@
 # WebRTC Peer Connection + DataChannel Setup
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

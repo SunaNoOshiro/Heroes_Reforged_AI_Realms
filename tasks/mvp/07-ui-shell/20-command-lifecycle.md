@@ -1,7 +1,5 @@
 # Command Lifecycle + In-Flight UI Contract
 
-Status: planned
-
 Module: [UI Shell (M1)](../07-ui-shell.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Official Pack Signing + Bundle Verification
 
-Status: planned
-
 Module: [Pack Runtime / Mod System (M4)](../05-mod-system.md)
 
 Description:

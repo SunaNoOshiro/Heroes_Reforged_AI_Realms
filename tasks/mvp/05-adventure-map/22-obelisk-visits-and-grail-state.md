@@ -1,7 +1,5 @@
 # Obelisk Visits And Grail State
 
-Status: planned
-
 Module: [Adventure Map (M1)](../05-adventure-map.md)
 
 Description:

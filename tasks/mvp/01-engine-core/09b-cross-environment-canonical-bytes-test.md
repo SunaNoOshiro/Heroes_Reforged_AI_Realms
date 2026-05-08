@@ -1,7 +1,5 @@
 # Cross-environment canonical-bytes parity test
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

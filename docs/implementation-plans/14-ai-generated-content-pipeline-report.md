@@ -184,7 +184,7 @@ npm run all
   validate:enums → Enum snapshot check passed.
   validate:balance → 0 violations.
   validate:error-codes → 0 unknown codes referenced.
-  build:asset-index --check → 0 drifted packs.
+  generate:asset-index --check → 0 drifted packs.
   generate:wiki → built docs/architecture/architecture-wiki.html
   generate:task-system-report → wrote docs/planning/task-system-report.md
 

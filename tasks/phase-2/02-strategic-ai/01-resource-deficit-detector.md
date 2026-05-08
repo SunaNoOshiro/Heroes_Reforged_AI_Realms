@@ -1,7 +1,5 @@
 # Resource Deficit Detector
 
-Status: planned
-
 Module: [Strategic AI Depth (M3)](../02-strategic-ai.md)
 
 Description:

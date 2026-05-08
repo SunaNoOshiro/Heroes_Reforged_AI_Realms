@@ -1,7 +1,5 @@
 # Bottom Bar — 7 Resources + Info Text Strip + Date Counter
 
-Status: planned
-
 Module: [Visual Fidelity — Overland Strategy Look & Feel (M1/M2)](../06-visual-fidelity.md)
 
 Description:

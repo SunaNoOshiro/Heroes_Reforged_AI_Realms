@@ -1,7 +1,5 @@
 # Initiative Queue — Speed Order, Wait, Defend, Morale
 
-Status: planned
-
 Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 
 Description:

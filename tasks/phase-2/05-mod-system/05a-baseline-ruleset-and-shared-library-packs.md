@@ -1,7 +1,5 @@
 # Baseline Ruleset + Shared Library Packs
 
-Status: planned
-
 Module: [Pack Runtime / Mod System (M4)](../05-mod-system.md)
 
 Description:

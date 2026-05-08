@@ -1,7 +1,5 @@
 # Undead Immunity — Morale and Mind-Spell Rules
 
-Status: planned
-
 Module: [Second Faction — Necropolis (M3)](../03-second-faction.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Object pools (vectors, draw commands, AI nodes, VFX)
 
-Status: planned
-
 Module: [Performance Harness & Budgets (M1)](../00-perf.md)
 
 Description:

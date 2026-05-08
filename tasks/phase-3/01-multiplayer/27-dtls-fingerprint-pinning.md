@@ -1,7 +1,5 @@
 # DTLS Fingerprint Pinning
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

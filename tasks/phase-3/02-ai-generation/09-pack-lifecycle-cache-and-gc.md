@@ -1,7 +1,5 @@
 # Pack Lifecycle (cache + disk quota + GC + ownership)
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

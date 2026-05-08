@@ -1,7 +1,5 @@
 # Privacy Pane In Options Screen
 
-Status: planned
-
 Module: [UI Shell](../07-ui-shell.md)
 
 Description:

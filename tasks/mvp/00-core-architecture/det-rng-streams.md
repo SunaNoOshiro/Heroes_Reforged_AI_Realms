@@ -1,7 +1,5 @@
 # Named RNG sub-stream catalogue
 
-Status: done
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

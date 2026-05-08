@@ -1,7 +1,5 @@
 # MCTS Tree State + Root Expansion
 
-Status: planned
-
 Module: [MCTS AI (M7)](../03-mcts-ai.md)
 
 Description:

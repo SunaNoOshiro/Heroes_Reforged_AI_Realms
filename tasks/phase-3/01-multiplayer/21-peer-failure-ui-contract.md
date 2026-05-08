@@ -1,7 +1,5 @@
 # Peer-Failure UI Contract
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

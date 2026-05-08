@@ -1,7 +1,5 @@
 # Beam Search for Strategic Layer
 
-Status: planned
-
 Module: [MCTS AI (M7)](../03-mcts-ai.md)
 
 Description:

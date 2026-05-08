@@ -1,7 +1,5 @@
 # Shared Logger and Redaction Pipeline
 
-Status: planned
-
 Module: [Observability & Trust Boundaries](../05-observability.md)
 
 Description:

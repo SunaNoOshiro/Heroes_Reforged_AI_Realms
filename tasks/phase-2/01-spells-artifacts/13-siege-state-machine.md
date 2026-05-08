@@ -1,7 +1,5 @@
 # Siege State Machine
 
-Status: planned
-
 Module: [Spells, Artifacts & Hero Skills (M3)](../01-spells-artifacts.md)
 
 Description:

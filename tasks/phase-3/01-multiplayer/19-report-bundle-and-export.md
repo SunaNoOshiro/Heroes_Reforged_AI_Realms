@@ -1,7 +1,5 @@
 # Report Bundle & Chat Export
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

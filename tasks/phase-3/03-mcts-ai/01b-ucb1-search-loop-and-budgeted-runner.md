@@ -1,7 +1,5 @@
 # UCB1 Search Loop + Budgeted Runner
 
-Status: planned
-
 Module: [MCTS AI (M7)](../03-mcts-ai.md)
 
 Description:

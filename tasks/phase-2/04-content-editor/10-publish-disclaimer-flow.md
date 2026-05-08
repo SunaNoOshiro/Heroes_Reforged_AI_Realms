@@ -1,7 +1,5 @@
 # Publish Disclaimer Flow
 
-Status: planned
-
 Module: [Content Editor (Phase 2)](../04-content-editor.md)
 
 Description:

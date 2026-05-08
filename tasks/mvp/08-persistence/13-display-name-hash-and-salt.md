@@ -1,7 +1,5 @@
 # Display Name Hash + Per-Installation Salt
 
-Status: planned
-
 Module: [Persistence](../08-persistence.md)
 
 Description:

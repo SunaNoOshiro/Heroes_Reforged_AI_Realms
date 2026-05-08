@@ -1,7 +1,5 @@
 # Signaling Server — Node.js WebSocket Lobby
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

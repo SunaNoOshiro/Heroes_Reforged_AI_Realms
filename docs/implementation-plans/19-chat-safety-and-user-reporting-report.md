@@ -185,6 +185,6 @@ None.
   `validate:balance`, `validate:error-codes`,
   `validate:provenance`, `validate:runtime-requirements`,
   `validate:deferred`, `validate:diagram-task-parity`,
-  `validate:error-ux`, `build:asset-index --check`,
+  `validate:error-ux`, `generate:asset-index --check`,
   `generate:wiki`, `generate:task-system-report`).
 - `npm test` — 32/32 tests pass.

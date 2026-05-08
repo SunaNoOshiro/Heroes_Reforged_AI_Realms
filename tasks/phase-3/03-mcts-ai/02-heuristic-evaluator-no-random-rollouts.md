@@ -1,7 +1,5 @@
 # Heuristic Evaluator (No Random Rollouts)
 
-Status: planned
-
 Module: [MCTS AI (M7)](../03-mcts-ai.md)
 
 Description:

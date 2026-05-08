@@ -1,7 +1,5 @@
 # Spell Selection in Tactical AI
 
-Status: planned
-
 Module: [Strategic AI Depth (M3)](../02-strategic-ai.md)
 
 Description:

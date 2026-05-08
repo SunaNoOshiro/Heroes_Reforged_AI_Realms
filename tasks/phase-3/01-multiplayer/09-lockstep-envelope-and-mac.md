@@ -1,7 +1,5 @@
 # Lockstep Envelope and Per-Match MAC
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

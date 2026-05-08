@@ -1,7 +1,5 @@
 # Onboarding & Consent Screen
 
-Status: planned
-
 Module: [UI Shell](../07-ui-shell.md)
 
 Description:

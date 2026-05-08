@@ -1,7 +1,5 @@
 # Screen Package — Multiplayer Game Status (in-match overlay)
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

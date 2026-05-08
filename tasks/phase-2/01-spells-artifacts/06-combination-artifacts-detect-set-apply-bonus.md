@@ -1,7 +1,5 @@
 # Combination Artifacts — Detect Set, Apply Bonus
 
-Status: planned
-
 Module: [Spells, Artifacts & Hero Skills (M3)](../01-spells-artifacts.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Content Loader — Validate on Load
 
-Status: planned
-
 Module: [Faction — Emberwild (M1)](../04-faction-emberwild.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Peer Keypair & Session Token
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

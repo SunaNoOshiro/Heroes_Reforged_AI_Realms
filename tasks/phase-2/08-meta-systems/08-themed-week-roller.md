@@ -1,7 +1,5 @@
 # Themed-Week Roller
 
-Status: planned
-
 Module: [Meta Systems (M3)](../08-meta-systems.md)
 
 Description:

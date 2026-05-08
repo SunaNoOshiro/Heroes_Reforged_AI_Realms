@@ -1,7 +1,5 @@
 # Canonical JSON + Content Hash
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

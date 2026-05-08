@@ -1,7 +1,5 @@
 # Battle End Condition
 
-Status: planned
-
 Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 
 Description:

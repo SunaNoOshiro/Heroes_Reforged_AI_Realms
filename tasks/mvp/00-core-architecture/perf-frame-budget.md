@@ -1,7 +1,5 @@
 # Frame-time budget &amp; degradation policy
 
-Status: done
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

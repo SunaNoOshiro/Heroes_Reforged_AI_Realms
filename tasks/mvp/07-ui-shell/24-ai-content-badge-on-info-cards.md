@@ -1,7 +1,5 @@
 # AI-Content Badge On Info Cards
 
-Status: planned
-
 Module: [UI Shell](../07-ui-shell.md)
 
 Description:

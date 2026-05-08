@@ -1,7 +1,5 @@
 # Spectator Mode — Requirements (Placeholder)
 
-Status: planned
-
 Module: [Spectator Mode (Phase 4 — Out of M5 Scope)](../spectator-mode.md)
 
 Description:

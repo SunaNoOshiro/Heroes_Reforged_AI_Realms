@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { repoRoot, repoRelative, readUtf8 } from "./lib/repo-utils.mjs";
+import { repoRoot, readUtf8 } from "./lib/repo-utils.mjs";
 import { writeTaskRegistry } from "./generate-task-registry.mjs";
 import { collectCommandOwnershipViolations } from "./check-command-coverage.mjs";
 import { collectTaskCommandLiteralViolations } from "./check-task-command-literals.mjs";
@@ -10,9 +10,19 @@ import {
   ownsUiOrEditorPath,
   sharedOwnershipCriteriaMissing
 } from "./lib/task-readiness.mjs";
+import {
+  VALID_STATUSES as LEDGER_VALID_STATUSES,
+  loadLedger,
+  writeLedger,
+  setTaskStatus,
+  ensureTaskEntry,
+} from "./lib/task-status-ledger.mjs";
+import { deriveVerifyCommands } from "./lib/derive-verify-commands.mjs";
+
+export { deriveVerifyCommands };
 
 const registryPath = path.join(repoRoot, "tasks", "task-registry.json");
-const VALID_STATUSES = ["planned", "in-progress", "done", "blocked"];
+const VALID_STATUSES = LEDGER_VALID_STATUSES;
 
 async function loadRegistry() {
   const raw = await readUtf8(registryPath);
@@ -278,7 +288,7 @@ function printShow(registry, id) {
   console.log(JSON.stringify(t, null, 2));
 }
 
-async function setStatus(id, newStatus) {
+async function setStatus(id, newStatus, options = {}) {
   if (!VALID_STATUSES.includes(newStatus)) {
     console.error(`Invalid status "${newStatus}". Use: ${VALID_STATUSES.join(", ")}.`);
     process.exit(1);
@@ -290,45 +300,26 @@ async function setStatus(id, newStatus) {
     process.exit(1);
   }
 
-  const mdPath = path.join(repoRoot, task.path);
-  let md = await readUtf8(mdPath);
-  const line = `Status: ${newStatus}`;
-
-  if (/^Status:\s*\S+\s*$/mi.test(md)) {
-    md = md.replace(/^Status:\s*\S+\s*$/mi, line);
-  } else {
-    const heading = md.match(/^#\s+.+$/m);
-    if (heading) {
-      const at = heading.index + heading[0].length;
-      md = `${md.slice(0, at)}\n\n${line}${md.slice(at)}`;
-    } else {
-      md = `${line}\n\n${md}`;
-    }
+  const ledger = await loadLedger();
+  await ensureTaskEntry(ledger, id);
+  const writeOptions = { ...options };
+  if (newStatus === "done") {
+    writeOptions.verifyCommands = task.verifyCommands || [];
   }
-
-  await fs.writeFile(mdPath, md, "utf8");
+  await setTaskStatus(ledger, id, newStatus, writeOptions);
+  await writeLedger(ledger);
   await writeTaskRegistry();
-  console.log(`${id} → ${newStatus}  (updated ${repoRelative(mdPath)})`);
+  console.log(`${id} → ${newStatus}  (updated tasks/task-status.json)`);
   return task;
 }
 
-function ownsUiSurface(task) {
-  return (task.ownedPaths || []).some((entry) => /^src\/ui\//.test(entry));
-}
-
 function runVerify(task) {
-  const cmds = task.verifyCommands || [];
-  const uiSmokeCmd = ownsUiSurface(task)
-    ? `node scripts/verify-ui-smoke.mjs "${task.id}"`
-    : null;
-
-  if (cmds.length === 0 && !uiSmokeCmd) {
-    console.log("No verifyCommands listed — nothing to check.");
+  const cmds = deriveVerifyCommands(task);
+  if (cmds.length === 0) {
+    console.log("No verifyCommands derived — nothing to check.");
     return true;
   }
-
-  const allCmds = uiSmokeCmd ? [...cmds, uiSmokeCmd] : cmds;
-  for (const cmd of allCmds) {
+  for (const cmd of cmds) {
     console.log(`\n$ ${cmd}`);
     const result = spawnSync(cmd, {
       shell: true,
@@ -393,26 +384,8 @@ async function blockedCmd(id, reason) {
     process.exit(1);
   }
 
-  const mdPath = path.join(repoRoot, task.path);
-  let md = await readUtf8(mdPath);
-  md = md.replace(/^Status:\s*\S+\s*$/mi, "Status: blocked");
-
-  const blockedHeader = /^Blocked Reason:\s*$/m;
-  const newSection = `Blocked Reason:\n- ${reason}\n`;
-  if (blockedHeader.test(md)) {
-    md = md.replace(/^Blocked Reason:\s*$[\s\S]*?(?=^[A-Z][A-Za-z ]+:\s*$|\Z)/m, `${newSection}\n`);
-  } else {
-    const statusLine = md.match(/^Status:\s*\S+\s*$/m);
-    if (statusLine) {
-      const at = statusLine.index + statusLine[0].length;
-      md = `${md.slice(0, at)}\n\n${newSection}${md.slice(at)}`;
-    } else {
-      md = `${newSection}\n${md}`;
-    }
-  }
-  await fs.writeFile(mdPath, md, "utf8");
-  await writeTaskRegistry();
-  console.log(`${id} → blocked  (reason recorded in ${repoRelative(mdPath)})`);
+  await setStatus(id, "blocked", { blockedReason: reason });
+  console.log(`${id} → blocked  (reason recorded in tasks/task-status.json)`);
 }
 
 function splitDependencyParts(rawDependencies) {

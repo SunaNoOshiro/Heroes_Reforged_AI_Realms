@@ -1,7 +1,5 @@
 # Retaliation — Once Per Round, Nullification
 
-Status: planned
-
 Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 
 Description:

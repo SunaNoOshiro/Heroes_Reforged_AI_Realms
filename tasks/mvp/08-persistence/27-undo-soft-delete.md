@@ -1,7 +1,5 @@
 # Undo / Soft-Delete For Save Slots
 
-Status: planned
-
 Module: [Persistence (M2)](../08-persistence.md)
 
 Description:

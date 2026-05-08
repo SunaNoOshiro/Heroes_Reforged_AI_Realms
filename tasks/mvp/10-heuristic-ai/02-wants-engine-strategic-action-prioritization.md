@@ -1,7 +1,5 @@
 # Wants Engine — Strategic Action Prioritization
 
-Status: planned
-
 Module: [Heuristic AI (M2)](../10-heuristic-ai.md)
 
 Description:

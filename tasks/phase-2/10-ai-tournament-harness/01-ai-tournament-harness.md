@@ -1,7 +1,5 @@
 # AI Tournament Harness — Shared Bracket Runner
 
-Status: planned
-
 Module: [AI Tournament Harness (M3+)](../10-ai-tournament-harness.md)
 
 Description:

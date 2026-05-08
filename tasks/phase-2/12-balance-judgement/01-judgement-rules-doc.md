@@ -1,7 +1,5 @@
 # Balance-corridor judgement-rules doc
 
-Status: planned
-
 Module: [Balance Judgement (Phase 2)](../12-balance-judgement.md)
 
 Description:

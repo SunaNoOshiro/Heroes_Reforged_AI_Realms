@@ -1,7 +1,5 @@
 # Map-Editor Undo / Redo Contract
 
-Status: planned
-
 Module: [Meta Systems (Phase 2)](../08-meta-systems.md)
 
 Description:

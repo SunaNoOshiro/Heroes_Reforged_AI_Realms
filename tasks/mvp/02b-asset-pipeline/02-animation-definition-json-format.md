@@ -1,7 +1,5 @@
 # Animation Definition JSON Format
 
-Status: planned
-
 Module: [Asset Pipeline & Content Pack Architecture (M0/M1)](../02b-asset-pipeline.md)
 
 Description:

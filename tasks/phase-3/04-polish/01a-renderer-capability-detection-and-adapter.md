@@ -1,7 +1,5 @@
 # Renderer Capability Detection + Adapter
 
-Status: planned
-
 Module: [Polish (M7)](../04-polish.md)
 
 Description:

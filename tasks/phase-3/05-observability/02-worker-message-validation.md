@@ -1,7 +1,5 @@
 # Worker-Message Boundary Validation
 
-Status: planned
-
 Module: [Observability & Trust Boundaries](../05-observability.md)
 
 Description:

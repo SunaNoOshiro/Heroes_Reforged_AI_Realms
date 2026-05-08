@@ -1,7 +1,5 @@
 # WebGL2 Context Setup + Resize Handler
 
-Status: planned
-
 Module: [Renderer (M1/M2)](../06-renderer.md)
 
 Description:

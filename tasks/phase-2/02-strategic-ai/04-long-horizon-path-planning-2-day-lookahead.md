@@ -1,7 +1,5 @@
 # Long-Horizon Path Planning (2-Day Lookahead)
 
-Status: planned
-
 Module: [Strategic AI Depth (M3)](../02-strategic-ai.md)
 
 Description:

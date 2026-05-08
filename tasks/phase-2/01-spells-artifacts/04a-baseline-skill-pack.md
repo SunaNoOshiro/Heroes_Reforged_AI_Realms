@@ -1,7 +1,5 @@
 # Baseline Skill Pack — 28 Secondary Skills
 
-Status: planned
-
 Module: [Spells & Artifacts (P2)](../01-spells-artifacts.md)
 
 Description:

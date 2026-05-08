@@ -1,7 +1,5 @@
 # WASM Hot Path Compilation (AssemblyScript)
 
-Status: planned
-
 Module: [MCTS AI (M7)](../03-mcts-ai.md)
 
 Description:

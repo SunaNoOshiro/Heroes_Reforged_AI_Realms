@@ -1,7 +1,5 @@
 # Zip Pack Loader (JSZip) + Manifest Parser
 
-Status: planned
-
 Module: [Pack Runtime / Mod System (M4)](../05-mod-system.md)
 
 Description:

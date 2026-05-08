@@ -108,7 +108,7 @@ export async function runFromCli(argv = process.argv.slice(2)) {
 
   if (check && drift.length > 0) {
     console.error(
-      `build:asset-index --check failed: ${drift.length} pack(s) drift from on-disk hashes:`
+      `generate:asset-index --check failed: ${drift.length} pack(s) drift from on-disk hashes:`
     );
     for (const entry of drift) console.error(`  ${entry}`);
     return 1;
@@ -116,8 +116,8 @@ export async function runFromCli(argv = process.argv.slice(2)) {
 
   console.log(
     check
-      ? "build:asset-index --check: 0 drifted packs."
-      : `build:asset-index: rewrote ${touched} index file(s).`
+      ? "generate:asset-index --check: 0 drifted packs."
+      : `generate:asset-index: rewrote ${touched} index file(s).`
   );
   return 0;
 }

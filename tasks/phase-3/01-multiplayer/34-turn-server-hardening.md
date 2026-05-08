@@ -1,7 +1,5 @@
 # TURN Server Hardening (No Open Relay)
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

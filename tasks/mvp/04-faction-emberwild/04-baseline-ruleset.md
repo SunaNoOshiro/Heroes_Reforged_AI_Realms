@@ -1,7 +1,5 @@
 # Baseline Ruleset JSON (Formula AST)
 
-Status: planned
-
 Module: [Faction — Emberwild (M1)](../04-faction-emberwild.md)
 
 Description:

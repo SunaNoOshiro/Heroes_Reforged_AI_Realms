@@ -1,7 +1,5 @@
 # High Scores Player Label Render
 
-Status: planned
-
 Module: [UI Shell](../07-ui-shell.md)
 
 Description:

@@ -1,7 +1,5 @@
 # In-game profiling overlay (Ctrl+Shift+P)
 
-Status: planned
-
 Module: [Performance Harness & Budgets (M1)](../00-perf.md)
 
 Description:

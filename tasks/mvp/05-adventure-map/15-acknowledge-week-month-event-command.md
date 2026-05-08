@@ -1,7 +1,5 @@
 # Acknowledge Week Month Event Command
 
-Status: planned
-
 Module: [Adventure Map (M1)](../05-adventure-map.md)
 
 Description:

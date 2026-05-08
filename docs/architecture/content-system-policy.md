@@ -104,7 +104,7 @@ content-runtime verifies the digest on load.
 - Asset missing entirely → existing presentation-vs-gameplay split in
   [`pack-contract.md` § Asset Fallback And Placeholders](./pack-contract.md#asset-fallback-and-placeholders).
 
-Authors do not maintain hashes by hand. `npm run build:asset-index`
+Authors do not maintain hashes by hand. `npm run generate:asset-index`
 walks the pack and rewrites every `sha256`/`bytes` pair from the file
 on disk. Pack publish runs the same script before computing
 `contentHash`.

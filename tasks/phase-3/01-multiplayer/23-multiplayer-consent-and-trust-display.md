@@ -1,7 +1,5 @@
 # Multiplayer Consent Gate & Peer Trust Display
 
-Status: planned
-
 Module: [Multiplayer (M5)](../01-multiplayer.md)
 
 Description:

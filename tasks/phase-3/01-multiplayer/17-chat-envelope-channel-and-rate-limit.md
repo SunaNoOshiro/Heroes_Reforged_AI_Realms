@@ -1,7 +1,5 @@
 # Chat Envelope, Channel Validators & Rate Limit
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

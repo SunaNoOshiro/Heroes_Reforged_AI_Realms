@@ -1,7 +1,5 @@
 # Resumed-from-Save Multiplayer Handshake
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

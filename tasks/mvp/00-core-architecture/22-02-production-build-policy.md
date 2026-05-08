@@ -1,7 +1,5 @@
 # Production-Build Error & Bundle Policy
 
-Status: planned
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

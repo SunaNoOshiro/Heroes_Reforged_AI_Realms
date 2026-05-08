@@ -1,7 +1,5 @@
 # Run AI in Web Worker
 
-Status: planned
-
 Module: [Heuristic AI (M2)](../10-heuristic-ai.md)
 
 Description:

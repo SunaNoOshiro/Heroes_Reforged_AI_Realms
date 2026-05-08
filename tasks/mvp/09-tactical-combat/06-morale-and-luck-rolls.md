@@ -1,7 +1,5 @@
 # Morale and Luck Rolls
 
-Status: planned
-
 Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 
 Description:

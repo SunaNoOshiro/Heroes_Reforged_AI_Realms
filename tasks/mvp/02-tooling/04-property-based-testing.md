@@ -1,7 +1,5 @@
 # Property-Based Testing
 
-Status: planned
-
 Module: [Test & Tooling Contracts (M0)](../02-tooling.md)
 
 Description:

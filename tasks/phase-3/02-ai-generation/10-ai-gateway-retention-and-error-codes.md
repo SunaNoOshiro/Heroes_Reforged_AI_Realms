@@ -1,7 +1,5 @@
 # AI Gateway Retention and Error Codes
 
-Status: planned
-
 Module: [AI-Generated Content (M6)](../02-ai-generation.md)
 
 Description:

@@ -83,7 +83,7 @@ report generation). `npm test` passes 32 / 32 subtests.
 
 - **[package.json](../../package.json)**
   Three new scripts: `validate:balance`, `validate:error-codes`,
-  `build:asset-index`. All three wired into `npm run validate`.
+  `generate:asset-index`. All three wired into `npm run validate`.
 
 - **[tasks/mvp/02b-asset-pipeline.md](../../tasks/mvp/02b-asset-pipeline.md)**
   Added six new task links (11–16).
@@ -222,5 +222,5 @@ $ npm test
 ```
 
 The full pipeline including the new `validate:balance`,
-`validate:error-codes`, and `build:asset-index --check` stages
+`validate:error-codes`, and `generate:asset-index --check` stages
 exits clean.

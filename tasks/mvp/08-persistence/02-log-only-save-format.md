@@ -1,7 +1,5 @@
 # Log-Only Save Format
 
-Status: planned
-
 Module: [Persistence (M1)](../08-persistence.md)
 
 Description:

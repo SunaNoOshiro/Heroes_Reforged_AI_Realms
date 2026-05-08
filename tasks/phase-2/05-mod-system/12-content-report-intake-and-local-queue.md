@@ -1,7 +1,5 @@
 # Content-Report Intake And Local Queue
 
-Status: planned
-
 Module: [Mod System (Phase 2)](../05-mod-system.md)
 
 Description:

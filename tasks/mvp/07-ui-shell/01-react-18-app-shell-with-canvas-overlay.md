@@ -1,7 +1,5 @@
 # React 18 App Shell with Canvas Overlay
 
-Status: planned
-
 Module: [UI Shell (M1)](../07-ui-shell.md)
 
 Description:

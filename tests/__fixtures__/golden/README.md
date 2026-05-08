@@ -14,7 +14,7 @@ Two fixtures with the same `(scenarioId, seed)` are forbidden;
 
 ## Blessing Policy
 
-Expected hashes are emitted by `npm run golden:bless -- <fixture>`.
+Expected hashes are emitted by `npm run test:golden:bless -- <fixture>`.
 The script refuses to run in CI (checks `process.env.CI`) so a
 hash drift cannot be silently accepted by an automated pipeline. A
 human committer reviews the diff and only blesses after confirming

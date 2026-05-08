@@ -1,7 +1,5 @@
 # WIPE_LOCAL_DATA Handler
 
-Status: planned
-
 Module: [Persistence](../08-persistence.md)
 
 Description:

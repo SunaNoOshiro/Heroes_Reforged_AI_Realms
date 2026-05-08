@@ -1,7 +1,5 @@
 # Leveling Up — Hero Gains Skills and Stats
 
-Status: planned
-
 Module: [Spells, Artifacts & Hero Skills (M3)](../01-spells-artifacts.md)
 
 Description:

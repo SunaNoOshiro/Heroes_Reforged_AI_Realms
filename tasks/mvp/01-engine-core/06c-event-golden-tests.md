@@ -1,7 +1,5 @@
 # Event Golden Tests Harness
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

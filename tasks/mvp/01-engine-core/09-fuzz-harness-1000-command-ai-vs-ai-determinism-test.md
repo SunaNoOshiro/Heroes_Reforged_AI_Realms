@@ -1,7 +1,5 @@
 # Fuzz harness — 1000-command AI-vs-AI determinism test
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

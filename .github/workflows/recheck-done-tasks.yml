@@ -1,0 +1,67 @@
+name: Recheck Newly-Done Tasks
+
+# Closes the cheat path where an agent edits tasks/task-status.json
+# directly to fake `done` (forging completedAtSha + verifyCommandsHash
+# + an implementation-log line) without ever running the per-task
+# verifyCommands. validate:status-ledger checks integrity; this
+# workflow checks the gate ACTUALLY EXECUTES on a fresh checkout.
+#
+# Companion files:
+#   scripts/recheck-done-tasks.mjs           — diff + re-execute
+#   scripts/lib/derive-verify-commands.mjs   — single source of truth
+#
+# This workflow is the trust anchor for the task-status gate; branch
+# protection on main should require it as a status check.
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: recheck-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  recheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    env:
+      NPM_CONFIG_FUND: false
+      NPM_CONFIG_PREFER_OFFLINE: true
+
+    steps:
+      - name: Checkout (full history for base ref)
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          # fetch-depth: 0 so `git show origin/main:tasks/task-status.json`
+          # works inside scripts/recheck-done-tasks.mjs.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install
+        run: npm ci --prefer-offline --ignore-scripts --audit=false --no-fund
+
+      - name: Verify Stryker + coverage providers loadable
+        # Belt-and-suspenders: --ignore-scripts in the install above
+        # disables postinstall hooks, so a future devDep that ships a
+        # native binary via postinstall would silently miss its setup
+        # step. This sanity-check imports the two providers the gate
+        # actually depends on, failing fast if either is broken.
+        run: |
+          node -e "import('@stryker-mutator/core').then(()=>console.log('stryker OK'))"
+          node -e "import('@vitest/coverage-v8').then(()=>console.log('coverage-v8 OK'))"
+
+      - name: Recheck newly-done tasks
+        run: node scripts/recheck-done-tasks.mjs --base origin/main

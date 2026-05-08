@@ -3354,8 +3354,8 @@
       "moduleDependencies": [],
       "resolvedDependencies": [],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 4,
-      "downstreamTransitiveCount": 431
+      "downstreamDirectCount": 5,
+      "downstreamTransitiveCount": 433
     },
     {
       "id": "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
@@ -3365,7 +3365,7 @@
       "path": "tasks/mvp/01-engine-core/02-set-up-vite-plus-typescript-strict-mode-per-module.md",
       "moduleId": "mvp.01-engine-core",
       "modulePath": "tasks/mvp/01-engine-core.md",
-      "description": "Each implementation module gets its own `tsconfig.json` extending a root `tsconfig.base.json` with `strict: true`, `noUncheckedIndexedAccess: true`, and `exactOptionalPropertyTypes: true`. Vite is configured for library mode in `src/engine` and `src/rules`; app mode for `src/ui`.",
+      "description": "Each implementation module gets its own `tsconfig.json` extending a root `tsconfig.base.json` with `strict: true`, `noUncheckedIndexedAccess: true`, and `exactOptionalPropertyTypes: true`. Vite is configured for library mode in `src/engine` and `src/rules`; app mode for `src/ui`. This task is also the canonical owner of the test-runner choice locked in [`docs/planning/decision-log.md`](../../../docs/planning/decision-log.md) DEC-003 — Vitest is the runner for `src/**/*.test.ts` once this task lands. As part of this task the two existing `node:test` files (`src/content-schema/migrations/example-v1-to-v2-rename-field.test.ts` and the `src/ui/__tests__/smoke.template.test.ts` template marker) are migrated to the Vitest API in the same PR. Until this task is done, those files continue to run via `node --experimental-strip-types --test` per [`testing-conventions.md` § 8](../../../docs/architecture/testing-conventions.md). Wiring the mutation-test gate on top of the Vitest setup is owned by [`mvp.02-tooling.06-mutation-test-gate`](../02-tooling/06-mutation-test-gate.md); this task does not own Stryker.",
       "inputs": [
         "Monorepo scaffold from Task 1"
       ],
@@ -3373,7 +3373,9 @@
         "`tsconfig.base.json` at root",
         "Per-module `tsconfig.json` files",
         "`vite.config.ts` in each module that needs a build target",
-        "`npm run -ws build` produces `.js` + `.d.ts` for all implementation modules"
+        "`vitest.config.ts` at root (locked test runner per DEC-003)",
+        "`npm run -ws build` produces `.js` + `.d.ts` for all implementation modules",
+        "Existing `*.test.ts` files using `node:test` migrated to the Vitest API; `npm test` rewired to invoke Vitest."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -3383,13 +3385,17 @@
         "tsconfig.base.json",
         "tsconfig.json",
         "vite.config.ts",
+        "vitest.config.ts",
         ".js",
-        ".d.ts"
+        ".d.ts",
+        "src/content-schema/migrations/example-v1-to-v2-rename-field.test.ts"
       ],
       "ownedPathsDeclared": true,
       "ownedPathsOptOut": false,
       "ownedPathsOptOutReason": "",
-      "sharedOwnedPaths": [],
+      "sharedOwnedPaths": [
+        "src/content-schema/migrations/example-v1-to-v2-rename-field.test.ts"
+      ],
       "dependencies": [
         "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
       ],
@@ -3397,7 +3403,12 @@
         "`npm run -ws type-check` exits 0",
         "No `any` types in `src/engine` or `src/rules`",
         "Source maps generated for all implementation modules",
-        "`vitest.config.ts` declares the per-module coverage threshold map pinned in [`docs/architecture/testing/coverage-policy.md`](../../../docs/architecture/testing/coverage-policy.md) under the canonical `coverage` block. The threshold values are contributed additively by `mvp.02-tooling.02-coverage-gate`; this task only ensures the config block exists with the c8 provider selected."
+        "`vitest.config.ts` declares the per-module coverage threshold map pinned in [`docs/architecture/testing/coverage-policy.md`](../../../docs/architecture/testing/coverage-policy.md) under the canonical `coverage` block. The threshold values are contributed additively by `mvp.02-tooling.02-coverage-gate`; this task only ensures the config block exists with the c8 provider selected.",
+        "`vitest.config.ts` `test.include` covers `src/**/*.test.ts` (and optionally `*.spec.ts` if both patterns are kept transitionally). After migration, no `src/**/*.test.ts` file imports `node:test`.",
+        "`npm test` runs the migrated suite via Vitest; the previous `node --test` invocation under `npm test` is removed in the same PR. `testing-conventions.md` § 8 is updated to point at DEC-003 as the runner-choice source of truth.",
+        "The `src/content-schema/migrations/example-v1-to-v2-rename-field.test.ts` file imports from `vitest` (e.g. `import { test, expect } from \"vitest\"`), uses `expect(...)` assertions, and continues to assert all four contract points listed in its header comment.",
+        "The `src/ui/__tests__/smoke.template.test.ts` file remains a template marker and continues to be skipped by the runner via the same `smoke.template.*` exclusion rule already documented inside the file.",
+        "Shared path `src/content-schema/migrations/example-v1-to-v2-rename-field.test.ts` is extended with additive scope only — runner-API migration only. This task must not rewrite the assertions or contract semantics; the primary owner remains `mvp.02-content-schemas.23-schema-migration-policy-and-example` as named in Owned Paths (shared) above."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -3416,8 +3427,8 @@
         "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 12,
-      "downstreamTransitiveCount": 429
+      "downstreamDirectCount": 13,
+      "downstreamTransitiveCount": 430
     },
     {
       "id": "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams",
@@ -4166,7 +4177,7 @@
       ],
       "outputs": [
         "`.github/workflows/ci.yml`",
-        "Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz) → `npm run test:ui-smoke` → `npm run test:golden` → `npm run test:coverage` → `npm run test:replays` → `npm run bench:engine` (non-gating, posts PR comment)",
+        "Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz) → `npm run test:ui-smoke` → `npm run test:golden` → `npm run test:coverage` → `npm run test:replays` → `npm run test:bench:engine` (non-gating, posts PR comment)",
         "Badge in root `README.md` (CI status + coverage)",
         "**Perf-bench job** (advisory on PRs, blocking on `main` and `perf/**` branches) — wired by `mvp.00-perf.02-bench-baseline-and-ci-gate` via `.github/workflows/perf.yml`.",
         "**Memory-gate job** (blocking) — wired by `mvp.00-perf.03-memory-regression-gate` via `.github/workflows/memory.yml`.",
@@ -4196,7 +4207,7 @@
         "CI passes on `main` after all M0 tasks are merged",
         "A deliberate `Math.random()` injection causes CI to fail at the lint step",
         "A deliberate state-mutation bug causes CI to fail at the fuzz step",
-        "Total CI runtime < 3 minutes (smoke + coverage + golden + replays steps each fit inside the existing budget; the non-gating `bench:engine` step runs in parallel and posts a PR comment with the per-metric delta against `main`)",
+        "Total CI runtime < 3 minutes (smoke + coverage + golden + replays steps each fit inside the existing budget; the non-gating `test:bench:engine` step runs in parallel and posts a PR comment with the per-metric delta against `main`)",
         "A deliberate UI binding-name typo causes the `npm run test:ui-smoke` step to fail per the contract owned by `mvp.02-tooling.01-ui-smoke-harness`",
         "A deliberate ruleset formula change without a paired golden re- bless causes the `npm run test:golden` step to fail per the contract owned by `mvp.01-engine-core.12-golden-state-suite`",
         "A deliberate untested module under `src/engine/` causes the `npm run test:coverage` step to fail per the threshold map owned by `mvp.02-tooling.02-coverage-gate`",
@@ -4291,7 +4302,7 @@
       "path": "tasks/mvp/01-engine-core/12-golden-state-suite.md",
       "moduleId": "mvp.01-engine-core",
       "modulePath": "tasks/mvp/01-engine-core.md",
-      "description": "Add a checked-in golden-state regression suite that pins `(scenarioId, seed) → expectedStateHash` for every fixture in `tests/__fixtures__/golden/`. The differential fuzz harness ([`09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](./09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md)) catches non-determinism between two live engine instances; it does **not** catch an unintended *intentional* mechanics change that silently shifts a canonical state hash. The golden suite closes that gap by replaying each fixture's command log and asserting the final `stateHash` matches the checked-in expected hash. On any drift the runner fails with a diff between expected and actual canonical JSON (truncated to the first 50 differing lines for log readability). A `golden:bless` script re-emits the expected hash for a named fixture, gated behind an explicit human action (refuses to run when `process.env.CI` is set) so blessing is never accidental.",
+      "description": "Add a checked-in golden-state regression suite that pins `(scenarioId, seed) → expectedStateHash` for every fixture in `tests/__fixtures__/golden/`. The differential fuzz harness ([`09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](./09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md)) catches non-determinism between two live engine instances; it does **not** catch an unintended *intentional* mechanics change that silently shifts a canonical state hash. The golden suite closes that gap by replaying each fixture's command log and asserting the final `stateHash` matches the checked-in expected hash. On any drift the runner fails with a diff between expected and actual canonical JSON (truncated to the first 50 differing lines for log readability). A `test:golden:bless` script re-emits the expected hash for a named fixture, gated behind an explicit human action (refuses to run when `process.env.CI` is set) so blessing is never accidental.",
       "inputs": [
         "Canonical JSON serializer + content hash (`mvp.01-engine-core.07b-canonical-json`)",
         "State serializer + xxh64 hash (`mvp.01-engine-core.07-state-serializer-plus-xxh64-hash`)",
@@ -4305,7 +4316,7 @@
         "`tests/__fixtures__/golden/.gitkeep` — keep the directory in git even when the corpus is empty at first.",
         "`src/engine/__tests__/golden.test.ts` — runner that loads each fixture, replays through `replay(seed, commandLog)`, asserts `hashState(state) === expectedStateHash`.",
         "`scripts/golden-bless.mjs` — re-emits the expected hash for a named fixture; refuses to run in CI (`process.env.CI` guard).",
-        "`package.json` script `golden:bless` invoking the bless script and `test:golden` invoking the runner."
+        "`package.json` script `test:golden:bless` invoking the bless script and `test:golden` invoking the runner."
       ],
       "readFirst": [
         "[`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)",
@@ -4340,7 +4351,7 @@
       "acceptanceCriteria": [
         "`npm run test:golden` loads every `tests/__fixtures__/golden/*.json`, replays it, and asserts the final state hash equals `expectedStateHash`.",
         "A deliberate ruleset formula change in `src/rules/` causes `npm run test:golden` to fail with a canonical-JSON diff.",
-        "`npm run golden:bless -- <fixtureName>` re-emits the expected hash for one named fixture; running the same command in CI environment exits non-zero with a \"blessing in CI is forbidden\" message.",
+        "`npm run test:golden:bless -- <fixtureName>` re-emits the expected hash for one named fixture; running the same command in CI environment exits non-zero with a \"blessing in CI is forbidden\" message.",
         "The schema validates a fixture missing `expectedStateHash` and rejects unknown properties.",
         "Shared paths (`package.json`, `docs/architecture/determinism.md`, `scripts/check-repo-contracts.mjs`) are extended with additive scope only. This task must not rewrite existing scripts, determinism sections, or schema-suffix mappings; the primary owner of each shared path remains as named in Owned Paths (shared) above."
       ],
@@ -4464,7 +4475,7 @@
       "outputs": [
         "`docs/architecture/testing/engine-throughput-slo.md` — three SLO targets, measurement method, tightening policy.",
         "`src/engine/__tests__/throughput.bench.ts` — `vitest bench` file measuring the three metrics.",
-        "`package.json` script `bench:engine` invoking `vitest bench src/engine/__tests__/throughput.bench.ts`.",
+        "`package.json` script `test:bench:engine` invoking `vitest bench src/engine/__tests__/throughput.bench.ts`.",
         "Edit to `mvp.01-engine-core.10-github-actions-ci`'s acceptance criteria (additive only): non-gating bench step + PR-comment reporter behavior."
       ],
       "readFirst": [
@@ -4489,7 +4500,7 @@
         "mvp.01-engine-core.08-replay-api"
       ],
       "acceptanceCriteria": [
-        "`npm run bench:engine` runs the three measured metrics and emits median + p95 to stdout.",
+        "`npm run test:bench:engine` runs the three measured metrics and emits median + p95 to stdout.",
         "Two consecutive runs on the same hardware produce byte-identical fixture inputs and identical simulation traces; only the timing values may vary.",
         "A 5× regression on any of the three targets is flagged in the PR comment; CI does not fail (non-gating until the noise envelope measurement window completes).",
         "The SLO doc names exactly three targets, the measurement method, and the policy for tightening.",
@@ -8166,8 +8177,8 @@
         "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module"
       ],
       "unresolvedDependencies": [],
-      "downstreamDirectCount": 0,
-      "downstreamTransitiveCount": 0
+      "downstreamDirectCount": 1,
+      "downstreamTransitiveCount": 1
     },
     {
       "id": "mvp.02-tooling.03-unit-test-contract",
@@ -8363,6 +8374,173 @@
       "unresolvedDependencies": [],
       "downstreamDirectCount": 1,
       "downstreamTransitiveCount": 18
+    },
+    {
+      "id": "mvp.02-tooling.06-mutation-test-gate",
+      "kind": "task",
+      "status": "planned",
+      "title": "Mutation Test Gate",
+      "path": "tasks/mvp/02-tooling/06-mutation-test-gate.md",
+      "moduleId": "mvp.02-tooling",
+      "modulePath": "tasks/mvp/02-tooling.md",
+      "description": "Adopt StrykerJS as the mutation-testing gate that runs before `npm run tasks:done` flips a task to `done`. The gate scopes Stryker to each task's `ownedPaths` and enforces a per-module mutation-score floor plus a per-file coverage-no-regression check, so a task only ships when its tests actually pin behavior — not just when they execute lines. Anti-cheat rules forbid the easy ways to make the gate green (deleting source, softening assertions, lowering thresholds, silent excludes); the rules and the loop are pinned in the mutation-test skill, owned by this task. The runner choice (Vitest) and the node:test → Vitest migration of the two existing src/ test files are owned by the Vite/TS bootstrap task, not by this task; this task wires Stryker on top of whatever Vitest setup that task produces.",
+      "inputs": [
+        "`vitest.config.ts` pinned by `mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`",
+        "Per-module coverage thresholds from `mvp.02-tooling.02-coverage-gate`"
+      ],
+      "outputs": [
+        "`stryker.conf.mjs` — Stryker configuration with Vitest runner, `coverageAnalysis: \"perTest\"`, mutation scope excluding contracts / tests / d.ts / constants.",
+        "`scripts/validate-mutation-score.mjs` — reads `reports/mutation/mutation.json`, applies per-module floor, fails on any owned file missing from the report (anti-cheat: silent excludes).",
+        "`scripts/validate-coverage-floor.mjs` — reads `reports/coverage/coverage-summary.json`, applies coverage floor, compares against `reports/coverage/.baseline.json` and fails on any per-file regression (anti-cheat: deleting tested lines).",
+        "`.claude/skills/mutation-test/SKILL.md` — the skill that documents the loop, the anti-cheat rules, the equivalent-mutant procedure, and the `verifyCommands` template tasks adopt to wire the gate.",
+        "`reports/mutation/` and `reports/coverage/.baseline.json` — generated artifacts, gitignored.",
+        "`package.json` scripts (additive): `mutation`, `mutation:incremental`, `validate:mutation-score`, `validate:coverage-floor`."
+      ],
+      "readFirst": [
+        "[`.claude/skills/mutation-test/SKILL.md`](../../../.claude/skills/mutation-test/SKILL.md)",
+        "[`docs/architecture/testing/coverage-policy.md`](../../../docs/architecture/testing/coverage-policy.md)",
+        "[`docs/architecture/testing-conventions.md`](../../../docs/architecture/testing-conventions.md) § 8",
+        "[`docs/planning/decision-log.md`](../../../docs/planning/decision-log.md) DEC-003"
+      ],
+      "ownedPaths": [
+        "stryker.conf.mjs",
+        "scripts/validate-mutation-score.mjs",
+        "scripts/validate-coverage-floor.mjs",
+        ".claude/skills/mutation-test/SKILL.md",
+        "reports/mutation/",
+        "reports/coverage/.baseline.json",
+        "vitest.config.ts",
+        "package.json",
+        "docs/architecture/testing-conventions.md",
+        "AGENTS.md",
+        "CLAUDE.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "vitest.config.ts",
+        "package.json",
+        "docs/architecture/testing-conventions.md",
+        "AGENTS.md",
+        "CLAUDE.md"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
+        "mvp.02-tooling.02-coverage-gate"
+      ],
+      "acceptanceCriteria": [
+        "`npm run test:mutation` invokes Stryker against `src/` (excluding contracts, tests, d.ts, constants) using the Vitest runner.",
+        "`npm run validate:mutation-score -- --task <id>` exits 0 when the task has no source-code `ownedPaths`, exits 1 with a clear message when `reports/mutation/mutation.json` is missing or any matched file's score is below the module-class floor in `.claude/skills/mutation-test/SKILL.md`, and exits 1 when an `ownedPaths` entry has no matching file in the report.",
+        "`npm run validate:coverage-floor -- --task <id>` exits 0 when the task has no source-code `ownedPaths`, exits 1 with a clear message when coverage on a matched file is below floor or when line-count or covered-line count regressed vs. the baseline at `reports/coverage/.baseline.json`, and updates the baseline only on success.",
+        "A deliberately tautological test (e.g. `expect(fn(1, 2)).toBeDefined()`) on a function with arithmetic produces ≥ 1 surviving mutant in the Stryker report, and `validate:mutation-score` fails on that file.",
+        "Deleting a tested source line on a tracked file causes `validate:coverage-floor` to fail with a \"covered lines dropped\" message that cites SKILL.md anti-cheat rule A.",
+        "`stryker.conf.mjs` is **not** listed in any task's `ownedPaths` except this one, and CI rejects PRs that move it into another task's `ownedPaths` (anti-cheat rule D).",
+        "Shared paths (`vitest.config.ts`, `package.json`, `docs/architecture/testing-conventions.md`, `AGENTS.md`) are extended with additive scope only. This task must not rewrite the existing Vitest config, package scripts, testing-conventions body, or AGENTS workflow; the primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm run test:mutation -- --dryRunOnly",
+        "npm run validate:mutation-score -- --task mvp.02-tooling.06-mutation-test-gate",
+        "npm run validate:coverage-floor -- --task mvp.02-tooling.06-mutation-test-gate"
+      ],
+      "estimatedTime": "- 4 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
+        "mvp.02-tooling.02-coverage-gate"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module",
+        "mvp.02-tooling.02-coverage-gate"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
+    },
+    {
+      "id": "mvp.02-tooling.07-task-status-ledger",
+      "kind": "task",
+      "status": "planned",
+      "title": "Task Status Ledger",
+      "path": "tasks/mvp/02-tooling/07-task-status-ledger.md",
+      "moduleId": "mvp.02-tooling",
+      "modulePath": "tasks/mvp/02-tooling.md",
+      "description": "Move task status out of every per-task `.md` file and into a single structured ledger at `tasks/task-status.json`. The `Status:` field is removed from all task `.md` files; the ledger becomes the only source of truth read by `generate-task-registry`, `tasks:next`, `tasks:show`, `tasks:start`, `tasks:done`, and `tasks:blocked`. Status flips happen only by writing the ledger via the provided commands; hand-editing the ledger is detected by a paired `validate:status-ledger` check that verifies each `done` entry against `git`, the implementation-log, and a recorded `verifyCommandsHash`. The trust anchor for the gate is the existing `Validate Repo Contracts` GitHub Actions workflow at `.github/workflows/validate.yml`, which re-runs `npm run validate` (including `validate:status-ledger`) on a fresh checkout for every PR. Branch-protection on `main` requiring this workflow as a status check is a one-time manual toggle in repo settings — see DEC-004 § \"Manual prerequisite\". CODEOWNERS was considered and rejected because in a solo repo where the AI agent commits using the human owner's GitHub identity, a CODEOWNERS rule naming the owner is satisfied trivially by the agent acting as the owner; only a CI status check that runs on a GitHub-hosted runner (which the agent has no token for) is identity-independent. This task closes the cheat path where an agent edits the status field of a task .md by hand to fake completion, by removing the field from the cheat surface entirely. It also makes status flips diff-readable in PRs (one-line changes in one file, instead of needle-in-haystack across 471 .md files).",
+      "inputs": [
+        "Existing `Status:` fields across 471 task `.md` files",
+        "Existing `docs/planning/implementation-log.md` entries"
+      ],
+      "outputs": [
+        "`tasks/task-status.json` — structured ledger seeded from current `.md` statuses; written only by `tasks:start`, `tasks:done`, `tasks:blocked`.",
+        "`scripts/lib/task-status-ledger.mjs` — read/write module used by every `tasks:*` command and the registry generator.",
+        "`scripts/check-status-ledger.mjs` — validator: every task in the registry has a ledger entry; no `Status:` line remains in any task `.md`; every `done` entry's `completedAtSha` exists in `git`, reachable from `main`, touches the task `.md` (or its companion files), and has a matching line in `implementation-log.md`.",
+        "Updated `scripts/tasks.mjs` and `scripts/generate-task-registry.mjs` reading status exclusively from the ledger.",
+        "The `Validate Repo Contracts` workflow at `.github/workflows/validate.yml` (already present) is reused as the trust anchor — `npm run validate` includes `validate:status-ledger`, so any hand-edit of the ledger fails CI. Enabling branch-protection on `main` to require this workflow as a status check is a manual repo-settings toggle, documented in DEC-004 § \"Manual prerequisite\"; it is not produced by this task."
+      ],
+      "readFirst": [
+        "[`docs/planning/decision-log.md`](../../../docs/planning/decision-log.md) DEC-004",
+        "[`.claude/skills/mutation-test/SKILL.md`](../../../.claude/skills/mutation-test/SKILL.md)",
+        "[`scripts/tasks.mjs`](../../../scripts/tasks.mjs)",
+        "[`scripts/generate-task-registry.mjs`](../../../scripts/generate-task-registry.mjs)"
+      ],
+      "ownedPaths": [
+        "tasks/task-status.json",
+        "scripts/lib/task-status-ledger.mjs",
+        "scripts/check-status-ledger.mjs",
+        "scripts/tasks.mjs",
+        "scripts/generate-task-registry.mjs",
+        "package.json",
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "ownedPathsDeclared": true,
+      "ownedPathsOptOut": false,
+      "ownedPathsOptOutReason": "",
+      "sharedOwnedPaths": [
+        "scripts/tasks.mjs",
+        "scripts/generate-task-registry.mjs",
+        "package.json",
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "dependencies": [
+        "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
+      ],
+      "acceptanceCriteria": [
+        "After migration, no task `.md` under `tasks/` contains a line matching `^Status:\\s*\\S+\\s*$`. `validate:status-ledger` enforces this.",
+        "`tasks/task-status.json` has exactly one entry per task in the registry (count = 471 at migration time, growing additively as new tasks are added).",
+        "`npm run tasks:next`, `tasks:show`, `tasks:start`, `tasks:done`, `tasks:blocked` continue to work and produce identical output to the pre-migration behavior, except status now comes from the ledger.",
+        "`tasks:done` records `completedAt`, `completedAtSha` (current short SHA), and `verifyCommandsHash` (sha256 of the literal verifyCommands list at the time of the flip).",
+        "`validate:status-ledger` fails if any `done` entry's `completedAtSha` is missing from `git`, is unreachable from `main`, has no matching line in `implementation-log.md`, or has a `verifyCommandsHash` that no longer matches the task's current verifyCommands (catches the late-stage cheat: weakening verify commands after marking done).",
+        "The 12 currently-`done` tasks are seeded with `legacy: true` and exempted from `completedAtSha` / `verifyCommandsHash` enforcement with a one-shot allowlist check. New `done` flips after migration must not use the legacy exemption.",
+        "DEC-004 records the trust-anchor decision (required CI status check on `main`) and the reasons CODEOWNERS was rejected for this setup. Setting up branch protection on `main` to require the `validate` workflow as a status check is a one-time manual toggle the human owner must perform in repo settings; it is documented in DEC-004 § \"Manual prerequisite\" and is not produced by this task.",
+        "Shared paths (`scripts/tasks.mjs`, `scripts/generate-task-registry.mjs`, `package.json`, `CLAUDE.md`, `AGENTS.md`) are extended with additive scope only. This task must not rewrite the command-dispatch logic, the registry shape, the script catalogue order, or the doctrine clusters; the primary owner of each shared path remains as named in Owned Paths (shared) above."
+      ],
+      "verifyCommands": [
+        "npm run validate",
+        "npm run validate:status-ledger",
+        "npm run tasks:next"
+      ],
+      "estimatedTime": "- 6 hours",
+      "screenPackages": [],
+      "directSchemaPaths": [],
+      "screenSchemaPaths": [],
+      "schemaPaths": [],
+      "taskDependencies": [
+        "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
+      ],
+      "moduleDependencies": [],
+      "resolvedDependencies": [
+        "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout"
+      ],
+      "unresolvedDependencies": [],
+      "downstreamDirectCount": 0,
+      "downstreamTransitiveCount": 0
     },
     {
       "id": "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry",
@@ -8897,7 +9075,7 @@
         "Running the script produces a pack that passes `validatePackAssets` with only warnings (no errors) — all required JSONs exist, asset files are missing (expected at this stage)",
         "Generated faction loads in the game without crashing (renders placeholder sprites)",
         "Script idempotent: running twice doesn't overwrite existing files",
-        "Generated `assets/index.json` includes a deterministic `sha256` placeholder for every stub asset; running `npm run build:asset-index` after authors add real files rewrites the placeholder with the on-disk digest. Per-asset integrity rules in [`content-system-policy.md` § 4](../../../docs/architecture/content-system-policy.md#4-asset-integrity)."
+        "Generated `assets/index.json` includes a deterministic `sha256` placeholder for every stub asset; running `npm run generate:asset-index` after authors add real files rewrites the placeholder with the on-disk digest. Per-asset integrity rules in [`content-system-policy.md` § 4](../../../docs/architecture/content-system-policy.md#4-asset-integrity)."
       ],
       "verifyCommands": [
         "npm run validate",
@@ -9229,7 +9407,7 @@
       "outputs": [
         "`scripts/build-asset-index.mjs` — walks `<pack>/assets/` and recomputes `sha256` + `bytes` per entry; supports `--check` to fail on drift.",
         "Extension of `src/engine/pack-validator.ts` to fetch each asset, compute SHA-256 via WebCrypto's `crypto.subtle.digest`, and emit `pack.error.asset.integrity` on mismatch.",
-        "New `npm run build:asset-index` script entry."
+        "New `npm run generate:asset-index` script entry."
       ],
       "readFirst": [
         "[`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)",
@@ -9253,7 +9431,7 @@
         "mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present"
       ],
       "acceptanceCriteria": [
-        "Running `npm run build:asset-index` against the canonical emberwild pack rewrites `sha256` and `bytes` for every entry from the on-disk file (or a deterministic placeholder when the file is absent in this planning-first repo).",
+        "Running `npm run generate:asset-index` against the canonical emberwild pack rewrites `sha256` and `bytes` for every entry from the on-disk file (or a deterministic placeholder when the file is absent in this planning-first repo).",
         "Re-running with `--check` reports zero drift and exits 0.",
         "Tampering with one asset byte and re-running with `--check` exits non-zero with the affected pack listed.",
         "`validatePackAssets()` returns `pack.error.asset.integrity` for a pack whose declared `sha256` does not match the bytes on disk.",
@@ -9261,7 +9439,7 @@
         "Schema reference: `content-schema/schemas/asset-index.schema.json`."
       ],
       "verifyCommands": [
-        "npm run build:asset-index -- --check",
+        "npm run generate:asset-index -- --check",
         "npm run validate"
       ],
       "estimatedTime": "- 4 hours",
@@ -37804,7 +37982,7 @@
         "[`scripts/build-balance-constraints.mjs`](../../../scripts/build-balance-constraints.mjs) — regenerates the canonical example from `corridor.json`.",
         "[`scripts/check-balance-corridor-parity.mjs`](../../../scripts/check-balance-corridor-parity.mjs) — read-only parity check; fails if the example drifted.",
         "`validate:balance-corridor-parity` npm script wired into `npm run validate`.",
-        "`build:balance-constraints` npm script for manual regeneration."
+        "`generate:balance-constraints` npm script for manual regeneration."
       ],
       "readFirst": [
         "[`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md) § NC-3",
@@ -37834,7 +38012,7 @@
       "acceptanceCriteria": [
         "A grep for `\"hp\": { \"lo\":` (or any per-tier corridor numeric bound) inside `content-schema/schemas/` returns zero hits — the schema carries shape only.",
         "`corridor.json` carries the per-tier numbers; the canonical example duplicates them only because the generator emits them.",
-        "`npm run build:balance-constraints` regenerates the example with zero diff against the committed file.",
+        "`npm run generate:balance-constraints` regenerates the example with zero diff against the committed file.",
         "`npm run validate:balance-corridor-parity` exits 0 today.",
         "The validator exits non-zero when an editor changes the example's `tierCorridors` without re-running the generator.",
         "`npm run validate:balance` (existing balance gate) still passes. Owned Paths (shared) acceptance:",

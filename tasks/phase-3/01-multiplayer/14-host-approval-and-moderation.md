@@ -1,7 +1,5 @@
 # Host Approval & Moderation
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

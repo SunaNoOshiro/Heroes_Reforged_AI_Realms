@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import {
+  pathExists,
   readUtf8,
   repoRelative,
   repoRoot,
@@ -11,6 +12,7 @@ import {
   TASK_SECTION_NAMES,
   taskSectionHeaderRegex
 } from "./lib/task-markdown-contract.mjs";
+import { LEDGER_PATH } from "./lib/task-status-ledger.mjs";
 
 const tasksRoot = path.join(repoRoot, "tasks");
 const registryPath = path.join(tasksRoot, "task-registry.json");
@@ -56,12 +58,21 @@ function parseModuleMetadata(markdown) {
 
 const VALID_STATUSES = new Set(["planned", "in-progress", "done", "blocked"]);
 
-function parseStatus(markdown) {
-  const match = markdown.match(/^Status:\s*(planned|in-progress|done|blocked)\s*$/mi);
-  if (!match) {
-    return "planned";
+async function loadLedgerOnce() {
+  if (!(await pathExists(LEDGER_PATH))) return { tasks: {} };
+  try {
+    const parsed = JSON.parse(await readUtf8(LEDGER_PATH));
+    if (!parsed.tasks || typeof parsed.tasks !== "object") return { tasks: {} };
+    return parsed;
+  } catch {
+    return { tasks: {} };
   }
-  const value = match[1].toLowerCase();
+}
+
+function statusFromLedger(ledger, taskId) {
+  const entry = ledger.tasks[taskId];
+  if (!entry) return "planned";
+  const value = String(entry.status).toLowerCase();
   return VALID_STATUSES.has(value) ? value : "planned";
 }
 
@@ -318,6 +329,7 @@ function annotateDownstreamCounts(tasks) {
 }
 
 export async function buildTaskRegistry() {
+  const ledger = await loadLedgerOnce();
   const markdownFiles = await walkFiles(
     tasksRoot,
     (filePath) => filePath.endsWith(".md") && path.basename(filePath) !== "README.md"
@@ -339,7 +351,7 @@ export async function buildTaskRegistry() {
       modules.push({
         id,
         kind: "module",
-        status: parseStatus(markdown),
+        status: statusFromLedger(ledger, id),
         title,
         path: relativePath,
         milestone: metadata.milestone,
@@ -375,7 +387,7 @@ export async function buildTaskRegistry() {
     tasks.push({
       id,
       kind: "task",
-      status: parseStatus(markdown),
+      status: statusFromLedger(ledger, id),
       title,
       path: relativePath,
       moduleId: taskIdFromRelativePath(modulePath),

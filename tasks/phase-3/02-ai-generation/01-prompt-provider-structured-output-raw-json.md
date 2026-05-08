@@ -1,7 +1,5 @@
 # Prompt → Provider Adapter → Raw JSON
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

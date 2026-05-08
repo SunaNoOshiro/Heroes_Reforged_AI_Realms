@@ -1,7 +1,5 @@
 # Engine Performance Profiling
 
-Status: planned
-
 Module: [Polish (M7)](../04-polish.md)
 
 Description:

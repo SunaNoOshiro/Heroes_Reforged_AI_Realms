@@ -1,7 +1,5 @@
 # Mage Guild Content — Level 1–5 Random Selection
 
-Status: planned
-
 Module: [Spells, Artifacts & Hero Skills (M3)](../01-spells-artifacts.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Difficulty Levels — Pawn and Knight
 
-Status: planned
-
 Module: [Heuristic AI (M2)](../10-heuristic-ai.md)
 
 Description:

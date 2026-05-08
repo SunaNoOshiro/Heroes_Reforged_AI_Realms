@@ -1,7 +1,5 @@
 # Erasure Receipt Modal
 
-Status: planned
-
 Module: [UI Shell (M0)](../07-ui-shell.md)
 
 Description:

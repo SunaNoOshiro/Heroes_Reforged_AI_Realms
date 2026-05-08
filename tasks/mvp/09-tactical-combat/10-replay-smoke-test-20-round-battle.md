@@ -1,7 +1,5 @@
 # Replay Smoke Test — 20-Round Battle
 
-Status: planned
-
 Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 
 Description:

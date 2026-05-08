@@ -1,7 +1,5 @@
 # Bench baseline + CI 10 % regression gate
 
-Status: planned
-
 Module: [Performance Harness & Budgets (M1)](../00-perf.md)
 
 Description:

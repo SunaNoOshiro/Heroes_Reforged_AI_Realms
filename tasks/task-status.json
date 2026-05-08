@@ -1,0 +1,1905 @@
+{
+  "lastUpdated": "2026-05-06T19:31:51.227Z",
+  "tasks": {
+    "mvp.00-core-architecture.22-01-error-formatter-contract": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.031Z"
+    },
+    "mvp.00-core-architecture.22-02-production-build-policy": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.032Z"
+    },
+    "mvp.00-core-architecture.22-03-crypto-rules-and-signature-error": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.033Z"
+    },
+    "mvp.00-core-architecture.22-04-shipped-csp-and-trusted-types": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.033Z"
+    },
+    "mvp.00-core-architecture.22-05-security-tests-escape-vectors-corpus": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.034Z"
+    },
+    "mvp.00-core-architecture.22-06-command-field-visibility-and-desync-redaction": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.035Z"
+    },
+    "mvp.00-core-architecture.arch-module-graph": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.035Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.arch-multi-engine-harness": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.035Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.arch-state-shape": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.036Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.cmd-cross-actor-ordering": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.036Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.cmd-dispatcher-queue": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.037Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.cmd-nonce": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.038Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.det-id-allocator": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.038Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.det-rng-streams": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.038Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.det-seed-source": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.038Z",
+      "legacy": true
+    },
+    "mvp.00-core-architecture.perf-frame-budget": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.039Z",
+      "legacy": true
+    },
+    "mvp.00-perf.01-bench-harness": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.039Z"
+    },
+    "mvp.00-perf.02-bench-baseline-and-ci-gate": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.039Z"
+    },
+    "mvp.00-perf.03-memory-regression-gate": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.040Z"
+    },
+    "mvp.00-perf.04-profiling-overlay": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.040Z"
+    },
+    "mvp.00-perf.05-object-pools": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.041Z"
+    },
+    "mvp.01-engine-core.01-initialize-root-workspace-and-module-layout": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.041Z"
+    },
+    "mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.042Z"
+    },
+    "mvp.01-engine-core.03-implement-pcg32-prng-with-named-sub-streams": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.042Z"
+    },
+    "mvp.01-engine-core.04-implement-fixed-point-math-library": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.043Z"
+    },
+    "mvp.01-engine-core.05-eslint-rule-ban-math-random-and-floats-in-src-engine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.043Z"
+    },
+    "mvp.01-engine-core.06-command-dispatcher": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.044Z"
+    },
+    "mvp.01-engine-core.06b-extend-command-schema-coverage-checklist": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.044Z"
+    },
+    "mvp.01-engine-core.06c-event-golden-tests": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.045Z"
+    },
+    "mvp.01-engine-core.07-state-serializer-plus-xxh64-hash": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.045Z"
+    },
+    "mvp.01-engine-core.07b-canonical-json": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.046Z"
+    },
+    "mvp.01-engine-core.08-replay-api": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.046Z"
+    },
+    "mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.047Z"
+    },
+    "mvp.01-engine-core.09b-cross-environment-canonical-bytes-test": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.047Z"
+    },
+    "mvp.01-engine-core.10-github-actions-ci": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.047Z"
+    },
+    "mvp.01-engine-core.11-no-wall-clock-lint": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.048Z"
+    },
+    "mvp.01-engine-core.12-golden-state-suite": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.048Z"
+    },
+    "mvp.01-engine-core.13-replay-regression-suite": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.049Z"
+    },
+    "mvp.01-engine-core.14-engine-throughput-benchmark": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.049Z"
+    },
+    "mvp.02-content-schemas.01-unit-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.050Z"
+    },
+    "mvp.02-content-schemas.02-faction-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.050Z"
+    },
+    "mvp.02-content-schemas.03-spell-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.052Z"
+    },
+    "mvp.02-content-schemas.04-artifact-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.052Z"
+    },
+    "mvp.02-content-schemas.05-building-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.052Z"
+    },
+    "mvp.02-content-schemas.06-ruleset-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.052Z"
+    },
+    "mvp.02-content-schemas.07-hero-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.052Z"
+    },
+    "mvp.02-content-schemas.08-adventure-building-plus-map-object-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.053Z"
+    },
+    "mvp.02-content-schemas.09-animation-vfx-sound-townpresentation-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.053Z"
+    },
+    "mvp.02-content-schemas.10-zod-validators-for-all-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.054Z"
+    },
+    "mvp.02-content-schemas.11-schema-version-field-plus-migration-stub": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.054Z"
+    },
+    "mvp.02-content-schemas.12-formula-dsl": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.055Z"
+    },
+    "mvp.02-content-schemas.13-effect-registry": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.055Z"
+    },
+    "mvp.02-content-schemas.14-localization-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.055Z"
+    },
+    "mvp.02-content-schemas.15-world-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.056Z"
+    },
+    "mvp.02-content-schemas.16-quest-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.056Z"
+    },
+    "mvp.02-content-schemas.17-campaign-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.056Z"
+    },
+    "mvp.02-content-schemas.18-random-map-template-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.057Z"
+    },
+    "mvp.02-content-schemas.19-tavern-and-marketplace-tables": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.057Z"
+    },
+    "mvp.02-content-schemas.20-university-skill-table": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.057Z"
+    },
+    "mvp.02-content-schemas.21-error-state-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.058Z"
+    },
+    "mvp.02-content-schemas.22-validation-error-contract": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.058Z"
+    },
+    "mvp.02-content-schemas.23-schema-migration-policy-and-example": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.059Z"
+    },
+    "mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.059Z"
+    },
+    "mvp.02-content-schemas.25-default-declarations-and-zod-parity": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.060Z"
+    },
+    "mvp.02-content-schemas.26-m2-engine-hash-backfill": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.060Z"
+    },
+    "mvp.02-content-schemas.27-reserve-ai-profile-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.061Z"
+    },
+    "mvp.02-content-schemas.28-save-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.061Z"
+    },
+    "mvp.02-content-schemas.29-publisher-registry-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.062Z"
+    },
+    "mvp.02-content-schemas.30-pack-revocation-list-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.062Z"
+    },
+    "mvp.02-content-schemas.31-trust-store-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.063Z"
+    },
+    "mvp.02-content-schemas.32-safe-user-text-helper-and-jsx-lint": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.063Z"
+    },
+    "mvp.02-content-schemas.33-data-inventory-and-wipe-scope-policy": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.064Z"
+    },
+    "mvp.02-content-schemas.34-content-report-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.064Z"
+    },
+    "mvp.02-content-schemas.35-privacy-options-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.064Z"
+    },
+    "mvp.02-content-schemas.36-asset-index-pathscheme-and-extension-allowlist": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.065Z"
+    },
+    "mvp.02-content-schemas.37-localization-interpolation-block": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.065Z"
+    },
+    "mvp.02-content-schemas.38-manifest-ai-provenance-and-capabilities-default": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.066Z"
+    },
+    "mvp.02-content-schemas.39-generated-faction-player-inspectable": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.066Z"
+    },
+    "mvp.02-content-schemas.40-privacy-and-legal-docs": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.066Z"
+    },
+    "mvp.02-content-schemas.41-error-and-audit-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.067Z"
+    },
+    "mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.067Z"
+    },
+    "mvp.02-content-schemas.43-multiplayer-trust-and-identity-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.068Z"
+    },
+    "mvp.02-content-schemas.44-pack-signing-verifier": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.068Z"
+    },
+    "mvp.02-content-schemas.45-reproducible-archive": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.069Z"
+    },
+    "mvp.02-content-schemas.46-worker-message-envelope-reconciliation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.069Z"
+    },
+    "mvp.02-content-schemas.47-supersession-annotations-and-validator": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.070Z"
+    },
+    "mvp.02-tooling.01-ui-smoke-harness": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.070Z"
+    },
+    "mvp.02-tooling.02-coverage-gate": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.070Z"
+    },
+    "mvp.02-tooling.03-unit-test-contract": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.071Z"
+    },
+    "mvp.02-tooling.04-property-based-testing": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.072Z"
+    },
+    "mvp.02-tooling.05-edge-case-fixtures": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.072Z"
+    },
+    "mvp.02-tooling.06-mutation-test-gate": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.072Z"
+    },
+    "mvp.02-tooling.07-task-status-ledger": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.073Z"
+    },
+    "mvp.02b-asset-pipeline.01-manifest-format-plus-pack-registry": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.073Z"
+    },
+    "mvp.02b-asset-pipeline.02-animation-definition-json-format": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.074Z"
+    },
+    "mvp.02b-asset-pipeline.03-sound-manifest-format": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.074Z"
+    },
+    "mvp.02b-asset-pipeline.04-asset-registry-id-based-resolution-no-hardcoded-paths": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.075Z"
+    },
+    "mvp.02b-asset-pipeline.05-async-asset-loader-with-caching": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.075Z"
+    },
+    "mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.075Z"
+    },
+    "mvp.02b-asset-pipeline.07-dev-hot-reload-watch-folder-reload-without-restart": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.076Z"
+    },
+    "mvp.02b-asset-pipeline.08-new-faction-scaffold-script": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.076Z"
+    },
+    "mvp.02b-asset-pipeline.09-adding-a-faction-guide-faction-guide-md": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.077Z"
+    },
+    "mvp.02b-asset-pipeline.10-migrate-emberwild-pack-to-this-structure": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.077Z"
+    },
+    "mvp.02b-asset-pipeline.11-content-system-policy-doc": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.077Z",
+      "legacy": true
+    },
+    "mvp.02b-asset-pipeline.12-pack-resolver-algorithm": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.078Z"
+    },
+    "mvp.02b-asset-pipeline.13-per-asset-integrity-and-build-script": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.078Z"
+    },
+    "mvp.02b-asset-pipeline.14-per-pack-localization-and-merge": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.078Z"
+    },
+    "mvp.02b-asset-pipeline.15-balance-corridor-validator": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.079Z"
+    },
+    "mvp.02b-asset-pipeline.16-pack-error-code-catalog": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.079Z"
+    },
+    "mvp.02b-asset-pipeline.17-binary-asset-validators": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.080Z"
+    },
+    "mvp.02b-asset-pipeline.18-asset-loader-canary": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.080Z"
+    },
+    "mvp.03-map-system.01-axial-hex-coordinate-utilities": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.080Z"
+    },
+    "mvp.03-map-system.02-tile-type-registry": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.081Z"
+    },
+    "mvp.03-map-system.03-layered-tile-storage": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.081Z"
+    },
+    "mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.081Z"
+    },
+    "mvp.03-map-system.05-fog-of-war": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.082Z"
+    },
+    "mvp.03-map-system.06-map-serializer-deserializer": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.082Z"
+    },
+    "mvp.03-map-system.07-unit-test-suite-for-pathfinder-edge-cases": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.082Z"
+    },
+    "mvp.03-map-system.08-random-map-generator-template-format": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.083Z"
+    },
+    "mvp.03-map-system.09-random-map-generator-deterministic-runner": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.083Z"
+    },
+    "mvp.03-map-system.10-underground-layer-support": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.083Z"
+    },
+    "mvp.03-map-system.11-pathfinder-cache": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.084Z"
+    },
+    "mvp.04-faction-emberwild.01-emberwild-units-7-units-plus-upgrades": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.084Z"
+    },
+    "mvp.04-faction-emberwild.02-emberwild-town-building-tree": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.085Z"
+    },
+    "mvp.04-faction-emberwild.03-emberwild-hero-roster": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.085Z"
+    },
+    "mvp.04-faction-emberwild.04-baseline-ruleset": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.085Z"
+    },
+    "mvp.04-faction-emberwild.05-content-loader-validate-on-load": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.086Z"
+    },
+    "mvp.05-adventure-map.01-strategic-game-state-model": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.086Z"
+    },
+    "mvp.05-adventure-map.02-turn-structure": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.087Z"
+    },
+    "mvp.05-adventure-map.03-hero-movement": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.087Z"
+    },
+    "mvp.05-adventure-map.04-resource-mine-capture-plus-daily-income": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.088Z"
+    },
+    "mvp.05-adventure-map.05-town-visit-recruit-build-mage-guild": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.088Z"
+    },
+    "mvp.05-adventure-map.06-auto-resolve-combat": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.088Z"
+    },
+    "mvp.05-adventure-map.07-victory-defeat-conditions": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.089Z"
+    },
+    "mvp.05-adventure-map.08-7-day-playable-smoke-test": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.089Z"
+    },
+    "mvp.05-adventure-map.09-map-object-dialogs": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.089Z"
+    },
+    "mvp.05-adventure-map.10-trade-resources-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.090Z"
+    },
+    "mvp.05-adventure-map.11-hire-tavern-hero-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.090Z"
+    },
+    "mvp.05-adventure-map.12-release-prison-hero-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.090Z"
+    },
+    "mvp.05-adventure-map.13-recruit-external-dwelling-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.091Z"
+    },
+    "mvp.05-adventure-map.14-collect-creature-bank-reward-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.091Z"
+    },
+    "mvp.05-adventure-map.15-acknowledge-week-month-event-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.092Z"
+    },
+    "mvp.05-adventure-map.17-split-army-stack-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.092Z"
+    },
+    "mvp.05-adventure-map.18-transfer-stack-commands": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.093Z"
+    },
+    "mvp.05-adventure-map.20-upgrade-army-stack-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.093Z"
+    },
+    "mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.093Z"
+    },
+    "mvp.05-adventure-map.22-obelisk-visits-and-grail-state": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.094Z"
+    },
+    "mvp.06-renderer.01-webgl2-context-setup-plus-resize-handler": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.095Z"
+    },
+    "mvp.06-renderer.02-hex-tile-atlas-plus-axialscreen-transform": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.095Z"
+    },
+    "mvp.06-renderer.03-map-renderer-terrain-objects-units-layers": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.096Z"
+    },
+    "mvp.06-renderer.04-camera-pan-zoom-clamp-to-map-bounds": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.096Z"
+    },
+    "mvp.06-renderer.05-1115-tactical-battlefield-renderer": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.096Z"
+    },
+    "mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.097Z"
+    },
+    "mvp.06-renderer.07-event-log-animation-timeline": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.097Z"
+    },
+    "mvp.06-renderer.08-presentation-loop-decoupled-from-sim": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.097Z"
+    },
+    "mvp.06-renderer.09-atlas-pipeline": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.098Z"
+    },
+    "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.098Z"
+    },
+    "mvp.07-ui-shell.02-zustand-store": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.099Z"
+    },
+    "mvp.07-ui-shell.03-hud-resource-bar-end-turn-button-mini-map-stub": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.099Z"
+    },
+    "mvp.07-ui-shell.04-town-screen-modal": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.100Z"
+    },
+    "mvp.07-ui-shell.05-hero-info-panel": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.100Z"
+    },
+    "mvp.07-ui-shell.06-command-hook-ui-dispatch-re-render": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.100Z"
+    },
+    "mvp.07-ui-shell.07-main-menu-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.100Z"
+    },
+    "mvp.07-ui-shell.08-new-game-setup-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.100Z"
+    },
+    "mvp.07-ui-shell.09-loading-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.101Z"
+    },
+    "mvp.07-ui-shell.10-selector-purity-lint": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.101Z"
+    },
+    "mvp.07-ui-shell.11-screen-router-fsm": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.102Z"
+    },
+    "mvp.07-ui-shell.12-component-state-matrix": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.102Z"
+    },
+    "mvp.07-ui-shell.13-screen-package-contract-sweep": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.103Z"
+    },
+    "mvp.07-ui-shell.14-modal-stack": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.104Z"
+    },
+    "mvp.07-ui-shell.15-input-arbitration": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.104Z"
+    },
+    "mvp.07-ui-shell.16-gesture-taxonomy": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.105Z"
+    },
+    "mvp.07-ui-shell.17-tooltip-lifecycle": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.105Z"
+    },
+    "mvp.07-ui-shell.18-hotkey-registry": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.106Z"
+    },
+    "mvp.07-ui-shell.19-input-modalities": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.106Z"
+    },
+    "mvp.07-ui-shell.20-command-lifecycle": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.107Z"
+    },
+    "mvp.07-ui-shell.21-screen-view-model-types-generation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.107Z"
+    },
+    "mvp.07-ui-shell.22-privacy-pane-in-options": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.108Z"
+    },
+    "mvp.07-ui-shell.23-high-scores-player-label": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.108Z"
+    },
+    "mvp.07-ui-shell.24-ai-content-badge-on-info-cards": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.108Z"
+    },
+    "mvp.07-ui-shell.25-privacy-footer-and-disclosure-modal": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.109Z"
+    },
+    "mvp.07-ui-shell.26-erasure-receipt-modal": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.109Z"
+    },
+    "mvp.07-ui-shell.27-onboarding-consent-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.109Z"
+    },
+    "mvp.07-ui-shell.28-confirmation-dialog-hardening": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.110Z"
+    },
+    "mvp.07-ui-shell.29-url-routing-contract": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.110Z"
+    },
+    "mvp.08-persistence.01-indexeddb-wrapper": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.111Z"
+    },
+    "mvp.08-persistence.02-log-only-save-format": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.111Z"
+    },
+    "mvp.08-persistence.03-save-load-ui": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.112Z"
+    },
+    "mvp.08-persistence.04-scenario-loader": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.112Z"
+    },
+    "mvp.08-persistence.05-export-import-json": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.113Z"
+    },
+    "mvp.08-persistence.06-autosave": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.113Z"
+    },
+    "mvp.08-persistence.07-snapshot-rebase": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.113Z"
+    },
+    "mvp.08-persistence.08-migration-registry": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.114Z"
+    },
+    "mvp.08-persistence.09-quota-handling": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.114Z"
+    },
+    "mvp.08-persistence.10-save-schema-and-validator": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.115Z"
+    },
+    "mvp.08-persistence.11-save-import-screen-and-quarantine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.115Z"
+    },
+    "mvp.08-persistence.12-pack-trust-prompt-and-manager": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.115Z"
+    },
+    "mvp.08-persistence.13-display-name-hash-and-salt": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.116Z"
+    },
+    "mvp.08-persistence.14-wipe-local-data-handler": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.116Z"
+    },
+    "mvp.08-persistence.15-content-report-queue": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.116Z"
+    },
+    "mvp.08-persistence.16-parser-hardening": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.117Z"
+    },
+    "mvp.08-persistence.17-pre-replay-command-validation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.117Z"
+    },
+    "mvp.08-persistence.18-save-envelope-and-intent": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.118Z"
+    },
+    "mvp.08-persistence.19-save-envelope-mac-phase-in": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.118Z"
+    },
+    "mvp.08-persistence.27-undo-soft-delete": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.118Z"
+    },
+    "mvp.08-persistence.28-storage-budget-validator": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.119Z"
+    },
+    "mvp.08-persistence.29-save-envelope-canary": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.119Z"
+    },
+    "mvp.09-tactical-combat.01-battlestate-init-army-placement-plus-speed-order": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.119Z"
+    },
+    "mvp.09-tactical-combat.02-initiative-queue-speed-order-wait-defend-morale": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.120Z"
+    },
+    "mvp.09-tactical-combat.02a-defend-damage-reduction": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.120Z"
+    },
+    "mvp.09-tactical-combat.03-damage-formula": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.120Z"
+    },
+    "mvp.09-tactical-combat.04-ranged-attack-obstacle-check-range-limit": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.120Z"
+    },
+    "mvp.09-tactical-combat.04a-tactical-pathfinder": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.121Z"
+    },
+    "mvp.09-tactical-combat.05-retaliation-once-per-round-nullification": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.121Z"
+    },
+    "mvp.09-tactical-combat.06-morale-and-luck-rolls": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.122Z"
+    },
+    "mvp.09-tactical-combat.07-unit-abilities-flying-double-strike-breath-no-retaliation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.122Z"
+    },
+    "mvp.09-tactical-combat.08-battle-end-condition": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.122Z"
+    },
+    "mvp.09-tactical-combat.09-replace-auto-resolve-with-real-battle": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.123Z"
+    },
+    "mvp.09-tactical-combat.10-replay-smoke-test-20-round-battle": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.123Z"
+    },
+    "mvp.09-tactical-combat.11-combat-hud-overlay": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.124Z"
+    },
+    "mvp.09-tactical-combat.12-edge-case-fuzz-harness": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.124Z"
+    },
+    "mvp.09-tactical-combat.12-tactics-phase-engine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.124Z"
+    },
+    "mvp.09-tactical-combat.13-retreat-and-surrender-commands": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.124Z"
+    },
+    "mvp.10-heuristic-ai.01-threat-map-bfs-strategic-danger-gradients": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.125Z"
+    },
+    "mvp.10-heuristic-ai.02-wants-engine-strategic-action-prioritization": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.125Z"
+    },
+    "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.126Z"
+    },
+    "mvp.10-heuristic-ai.04-tactical-evaluator-combat-move-scoring": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.126Z"
+    },
+    "mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.126Z"
+    },
+    "mvp.10-heuristic-ai.06-run-ai-in-web-worker": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.127Z"
+    },
+    "mvp.10-heuristic-ai.07-ai-player-view-projection": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.127Z"
+    },
+    "mvp.10-heuristic-ai.08-ai-inspector-dev-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.128Z"
+    },
+    "mvp.10-heuristic-ai.09-ai-decision-log-channel": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.128Z"
+    },
+    "mvp.10-heuristic-ai.10-bot-provider-interface": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.129Z"
+    },
+    "mvp.10-heuristic-ai.11-ai-bench-harness": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.129Z"
+    },
+    "mvp.10-heuristic-ai.12-worker-envelope-canary": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.129Z"
+    },
+    "phase-2.01-spells-artifacts.00-hero-leveling": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.130Z"
+    },
+    "phase-2.01-spells-artifacts.01a-hero-skill-assignment": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.130Z"
+    },
+    "phase-2.01-spells-artifacts.01b-spell-school-loader-plus-mastery-scaling": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.131Z"
+    },
+    "phase-2.01-spells-artifacts.02-combat-spells": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.131Z"
+    },
+    "phase-2.01-spells-artifacts.03-adventure-map-spells": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.132Z"
+    },
+    "phase-2.01-spells-artifacts.04a-baseline-skill-pack": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.132Z"
+    },
+    "phase-2.01-spells-artifacts.04b-mage-guild-content-level-15-random-selection": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.132Z"
+    },
+    "phase-2.01-spells-artifacts.05-artifact-paper-doll-system": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.133Z"
+    },
+    "phase-2.01-spells-artifacts.05a-equip-unequip-artifact-commands": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.133Z"
+    },
+    "phase-2.01-spells-artifacts.05b-transfer-hero-artifact-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.133Z"
+    },
+    "phase-2.01-spells-artifacts.06-combination-artifacts-detect-set-apply-bonus": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.134Z"
+    },
+    "phase-2.01-spells-artifacts.07a-skill-runtime-contract-and-id-normalization": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.134Z"
+    },
+    "phase-2.01-spells-artifacts.07b-combat-skill-appliers": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.135Z"
+    },
+    "phase-2.01-spells-artifacts.07c-adventure-skill-appliers": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.135Z"
+    },
+    "phase-2.01-spells-artifacts.07d-magic-economy-and-special-skill-appliers": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.135Z"
+    },
+    "phase-2.01-spells-artifacts.07e-stat-composition-pipeline": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.136Z"
+    },
+    "phase-2.01-spells-artifacts.08-spell-casting-in-combat-ui": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.136Z"
+    },
+    "phase-2.01-spells-artifacts.09-leveling-up-hero-gains-skills-and-stats": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.136Z"
+    },
+    "phase-2.01-spells-artifacts.10-buy-artifact-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.137Z"
+    },
+    "phase-2.01-spells-artifacts.11-buy-war-machine-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.137Z"
+    },
+    "phase-2.01-spells-artifacts.12-learn-university-skill-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.138Z"
+    },
+    "phase-2.01-spells-artifacts.13-siege-state-machine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.138Z"
+    },
+    "phase-2.01-spells-artifacts.14-fire-catapult-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.138Z"
+    },
+    "phase-2.01-spells-artifacts.15-combine-artifacts-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.139Z"
+    },
+    "phase-2.01-spells-artifacts.16-hero-specialty-applier": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.140Z"
+    },
+    "phase-2.01-spells-artifacts.17-trade-artifact-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.140Z"
+    },
+    "phase-2.02-strategic-ai.01-resource-deficit-detector": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.140Z"
+    },
+    "phase-2.02-strategic-ai.02-town-building-planner": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.141Z"
+    },
+    "phase-2.02-strategic-ai.03-multi-hero-role-assignment": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.142Z"
+    },
+    "phase-2.02-strategic-ai.04-long-horizon-path-planning-2-day-lookahead": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.142Z"
+    },
+    "phase-2.02-strategic-ai.05-grand-master-difficulty-plus-headless-evaluation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.143Z"
+    },
+    "phase-2.02-strategic-ai.06-spell-selection-in-tactical-ai": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.143Z"
+    },
+    "phase-2.03-second-faction.01-necropolis-units-json-7-units-plus-upgrades": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.144Z"
+    },
+    "phase-2.03-second-faction.02-necropolis-building-tree-json": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.144Z"
+    },
+    "phase-2.03-second-faction.03-necropolis-hero-roster-json": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.145Z"
+    },
+    "phase-2.03-second-faction.04-necromancy-mechanic-raise-skeletons-after-combat": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.145Z"
+    },
+    "phase-2.03-second-faction.05-undead-immunity-morale-and-mind-spell-rules": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.145Z"
+    },
+    "phase-2.03-second-faction.06-balance-check-emberwild-vs-necropolis-headless-games": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.146Z"
+    },
+    "phase-2.04-content-editor.01-editor-routing-plus-shell": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.146Z"
+    },
+    "phase-2.04-content-editor.02-unit-editor-form": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.147Z"
+    },
+    "phase-2.04-content-editor.03-faction-editor-form": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.147Z"
+    },
+    "phase-2.04-content-editor.04-schema-validation-with-inline-error-display": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.148Z"
+    },
+    "phase-2.04-content-editor.05-live-preview-panel-unit-card": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.148Z"
+    },
+    "phase-2.04-content-editor.06-mod-pack-export-import": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.149Z"
+    },
+    "phase-2.04-content-editor.07-editor-integration-test": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.149Z"
+    },
+    "phase-2.04-content-editor.08-map-editor-commands": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.149Z"
+    },
+    "phase-2.04-content-editor.09-map-editor-object-palette": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.149Z"
+    },
+    "phase-2.04-content-editor.10-publish-disclaimer-flow": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.150Z"
+    },
+    "phase-2.05-mod-system.01-zip-pack-loader-jszip-plus-manifest-parser": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.150Z"
+    },
+    "phase-2.05-mod-system.02-ed25519-signature-verification": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.150Z"
+    },
+    "phase-2.05-mod-system.03-sandbox-mode-for-ai-generated-packs": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.151Z"
+    },
+    "phase-2.05-mod-system.04-mod-manager-ui-install-enable-disable": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.151Z"
+    },
+    "phase-2.05-mod-system.05a-baseline-ruleset-and-shared-library-packs": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.152Z"
+    },
+    "phase-2.05-mod-system.05b-sylvan-and-stormspire-reference-packs": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.152Z"
+    },
+    "phase-2.05-mod-system.05c-ashlord-and-deepway-reference-packs": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.153Z"
+    },
+    "phase-2.05-mod-system.05d-official-pack-signing-and-bundle-verification": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.154Z"
+    },
+    "phase-2.05-mod-system.06-build-boat-command-and-shipyard": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.154Z"
+    },
+    "phase-2.05-mod-system.07-build-grail-structure-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.155Z"
+    },
+    "phase-2.05-mod-system.08-override-precedence-and-patch-merge": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.155Z"
+    },
+    "phase-2.05-mod-system.09-canonical-packs-registry": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.155Z"
+    },
+    "phase-2.05-mod-system.10-sandbox-enforcement-contract": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.156Z"
+    },
+    "phase-2.05-mod-system.11-revocation-registry": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.156Z"
+    },
+    "phase-2.05-mod-system.12-content-report-intake-and-local-queue": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.157Z"
+    },
+    "phase-2.05-mod-system.13-ai-provenance-detail-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.157Z"
+    },
+    "phase-2.06-visual-fidelity.01-terrain-transition-tiles-blending-between-terrain-types": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.157Z"
+    },
+    "phase-2.06-visual-fidelity.02-pseudo-isometric-depth-sorting-objects-overlap-correctly": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.158Z"
+    },
+    "phase-2.06-visual-fidelity.03-decorative-scatter-objects-rocks-trees-mushrooms-campfires": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.158Z"
+    },
+    "phase-2.06-visual-fidelity.04-road-sprites-stone-path-tiles-with-directional-variants": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.158Z"
+    },
+    "phase-2.06-visual-fidelity.05-river-water-animated-tiles": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.159Z"
+    },
+    "phase-2.06-visual-fidelity.06-ornate-ui-frame-full-screen-medieval-border-chrome": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.159Z"
+    },
+    "phase-2.06-visual-fidelity.07-right-panel-mini-map-with-compass-rose": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.159Z"
+    },
+    "phase-2.06-visual-fidelity.08-right-panel-town-building-icon-grid": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.159Z"
+    },
+    "phase-2.06-visual-fidelity.09-right-panel-hero-portrait-plus-primary-stats": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.159Z"
+    },
+    "phase-2.06-visual-fidelity.10-right-panel-secondary-skills-row-plus-army-stacks-row": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.160Z"
+    },
+    "phase-2.06-visual-fidelity.11-bottom-bar-7-resources-plus-info-text-strip-plus-date-counter": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.160Z"
+    },
+    "phase-2.06-visual-fidelity.12-battlefield-backdrop-terrain-backgrounds-per-terrain-type": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.160Z"
+    },
+    "phase-2.06-visual-fidelity.13-siege-backdrop-walls-gate-towers-moat": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.160Z"
+    },
+    "phase-2.06-visual-fidelity.14-unit-stack-count-badges-purple-number-overlays": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.161Z"
+    },
+    "phase-2.06-visual-fidelity.15-hex-grid-overlay-semi-transparent-highlight-system": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.161Z"
+    },
+    "phase-2.07-ui-screen-backlog.03-campaign-selection-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.161Z"
+    },
+    "phase-2.07-ui-screen-backlog.04-campaign-narrative-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.161Z"
+    },
+    "phase-2.07-ui-screen-backlog.05-intro-cinematic-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.163Z"
+    },
+    "phase-2.07-ui-screen-backlog.06-random-map-setup-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.164Z"
+    },
+    "phase-2.07-ui-screen-backlog.08-kingdom-overview-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.164Z"
+    },
+    "phase-2.07-ui-screen-backlog.10-puzzle-map-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.164Z"
+    },
+    "phase-2.07-ui-screen-backlog.11-quest-log-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.166Z"
+    },
+    "phase-2.07-ui-screen-backlog.12-creature-bank-loot-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.166Z"
+    },
+    "phase-2.07-ui-screen-backlog.13-hill-fort-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.166Z"
+    },
+    "phase-2.07-ui-screen-backlog.14-war-machine-factory-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.167Z"
+    },
+    "phase-2.07-ui-screen-backlog.15-underground-toggle-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.167Z"
+    },
+    "phase-2.07-ui-screen-backlog.16-view-world-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.167Z"
+    },
+    "phase-2.07-ui-screen-backlog.17-adventure-spell-targeting-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.167Z"
+    },
+    "phase-2.07-ui-screen-backlog.21-external-dwelling-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.168Z"
+    },
+    "phase-2.07-ui-screen-backlog.22-garrison-structure-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.168Z"
+    },
+    "phase-2.07-ui-screen-backlog.23-hero-prison-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.169Z"
+    },
+    "phase-2.07-ui-screen-backlog.25-building-recruitment-dialog-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.169Z"
+    },
+    "phase-2.07-ui-screen-backlog.26-marketplace-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.169Z"
+    },
+    "phase-2.07-ui-screen-backlog.27-thieves-guild-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.169Z"
+    },
+    "phase-2.07-ui-screen-backlog.28-tavern-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.169Z"
+    },
+    "phase-2.07-ui-screen-backlog.29-mage-guild-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.170Z"
+    },
+    "phase-2.07-ui-screen-backlog.30-build-tree-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.170Z"
+    },
+    "phase-2.07-ui-screen-backlog.31-grail-building-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.171Z"
+    },
+    "phase-2.07-ui-screen-backlog.32-artifact-merchant-black-market-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.171Z"
+    },
+    "phase-2.07-ui-screen-backlog.33-shipyard-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.172Z"
+    },
+    "phase-2.07-ui-screen-backlog.34-fort-view-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.172Z"
+    },
+    "phase-2.07-ui-screen-backlog.35-town-flyby-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.172Z"
+    },
+    "phase-2.07-ui-screen-backlog.36-marketplace-artifact-trading-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.173Z"
+    },
+    "phase-2.07-ui-screen-backlog.37-quick-recruit-window-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.173Z"
+    },
+    "phase-2.07-ui-screen-backlog.39-battle-results-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.173Z"
+    },
+    "phase-2.07-ui-screen-backlog.40-pre-battle-dialog-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.174Z"
+    },
+    "phase-2.07-ui-screen-backlog.41-surrender-cost-dialog-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.175Z"
+    },
+    "phase-2.07-ui-screen-backlog.42-victory-defeat-cinematic-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.175Z"
+    },
+    "phase-2.07-ui-screen-backlog.43-siege-combat-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.175Z"
+    },
+    "phase-2.07-ui-screen-backlog.45-tactics-phase-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.175Z"
+    },
+    "phase-2.07-ui-screen-backlog.46-hero-screen-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.176Z"
+    },
+    "phase-2.07-ui-screen-backlog.47-spell-book-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.176Z"
+    },
+    "phase-2.07-ui-screen-backlog.48-level-up-dialog-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.176Z"
+    },
+    "phase-2.07-ui-screen-backlog.49-hero-meeting-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.176Z"
+    },
+    "phase-2.07-ui-screen-backlog.50-creature-info-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.177Z"
+    },
+    "phase-2.07-ui-screen-backlog.51-split-stack-dialog-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.177Z"
+    },
+    "phase-2.07-ui-screen-backlog.52-artifact-combine-dialog-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.178Z"
+    },
+    "phase-2.07-ui-screen-backlog.53-university-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.178Z"
+    },
+    "phase-2.07-ui-screen-backlog.54-system-menu-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.178Z"
+    },
+    "phase-2.07-ui-screen-backlog.56-options-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.178Z"
+    },
+    "phase-2.07-ui-screen-backlog.57-high-scores-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.179Z"
+    },
+    "phase-2.07-ui-screen-backlog.58-week-month-popup-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.179Z"
+    },
+    "phase-2.07-ui-screen-backlog.60-confirmation-dialog-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.180Z"
+    },
+    "phase-2.07-ui-screen-backlog.61-ai-turn-indicator-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.181Z"
+    },
+    "phase-2.07-ui-screen-backlog.63-hotseat-turn-handoff-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.181Z"
+    },
+    "phase-2.07-ui-screen-backlog.65-map-editor-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.181Z"
+    },
+    "phase-2.08-meta-systems.01-campaign-graph-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.182Z"
+    },
+    "phase-2.08-meta-systems.02-campaign-runner": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.182Z"
+    },
+    "phase-2.08-meta-systems.03-cinematic-playback-engine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.182Z"
+    },
+    "phase-2.08-meta-systems.04-quest-log-engine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.183Z"
+    },
+    "phase-2.08-meta-systems.05-status-history-store": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.183Z"
+    },
+    "phase-2.08-meta-systems.06-caravan-transfer-command": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.184Z"
+    },
+    "phase-2.08-meta-systems.07-hotseat-turn-state-machine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.184Z"
+    },
+    "phase-2.08-meta-systems.07-map-trigger-engine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.184Z"
+    },
+    "phase-2.08-meta-systems.08-debug-overlay-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.185Z"
+    },
+    "phase-2.08-meta-systems.08-themed-week-roller": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.185Z"
+    },
+    "phase-2.08-meta-systems.09-animation-debug-overlay-screen": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.186Z"
+    },
+    "phase-2.08-meta-systems.09-map-editor-undo-redo": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.186Z"
+    },
+    "phase-2.09-quality.01-overflow-fuzz": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.186Z"
+    },
+    "phase-2.10-ai-tournament-harness.01-ai-tournament-harness": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.187Z"
+    },
+    "phase-2.11-observability.01-logger-and-metrics-sink-interfaces": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.187Z"
+    },
+    "phase-2.11-observability.02-required-emissions-catalogue": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.187Z"
+    },
+    "phase-2.12-balance-judgement.01-judgement-rules-doc": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.188Z"
+    },
+    "phase-2.13-build-pipeline.01-dependency-policy-and-audit-pipeline": {
+      "status": "done",
+      "updatedAt": "2026-05-06T19:31:51.188Z",
+      "legacy": true
+    },
+    "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.188Z"
+    },
+    "phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.189Z"
+    },
+    "phase-3.01-multiplayer.03-input-only-lockstep-command-serialization-plus-sequencing": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.190Z"
+    },
+    "phase-3.01-multiplayer.04-per-turn-hash-exchange-plus-desync-detection": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.190Z"
+    },
+    "phase-3.01-multiplayer.05-auto-bisect-on-hash-mismatch": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.191Z"
+    },
+    "phase-3.01-multiplayer.06-reconnection-log-range-request-plus-replay": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.191Z"
+    },
+    "phase-3.01-multiplayer.07-host-migration-heartbeat-election": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.192Z"
+    },
+    "phase-3.01-multiplayer.08-multiplayer-ui-lobby-invite-link-in-game-status": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.192Z"
+    },
+    "phase-3.01-multiplayer.09-lockstep-envelope-and-mac": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.192Z"
+    },
+    "phase-3.01-multiplayer.09-snapshot-resync-fallback": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.193Z"
+    },
+    "phase-3.01-multiplayer.10-match-handshake-protocol": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.193Z"
+    },
+    "phase-3.01-multiplayer.10-turn-fallback-and-credentials": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.194Z"
+    },
+    "phase-3.01-multiplayer.11-network-chaos-test-matrix": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.194Z"
+    },
+    "phase-3.01-multiplayer.11-turn-timer-and-stall-detection": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.194Z"
+    },
+    "phase-3.01-multiplayer.12-network-chaos-harness": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.195Z"
+    },
+    "phase-3.01-multiplayer.12-visibility-preconditions-on-commands": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.195Z"
+    },
+    "phase-3.01-multiplayer.13-security-model-and-doctrine": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.196Z"
+    },
+    "phase-3.01-multiplayer.13-signaling-rate-limiting": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.196Z"
+    },
+    "phase-3.01-multiplayer.14-host-approval-and-moderation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.197Z"
+    },
+    "phase-3.01-multiplayer.14-screen-multiplayer-game-status": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.197Z"
+    },
+    "phase-3.01-multiplayer.15-display-name-validation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.198Z"
+    },
+    "phase-3.01-multiplayer.15-pack-signature-and-build-attestation-policy": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.198Z"
+    },
+    "phase-3.01-multiplayer.16-peer-keypair-and-denylist": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.198Z"
+    },
+    "phase-3.01-multiplayer.16-peer-reputation-counter": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.199Z"
+    },
+    "phase-3.01-multiplayer.17-chat-envelope-channel-and-rate-limit": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.199Z"
+    },
+    "phase-3.01-multiplayer.17-replay-audit-pipeline-contract": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.200Z"
+    },
+    "phase-3.01-multiplayer.18-mute-block-and-trust-banner": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.200Z"
+    },
+    "phase-3.01-multiplayer.19-report-bundle-and-export": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.200Z"
+    },
+    "phase-3.01-multiplayer.20-signaling-observability-and-error-vocabulary": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.201Z"
+    },
+    "phase-3.01-multiplayer.21-peer-failure-ui-contract": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.201Z"
+    },
+    "phase-3.01-multiplayer.22-desync-redaction-acceptance": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.202Z"
+    },
+    "phase-3.01-multiplayer.23-multiplayer-consent-and-trust-display": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.202Z"
+    },
+    "phase-3.01-multiplayer.24-transport-security-edge-config": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.203Z"
+    },
+    "phase-3.01-multiplayer.25-peer-keypair-and-session-token": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.203Z"
+    },
+    "phase-3.01-multiplayer.26-signed-signaling-envelope": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.204Z"
+    },
+    "phase-3.01-multiplayer.27-dtls-fingerprint-pinning": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.204Z"
+    },
+    "phase-3.01-multiplayer.28-abandon-penalty-and-quorum-disconnect": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.205Z"
+    },
+    "phase-3.01-multiplayer.29-tls-observability": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.205Z"
+    },
+    "phase-3.01-multiplayer.30-command-stream-hmac": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.205Z"
+    },
+    "phase-3.01-multiplayer.31-signaling-message-schema-and-validation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.206Z"
+    },
+    "phase-3.01-multiplayer.32-signaling-rate-limit-augmentations": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.206Z"
+    },
+    "phase-3.01-multiplayer.33-turn-credentials-doctrine-issuance": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.207Z"
+    },
+    "phase-3.01-multiplayer.34-turn-server-hardening": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.207Z"
+    },
+    "phase-3.01-multiplayer.35-edge-defense-and-health-segregation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.208Z"
+    },
+    "phase-3.01-multiplayer.36-resumed-from-save": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.208Z"
+    },
+    "phase-3.01-multiplayer.37-broadcaster-ai-determinism-rule": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.208Z"
+    },
+    "phase-3.01-multiplayer.38-signaling-envelope-canary": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.209Z"
+    },
+    "phase-3.02-ai-generation.00-generation-io-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.209Z"
+    },
+    "phase-3.02-ai-generation.00b-balance-constraints-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.210Z"
+    },
+    "phase-3.02-ai-generation.00c-generation-config-schema": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.211Z"
+    },
+    "phase-3.02-ai-generation.01-prompt-provider-structured-output-raw-json": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.211Z"
+    },
+    "phase-3.02-ai-generation.02-schema-validation-plus-coherence-check": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.211Z"
+    },
+    "phase-3.02-ai-generation.02b-retry-policy": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.212Z"
+    },
+    "phase-3.02-ai-generation.03-auto-balancer-headless-battle-baseline": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.212Z"
+    },
+    "phase-3.02-ai-generation.04-gradient-free-stat-optimizer": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.213Z"
+    },
+    "phase-3.02-ai-generation.05-asset-generation-stub-imagegen-api": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.213Z"
+    },
+    "phase-3.02-ai-generation.05b-asset-normalization": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.213Z"
+    },
+    "phase-3.02-ai-generation.06-content-moderation-plus-hard-caps": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.214Z"
+    },
+    "phase-3.02-ai-generation.06b-image-moderation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.214Z"
+    },
+    "phase-3.02-ai-generation.07-generation-ui-prompt-preview-download": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.215Z"
+    },
+    "phase-3.02-ai-generation.07b-provider-failure-taxonomy": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.215Z"
+    },
+    "phase-3.02-ai-generation.08-evaluation-generate-plus-play-5-new-factions": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.215Z"
+    },
+    "phase-3.02-ai-generation.09-pack-lifecycle-cache-and-gc": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.216Z"
+    },
+    "phase-3.02-ai-generation.10-ai-gateway-retention-and-error-codes": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.216Z"
+    },
+    "phase-3.02-ai-generation.11-balance-corridor-parity": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.217Z"
+    },
+    "phase-3.03-mcts-ai.01a-mcts-tree-state-and-root-expansion": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.217Z"
+    },
+    "phase-3.03-mcts-ai.01b-ucb1-search-loop-and-budgeted-runner": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.218Z"
+    },
+    "phase-3.03-mcts-ai.02-heuristic-evaluator-no-random-rollouts": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.219Z"
+    },
+    "phase-3.03-mcts-ai.03-beam-search-for-strategic-layer": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.219Z"
+    },
+    "phase-3.03-mcts-ai.04-wasm-hot-path-compilation-assemblyscript": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.219Z"
+    },
+    "phase-3.03-mcts-ai.05-difficulty-levels-lord-and-immortal": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.220Z"
+    },
+    "phase-3.03-mcts-ai.06-performance-benchmark-plus-headless-eval": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.220Z"
+    },
+    "phase-3.04-polish.01a-renderer-capability-detection-and-adapter": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.220Z"
+    },
+    "phase-3.04-polish.01b-webgpu-map-renderer-parity": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.221Z"
+    },
+    "phase-3.04-polish.01c-webgpu-particles-fallback-and-benchmark": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.221Z"
+    },
+    "phase-3.04-polish.02-sound-system-event-log-driven": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.221Z"
+    },
+    "phase-3.04-polish.03-ranked-play-elo-ladder-plus-ai-pack-sandbox": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.221Z"
+    },
+    "phase-3.04-polish.04-tournament-mode-ui": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.222Z"
+    },
+    "phase-3.04-polish.05a-engine-performance-profiling": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.222Z"
+    },
+    "phase-3.04-polish.05b-renderer-performance-profiling": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.222Z"
+    },
+    "phase-3.04-polish.05c-ai-performance-profiling": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.223Z"
+    },
+    "phase-3.04-polish.05d-content-loader-performance-profiling": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.223Z"
+    },
+    "phase-3.04-polish.06-accessibility-pass": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.224Z"
+    },
+    "phase-3.04-polish.07-launch-checklist-plus-final-smoke-test": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.224Z"
+    },
+    "phase-3.05-lobby.00-plan-stub": {
+      "status": "blocked",
+      "updatedAt": "2026-05-06T19:31:51.224Z"
+    },
+    "phase-3.05-observability.01-shared-logger-and-redaction": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.225Z"
+    },
+    "phase-3.05-observability.02-worker-message-validation": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.225Z"
+    },
+    "phase-3.05-observability.03-untrusted-string-schemas": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.226Z"
+    },
+    "phase-4.spectator-mode.00-requirements": {
+      "status": "planned",
+      "updatedAt": "2026-05-06T19:31:51.226Z"
+    }
+  }
+}

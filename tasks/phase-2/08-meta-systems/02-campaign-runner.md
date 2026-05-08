@@ -1,7 +1,5 @@
 # Campaign Runner
 
-Status: planned
-
 Module: [Campaign, Quest, And Status Meta Systems (P2)](../08-meta-systems.md)
 
 Description:

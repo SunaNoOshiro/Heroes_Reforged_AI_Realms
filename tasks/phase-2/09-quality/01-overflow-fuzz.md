@@ -1,7 +1,5 @@
 # Overflow / saturation fuzz target
 
-Status: planned
-
 Module: [Quality (Phase 2)](../09-quality.md)
 
 Description:

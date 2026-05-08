@@ -1,7 +1,5 @@
 # TURN Credentials — Doctrine + Server Issuance
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

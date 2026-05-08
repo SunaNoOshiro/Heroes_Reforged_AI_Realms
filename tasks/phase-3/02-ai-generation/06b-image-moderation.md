@@ -1,7 +1,5 @@
 # Image Moderation (NSFW + IP-likeness + style conformance)
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

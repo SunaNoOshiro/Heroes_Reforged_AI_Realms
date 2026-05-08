@@ -1,7 +1,5 @@
 # Quota Handling and LRU Eviction
 
-Status: planned
-
 Module: [Persistence (M1)](../08-persistence.md)
 
 Description:

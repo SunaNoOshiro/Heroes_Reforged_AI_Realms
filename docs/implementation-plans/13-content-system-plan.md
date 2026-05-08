@@ -563,7 +563,7 @@ when the pack is built, so authors do not maintain hashes by hand.
 2. Write `scripts/build-asset-index.ts`. Hash with WebCrypto's `crypto.subtle.digest('SHA-256', bytes)` for parity with the runtime verifier.
 3. Run the script against `emberwild-faction` to populate the canonical example.
 4. Extend `validatePackAssets()` to verify hashes; add `pack.error.asset.integrity` to `pack-error-codes.md`.
-5. Add an `npm` script `build:asset-index` and document it in `pack-contract.md`.
+5. Add an `npm` script `generate:asset-index` and document it in `pack-contract.md`.
 
 **Dependencies:** Issue 3.C-2 (error code catalog hosts `pack.error.asset.integrity`).
 

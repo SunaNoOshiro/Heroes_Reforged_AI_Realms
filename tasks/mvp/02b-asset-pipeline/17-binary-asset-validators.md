@@ -1,7 +1,5 @@
 # Binary Asset Validators
 
-Status: planned
-
 Module: [Asset Pipeline](../02b-asset-pipeline.md)
 
 Description:

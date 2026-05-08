@@ -1,7 +1,5 @@
 # Fresh-session seed-source precedence
 
-Status: done
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

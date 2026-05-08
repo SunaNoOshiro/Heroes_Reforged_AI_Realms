@@ -1,7 +1,5 @@
 # Camera — Pan, Zoom, Clamp to Map Bounds
 
-Status: planned
-
 Module: [Renderer (M1/M2)](../06-renderer.md)
 
 Description:

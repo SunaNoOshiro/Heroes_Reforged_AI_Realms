@@ -1,7 +1,5 @@
 # Pseudo-Isometric Depth Sorting — Objects Overlap Correctly
 
-Status: planned
-
 Module: [Visual Fidelity — Overland Strategy Look & Feel (M1/M2)](../06-visual-fidelity.md)
 
 Description:

@@ -1,7 +1,5 @@
 # ESLint rule — ban Math.random() and floats in deterministic-adjacent code
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

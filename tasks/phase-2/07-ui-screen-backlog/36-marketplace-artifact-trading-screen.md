@@ -1,7 +1,5 @@
 # Marketplace Artifact Trading Screen
 
-Status: planned
-
 Module: [UI Screen Backlog (P2)](../07-ui-screen-backlog.md)
 
 Description:

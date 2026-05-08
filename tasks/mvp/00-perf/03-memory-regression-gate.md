@@ -1,7 +1,5 @@
 # Memory-churn Scenario D + 5 % heap-delta gate
 
-Status: planned
-
 Module: [Performance Harness & Budgets (M1)](../00-perf.md)
 
 Description:

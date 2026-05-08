@@ -1,0 +1,69 @@
+# Codex CLI permission profile — anti-cheat surface for Heroes Reforged.
+#
+# Mirrors the deny rules in .agents/settings.json (which Claude Code reads
+# via .claude/settings.json -> ../.agents/settings.json symlink). Codex
+# enforces these as filesystem permissions per
+# https://developers.openai.com/codex/agent-approvals-security
+#
+# CANONICAL PATH:   .agents/codex.config.toml   (this file)
+# PROJECT SYMLINK:  .codex/config.toml -> ../.agents/codex.config.toml
+#                   (auto-picked-up by Codex when run inside this repo,
+#                    if Codex supports project-local config)
+# USER FALLBACK:    ~/.codex/config.toml
+#                   (only needed if project-local pickup is unsupported;
+#                    activate via: ln -s "$(pwd)/.agents/codex.config.toml" ~/.codex/config.toml)
+#
+# After install, Codex refuses to write to any of the paths below.
+
+# Conservative defaults: ask before sandbox-violating actions, no shell login.
+approval_policy   = "untrusted"
+sandbox_mode      = "workspace-write"
+allow_login_shell = false
+
+# Glob-based filesystem permissions. "write" = read+write, "read" = read-only,
+# "none" = unreadable. Anti-cheat surface is read-only; everything else in the
+# project root is writable by default.
+[permissions.workspace.filesystem.":project_roots"]
+"."                                                          = "write"
+
+# --- Status ledger and its writers (only `tasks:done` may write) ---
+"tasks/task-status.json"                                     = "read"
+"scripts/check-status-ledger.mjs"                            = "read"
+"scripts/lib/task-status-ledger.mjs"                         = "read"
+"scripts/lib/derive-verify-commands.mjs"                     = "read"
+"scripts/tasks.mjs"                                          = "read"
+"scripts/recheck-done-tasks.mjs"                             = "read"
+
+# --- Mutation / coverage gate ---
+"scripts/validate-mutation-score.mjs"                        = "read"
+"scripts/validate-coverage-floor.mjs"                        = "read"
+"scripts/mutation-changed-files.mjs"                         = "read"
+"scripts/lib/module-classes.mjs"                             = "read"
+"scripts/lib/owned-path-matchers.mjs"                        = "read"
+"scripts/lib/base-ref.mjs"                                   = "read"
+"stryker.conf.mjs"                                           = "read"
+"vitest.config.ts"                                           = "read"
+
+# --- Drift-detection tests (any change must go through explicit approval) ---
+"scripts/__tests__/check-status-ledger.test.mjs"             = "read"
+"scripts/__tests__/derive-verify-commands.test.mjs"          = "read"
+"scripts/__tests__/mutation-changed-files.test.mjs"          = "read"
+"scripts/__tests__/recheck-done-tasks.test.mjs"              = "read"
+
+# --- CI workflows (the trust anchor for the gate) ---
+".github/workflows/**"                                       = "read"
+
+# --- Settings + skill (cross-tool: both the canonical files AND symlinks) ---
+".agents/settings.json"                                      = "read"
+".claude/settings.json"                                      = "read"
+".claude/settings.local.json"                                = "read"
+".agents/codex.config.toml"                                  = "read"
+".codex/config.toml"                                         = "read"
+".agents/skills/mutation-test/SKILL.md"                      = "read"
+".claude/skills/mutation-test/SKILL.md"                      = "read"
+
+# --- Locked decision register (additive only, owner approval required) ---
+"docs/planning/decision-log.md"                              = "read"
+
+[permissions.workspace.filesystem]
+glob_scan_max_depth = 6

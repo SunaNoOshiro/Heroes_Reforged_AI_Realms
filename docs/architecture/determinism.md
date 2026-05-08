@@ -281,7 +281,7 @@ is the canonical drift sentinel: every fixture under
 `tests/__fixtures__/golden/` pins
 `(scenarioId, seed, commandLog) → expectedStateHash`, and a drift
 fails CI with a canonical-JSON diff. Blessing is gated behind a
-human-only `golden:bless` script that refuses to run in CI.
+human-only `test:golden:bless` script that refuses to run in CI.
 
 The replay-regression suite owned by
 [`tasks/mvp/01-engine-core/13-replay-regression-suite.md`](../../tasks/mvp/01-engine-core/13-replay-regression-suite.md)

@@ -1,7 +1,5 @@
 # 11×15 Tactical Battlefield Renderer
 
-Status: planned
-
 Module: [Renderer (M1/M2)](../06-renderer.md)
 
 Description:

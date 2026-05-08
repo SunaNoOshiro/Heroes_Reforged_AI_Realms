@@ -1,7 +1,5 @@
 # Balance Check — Emberwild vs Necropolis Headless Games
 
-Status: planned
-
 Module: [Second Faction — Necropolis (M3)](../03-second-faction.md)
 
 Description:

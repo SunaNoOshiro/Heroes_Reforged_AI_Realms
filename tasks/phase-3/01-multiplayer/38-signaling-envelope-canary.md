@@ -1,7 +1,5 @@
 # Signaling Envelope Canary
 
-Status: planned
-
 Module: [Multiplayer (M5)](../01-multiplayer.md)
 
 Description:

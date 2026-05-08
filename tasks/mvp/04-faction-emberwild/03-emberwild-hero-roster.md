@@ -1,7 +1,5 @@
 # Emberwild Hero Roster JSON
 
-Status: planned
-
 Module: [Faction — Emberwild (M1)](../04-faction-emberwild.md)
 
 Description:

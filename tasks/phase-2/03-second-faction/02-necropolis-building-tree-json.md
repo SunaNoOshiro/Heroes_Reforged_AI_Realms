@@ -1,7 +1,5 @@
 # Necropolis Building Tree JSON
 
-Status: planned
-
 Module: [Second Faction — Necropolis (M3)](../03-second-faction.md)
 
 Description:

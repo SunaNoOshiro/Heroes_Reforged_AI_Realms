@@ -1,7 +1,5 @@
 # Signaling Rate Limit Augmentations + Per-Room Cap Hardening
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

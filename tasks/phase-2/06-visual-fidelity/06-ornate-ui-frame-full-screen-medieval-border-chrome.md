@@ -1,7 +1,5 @@
 # Ornate UI Frame — Full-Screen Medieval Border Chrome
 
-Status: planned
-
 Module: [Visual Fidelity — Overland Strategy Look & Feel (M1/M2)](../06-visual-fidelity.md)
 
 Description:

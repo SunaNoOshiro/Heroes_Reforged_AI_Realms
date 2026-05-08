@@ -1,7 +1,5 @@
 # Hero Leveling — LEVEL_UP Command & Stat Growth
 
-Status: planned
-
 Module: [Spells & Artifacts (P2)](../01-spells-artifacts.md)
 
 Description:

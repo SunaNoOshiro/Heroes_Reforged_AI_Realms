@@ -1,7 +1,5 @@
 # GitHub Actions CI
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:
@@ -16,7 +14,7 @@ Inputs:
 
 Outputs:
 - `.github/workflows/ci.yml`
-- Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz) → `npm run test:ui-smoke` → `npm run test:golden` → `npm run test:coverage` → `npm run test:replays` → `npm run bench:engine` (non-gating, posts PR comment)
+- Steps: `npm install` → `npm run -ws type-check` → `npm run lint` → `npm run -ws test` (includes fuzz) → `npm run test:ui-smoke` → `npm run test:golden` → `npm run test:coverage` → `npm run test:replays` → `npm run test:bench:engine` (non-gating, posts PR comment)
 - Badge in root `README.md` (CI status + coverage)
 - **Perf-bench job** (advisory on PRs, blocking on `main` and
   `perf/**` branches) — wired by
@@ -47,7 +45,7 @@ Acceptance Criteria:
 - A deliberate state-mutation bug causes CI to fail at the fuzz step
 - Total CI runtime < 3 minutes (smoke + coverage + golden + replays
   steps each fit inside the existing budget; the non-gating
-  `bench:engine` step runs in parallel and posts a PR comment with
+  `test:bench:engine` step runs in parallel and posts a PR comment with
   the per-metric delta against `main`)
 - A deliberate UI binding-name typo causes the
   `npm run test:ui-smoke` step to fail per the contract owned by

@@ -1,7 +1,5 @@
 # Right Panel — Mini-Map with Compass Rose
 
-Status: planned
-
 Module: [Visual Fidelity — Overland Strategy Look & Feel (M1/M2)](../06-visual-fidelity.md)
 
 Description:

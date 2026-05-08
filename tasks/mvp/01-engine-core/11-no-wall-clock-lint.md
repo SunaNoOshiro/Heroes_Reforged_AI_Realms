@@ -1,7 +1,5 @@
 # ESLint rule — `no-wall-clock` (deterministic paths)
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

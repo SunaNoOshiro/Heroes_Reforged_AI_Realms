@@ -2,7 +2,7 @@
 
 Pinned throughput targets for the deterministic engine, measured by
 [`tasks/mvp/01-engine-core/14-engine-throughput-benchmark.md`](../../../tasks/mvp/01-engine-core/14-engine-throughput-benchmark.md)
-through `npm run bench:engine`. The bench step is **non-gating** on
+through `npm run test:bench:engine`. The bench step is **non-gating** on
 PRs (records numbers and posts the delta as a PR comment); CI may flip
 to gating only after a stability window proves microbenchmark noise on
 shared CI runners is bounded.

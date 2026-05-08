@@ -1,7 +1,5 @@
 # UI Smoke Harness
 
-Status: planned
-
 Module: [Test & Tooling Contracts (M0)](../02-tooling.md)
 
 Description:

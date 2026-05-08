@@ -1,7 +1,5 @@
 # Transfer Hero Artifact Command
 
-Status: planned
-
 Module: [Spells & Artifacts (P2)](../01-spells-artifacts.md)
 
 Description:

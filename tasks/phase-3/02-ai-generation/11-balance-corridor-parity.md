@@ -1,7 +1,5 @@
 # Balance-Corridor Parity (`corridor.json` SSOT)
 
-Status: planned
-
 Module: [AI Generation (M6 / M7)](../02-ai-generation.md)
 
 Description:
@@ -47,7 +45,7 @@ Outputs:
   — read-only parity check; fails if the example drifted.
 - `validate:balance-corridor-parity` npm script wired into
   `npm run validate`.
-- `build:balance-constraints` npm script for manual regeneration.
+- `generate:balance-constraints` npm script for manual regeneration.
 
 Owned Paths:
 - `scripts/build-balance-constraints.mjs`
@@ -73,7 +71,7 @@ Acceptance Criteria:
   schema carries shape only.
 - `corridor.json` carries the per-tier numbers; the canonical
   example duplicates them only because the generator emits them.
-- `npm run build:balance-constraints` regenerates the example with
+- `npm run generate:balance-constraints` regenerates the example with
   zero diff against the committed file.
 - `npm run validate:balance-corridor-parity` exits 0 today.
 - The validator exits non-zero when an editor changes the example's

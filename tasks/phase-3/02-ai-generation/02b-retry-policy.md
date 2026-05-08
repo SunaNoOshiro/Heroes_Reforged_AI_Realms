@@ -1,7 +1,5 @@
 # Retry Policy (shape / coherence / balance)
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Emberwild Town Building Tree JSON
 
-Status: planned
-
 Module: [Faction — Emberwild (M1)](../04-faction-emberwild.md)
 
 Description:

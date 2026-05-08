@@ -1,7 +1,5 @@
 # Multiplayer UI — Lobby, Invite Link, In-Game Status
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

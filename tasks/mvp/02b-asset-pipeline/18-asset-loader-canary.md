@@ -1,7 +1,5 @@
 # Asset Loader Canary
 
-Status: planned
-
 Module: [Asset Pipeline (M0/M1)](../02b-asset-pipeline.md)
 
 Description:

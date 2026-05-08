@@ -1,7 +1,5 @@
 # Spell Casting in Combat UI
 
-Status: planned
-
 Module: [Spells, Artifacts & Hero Skills (M3)](../01-spells-artifacts.md)
 
 Description:

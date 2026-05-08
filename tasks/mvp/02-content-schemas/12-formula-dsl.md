@@ -1,7 +1,5 @@
 # Formula AST DSL (schema + evaluator)
 
-Status: planned
-
 Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Match Handshake Protocol — Commit-Reveal Seed and Match Key
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

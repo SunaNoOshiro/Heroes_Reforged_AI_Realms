@@ -1,7 +1,5 @@
 # Emberwild Units JSON (7 Units + Upgrades)
 
-Status: planned
-
 Module: [Faction — Emberwild (M1)](../04-faction-emberwild.md)
 
 Description:

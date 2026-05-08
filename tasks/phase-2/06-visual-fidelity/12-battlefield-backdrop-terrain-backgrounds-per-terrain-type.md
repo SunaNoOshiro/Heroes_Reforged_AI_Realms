@@ -1,7 +1,5 @@
 # Battlefield Backdrop — Terrain Backgrounds Per Terrain Type
 
-Status: planned
-
 Module: [Visual Fidelity — Overland Strategy Look & Feel (M1/M2)](../06-visual-fidelity.md)
 
 Description:

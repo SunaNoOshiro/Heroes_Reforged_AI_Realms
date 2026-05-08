@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task TDD"
+  short_description: "Real test-driven implementation cycle for Heroes Reforged tasks; hands off to mutation-test for verification"
+  default_prompt: "Use $task-tdd to implement the next task with a real red → green → refactor TDD cycle, then hand off to $mutation-test for the mutation-score gate."

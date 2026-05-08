@@ -58,7 +58,7 @@
           },
           "sha256": {
             "type": "string",
-            "description": "Hex SHA-256 of the asset bytes. Recomputed by `npm run build:asset-index`. Mismatch at load time is fatal: pack.error.asset.integrity.",
+            "description": "Hex SHA-256 of the asset bytes. Recomputed by `npm run generate:asset-index`. Mismatch at load time is fatal: pack.error.asset.integrity.",
             "pattern": "^[a-f0-9]{64}$"
           },
           "bytes": {

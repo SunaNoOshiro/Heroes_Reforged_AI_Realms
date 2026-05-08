@@ -1,7 +1,5 @@
 # Save-Envelope MAC Phase-In (M5)
 
-Status: planned
-
 Module: [Persistence (M1)](../08-persistence.md)
 
 Description:

@@ -1,7 +1,5 @@
 # Sandbox Mode for AI-Generated Packs
 
-Status: planned
-
 Module: [Pack Runtime / Mod System (M4)](../05-mod-system.md)
 
 Description:

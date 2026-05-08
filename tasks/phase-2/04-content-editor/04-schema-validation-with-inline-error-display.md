@@ -1,7 +1,5 @@
 # Schema Validation with Inline Error Display
 
-Status: planned
-
 Module: [Content Editor (M4)](../04-content-editor.md)
 
 Description:

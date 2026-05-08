@@ -1,7 +1,5 @@
 # Engine Throughput Benchmark
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:
@@ -42,7 +40,7 @@ Outputs:
   targets, measurement method, tightening policy.
 - `src/engine/__tests__/throughput.bench.ts` — `vitest bench` file
   measuring the three metrics.
-- `package.json` script `bench:engine` invoking
+- `package.json` script `test:bench:engine` invoking
   `vitest bench src/engine/__tests__/throughput.bench.ts`.
 - Edit to `mvp.01-engine-core.10-github-actions-ci`'s acceptance
   criteria (additive only): non-gating bench step + PR-comment
@@ -55,7 +53,7 @@ Owned Paths:
 Owned Paths (shared):
 - `package.json` (primary owner:
   `mvp.01-engine-core.01-initialize-root-workspace-and-module-layout`;
-  this task contributes the `bench:engine` script only).
+  this task contributes the `test:bench:engine` script only).
 
 Dependencies:
 - mvp.01-engine-core.06-command-dispatcher
@@ -63,7 +61,7 @@ Dependencies:
 - mvp.01-engine-core.08-replay-api
 
 Acceptance Criteria:
-- `npm run bench:engine` runs the three measured metrics and emits
+- `npm run test:bench:engine` runs the three measured metrics and emits
   median + p95 to stdout.
 - Two consecutive runs on the same hardware produce byte-identical
   fixture inputs and identical simulation traces; only the timing

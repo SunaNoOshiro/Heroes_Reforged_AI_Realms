@@ -1,7 +1,5 @@
 # Pack Signature Mandate and Engine-Build Attestation
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

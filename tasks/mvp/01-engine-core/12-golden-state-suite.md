@@ -1,7 +1,5 @@
 # Golden-State Regression Suite
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:
@@ -17,7 +15,7 @@ gap by replaying each fixture's command log and asserting the final
 runner fails with a diff between expected and actual canonical JSON
 (truncated to the first 50 differing lines for log readability).
 
-A `golden:bless` script re-emits the expected hash for a named
+A `test:golden:bless` script re-emits the expected hash for a named
 fixture, gated behind an explicit human action (refuses to run when
 `process.env.CI` is set) so blessing is never accidental.
 
@@ -51,7 +49,7 @@ Outputs:
   `hashState(state) === expectedStateHash`.
 - `scripts/golden-bless.mjs` — re-emits the expected hash for a
   named fixture; refuses to run in CI (`process.env.CI` guard).
-- `package.json` script `golden:bless` invoking the bless script
+- `package.json` script `test:golden:bless` invoking the bless script
   and `test:golden` invoking the runner.
 
 Owned Paths:
@@ -64,7 +62,7 @@ Owned Paths:
 Owned Paths (shared):
 - `package.json` (primary owner:
   `mvp.01-engine-core.01-initialize-root-workspace-and-module-layout`;
-  this task contributes the `golden:bless` and `test:golden`
+  this task contributes the `test:golden:bless` and `test:golden`
   scripts only).
 - `docs/architecture/determinism.md` (primary owner:
   `mvp.00-core-architecture`; this task contributes a single
@@ -86,7 +84,7 @@ Acceptance Criteria:
   `expectedStateHash`.
 - A deliberate ruleset formula change in `src/rules/` causes
   `npm run test:golden` to fail with a canonical-JSON diff.
-- `npm run golden:bless -- <fixtureName>` re-emits the expected hash
+- `npm run test:golden:bless -- <fixtureName>` re-emits the expected hash
   for one named fixture; running the same command in CI environment
   exits non-zero with a "blessing in CI is forbidden" message.
 - The schema validates a fixture missing `expectedStateHash` and

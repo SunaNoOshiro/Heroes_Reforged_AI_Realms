@@ -1,7 +1,5 @@
 # Implement PCG32 PRNG with named sub-streams
 
-Status: planned
-
 Module: [Engine Core (M0)](../01-engine-core.md)
 
 Description:

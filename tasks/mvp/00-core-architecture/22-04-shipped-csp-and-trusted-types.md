@@ -1,7 +1,5 @@
 # Shipped CSP & Trusted Types
 
-Status: planned
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

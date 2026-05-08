@@ -1,7 +1,5 @@
 # Outbound Content-Report Queue
 
-Status: planned
-
 Module: [Persistence](../08-persistence.md)
 
 Description:

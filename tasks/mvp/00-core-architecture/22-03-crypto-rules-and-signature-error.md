@@ -1,7 +1,5 @@
 # Crypto Rules and Signature-Error Vocabulary
 
-Status: planned
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

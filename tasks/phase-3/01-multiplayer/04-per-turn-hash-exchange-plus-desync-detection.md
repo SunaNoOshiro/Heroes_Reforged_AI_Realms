@@ -1,7 +1,5 @@
 # Per-Turn Hash Exchange + Desync Detection
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

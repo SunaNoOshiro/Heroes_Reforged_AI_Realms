@@ -1,7 +1,5 @@
 # Loading Screen
 
-Status: planned
-
 Module: [UI Shell (M1)](../07-ui-shell.md)
 
 Description:

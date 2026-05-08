@@ -1,7 +1,5 @@
 # Multi-Hero Role Assignment
 
-Status: planned
-
 Module: [Strategic AI Depth (M3)](../02-strategic-ai.md)
 
 Description:

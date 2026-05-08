@@ -1,7 +1,5 @@
 # Cross-actor command ordering
 
-Status: done
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

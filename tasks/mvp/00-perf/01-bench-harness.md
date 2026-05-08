@@ -1,7 +1,5 @@
 # Bench harness — Scenarios A/B/C runtime
 
-Status: planned
-
 Module: [Performance Harness & Budgets (M1)](../00-perf.md)
 
 Description:

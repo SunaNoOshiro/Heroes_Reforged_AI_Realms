@@ -1,7 +1,5 @@
 # Map Trigger Engine
 
-Status: planned
-
 Module: [Meta Systems (M3)](../08-meta-systems.md)
 
 Description:

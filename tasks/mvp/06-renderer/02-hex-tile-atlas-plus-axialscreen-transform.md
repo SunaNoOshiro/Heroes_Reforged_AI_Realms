@@ -1,7 +1,5 @@
 # Hex Tile Atlas + Axial→Screen Transform
 
-Status: planned
-
 Module: [Renderer (M1/M2)](../06-renderer.md)
 
 Description:

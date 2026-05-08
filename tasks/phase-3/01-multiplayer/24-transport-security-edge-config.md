@@ -1,7 +1,5 @@
 # Transport Security — Edge Config
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

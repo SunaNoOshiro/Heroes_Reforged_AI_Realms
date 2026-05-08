@@ -1,7 +1,5 @@
 # Logger + MetricsSink interfaces
 
-Status: planned
-
 Module: [Observability (Phase 2)](../11-observability.md)
 
 Description:

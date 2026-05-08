@@ -1,7 +1,5 @@
 # Siege Backdrop — Walls, Gate, Towers, Moat
 
-Status: planned
-
 Module: [Visual Fidelity — Overland Strategy Look & Feel (M1/M2)](../06-visual-fidelity.md)
 
 Description:

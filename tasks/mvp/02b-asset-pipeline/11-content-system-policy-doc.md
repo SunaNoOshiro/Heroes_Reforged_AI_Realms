@@ -1,7 +1,5 @@
 # Content-System Policy Doc
 
-Status: done
-
 Module: [Asset Pipeline & Content Pack Architecture (M0/M1)](../02b-asset-pipeline.md)
 
 Description:

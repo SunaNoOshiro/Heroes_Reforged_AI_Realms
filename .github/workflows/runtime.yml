@@ -79,9 +79,47 @@ jobs:
         if: steps.probe.outputs.runtime_present == 'true'
         run: npm test --workspaces --if-present
 
+      - name: Security tests
+        # Activates when tests/security/run.mjs lands.
+        if: steps.probe.outputs.runtime_present == 'true' && hashFiles('tests/security/run.mjs') != ''
+        run: npm run test:security --if-present
+
+      - name: Golden state suite
+        # Activates when src/engine/__tests__/golden.test.ts lands.
+        if: steps.probe.outputs.runtime_present == 'true' && hashFiles('src/engine/__tests__/golden.test.ts') != ''
+        run: npm run test:golden --if-present
+
+      - name: Replay regression suite
+        # Activates when src/engine/__tests__/replays.test.ts lands.
+        if: steps.probe.outputs.runtime_present == 'true' && hashFiles('src/engine/__tests__/replays.test.ts') != ''
+        run: npm run test:replays --if-present
+
+      - name: UI smoke tests
+        # Activates when any src/ui/**/*.smoke.test.ts lands. Note:
+        # `vitest --browser` requires Playwright (or another browser
+        # provider) installed in CI. If this step is the first to fail
+        # after activation, install the browser provider per
+        # tasks/mvp/02-tooling/01-ui-smoke-harness.md.
+        if: steps.probe.outputs.runtime_present == 'true' && hashFiles('src/ui/**/*.smoke.test.ts') != ''
+        run: npm run test:ui-smoke --if-present
+
       - name: Engine fuzz harness
         if: steps.probe.outputs.runtime_present == 'true' && hashFiles('src/engine/__tests__/fuzz.test.ts') != ''
         run: npm run test:fuzz --if-present
+
+      - name: Engine throughput benchmark (non-gating)
+        # Bench results are deliberately non-gating per
+        # docs/architecture/testing/engine-throughput-slo.md and
+        # docs/implementation-plans/15-testability-plan.md: micro-bench
+        # numbers on shared CI runners are too noisy to fail PRs on.
+        # continue-on-error keeps the run visible in the log without
+        # blocking merges. Throughput regressions surface as a number a
+        # human reviews. Activates automatically when the bench file
+        # lands; until then, hashFiles returns "" and the step is
+        # skipped.
+        if: steps.probe.outputs.runtime_present == 'true' && hashFiles('src/engine/__tests__/throughput.bench.ts') != ''
+        continue-on-error: true
+        run: npm run test:bench:engine
 
       - name: Inactive workflow notice
         if: steps.probe.outputs.runtime_present != 'true'

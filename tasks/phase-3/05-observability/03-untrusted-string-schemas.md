@@ -1,7 +1,5 @@
 # Untrusted-String Schemas (Display Name + Room Code + Case ID)
 
-Status: planned
-
 Module: [Observability & Trust Boundaries](../05-observability.md)
 
 Description:

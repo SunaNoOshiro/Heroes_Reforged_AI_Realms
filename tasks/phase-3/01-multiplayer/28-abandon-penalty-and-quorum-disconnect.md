@@ -1,7 +1,5 @@
 # Abandon Penalty & Quorum-Attested Disconnect
 
-Status: planned
-
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:

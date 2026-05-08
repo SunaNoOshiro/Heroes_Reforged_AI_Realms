@@ -1,7 +1,5 @@
 # Generation I/O Schemas (provider-neutral boundary)
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

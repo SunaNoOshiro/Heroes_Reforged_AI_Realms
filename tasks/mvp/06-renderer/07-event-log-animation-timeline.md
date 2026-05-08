@@ -1,7 +1,5 @@
 # Event Log → Animation Timeline
 
-Status: planned
-
 Module: [Renderer (M1/M2)](../06-renderer.md)
 
 Description:

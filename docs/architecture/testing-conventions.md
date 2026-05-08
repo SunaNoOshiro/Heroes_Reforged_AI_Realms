@@ -191,4 +191,22 @@ Pinned per Plan 32 § PI-3:
   (the Vite/TS bootstrap) lands. Once it does, scripts migrate
   `.mjs` → `.ts` in batches per module under a new follow-up task.
 - Tests under `src/**/__tests__/` are permitted as `.ts` and run
-  via `node --experimental-strip-types --test`.
+  via `node --experimental-strip-types --test` **only until the
+  Vite/TS bootstrap task lands**. That task migrates the existing
+  `node:test` files to the Vitest API and rewires `npm test` to
+  invoke Vitest, per
+  [`docs/planning/decision-log.md`](../planning/decision-log.md)
+  DEC-003. After that, the runner is Vitest and the StrykerJS
+  mutation-test gate (owned by
+  [`mvp.02-tooling.06-mutation-test-gate`](../../tasks/mvp/02-tooling/06-mutation-test-gate.md))
+  runs scoped to each task's `ownedPaths` before
+  `npm run tasks:done` flips status; the gate's loop and anti-cheat
+  rules are pinned in
+  [`.claude/skills/mutation-test/SKILL.md`](../../.claude/skills/mutation-test/SKILL.md).
+- Tests under `scripts/__tests__/` (gate tests for repo tooling)
+  stay on Node's built-in `node --test` runner permanently and are
+  **not** in scope for the Vitest migration above. They exercise
+  pure-Node `.mjs` scripts that have no need for the Vitest browser
+  / jsdom features, and StrykerJS does not mutate `scripts/`. The
+  trust-anchor `node --test scripts/__tests__/*.test.mjs` invocation
+  in `package.json` is the canonical wiring.

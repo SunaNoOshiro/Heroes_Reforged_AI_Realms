@@ -1,7 +1,5 @@
 # Auto-Balancer — Headless Battle Baseline
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

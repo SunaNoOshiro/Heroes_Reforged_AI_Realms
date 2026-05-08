@@ -1,7 +1,5 @@
 ## Reality
 
-This repo is mostly planning and contracts, not runtime code.
-
 Read first if you need to understand the full project. The list is
 clustered by concern; intra-cluster numbering is stable so new
 entries append within a cluster rather than renumbering the whole
@@ -298,8 +296,82 @@ Preferred stack when implementation starts:
 - `npm run tasks:start -- <id>` before implementing; it marks the task
   in-progress and regenerates `tasks/task-registry.json`
 - `npm run tasks:done -- <id>` runs the task's `verifyCommands` and
-  only flips to `done` on success — do not hand-edit `Status:` to skip
-  this gate
+  only flips the task's status to `done` on success. Status lives
+  exclusively in [`tasks/task-status.json`](tasks/task-status.json)
+  (the ledger); per-task `.md` files no longer carry a `Status:`
+  field. Do not hand-edit the ledger — every non-legacy `done` entry
+  is verified by `validate:status-ledger` against git, the
+  implementation-log, and a `verifyCommandsHash` recorded at the
+  flip; any hand-edit fails the gate. The trust anchor for the gate
+  is the GitHub Actions `Validate Repo Contracts` workflow at
+  [`.github/workflows/validate.yml`](.github/workflows/validate.yml),
+  which re-runs `npm run validate` on a fresh checkout. Branch
+  protection on `main` (set in repo settings) must require this
+  workflow as a status check; without that toggle, the gate is
+  honor-system only.
+- before running `npm run tasks:done`, follow the mutation-test gate in
+  [`.claude/skills/mutation-test/SKILL.md`](.claude/skills/mutation-test/SKILL.md):
+  run unit tests, run Stryker scoped to the task's `ownedPaths`, kill
+  surviving mutants by **adding test assertions only** (deleting source,
+  weakening assertions, lowering thresholds, or `// Stryker disable`
+  without an equivalence proof are hard-prohibited cheats), then let
+  `verifyCommands` run `validate:mutation-score` and
+  `validate:coverage-floor`. The skill is the single source of truth for
+  the gate; this bullet is a pointer, not a duplicate.
+- **Agent config layout.** Per-tool harness configuration lives under
+  [`.agents/`](.agents/) as the canonical source. Tool-specific
+  directories (`.claude/`, future `.codex/`) hold symlinks back to the
+  canonical files so each harness reads its expected path while the
+  content stays single-sourced:
+    - [`.agents/settings.json`](.agents/settings.json) — canonical
+      Claude Code permissions; `.claude/settings.json` symlinks to it
+    - [`.agents/skills/`](.agents/skills/) — canonical agent skills;
+      `.claude/skills/` symlinks to it (so any `.agents/skills/<name>/`
+      is automatically visible to Claude Code)
+    - [`.agents/codex.config.toml`](.agents/codex.config.toml) — Codex
+      CLI permission profile. The repo ships
+      [`.codex/config.toml`](.codex/config.toml) as a symlink to it, so
+      Codex auto-picks-up the deny rules when run inside this repo if it
+      supports project-local config. As a fallback (if Codex only reads
+      user-level), symlink to `~/.codex/config.toml` once:
+      `ln -s "$(pwd)/.agents/codex.config.toml" ~/.codex/config.toml`
+- **Restricted files (do NOT edit without explicit owner approval).**
+  These paths form the anti-cheat surface for the task-status and
+  mutation gates. Two harnesses enforce this:
+  Claude Code via [`.agents/settings.json`](.agents/settings.json)
+  `permissions.deny` (resolved through the `.claude/settings.json`
+  symlink); Codex via
+  [`.agents/codex.config.toml`](.agents/codex.config.toml)
+  `permissions.workspace.filesystem` rules (after the symlink
+  install above). All other tools must respect the list by convention.
+  If a task genuinely requires editing one of these paths, surface the
+  proposed diff to the human owner FIRST and wait for explicit
+  approval — do not "just edit" them:
+    - `tasks/task-status.json` (status ledger; only `tasks:done` writes)
+    - `scripts/check-status-ledger.mjs`
+    - `scripts/lib/task-status-ledger.mjs`
+    - `scripts/lib/derive-verify-commands.mjs`
+    - `scripts/tasks.mjs`
+    - `scripts/recheck-done-tasks.mjs`
+    - `scripts/validate-mutation-score.mjs`
+    - `scripts/validate-coverage-floor.mjs`
+    - `scripts/mutation-changed-files.mjs`
+    - `scripts/__tests__/check-status-ledger.test.mjs`
+    - `scripts/__tests__/mutation-changed-files.test.mjs`
+    - `scripts/__tests__/derive-verify-commands.test.mjs`
+    - `scripts/__tests__/recheck-done-tasks.test.mjs`
+    - `stryker.conf.mjs`
+    - `vitest.config.ts`
+    - `.github/workflows/**`
+    - `.agents/settings.json` (and the `.claude/settings.json` symlink)
+    - `.agents/codex.config.toml`
+    - `.claude/settings.local.json`
+    - `docs/planning/decision-log.md`
+    - `.agents/skills/mutation-test/SKILL.md` (and the `.claude/`
+      symlink path)
+  Do NOT use `git commit --no-verify`, `git push --no-verify`,
+  `node -e`, or `python -c` to bypass any of the gates. Do NOT
+  redirect (`>`, `>>`, `tee`, `sed -i`) into any restricted file.
 - use `npm run validate:tasks` to enforce task-system invariants:
   dependency IDs resolve, dependency cycles are rejected, UI/editor
   tasks cite screen packages, every screen package has an owning UI
@@ -358,7 +430,10 @@ Preferred stack when implementation starts:
   ship as `.mjs` until the Vite/TS bootstrap
   ([`mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`](tasks/mvp/01-engine-core/02-set-up-vite-plus-typescript-strict-mode-per-module.md))
   lands; tests under `src/**/__tests__/` are permitted as `.ts`
-  and run via `node --experimental-strip-types --test`. Detail in
+  and run via `node --experimental-strip-types --test` **only until
+  that task lands** — after which the runner becomes Vitest per
+  [`docs/planning/decision-log.md`](docs/planning/decision-log.md)
+  DEC-003. Detail in
   [`testing-conventions.md` § 8](docs/architecture/testing-conventions.md).
 
 ### Task-System Script Map

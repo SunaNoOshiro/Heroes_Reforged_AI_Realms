@@ -1,7 +1,5 @@
 # Generation Config Schema (orchestrator + prompt-template + ruleset pin)
 
-Status: planned
-
 Module: [AI Content Generation (M6)](../02-ai-generation.md)
 
 Description:

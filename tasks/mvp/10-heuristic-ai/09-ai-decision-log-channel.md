@@ -1,7 +1,5 @@
 # AI Decision Log — Out-of-Band Side Channel
 
-Status: planned
-
 Module: [Heuristic AI (M2)](../10-heuristic-ai.md)
 
 Description:

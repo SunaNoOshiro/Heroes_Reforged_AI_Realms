@@ -1,7 +1,5 @@
 # Worker-Message Envelope Reconciliation (8-Kind Enum)
 
-Status: planned
-
 Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 
 Description:

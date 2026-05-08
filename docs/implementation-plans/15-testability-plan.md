@@ -223,13 +223,13 @@ fixture, replays the command log against `scenarioId` with `seed`,
 and asserts the final state hash equals `expectedStateHash`. On any
 drift, it fails with the diff between expected and actual canonical
 JSON (truncated to the first 50 differing lines for log readability).
-Add a `golden:bless` script that re-emits the expected hash for a
+Add a `test:golden:bless` script that re-emits the expected hash for a
 named fixture, gated behind an explicit human action so blessing is
 never accidental.
 
 **Files to Update:**
 
-- [package.json](../../package.json) — add `golden:bless` script
+- [package.json](../../package.json) — add `test:golden:bless` script
   invoking `node scripts/golden-bless.mjs`.
 - [tasks/mvp/01-engine-core/10-github-actions-ci.md](../../tasks/mvp/01-engine-core/10-github-actions-ci.md)
   — add `npm run test:golden` to CI steps.
@@ -262,7 +262,7 @@ never accidental.
 1. Author the schema and one canonical example.
 2. Author the runner with the diff-on-fail behavior.
 3. Author the bless script with a CI-refusal guard.
-4. Add the `golden:bless` and `test:golden` npm scripts.
+4. Add the `test:golden:bless` and `test:golden` npm scripts.
 5. Add the new task file with `ownedPaths` covering only the new
    files plus the determinism-doc paragraph.
 6. Update the CI task acceptance criteria.
@@ -771,7 +771,7 @@ noisy on shared CI runners.
 
 **Files to Update:**
 
-- [package.json](../../package.json) — add `bench:engine` script.
+- [package.json](../../package.json) — add `test:bench:engine` script.
 - [tasks/mvp/01-engine-core/10-github-actions-ci.md](../../tasks/mvp/01-engine-core/10-github-actions-ci.md)
   — add a non-gating bench step + PR comment behavior.
 
@@ -936,7 +936,7 @@ change `ownedPaths`):
       `tasks/mvp/01-engine-core/10-github-actions-ci.md` to add
       `npm run test:ui-smoke`, `npm run test:golden`,
       `npm run test:coverage`, `npm run test:replays`, and the
-      non-gating `bench:engine` step.
+      non-gating `test:bench:engine` step.
 - [ ] Edit each of the four multiplayer tasks (3, 5, 6, 7) to
       require passing the corresponding chaos scenario.
 - [ ] Edit

@@ -1,7 +1,5 @@
 # Live Preview Panel — Unit Card
 
-Status: planned
-
 Module: [Content Editor (M4)](../04-content-editor.md)
 
 Description:

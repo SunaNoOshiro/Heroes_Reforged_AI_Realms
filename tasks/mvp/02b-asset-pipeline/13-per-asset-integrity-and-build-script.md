@@ -1,7 +1,5 @@
 # Per-Asset Integrity + Build Script
 
-Status: planned
-
 Module: [Asset Pipeline & Content Pack Architecture (M0/M1)](../02b-asset-pipeline.md)
 
 Description:
@@ -30,7 +28,7 @@ Outputs:
 - Extension of `src/engine/pack-validator.ts` to fetch each asset,
   compute SHA-256 via WebCrypto's `crypto.subtle.digest`, and emit
   `pack.error.asset.integrity` on mismatch.
-- New `npm run build:asset-index` script entry.
+- New `npm run generate:asset-index` script entry.
 
 Owned Paths:
 - `scripts/build-asset-index.mjs`
@@ -45,7 +43,7 @@ Dependencies:
 - mvp.02b-asset-pipeline.06-pack-completeness-validator-all-required-assets-present
 
 Acceptance Criteria:
-- Running `npm run build:asset-index` against the canonical
+- Running `npm run generate:asset-index` against the canonical
   emberwild pack rewrites `sha256` and `bytes` for every entry from
   the on-disk file (or a deterministic placeholder when the file is
   absent in this planning-first repo).
@@ -62,7 +60,7 @@ Acceptance Criteria:
 - Schema reference: `content-schema/schemas/asset-index.schema.json`.
 
 Verify:
-- npm run build:asset-index -- --check
+- npm run generate:asset-index -- --check
 - npm run validate
 
 Estimated Time:

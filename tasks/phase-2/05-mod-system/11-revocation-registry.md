@@ -1,7 +1,5 @@
 # Revocation Registry (signed list + client check + replay fallback)
 
-Status: planned
-
 Module: [Pack Runtime / Mod System (M4)](../05-mod-system.md)
 
 Description:

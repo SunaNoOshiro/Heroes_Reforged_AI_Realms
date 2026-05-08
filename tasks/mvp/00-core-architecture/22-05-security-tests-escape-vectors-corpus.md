@@ -1,7 +1,5 @@
 # Security Tests — Escape-Vectors Corpus & CI Gate
 
-Status: planned
-
 Module: [Core Architecture Contracts (M0)](../00-core-architecture.md)
 
 Description:

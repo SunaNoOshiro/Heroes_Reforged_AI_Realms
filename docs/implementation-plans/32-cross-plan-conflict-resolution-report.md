@@ -241,7 +241,7 @@ and acquires runtime once the cluster's first runtime task lands:
   (`npm run validate:balance-corridor-parity`, wired into
   `validate`)
 - [`scripts/build-balance-constraints.mjs`](../../scripts/build-balance-constraints.mjs)
-  (`npm run build:balance-constraints`)
+  (`npm run generate:balance-constraints`)
 - [`scripts/check-storage-budget.mjs`](../../scripts/check-storage-budget.mjs)
   (`npm run validate:storage-budget`, wired into `validate`)
 
