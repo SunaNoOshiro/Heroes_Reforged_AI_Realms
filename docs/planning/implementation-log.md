@@ -887,10 +887,12 @@ Closed the synthesis-layer findings from
 - **Decision-log + provenance gate** — created
   [`docs/planning/decision-log.md`](./decision-log.md) (DEC-001
   ratifies the DEFEND `250 permille` lock; DEC-002 captures the
-  IP-neutralization rules) and
-  [`scripts/check-decision-provenance.mjs`](../../scripts/check-decision-provenance.mjs).
+  IP-neutralization rules) and `scripts/check-decision-provenance.mjs`.
   The gate fails when an archive `Locked` claim is absent from both
   canonical sources and the decision log.
+  *(Historical: the provenance gate and DEC-001/DEC-002 entries were
+  retired 2026-05-09 — rationale moved inline to canonical sources;
+  see git history at that date for the full diff.)*
 - **Runtime requirements** — authored
   [`docs/architecture/runtime-requirements.md`](../architecture/runtime-requirements.md)
   with RR-01…RR-09 (UI shell DOM, WebGL2 floor + Canvas-2D fallback,

@@ -5,6 +5,16 @@ Module: [Tactical Combat (M2)](../09-tactical-combat.md)
 Description:
 Implement the DEFEND command. When a stack defends, incoming damage while the DEFENDING flag is set is reduced by a locked constant `defendDamageReductionPermille = 250` (25% reduction). The reduction is calculated deterministically using fixed-point integer math: `damageAfterDefend = damage × (1000 - 250) // 1000 = damage × 750 // 1000`.
 
+Rationale (locked 2026-04-25):
+A flat ratio is closed-form, replay-stable, and trivially testable. A
+DEF-scaled variant adds a parameter without meaningfully changing
+balance at the early-game numbers where DEFEND is most often used. A
+future ruleset that wants a scaled variant lands as a separate
+constant in this same task family; it does not edit
+`defendDamageReductionPermille`. This task spec is the canonical
+record for the locked value; archive references to "DEFEND = 25%
+reduction" or "250 permille" resolve here.
+
 Read First:
 - [`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)
 - [`research/deep-research-report.md`](../../../research/deep-research-report.md) (Section 5, combat math constants)

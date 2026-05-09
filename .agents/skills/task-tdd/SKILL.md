@@ -123,23 +123,40 @@ task's module class AND coverage has not regressed:
 npm run tasks:done -- <task-id>
 ```
 
-`tasks:done` re-runs the task's `verifyCommands` (which includes
-`validate:mutation-score` and `validate:coverage-floor`). The status
-flip to `done` only happens if every command exits 0. Do not hand-edit
-[`tasks/task-status.json`](../../../tasks/task-status.json) to skip
-this gate — the file is restricted (see [AGENTS.md](../../../AGENTS.md)).
+`tasks:done` re-runs the task's `verifyCommands`. The chain for code-
+path tasks is **structural pre-checks first, then the mutation gate**:
+
+1. `npm run validate` (the repo aggregate)
+2. `npm test`
+3. `validate:duplication`, `validate:smells`, `validate:dead-code` —
+   structural pre-checks. Failures route to the
+   [`structural-checks`](../structural-checks/SKILL.md) skill, which
+   owns the right-fix shape per category and the anti-cheat rules
+   that prevent agents from gaming the gate by deletion or rule
+   suppression.
+4. `validate:mutation-score`, `validate:coverage-floor` — the
+   behavior gate this skill hands off to.
+
+The status flip to `done` only happens if every command exits 0. Do
+not hand-edit [`tasks/task-status.json`](../../../tasks/task-status.json)
+to skip this gate — the file is restricted (see
+[AGENTS.md](../../../AGENTS.md)).
 
 ## Picking the right task
 
 The repo has a task navigator. Use it instead of scanning `tasks/` by hand.
 
-- `npm run tasks:next` — tasks whose dependencies are all `done`,
-  plus any in-progress task. Best entry point.
-- `npm run tasks:next -- --hot` — order ready tasks by transitive
-  fan-out (most-unblocking first).
-- `npm run tasks:next -- --phase=mvp` — restrict to the MVP queue.
+- `npm run tasks:pick` — the **single recommended next task** with an
+  explicit action label (`continue` / `revalidate` / `implement`) on
+  stderr. Best entry point for sequential work.
+- `npm run tasks:next` — full ready queue (planned tasks whose
+  dependencies are satisfied — `done` or `revalidate` — plus any
+  in-progress task). Useful for parallel agent dispatch with
+  `--phase=mvp --hot --json`.
 - `npm run tasks:show -- <id>` — full record for one task.
 - `npm run tasks:start -- <id>` — mark in-progress (writes the ledger).
+- `npm run tasks:revalidate -- <id>` — promote a `revalidate`-status
+  task (work was completed pre-gate) to a real `done`.
 - `npm run tasks:status` — overall and per-module progress.
 - `npm run validate:tasks` — task-system invariants
   (dependency cycles, missing screens, etc.).

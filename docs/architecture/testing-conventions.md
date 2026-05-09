@@ -194,9 +194,7 @@ Pinned per Plan 32 § PI-3:
   via `node --experimental-strip-types --test` **only until the
   Vite/TS bootstrap task lands**. That task migrates the existing
   `node:test` files to the Vitest API and rewires `npm test` to
-  invoke Vitest, per
-  [`docs/planning/decision-log.md`](../planning/decision-log.md)
-  DEC-003. After that, the runner is Vitest and the StrykerJS
+  invoke Vitest. After that, the runner is Vitest and the StrykerJS
   mutation-test gate (owned by
   [`mvp.02-tooling.06-mutation-test-gate`](../../tasks/mvp/02-tooling/06-mutation-test-gate.md))
   runs scoped to each task's `ownedPaths` before
@@ -210,3 +208,47 @@ Pinned per Plan 32 § PI-3:
   / jsdom features, and StrykerJS does not mutate `scripts/`. The
   trust-anchor `node --test scripts/__tests__/*.test.mjs` invocation
   in `package.json` is the canonical wiring.
+
+## 9. Locked runner + mutation-gate values (2026-05-06)
+
+The choices below are repo-owned and threshold changes go through a
+separate PR with a written rationale, not a drive-by tweak.
+
+- **Runner:** Vitest 4.x.
+- **Mutation framework:** StrykerJS 9.x via
+  `@stryker-mutator/vitest-runner`.
+- **Coverage analysis:** `perTest` (Stryker's
+  [per-test analysis mode](https://stryker-mutator.io/docs/stryker-js/configuration/#coverageanalysis-string)
+  that gives a 5–10× speedup over the off / all alternatives).
+- **Mutation-score floors** (kills/total):
+
+  | Module class | Floor |
+  |---|---|
+  | `engine`, `rules`, `content-schema`, `content-runtime`, `net`, `shared` | 80 % |
+  | `contracts`, `services` | 75 % |
+  | `ui`, `renderer` | 65 % |
+
+- **Coverage floors** (lines / branches):
+
+  | Module class | Lines | Branches |
+  |---|---|---|
+  | `engine`, `rules`, `content-schema`, `content-runtime`, `net`, `shared` | 90 % | 80 % |
+  | `contracts`, `services` | 80 % | 70 % |
+  | `ui`, `renderer` | 70 % | 60 % |
+
+The thresholds and class assignments live in
+[`scripts/lib/module-classes.mjs`](../../scripts/lib/module-classes.mjs).
+A future "include `src/audio/`" change lands in that one file.
+
+**Rationale.** `node:test` has no first-class StrykerJS plugin; the
+command-runner workaround loses `perTest` coverage analysis (the
+5–10× speedup that makes mutation testing affordable per task).
+Mutation score is the only gate that catches the "test executes the
+line but never asserts on the output" failure mode that pure
+coverage misses — exactly the failure mode most likely under
+autonomous AI execution. UI/renderer get lower floors because
+mutation score is noisier on presentation code (snapshot tests,
+DOM-event sequencing). Anti-cheat rules (no source deletion, no
+assertion softening, no threshold lowering, no silent excludes, no
+unjustified `// Stryker disable`) are documented in
+[`.claude/skills/mutation-test/SKILL.md`](../../.claude/skills/mutation-test/SKILL.md).

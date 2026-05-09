@@ -1,492 +1,197 @@
-## Reality
+# Heroes Reforged AI Realms
 
-Read first if you need to understand the full project. The list is
-clustered by concern; intra-cluster numbering is stable so new
-entries append within a cluster rather than renumbering the whole
-list.
+A deterministic turn-based strategy game with extensible content
+packs. Three contracts dominate every change here:
 
-### Read first — Determinism core (1–4)
+1. **Determinism.** Saves, replays, and multiplayer must be byte-
+   identical for the same inputs.
+2. **Content packs are the extension boundary.** New factions, worlds,
+   spells, artifacts, and animations enter as pack content — not
+   engine branches.
+3. **Stable IDs are public API.** Renaming an ID requires a migration.
 
-1. [README.md](README.md)
-2. [docs/architecture/overview.md](docs/architecture/overview.md)
-3. [docs/architecture/determinism.md](docs/architecture/determinism.md)
-4. [docs/architecture/edge-cases-policy.md](docs/architecture/edge-cases-policy.md)
-   — cross-cutting policy for invalid commands, current-actor gate,
-   stale references, input conflicts, zero-resource transactions,
-   overflow & saturation, negative resources, save gating,
-   mid-combat disconnect, locale swap, asset-load failure,
-   wall-clock readers, tab backgrounding, storage quota
+For the architecture map, see
+[`docs/architecture/INDEX.md`](docs/architecture/INDEX.md). For
+per-area rules, see [`.claude/rules/`](.claude/rules/) (loads on
+demand). For decisions, see
+[`docs/planning/decision-log.md`](docs/planning/decision-log.md).
 
-### Read first — Content platform (5–9)
+## Hard constraints (CI-enforced)
 
-5. [docs/architecture/content-platform.md](docs/architecture/content-platform.md)
-6. [docs/architecture/pack-contract.md](docs/architecture/pack-contract.md)
-7. [docs/architecture/content-system-policy.md](docs/architecture/content-system-policy.md)
-   — cross-pack policy: namespace pattern, dependency resolution,
-   override precedence, asset integrity, locale merge, balance corridor,
-   error codes, canonical-packs registry. Linked from
-   [pack-resolver.md](docs/architecture/pack-resolver.md) and
-   [pack-error-codes.md](docs/architecture/pack-error-codes.md).
-8. [docs/architecture/schema-matrix.md](docs/architecture/schema-matrix.md)
-9. [docs/architecture/effect-registry.md](docs/architecture/effect-registry.md)
-10. [docs/architecture/glossary.md](docs/architecture/glossary.md)
-
-### Read first — UI surface (11–28)
-
-11. [docs/architecture/ui-technology-choice.md](docs/architecture/ui-technology-choice.md)
-    — DOM-side framework, state binding, z-stack, localization, fonts,
-    build flags
-12. [docs/architecture/ui-renderer-seam.md](docs/architecture/ui-renderer-seam.md)
-    — DOM ↔ canvas seam, input routing, hit-test API, resize protocol
-13. [docs/architecture/screen-scaling.md](docs/architecture/screen-scaling.md)
-    — virtual stage, aspect, hi-DPI, filter modes, breakpoints
-14. [docs/architecture/ui-component-resolver.md](docs/architecture/ui-component-resolver.md)
-    — `data-component` registry, reuse policy, missing-component fallback
-15. [docs/architecture/ui-frame-lag-contract.md](docs/architecture/ui-frame-lag-contract.md)
-    — single-player lag, optimistic UI, M5 lockstep, context loss, replay
-16. [docs/architecture/ui-state-contract.md](docs/architecture/ui-state-contract.md)
-    — component-state matrix, selector purity, tooltip lifecycle,
-    command lifecycle, undo/redo (map editor)
-17. [docs/architecture/ui-routing.md](docs/architecture/ui-routing.md)
-    — screen-router FSM, transition graph, modal stack, dismissal policy
-18. [docs/architecture/ui-input-arbitration.md](docs/architecture/ui-input-arbitration.md)
-    — single-emit per gesture, Esc precedence ladder, animation gates
-19. [docs/architecture/ui-gestures.md](docs/architecture/ui-gestures.md)
-    — gesture taxonomy, drag contract, drop acceptance
-20. [docs/architecture/ui-hotkeys.md](docs/architecture/ui-hotkeys.md)
-    — hotkey registry, focus order, tab-trap, focus restoration
-21. [docs/architecture/ui-input-modalities.md](docs/architecture/ui-input-modalities.md)
-    — mouse / touch / keyboard / gamepad bridging
-22. [docs/architecture/mechanics-coverage.md](docs/architecture/mechanics-coverage.md)
-    — mechanic scope SSOT (mvp / phase-2 / phase-3 / deferred / out-of-scope)
-23. [docs/architecture/performance.md](docs/architecture/performance.md)
-    — hardware tiers, per-frame CPU budget, GC budget, memory budget,
-    entity ceilings, AI compute budget, allocation policy
-24. [docs/architecture/atlas-pipeline.md](docs/architecture/atlas-pipeline.md)
-    — atlas-generation pipeline (pinned packer, deterministic invocation,
-    publish step ordering)
-25. [docs/architecture/ai-contract.md](docs/architecture/ai-contract.md)
-    — gameplay-AI runtime contract: input view projection, worker
-    protocol, per-turn budget table, cancellation, parallelism,
-    decision log, BotProvider, cheats. Provider-backed content
-    generation lives in `ai-integration.md`.
-26. [docs/planning/implementation-log.md](docs/planning/implementation-log.md)
-27. [docs/architecture/diagrams/](docs/architecture/diagrams/) — per-scenario
-    Mermaid flows: game startup, race → castle rendering, battle attack
-    sequence, asset loading per context, localization, save/load. Read
-    a single `<id>.md` to understand one runtime behavior end-to-end.
-28. [docs/architecture/wiki/screens/](docs/architecture/wiki/screens/) —
-    numbered per-screen UI packages. Each package contains
-    `mockup.html` for visuals, `spec.md` for components and bindings,
-    `interactions.md` for per-control behavior, `data-contracts.md` for
-    schemas/config/localization/assets, and `architecture.md` for screen
-    logic diagrams. `index.json` assigns each package to one UI group;
-    package numbers follow that group order, and the wiki sidebar renders
-    those groups directly. Read all five package files together when
-    implementing a UI component.
-
-### Read first — Engine support (29–34)
-
-29. [docs/architecture/side-effect-matrix.md](docs/architecture/side-effect-matrix.md)
-    — per-`src/<module>` ledger of permitted vs. forbidden side
-    effects. Read with [determinism.md](docs/architecture/determinism.md)
-    and [state-flow.md](docs/architecture/state-flow.md).
-30. [docs/architecture/non-functional-requirements.md](docs/architecture/non-functional-requirements.md)
-    — global NFR matrix: frame budget, RAM ceiling, latency budgets,
-    save/load latency, cold-start time, target FPS, owning module per
-    metric, verification harness per metric.
-31. [docs/architecture/testing-conventions.md](docs/architecture/testing-conventions.md)
-    — DI convention, fake catalogue location, deterministic-engine
-    mock policy, per-module unit-test rubric, fuzz/property targets.
-32. [docs/architecture/error-taxonomy.md](docs/architecture/error-taxonomy.md)
-    — error codes, severities, user-facing vs internal split, schema
-    for error records.
-33. [docs/architecture/hot-reload-flow.md](docs/architecture/hot-reload-flow.md)
-    — exact re-validation order in dev hot-reload (manifest →
-    asset-index → schema-validate → registry-rebuild → engine-reload).
-34. [docs/architecture/asset-path-resolution.md](docs/architecture/asset-path-resolution.md)
-    — editor-time string lookups vs runtime registry resolution.
-
-### Read first — Operations (35–38)
-
-35. [docs/architecture/runtime-requirements.md](docs/architecture/runtime-requirements.md)
-    — load-bearing runtime preconditions (UI shell, WebGL2 floor,
-    Web Workers, Web Crypto, IndexedDB quota, time source, gzip pin,
-    browser engine floor, cross-environment serializer parity).
-36. [docs/architecture/observability.md](docs/architecture/observability.md)
-    — Logger / MetricsSink interfaces, per-match anonymous-stats
-    schema, required-emissions catalogue, privacy redaction rules.
-37. [docs/architecture/error-ux.md](docs/architecture/error-ux.md)
-    — surface decision matrix (toast / inline / modal / log-only),
-    code → surface mapping, localization-key convention,
-    `error.shown` telemetry rule.
-38. [docs/operations/rollback-playbook.md](docs/operations/rollback-playbook.md)
-    — content / engine / save rollback, kill-switch policy, hot-fix
-    migration, incident-response RACI.
-
-### Read first — Decision and policy registers (39–47)
-
-39. [docs/planning/decision-log.md](docs/planning/decision-log.md)
-    — append-only register of locked decisions; provenance gate for
-    `docs/archive/AUDIT-*` claims.
-40. [docs/planning/deferred.md](docs/planning/deferred.md)
-    — single register of deferred / out-of-scope items (`DEF-NNN`).
-41. [docs/architecture/data-inventory.md](docs/architecture/data-inventory.md)
-    — single source of truth for every persisted field (medium,
-    sensitivity tier, retention, wipe scope). The `WIPE_LOCAL_DATA`
-    handler iterates this document.
-42. [docs/architecture/persistence.md](docs/architecture/persistence.md)
-    — closed allowlist of storage media; per-slice mapping;
-    `localStorage` / cookie ban.
-43. [docs/architecture/permissions.md](docs/architecture/permissions.md)
-    — closed allowlist of OS / browser APIs.
-44. [docs/architecture/ugc-safety.md](docs/architecture/ugc-safety.md)
-    — text / binary / capability sanitization contracts for UGC and
-    AI-generated payloads.
-45. [docs/architecture/security-model.md](docs/architecture/security-model.md)
-    — symmetric input-only lockstep threat model: what is detected,
-    what is structurally impossible to hide, mitigations in this
-    codebase, and product gating for ranked / tournament / spectator
-    modes. Cross-linked from `determinism.md`, `pack-contract.md`,
-    and the `77-multiplayer-game` screen package.
-46. [docs/architecture/trust-boundaries.md](docs/architecture/trust-boundaries.md)
-    — single trust contract: the "client is fully untrusted" axiom,
-    the trusted-core declaration, the per-component "trusts /
-    does not trust" matrix, the worker-boundary detail, the player-
-    report correlation rule, and the identity gap. Companion docs:
-    [`authority.md`](docs/architecture/authority.md),
-    [`untrusted-strings.md`](docs/architecture/untrusted-strings.md),
-    [`fail-loud.md`](docs/architecture/fail-loud.md),
-    [`desktop-sandboxing.md`](docs/architecture/desktop-sandboxing.md).
-47. [SECURITY.md](SECURITY.md) — disclosure surface + GDPR
-    72-hour breach trigger. Operational machinery is folded
-    into one doc:
-    [`docs/operations/services-runtime-rules.md`](docs/operations/services-runtime-rules.md)
-    (logger pipeline, channel + retention, spike thresholds,
-    SLOs, containment runbooks, crash-report rules,
-    metrics-endpoint contract).
-
-For a single browseable view of architecture docs, general flow diagrams,
-and numbered UI screen packages, open
-[`docs/architecture/architecture-wiki.html`](docs/architecture/architecture-wiki.html)
-directly — it is regenerated by `npm run generate:wiki`. The screen
-package files remain the canonical artifacts; the wiki is a read-only
-viewer.
-
-## Protect These Rules
-
-- gameplay records never embed raw asset paths
-- runtime code consumes IDs, manifests, and registries
-- packs are the extension boundary
-- stable IDs are public API
-- schema evolution is additive-first and migration-backed
-- missing presentation may fall back; missing gameplay requirements must
-  fail loudly
-- saves, replays, and multiplayer must remain deterministic
-- UI is a presentation boundary: future UI redesigns are allowed by
-  updating the relevant screen package first, while preserving
-  deterministic gameplay, stable IDs, and save/replay contracts. See
-  [docs/architecture/wiki/README.md](docs/architecture/wiki/README.md#ui-evolution-policy).
-- every persisted field is registered in
-  [`data-inventory.md`](docs/architecture/data-inventory.md); adding a
-  new persistent slice without an inventory row is a CI failure
-- OS / browser API usage is bound by
-  [`docs/architecture/permissions.md`](docs/architecture/permissions.md);
-  adding a new API requires an architecture amendment
-- all persisted state lives in IndexedDB unless
-  [`persistence.md`](docs/architecture/persistence.md) exempts it;
-  `localStorage` and `document.cookie` are banned in `src/`
-- information secrecy is **not** provided by symmetric input-only
-  lockstep; do not design a multiplayer feature that depends on
-  hidden information without first reading
-  [`security-model.md`](docs/architecture/security-model.md) and
-  gating it behind the friendly / closed-beta product surface
-- every byte from a peer browser, DataChannel, WebSocket frame,
-  pack archive, save file, AI prompt, AI completion, or worker
+- Gameplay records never embed raw asset paths; runtime consumes IDs,
+  manifests, and registries.
+- Every persisted field is registered in
+  [`docs/architecture/data-inventory.md`](docs/architecture/data-inventory.md).
+  New persistent slices without an inventory row fail CI.
+- All persisted state lives in IndexedDB unless
+  [`persistence.md`](docs/architecture/persistence.md) exempts it.
+  `localStorage` and `document.cookie` are banned in `src/`.
+- OS / browser API usage is bounded by
+  [`permissions.md`](docs/architecture/permissions.md). New APIs
+  require an architecture amendment.
+- Schema evolution is additive-first; alias before remove. The
+  lifecycle is in
+  [`enum-lifecycle-policy.md`](docs/architecture/enum-lifecycle-policy.md).
+- Missing presentation may fall back; missing gameplay requirements
+  must fail loudly per
+  [`fail-loud.md`](docs/architecture/fail-loud.md).
+- Information secrecy is **not** provided by symmetric input-only
+  lockstep. Multiplayer features that depend on hidden information
+  must be gated per
+  [`security-model.md`](docs/architecture/security-model.md).
+- Every byte from a peer browser, DataChannel, WebSocket frame, pack
+  archive, save file, AI prompt, AI completion, or worker
   `postMessage` is **adversarial input** until validated by a named
   gate per
-  [`trust-boundaries.md`](docs/architecture/trust-boundaries.md)
-  § 3 — the "client is fully untrusted" axiom subsumes every
-  per-component rule below it
+  [`trust-boundaries.md`](docs/architecture/trust-boundaries.md).
+- The repo license is MIT (see [LICENSE](LICENSE)). New deps must
+  satisfy
+  [`dependency-policy.md`](docs/architecture/dependency-policy.md).
 
-## Folder Guide
+## Restricted files (do not edit)
 
-- `content-schema/`
-  Canonical JSON schemas and canonical examples.
-- `src/`
-  Future runtime code.
-- `resources/`
-  Future packs and assets.
-- `docs/architecture/`
-  Design rules.
-- `docs/planning/`
-  Milestones, status, and execution order.
-- `tasks/`
-  Detailed implementation work files.
-- `research/`
-  Internal baselines and source notes for balance work.
-- `services/`
-  Optional backend adapters such as AI gateway or signaling.
+The canonical list is in
+[`.agents/settings.json#permissions.deny`](.agents/settings.json) and
+[`.agents/codex.config.toml`](.agents/codex.config.toml). Both are
+read by their respective harnesses and enforced at the tool layer.
+**Do not edit any path on those lists** without explicit owner
+approval — surface the proposed diff first.
 
-## Engineering Guide
+Bypasses are forbidden:
 
-Preferred stack when implementation starts:
+- `git commit --no-verify`, `git push --no-verify`
+- `node -e "…"`, `python -c "…"`, `python3 -c "…"`
+- shell redirection (`>`, `>>`, `tee`, `tee -a`, `sed -i`) into any
+  restricted file
 
-- TypeScript with strict typing
-- React in `src/ui/`
-- deterministic engine code in `src/engine/`
-- rules and formulas in `src/rules/`
-- schema validation and migration in `src/content-schema/`
-- pack loading and override logic in `src/content-runtime/`
+## Workflow
 
-### SOLID-Style Boundaries
+```
+npm run tasks:next            # ready queue (--phase=mvp for autonomous loop)
+npm run tasks:show -- <id>    # one task's full spec
+npm run tasks:start -- <id>   # mark in-progress, regen registry
+… implement, staying within Owned Paths …
+npm run tasks:done -- <id>    # runs verifyCommands; flips status only on success
+```
 
-- Single responsibility:
-  one module should own one kind of concern.
-- Open for extension:
-  prefer adding new records, effect kinds, or handlers over changing old
-  meanings.
-- Liskov-style safety:
-  extended content should still work through the same stable contracts.
-- Interface segregation:
-  keep runtime APIs small and purpose-specific.
-- Dependency inversion:
-  high-level systems depend on schemas, registries, and interfaces, not
-  hardcoded factions or asset files.
+Status lives **only** in
+[`tasks/task-status.json`](tasks/task-status.json) (the ledger);
+per-task `.md` files no longer carry a `Status:` field. Hand-edits
+to the ledger fail `validate:status-ledger`.
 
-### Patterns To Prefer
+For code-path tasks, `verifyCommands` runs (in order):
 
-- composition over inheritance
-- `type` / `kind` discriminated unions
-- arrays of declarative effects
-- shallow named objects like `presentation`, `economy`, `targeting`
-- registries and lookup tables instead of switch-heavy hardcoding
-- adapters at boundaries: pack loader, schema validator, renderer asset
-  resolver
-- pure functions in deterministic code
+1. `npm run validate` — repo-wide invariants.
+2. `npm test` — script unit tests.
+3. **structural pre-checks** — `validate:duplication`,
+   `validate:smells`, `validate:dead-code`.
+4. `npm run test:coverage` — measure coverage.
+5. `npm run test:mutation:changed` — measure mutation score.
+6. **mutation gate** — `validate:mutation-score`,
+   `validate:coverage-floor`.
 
-### Patterns To Avoid
+The trust anchor is the GitHub Actions `Validate Repo Contracts`
+workflow at
+[`.github/workflows/validate.yml`](.github/workflows/validate.yml),
+which re-runs `npm run validate` on a fresh checkout. Branch
+protection on `main` must require it as a status check; without that
+toggle the gate is honor-system only.
 
-- deep inheritance trees
-- feature logic spread across unrelated folders
-- hidden magic fallback behavior
-- raw asset paths in gameplay data
-- hardcoded first-party content in engine code
-- broad god-objects that mix sim, UI, content loading, and rendering
+Treat `Owned Paths`, `Owned Paths (shared)`, and `Dependencies` as
+separate contracts. Dependencies are scheduling constraints only;
+they do **not** grant write permission to the dependency task's
+files.
 
-### Extensibility Rules
+## Skills (auto-trigger)
 
-- new factions, worlds, spells, artifacts, map objects, and animations
-  should be added as content, not engine branches
-- add optional fields before breaking existing shapes
-- use aliases or migrations for renamed IDs
-- prefer capability flags and manifests over special-case code paths
-- keep save/load and network flows pinned to versions and content hashes
+These skills under [`.agents/skills/`](.agents/skills/) own the gate
+doctrine. They are the single source of truth for the gates; this
+file points to them, never duplicates them.
 
-### Workflow
+- **task-tdd** — red → green → refactor cycle for new tasks. Hands
+  off to `mutation-test` once green.
+- **structural-checks** — fix `validate:duplication`,
+  `validate:smells`, `validate:dead-code` failures. Right-fix shapes
+  per category, anti-cheat rules A–E.
+- **mutation-test** — kill mutants by ADDING test assertions only.
+  Anti-cheat A–H. Hands back to `task-tdd` when a refactor is
+  required.
 
-- use `npm run generate:task-system-report` when auditing task-system
-  health or when you need a traceability map from screens/schemas to
-  owning tasks; it writes
-  `docs/planning/task-system-report.md`
-- pick work with `npm run tasks:next` — it resolves dependencies and
-  lists ready tasks; use `npm run tasks:next:mvp` for autonomous MVP
-  execution; do not scan `tasks/` by hand
-- `npm run tasks:show -- <id>` for one task's full spec
-- `npm run tasks:start -- <id>` before implementing; it marks the task
-  in-progress and regenerates `tasks/task-registry.json`
-- `npm run tasks:done -- <id>` runs the task's `verifyCommands` and
-  only flips the task's status to `done` on success. Status lives
-  exclusively in [`tasks/task-status.json`](tasks/task-status.json)
-  (the ledger); per-task `.md` files no longer carry a `Status:`
-  field. Do not hand-edit the ledger — every non-legacy `done` entry
-  is verified by `validate:status-ledger` against git, the
-  implementation-log, and a `verifyCommandsHash` recorded at the
-  flip; any hand-edit fails the gate. The trust anchor for the gate
-  is the GitHub Actions `Validate Repo Contracts` workflow at
-  [`.github/workflows/validate.yml`](.github/workflows/validate.yml),
-  which re-runs `npm run validate` on a fresh checkout. Branch
-  protection on `main` (set in repo settings) must require this
-  workflow as a status check; without that toggle, the gate is
-  honor-system only.
-- before running `npm run tasks:done`, follow the mutation-test gate in
-  [`.claude/skills/mutation-test/SKILL.md`](.claude/skills/mutation-test/SKILL.md):
-  run unit tests, run Stryker scoped to the task's `ownedPaths`, kill
-  surviving mutants by **adding test assertions only** (deleting source,
-  weakening assertions, lowering thresholds, or `// Stryker disable`
-  without an equivalence proof are hard-prohibited cheats), then let
-  `verifyCommands` run `validate:mutation-score` and
-  `validate:coverage-floor`. The skill is the single source of truth for
-  the gate; this bullet is a pointer, not a duplicate.
-- **Agent config layout.** Per-tool harness configuration lives under
-  [`.agents/`](.agents/) as the canonical source. Tool-specific
-  directories (`.claude/`, future `.codex/`) hold symlinks back to the
-  canonical files so each harness reads its expected path while the
-  content stays single-sourced:
-    - [`.agents/settings.json`](.agents/settings.json) — canonical
-      Claude Code permissions; `.claude/settings.json` symlinks to it
-    - [`.agents/skills/`](.agents/skills/) — canonical agent skills;
-      `.claude/skills/` symlinks to it (so any `.agents/skills/<name>/`
-      is automatically visible to Claude Code)
-    - [`.agents/codex.config.toml`](.agents/codex.config.toml) — Codex
-      CLI permission profile. The repo ships
-      [`.codex/config.toml`](.codex/config.toml) as a symlink to it, so
-      Codex auto-picks-up the deny rules when run inside this repo if it
-      supports project-local config. As a fallback (if Codex only reads
-      user-level), symlink to `~/.codex/config.toml` once:
-      `ln -s "$(pwd)/.agents/codex.config.toml" ~/.codex/config.toml`
-- **Restricted files (do NOT edit without explicit owner approval).**
-  These paths form the anti-cheat surface for the task-status and
-  mutation gates. Two harnesses enforce this:
-  Claude Code via [`.agents/settings.json`](.agents/settings.json)
-  `permissions.deny` (resolved through the `.claude/settings.json`
-  symlink); Codex via
-  [`.agents/codex.config.toml`](.agents/codex.config.toml)
-  `permissions.workspace.filesystem` rules (after the symlink
-  install above). All other tools must respect the list by convention.
-  If a task genuinely requires editing one of these paths, surface the
-  proposed diff to the human owner FIRST and wait for explicit
-  approval — do not "just edit" them:
-    - `tasks/task-status.json` (status ledger; only `tasks:done` writes)
-    - `scripts/check-status-ledger.mjs`
-    - `scripts/lib/task-status-ledger.mjs`
-    - `scripts/lib/derive-verify-commands.mjs`
-    - `scripts/tasks.mjs`
-    - `scripts/recheck-done-tasks.mjs`
-    - `scripts/validate-mutation-score.mjs`
-    - `scripts/validate-coverage-floor.mjs`
-    - `scripts/mutation-changed-files.mjs`
-    - `scripts/__tests__/check-status-ledger.test.mjs`
-    - `scripts/__tests__/mutation-changed-files.test.mjs`
-    - `scripts/__tests__/derive-verify-commands.test.mjs`
-    - `scripts/__tests__/recheck-done-tasks.test.mjs`
-    - `stryker.conf.mjs`
-    - `vitest.config.ts`
-    - `.github/workflows/**`
-    - `.agents/settings.json` (and the `.claude/settings.json` symlink)
-    - `.agents/codex.config.toml`
-    - `.claude/settings.local.json`
-    - `docs/planning/decision-log.md`
-    - `.agents/skills/mutation-test/SKILL.md` (and the `.claude/`
-      symlink path)
-  Do NOT use `git commit --no-verify`, `git push --no-verify`,
-  `node -e`, or `python -c` to bypass any of the gates. Do NOT
-  redirect (`>`, `>>`, `tee`, `sed -i`) into any restricted file.
-- use `npm run validate:tasks` to enforce task-system invariants:
-  dependency IDs resolve, dependency cycles are rejected, UI/editor
-  tasks cite screen packages, every screen package has an owning UI
-  task, and every schema has a canonical task reference
-- use `npm run validate` before finishing broad task-system edits; it
-  regenerates the registry and runs links, contracts, cross-refs, and
-  task lint
-- if you edited any `enum: [...]` array or `const:` value inside a
-  schema under `content-schema/schemas/`, run
-  `npm run generate:enum-snapshot` and commit the resulting
-  `content-schema/enums.snapshot.json` diff in the same change. The
-  snapshot is the public contract for save/replay/multiplayer; CI
-  refuses removed values without an alias entry, but additions
-  silently drift the snapshot until you regenerate. The full
-  lifecycle (additive → deprecated → aliased → removed) lives in
-  [`docs/architecture/enum-lifecycle-policy.md`](docs/architecture/enum-lifecycle-policy.md).
-  Never run `generate:enum-snapshot` to "fix" a failing
-  `validate:enums` without first checking whether the failing removal
-  was intentional
-- if you edited any schema under `content-schema/schemas/` that has
-  a generated TypeScript counterpart in
-  [`src/contracts/`](src/contracts/) (currently
-  `renderer-event.schema.json` →
-  [`src/contracts/renderer-event.ts`](src/contracts/renderer-event.ts),
-  and `report-base.schema.json` /
-  `validation-report.schema.json` /
-  `coherence-report.schema.json` /
-  `balance-report.schema.json` →
-  [`src/contracts/reports.ts`](src/contracts/reports.ts)),
-  run `npm run generate:contracts` and commit the resulting
-  `src/contracts/` diff in the same change. The cross-module TS
-  contract surface is the single source of truth that engine,
-  renderer, AI, and UI all `import type` from; drift between schema
-  and TS produces silently divergent boundaries. CI catches drift
-  via `npm run validate:contracts-ts`. The `MAPPINGS` table inside
-  [`scripts/generate-contracts-from-schemas.mjs`](scripts/generate-contracts-from-schemas.mjs)
-  is the canonical list of schema → TS pairs
-- implement the smallest coherent unit, staying within the task's
-  `ownedPaths`
-- treat `Owned Paths`, `Owned Paths (shared)`, and `Dependencies` as
-  separate contracts:
-  - `Owned Paths` are the task's primary write responsibility; only one
-    task should primarily own a path
-  - `Owned Paths (shared)` are additive extension points where another
-    task owns the path; extend them without rewriting earlier behavior
-  - `Dependencies` are scheduling/order constraints only; they do not
-    grant permission to edit the dependency task's files
-- update docs only where the source of truth changes
-- preserve easy future extension over quick local hacks
-- before adding any third-party package or GitHub Action, read
-  [`docs/architecture/dependency-policy.md`](docs/architecture/dependency-policy.md):
-  it owns the SPDX allow/deny list, the dependency-add rubric, and
-  the CVE-response window. The repo's own license is `MIT`; see
-  [`LICENSE`](LICENSE).
-- when authoring a new script or test: scripts under `scripts/`
-  ship as `.mjs` until the Vite/TS bootstrap
-  ([`mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`](tasks/mvp/01-engine-core/02-set-up-vite-plus-typescript-strict-mode-per-module.md))
-  lands; tests under `src/**/__tests__/` are permitted as `.ts`
-  and run via `node --experimental-strip-types --test` **only until
-  that task lands** — after which the runner becomes Vitest per
-  [`docs/planning/decision-log.md`](docs/planning/decision-log.md)
-  DEC-003. Detail in
-  [`testing-conventions.md` § 8](docs/architecture/testing-conventions.md).
+## Engineering boundaries
 
-### Task-System Script Map
+- TypeScript with `strict`, `noUncheckedIndexedAccess`,
+  `exactOptionalPropertyTypes`.
+- React in `src/ui/`; deterministic engine in `src/engine/`; rules in
+  `src/rules/`; schemas in `src/content-schema/`; pack runtime in
+  `src/content-runtime/`.
+- `src/contracts/` is **generated** from `content-schema/schemas/` by
+  `npm run generate:contracts`. Do not hand-edit.
+- Side effects allowed per module are listed in
+  [`side-effect-matrix.md`](docs/architecture/side-effect-matrix.md).
+  Engine and rules are pure-function only.
+- Cross-module imports are bounded by
+  [`module-graph.md`](docs/architecture/module-graph.md). CI catches
+  violations via `npm run validate:arch`.
 
-- `npm run generate:task-registry`
-  Rebuilds `tasks/task-registry.json` from Markdown task files.
-- `npm run generate:task-system-report`
-  Rebuilds `docs/planning/task-system-report.md`, a readable inventory
-  of task counts, screen ownership, schema ownership, and dependency
-  health.
-- `npm run tasks:next`
-  Lists planned tasks whose resolved dependencies are all `done`, plus
-  any in-progress task. Supports `-- --phase=mvp`, `-- --phase=phase-2`,
-  and `-- --phase=phase-3`.
-- `npm run tasks:next:mvp`
-  Shortcut for the MVP-ready queue.
-- `npm run tasks:show -- <id>`
-  Prints one task or module record from the registry.
-- `npm run tasks:start -- <id>`
-  Marks a task in-progress and regenerates the registry.
-- `npm run tasks:done -- <id>`
-  Runs the task's verify commands, then marks it done only on success.
-- `npm run validate:tasks`
-  Fails on task-system issues that block automated execution.
-- `npm run validate:arch`
-  Runs the zero-dependency `scripts/check-module-graph.mjs` against the
-  boundaries in
-  [`docs/architecture/module-graph.md`](docs/architecture/module-graph.md);
-  catches cross-layer imports (e.g. `src/engine/` ↦ `src/renderer/`)
-  and import cycles.
-- `npm run validate:enums`
-  Read-only check that every value in
-  `content-schema/enums.snapshot.json` is still present in the
-  schemas, or has an alias entry plus a migration, or is listed in
-  `content-schema/enums.removed.json`. Wired into `npm run validate`.
-- `npm run generate:enum-snapshot`
-  Manual writer that rebuilds `content-schema/enums.snapshot.json`
-  from the current schemas. Run **only** after an intentional enum
-  change; commit the diff in the same PR.
-- `npm run validate:contracts-ts`
-  Read-only alignment check between schemas under
-  `content-schema/schemas/` and their generated TypeScript
-  counterparts in `src/contracts/`. Wired into `npm run validate`.
-- `npm run generate:contracts`
-  Manual writer that regenerates the schema-derived files in
-  `src/contracts/` from their source schemas. Run after editing any
-  schema listed in the `MAPPINGS` table inside
-  `scripts/generate-contracts-from-schemas.mjs`; commit the diff in
-  the same PR.
-- `npm run validate`
-  Full repo validation; use this before handoff.
+For per-module rules, see
+[`.claude/rules/{engine,ui,content,services,tasks,scripts}.md`](.claude/rules/).
 
-## Contribution Rule
+## After editing
 
-Prefer one canonical explanation over repeated prose. If you move or
-rename something, fix links immediately.
+| Touched | Run |
+|---|---|
+| Any `enum: […]` array or `const:` value in a schema | `npm run generate:enum-snapshot`, commit diff |
+| Schema with TS counterpart in `src/contracts/` | `npm run generate:contracts`, commit diff |
+| Anything broad | `npm run validate` (CI re-runs it on every PR) |
+
+Scripts under `scripts/` ship as `.mjs` until the Vite/TS bootstrap
+task lands; after that the runner becomes Vitest. The locked runner
++ mutation-gate values (Vitest 4.x, StrykerJS 9.x, per-module
+thresholds) live in
+[`testing-conventions.md` § 9](docs/architecture/testing-conventions.md).
+
+## Folder map
+
+- [`content-schema/`](content-schema/) — canonical JSON schemas
+- [`src/`](src/) — runtime code (engine, rules, ui, contracts, …)
+- [`services/`](services/) — backend adapters (signaling, AI gateway)
+- [`docs/architecture/`](docs/architecture/) — design rules; see
+  [`INDEX.md`](docs/architecture/INDEX.md)
+- [`docs/planning/`](docs/planning/) — milestones, decision log
+- [`tasks/`](tasks/) — implementation work files (one per task)
+- [`resources/`](resources/) — packs and assets
+- [`research/`](research/) — internal baselines for balance work
+
+## Patterns
+
+**Prefer:** composition over inheritance, `type` / `kind`
+discriminated unions, declarative effect arrays, registries and lookup
+tables over switch-heavy code, pure functions in deterministic code,
+adapters at boundaries (pack loader, schema validator, renderer asset
+resolver).
+
+**Avoid:** deep inheritance trees, hidden magic fallbacks, raw asset
+paths in gameplay data, hardcoded first-party content in engine code,
+god-objects mixing sim / UI / content / render.
+
+## Agent config layout
+
+Per-tool harness configuration is single-sourced in
+[`.agents/`](.agents/), with tool-specific directories holding
+symlinks back to the canonical files:
+
+- [`.agents/settings.json`](.agents/settings.json) ↔
+  `.claude/settings.json` (Claude Code permissions)
+- [`.agents/skills/`](.agents/skills/) ↔ `.claude/skills/`
+- [`.agents/rules/`](.agents/rules/) ↔ `.claude/rules/`
+- [`.agents/codex.config.toml`](.agents/codex.config.toml) ↔
+  `.codex/config.toml` (Codex CLI permissions)
+
+<!-- Maintainer notes: this file targets <200 lines per Anthropic's
+     CLAUDE.md guidance (code.claude.com/docs/en/memory#write-effective-instructions).
+     Per-module detail moved to .claude/rules/<area>.md (path-scoped,
+     loads on demand). Architecture index moved to
+     docs/architecture/INDEX.md (loads on demand).
+     Restricted-files list is now single-sourced in
+     .agents/settings.json#permissions.deny — no markdown duplicate
+     to drift. -->

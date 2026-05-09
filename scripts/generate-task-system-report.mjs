@@ -55,15 +55,22 @@ function taskMatchesPhase(task, phase) {
   return !phase || task.id.startsWith(`${phase}.`);
 }
 
+// A dep is satisfied by either `done` or `revalidate` — both mean the
+// artifact produced by the upstream task exists. See scripts/tasks.mjs
+// for the canonical SATISFIES_DEPENDENCY set.
+const COMPLETED_STATUSES = new Set(["done", "revalidate"]);
+
 function readyTasks(registry, phase = null) {
-  const done = new Set(
-    registry.tasks.filter((task) => task.status === "done").map((task) => task.id)
+  const completed = new Set(
+    registry.tasks
+      .filter((task) => COMPLETED_STATUSES.has(task.status))
+      .map((task) => task.id)
   );
   return registry.tasks
     .filter((task) => taskMatchesPhase(task, phase))
     .filter((task) => task.status === "planned")
     .filter((task) =>
-      (task.resolvedDependencies || []).every((dependency) => done.has(dependency))
+      (task.resolvedDependencies || []).every((dependency) => completed.has(dependency))
     );
 }
 

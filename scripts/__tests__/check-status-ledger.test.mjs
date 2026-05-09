@@ -86,24 +86,21 @@ test("PASS: planned entry has no integrity requirements", () => {
   assert.deepEqual(failures, []);
 });
 
-test("PASS: legacy:true on an allowlisted task", () => {
-  const allowedId = [...LEGACY_DONE_ALLOWLIST][0];
-  const ledger = {
-    tasks: {
-      [allowedId]: {
-        status: "done",
-        updatedAt: "2026-05-07T12:00:00Z",
-        legacy: true,
-      },
-    },
-  };
+test("PASS: revalidate status has no integrity requirements", () => {
+  // Pre-gate work flips to status:revalidate (not done). The gate
+  // accepts it without completedAtSha / verifyCommandsHash; promotion
+  // to a real done happens via `tasks:revalidate`.
+  const ledger = makeLedger({
+    status: "revalidate",
+    updatedAt: "2026-05-09T12:00:00Z",
+  });
   const { failures } = runLedgerChecks({
     ledger,
-    registry: { tasks: [{ id: allowedId, path: "tasks/whatever.md", verifyCommands: [] }] },
+    registry: makeRegistry(),
     implLog: "",
     ...realGit(),
   });
-  assert.deepEqual(failures, []);
+  assert.deepEqual(failures, [], `expected no failures for revalidate, got: ${failures.join(" | ")}`);
 });
 
 // -------------------------------------------------------------------
@@ -224,14 +221,14 @@ test("CHEAT 6: done entry with no verifyCommandsHash", () => {
   );
 });
 
-test("CHEAT 7: legacy:true on a task NOT in the migration allowlist", () => {
-  // The agent tries to use the legacy exemption to skip integrity
-  // checks on a brand-new task.
+test("CHEAT 7: legacy:true on any entry (field is retired)", () => {
+  // The legacy exemption was retired 2026-05-09 in favor of the
+  // explicit `revalidate` status. Any entry still carrying the field
+  // is rejected.
   const ledger = makeLedger({
     status: "done",
     updatedAt: "2026-05-07T12:00:00Z",
     legacy: true,
-    // no completedAtSha / verifyCommandsHash because legacy supposedly skips them
   });
   const { failures } = runLedgerChecks({
     ledger,
@@ -240,8 +237,8 @@ test("CHEAT 7: legacy:true on a task NOT in the migration allowlist", () => {
     ...realGit(),
   });
   assert.ok(
-    failures.some((f) => f.includes("legacy:true") && f.includes("not in the migration allowlist")),
-    `expected legacy-allowlist failure, got: ${failures.join(" | ")}`,
+    failures.some((f) => f.includes("legacy:true") && f.includes("retired")),
+    `expected legacy-retired failure, got: ${failures.join(" | ")}`,
   );
 });
 
@@ -280,11 +277,12 @@ test("CHEAT 9: registry has a task with no ledger entry", () => {
 // Sanity: the legacy allowlist itself.
 // -------------------------------------------------------------------
 
-test("LEGACY_DONE_ALLOWLIST is frozen at 12 entries", () => {
+test("LEGACY_DONE_ALLOWLIST is empty (legacy field retired 2026-05-09)", () => {
   assert.equal(
     LEGACY_DONE_ALLOWLIST.size,
-    12,
-    "legacy allowlist must stay at 12 entries; extending it requires a decision-log update",
+    0,
+    "legacy field is retired; allowlist must remain empty. Extending it would " +
+    "re-introduce the cheat surface that the revalidate status replaced.",
   );
 });
 

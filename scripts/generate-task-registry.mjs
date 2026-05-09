@@ -56,7 +56,7 @@ function parseModuleMetadata(markdown) {
   };
 }
 
-const VALID_STATUSES = new Set(["planned", "in-progress", "done", "blocked"]);
+const VALID_STATUSES = new Set(["planned", "in-progress", "done", "blocked", "revalidate"]);
 
 async function loadLedgerOnce() {
   if (!(await pathExists(LEDGER_PATH))) return { tasks: {} };

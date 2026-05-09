@@ -4,21 +4,66 @@
 // `tasks:done`, and `tasks:blocked` write here; any other writer is
 // a cheat. `validate:status-ledger` enforces the integrity invariants.
 //
+// Why a single ledger (locked 2026-05-07).
+// `Status:` embedded in 471 .md files made hand-edits invisible in PR
+// diffs and gave every task its own potential cheat surface ("agent
+// flips Status: planned → Status: done by hand and skips
+// `tasks:done`"). Concentrating status into one structured file makes
+// every change a one-line diff in one file, easy to review and easy
+// to gate by CI. The `verifyCommandsHash` field further catches the
+// late-stage cheat (weakening the verify list after marking done)
+// which no per-.md field could detect.
+//
+// Why a CI status check, not CODEOWNERS (locked 2026-05-07).
+// CODEOWNERS was rejected: in a solo repo where the AI agent commits
+// using the human owner's GitHub identity, CODEOWNERS adds friction
+// without cheat-proofness — the agent satisfies the rule trivially
+// by acting as the owner. Only an identity-independent CI status
+// check on a fresh GitHub-hosted runner (which the agent has no
+// token for) is independent of the agent's identity. The trust
+// anchor is the `Validate Repo Contracts` workflow at
+// `.github/workflows/validate.yml` re-running `npm run validate` on
+// every PR. **Manual prerequisite:** the repo owner must enable
+// branch protection on `main` requiring the `validate` check;
+// without that toggle the gate is honor-system.
+//
+// Why `revalidate` instead of `legacy: true` (locked 2026-05-09).
+// The original schema had a `legacy: true` flag-on-`done` for the 12
+// tasks marked done before this ledger existed. That was honest
+// internally but misleading externally — `tasks:status` reported
+// legacy entries as plain "done", inflating the gate-verified count
+// by 12 and hiding the pre-gate gap from the dashboard. Promoting
+// the unverified state to a first-class `revalidate` status surfaces
+// the gap, gives a clear promotion path (`tasks:revalidate`), and
+// keeps the anti-cheat (no future `legacy: true` allowed) intact via
+// the now-empty `LEGACY_DONE_ALLOWLIST` in
+// `scripts/check-status-ledger.mjs` that still rejects on sight.
+//
 // Schema:
 //   {
 //     "lastUpdated": "<ISO-8601>",
 //     "tasks": {
 //       "<taskId>": {
-//         "status": "planned" | "in-progress" | "done" | "blocked",
+//         "status": "planned" | "in-progress" | "done" | "blocked" | "revalidate",
 //         "updatedAt": "<ISO-8601>",
 //         "completedAt": "<ISO-8601>"?,         // done only
 //         "completedAtSha": "<git short sha>"?, // done only
 //         "verifyCommandsHash": "sha256:<hex>"?,// done only
 //         "blockedReason": "<string>"?,         // blocked only
-//         "legacy": true?                       // pre-migration done
 //       }
 //     }
 //   }
+//
+// Status meanings:
+// - planned       — default, work not started.
+// - in-progress   — an agent set this via `tasks:start`.
+// - done          — gate-verified; has completedAtSha + verifyCommandsHash.
+// - blocked       — explicit, with blockedReason recorded.
+// - revalidate    — work was completed pre-gate (or otherwise lacks the
+//                   modern verify trail). Promoted to `done` via
+//                   `tasks:revalidate`, which runs the task's
+//                   verifyCommands and records the hash + the most
+//                   recent commit that touched the task path.
 
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
@@ -26,7 +71,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { pathExists, readUtf8, repoRoot } from "./repo-utils.mjs";
 
-export const VALID_STATUSES = ["planned", "in-progress", "done", "blocked"];
+export const VALID_STATUSES = ["planned", "in-progress", "done", "blocked", "revalidate"];
 export const LEDGER_PATH = path.join(repoRoot, "tasks", "task-status.json");
 
 function nowIso() {
@@ -82,7 +127,6 @@ export async function writeLedger(ledger) {
       "completedAtSha",
       "verifyCommandsHash",
       "blockedReason",
-      "legacy",
     ];
     const known = new Set(fieldOrder);
     for (const f of fieldOrder) {
@@ -125,17 +169,16 @@ export async function setTaskStatus(ledger, taskId, newStatus, options = {}) {
 
   if (newStatus === "done") {
     entry.completedAt = ts;
-    entry.completedAtSha = gitShortSha();
+    // For most flips this is HEAD. The revalidate→done path passes
+    // an explicit `completedAtSha` (the most recent commit that touched
+    // the task path), which we honor here.
+    entry.completedAtSha = options.completedAtSha || gitShortSha();
+    if (options.completedAt) entry.completedAt = options.completedAt;
     if (options.verifyCommands !== undefined) {
       entry.verifyCommandsHash = hashVerifyCommands(options.verifyCommands);
     }
   } else if (newStatus === "blocked" && options.blockedReason) {
     entry.blockedReason = options.blockedReason;
-  }
-
-  // Preserve legacy marker on already-legacy entries to keep audit history.
-  if (prior.legacy && newStatus === "done") {
-    entry.legacy = prior.legacy;
   }
 
   ledger.tasks[taskId] = entry;

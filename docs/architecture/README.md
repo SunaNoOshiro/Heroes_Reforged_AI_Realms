@@ -78,8 +78,9 @@ creator platform.
   kill-switch policy, hot-fix migration, and the incident-response
   RACI table.
 - `../planning/decision-log.md`
-  Append-only register of locked decisions; provenance gate for
-  `docs/archive/AUDIT-*` claims.
+  Register of cross-cutting locked decisions that don't have a single
+  canonical source. Most decisions live inline in the file they
+  govern; this log is the fallback for genuinely cross-cutting ones.
 - `../planning/deferred.md`
   Single register of deferred / out-of-scope items (`DEF-NNN`).
 - `architecture-wiki.html`

@@ -2363,7 +2363,7 @@
     {
       "id": "mvp.00-core-architecture.arch-module-graph",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Module-graph fitness check",
       "path": "tasks/mvp/00-core-architecture/arch-module-graph.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2423,7 +2423,7 @@
     {
       "id": "mvp.00-core-architecture.arch-multi-engine-harness",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Multi-engine harness contract",
       "path": "tasks/mvp/00-core-architecture/arch-multi-engine-harness.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2482,7 +2482,7 @@
     {
       "id": "mvp.00-core-architecture.arch-state-shape",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Top-level GameState shape",
       "path": "tasks/mvp/00-core-architecture/arch-state-shape.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2547,7 +2547,7 @@
     {
       "id": "mvp.00-core-architecture.cmd-cross-actor-ordering",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Cross-actor command ordering",
       "path": "tasks/mvp/00-core-architecture/cmd-cross-actor-ordering.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2620,7 +2620,7 @@
     {
       "id": "mvp.00-core-architecture.cmd-dispatcher-queue",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Dispatcher queue + overflow policy",
       "path": "tasks/mvp/00-core-architecture/cmd-dispatcher-queue.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2679,7 +2679,7 @@
     {
       "id": "mvp.00-core-architecture.cmd-nonce",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Command nonce + deduplication contract",
       "path": "tasks/mvp/00-core-architecture/cmd-nonce.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2741,7 +2741,7 @@
     {
       "id": "mvp.00-core-architecture.det-id-allocator",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Runtime entity-ID allocator",
       "path": "tasks/mvp/00-core-architecture/det-id-allocator.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2797,7 +2797,7 @@
     {
       "id": "mvp.00-core-architecture.det-rng-streams",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Named RNG sub-stream catalogue",
       "path": "tasks/mvp/00-core-architecture/det-rng-streams.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2848,7 +2848,7 @@
     {
       "id": "mvp.00-core-architecture.det-seed-source",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Fresh-session seed-source precedence",
       "path": "tasks/mvp/00-core-architecture/det-seed-source.md",
       "moduleId": "mvp.00-core-architecture",
@@ -2899,7 +2899,7 @@
     {
       "id": "mvp.00-core-architecture.perf-frame-budget",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Frame-time budget &amp; degradation policy",
       "path": "tasks/mvp/00-core-architecture/perf-frame-budget.md",
       "moduleId": "mvp.00-core-architecture",
@@ -9259,7 +9259,7 @@
     {
       "id": "mvp.02b-asset-pipeline.11-content-system-policy-doc",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Content-System Policy Doc",
       "path": "tasks/mvp/02b-asset-pipeline/11-content-system-policy-doc.md",
       "moduleId": "mvp.02b-asset-pipeline",
@@ -17875,7 +17875,7 @@
       "path": "tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md",
       "moduleId": "mvp.09-tactical-combat",
       "modulePath": "tasks/mvp/09-tactical-combat.md",
-      "description": "Implement the DEFEND command. When a stack defends, incoming damage while the DEFENDING flag is set is reduced by a locked constant `defendDamageReductionPermille = 250` (25% reduction). The reduction is calculated deterministically using fixed-point integer math: `damageAfterDefend = damage × (1000 - 250) // 1000 = damage × 750 // 1000`.",
+      "description": "Implement the DEFEND command. When a stack defends, incoming damage while the DEFENDING flag is set is reduced by a locked constant `defendDamageReductionPermille = 250` (25% reduction). The reduction is calculated deterministically using fixed-point integer math: `damageAfterDefend = damage × (1000 - 250) // 1000 = damage × 750 // 1000`. Rationale (locked 2026-04-25): A flat ratio is closed-form, replay-stable, and trivially testable. A DEF-scaled variant adds a parameter without meaningfully changing balance at the early-game numbers where DEFEND is most often used. A future ruleset that wants a scaled variant lands as a separate constant in this same task family; it does not edit `defendDamageReductionPermille`. This task spec is the canonical record for the locked value; archive references to \"DEFEND = 25% reduction\" or \"250 permille\" resolve here.",
       "inputs": [
         "Defending stack's DEF stat",
         "Ruleset constants (defend reduction factor, caps)",
@@ -32436,7 +32436,7 @@
     {
       "id": "phase-2.13-build-pipeline.01-dependency-policy-and-audit-pipeline",
       "kind": "task",
-      "status": "done",
+      "status": "revalidate",
       "title": "Version pinning + action SHA-pinning + workflow hygiene",
       "path": "tasks/phase-2/13-build-pipeline/01-dependency-policy-and-audit-pipeline.md",
       "moduleId": "phase-2.13-build-pipeline",

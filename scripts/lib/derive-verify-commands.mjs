@@ -26,6 +26,16 @@ export function ownsCodePath(task) {
 export function deriveVerifyCommands(task) {
   const cmds = ["npm run validate", "npm test"];
   if (ownsCodePath(task)) {
+    // Structural pre-checks — cheap, fail-fast before mutation/coverage.
+    //   duplication: copy-paste over helper reuse
+    //   smells:      cognitive blowups, identical functions, dup strings
+    //   dead-code:   orphan files, unused exports, unused deps
+    // These prove the code's *shape* is reasonable. The mutation/
+    // coverage steps below still have to prove the *behavior* is pinned.
+    cmds.push("npm run validate:duplication");
+    cmds.push("npm run validate:smells");
+    cmds.push("npm run validate:dead-code");
+
     cmds.push("npm run test:coverage");
     cmds.push("npm run test:mutation:changed");
     cmds.push(`npm run validate:mutation-score -- --task ${task.id} --changed-only`);

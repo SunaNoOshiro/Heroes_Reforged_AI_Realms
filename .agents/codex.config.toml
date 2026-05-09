@@ -44,6 +44,17 @@ allow_login_shell = false
 "stryker.conf.mjs"                                           = "read"
 "vitest.config.ts"                                           = "read"
 
+# --- Structural gates (duplication, smells, dead-code) and their configs ---
+"scripts/validate-duplication.mjs"                           = "read"
+"scripts/validate-smells.mjs"                                = "read"
+"scripts/validate-dead-code.mjs"                             = "read"
+"scripts/validate-suppression-audit.mjs"                     = "read"
+"scripts/validate-knip-ignores.mjs"                          = "read"
+"eslint.config.mjs"                                          = "read"
+".jscpd.json"                                                = "read"
+"knip.json"                                                  = "read"
+"knip.ignore-reasons.json"                                   = "read"
+
 # --- Drift-detection tests (any change must go through explicit approval) ---
 "scripts/__tests__/check-status-ledger.test.mjs"             = "read"
 "scripts/__tests__/derive-verify-commands.test.mjs"          = "read"
@@ -61,6 +72,8 @@ allow_login_shell = false
 ".codex/config.toml"                                         = "read"
 ".agents/skills/mutation-test/SKILL.md"                      = "read"
 ".claude/skills/mutation-test/SKILL.md"                      = "read"
+".agents/skills/structural-checks/SKILL.md"                  = "read"
+".claude/skills/structural-checks/SKILL.md"                  = "read"
 
 # --- Locked decision register (additive only, owner approval required) ---
 "docs/planning/decision-log.md"                              = "read"

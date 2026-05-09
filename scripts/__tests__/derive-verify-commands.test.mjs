@@ -59,11 +59,14 @@ test("docs-only task gets exactly validate + npm test", () => {
   );
 });
 
-test("src/ TS file triggers full code gate (6 commands, in order)", () => {
+test("src/ TS file triggers full code gate (9 commands, in order)", () => {
   const task = { id: "code-task", ownedPaths: ["src/engine/combat.ts"] };
   assert.deepEqual(deriveVerifyCommands(task), [
     "npm run validate",
     "npm test",
+    "npm run validate:duplication",
+    "npm run validate:smells",
+    "npm run validate:dead-code",
     "npm run test:coverage",
     "npm run test:mutation:changed",
     "npm run validate:mutation-score -- --task code-task --changed-only",
@@ -71,19 +74,41 @@ test("src/ TS file triggers full code gate (6 commands, in order)", () => {
   ]);
 });
 
+test("structural pre-checks fire BEFORE the mutation/coverage steps", () => {
+  // Pinning the order: cheap structural gates run first so the
+  // expensive Stryker / coverage runs are skipped when the code is
+  // already smelly. If a future edit reorders these, this test fires.
+  const task = { id: "ord", ownedPaths: ["src/engine/x.ts"] };
+  const cmds = deriveVerifyCommands(task);
+  const idxDup = cmds.indexOf("npm run validate:duplication");
+  const idxSmell = cmds.indexOf("npm run validate:smells");
+  const idxDead = cmds.indexOf("npm run validate:dead-code");
+  const idxCov = cmds.indexOf("npm run test:coverage");
+  const idxMut = cmds.indexOf("npm run test:mutation:changed");
+  assert.ok(idxDup >= 0 && idxSmell >= 0 && idxDead >= 0);
+  assert.ok(idxDup < idxCov, "duplication must precede coverage");
+  assert.ok(idxSmell < idxCov, "smells must precede coverage");
+  assert.ok(idxDead < idxCov, "dead-code must precede coverage");
+  assert.ok(idxCov < idxMut, "coverage must precede mutation");
+});
+
 test("services/ TS file triggers code gate", () => {
   const task = { id: "y", ownedPaths: ["services/signaling/router.ts"] };
   const cmds = deriveVerifyCommands(task);
   assert.ok(cmds.includes("npm run test:mutation:changed"));
   assert.ok(cmds.includes("npm run validate:mutation-score -- --task y --changed-only"));
+  assert.ok(cmds.includes("npm run validate:duplication"));
+  assert.ok(cmds.includes("npm run validate:smells"));
+  assert.ok(cmds.includes("npm run validate:dead-code"));
 });
 
-test("src/ui/ file triggers BOTH code AND ui gates (7 commands)", () => {
+test("src/ui/ file triggers BOTH code AND ui gates (10 commands)", () => {
   const task = { id: "ui-task", ownedPaths: ["src/ui/components/Hero.tsx"] };
   const cmds = deriveVerifyCommands(task);
-  assert.equal(cmds.length, 7);
+  assert.equal(cmds.length, 10);
   assert.ok(cmds.includes("npm run test:mutation:changed"), "code gate should fire");
   assert.ok(cmds.includes('node scripts/verify-ui-smoke.mjs "ui-task"'), "ui gate should fire");
+  assert.ok(cmds.includes("npm run validate:duplication"), "structural pre-check should fire");
 });
 
 test("CHEAT: agent declares only docs/ ownedPaths to skip code gate", () => {
@@ -110,6 +135,7 @@ test("CHEAT: extras in task.verifyCommands cannot REMOVE mandatory commands", ()
   const cmds = deriveVerifyCommands(task);
   assert.ok(cmds.includes("npm run test:mutation:changed"), "mandatory still present");
   assert.ok(cmds.includes("npm run validate:mutation-score -- --task code-task --changed-only"));
+  assert.ok(cmds.includes("npm run validate:duplication"), "structural pre-checks still present");
   assert.ok(cmds.includes("echo bypass"), "extras still appended");
 });
 

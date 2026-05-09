@@ -27,18 +27,20 @@ tasks, screen packages, schemas, or task-system scripts.
 | `npm run generate:task-registry` | Rebuild `tasks/task-registry.json` from task Markdown. |
 | `npm run generate:task-system-report` | Write `docs/planning/task-system-report.md` with inventory, screen ownership, schema ownership, and dependency health. |
 | `npm run validate:tasks` | Fail on unresolved dependencies, dependency cycles, missing UI screen-package links, unowned screen packages, and unreferenced schemas. |
-| `npm run tasks:next` | List planned tasks whose resolved dependencies are done, plus in-progress tasks. |
-| `npm run tasks:next -- --phase=mvp` | List only ready MVP tasks; use `phase-2` or `phase-3` for later phases. |
+| `npm run tasks:pick` | The single recommended next task ID, with the action label (`continue` / `revalidate` / `implement`) on stderr. Canonical entry point for sequential work. |
+| `npm run tasks:pick -- --show` | Same, plus the full task spec. |
+| `npm run tasks:pick -- --json` | Same, machine-readable. Includes the next command to run. |
+| `npm run tasks:next` | List planned tasks whose resolved dependencies are satisfied (`done` **or** `revalidate`), plus in-progress tasks. |
+| `npm run tasks:next -- --phase=mvp` | Scope to a phase: `mvp`, `phase-2`, `phase-3`, or `phase-4`. |
 | `npm run tasks:next -- --hot` | Order ready tasks by transitive fan-out so the most-unblocking task surfaces first. Useful for parallel agents. |
 | `npm run tasks:next -- --json` | Emit machine-readable JSON (id, deps, downstream counts) for tools and parallel orchestrators. |
-| `npm run tasks:next:mvp` | Shortcut for the MVP-ready queue. |
-| `npm run tasks:next:hot` / `tasks:next:hot:mvp` | Shortcut for hot-ordered queues. |
-| `npm run tasks:next:json` | Shortcut for JSON output. |
-| `npm run tasks:next:p2` / `npm run tasks:next:phase-2` | Shortcut for the phase-2-ready queue. |
-| `npm run tasks:next:p3` / `npm run tasks:next:phase-3` | Shortcut for the phase-3-ready queue. |
+| `npm run tasks:status` | Per-module progress and the overall split: done / revalidate / in-progress / planned / blocked. |
 | `npm run tasks:show -- <id>` | Print one task or module record. |
 | `npm run tasks:start -- <id>` | Mark a task in-progress and regenerate the registry. |
 | `npm run tasks:done -- <id>` | Run a task's verify commands and mark it done only if they pass. |
+| `npm run tasks:revalidate -- <id>` | Promote a `revalidate`-status task (work was completed pre-gate) to a real `done` by running its verifyCommands and anchoring `completedAtSha` at the most recent commit that touched the task path. |
+| `npm run tasks:blocked -- <id> "<reason>"` | Mark a task blocked with a reason. |
+| `npm run tasks:lint` | Alias of `validate:tasks`. |
 
 Read `task-system-report.md` as a map, not as the execution queue:
 `tasks:next` tells an agent what can run now; the report tells an agent
@@ -62,9 +64,11 @@ otherwise.
 
 - For the smallest route to a first playable build, follow
   [`docs/planning/solo-build-lane.md`](../docs/planning/solo-build-lane.md).
-- For autonomous MVP execution, start with `npm run tasks:next:mvp`
-  so later-phase work cannot surface before the MVP dependency chain
-  is complete.
+- For sequential work, start with `npm run tasks:pick`. It returns the
+  single highest-priority next task and tells you (via stderr) whether
+  to run `tasks:start`, `tasks:done`, or `tasks:revalidate`.
+- For parallel agents, use `npm run tasks:next -- --phase=mvp --hot --json`
+  to get the impact-ranked machine-readable queue.
 - For strict milestone sequencing, use the module order below plus each
   task file's explicit dependencies.
 - When the listed task numbers and the actual dependency chain differ,

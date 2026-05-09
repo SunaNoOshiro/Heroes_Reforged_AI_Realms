@@ -48,15 +48,17 @@ async function loadHeadJson(relPath) {
 }
 
 // Pure: takes two ledger objects, returns the list of task IDs that
-// transitioned TO done in HEAD that were NOT done at base, excluding
-// legacy:true entries.
+// transitioned TO done in HEAD that were NOT done at base. Only true
+// `done` entries are eligible for re-verification — `revalidate` and
+// other statuses lack a verifyCommandsHash anchor, so there's nothing
+// to re-run against. The retired `legacy: true` field would also be
+// rejected by the gate; no special-case here.
 export function findNewlyDone(baseLedger, headLedger) {
   const newlyDone = [];
   const baseTasks = baseLedger?.tasks || {};
   const headTasks = headLedger?.tasks || {};
   for (const [taskId, headEntry] of Object.entries(headTasks)) {
     if (headEntry.status !== "done") continue;
-    if (headEntry.legacy === true) continue;
     const baseEntry = baseTasks[taskId];
     if (baseEntry?.status === "done") continue;
     newlyDone.push(taskId);

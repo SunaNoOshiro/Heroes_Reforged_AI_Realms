@@ -2,6 +2,15 @@
 
 Module: [Test & Tooling Contracts (M0)](../02-tooling.md)
 
+> **Forward note (2026-05-09):** the `legacy: true` exemption described
+> below was retired and replaced by an explicit `revalidate` status.
+> The 12 entries that originally carried `legacy: true` were migrated
+> to `status: "revalidate"`. Promotion to a real `done` is now done via
+> `npm run tasks:revalidate -- <id>`, which records `completedAtSha`
+> from the most recent commit that touched the task path.
+> `validate:status-ledger` rejects any new entry with `legacy: true`.
+> The original spec is preserved below for historical accuracy.
+
 Description:
 Move task status out of every per-task `.md` file and into a single
 structured ledger at `tasks/task-status.json`. The `Status:` field is

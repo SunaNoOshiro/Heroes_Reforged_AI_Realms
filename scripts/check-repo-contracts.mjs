@@ -1,3 +1,18 @@
+// Repo contracts validator.
+//
+// Beyond the per-rule checks below, this file is the canonical home
+// for one cross-cutting policy: **repository text and content
+// references must remain IP-neutral.** Locked 2026-05-04. The
+// `FORBIDDEN_PATTERNS` array later in this file is the authoritative
+// list of source tokens that may not appear in committed text.
+// Without that policy a future reviewer who notices an unusual
+// rename re-derives the answer from `git log` and risks reverting
+// it. Numeric balance ranges (cost, damage, growth) are expressed as
+// inclusive corridors in `research/deep-research-report.md` rather
+// than as references to any external product's tables. Archive
+// references to renamed mechanics resolve here when the rename
+// predates the canonical patch.
+
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { buildTaskRegistry } from "./generate-task-registry.mjs";

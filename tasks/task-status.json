@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-06T19:31:51.227Z",
+  "lastUpdated": "2026-05-09T10:19:48.114Z",
   "tasks": {
     "mvp.00-core-architecture.22-01-error-formatter-contract": {
       "status": "planned",
@@ -26,54 +26,44 @@
       "updatedAt": "2026-05-06T19:31:51.035Z"
     },
     "mvp.00-core-architecture.arch-module-graph": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.035Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.arch-multi-engine-harness": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.035Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.arch-state-shape": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.036Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.cmd-cross-actor-ordering": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.036Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.cmd-dispatcher-queue": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.037Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.cmd-nonce": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.038Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.det-id-allocator": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.038Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.det-rng-streams": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.038Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.det-seed-source": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.038Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-core-architecture.perf-frame-budget": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.039Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.00-perf.01-bench-harness": {
       "status": "planned",
@@ -424,9 +414,8 @@
       "updatedAt": "2026-05-06T19:31:51.077Z"
     },
     "mvp.02b-asset-pipeline.11-content-system-policy-doc": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.077Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "mvp.02b-asset-pipeline.12-pack-resolver-algorithm": {
       "status": "planned",
@@ -1541,9 +1530,8 @@
       "updatedAt": "2026-05-06T19:31:51.188Z"
     },
     "phase-2.13-build-pipeline.01-dependency-policy-and-audit-pipeline": {
-      "status": "done",
-      "updatedAt": "2026-05-06T19:31:51.188Z",
-      "legacy": true
+      "status": "revalidate",
+      "updatedAt": "2026-05-09T10:19:48.114Z"
     },
     "phase-3.01-multiplayer.01-signaling-server-node-js-websocket-lobby": {
       "status": "planned",

@@ -1,0 +1,34 @@
+{
+  "$comment": [
+    "Reasons for every non-glob entry in knip.json#ignore.",
+    "validate:knip-ignores fails when an ignore entry has no reason here.",
+    "This file is the documented trail for 'why is this orphan allowed?'.",
+    "Keep entries one-line and substantive — 'TODO' / 'placeholder' / 'needed' do not pass."
+  ],
+  "files": {
+    "src/contracts/**": "Generated from content-schema/schemas/. Source of truth is the schema; the .ts is mechanically derived by scripts/generate-contracts-from-schemas.mjs and consumed via type imports.",
+    "src/content-schema/migrations/example-*": "Reference template for the per-version migration shape. Lives in-tree so future migrations can be cargo-culted from it.",
+    "services/shared/log-channels.ts": "Foundational logger primitives. Consumer is the services-runtime task that wires them into the gateway.",
+    "services/shared/logger.ts": "Foundational logger primitives. Consumer is the services-runtime task that wires them into the gateway.",
+    "services/shared/redact.ts": "Foundational PII-redaction helper. Consumer is the services-runtime task; required by docs/operations/services-runtime-rules.md.",
+    "services/turn/scripts/sync-deny-list.ts": "Operational script for the TURN deny-list sync; runs out-of-band, not imported by the runtime graph.",
+    "src/content-runtime/manifest-digest.ts": "Pack-manifest hashing primitive. Consumer is the pack-resolver task.",
+    "src/engine/constants.ts": "Engine-wide deterministic constants. Consumers are the engine systems landing in the engine-core MVP cluster.",
+    "src/engine/security/official-public-key.ts": "Verification anchor for signed official packs. Consumer is the pack-signing task in phase-2.",
+    "src/net/lockstep/turn-timer.ts": "Deterministic turn-timer primitive. Consumer is the lockstep task in the multiplayer cluster.",
+    "src/shared/assert.ts": "Repo-wide invariant guard. Consumers are every engine/rules/contracts module that needs fail-loud asserts.",
+    "src/ui/sanitize.ts": "Untrusted-string ingest filter. Consumer is the schema-validation boundary task; required by docs/architecture/untrusted-strings.md."
+  },
+  "dependencies": {
+    "@stryker-mutator/typescript-checker": "Stryker plugin loaded by stryker.conf.mjs at runtime, not via a static import knip can trace.",
+    "@stryker-mutator/vitest-runner": "Stryker plugin loaded by stryker.conf.mjs at runtime, not via a static import knip can trace.",
+    "@stryker-mutator/api": "Imported only as a JSDoc type in stryker.conf.mjs (`@type`), which knip does not parse.",
+    "@vitest/coverage-v8": "Vitest coverage provider loaded by vitest.config.ts via string name, not a static import.",
+    "globals": "Used inside eslint.config.mjs to spread browser/node global sets into the parser config.",
+    "jscpd": "Invoked via `npx jscpd` from scripts/validate-duplication.mjs; not statically imported.",
+    "knip": "Invoked via `npx knip` from scripts/validate-dead-code.mjs; not statically imported."
+  },
+  "binaries": {
+    "stryker": "CLI invoked by `stryker run` from the test:mutation* npm scripts; provided by @stryker-mutator/core."
+  }
+}

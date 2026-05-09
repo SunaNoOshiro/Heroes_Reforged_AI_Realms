@@ -29,12 +29,14 @@ test("findNewlyDone: only-in-head + done is newly-done", () => {
   assert.deepEqual(findNewlyDone(base, head), ["x"]);
 });
 
-test("findNewlyDone: legacy:true entries are skipped", () => {
+test("findNewlyDone: revalidate entries are NOT newly-done", () => {
   const base = { tasks: {} };
-  const head = { tasks: { x: { status: "done", legacy: true } } };
-  // Legacy entries pre-date the gate; re-running their verifyCommands
-  // would fail because their hash doesn't exist. They're trusted by
-  // the LEGACY_DONE_ALLOWLIST in check-status-ledger.mjs instead.
+  const head = { tasks: { x: { status: "revalidate" } } };
+  // Revalidate entries lack the modern verifyCommandsHash anchor,
+  // so re-running them would have nothing to compare against. They
+  // are promoted to real done via tasks:revalidate, not via the
+  // CI re-check path. The retired legacy:true field is rejected by
+  // validate:status-ledger before this code ever runs.
   assert.deepEqual(findNewlyDone(base, head), []);
 });
 
@@ -108,9 +110,10 @@ test("dedupeCommands: per-task commands are NOT deduped (different task-id)", ()
     ],
   };
   const queue = dedupeCommands(["a", "b"], registry);
-  // Globals (validate, test, test:coverage, mutation:changed) deduped → 4.
+  // Globals (validate, test, validate:duplication, validate:smells,
+  // validate:dead-code, test:coverage, mutation:changed) deduped → 7.
   // Per-task (validate:mutation-score, validate:coverage-floor) × 2 → 4.
-  assert.equal(queue.length, 8);
+  assert.equal(queue.length, 11);
   const cmds = queue.map((q) => q.cmd);
   assert.equal(cmds.filter((c) => c === "npm run validate").length, 1);
   assert.equal(cmds.filter((c) => c === "npm run test:mutation:changed").length, 1);

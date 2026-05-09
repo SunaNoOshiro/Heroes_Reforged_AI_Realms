@@ -1,0 +1,48 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "scripts/*.mjs",
+    "scripts/__tests__/*.test.mjs",
+    "src/**/__tests__/*.test.{ts,tsx}",
+    "src/**/*.smoke.test.{ts,tsx}",
+    "src/**/*.bench.ts",
+    "vitest.config.ts",
+    "stryker.conf.mjs",
+    "tests/**/*.mjs"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "services/**/*.{ts,tsx,mjs}"
+  ],
+  "ignore": [
+    "src/contracts/**",
+    "src/content-schema/migrations/example-*",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/reports/**",
+    "**/.stryker-tmp/**",
+
+    "services/shared/log-channels.ts",
+    "services/shared/logger.ts",
+    "services/shared/redact.ts",
+    "services/turn/scripts/sync-deny-list.ts",
+    "src/content-runtime/manifest-digest.ts",
+    "src/engine/constants.ts",
+    "src/engine/security/official-public-key.ts",
+    "src/net/lockstep/turn-timer.ts",
+    "src/shared/assert.ts",
+    "src/ui/sanitize.ts"
+  ],
+  "ignoreDependencies": [
+    "@stryker-mutator/typescript-checker",
+    "@stryker-mutator/vitest-runner",
+    "@stryker-mutator/api",
+    "@vitest/coverage-v8",
+    "globals",
+    "jscpd",
+    "knip"
+  ],
+  "ignoreBinaries": [
+    "stryker"
+  ]
+}

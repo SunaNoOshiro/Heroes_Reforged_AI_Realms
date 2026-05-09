@@ -4,6 +4,7 @@
     "deny": [
       "Edit(tasks/task-status.json)",
       "Write(tasks/task-status.json)",
+
       "Edit(scripts/check-status-ledger.mjs)",
       "Write(scripts/check-status-ledger.mjs)",
       "Edit(scripts/lib/task-status-ledger.mjs)",
@@ -14,6 +15,7 @@
       "Write(scripts/tasks.mjs)",
       "Edit(scripts/recheck-done-tasks.mjs)",
       "Write(scripts/recheck-done-tasks.mjs)",
+
       "Edit(scripts/validate-mutation-score.mjs)",
       "Write(scripts/validate-mutation-score.mjs)",
       "Edit(scripts/validate-coverage-floor.mjs)",
@@ -30,6 +32,26 @@
       "Write(stryker.conf.mjs)",
       "Edit(vitest.config.ts)",
       "Write(vitest.config.ts)",
+
+      "Edit(scripts/validate-duplication.mjs)",
+      "Write(scripts/validate-duplication.mjs)",
+      "Edit(scripts/validate-smells.mjs)",
+      "Write(scripts/validate-smells.mjs)",
+      "Edit(scripts/validate-dead-code.mjs)",
+      "Write(scripts/validate-dead-code.mjs)",
+      "Edit(scripts/validate-suppression-audit.mjs)",
+      "Write(scripts/validate-suppression-audit.mjs)",
+      "Edit(scripts/validate-knip-ignores.mjs)",
+      "Write(scripts/validate-knip-ignores.mjs)",
+      "Edit(eslint.config.mjs)",
+      "Write(eslint.config.mjs)",
+      "Edit(.jscpd.json)",
+      "Write(.jscpd.json)",
+      "Edit(knip.json)",
+      "Write(knip.json)",
+      "Edit(knip.ignore-reasons.json)",
+      "Write(knip.ignore-reasons.json)",
+
       "Edit(scripts/__tests__/check-status-ledger.test.mjs)",
       "Write(scripts/__tests__/check-status-ledger.test.mjs)",
       "Edit(scripts/__tests__/mutation-changed-files.test.mjs)",
@@ -38,8 +60,10 @@
       "Write(scripts/__tests__/derive-verify-commands.test.mjs)",
       "Edit(scripts/__tests__/recheck-done-tasks.test.mjs)",
       "Write(scripts/__tests__/recheck-done-tasks.test.mjs)",
+
       "Edit(.github/workflows/**)",
       "Write(.github/workflows/**)",
+
       "Edit(.agents/settings.json)",
       "Write(.agents/settings.json)",
       "Edit(.claude/settings.json)",
@@ -50,12 +74,19 @@
       "Write(.agents/codex.config.toml)",
       "Edit(.codex/config.toml)",
       "Write(.codex/config.toml)",
+
       "Edit(.agents/skills/mutation-test/SKILL.md)",
       "Write(.agents/skills/mutation-test/SKILL.md)",
       "Edit(.claude/skills/mutation-test/SKILL.md)",
       "Write(.claude/skills/mutation-test/SKILL.md)",
+      "Edit(.agents/skills/structural-checks/SKILL.md)",
+      "Write(.agents/skills/structural-checks/SKILL.md)",
+      "Edit(.claude/skills/structural-checks/SKILL.md)",
+      "Write(.claude/skills/structural-checks/SKILL.md)",
+
       "Edit(docs/planning/decision-log.md)",
       "Write(docs/planning/decision-log.md)",
+
       "Bash(node -e *)",
       "Bash(python -c *)",
       "Bash(python3 -c *)",
@@ -70,7 +101,10 @@
       "Bash(sed -i * tasks/task-status.json*)",
       "Bash(sed -i * stryker.conf.mjs*)",
       "Bash(sed -i * scripts/check-status-ledger.mjs*)",
-      "Bash(sed -i * scripts/tasks.mjs*)"
+      "Bash(sed -i * scripts/tasks.mjs*)",
+      "Bash(sed -i * eslint.config.mjs*)",
+      "Bash(sed -i * .jscpd.json*)",
+      "Bash(sed -i * knip.json*)"
     ]
   }
 }

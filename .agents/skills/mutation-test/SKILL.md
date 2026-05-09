@@ -30,6 +30,44 @@ Do **not** use this skill for:
 - unrelated lint/coverage questions
 - full-repo CI mutation runs (owned by CI, not this gate)
 
+## Structural Pre-Checks (run automatically before the loop)
+
+`tasks:done` runs structural gates **before** unit tests, so cheap
+problems fail fast and the agent doesn't waste a Stryker run on code
+that's already smelly. The
+[`structural-checks`](../structural-checks/SKILL.md) skill owns the
+fix-side doctrine for these gates (right-fix shapes per category,
+anti-cheat rules A–E, worked examples). The five gates, in order:
+
+1. `npm run validate:duplication` — jscpd over `src/` + `services/`.
+   Egregious clones (≥200 tokens) or project-wide duplication > 1.5 %
+   fails the run. Fix by extracting a shared helper, NOT by deleting
+   the duplicated code (anti-cheat: deletion is rule A below).
+2. `npm run validate:smells` — ESLint with sonarjs + unicorn rules.
+   Fails on identical functions, duplicated string literals, cognitive
+   complexity > 15, collapsible-ifs, useless catches, etc.
+3. `npm run validate:suppression-audit` — anti-cheat for `validate:smells`.
+   Fails on any `// eslint-disable*` line that lacks a substantive
+   `-- reason: <text>` justification (mirrors the
+   `// stryker-equivalent` proof requirement below).
+4. `npm run validate:dead-code` — knip. Fails on orphan files, unused
+   exports, or unused dependencies. Either wire it up or delete.
+5. `npm run validate:knip-ignores` — anti-cheat for `validate:dead-code`.
+   Fails when a new entry in `knip.json#ignore` lacks a substantive
+   reason in `knip.ignore-reasons.json`.
+
+These run on the same `ownedPaths` semantics as the mutation gate.
+They are NOT a substitute for the mutation gate — passing them only
+proves the code's *shape* is reasonable; the mutation gate still has
+to prove the *behavior* is pinned by tests.
+
+The same anti-cheat philosophy (rules A–H below) applies: a clone is
+killed by extracting a shared helper, never by deleting one of the
+clones; a smell is fixed by restructuring, not by suppressing the
+rule. If a sonarjs/unicorn rule does not fit a particular file, the
+fix is a per-file override in `eslint.config.mjs` with a one-line
+justification, not a blanket disable.
+
 ## The Loop — execute in this order, do not skip
 
 1. **Run unit tests scoped to the task's `ownedPaths`.**

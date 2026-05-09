@@ -32,28 +32,13 @@ import {
 const tasksRoot = path.join(repoRoot, "tasks");
 const STATUS_LINE_RE = /^Status:\s*\S+\s*$/m;
 
-// One-shot allowlist of task IDs that were already `done` at
-// migration time and therefore lack `completedAtSha` /
-// `verifyCommandsHash` metadata. Any entry with `legacy: true` whose
-// id is NOT in this list is rejected — no new task may opt out of
-// integrity by setting `legacy: true`.
-//
-// Source: the 12 entries flipped to `done` before the ledger existed.
-// Frozen on 2026-05-07; do not extend without a decision-log entry.
-export const LEGACY_DONE_ALLOWLIST = new Set([
-  "mvp.00-core-architecture.arch-module-graph",
-  "mvp.00-core-architecture.arch-multi-engine-harness",
-  "mvp.00-core-architecture.arch-state-shape",
-  "mvp.00-core-architecture.cmd-cross-actor-ordering",
-  "mvp.00-core-architecture.cmd-dispatcher-queue",
-  "mvp.00-core-architecture.cmd-nonce",
-  "mvp.00-core-architecture.det-id-allocator",
-  "mvp.00-core-architecture.det-rng-streams",
-  "mvp.00-core-architecture.det-seed-source",
-  "mvp.00-core-architecture.perf-frame-budget",
-  "mvp.02b-asset-pipeline.11-content-system-policy-doc",
-  "phase-2.13-build-pipeline.01-dependency-policy-and-audit-pipeline",
-]);
+// The `legacy: true` exemption was retired on 2026-05-09. The 12
+// entries that originally claimed `legacy: true` were migrated to
+// the new `revalidate` status — a first-class status meaning "work
+// was completed but lacks the modern verify trail." Any new entry
+// with `legacy: true` is rejected: the field is no longer a valid
+// schema feature.
+export const LEGACY_DONE_ALLOWLIST = new Set();
 
 function repoRelative(absPath) {
   return path.relative(repoRoot, absPath).split(path.sep).join("/");
@@ -128,20 +113,25 @@ export function runLedgerChecks({
       continue;
     }
 
-    // Legacy allowlist enforcement — applies to ALL legacy entries,
-    // not just done. A `legacy: true` flag on any task not in the
-    // allowlist is rejected; the exemption is a frozen one-shot.
+    // The `legacy: true` field was retired in favor of the explicit
+    // `revalidate` status. Any entry still carrying the flag is
+    // rejected outright — the schema is closed.
     if (entry.legacy === true && !legacyAllowlist.has(taskId)) {
       failures.push(
-        `tasks/task-status.json: '${taskId}' has legacy:true but is not in the migration allowlist — ` +
-        `the legacy exemption is frozen (see check-status-ledger.mjs LEGACY_DONE_ALLOWLIST). ` +
-        `Drop legacy:true and run tasks:done properly, or add a decision-log entry to extend the list.`,
+        `tasks/task-status.json: '${taskId}' has legacy:true — the legacy field was retired ` +
+        `2026-05-09. Migrate to status:"revalidate" (work completed but unverified) and remove ` +
+        `the legacy field, or run tasks:revalidate to promote to a real done.`,
       );
       continue;
     }
 
+    // `revalidate` is the documented "work happened but lacks the modern
+    // verify trail" status. No completedAtSha or verifyCommandsHash is
+    // required (or expected). Promotion to `done` happens via
+    // `tasks:revalidate`, which captures both.
+    if (entry.status === "revalidate") continue;
+
     if (entry.status !== "done") continue;
-    if (entry.legacy === true) continue;
 
     if (!entry.completedAtSha) {
       failures.push(
