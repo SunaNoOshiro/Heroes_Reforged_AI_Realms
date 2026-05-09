@@ -10,8 +10,7 @@ for `DELETE_SAVE_SLOT` and `OVERWRITE_SAVE_SLOT`. Adds
 `UNDO_LAST_DESTRUCTIVE` and `EXPIRE_LAST_DESTRUCTIVE` commands, and
 the non-modal undo toast surfaced by screen
 [`55-save-load`](../../../docs/architecture/wiki/screens/55-save-load/).
-
-Plan 23 § 3.1 (Q438 — "No undo on destructive commit").
+Closes the "no undo on destructive commit" gap.
 
 Read First:
 - [`docs/architecture/undo-policy.md`](../../../docs/architecture/undo-policy.md)

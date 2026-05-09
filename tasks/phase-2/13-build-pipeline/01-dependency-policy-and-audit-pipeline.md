@@ -3,8 +3,7 @@
 Module: [Build Pipeline & Supply-Chain Hygiene (Phase 2)](../13-build-pipeline.md)
 
 Description:
-Land the today-relevant subset of
-[`docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md`](../../../docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md).
+Land the today-relevant subset.
 Pre-implementation, most of the plan's release-signing / SBOM /
 nightly-audit scaffolding is dormant. This task ships the parts
 doing real work today: a committed `.npmrc` with
@@ -17,7 +16,6 @@ guards are deferred until the corresponding artifacts (bundler,
 first release, first Dockerfile, first deferred CVE) actually exist.
 
 Read First:
-- [`docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md`](../../../docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md)
 - [`docs/architecture/dependency-policy.md`](../../../docs/architecture/dependency-policy.md)
 - [`docs/architecture/build-policy.md`](../../../docs/architecture/build-policy.md)
 - [`SECURITY.md`](../../../SECURITY.md)

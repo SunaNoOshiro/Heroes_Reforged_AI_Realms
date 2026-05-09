@@ -1,7 +1,5 @@
-# Build Attestation (Plan 26 — Improvement)
+# Build Attestation
 
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
 > § System Improvements / Data Contracts / Pack signature mandate +
 > engine-build attestation.
 
@@ -62,7 +60,7 @@ signaling-side configuration:
 services/signaling/config/build-attestation.allow.json
 ```
 
-shipped alongside Plan 25's signaling configuration surface. The
+shipped alongside the signaling configuration surface. The
 example file lives at
 `services/signaling/config/build-attestation.allow.example.json` and
 is the placeholder schema for operators.

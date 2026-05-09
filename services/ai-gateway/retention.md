@@ -6,9 +6,6 @@ scrub. Cross-link from the gateway-task surface in
 and the pipeline in
 [`docs/architecture/ai-generation-pipeline.md`](../../docs/architecture/ai-generation-pipeline.md).
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Log floor
 
 | Item | Logged? | Notes |

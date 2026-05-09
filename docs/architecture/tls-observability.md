@@ -3,11 +3,7 @@
 Canonical doctrine for **structured TLS-error logging** with
 **PII redaction**. Wires through the signaling-server logger so
 MITM / cert-substitution attempts produce a signal without
-violating audit 22's privacy contract.
-
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
-> § System Improvements — Observability.
+violating the privacy contract.
 
 Companion docs:
 
@@ -90,10 +86,9 @@ Adding a new code is an enum-lifecycle bump per
 
 - **Sink**: structured JSON to stdout per
   [`signaling-audit-log.md`](./signaling-audit-log.md).
-- **Retention**: 7 days at the host platform. Cross-link to
-  Plan 22's privacy retention schedule for the binding contract;
-  the TLS log inherits the same TTL as the rest of the signaling
-  audit log.
+- **Retention**: 7 days at the host platform. The TLS log inherits
+  the same TTL as the rest of the signaling audit log; the binding
+  retention contract lives in [`privacy.md`](./privacy.md).
 - **Aggregation**: per-IP-bucket rate aggregation runs in the same
   process so a single bucket never exceeds 1 entry per 60 s. This
   prevents a noisy peer from filling the log.
@@ -109,7 +104,7 @@ Adding a new code is an enum-lifecycle bump per
 
 ## 7. Out of scope
 
-- **Alert routing** — owned by Plan 31 (alerting / monitoring infra).
+- **Alert routing** — (alerting / monitoring infra).
 - **Geo-IP enrichment** — explicitly forbidden; would defeat the
   bucket redaction.
 - **Per-peer correlation** — TLS-layer logs do not carry `peerId`

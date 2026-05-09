@@ -7,8 +7,9 @@ Author the `pack-signing.md` doctrine and implement the verifier
 that consumes it. The verifier is a pure function over a parsed
 manifest plus the publisher registry, revocation list, and trust
 store; it returns either a trust tier or a closed rejection
-reason. This task closes Plan 27 § Critical Fix 2 and registers
-the canonical-message tool both signers and verifiers consume.
+reason. This task closes the pack-signing verifier gap and
+registers the canonical-message tool both signers and verifiers
+consume.
 
 Read First:
 - [`docs/architecture/pack-signing.md`](../../../docs/architecture/pack-signing.md)
@@ -54,8 +55,7 @@ Owned Paths:
 - `scripts/check-pack-signing.mjs`
 
 Owned Paths (shared):
-- `content-schema/schemas/manifest.schema.json` — Plan 27
-  contributes the `assetDigest`, `previousKeyId`, `rotationProof`,
+- `content-schema/schemas/manifest.schema.json` — contributes the `assetDigest`, `previousKeyId`, `rotationProof`,
   `signaturePolicy` fields and the tightened `signature.value`
   pattern. Contributions are additive only — pre-existing
   required-field semantics must not be rewriting (no rewrite, no relax) or relaxed. The
@@ -90,7 +90,7 @@ Acceptance Criteria:
 - The rotation branch verifies `rotationProof` against
   `previousKeyId` and updates the trust-store's `rotationHistory`
   ring buffer.
-- Dependency Trust Propagation (Plan 27 Improvement) reduces a
+- Dependency Trust Propagation reduces a
   signed parent's tier to the minimum of its own tier and every
   transitive dependency's tier.
 - The verifier does **not** distinguish "wrong key" from "no such

@@ -106,8 +106,7 @@ jobs:
 
       - name: Engine throughput benchmark (non-gating)
         # Bench results are deliberately non-gating per
-        # docs/architecture/testing/engine-throughput-slo.md and
-        # docs/implementation-plans/15-testability-plan.md: micro-bench
+        # docs/architecture/testing/engine-throughput-slo.md: micro-bench
         # numbers on shared CI runners are too noisy to fail PRs on.
         # continue-on-error keeps the run visible in the log without
         # blocking merges. Throughput regressions surface as a number a

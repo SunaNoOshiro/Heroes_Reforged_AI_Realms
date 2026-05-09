@@ -1,8 +1,5 @@
 # Free-Tier Deploy Recipe
 
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md).
-
 A single-page deploy recipe for running Heroes Reforged at **~$0/month**
 (domain optional). This is one supported deploy among others; nothing
 in the architecture forces this profile, but every contract pinned in
@@ -180,7 +177,7 @@ project-side.
   match itself is P2P after handshake).
 - **No paid alerting** for cert expiry. The 14-day expiry alert in
   [`transport-security.md` § 6](../architecture/transport-security.md#6-cert-lifecycle)
-  becomes manual or skipped on free tier; Plan 31 (alerting) is
+  becomes manual or skipped on free tier; (alerting) is
   the upgrade path.
 
 ## 10. Migration Path

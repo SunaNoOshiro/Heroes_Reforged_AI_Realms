@@ -11,11 +11,6 @@ gates inside any one of those modules would couple them. The bench
 harness is the single source of enforcement for every numeric
 ceiling in `performance.md`.
 
-Source plan:
-[`docs/implementation-plans/09-performance-plan.md`](../../docs/implementation-plans/09-performance-plan.md).
-Source audit:
-[`docs/readiness-audit/09-performance.md`](../../docs/readiness-audit/09-performance.md).
-
 **Milestone**: M1 — performance-gated CI exit
 **Total Estimate**: ~22 hours
 **Exit Criteria**: `npm run bench` runs Scenarios A/B/C/D

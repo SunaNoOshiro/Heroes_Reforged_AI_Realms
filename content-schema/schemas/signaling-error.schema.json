@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/signaling-error.schema.json",
   "title": "Signaling Error",
-  "description": "Closed signaling-server error vocabulary. The wire-visible enum is exactly three values; richer reasons are surfaced only to the room owner through the authenticated `OwnerNotice` payload. Per `services/signaling/error-codes.md` and `docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`. See `docs/architecture/error-schema-map.md` for the layer / consumer / owning-plan map across all error-shaped schemas.",
+  "description": "Closed signaling-server error vocabulary. The wire-visible enum is exactly three values; richer reasons are surfaced only to the room owner through the authenticated `OwnerNotice` payload. Per `services/signaling/error-codes.md`. See `docs/architecture/error-schema-map.md` for the layer / consumer / owning-plan map across all error-shaped schemas.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schemaVersion", "kind"],

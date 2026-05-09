@@ -39,7 +39,7 @@ Tactical combat board with hex grid, stack placement, active unit, hero portrait
 - Errors are produced by `formatUserError(err, locale)` declared in [`docs/architecture/error-formatter.md`](../../../error-formatter.md); never construct error toast text inline.
 - **End-turn debounce.** Wait / Defend / End-turn buttons and hotkeys are debounced 250 ms (trailing edge). Dispatcher single-flight on `(playerId, END_BATTLE_TURN)` and `(playerId, START_BATTLE)` is the safety net; the second arrival within the same tick returns `DUPLICATE_INTENT`. See [`docs/architecture/command-schema.md` § Single-flight commands](../../../command-schema.md#single-flight-commands).
 
-### Multiplayer Disconnect (Q213)
+### Multiplayer Disconnect
 - When a peer's `state.net.opponentDisconnect` is non-null, render the localized banner `mp.combat.disconnect_banner` over the combat board. The banner shows the seconds remaining in the 30 s reconnect window.
 - The combat clock pauses during the window — no auto-advance, no AI takeover of the absent player's stack.
 - At 120 s, the still-present player wins by forfeit. Render the localized modal `mp.combat.forfeit_modal`; on dismissal, route to `39-battle-results` with a forfeit outcome.

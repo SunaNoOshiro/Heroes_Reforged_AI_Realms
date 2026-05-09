@@ -15,10 +15,9 @@ erasure" that envelopes the receipt for the local outbound
 [`docs/legal/erasure-process.md`](../../../docs/legal/erasure-process.md)
 for the manual fallback.
 
-Plan 22 § 3 — Erasure-receipt UX on system menu.
+3 — Erasure-receipt UX on system menu.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/privacy.md`](../../../docs/architecture/privacy.md)
 - [`docs/architecture/wiki/screens/54-system-menu/`](../../../docs/architecture/wiki/screens/54-system-menu/)
 - [`docs/legal/erasure-process.md`](../../../docs/legal/erasure-process.md)
@@ -26,7 +25,7 @@ Read First:
 Inputs:
 - `REQUEST_ERASURE_RECEIPT` command tokens.
 - The four schemas authored by `mvp.02-content-schemas.41-error-and-audit-schemas`.
-- Plan 21's `WIPE_LOCAL_DATA` handler.
+- the `WIPE_LOCAL_DATA` handler.
 
 Outputs:
 - Updates to the screen-54 package: `spec.md`, `interactions.md`,
@@ -38,9 +37,9 @@ Owned Paths:
 
 Owned Paths (shared):
 - `docs/architecture/wiki/screens/54-system-menu/` is the **primary
-  package** of `mvp.07-ui-shell` (Plan 21 added the "Forget me"
+  package** of `mvp.07-ui-shell` (added the "Forget me"
   entry); this task adds the receipt modal **additively** and does
-  not rewrite Plan 21's "Forget me" row.
+  not rewrite the "Forget me" row.
 - `docs/architecture/command-schema.md` is the **primary contract**
   of the dispatcher task family; this task adds the
   `REQUEST_ERASURE_RECEIPT` row **additively**.
@@ -67,7 +66,7 @@ Owned Paths (shared) acceptance:
   This task is **additive**: one new modal
   (`ErasureReceiptModal`) is added plus an "Erasure receipt" action
   row, an "Account & Data" footer link group, and two new schema
-  references; Plan 21's "Forget me" entry, the Save / Load /
+  references; the "Forget me" entry, the Save / Load /
   Options / Resume / Manage packs / Safe mode rows, and the
   caller-route logic must not rewrite anything else.
 - `docs/architecture/command-schema.md` is **owned by** the

@@ -7,9 +7,6 @@ loadouts, spell choices, and fog-of-war movement intentions; combined
 with auto-bisect re-materializing the same payload on every round,
 a desync becomes a one-shot intel leak in competitive play.
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Field-visibility tag
 
 Every command field declared in

@@ -10,7 +10,7 @@ The hosted ingestion service that consumes the upload is a
 Phase-4 follow-up; M5 ships only the contract + the UI consent
 surface, since no human will run the audit from a terminal —
 the consumer is the future hosted service plus its admin UI.
-Plan 26 § System Improvements / Architecture / Post-match audit
+System Improvements / Architecture / Post-match audit
 pipeline.
 
 Read First:
@@ -18,8 +18,6 @@ Read First:
 - [`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)
 - [`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
 - [`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
-- [`docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md`](../../../docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md)
 
 Inputs:
 - Lockstep envelope MAC self-authentication from
@@ -27,7 +25,7 @@ Inputs:
 - Handshake nonce + matchKey derivation from
   [Task 10](./10-match-handshake-protocol.md).
 - Post-match summary surface on screen 77.
-- Plan 22 retention semantics; Plan 23 consent UX.
+- the retention semantics; the consent UX.
 
 Outputs:
 - `docs/architecture/replay-audit-pipeline.md` — canonical
@@ -49,8 +47,7 @@ Acceptance Criteria:
 - `replay-audit-pipeline.md` defines the upload payload shape
   with the privacy invariants from § 2 (no raw `peerId`, no
   `displayName`, no IP, no chat).
-- The post-match opt-in prompt on screen 77 records consent per
-  Plan 23 and emits `SUBMIT_REPLAY_AUDIT` only when the prompt
+- The post-match opt-in prompt on screen 77 records consent and emits `SUBMIT_REPLAY_AUDIT` only when the prompt
   is accepted.
 - The doctrine explicitly defers the consumer (hosted ingestion
   service + admin review UI) to Phase 4 and names no terminal /

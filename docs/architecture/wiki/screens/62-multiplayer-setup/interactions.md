@@ -29,8 +29,8 @@ Multiplayer setup for hotseat, LAN/online lobby, player colors, teams, timers, m
 - UI-only hover, focus, selected row, open tab, target cursor, drag ghost, and animation frame stay outside deterministic gameplay state.
 
 ### Multiplayer Consent Gate
-Per [`onboarding.md` § 2 Consent Scopes](../../../onboarding.md) and
-plan 23 Critical Fix 3, `Host` and `Join` are blocked until
+Per [`onboarding.md` § 2 Consent Scopes](../../../onboarding.md),
+`Host` and `Join` are blocked until
 `state.profile.consent.multiplayer.state === 'granted'`. Behavior:
 
 1. If `state === 'granted'` and `policyVersion` matches the current

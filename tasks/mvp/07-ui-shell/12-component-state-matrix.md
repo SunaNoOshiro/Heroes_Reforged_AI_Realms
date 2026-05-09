@@ -17,12 +17,7 @@ host doc; sibling tasks land their sections under
 65 screen packages is owned by
 [`13-screen-package-contract-sweep.md`](./13-screen-package-contract-sweep.md).
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q52, Q53, Issue 3.A-3, Missing Logic bullet 2).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 - [`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)
 - [`docs/architecture/wiki/missing-states.md`](../../../docs/architecture/wiki/missing-states.md)
@@ -32,8 +27,6 @@ Read First:
 - `docs/architecture/wiki/screens/46-hero-screen/spec.md`
 
 Inputs:
-- Audit Q52, Q53 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - Existing per-screen `spec.md` Animation Contract sections under
   [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)
 

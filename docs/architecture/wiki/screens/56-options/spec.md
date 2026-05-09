@@ -76,8 +76,8 @@ of `Renderer` (placement matches privacy-adjacent patterns in
 [`60-confirmation-dialog`](../60-confirmation-dialog/) with
 `severity: 'critical'` and `requireType: 'REVOKE'`. On confirm, the
 flow dispatches `REVOKE_CONSENT(scope)` and, if any data exists for
-that scope, `REQUEST_DATA_ERASURE(scope)` (reuses the
-plan 21 / 22 erasure pipeline).
+that scope, `REQUEST_DATA_ERASURE(scope)` (reuses the existing
+erasure pipeline).
 
 ### Mechanics Mapping
 - Edits a settings draft. Apply validates config values, persists presentation settings, and only changes gameplay-affecting options at allowed setup boundaries.

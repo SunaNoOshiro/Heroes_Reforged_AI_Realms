@@ -18,12 +18,7 @@ animation timelines. The animation gate consumed by
 [`15-input-arbitration.md`](./15-input-arbitration.md) reads from
 the slot defined here.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q55, Issue 3.A-11).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - [`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)
@@ -32,8 +27,6 @@ Read First:
 - `docs/architecture/wiki/screens/60-confirmation-dialog/spec.md`
 
 Inputs:
-- Audit Q55 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The Command Lifecycle section anchor in
   [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - The animation gate consumer in

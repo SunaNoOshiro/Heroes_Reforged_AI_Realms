@@ -18,17 +18,10 @@ Rule:
   by `(playerId asc, turn asc, sequence asc)` before dispatch; the
   `(turn, sequence)` half comes from the command's nonce.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q17, Issue 3.B-3).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
 
 Inputs:
-- Audit Q17 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 - Existing scenario schema at
   `content-schema/schemas/scenario.schema.json`
   (`players[].turnOrder` field)

@@ -1,8 +1,6 @@
 # Hot-Reload Flow (Dev)
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md)
-> (T13). Sister docs:
+> Sister docs:
 > [`pack-resolver.md`](./pack-resolver.md),
 > [`pack-lifecycle.md`](./pack-lifecycle.md),
 > [`asset-path-resolution.md`](./asset-path-resolution.md).

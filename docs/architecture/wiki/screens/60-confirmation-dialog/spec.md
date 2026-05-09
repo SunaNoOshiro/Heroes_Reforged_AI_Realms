@@ -44,12 +44,11 @@ Reusable confirmation dialog for destructive, irreversible, or route-changing ac
 | popInComplete | state.ui.confirmation.popInComplete | Set by the modal pop-in animation end-frame. While `false`, `Confirm` stays disabled regardless of `confirmDelayMs`. |
 
 ### Click-Through Resistance
-The modal hardens against reflexive clicks (Risk "Reflexive confirm clicks"
-in plan 23 / Q437). `Confirm` is disabled until **all** of the following
-are true:
+The modal hardens against reflexive confirm clicks. `Confirm` is
+disabled until **all** of the following are true:
 
 1. `pendingAction != null`
-2. `now() - openedAt >= confirmDelayMs`
+2. `now - openedAt >= confirmDelayMs`
 3. `popInComplete === true`
 4. `requireType == null || typedConfirmText === requireType`
 

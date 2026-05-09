@@ -9,12 +9,10 @@
  * Owning task:
  *   tasks/mvp/00-core-architecture/22-05-security-tests-escape-vectors-corpus.md
  *
- * Plan: docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md
- *
  * Authoring note: implemented as `.mjs` so it runs under stock Node
- * without an extra TypeScript runner. The plan calls for a `.ts`
- * driver under `tsx`; the .mjs form keeps the same shape and can be
- * promoted once the rest of the loader code lands as TypeScript.
+ * without an extra TypeScript runner; the .mjs form keeps the same
+ * shape and can be promoted once the rest of the loader code lands
+ * as TypeScript.
  */
 
 import { readFile, readdir } from "node:fs/promises";

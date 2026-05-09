@@ -3,11 +3,11 @@
 > Companion to [`docs/architecture/wiki/screens/55-save-load/`](./wiki/screens/55-save-load/),
 > [`docs/architecture/diagrams/24-save-flow.md`](./diagrams/24-save-flow.md),
 > and the persistence layer in [`persistence.md`](./persistence.md).
-> Authored by plan 23 § 3.1 (Q438 — "No undo on destructive commit").
+> Closes the "no undo on destructive commit" gap.
 
 ## 1. Scope
 
-Plan 23 introduces soft-delete + undo for the destructive flows where
+This file pins soft-delete + undo for the destructive flows where
 a misclick is most costly:
 
 - `DELETE_SAVE_SLOT`

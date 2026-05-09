@@ -1,8 +1,5 @@
 # Pack Signing — Canonical Message, Verification Order, Trust Propagation
 
-> Source plan:
-> [`docs/implementation-plans/27-save-tampering-and-pack-signing-plan.md`](../implementation-plans/27-save-tampering-and-pack-signing-plan.md)
-> § Critical Fix 2, Critical Fix 6, Improvement: Dependency Trust Propagation.
 >
 > Crypto primitives in use here (Ed25519 pack signature; xxh64
 > manifest digest over canonical-JSON) are catalogued in
@@ -161,7 +158,7 @@ short-circuit on the first byte difference.
   input before the verifier ever sees it.
 - **Run asset-extraction before signature-verify.** Path-traversal
   in asset paths (`../../etc/passwd`) is a known attack surface;
-  audit 20 Q368 raised it. Mitigation: asset extraction (step 6)
+   raised it. Mitigation: asset extraction (step 6)
   is the **last** step. Even if `assets/index.json` declares a
   hostile path, the signature gate has already accepted only a
   manifest whose `assetDigest` matches the canonical-JSON of the
@@ -281,7 +278,7 @@ proceeds.
 `manifest.schema.json` constrains `version` to a SemVer-comparable
 pattern (`^\d+\.\d+\.\d+(-[a-z0-9.-]+)?$`), so the comparator is
 unambiguous. Free-form versions (`"v1"`, `"latest"`, `"1.0"`) are
-schema-rejected — see Critical Fix 6 in the source plan.
+schema-rejected —.
 
 ---
 

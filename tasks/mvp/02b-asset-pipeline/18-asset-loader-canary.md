@@ -5,7 +5,7 @@ Module: [Asset Pipeline (M0/M1)](../02b-asset-pipeline.md)
 Description:
 Per-cluster canary task that **reserves the asset-loader contract**
 and asserts the closed refusal codes fire on each escape-vector
-fixture. Closes Plan 32 § PI-4 (Doctrine canary tasks per cluster)
+fixture. Closes PI-4 (Doctrine canary tasks per cluster)
 for the asset loader cluster.
 
 The canary runs one descriptor from
@@ -22,7 +22,6 @@ Read First:
 - [`docs/architecture/pack-error-codes.md`](../../../docs/architecture/pack-error-codes.md)
 - [`tests/security/escape-vectors/README.md`](../../../tests/security/escape-vectors/README.md)
 - [`tasks/mvp/02b-asset-pipeline/17-binary-asset-validators.md`](./17-binary-asset-validators.md)
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § PI-4
 
 Inputs:

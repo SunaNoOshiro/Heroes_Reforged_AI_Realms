@@ -4,9 +4,6 @@ What the signaling service may log, where, for how long, and what it
 must scrub. Cross-link from the deploy step:
 [`tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md`](../../tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md).
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Log floor
 
 The service emits structured JSON to stdout. The deploy platform

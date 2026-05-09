@@ -8,8 +8,7 @@ first DataChannel exchange of every M5 multiplayer match. Both
 peers contribute equal entropy to the seed; both peers freeze and
 exchange `(contentHash, engineHash, packManifestDigest,
 bundleSha256, signaturePolicy)`; both peers derive `matchId` and
-`matchKey` deterministically from the revealed nonces. Plan 26 §
-Critical Fix 2.
+`matchKey` deterministically from the revealed nonces.
 
 Read First:
 - [`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)

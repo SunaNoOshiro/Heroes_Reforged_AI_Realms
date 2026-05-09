@@ -1,23 +1,21 @@
 # Error UX
 
-> Source plan:
-> [`docs/implementation-plans/17-final-critical-questions-plan.md`](../implementation-plans/17-final-critical-questions-plan.md)
-> (Q300, Q204). Sister docs:
+> Sister docs:
 > [`error-taxonomy.md`](./error-taxonomy.md) (severities, codes,
-> `validation-error` shape — owned by plan 12),
+> `validation-error` shape),
 > [`observability.md`](./observability.md) (telemetry emission rules),
 > [`pack-error-codes.md`](./pack-error-codes.md) (pack-loader codes).
 
 This file is the single rule for **how an error reaches the player**.
 The error *shape* (validation-error / dispatcher-error / storage-error
-schemas) is owned by plan 12 and
+schemas) is owned by
 [`error-taxonomy.md`](./error-taxonomy.md). This doc owns the *surface*
 decision: toast vs. inline disabled vs. modal vs. log-only, and the
 localization-key + telemetry-tag conventions every screen package
 must follow.
 
 The audit names "greyed-out control with no tooltip" as the most-likely
-first user-filed bug (Q300). The rules below exist so every screen
+first user-filed bug. The rules below exist so every screen
 implementer reaches the same answer.
 
 ---
@@ -136,8 +134,8 @@ The CI gate
 fires whenever an `interactions.md` names a specific code matching
 `(DISPATCHER|VALIDATION|STORAGE|PACK|NET|AI|ASSET|UI)_<TOKEN>` but
 does not include the `## Error surfaces` block. The schema-validation
-step that asserts the codes are known is delegated to plan 12 once
-the `validation-error` shape locks.
+step that asserts the codes are known is delegated to the
+edge-cases gate once the `validation-error` shape locks.
 
 ## 6. Worked example — DEFEND rejected because hero already moved
 
@@ -156,7 +154,7 @@ the `validation-error` shape locks.
 
 ## 7. Anti-patterns
 
-- A disabled control with **no** tooltip (the Q300 bug).
+- A disabled control with **no** tooltip.
 - A toast that disappears in < 4 seconds for a player-actionable
   error.
 - Two surfaces firing for the same error (inline + toast).

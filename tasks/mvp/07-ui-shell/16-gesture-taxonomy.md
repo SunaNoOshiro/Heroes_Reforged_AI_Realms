@@ -13,12 +13,7 @@ long-press have no canonical names. Numeric thresholds
 (`doubleClickWindowMs`, `longPressMs`, `dragThresholdPx`) are
 content-driven and live in the ruleset.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q58, Issue 3.A-7, Missing Logic bullet 8).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)
 - [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
 - `docs/architecture/wiki/screens/46-hero-screen/spec.md`
@@ -27,8 +22,6 @@ Read First:
 - `docs/architecture/wiki/screens/26-marketplace/spec.md`
 
 Inputs:
-- Audit Q58 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - Existing tooltip and drag references in screen packages
 - The `ruleset.ui.timing` block in
   [`content-schema/schemas/ruleset.schema.json`](../../../content-schema/schemas/ruleset.schema.json)

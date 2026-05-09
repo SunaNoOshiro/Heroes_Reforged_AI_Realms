@@ -1,13 +1,8 @@
-# Peer Reputation Counter (Plan 26 — Improvement)
-
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § System Improvements / Architecture / Peer reputation.
+# Peer Reputation Counter
 
 Canonical doctrine for the bounded, in-memory reputation counter
 that throttles peers who repeatedly trigger early-game desync aborts
-with attributed blame. Closes the "free griefing aborts" gap from
-audit Q521.
+with attributed blame. Closes the "free griefing aborts" gap.
 
 Owning task:
 [`tasks/phase-3/01-multiplayer/16-peer-reputation-counter.md`](../../tasks/phase-3/01-multiplayer/16-peer-reputation-counter.md).
@@ -28,8 +23,8 @@ divergence and the bisect tool attributes blame, but the abort is
 opponent loses time on every aborted match.
 
 Without a reputation counter, the only consequence is the per-IP
-rate limit from Plan 25 — which is much coarser than per-peer
-identity and easy to evade by reconnecting from a different
+rate limit at the signaling edge — which is much coarser than
+per-peer identity and easy to evade by reconnecting from a different
 network.
 
 ---
@@ -108,7 +103,7 @@ key is evicted by the TTL sweeper and the peer can play again.
 ## 5. Escalation path
 
 The reputation counter is the **soft** throttle. Hard escalation
-(persistent ban) is owned by Plan 25's blocklist surface
+(persistent ban) is owned by the signaling-edge blocklist surface
 ([`signaling-edge-defense.md`](./signaling-edge-defense.md)) and
 is **not** populated automatically by this counter — a maintainer
 reviews the audit log and decides whether to persist.

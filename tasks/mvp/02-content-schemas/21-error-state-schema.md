@@ -11,18 +11,11 @@ stable codes and localization fallbacks differ per screen. The schema
 is presentation-only — `ErrorState` lives under `state.ui.*` and is
 excluded from saves, replays, and the canonical state hash.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q54, Issue 3.B-1, Missing Logic bullet 3).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)
 
 Inputs:
-- Audit Q54 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - Existing per-screen error bindings under
   [`docs/architecture/wiki/screens/59-loading-screen/`](../../../docs/architecture/wiki/screens/59-loading-screen/)
 - [`content-schema/schemas/command.schema.json`](../../../content-schema/schemas/command.schema.json)

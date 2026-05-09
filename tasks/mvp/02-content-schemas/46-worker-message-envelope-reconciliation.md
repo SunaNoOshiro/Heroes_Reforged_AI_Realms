@@ -7,13 +7,12 @@ Reconcile
 [`content-schema/schemas/worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json)
 with the AI worker token coverage table by extending the `kind` enum
 **additively** to include `AI_ERROR`, `AI_TRACE_REQUEST`, and
-`AI_TRACE_RESULT`. Closes Plan 32 § CF-1 (Reconcile the AI worker
+`AI_TRACE_RESULT`. Closes CF-1 (Reconcile the AI worker
 envelope). The two `AI_TRACE_*` tokens are dev-only and gated behind
 the AI inspector overlay build flag; production builds MUST NOT emit
 them.
 
 Read First:
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
 - [`docs/architecture/ai-contract.md`](../../../docs/architecture/ai-contract.md)
 - [`docs/architecture/task-command-token-coverage.json`](../../../docs/architecture/task-command-token-coverage.json)
 - [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../mvp/10-heuristic-ai/06-run-ai-in-web-worker.md)
@@ -21,7 +20,7 @@ Read First:
 
 Inputs:
 - Existing `worker-message.schema.json` envelope.
-- Plan 10 token list (`AI_ERROR`, `AI_TRACE_REQUEST`,
+- AI token list (`AI_ERROR`, `AI_TRACE_REQUEST`,
   `AI_TRACE_RESULT`).
 - Existing canonical examples under
   `content-schema/examples/worker-message/`.
@@ -30,7 +29,7 @@ Outputs:
 - Three additional `kind` enum values
   (`AI_ERROR`, `AI_TRACE_REQUEST`, `AI_TRACE_RESULT`) in the
   worker-message schema (8 values total) with matching `$defs`
-  payload branches per Plan 32 § CF-1 required-field shapes.
+  payload branches § CF-1 required-field shapes.
 - Refreshed enum snapshot via
   `npm run generate:enum-snapshot`.
 - Per-kind reference table in

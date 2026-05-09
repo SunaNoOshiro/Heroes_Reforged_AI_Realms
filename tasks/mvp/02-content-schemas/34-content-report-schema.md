@@ -7,7 +7,7 @@ Player-submitted report targeting unsafe / infringing UGC content
 (pack, scenario, hero, unit, AI-faction). Distinct from
 `report-bundle.schema.json` (peer-behavior). Persisted locally in
 `state.privacy.outboundReports[]` and dequeued by the future
-moderation backend (Plan 30). Backs screen 75 (content-report).
+moderation backend. Backs screen 75 (content-report).
 
 Read First:
 - [`docs/architecture/ugc-safety.md`](../../../docs/architecture/ugc-safety.md)

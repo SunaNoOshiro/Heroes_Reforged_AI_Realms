@@ -46,7 +46,7 @@ Acceptance Criteria:
 - Peer-priority order also drives the bot-broadcaster election
   defined in [`03-input-only-lockstep-command-serialization-plus-sequencing.md` § Bot Commands](./03-input-only-lockstep-command-serialization-plus-sequencing.md#bot-commands);
   re-electing the host re-elects the bot broadcaster atomically.
-- **`WILL_BACKGROUND` extension protocol (Q217).** When a peer
+- **`WILL_BACKGROUND` extension protocol.** When a peer
   emits `visibilitychange:hidden`, it sends a `WILL_BACKGROUND`
   transport message to its peers. Receiving peers extend that
   side's heartbeat tolerance from 6 s to **30 s** for the next

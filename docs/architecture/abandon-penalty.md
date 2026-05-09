@@ -5,10 +5,6 @@ Canonical doctrine for **quorum-attested `PEER_DISCONNECTED`**, the
 Closes the disconnect-spoof / forfeit-fraud window where a peer about
 to lose can fake the opponent's drop and claim a win-on-timeout.
 
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
-> § Critical Fix 5.
-
 Companion docs:
 
 - [`signaling-envelope.md`](./signaling-envelope.md) — every

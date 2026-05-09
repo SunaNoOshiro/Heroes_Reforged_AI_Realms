@@ -9,7 +9,6 @@ export pipeline. The envelope is the surface that future cloud-sync
 and shared-replay flows extend; M4 produces unsigned envelopes and
 M5+ flips the `mac` field to required for `intent === "save"` per
 [`save-envelope-mac.md`](../../../docs/architecture/save-envelope-mac.md).
-Plan 27 § Critical Fix 4.
 
 Read First:
 - [`docs/architecture/save-migration.md`](../../../docs/architecture/save-migration.md)

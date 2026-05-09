@@ -5,7 +5,7 @@ Module: [Multiplayer (M5)](../01-multiplayer.md)
 Description:
 Per-cluster canary task that **reserves the signaling-envelope
 contract** and asserts the closed failure surface fires on each
-malformed fixture. Closes Plan 32 § PI-4 (Doctrine canary tasks
+malformed fixture. Closes PI-4 (Doctrine canary tasks
 per cluster) for the signaling cluster.
 
 The canary is intentionally tiny: parse one canonical
@@ -20,7 +20,6 @@ Read First:
 - [`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)
 - [`content-schema/schemas/signaling-message.schema.json`](../../../content-schema/schemas/signaling-message.schema.json)
 - [`content-schema/schemas/signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json)
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § PI-4
 
 Inputs:

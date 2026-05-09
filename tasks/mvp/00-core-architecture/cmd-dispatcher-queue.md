@@ -16,18 +16,11 @@ rule, and a hard-reject overflow policy that returns
 dropping. The M5 lockstep transport wraps this queue with a network-
 frame demuxer; the per-engine queue contract does not change.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q15, Issue 3.B-2).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 
 Inputs:
-- Audit Q15 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 
 Outputs:
 - New "Dispatcher Queue" section in

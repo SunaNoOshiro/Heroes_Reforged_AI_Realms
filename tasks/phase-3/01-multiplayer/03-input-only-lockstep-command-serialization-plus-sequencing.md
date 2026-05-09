@@ -45,9 +45,9 @@ Dependencies:
 - phase-3.01-multiplayer.02-webrtc-peer-connection-plus-datachannel-setup
 - phase-3.01-multiplayer.09-lockstep-envelope-and-mac
 
-### Plan 26 cross-cutting additions
+### Cross-cutting additions
 
-#### Sequence Validation (Critical Fix 3)
+#### Sequence Validation
 - Drop on `seq <= lastApplied[playerId]` (stale).
 - Reject duplicate `(playerId, matchEpoch, seq)` after delivery.
 - Buffer `seq > lastApplied + 1` until contiguous; reject with
@@ -55,7 +55,7 @@ Dependencies:
 - Reject any `seq` whose `turn` differs from the receiver's known
   `(turn, matchEpoch)` window.
 
-#### Canonical Intra-Turn Order (Critical Fix 3)
+#### Canonical Intra-Turn Order
 - All envelopes for the same `turn` are sorted by
   `(turn ascending, playerId lexicographic ascending, seq ascending)`
   — stable sort — and the reducer applies them in that order
@@ -63,7 +63,7 @@ Dependencies:
   contract; the per-turn state-hash check operates on canonical
   order, not arrival order.
 
-#### Wire-Shape Note (Critical Fix 1)
+#### Wire-Shape Note
 - Wire shape moves from the legacy `command-envelope.schema.json`
   to the M5 lockstep envelope
   [`lockstep-envelope.schema.json`](../../../content-schema/schemas/lockstep-envelope.schema.json)
@@ -75,7 +75,7 @@ Dependencies:
   [`lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
   § 7.
 
-#### Turn Timer & Stall Detection (Critical Fix 4)
+#### Turn Timer & Stall Detection
 - A connected-but-idle peer escalates `WAITING → STALLED → AUTO_END_DAY`
   per [`turn-timer.md`](../../../docs/architecture/turn-timer.md);
   the auto-`END_DAY { source: 'auto-timeout' }` envelope is

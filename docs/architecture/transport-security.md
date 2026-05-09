@@ -6,10 +6,6 @@ and **certificate lifecycle**. Every web-tier surface in the project
 (signaling server, AI gateway, web shell, future native shell) inherits
 this contract.
 
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
-> § Critical Fix 1.
-
 Companion docs:
 
 - [`web-headers.md`](./web-headers.md) — CSP / SRI / CORS /
@@ -113,9 +109,9 @@ response header upgrade to Cloudflare Pages (also free) per
   [`services/multiplayer/turn-config.md`](../../services/multiplayer/turn-config.md).
 - **Auto-renewal**: cert renewal is automatic at 30 days before
   expiry.
-- **Expiry alert**: the operator's monitoring (Plan 31 scope) MUST
-  page on `expiry < 14 days`. Until Plan 31 lands, the operations
-  runbook in
+- **Expiry alert**: the operator's monitoring stack MUST page on
+  `expiry < 14 days`. Until the alerting infrastructure lands,
+  the operations runbook in
   [`docs/operations/rollback-playbook.md`](../operations/rollback-playbook.md)
   is the manual fallback.
 - **Rotation cadence**: keys rotate at every renewal; there is no
@@ -158,5 +154,5 @@ document why.
 - **mTLS** between client and signaling — overkill for a stateless
   signaling lobby; the room secret + signed envelope already gate
   identity.
-- **Operational alert routing** for cert expiry — owned by Plan 31
-  (alerting / monitoring infra).
+- **Operational alert routing** for cert expiry — owned by the
+  alerting / monitoring infrastructure.

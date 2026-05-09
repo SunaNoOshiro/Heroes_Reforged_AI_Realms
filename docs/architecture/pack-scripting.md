@@ -1,9 +1,5 @@
 # Pack Scripting — Reserved Slot, No Capability Yet
 
-> Source plan:
-> [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../implementation-plans/28-asset-loading-and-sandboxing-plan.md)
-> § Architecture — `pack-scripting.md`.
-
 **This doc is intentionally empty of capability declarations.**
 The codebase does not ship any pack-scripting capability today.
 The slot is reserved so that a future addition (e.g.
@@ -40,9 +36,8 @@ enum is the closed list:
 A pack manifest that declares any `scripts.*` token other than
 `scripts.none` is **rejected at validation time** unless this
 table lists the token in a versioned row. The CI gate
-(`scripts/check-pack-error-codes.mjs` augmented per Plan 28
-§ Tasks) refuses any new token that is not enumerated in this
-table.
+(`scripts/check-pack-error-codes.mjs`) refuses any new token
+that is not enumerated in this table.
 
 Adding a new row requires:
 
@@ -51,9 +46,9 @@ Adding a new row requires:
 2. A matching update to `manifest.schema.json` `capabilities`
    enum (already a closed list per
    [`pack-contract.md` § Capabilities](./pack-contract.md#capabilities)).
-3. The full Plan-28-shaped artefact set: a runtime contract doc,
-   a Worker security profile, a sandbox capability row, a
-   security-test corpus, and a sandbox-tier policy.
+3. The full artefact set: a runtime contract doc, a Worker
+   security profile, a sandbox capability row, a security-test
+   corpus, and a sandbox-tier policy.
 
 ---
 
@@ -84,8 +79,7 @@ the review trail.
 
 `scripts/check-pack-error-codes.mjs` (existing repo gate)
 asserts that every value emitted by the pack loader is registered
-in [`pack-error-codes.md`](./pack-error-codes.md). The Plan 28
-extension adds a **schema-side** rule: any value in
+in [`pack-error-codes.md`](./pack-error-codes.md). The extension adds a **schema-side** rule: any value in
 `manifest.schema.json` `capabilities.items.enum` that starts with
 `scripts.` MUST appear in § 1 above. The gate fails on any
 schema entry that is not listed.

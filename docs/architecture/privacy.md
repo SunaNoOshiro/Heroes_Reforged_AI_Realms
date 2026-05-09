@@ -10,9 +10,6 @@
 > [`56-options`](./wiki/screens/56-options/) before any analytics or
 > reporting surface activates.
 >
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Data inventory
 
 The canonical inventory lives in
@@ -99,7 +96,7 @@ notes:
 
 ## 6. Erasure pathway
 
-`WIPE_LOCAL_DATA` (Plan 21) wipes the local inventory rows. This
+`WIPE_LOCAL_DATA` wipes the local inventory rows. This
 plan layers the **receipt** on top:
 
 1. `REQUEST_ERASURE_RECEIPT` writes a row to the local audit log

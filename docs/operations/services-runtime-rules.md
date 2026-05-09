@@ -1,7 +1,5 @@
 # Services Runtime Rules
 
-> Source plan:
-> [`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md).
 > Cross-link: [`docs/architecture/trust-boundaries.md`](../architecture/trust-boundaries.md),
 > [`docs/architecture/fail-loud.md`](../architecture/fail-loud.md).
 
@@ -119,10 +117,9 @@ replacement, re-sign canonical packs, push a fresh
 
 **Signature-failure spike** (§ 5 threshold breached): inspect
 top-10 `(packId, keyId)` buckets. One pack dominating → revoke
-that pack id. One prefix dominating → blocklist per
-[plan 25](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md).
-Broad signal → switch the verifier to deny-by-default and
-disable AI generation.
+that pack id. One prefix dominating → blocklist per the
+signaling-abuse runbook in this doc § 5. Broad signal → switch
+the verifier to deny-by-default and disable AI generation.
 
 **AI cost runaway** (daily-spend SLO breach): engage kill-switch
 `AI_GATEWAY_DISABLED=true` per
@@ -157,11 +154,9 @@ ingest endpoint MUST be physically separated from the
 ## 9. Metrics + dashboards
 
 When the runtime lands, services expose `/metrics` (Prometheus
-text) on the **admin** listener only (per
-[plan 25](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)).
-Public listener never serves `/metrics`. Cardinality discipline:
-no raw IP labels, no `playerName` labels, no `correlationId`
-labels.
+text) on the **admin** listener only. Public listener never
+serves `/metrics`. Cardinality discipline: no raw IP labels, no
+`playerName` labels, no `correlationId` labels.
 
 ## 10. Adding a new rule
 

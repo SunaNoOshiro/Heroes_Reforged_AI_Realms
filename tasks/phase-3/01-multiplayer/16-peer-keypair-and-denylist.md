@@ -5,8 +5,8 @@ Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 Description:
 Mint and persist a per-profile Ed25519 peer keypair, sign
 `JOIN_ROOM` payloads with it, and key the per-room host-side
-denylist on the public key half. Closes Q332 (peer identity model)
-and unblocks Task 10's host approval / kick flow.
+denylist on the public key half. Pins the peer identity model and
+unblocks Task 10's host approval / kick flow.
 
 Read First:
 - [`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)

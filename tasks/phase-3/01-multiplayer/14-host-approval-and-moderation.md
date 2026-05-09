@@ -6,8 +6,8 @@ Description:
 Insert a pending-peer queue between `JOIN_ROOM` and ICE-candidate
 forwarding. Adds host approval (`APPROVE_PEER` / `REJECT_PEER`),
 kick (`KICK_PEER`), per-room peer denylist, and the lobby UI
-modal that surfaces pending peers. Closes Q317 / Q318 / Q320 /
-Q332 and the missing-moderation-primitives risk.
+modal that surfaces pending peers. Closes the
+missing-moderation-primitives risk.
 
 Read First:
 - [`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)

@@ -22,9 +22,8 @@ vendor.
   Optional backend boundary when secrets, rate limits, or moderation
   policy should not live in the browser. **Out of scope for 1.x**
   per [`DEF-017`](../planning/deferred.md); the 1.x path is
-  **BYO-key** per [plan 29](../implementation-plans/29-rate-limiting-and-secret-management-plan.md)
-  with no project-side secret. Today the directory carries
-  contracts + retention rules only; no runtime.
+  **BYO-key** with no project-side secret. Today the directory
+  carries contracts + retention rules only; no runtime.
 
 ## Rules
 

@@ -6,8 +6,8 @@ Description:
 Author `docs/balance/judgement-rules.md` extracting the balance-
 corridor judgement-call methodology that today lives only in
 [`research/deep-research-report.md`](../../../research/deep-research-report.md)
-and (per the audit) in the head of one contributor (Q294 #2). The
-rules cover: which Wilson 95 % CI band counts as inside the corridor,
+and in contributor heads. The rules cover: which Wilson 95 % CI
+band counts as inside the corridor,
 how to treat outliers, when a "compensating ability exists" exempts
 a stat from the corridor, and how to log the judgement call against
 the affected record.

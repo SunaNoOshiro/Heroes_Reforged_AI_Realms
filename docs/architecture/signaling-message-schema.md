@@ -1,9 +1,5 @@
 # Signaling Message Schema
 
-> Source plan:
-> [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)
-> § Critical Fix 1.
-
 This file is the canonical contract for **every payload that
 crosses the M5 signaling WebSocket**. The signaling-server message
 router never inspects raw frames — every inbound and outbound

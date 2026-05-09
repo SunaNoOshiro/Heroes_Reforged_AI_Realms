@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // scripts/generate-contracts-from-schemas.mjs
 //
-// Implementation Plan 16 (T7). Drives JSON-Schema → TypeScript code
-// generation for the schema-derived files under src/contracts/.
+// Drives JSON-Schema → TypeScript code generation for the
+// schema-derived files under src/contracts/.
 //
 // Current behavior: a check-only stub. Until the project ships its
 // first runtime dependency (M0), `json-schema-to-typescript` is not

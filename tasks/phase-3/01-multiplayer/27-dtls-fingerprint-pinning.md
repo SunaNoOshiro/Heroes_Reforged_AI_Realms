@@ -10,7 +10,6 @@ and abort on either gate failing. Implements the doctrine from
 and the diagram in
 [`diagrams/31-reconnect-continuity-challenge.md`](../../../docs/architecture/diagrams/31-reconnect-continuity-challenge.md).
 
-Plan 24 § Critical Fix 3.
 
 Read First:
 - [`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)

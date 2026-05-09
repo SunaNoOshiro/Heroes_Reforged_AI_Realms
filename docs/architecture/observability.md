@@ -1,8 +1,6 @@
 # Observability
 
-> Source plan:
-> [`docs/implementation-plans/17-final-critical-questions-plan.md`](../implementation-plans/17-final-critical-questions-plan.md)
-> (Q298, Q291). Sister docs:
+> Sister docs:
 > [`error-taxonomy.md`](./error-taxonomy.md) (severities, codes),
 > [`error-ux.md`](./error-ux.md) (player-facing surfacing),
 > [`non-functional-requirements.md`](./non-functional-requirements.md)
@@ -126,9 +124,7 @@ The producer MAY include:
 - Error `code` values from
   [`error-taxonomy.md`](./error-taxonomy.md).
 
-The retention model for the wire payload is owned by
-[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md);
-the redaction rules above MUST be applied before any payload reaches
+The redaction rules above MUST be applied before any payload reaches
 the wire.
 
 ## 6. Backends

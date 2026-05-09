@@ -12,8 +12,7 @@ revocation-on-end deny-list. Replaces the older "Optional TURN
 server config" handwave in
 [Task 02](./02-webrtc-peer-connection-plus-datachannel-setup.md)
 and the looser route shape in
-[Task 10](./10-turn-fallback-and-credentials.md). Closes Plan 25
-Critical Fix 3.
+[Task 10](./10-turn-fallback-and-credentials.md).
 
 This task supersedes
 [Task 10](./10-turn-fallback-and-credentials.md)'s `GET /turn-credential`

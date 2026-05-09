@@ -8,26 +8,26 @@
 
 ## 1. Allowlist
 
-| API | Purpose | Owner | Justification |
-|-----|---------|-------|---------------|
-| WebRTC `RTCDataChannel` | gameplay command transport | Plan 07 | sole multiplayer transport; no media tracks |
-| WebRTC ICE / STUN / TURN | NAT traversal | Plan 07 | required by DataChannel |
-| `IndexedDB` | persistence | Plan 08 | per [`persistence.md`](./persistence.md) |
-| `File System Access API` | save export only | Plan 08 (optional desktop) | user-initiated; never background |
-| `Clipboard read/write` | save-link share, content-report screenshot ref | Plan 21 (this file's plan) | user-gesture-only; no background read |
-| `WebCrypto` | salt / hashing / future tokens | Plan 21 + Plan 25 | non-extractable keys |
-| `Canvas` / `WebGL2` | renderer | Plan 06 | rendering only; never reads CORS-tainted images |
-| `HTMLCanvasElement.toBlob` | screenshot for content reports | Plan 21 | user-initiated only |
-| `Web Workers` | gameplay-AI workers, decoders | Plan 10 | per [`ai-contract.md`](./ai-contract.md) and [`ugc-safety.md`](./ugc-safety.md) |
-| `createImageBitmap` | image decode-off-thread | Plan 21 | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
-| `AudioContext.decodeAudioData` | audio decode | Plan 21 | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
-| `Notification API` | (deferred) | (none) | requires architecture amendment |
-| `Microphone` / `Camera` | (deferred; voice chat out of MVP) | (none) | requires architecture amendment |
-| `Geolocation` | forbidden | (none) | not used; banned indefinitely |
-| `Contacts API` | forbidden | (none) | not used; banned indefinitely |
-| `Bluetooth` / `Serial` / `USB` / `HID` | forbidden | (none) | not used; banned indefinitely |
-| `localStorage` | forbidden | (none) | per [`persistence.md`](./persistence.md) § localStorage Ban |
-| `document.cookie` (read/write from JS) | forbidden | (none) | per [`persistence.md`](./persistence.md) § Cookies |
+| API | Purpose | Justification |
+|-----|---------|---------------|
+| WebRTC `RTCDataChannel` | gameplay command transport | sole multiplayer transport; no media tracks |
+| WebRTC ICE / STUN / TURN | NAT traversal | required by DataChannel |
+| `IndexedDB` | persistence | per [`persistence.md`](./persistence.md) |
+| `File System Access API` | save export only (optional desktop) | user-initiated; never background |
+| `Clipboard read/write` | save-link share, content-report screenshot ref | user-gesture-only; no background read |
+| `WebCrypto` | salt / hashing / future tokens | non-extractable keys |
+| `Canvas` / `WebGL2` | renderer | rendering only; never reads CORS-tainted images |
+| `HTMLCanvasElement.toBlob` | screenshot for content reports | user-initiated only |
+| `Web Workers` | gameplay-AI workers, decoders | per [`ai-contract.md`](./ai-contract.md) and [`ugc-safety.md`](./ugc-safety.md) |
+| `createImageBitmap` | image decode-off-thread | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
+| `AudioContext.decodeAudioData` | audio decode | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
+| `Notification API` | (deferred) | requires architecture amendment |
+| `Microphone` / `Camera` | (deferred; voice chat out of MVP) | requires architecture amendment |
+| `Geolocation` | forbidden | not used; banned indefinitely |
+| `Contacts API` | forbidden | not used; banned indefinitely |
+| `Bluetooth` / `Serial` / `USB` / `HID` | forbidden | not used; banned indefinitely |
+| `localStorage` | forbidden | per [`persistence.md`](./persistence.md) § localStorage Ban |
+| `document.cookie` (read/write from JS) | forbidden | per [`persistence.md`](./persistence.md) § Cookies |
 
 ## 2. Permission-Request Policy
 
@@ -41,7 +41,7 @@ session start, never on screen mount.
 - Future microphone / camera (deferred) MUST display a localized
   pre-prompt before the OS prompt.
 
-### Just-In-Time (JIT) Rule (plan 23 / Q448)
+### Just-In-Time (JIT) Rule
 
 Every native browser permission prompt MUST be preceded by an in-app
 rationale modal whose copy comes from the localization namespace
@@ -59,7 +59,7 @@ Concretely, every call site for `navigator.permissions.request`,
 modal. CI enforces this by linting for raw API invocations and
 demanding the rationale-helper import.
 
-### Rationale Copy Convention (plan 23 / Q450)
+### Rationale Copy Convention
 
 Localization keys for each prompt-bearing scope:
 
@@ -72,7 +72,7 @@ Required scopes today: `storage`, `notifications`, `clipboardWrite`.
 Add a row in this document and the localization namespace before
 introducing a new scope.
 
-### Degradation Matrix (plan 23 / Q449)
+### Degradation Matrix
 
 | Scope             | Denied → Behavior                                      |
 |-------------------|--------------------------------------------------------|
@@ -91,8 +91,8 @@ degrades and the rationale modal cites
 Crash dumps live in-memory only at v1 and are exported only via a
 user-initiated download. The redaction baseline lives in
 [`data-inventory.md` § 4 Crash Dumps](./data-inventory.md#4-crash-dumps).
-Until Plan 22 declares a network upload destination, no crash dump
-leaves the device.
+No crash dump leaves the device until a future architecture
+amendment declares a network upload destination.
 
 ## 4. CI Enforcement
 

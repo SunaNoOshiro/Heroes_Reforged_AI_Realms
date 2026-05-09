@@ -56,7 +56,7 @@ The lobby exposes four handlers that respond to server-side
 failure states (see [`spec.md` § Connection-Failure States](./spec.md#connection-failure-states)
 and [`turn-fallback-policy.md`](../../../turn-fallback-policy.md)):
 
-- `OnRelayUnavailable()` — invoked when the TURN-down state
+- `OnRelayUnavailable` — invoked when the TURN-down state
   machine in `src/net/webrtc/peer-connection.ts` dispatches
   `CONNECTION_FAILED_RELAY_UNAVAILABLE`. Sets
   `state.net.lobby.errorState = { kind: "relayUnavailable" }`,
@@ -69,7 +69,7 @@ and [`turn-fallback-policy.md`](../../../turn-fallback-policy.md)):
   `state.net.lobby.errorState = { kind: "rateLimited", retryAfterMs }`;
   the cooldown timer ticks down and re-enables the action button
   on expiry.
-- `OnRoomFull()` — invoked when the signaling server emits
+- `OnRoomFull` — invoked when the signaling server emits
   `ROOM_FULL`. Sets
   `state.net.lobby.errorState = { kind: "roomFull" }` and
   surfaces the "Back to setup" button (route to
@@ -111,7 +111,7 @@ the trust-violation banner takes over per the rule above.
 - UI-only hover, focus, selected row, open tab, target cursor, drag ghost, and animation frame stay outside deterministic gameplay state.
 
 ### Leave Confirmation
-Per plan 23 / Q436, `network.leave` always routes through
+`network.leave` always routes through
 [`60-confirmation-dialog`](../60-confirmation-dialog/) before
 `LEAVE_NETWORK_LOBBY_CONFIRMED` actually disconnects. The chain is:
 
@@ -131,8 +131,8 @@ Per plan 23 / Q436, `network.leave` always routes through
    [`62-multiplayer-setup`](../62-multiplayer-setup/).
 
 ### Peer Trust Display
-Per plan 23 / Q447, `PlayerSlotList` renders a `trustLevel` badge per
-peer derived from `state.profile.knownPeers`:
+`PlayerSlotList` renders a `trustLevel` badge per peer derived
+from `state.profile.knownPeers`:
 
 | `trustLevel` | Source                                      | Badge          |
 |--------------|---------------------------------------------|----------------|
@@ -150,8 +150,8 @@ all writes require
 `state.profile.consent.multiplayer.state === 'granted'`.
 
 ### Unsigned-Pack Ack (Casual Lobbies)
-Per plan 23 / Q440, the `ContentCompatibilityPanel` aggregates pack
-trust state. When **any** pack in the session reports
+The `ContentCompatibilityPanel` aggregates pack trust state. When
+**any** pack in the session reports
 `trustState !== 'signed'` and the lobby is casual (ranked already
 excludes unsigned via
 [`tasks/phase-3/04-polish/03-ranked-play-elo-ladder-plus-ai-pack-sandbox.md`](../../../../../tasks/phase-3/04-polish/03-ranked-play-elo-ladder-plus-ai-pack-sandbox.md)),

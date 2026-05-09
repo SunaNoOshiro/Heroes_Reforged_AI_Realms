@@ -5,10 +5,6 @@ Integrity**, **CORS**, **Referrer-Policy**, and the rest of the web-
 tier security headers. Inherits the transport floor from
 [`transport-security.md`](./transport-security.md).
 
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
-> § System Improvements — Web Headers / CSP / SRI / CORS.
-
 ---
 
 ## 1. Required Headers
@@ -59,7 +55,7 @@ shipped HTML MUST carry both `integrity="sha384-…"` and
   inlines its assets and therefore does not emit external
   `<script>` tags; if it is ever extended to load CDN scripts, the
   generator MUST emit SRI.
-- The future web-shell builder (Plan 24 deferred surface) MUST
+- The future web-shell builder (deferred surface) MUST
   populate SRI from a build-time hash table; missing or wrong
   `integrity` is a CI failure.
 - Packs MUST NOT embed external `<script>` / `<link rel="stylesheet">`
@@ -88,8 +84,7 @@ appears, or if the `Origin` allowlist is missing.
 - [`services/ai-gateway/config/edge.example.toml`](../../services/ai-gateway/config/edge.example.toml)
   — HTTPS listener, HSTS, CORS pinned to canonical origin.
 - `services/web/config/edge.example.toml` (deferred until the
-  web-shell tree lands; see Plan 24 § "Web Headers / CSP / SRI /
-  CORS" task breakdown).
+  web-shell tree lands).
 
 ## 5. CI Gates
 
@@ -104,8 +99,8 @@ appears, or if the `Origin` allowlist is missing.
 
 ## 6. Out of scope
 
-- **CSP `report-uri` / `report-to`** — wired in Plan 31 (logging /
-  monitoring); the baseline above is intentionally
+- **CSP `report-uri` / `report-to`** — wired by the logging /
+  monitoring surface; the baseline above is intentionally
   reporting-disabled until that infra is in place.
 - **Cookies / session-cookie attributes** — the project has no
   server-issued session cookie surface; if one is added, this doc

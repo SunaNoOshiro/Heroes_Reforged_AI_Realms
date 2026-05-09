@@ -1,9 +1,5 @@
 # TURN-Down Fallback Policy
 
-> Source plan:
-> [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)
-> § Critical Fix 5.
-
 This file pins the **client-side fallback when TURN is
 unavailable** — provider down, credential refresh denied, ICE
 relay-failure storm. The rule is one refresh attempt; on second

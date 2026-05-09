@@ -7,7 +7,7 @@ Run the entire `commandLog` against `command.schema.json` and the
 active pack registry **before** the reducer is invoked. A malformed
 command surfaces at a clean rejection point with full context
 instead of mid-replay, so a 300-turn match never aborts at turn 200
-with a half-loaded state. Plan 27 § Critical Fix 3.
+with a half-loaded state.
 
 Read First:
 - [`docs/architecture/parser-hardening.md`](../../../docs/architecture/parser-hardening.md)
@@ -40,7 +40,7 @@ Owned Paths:
 - `scripts/check-command-log-validation.mjs`
 
 Owned Paths (shared):
-- `content-schema/schemas/save.schema.json` — Plan 27 contributes
+- `content-schema/schemas/save.schema.json` — contributes
   the tamper-relevant rules (per-array `maxItems` cap on the
   command log, integer-only numerics, capped `packHashes`); the
   schema *file* and its canonical example remain owned by

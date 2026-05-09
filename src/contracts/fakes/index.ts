@@ -2,8 +2,8 @@
 //
 // This file is intentionally a placeholder. The concrete fake bodies
 // (`FakeRng`, `FakeClock`, `FakeIdAllocator`, `FakePackRegistry`,
-// `FakeAssetLoader`, `FakeCommandBus`, `FakeNetTransport`) are landed
-// by docs/implementation-plans/15-testability-plan.md.
+// `FakeAssetLoader`, `FakeCommandBus`, `FakeNetTransport`) land in
+// follow-up tasks.
 //
 // The location is fixed by docs/architecture/testing-conventions.md §2:
 // every cross-module contract published in src/contracts/ ships at

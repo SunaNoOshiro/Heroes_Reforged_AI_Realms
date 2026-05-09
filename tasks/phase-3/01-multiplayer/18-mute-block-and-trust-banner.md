@@ -7,9 +7,9 @@ Add `MUTE_PEER`, `BLOCK_PEER`, the `state.net.lobby.muted` and
 `state.net.lobby.blocked` slices, the per-roster-row Mute / Block
 overflow menu, the `MutedBadge` indicator, and the
 `ChatTrustBanner` (one-line "P2P chat — no server moderation"
-banner with `localStorage` dismissal). Closes Q340–Q341, Q347 and
-the harassment-without-recourse risk documented in
-[`docs/readiness-audit/19-chat-safety-and-user-reporting.md`](../../../docs/readiness-audit/19-chat-safety-and-user-reporting.md).
+banner with `localStorage` dismissal). Closes the
+harassment-without-recourse risk by giving each peer per-row
+mute / block controls and a persistent trust-model banner.
 
 Read First:
 - [`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md)

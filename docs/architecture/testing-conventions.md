@@ -1,11 +1,7 @@
 # Testing Conventions
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md)
-> (T10). The actual fake catalogue and per-test-type mechanics are
-> owned by
-> [`docs/implementation-plans/15-testability-plan.md`](../implementation-plans/15-testability-plan.md)
-> and the docs in [`docs/architecture/testing/`](./testing/).
+> The fake catalogue and per-test-type mechanics live alongside this
+> file in [`docs/architecture/testing/`](./testing/).
 
 This file is the canonical convention an AI agent or contributor reads
 before writing a test. It answers five recurring questions:
@@ -74,8 +70,7 @@ Inventory (initial; extends as `src/contracts/` grows):
 - `FakeNetTransport` — the deterministic `NetSim` from
   [`net-transport.md`](./net-transport.md).
 
-The actual fake bodies are landed by
-[`15-testability-plan.md`](../implementation-plans/15-testability-plan.md).
+The actual fake bodies are landed by per-module testability work.
 This doc only fixes the **location** and **import discipline**.
 
 ---
@@ -184,7 +179,7 @@ that is a bug — add the row in the same PR.
 
 ## 8. Script and test file extensions
 
-Pinned per Plan 32 § PI-3:
+Pinned conventions:
 
 - All scripts under `scripts/` ship as `.mjs` until Task
   [`mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`](../../tasks/mvp/01-engine-core/02-set-up-vite-plus-typescript-strict-mode-per-module.md)

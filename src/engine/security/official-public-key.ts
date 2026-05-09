@@ -1,9 +1,6 @@
 /**
  * Heroes Reforged — official pack-signing public key.
  *
- * Source plan:
- *   docs/implementation-plans/29-rate-limiting-and-secret-management-plan.md
- *   — Critical Fix 6.
  * Doctrine:
  *   docs/operations/pack-signing-key.md
  *

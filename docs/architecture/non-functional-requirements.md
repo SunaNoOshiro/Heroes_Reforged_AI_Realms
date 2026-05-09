@@ -1,9 +1,5 @@
 # Non-Functional Requirements (NFR) Matrix
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md)
-> (T9). Sister plan that owns the actual benchmarks:
-> [`09-performance-plan.md`](../implementation-plans/09-performance-plan.md).
 > Numeric per-frame tier breakdown:
 > [`performance.md`](./performance.md).
 

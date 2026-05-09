@@ -83,7 +83,7 @@ during gameplay.
   tier. A pause longer than 4 ms is a bench-harness failure.
 
 Allocation tracking in CI uses `--expose-gc` plus
-`performance.measureUserAgentSpecificMemory()` on Chromium runners,
+`performance.measureUserAgentSpecificMemory` on Chromium runners,
 or the equivalent DevTools heap-profile API where available. The
 exact wiring lives in
 [`tasks/mvp/00-perf/01-bench-harness.md`](../../tasks/mvp/00-perf/01-bench-harness.md).
@@ -285,5 +285,4 @@ Bench-harness sources:
 - [`docs/architecture/atlas-pipeline.md`](./atlas-pipeline.md)
   — atlas-generation pipeline that feeds the texture-memory
   category.
-- [`docs/readiness-audit/09-performance.md`](../readiness-audit/09-performance.md)
   — the audit that motivated this doc.

@@ -1,9 +1,5 @@
 # `src/contracts/` — Cross-module type surface
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../../docs/implementation-plans/16-implementation-readiness-plan.md)
-> (T7).
-
 This workspace package is the **single source of truth** for every
 cross-module TypeScript interface. Modules under `src/<module>/` import
 shared contracts from here as `import type { X } from
@@ -31,7 +27,7 @@ The package is **types-only**:
 | [`net-transport.ts`](./net-transport.ts) | `NetTransport` interface — WebRTC / NetSim contract; pinned in [`net-transport.md`](../../docs/architecture/net-transport.md). |
 | [`renderer-event.ts`](./renderer-event.ts) | `RendererEvent` discriminated union derived from [`renderer-event.schema.json`](../../content-schema/schemas/renderer-event.schema.json). |
 | [`reports.ts`](./reports.ts) | `ValidationReport`, `CoherenceReport`, `BalanceReport` derived from their JSON schemas. |
-| [`fakes/`](./fakes/) | Canonical in-memory fakes per [`testing-conventions.md`](../../docs/architecture/testing-conventions.md). Bodies are landed by [15-testability-plan.md](../../docs/implementation-plans/15-testability-plan.md). |
+| [`fakes/`](./fakes/) | Canonical in-memory fakes per [`testing-conventions.md`](../../docs/architecture/testing-conventions.md). Bodies are landed. |
 
 ## Generated vs hand-authored
 

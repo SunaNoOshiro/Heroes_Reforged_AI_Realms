@@ -1,9 +1,5 @@
 # Display-Name Policy
 
-> Source plan:
-> [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md)
-> § 3 (Issue: Display names are unvalidated; Q324).
-
 This file is the canonical validator contract for any
 human-entered `displayName` field that crosses an M5 lobby
 surface — the multiplayer-setup form, the network-lobby chat, and

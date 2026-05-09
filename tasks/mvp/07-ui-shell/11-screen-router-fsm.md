@@ -16,12 +16,7 @@ modal stack and dismissal policy are sub-contracts of this router
 and live in the same host doc; their schema and per-screen sweep are
 owned by [`14-modal-stack.md`](./14-modal-stack.md).
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q49, Q50, Issue 3.A-1, Missing Logic bullet 1).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)
 - [`docs/architecture/wiki/screens/01-main-menu/interactions.md`](../../../docs/architecture/wiki/screens/01-main-menu/interactions.md)
 - [`docs/architecture/wiki/screens/07-adventure-map/interactions.md`](../../../docs/architecture/wiki/screens/07-adventure-map/interactions.md)
@@ -32,8 +27,6 @@ Read First:
 - [`docs/architecture/wiki/screens/65-map-editor/interactions.md`](../../../docs/architecture/wiki/screens/65-map-editor/interactions.md)
 
 Inputs:
-- Audit Q49, Q50 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - Each screen package's `interactions.md` "Next Screen" column under
   [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)
 - [`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json)

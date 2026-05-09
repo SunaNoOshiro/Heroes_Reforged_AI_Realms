@@ -6,7 +6,7 @@ Description:
 Three-tier token-bucket throttle for the M5 signaling server:
 per-IP `JOIN_ROOM`, per-IP `CREATE_ROOM`, per-code failed
 `JOIN_ROOM`, plus a global rolling-window failure counter. Closes
-Q303 / Q308 / Q310-Q312 enumeration and squat risks.
+the room-code enumeration and squat risks.
 
 Read First:
 - [`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)

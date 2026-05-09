@@ -3,8 +3,6 @@
 Single source of truth for lobby-chat safety: channel reservation,
 envelope schema, normalization, sanitization, rate limit, mute /
 block, report flow, retention, and the trust-model disclosure.
-Authored by
-[`docs/implementation-plans/19-chat-safety-and-user-reporting-plan.md`](../implementation-plans/19-chat-safety-and-user-reporting-plan.md).
 
 When chat-related rules change, update this file first per the
 project Contribution Rule, then mirror the change into the

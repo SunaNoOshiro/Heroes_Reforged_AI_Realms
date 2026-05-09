@@ -407,9 +407,9 @@ async function collectForbiddenPatternViolations() {
 }
 
 async function collectTbdMarkerViolations() {
-  // Implementation Plan 16 (T1): keep canonical sources free of bare
-  // placeholder markers. AI agents reading these paths must never have
-  // to invent a value or guess a missing decision.
+  // Keep canonical sources free of bare placeholder markers. AI agents
+  // reading these paths must never have to invent a value or guess a
+  // missing decision.
   //
   // The check fires on **bare** markers only — references that appear
   // inside backtick code spans (`TBD`), HTML-style quotes ("TBD"), or
@@ -463,18 +463,16 @@ async function collectTbdMarkerViolations() {
 }
 
 async function collectScreenDataContractViolations() {
-  // Implementation Plan 16 (T4): screen-data-contract presence gate.
+  // Screen-data-contract presence gate.
   //
   // Each per-screen package under docs/architecture/wiki/screens/<n>-<id>/
   // must ship a data-contracts.md file. The full schema-landing pass
-  // (one .schema.json per screen) is owned by
-  // docs/implementation-plans/06-data-contracts-and-schema-plan.md;
-  // this gate only confirms the prose contract is present so that
+  // (one .schema.json per screen) is owned by follow-up tasks; this
+  // gate only confirms the prose contract is present so that
   // schema-landing has a canonical seed to work from.
   //
-  // Once 06's plan begins landing schemas, extend this check with a
-  // strict "every data-contracts.md must include a `Schema:` link"
-  // assertion.
+  // Once schema-landing begins, extend this check with a strict
+  // "every data-contracts.md must include a `Schema:` link" assertion.
 
   const screensRoot = path.join(repoRoot, "docs", "architecture", "wiki", "screens");
   const violations = [];

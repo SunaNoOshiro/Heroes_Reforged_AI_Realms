@@ -5,9 +5,6 @@ scope, and where the specific compliance controls live in the repo.
 This file is the auditable artifact for legal review; engineering
 controls live in [`docs/architecture/privacy.md`](../architecture/privacy.md).
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Regulatory scope
 
 | Regime | Scope | Status at v1 |
@@ -37,7 +34,7 @@ Each right below names the satisfying flow.
 
 | Right | Flow |
 |---|---|
-| Access (Art. 15) | "Export my data" UI in [`54-system-menu`](../architecture/wiki/screens/54-system-menu/) (Plan 21 export). |
+| Access (Art. 15) | "Export my data" UI in [`54-system-menu`](../architecture/wiki/screens/54-system-menu/). |
 | Rectification (Art. 16) | Privacy pane in [`56-options`](../architecture/wiki/screens/56-options/) edits every persisted field. |
 | Erasure (Art. 17) | `WIPE_LOCAL_DATA` → `REQUEST_ERASURE_RECEIPT` → receipt rendered in [`54-system-menu`](../architecture/wiki/screens/54-system-menu/). |
 | Restriction (Art. 18) | "Pause analytics" toggle (off by default; effectively always-on at v1). |
@@ -53,7 +50,7 @@ Each right below names the satisfying flow.
 - The product does not knowingly process under-13 data; the absence
   of an account system removes the COPPA verifiable-parental-consent
   vector. UGC chat carries an `acceptedPublishDisclaimer` ack
-  (Plan 21) that names the publication scope; the "publish" step
+  that names the publication scope; the "publish" step
   refuses without the ack.
 
 ## 5. Records of processing (Art. 30)

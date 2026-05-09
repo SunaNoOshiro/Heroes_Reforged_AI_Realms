@@ -8,7 +8,7 @@ the fog-bypass-via-crafted-command gap. Each command kind declares
 a `visibility` precondition (`none | tile | object | hero |
 battle-cell`); the reducer rejects any command whose target is not
 in the issuing peer's `viewWorldVisibleObjects` projection at the
-issuance turn. Plan 26 § Critical Fix 5.
+issuance turn.
 
 Read First:
 - [`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)

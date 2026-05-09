@@ -1,9 +1,5 @@
 # Asset Policy — Allowed and Forbidden Asset Kinds
 
-> Source plan:
-> [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../implementation-plans/28-asset-loading-and-sandboxing-plan.md)
-> § Architecture — `asset-policy.md`.
-
 `asset-index.schema.json` declares each asset's `kind` against a
 **closed enum**. New kinds require a schema change. New kinds that
 require a new decoder require a follow-up amendment to

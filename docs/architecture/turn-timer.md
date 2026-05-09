@@ -1,8 +1,4 @@
-# Turn Timer & Stall Detection (Plan 26 — Critical Fix 4)
-
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § Critical Fix 4.
+# Turn Timer & Stall Detection
 
 Canonical doctrine for the per-peer turn timer that closes the
 "connected-but-idle" griefing gap that the disconnect-forfeit timer

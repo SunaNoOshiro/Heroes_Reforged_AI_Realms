@@ -9,28 +9,14 @@ task pins the four-tier degradation table (Green / Amber / Orange /
 Red), the rolling-average measurement window, and the Canvas 2D
 fallback trigger.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q4, Issue 3.E-1).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)
-- [`docs/readiness-audit/09-performance.md`](../../../docs/readiness-audit/09-performance.md)
 
 Inputs:
-- Audit Q4 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-- Audit Q164–Q177 in
-  [`docs/readiness-audit/09-performance.md`](../../../docs/readiness-audit/09-performance.md)
 
 Outputs:
 - "Frame-Time Budget &amp; Degradation" subsection in
   [`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)
-- Updated Q4 entry in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-- New top-of-file Q in
-  [`docs/readiness-audit/09-performance.md`](../../../docs/readiness-audit/09-performance.md)
 - "Frame-time tier" entry in
   [`docs/architecture/glossary.md`](../../../docs/architecture/glossary.md)
 

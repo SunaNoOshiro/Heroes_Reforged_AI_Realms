@@ -25,7 +25,6 @@ complementary; both ship.
 Read First:
 - [`docs/architecture/net-transport.md`](../../../docs/architecture/net-transport.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
-- [`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q254
 
 Inputs:
 - PCG32 implementation

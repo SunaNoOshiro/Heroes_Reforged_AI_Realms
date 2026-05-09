@@ -13,8 +13,6 @@ and the peer-trust display declared in
 `state.profile.knownPeers`, and the casual lobby gates `Launch`
 behind a per-peer ack when any pack is unsigned.
 
-Plan 23 / Critical Fix 3 + § 3.1 (Q447, Q440).
-
 Read First:
 - [`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md)
 - [`docs/architecture/peer-trust.md`](../../../docs/architecture/peer-trust.md)
@@ -27,8 +25,7 @@ Read First:
 Inputs:
 - `consent.schema.json` and `peer-allowlist.schema.json` from
   [`mvp.02-content-schemas.42-consent-and-peer-allowlist-schemas`](../../mvp/02-content-schemas/42-consent-and-peer-allowlist-schemas.md).
-- Pack `trustState: 'signed' | 'unsigned' | 'invalid-signature'` from
-  Plan 20.
+- Pack `trustState: 'signed' | 'unsigned' | 'invalid-signature'`.
 
 Outputs:
 - `src/multiplayer/consent-gate.ts`

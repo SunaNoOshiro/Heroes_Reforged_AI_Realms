@@ -13,17 +13,16 @@ appear in any user-visible string and never appear in the on-device
 crash log; the formatter's IP-pattern allowlist strips them. A
 `__DEV__`-gated debug surface MAY render the raw candidate list.
 
-Plan 22 § 3 — Peer-failure UI contract on network lobby.
+3 — Peer-failure UI contract on network lobby.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)
 - [`docs/architecture/wiki/screens/64-network-lobby/`](../../../docs/architecture/wiki/screens/64-network-lobby/)
 - [`docs/architecture/ice-disclosure-policy.md`](../../../docs/architecture/ice-disclosure-policy.md)
 
 Inputs:
 - The closed four-value `peerFailureReason` enum.
-- Plan 22's redaction allowlist on `error-formatter.md`.
+- the redaction allowlist on `error-formatter.md`.
 
 Outputs:
 - Updates to the screen-64 package: `spec.md` (Peer-Failure Error

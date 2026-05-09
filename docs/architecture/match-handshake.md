@@ -1,8 +1,4 @@
-# Match Handshake (Plan 26 — Critical Fix 2)
-
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § Critical Fix 2.
+# Match Handshake
 
 Canonical doctrine for the start-of-match three-phase commit-reveal
 handshake that derives the per-match `seed`, `matchId`, and
@@ -237,7 +233,6 @@ covers the entire pack tree) per
 
 ## 7a. Resumed-from-Save Mode
 
-> Source: Plan 27 § Improvement: MP Load-Resume Protocol.
 
 Two peers may agree to resume a saved match into a fresh
 multiplayer session. Resume mode is a strict superset of the

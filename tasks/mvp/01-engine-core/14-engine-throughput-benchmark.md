@@ -25,7 +25,6 @@ ship; an engine regression surfaces in this bench first.
 Read First:
 - [`docs/architecture/testing/engine-throughput-slo.md`](../../../docs/architecture/testing/engine-throughput-slo.md)
 - [`docs/architecture/performance.md`](../../../docs/architecture/performance.md)
-- [`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q260
 
 Inputs:
 - Command dispatcher (`mvp.01-engine-core.06-command-dispatcher`)

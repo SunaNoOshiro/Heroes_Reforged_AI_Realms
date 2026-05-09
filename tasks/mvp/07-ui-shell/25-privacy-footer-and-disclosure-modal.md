@@ -15,10 +15,9 @@ that opens automatically when
 Wire the load-gate so no analytics SDK loads while
 `state.privacy.options.analyticsOptIn === false`.
 
-Plan 22 § 3 — Privacy footer link + Privacy disclosure modal.
+3 — Privacy footer link + Privacy disclosure modal.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/privacy.md`](../../../docs/architecture/privacy.md)
 - [`docs/architecture/wiki/screens/56-options/`](../../../docs/architecture/wiki/screens/56-options/)
 - [`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)
@@ -40,7 +39,7 @@ Owned Paths:
 
 Owned Paths (shared):
 - `docs/architecture/wiki/screens/56-options/` is the **primary
-  package** of `mvp.07-ui-shell.22-privacy-pane-in-options` (Plan 21);
+  package** of `mvp.07-ui-shell.22-privacy-pane-in-options`;
   this task adds the disclosure modal **additively** and does not
   rewrite the privacy pane.
 - `docs/architecture/command-schema.md` is the **primary contract**

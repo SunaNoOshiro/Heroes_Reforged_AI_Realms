@@ -13,12 +13,7 @@ pointer navigation" but no global registry exists, hotkey
 conflicts between screens are undetectable, and modal-heavy
 screens ship as mouse-only.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q56, Q61, Q62, Issues 3.A-9 and 3.B-3, Missing Logic bullet 7).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/ui-routing.md`](../../../docs/architecture/ui-routing.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - [`docs/architecture/ui-input-arbitration.md`](../../../docs/architecture/ui-input-arbitration.md)
@@ -30,8 +25,6 @@ Read First:
 - `docs/architecture/wiki/screens/65-map-editor/interactions.md`
 
 Inputs:
-- Audit Q56, Q61, Q62 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The modal-stack `previousFocusElementId` field defined by
   [`14-modal-stack.md`](./14-modal-stack.md)
 - Existing hotkey hints in screen `interactions.md` Description

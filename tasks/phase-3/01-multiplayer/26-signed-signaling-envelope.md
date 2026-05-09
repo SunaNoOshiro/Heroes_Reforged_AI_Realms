@@ -10,7 +10,6 @@ closed `kind` enum on any failure. Touchpoints in tasks 01, 02, 06,
 07, and 08 are already extended to consume the envelope; this task
 owns the runtime wrap / verify wiring + the trust-violation banner.
 
-Plan 24 § Critical Fix 2.
 
 Read First:
 - [`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)

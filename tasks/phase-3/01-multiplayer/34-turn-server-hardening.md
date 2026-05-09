@@ -10,8 +10,7 @@ Pin the **hardened TURN-server config** in
 `no-loopback-peers`, `no-multicast-peers`, full `denied-peer-ip`
 allowlist for IPv4 / IPv6 private / loopback / multicast / reserved
 ranges, port allowlist, per-credential and per-instance bandwidth
-quotas, attribution log, and the deny-list sync worker. Closes
-Plan 25 Critical Fix 4.
+quotas, attribution log, and the deny-list sync worker.
 
 Read First:
 - [`services/turn/README.md`](../../../services/turn/README.md)

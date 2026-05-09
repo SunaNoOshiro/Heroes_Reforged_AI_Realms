@@ -8,7 +8,7 @@ griefing gap. Three escalation states: `WAITING` from turn start,
 `STALLED` at `WAITING_THRESHOLD_MS = 30_000`, `AUTO_END_DAY` at
 `STALL_LIMIT_MS = 90_000`. The auto-`END_DAY` envelope is canonical
 and rides the lockstep envelope pipeline like any other command,
-so both peers apply it deterministically. Plan 26 § Critical
+so both peers apply it deterministically. Critical
 Fix 4.
 
 Read First:

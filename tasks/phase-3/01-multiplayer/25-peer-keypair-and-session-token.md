@@ -3,7 +3,7 @@
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:
-Implement the runtime primitives behind the Plan-24 identity model:
+Implement the runtime primitives behind the peer-identity model:
 keypair generation / persistence / load / rotate, host-side session-
 token mint, joiner-side token replay, and the canonicalized
 sign / verify primitives consumed by every signed signaling
@@ -11,7 +11,6 @@ envelope. Builds the `src/net/identity/` surface; consumed by
 [Task 26](./26-signed-signaling-envelope.md), [Task 27](./27-dtls-fingerprint-pinning.md),
 and [Task 28](./28-abandon-penalty-and-quorum-disconnect.md).
 
-Plan 24 § Critical Fix 2.
 
 Read First:
 - [`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)

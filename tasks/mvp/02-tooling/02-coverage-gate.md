@@ -13,7 +13,6 @@ step inside
 
 Read First:
 - [`docs/architecture/testing/coverage-policy.md`](../../../docs/architecture/testing/coverage-policy.md)
-- [`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q259
 
 Inputs:
 - `vitest.config.ts` pinned by

@@ -13,13 +13,10 @@ scaffolding ([`services/ai-gateway/`](../../services/ai-gateway/)).
 **Total Estimate**: ~14 hours
 **Exit Criteria**:
 - `services/shared/logger.ts` is the single sanctioned emit path
-  for every backend service; `console.*` and direct `pino()` are
+  for every backend service; `console.*` and direct `pino` are
   refused under `services/`.
 - Every `SecurityEvent.kind` listed in
   [`security-event.schema.json`](../../content-schema/schemas/security-event.schema.json)
   is emitted by at least one named code path.
 - `npm run validate:contracts` enforces the four lint rules from
   [`docs/architecture/fail-loud.md`](../../docs/architecture/fail-loud.md).
-
-Source plan:
-[`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../../docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md).

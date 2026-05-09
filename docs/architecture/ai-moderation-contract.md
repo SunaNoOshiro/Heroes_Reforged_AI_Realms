@@ -3,10 +3,10 @@
 > Companion to [`ai-generation-pipeline.md`](./ai-generation-pipeline.md),
 > [`ugc-safety.md`](./ugc-safety.md), and screen
 > [`02-new-game-setup`](./wiki/screens/02-new-game-setup/) (the AI
-> faction picker). Plan 23 / Q441 introduces the **status carrier** and
+> faction picker). This file introduces the **status carrier** and
 > **banner contract**; the actual moderation logic — provider,
-> pre-screen, post-screen, human review — is owned by audit 14 / Plan 14
-> and lands separately. The banner contract can land first because it
+> pre-screen, post-screen, human review — is out of scope here and
+> lands separately. The banner contract can land first because it
 > is closed and additive.
 
 ## 1. Status Carrier
@@ -70,6 +70,6 @@ review. This is documented further in
 ## 5. Out of Scope (here)
 
 - The actual moderator (provider, prompt-pre-screen, post-screen,
-  human review). Owned by audit 14 / Plan 14.
+  human review). Owned.
 - Server-side moderation queue and SLA.
 - Auto-redaction of failed records (today they fail loudly).

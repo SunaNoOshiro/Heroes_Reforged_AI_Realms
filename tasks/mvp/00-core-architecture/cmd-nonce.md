@@ -19,17 +19,10 @@ The closed schema at
 `content-schema/schemas/command.schema.json` requires `metadata` with
 a pattern-checked `nonce` on every command kind.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q16, Issue 3.B-1).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
 
 Inputs:
-- Audit Q16 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 - Existing command schema at `content-schema/schemas/command.schema.json`
 
 Outputs:

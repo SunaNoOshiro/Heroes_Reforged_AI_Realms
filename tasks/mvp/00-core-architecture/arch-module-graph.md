@@ -19,18 +19,11 @@ cycles via DFS. When the engine reducer lands and the import graph
 gets dense, swapping the script for `dependency-cruiser` (or `madge`)
 remains a one-line change in `package.json`.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q22, Q24, Issue 3.A-2).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 - [`docs/architecture/overview.md`](../../../docs/architecture/overview.md)
 
 Inputs:
-- Audit Q22 / Q24 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 
 Outputs:
 - `scripts/check-module-graph.mjs`

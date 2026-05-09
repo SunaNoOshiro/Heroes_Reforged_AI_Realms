@@ -21,7 +21,6 @@ fixture, gated behind an explicit human action (refuses to run when
 
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
-- [`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q251
 
 Inputs:
 - Canonical JSON serializer + content hash

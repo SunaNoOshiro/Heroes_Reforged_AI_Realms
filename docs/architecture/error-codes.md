@@ -6,9 +6,6 @@ plus the closed pack-signature vocabulary. Every wire-visible error
 code is listed here so a contributor can find one canonical mapping
 instead of hunting through service folders.
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Closed vocabularies
 
 | Surface | Schema | Doc |

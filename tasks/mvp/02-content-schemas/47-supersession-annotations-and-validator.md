@@ -5,7 +5,7 @@ Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 Description:
 Pin a machine-readable supersession convention for schemas under
 `content-schema/schemas/` so superseded schemas surface failures at
-CI time instead of at first runtime. Closes Plan 32 § NC-2 (Make
+CI time instead of at first runtime. Closes NC-2 (Make
 the supersession graph machine-readable).
 
 The convention: each superseded schema carries a top-level
@@ -18,16 +18,13 @@ fixture is authored under a superseded schema, or when an
 annotation points at an unknown target.
 
 Read First:
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § NC-2
 - [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)
-- [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../../../docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
 
 Inputs:
 - Existing schemas under `content-schema/schemas/`.
-- The supersession declarations in Plan 25 (TURN rotation, HTTP
-  `/turn-credential` route) and Plan 26
-  (`command-envelope.schema.json` →
+- The supersession declarations in (TURN rotation, HTTP
+  `/turn-credential` route) and (`command-envelope.schema.json` →
   `lockstep-envelope.schema.json`).
 
 Outputs:

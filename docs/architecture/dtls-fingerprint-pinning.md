@@ -10,10 +10,6 @@ WebRTC PeerConnection lifecycles. Closes the SDP-swap window that
 [`signaling-envelope.md`](./signaling-envelope.md) cannot close on its
 own.
 
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
-> § Critical Fix 3.
-
 Companion docs:
 
 - [`peer-identity.md`](./peer-identity.md) — Ed25519 keypair contract.

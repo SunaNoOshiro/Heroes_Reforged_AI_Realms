@@ -12,12 +12,7 @@ but per-screen tap-target floors and touch interaction contracts
 are unspecified today, and there is no reserved slot for gamepad
 support.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q57, Issue 3.A-10).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/renderer-technology-choice.md`](../../../docs/architecture/renderer-technology-choice.md)
 - [`docs/architecture/ui-renderer-seam.md`](../../../docs/architecture/ui-renderer-seam.md)
 - [`docs/architecture/ui-gestures.md`](../../../docs/architecture/ui-gestures.md)
@@ -27,8 +22,6 @@ Read First:
 - `docs/architecture/wiki/screens/24-town-screen/spec.md`
 
 Inputs:
-- Audit Q57 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The Component State Matrix host doc anchor
   ([`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md))
   for the `state.ui.input.activeModality` slot

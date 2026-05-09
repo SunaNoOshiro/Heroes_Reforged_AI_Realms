@@ -7,14 +7,9 @@
 > `signature-error.schema.json` taxonomy; read both when adding a
 > new comparison call site.
 
-Three mandatory rules covering every secret comparison shipped by the
-project. Plan 27 (save tampering & pack signing), Plan 25 (TURN
-credentials & signaling abuse), and any future auth surface inherit
-this contract.
-
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
-> § Critical Fixes — Crypto-rules + constant-time compare.
+Three mandatory rules covering every secret comparison shipped by
+the project. Pack signing, save tampering, TURN credentials, and any
+future auth surface inherit this contract.
 
 ## 1. Compare — constant time, always
 
@@ -80,9 +75,9 @@ per rule 3 of [`production-build.md`](./production-build.md).
 | Surface | Compare key path | Wire / UI code |
 |---|---|---|
 | Pack signature | `manifest.signature.value` vs. computed sig | `INVALID_SIGNATURE` (per [`signature-error.schema.json`](../../content-schema/schemas/signature-error.schema.json)) |
-| Save MAC | `save.metadata.mac` vs. computed MAC (Plan 27) | `errors.import.corrupted` |
-| TURN credential | `turn.credential` vs. expected (Plan 25) | `JOIN_FAILED` (per [`services/signaling/error-codes.md`](../../services/signaling/error-codes.md)) |
-| Future auth tokens | (out of scope until Plan 25) | `JOIN_FAILED` |
+| Save MAC | `save.metadata.mac` vs. computed MAC | `errors.import.corrupted` |
+| TURN credential | `turn.credential` vs. expected | `JOIN_FAILED` (per [`services/signaling/error-codes.md`](../../services/signaling/error-codes.md)) |
+| Future auth tokens | (out of scope until an auth surface lands) | `JOIN_FAILED` |
 
 When `signature` is unset on a pack, the surface returns the
 explicit `SIGNATURE_DISABLED` code (the "feature off" state) rather

@@ -7,9 +7,8 @@ Add `REPORT_PEER`, `EXPORT_CHAT_LOG`, the `ReportPeerDialog`,
 the local-download blob-URL pipeline, and the
 `report-bundle.schema.json` evidence bundle. The MVP intake is
 local-only — bundles are saved to the user's downloads folder;
-there is no network upload. Closes Q348–Q350, Q355 and the
-no-evidence-for-harassment risk documented in
-[`docs/readiness-audit/19-chat-safety-and-user-reporting.md`](../../../docs/readiness-audit/19-chat-safety-and-user-reporting.md).
+there is no network upload. Closes the no-evidence-for-harassment
+gap by giving each peer a deterministic local report artifact.
 
 Read First:
 - [`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md)

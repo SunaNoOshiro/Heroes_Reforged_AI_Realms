@@ -8,7 +8,7 @@ matches and add an engine-bundle attestation field to the match
 handshake. Hosts the canonical doctrine
 ([`build-attestation.md`](../../../docs/architecture/build-attestation.md)),
 the signaling-side allow-list example, and the CI gate that keeps
-the allow-list well-formed. Plan 26 § System Improvements / Data
+the allow-list well-formed. System Improvements / Data
 Contracts.
 
 Read First:
@@ -20,7 +20,7 @@ Read First:
 - [`content-schema/schemas/match-handshake.schema.json`](../../../content-schema/schemas/match-handshake.schema.json)
 
 Inputs:
-- Plan 25 signing-key trust list (signaling-side configuration).
+- the signing-key trust list (signaling-side configuration).
 - Pack contract `signature` field (currently optional).
 - Match handshake REVEAL phase fields.
 

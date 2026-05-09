@@ -13,11 +13,10 @@ auto-bisect round routes through the redactor declared in
 **before** any UI / log / peer sink. Intermediate `expected: bigint`
 hashes remain public; the underlying commands stay hidden.
 
-Plan 22 § 3 — Edits to the desync tasks (consume the redaction
+3 — Edits to the desync tasks (consume the redaction
 taxonomy without redesigning the multiplayer plan).
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/desync-redaction.md`](../../../docs/architecture/desync-redaction.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
 

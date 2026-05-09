@@ -11,8 +11,7 @@ banner / bisect report panel, developer-mode match-key display, and
 the post-match audit-pipeline consent prompt. Splits the in-game
 status surface off
 [Task 08](./08-multiplayer-ui-lobby-invite-link-in-game-status.md)
-into its own owning task per the wiki convention. Plan 26 §
-System Improvements / UI / Multiplayer-game-screen.
+into its own owning task per the wiki convention. System Improvements / UI / Multiplayer-game-screen.
 
 Read First:
 - [`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/spec.md)

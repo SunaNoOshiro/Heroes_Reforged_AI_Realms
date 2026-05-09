@@ -1,8 +1,6 @@
 # Side-Effect Matrix
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md)
-> (T8). Sister docs:
+> Sister docs:
 > [`determinism.md`](./determinism.md) (what is forbidden in
 > deterministic paths) and
 > [`state-flow.md`](./state-flow.md) (which boundaries can do I/O).

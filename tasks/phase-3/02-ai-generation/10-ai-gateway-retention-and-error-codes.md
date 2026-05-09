@@ -6,23 +6,22 @@ Description:
 Author [`services/ai-gateway/retention.md`](../../../services/ai-gateway/retention.md)
 and [`services/ai-gateway/error-codes.md`](../../../services/ai-gateway/error-codes.md).
 Prompts log only as `promptHash` (the `notes.promptHash` field
-already declared by Plan 14); raw responses retained ≤ 24 h in the
+already declared); raw responses retained ≤ 24 h in the
 provider-response cache then purged; failure-path logger uses
 `formatDevError` to strip the prompt body before any sink.
 Wire the new error-code mapping (401/403 collapse → 404, 429 with
 `Retry-After`, 500 without `cause`).
 
-Plan 22 § 3 — Service-side observability + retention docs.
+ Service-side observability + retention docs.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/ai-integration.md`](../../../docs/architecture/ai-integration.md)
 - [`docs/architecture/ai-generation-pipeline.md`](../../../docs/architecture/ai-generation-pipeline.md)
 - [`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)
 
 Inputs:
-- Plan 14's `notes.promptHash` rule.
-- Plan 22's failure-path redactor.
+- the `notes.promptHash` rule.
+- the failure-path redactor.
 - The closed [`provider-failure.schema.json`](../../../content-schema/schemas/provider-failure.schema.json)
   taxonomy (transport / auth / quota / content-policy).
 

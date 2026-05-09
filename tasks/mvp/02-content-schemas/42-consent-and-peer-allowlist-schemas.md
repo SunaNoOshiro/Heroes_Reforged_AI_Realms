@@ -3,7 +3,7 @@
 Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 
 Description:
-Add the schemas Plan 23 needs that have no existing surface:
+Add the consent and peer-allowlist schemas:
 [`consent.schema.json`](../../../content-schema/schemas/consent.schema.json),
 [`consent-audit-log.schema.json`](../../../content-schema/schemas/consent-audit-log.schema.json),
 and
@@ -13,10 +13,7 @@ Author canonical examples per schema, register them in
 [`content-schema/README.md`](../../../content-schema/README.md), and
 extend `scripts/check-repo-contracts.mjs` with the suffix mapping rows.
 
-Plan 23 § 3 / Critical Fix 2.
-
 Read First:
-- [`docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md`](../../../docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md)
 - [`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md)
 - [`docs/architecture/peer-trust.md`](../../../docs/architecture/peer-trust.md)
 

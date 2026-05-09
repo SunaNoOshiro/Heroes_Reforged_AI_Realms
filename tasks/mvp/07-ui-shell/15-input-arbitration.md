@@ -13,12 +13,7 @@ dispatches `END_HERO_TURN` twice — producing a divergent command
 log between two M5 lockstep peers — and Esc behavior fragments
 across screens.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q59, Issue 3.A-6, Missing Logic bullet 9).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 - [`docs/architecture/ui-frame-lag-contract.md`](../../../docs/architecture/ui-frame-lag-contract.md)
@@ -26,8 +21,6 @@ Read First:
 - [`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)
 
 Inputs:
-- Audit Q59 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The synchronous reducer contract in
   [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 - Existing `state.ui.drag.*` and `state.ui.tooltips.*` slot usage

@@ -1,8 +1,6 @@
 # Runtime Requirements
 
-> Source plan:
-> [`docs/implementation-plans/17-final-critical-questions-plan.md`](../implementation-plans/17-final-critical-questions-plan.md)
-> (Q279). This file is the single declaration of load-bearing runtime
+> This file is the single declaration of load-bearing runtime
 > preconditions. Every entry has a stable `RR-NN` ID. Tasks that depend
 > on a runtime feature MUST cite an `RR-NN` from this table and not
 > invent a new precondition inline.

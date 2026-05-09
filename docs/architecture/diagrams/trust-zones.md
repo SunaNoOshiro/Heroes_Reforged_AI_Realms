@@ -1,7 +1,5 @@
 # Diagram — Trust Zones
 
-> Source plan:
-> [`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../../implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md).
 > Owner doc: [`trust-boundaries.md`](../trust-boundaries.md).
 
 The diagram below names every cross-zone arrow and the gate that

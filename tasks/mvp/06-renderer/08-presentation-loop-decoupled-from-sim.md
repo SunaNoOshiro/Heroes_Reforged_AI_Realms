@@ -46,7 +46,7 @@ Acceptance Criteria:
   `renderer.cull + draw` ≤ 4 ms,
   `renderer.animationTick` ≤ 1 ms at the Reference tier.
 
-### Rehydration Mode (Q212, save / load)
+### Rehydration Mode (save / load)
 
 When a save loads, the engine replays the command log silently to
 the saved offset. During replay-time event emission the animation
@@ -61,7 +61,7 @@ scheduler is skipped:
 Cross-cutting framing in
 [`docs/architecture/edge-cases-policy.md` § 8](../../../docs/architecture/edge-cases-policy.md#8-save-gating-q212).
 
-### Visibility Hooks (Q217)
+### Visibility Hooks
 
 The render loop participates in the canonical visibility policy
 ([`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md)):

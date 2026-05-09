@@ -1,9 +1,5 @@
 # Asset Loading
 
-> Source plan:
-> [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../implementation-plans/28-asset-loading-and-sandboxing-plan.md)
-> § Architecture — `asset-loading.md`.
-
 Canonical doctrine for the asset loader's hostile-input contract:
 per-decoder caps, per-asset / per-pack budgets, fetch-rate policy,
 and the pinned pre-flight pipeline. Every cap below is a

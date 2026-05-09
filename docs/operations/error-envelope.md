@@ -1,9 +1,5 @@
 # Error Envelope Doctrine
 
-> Source plan:
-> [`docs/implementation-plans/29-rate-limiting-and-secret-management-plan.md`](../implementation-plans/29-rate-limiting-and-secret-management-plan.md)
-> — Critical Fix 4.
-
 One canonical response shape for every public error surface.
 Schema: [`error-envelope.schema.json`](../../content-schema/schemas/error-envelope.schema.json).
 

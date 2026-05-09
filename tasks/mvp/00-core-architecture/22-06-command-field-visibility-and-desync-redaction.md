@@ -13,10 +13,9 @@ with worked examples for `MOVE_HERO`, `INITIATE_BATTLE`,
 and `SET_GUARD`. The redactor replaces `hidden` fields with
 `sha256(canonical(field))` truncated to 12 hex chars + length-class.
 
-Plan 22 § 3 — Command-schema field-visibility tag.
+3 — Command-schema field-visibility tag.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
 - [`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)
 

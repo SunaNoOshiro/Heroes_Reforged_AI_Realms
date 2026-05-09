@@ -3,7 +3,7 @@
 Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 
 Description:
-Add the five schemas Plan 24 needs that have no existing surface:
+Add the five schemas needed that have no existing surface:
 [`peer-identity.schema.json`](../../../content-schema/schemas/peer-identity.schema.json),
 [`signaling-envelope.schema.json`](../../../content-schema/schemas/signaling-envelope.schema.json),
 [`session-token.schema.json`](../../../content-schema/schemas/session-token.schema.json),
@@ -16,10 +16,9 @@ Register them in
 extend `scripts/check-repo-contracts.mjs` with the suffix mapping rows
 where canonical examples eventually land.
 
-Plan 24 § Critical Fixes 2–5.
+Critical Fixes 2–5.
 
 Read First:
-- [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../../../docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
 - [`docs/architecture/peer-identity.md`](../../../docs/architecture/peer-identity.md)
 - [`docs/architecture/signaling-envelope.md`](../../../docs/architecture/signaling-envelope.md)
 - [`docs/architecture/dtls-fingerprint-pinning.md`](../../../docs/architecture/dtls-fingerprint-pinning.md)

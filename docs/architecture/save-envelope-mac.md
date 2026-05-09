@@ -1,8 +1,5 @@
 # Save-Envelope MAC — Phase-In Plan
 
-> Source plan:
-> [`docs/implementation-plans/27-save-tampering-and-pack-signing-plan.md`](../implementation-plans/27-save-tampering-and-pack-signing-plan.md)
-> § Improvement: Save-Envelope MAC.
 >
 > Crypto primitive in use here (HMAC-SHA-256) is catalogued in
 > [`crypto-primitives.md`](./crypto-primitives.md).
@@ -38,7 +35,7 @@ version bump, fixture rebuild). With the seam in place, M5 simply
 flips `mac` from optional to required for `intent: "save"`
 envelopes that opt into cloud sync.
 
-The audit (Q540, Q552) flags that **xxh64 detects accidental
+The audit flags that **xxh64 detects accidental
 corruption only** — it is not a signature, not a MAC, and any
 trusted multi-device path requires a keyed primitive. Achievement /
 leaderboard / shared-replay surfaces *all* depend on this contract.

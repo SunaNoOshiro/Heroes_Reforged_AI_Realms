@@ -1,16 +1,14 @@
 # ICE Disclosure Policy
 
-> Source plan:
-> [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md)
-> § 2 (Issue: Host IP leaks via unfiltered ICE before consent;
-> Q326–Q328).
+> Closes the host-IP-leak risk: unfiltered ICE candidates expose the
+> host's network before the joiner has consented to peer-to-peer.
 
 This file is the canonical contract for which ICE candidate types
 flow across the M5 signaling server, and when. The rule is
 **relay-only before consent, full ICE after consent**.
 
 The TURN-relay infrastructure that this policy depends on is owned
-by [Plan 07](../implementation-plans/07-multiplayer-plan.md) and
+by  and
 [`tasks/phase-3/01-multiplayer/10-turn-fallback-and-credentials.md`](../../tasks/phase-3/01-multiplayer/10-turn-fallback-and-credentials.md).
 The host-approval gate that draws the consent boundary is owned by
 [Task 14](../../tasks/phase-3/01-multiplayer/14-host-approval-and-moderation.md).

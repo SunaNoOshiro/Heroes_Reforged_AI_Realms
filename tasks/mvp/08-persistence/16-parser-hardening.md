@@ -5,7 +5,7 @@ Module: [Persistence (M1)](../08-persistence.md)
 Description:
 Author the parser-hardening doctrine and the two thin wrappers that
 own every `JSON.parse` and `DecompressionStream` call against
-untrusted input. Plan 27 § Critical Fix 1.
+untrusted input.
 
 Read First:
 - [`docs/architecture/parser-hardening.md`](../../../docs/architecture/parser-hardening.md)

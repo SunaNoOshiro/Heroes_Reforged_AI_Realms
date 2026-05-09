@@ -16,12 +16,7 @@ candidate and its package is silent on the topic, blocking
 non-trivial authoring. In-game undo (e.g. spell-cast undo) is
 explicitly deferred to a later Phase 2 / Phase 3 scope.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q63, Issue 3.A-12, Missing Logic bullet 10).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - [`docs/architecture/ui-hotkeys.md`](../../../docs/architecture/ui-hotkeys.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
@@ -31,8 +26,6 @@ Read First:
 - `docs/architecture/wiki/screens/65-map-editor/architecture.md`
 
 Inputs:
-- Audit Q63 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The Undo / Redo section anchor in
   [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - The `ui.editor.maxHistory` constant in

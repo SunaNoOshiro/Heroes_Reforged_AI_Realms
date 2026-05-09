@@ -7,10 +7,6 @@ that wraps every `OFFER`, `ANSWER`, `ICE_CANDIDATE`, `HOST_CHANGED`,
 server unable to impersonate, swap fingerprints, or inject candidates
 even when fully compromised.
 
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
-> § Critical Fix 2.
-
 Companion docs:
 
 - [`peer-identity.md`](./peer-identity.md) — Ed25519 keypair contract.
@@ -58,7 +54,7 @@ covers the canonicalized concatenation defined in § 3.
 | `ANSWER` | `{ sdp }` | SDP exchange |
 | `ICE_CANDIDATE` | `{ candidate, sdpMid, sdpMLineIndex }` | ICE relay |
 | `HOST_CHANGED` | `{ newHostPeerId, electionTurn }` | Signed by the elected host |
-| `PEER_DISCONNECTED` | `{ peerId, observedAt, signalingObservedAt, kind }` | Signed by the elected host (Critical Fix 5) |
+| `PEER_DISCONNECTED` | `{ peerId, observedAt, signalingObservedAt, kind }` | Signed by the elected host |
 | `CHALLENGE` | `{ nonce }` | Reconnect continuity prompt |
 | `CHALLENGE_RESPONSE` | `{ nonce, sig }` | Reply signed with the original session keypair |
 
@@ -156,8 +152,7 @@ membership; the joiner stores the full token and replays the hash
 on every outbound envelope.
 
 Token rate limits live in
-[`signaling-rate-limits.md`](./signaling-rate-limits.md) (Plan 29
-scope); this doc owns the shape, that doc owns the budgets.
+[`signaling-rate-limits.md`](./signaling-rate-limits.md); this doc owns the shape, that doc owns the budgets.
 
 ## 8. Failure Modes & Surface
 

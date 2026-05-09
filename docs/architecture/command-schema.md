@@ -582,7 +582,7 @@ adapter, never the engine reducer.
   `state.privacy.options.analyticsOptIn`. Owned by the same task.
 - `TOGGLE_MATURE_CONTENT_GATE` — flip
   `state.privacy.options.allowMatureContent`; binds the same key
-  Plan 20 uses for its `contentRating` gate. Owned by the same task.
+  as the `contentRating` gate. Owned by the same task.
 - `RESET_ANALYTICS_ID` — regenerate `analyticsClientId` if present
   (no-op until a future analytics integration lands). local-ui /
   persistence.
@@ -616,7 +616,7 @@ adapter, never the engine reducer.
   and append a corresponding
   [`audit-log-entry.schema.json`](../../content-schema/schemas/audit-log-entry.schema.json)
   row with `type: "ERASURE"`. Payload: `{ scope: "all" | "saves" |
-  "profile" | "chat" }`. Complements Plan 21's `WIPE_LOCAL_DATA`;
+  "profile" | "chat" }`. Complements the `WIPE_LOCAL_DATA`;
   rendered by [`54-system-menu`](./wiki/screens/54-system-menu/).
   Owned by `tasks/mvp/07-ui-shell/25-erasure-receipt-modal.md`.
 
@@ -629,7 +629,7 @@ Commands surfaced by screens
 [`55-save-load`](./wiki/screens/55-save-load/), and
 [`64-network-lobby`](./wiki/screens/64-network-lobby/) per
 [`onboarding.md`](./onboarding.md),
-[`undo-policy.md`](./undo-policy.md), and plan 23. These tokens drive
+and [`undo-policy.md`](./undo-policy.md). These tokens drive
 UI flow, persistence-side state, and `state.profile.consent.*` /
 `state.ui.lastDestructive` slices but do **not** enter the
 deterministic engine command log; they are dispatched against the
@@ -695,7 +695,7 @@ persistence / runtime adapters, never the engine reducer.
   [`developer-mode.md`](./developer-mode.md).
 - `REQUEST_PERMISSION_RATIONALE` — local-ui; opens the JIT rationale
   modal preceding any native permission prompt per
-  [`permissions.md` § Just-In-Time (JIT) Rule](./permissions.md#just-in-time-jit-rule-plan-23--q448).
+  [`permissions.md` § Just-In-Time (JIT) Rule](./permissions.md#just-in-time-jit-rule).
 
 ## Multiplayer Trust & Identity Commands
 
@@ -755,7 +755,7 @@ deterministic engine command log; they are dispatched against the
 
 ### Signaling Abuse-Defense, TURN, and Connection-Failure Commands
 
-Plan-25 surface tokens dispatched against the `src/net/`,
+Signaling-edge surface tokens dispatched against the `src/net/`,
 `src/net/webrtc/`, and lobby-screen adapters. None enter the
 deterministic engine command log. Closed event vocabulary aligned
 with [`signaling-message.schema.json`](../../content-schema/schemas/signaling-message.schema.json)

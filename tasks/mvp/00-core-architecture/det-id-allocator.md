@@ -14,17 +14,10 @@ table living inside `GameState.idCounters` (added by the state-shape
 task). Replays reproduce IDs byte-identically because the counters are
 part of the canonical state.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q7, Issue 3.D-2).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/state-shape.md`](../../../docs/architecture/state-shape.md)
 
 Inputs:
-- Audit Q7 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 - Closed list of minting commands in `command-schema.md`
   (`RECRUIT_UNITS`, `RECRUIT_EXTERNAL_DWELLING_UNITS`,
   `SPLIT_ARMY_STACK`, `CAPTURE_MINE`, `SPELL_CAST` (summon-class

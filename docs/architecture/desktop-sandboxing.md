@@ -1,7 +1,5 @@
 # Desktop Sandboxing (pre-emptive)
 
-> Source plan:
-> [`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md).
 > Cross-link: [`trust-boundaries.md`](./trust-boundaries.md) § 3
 > ("Future desktop wrapper" row),
 > [`pack-contract.md`](./pack-contract.md),
@@ -77,7 +75,7 @@ shape before forwarding.
 ## 4. ZIP extraction
 
 Both wrappers MUST sanitize ZIP archive paths against `../`
-traversal per [plan 28](../implementation-plans/28-asset-loading-and-sandboxing-plan.md).
+traversal per [`asset-loading.md`](./asset-loading.md).
 A traversal attempt fires
 `SecurityEvent.pack_traversal_attempt` and aborts the load.
 

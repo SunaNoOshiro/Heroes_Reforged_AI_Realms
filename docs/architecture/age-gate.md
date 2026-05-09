@@ -4,7 +4,7 @@
 > [`privacy.md`](./privacy.md),
 > [`new-install-defaults.md`](./new-install-defaults.md),
 > [`pack-trust.md`](./pack-trust.md), and
-> [`chat-safety.md`](./chat-safety.md). Plan 23 / Q459 introduces the
+> [`chat-safety.md`](./chat-safety.md). This file introduces the
 > `config.player.ageGate` field and the minor-strict feature matrix.
 > COPPA-conservative defaults apply until the user picks otherwise.
 
@@ -34,7 +34,7 @@ revisable from the Privacy tab in
 | `consent.telemetry`              | denied    | denied    | unset → user-prompted |
 | `consent.crashReports`           | denied    | denied    | unset → user-prompted |
 | `consent.analytics`              | denied    | denied    | unset → user-prompted |
-| Lobby chat (Plan 19)             | disabled  | disabled  | enabled  |
+| Lobby chat             | disabled  | disabled  | enabled  |
 | Public lobbies                   | disabled  | disabled  | n/a (none exist at v1) |
 | Packs with `contentRating.overallRating > 'everyone'` | filtered | filtered | rendered |
 

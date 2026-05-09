@@ -15,12 +15,7 @@ screens use 200 ms vs. 800 ms today, feeling like bugs to
 playtesters. Constants live in the ruleset so QA can tune them
 without code changes.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q64, Q65, Issues 3.A-8 and 3.D-3, Missing Logic bullets 11 & 13).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - [`docs/architecture/effect-registry.md`](../../../docs/architecture/effect-registry.md)
 - `docs/architecture/wiki/screens/18-map-object-tooltip/spec.md`
@@ -29,8 +24,6 @@ Read First:
 - `docs/architecture/wiki/screens/19-status-bar/spec.md`
 
 Inputs:
-- Audit Q64, Q65 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The Tooltip Lifecycle section anchor in
   [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - The existing `ruleset.schema.json` shape under

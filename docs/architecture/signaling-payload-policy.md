@@ -1,9 +1,5 @@
 # Signaling Payload Policy
 
-> Source plan:
-> [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md)
-> § 3 (Issue: Signaling-channel metadata policy is implicit; Q330).
-
 This file is the canonical allow / deny list for any payload that
 crosses the M5 signaling server. The signaling server is a
 **stateless lobby** — it has no business handling content hashes,

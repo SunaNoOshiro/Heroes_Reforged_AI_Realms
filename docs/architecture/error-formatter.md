@@ -6,10 +6,6 @@ write that originates from a thrown error must route through this
 contract; raw `err.message`, `err.stack`, `String(err)`, `${err}`, and
 `JSON.stringify(err)` are banned outside `src/errors/`.
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
-> § Critical Fixes — Centralized error-formatter and lint contract.
-
 ## 1. API
 
 The contract is implemented in two reserved paths under `src/errors/`:
@@ -145,8 +141,7 @@ path; specified by task **22-01** in the plan). `formatDevError` of
 the same error returns the full Ajv `errors[]` array — only ever
 shown in the dev console.
 
-This rule applies to **every** schema-validation surface. Plan 20's
-save-import flow consumes this contract; future flows (peer envelope
+This rule applies to **every** schema-validation surface. the save-import flow consumes this contract; future flows (peer envelope
 validation, pack-manifest import) inherit it.
 
 ## 8. Banned patterns (CI lint)
@@ -163,7 +158,7 @@ not appear inside `src/ui/` or `src/services/*` (anywhere outside
 - `JSON.stringify(err)` where the argument is a thrown error
 
 Violations fail the lint test. The lint integration with the
-project's chosen lint tool lands with the build pipeline (Plan 30);
+project's chosen lint tool lands with the build pipeline;
 the fixture test is the gate for now.
 
 ## 9. Cross-references

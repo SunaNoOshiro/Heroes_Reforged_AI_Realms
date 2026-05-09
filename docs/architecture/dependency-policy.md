@@ -1,10 +1,5 @@
 # Dependency Policy
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md)
-> (T3). Deeper SBOM / CVE-response wiring lives in
-> [`docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md`](../implementation-plans/30-dependencies-and-build-pipeline-plan.md).
-
 This doc is the canonical policy for any third-party package, GitHub
 Action, or other supply-chain artifact entering the repo. It is
 referenced by [`AGENTS.md`](../../AGENTS.md) (and via the
@@ -133,9 +128,9 @@ is removed:
 
 SBOM emission and release signing are deferred until a bundler /
 release artifact exists; see
-[`30-dependencies-and-build-pipeline-plan.md`](../implementation-plans/30-dependencies-and-build-pipeline-plan.md)
-§ 3.2. Until then, the lockfile + audit step + Dependabot config
-above are the authoritative supply-chain controls.
+[`build-policy.md`](./build-policy.md). Until then, the lockfile
++ audit step + Dependabot config above are the authoritative
+supply-chain controls.
 
 ---
 

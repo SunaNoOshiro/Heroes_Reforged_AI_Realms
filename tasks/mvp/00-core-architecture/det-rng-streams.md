@@ -14,17 +14,10 @@ This task delivers the catalogue document and the cross-links from
 top-level state shape so engine implementers cannot miss it. No
 runtime engine code is shipped here.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q10, Issue 3.D-1).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 
 Inputs:
-- Audit Q10 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 
 Outputs:
 - `docs/architecture/rng-streams.md` — canonical catalogue

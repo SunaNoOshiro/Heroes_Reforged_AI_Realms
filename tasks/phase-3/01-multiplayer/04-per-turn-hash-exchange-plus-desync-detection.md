@@ -22,9 +22,9 @@ Read First:
 - [`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)
 - [`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)
 
-### Plan 26 cross-cutting additions
+### Cross-cutting additions
 
-#### Canonical Order Note (Critical Fix 3)
+#### Canonical Order Note
 - The per-turn hash check operates on the **canonical intra-turn
   order** pinned in
   [Task 03](./03-input-only-lockstep-command-serialization-plus-sequencing.md)
@@ -32,7 +32,7 @@ Read First:
   lexicographic ascending, seq ascending)`. Hashes computed against
   arrival order are not comparable across peers.
 
-#### Mid-Match Pack Re-Validation (Critical Fix 2)
+#### Mid-Match Pack Re-Validation
 - At end-of-turn, alongside the state hash, each peer re-sends
   `packManifestDigest`. A digest that disagrees with the digest
   agreed at handshake triggers a mid-match-pack-swap desync abort

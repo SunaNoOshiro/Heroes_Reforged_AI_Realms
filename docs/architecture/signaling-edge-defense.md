@@ -1,14 +1,9 @@
 # Signaling Edge Defense
 
-> Source plan:
-> [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)
-> § Critical Fix 5.
-
 This file is the canonical contract for the **edge-tier defenses**
 in front of the M5 signaling WebSocket. It extends the
 hosting-platform-agnostic config in
 [`services/signaling/config/edge.example.toml`](../../services/signaling/config/edge.example.toml)
-(authored by [Plan 24](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md))
 with the abuse-defense surface that complements the application-level
 throttle in
 [`signaling-rate-limits.md`](./signaling-rate-limits.md).

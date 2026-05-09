@@ -1,8 +1,5 @@
 # Trust Boundaries
 
-> Source plan:
-> [`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md).
-
 Single canonical contract for **what each component trusts, what
 crosses each boundary, and which named gate validates the cross**.
 Every later module reads this file before designing a feature that
@@ -36,8 +33,7 @@ peer browser, DataChannel, WebSocket frame, pack archive, save
 file, AI prompt, AI completion, worker `postMessage`, or
 hosting-provider request is **adversarial input until validated by
 a named gate**. WSS / TLS is mandatory; no plaintext WebSocket is
-permitted (cross-link
-[plan 24](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)).
+permitted.
 
 This rule subsumes and supersedes the older per-component rules:
 - "no provider keys in browser"
@@ -138,9 +134,8 @@ server tags every `LogRecord` for the session with the same
 id; the maintainer uses the id as a key into the security
 channel.
 
-Cross-link:
-[plan 19](../implementation-plans/19-chat-safety-and-user-reporting-plan.md)
-for the reporting UX surface.
+Cross-link [`chat-safety.md`](./chat-safety.md) for the reporting
+UX surface.
 
 ---
 
@@ -151,9 +146,9 @@ component owns "is this peer who they claim to be." The DTLS
 fingerprint pin from
 [`dtls-fingerprint-pinning.md`](./dtls-fingerprint-pinning.md)
 gives transport-layer integrity but not application-level
-identity. Closing the gap is owned by
-[plan 24](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md).
-The gap is recorded in [`authority.md`](./authority.md) § GAP.
+identity. Closing the gap is owned by the peer-identity surface
+(deferred). The gap is recorded in
+[`authority.md`](./authority.md) § GAP.
 
 ---
 

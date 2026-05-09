@@ -33,7 +33,6 @@ scenarios share fixtures with the fuzz harness where useful (see
 Read First:
 - [`docs/architecture/performance.md`](../../../docs/architecture/performance.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
-- [`docs/implementation-plans/09-performance-plan.md`](../../../docs/implementation-plans/09-performance-plan.md)
 
 Inputs:
 - Engine reducer + replay API

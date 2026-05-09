@@ -13,12 +13,7 @@ differently, producing different canonical-JSON for the same input
 record. Different canonical-JSON → different `contentHash` →
 broken save/replay/multiplayer determinism.
 
-Source plan:
-[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
-(§ default keyword missing, T-14).
-
 Read First:
-- [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
 - [`docs/architecture/schema-defaults-policy.md`](../../../docs/architecture/schema-defaults-policy.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 

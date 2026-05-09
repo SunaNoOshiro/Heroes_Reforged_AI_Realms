@@ -5,11 +5,11 @@ Module: [Heuristic AI (M2)](../10-heuristic-ai.md)
 Description:
 Per-cluster canary task that **reserves the worker-envelope
 contract** and asserts each closed `kind` round-trips through the
-parser. Closes Plan 32 § PI-4 (Doctrine canary tasks per cluster)
+parser. Closes PI-4 (Doctrine canary tasks per cluster)
 for the AI worker cluster.
 
 The canary round-trips a `COMPUTE_MOVE` and a `MOVE_RESULT`, plus
-an `AI_ERROR` (per Plan 32 § CF-1) and asserts each is accepted.
+an `AI_ERROR` (per CF-1) and asserts each is accepted.
 The 8-kind enum
 ([`docs/architecture/ai-contract.md` § 3](../../../docs/architecture/ai-contract.md#3-worker-protocol))
 is the contract this canary protects: any schema change that
@@ -22,7 +22,6 @@ Read First:
   § 3 Worker Protocol
 - [`content-schema/schemas/worker-message.schema.json`](../../../content-schema/schemas/worker-message.schema.json)
 - [`tasks/mvp/02-content-schemas/46-worker-message-envelope-reconciliation.md`](../../mvp/02-content-schemas/46-worker-message-envelope-reconciliation.md)
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § PI-4
 
 Inputs:

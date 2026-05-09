@@ -1,9 +1,5 @@
 # Parser Hardening — Save & Pack-Archive Input
 
-> Source plan:
-> [`docs/implementation-plans/27-save-tampering-and-pack-signing-plan.md`](../implementation-plans/27-save-tampering-and-pack-signing-plan.md)
-> § Critical Fix 1.
-
 Canonical doctrine for the resource-limit caps that any parser
 operating on **untrusted bytes** under [`src/persistence/`](../../src/)
 or [`src/content-runtime/`](../../src/content-runtime/) MUST enforce

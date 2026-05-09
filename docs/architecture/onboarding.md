@@ -65,7 +65,7 @@ The flow is one screen with three sequential steps:
 and `RECORD_CONSENT_AUDIT(scope, fromState, toState, policyVersion,
 method='explicit')` for every transition. `unset → denied` is recorded
 when the user explicitly leaves a row off (this distinguishes "didn't
-read the row" from "read and declined", per Q458).
+read the row" from "read and declined").
 
 After `Continue`, every guarded surface's selector flips:
 

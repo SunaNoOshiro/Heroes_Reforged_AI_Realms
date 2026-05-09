@@ -11,18 +11,11 @@ the `createEngine()` factory contract and a canonical desync test
 fixture so engine implementers cannot accidentally introduce hidden
 non-purity.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q20, Issue 3.A-3).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/state-shape.md`](../../../docs/architecture/state-shape.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 
 Inputs:
-- Audit Q20 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 - `GameState` shape from `state-shape.md`
 
 Outputs:

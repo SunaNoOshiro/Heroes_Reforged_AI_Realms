@@ -92,7 +92,7 @@ every example pack against its schema.
 Use `sandboxed: true` for AI-generated or otherwise restricted content
 that cannot participate in ranked or trusted flows.
 
-### Signature Policy (Plan 26 — Multiplayer Mandate)
+### Signature Policy
 
 Multiplayer matches enforce a closed `signaturePolicy` enum on the
 match handshake REVEAL phase per
@@ -197,8 +197,7 @@ Registry's pure-evaluator set.
 `path` is constrained to a closed extension allowlist (`png`, `webp`,
 `ogg`, `mp3`, `json`). Absolute schemes (`http`, `https`, `file`,
 `data`, `blob`), leading slashes, and parent-directory escapes are
-rejected at schema time. Rationale: closes the IP-exfiltration surface
-flagged in audit 21 (Q390). Cross-link:
+rejected at schema time. Rationale: closes the IP-exfiltration surface. Cross-link:
 [`ugc-safety.md` § External URL Ban](./ugc-safety.md#1-external-url-ban),
 [`asset-index.schema.json`](../../content-schema/schemas/asset-index.schema.json).
 

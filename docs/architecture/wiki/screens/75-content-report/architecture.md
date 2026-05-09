@@ -7,7 +7,7 @@ Curation Status: curated-pass-1
 
 ## Purpose
 Player-facing intake for content-targeting reports. Distinct from
-`REPORT_PEER` (chat-safety / Plan 19) which targets behavior; this
+`REPORT_PEER` (chat-safety) which targets behavior; this
 screen targets content.
 
 ## Visual Direction
@@ -68,7 +68,7 @@ flowchart LR
 
 ## Implementation Contract
 - No network call at v1. The local queue is the dequeue point that
-  Plan 30 (moderation backend) will consume.
+  a future moderation backend will consume.
 - Notes are sanitized via `safeUserText(1000)` per
   [`ugc-safety.md` § Text Sanitization Contract](../../../ugc-safety.md#3-text-sanitization-contract).
 - Schema validation precedes the IndexedDB write; a validation

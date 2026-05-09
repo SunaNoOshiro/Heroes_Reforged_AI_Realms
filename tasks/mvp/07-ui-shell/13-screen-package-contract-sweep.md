@@ -10,12 +10,7 @@ would re-edit the same files four times; running them in one
 coordinated pass keeps screens coherent and avoids drift between
 contracts as they land at different times.
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q52, Q53, Q54, Q56, Q58, Q60, Issues 3.D-1 and 3.D-2).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/wiki/_templates/animation-states.md`](../../../docs/architecture/wiki/_templates/animation-states.md)
 - [`docs/architecture/wiki/_templates/contract-sweep.md`](../../../docs/architecture/wiki/_templates/contract-sweep.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)

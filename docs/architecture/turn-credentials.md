@@ -1,8 +1,5 @@
 # TURN Credentials
 
-> Source plan:
-> [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)
-> § Critical Fix 3.
 >
 > Crypto primitive in use here (HMAC-SHA-1, RFC 5766 mandate) is
 > catalogued in [`crypto-primitives.md`](./crypto-primitives.md).
@@ -212,7 +209,7 @@ Deploy order (zero-downtime):
 Rollback path: keep the dual-secret config until the rotation has
 been observed in production for 24 hours; revert step 4 if any
 client receives `401` from coturn. Cross-link the secret-management
-runbook in [Plan 29](../implementation-plans/29-rate-limiting-and-secret-management-plan.md)
+runbook in 
 when it lands.
 
 ## 10. Transport

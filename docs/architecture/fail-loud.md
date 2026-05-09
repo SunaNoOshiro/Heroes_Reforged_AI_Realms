@@ -1,7 +1,5 @@
 # Fail Loud
 
-> Source plan:
-> [`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md).
 > Cross-link: [`CLAUDE.md`](../../CLAUDE.md) "missing gameplay
 > requirements must fail loudly" rule,
 > [`trust-boundaries.md`](./trust-boundaries.md) § 7,

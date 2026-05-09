@@ -3,7 +3,7 @@
 > Companion to [`onboarding.md`](./onboarding.md),
 > [`age-gate.md`](./age-gate.md),
 > [`privacy.md`](./privacy.md), and
-> [`developer-mode.md`](./developer-mode.md). Plan 23 / Q445 (Risk
+> [`developer-mode.md`](./developer-mode.md).  (Risk
 > "Hidden telemetry default") introduces this canonical inventory of
 > default-state for every optional feature.
 
@@ -22,7 +22,7 @@ introducing a new flag — MUST update this document in the same PR.
 | Telemetry                        | denied (off)          | [`onboarding.md`](./onboarding.md), [`privacy.md`](./privacy.md) |
 | Crash reports                    | denied                | [`onboarding.md`](./onboarding.md), [`privacy.md`](./privacy.md) |
 | Analytics SDK                    | denied (no SDK ships) | [`privacy.md`](./privacy.md)                     |
-| Public lobby browser             | not implemented       | audit 18 / [`lobby-identifiers.md`](./lobby-identifiers.md) |
+| Public lobby browser             | not implemented       | [`lobby-identifiers.md`](./lobby-identifiers.md) |
 | Pack signature checks            | enabled               | [`pack-trust.md`](./pack-trust.md)               |
 | Pack hash check                  | enabled               | [`pack-trust.md`](./pack-trust.md)               |
 | Developer mode                   | off (chord-unlock only) | [`developer-mode.md`](./developer-mode.md)     |

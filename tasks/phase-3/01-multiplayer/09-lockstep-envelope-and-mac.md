@@ -10,7 +10,6 @@ per-turn hash exchanges). The envelope wraps each payload with
 authenticates it with HMAC-SHA-256 keyed by the per-match
 `matchKey` derived in
 [`match-handshake.md`](../../../docs/architecture/match-handshake.md).
-Plan 26 § Critical Fix 1.
 
 Read First:
 - [`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)

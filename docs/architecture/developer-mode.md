@@ -2,9 +2,9 @@
 
 > Companion to [`new-install-defaults.md`](./new-install-defaults.md),
 > [`pack-trust.md`](./pack-trust.md), and screen
-> [`56-options`](./wiki/screens/56-options/). Plan 23 / Q446 introduces
+> [`56-options`](./wiki/screens/56-options/). This file introduces
 > the `config.dev.*` keys, the chord-unlock UX, the double-confirm
-> rule, and the persistent banner. Aligns with audit 27 / Q546–Q547.
+> rule, and the persistent banner.
 
 ## 1. Reserved Config Keys
 

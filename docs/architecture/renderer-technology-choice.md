@@ -147,10 +147,6 @@ Telemetry:
   so worst-case-scenario benchmarks can assert the expected tier on
   reference hardware.
 
-Cross-link: [`docs/readiness-audit/09-performance.md`](../readiness-audit/09-performance.md)
-keeps the broader perf-audit narrative; this section is the
-machine-actionable tier table.
-
 ---
 
 ## Constraints & Anti-Patterns

@@ -6,10 +6,10 @@ Description:
 Extend the existing token-bucket matrix in
 [`signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)
 and the limiter in
-[Task 13](./13-signaling-rate-limiting.md) with two new tiers
-required by Plan 25 Critical Fix 2: a **per-`/24` v4 / per-`/64` v6
-prefix concurrent-socket cap** and a **per-connection message rate
-ceiling**. Add `REQUEST_TURN_REFRESH` to the per-IP throttle list.
+[Task 13](./13-signaling-rate-limiting.md) with two new tiers:
+a **per-`/24` v4 / per-`/64` v6 prefix concurrent-socket cap**
+and a **per-connection message rate ceiling**. Add
+`REQUEST_TURN_REFRESH` to the per-IP throttle list.
 Formalize idle-room eviction. Surface the `ROOM_FULL` reply on the
 existing 2-peer cap.
 

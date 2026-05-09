@@ -2,7 +2,7 @@
 
 > Companion to [`peer-identity.md`](./peer-identity.md),
 > [`chat-safety.md`](./chat-safety.md), and screen
-> [`64-network-lobby`](./wiki/screens/64-network-lobby/). Plan 23 / Q447
+> [`64-network-lobby`](./wiki/screens/64-network-lobby/). This file
 > introduces the `state.profile.knownPeers` allowlist, the
 > `trustLevel` selector, and the per-row badge.
 
@@ -26,7 +26,7 @@ trustLevel(peerId) =
     if peerAllowlist.find(p => p.peerId === peerId && p.tier === 'friend')
        then 'friend'
     else if peerAllowlist.find(p => p.peerId === peerId
-            && now() - p.lastSeenAt < 30 days)
+            && now - p.lastSeenAt < 30 days)
        then 'recent'
     else 'unknown'
 ```
@@ -69,7 +69,7 @@ entries are never auto-evicted.
 
 ## 6. Cross-Cuts
 
-- **Chat safety**: `BLOCK_PEER` / `MUTE_PEER` (Plan 19) are local-only
+- **Chat safety**: `BLOCK_PEER` / `MUTE_PEER` are local-only
   slices and live in `state.net.lobby.muted` / `.blocked`. They do not
   merge with `knownPeers`; a blocked friend stays a friend in this
   allowlist but their messages stay filtered.

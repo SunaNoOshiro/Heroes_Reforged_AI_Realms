@@ -66,7 +66,7 @@ nodes in this diagram are the first two caps from that table.
 Compatibility is reported as a discriminated union
 (`ok | skew | tamper | unsupported`) so screen 55 and screen 70
 surface skew vs. tamper distinctly. Pre-replay command-log
-validation (per Plan 27 Critical Fix 3) runs between the migration
+validation runs between the migration
 chain and the reducer replay so a malformed command surfaces at a
 clean rejection point with full context, not mid-replay.
 

@@ -4,9 +4,6 @@ The rubric every third-party processor must satisfy before it
 appears as a row in [`processors.md`](./processors.md). A vendor
 PR that skips any item below is rejected on review.
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 Tick every item. "n/a" is acceptable only when the row's "Reason
 to waive" column carries a one-sentence justification.
 

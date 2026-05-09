@@ -6,9 +6,9 @@ Description:
 Pin the **WSS-only signaling listener**, **HTTPS-only AI gateway**,
 and **HSTS / CSP / CORS / SRI** baseline at the edge. Author the
 example reverse-proxy configs and add CI gates that fail any
-regression on transport scheme, headers, or dev-cert leakage. Closes
-Plan 24 Critical Fix 1 + the headers / cert-lifecycle / cert-pinning
-items in System Improvements.
+regression on transport scheme, headers, or dev-cert leakage.
+Covers the headers, cert-lifecycle, and cert-pinning items in
+the transport-security improvements list.
 
 Read First:
 - [`docs/architecture/transport-security.md`](../../../docs/architecture/transport-security.md)

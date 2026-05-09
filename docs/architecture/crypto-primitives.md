@@ -1,7 +1,7 @@
 # Crypto Primitives Reference
 
 Single canonical table for every cryptographic primitive used in
-the repo. Closes Plan 32 § PI-6 (Single crypto-primitives
+the repo. Closes PI-6 (Single crypto-primitives
 reference). Each owner doc carries a top-of-file pointer back to
 this table.
 

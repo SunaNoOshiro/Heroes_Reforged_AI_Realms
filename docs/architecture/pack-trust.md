@@ -1,10 +1,8 @@
 # Pack Trust & Save Import Safety
 
 Single source of truth for the user-facing safety surface around
-**save imports** and **pack trust prompts**. Implements the policy
-side of the audit at
-[`docs/readiness-audit/20-save-imports-and-pack-trust-prompts.md`](../readiness-audit/20-save-imports-and-pack-trust-prompts.md)
-and is consumed by the screen packages
+**save imports** and **pack trust prompts**. Consumed by the
+screen packages
 [`70-save-import/`](./wiki/screens/70-save-import/),
 [`71-pack-manager/`](./wiki/screens/71-pack-manager/), and
 [`72-pack-trust-prompt/`](./wiki/screens/72-pack-trust-prompt/).

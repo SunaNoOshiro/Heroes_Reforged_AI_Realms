@@ -15,12 +15,7 @@ Without a concrete file-layout convention and a passing fixture, two
 parallel agents writing migrations will diverge on naming, required
 exports, and test conventions.
 
-Source plan:
-[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
-(§ Schema migration policy is undocumented, T-12).
-
 Read First:
-- [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
 - [`docs/architecture/schema-migration-policy.md`](../../../docs/architecture/schema-migration-policy.md)
 - [`docs/architecture/content-platform.md`](../../../docs/architecture/content-platform.md)
 - [`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md)

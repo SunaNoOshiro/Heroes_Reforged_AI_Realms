@@ -1,8 +1,6 @@
 # Rollback Playbook
 
-> Source plan:
-> [`docs/implementation-plans/17-final-critical-questions-plan.md`](../implementation-plans/17-final-critical-questions-plan.md)
-> (Q295). This file is the operations-side companion to
+> This file is the operations-side companion to
 > [`docs/architecture/pack-contract.md`](../architecture/pack-contract.md),
 > [`docs/architecture/revocation.md`](../architecture/revocation.md),
 > [`docs/architecture/save-migration.md`](../architecture/save-migration.md),
@@ -100,7 +98,7 @@ field's meaning changed):
 ## 6. Incident-response RACI
 
 The RACI table is the contractual surface; concrete owners are
-backfilled when the team named.
+backfilled once each role has a named team.
 
 | Surface | R | A | C | I |
 |---|---|---|---|---|

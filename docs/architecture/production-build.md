@@ -3,12 +3,8 @@
 The five rules below are the contract that the build pipeline (Plan
 30, when authored) must satisfy before any production bundle ships.
 None of the rules describe the toolchain itself — Vite/esbuild/swc
-configuration is Plan 30's territory. This file pins the *behaviour*
+configuration is the territory. This file pins the *behaviour*
 the bundle must exhibit, regardless of which toolchain renders it.
-
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
-> § Critical Fixes — Production-build error policy.
 
 ## 1. `__DEV__` is constant-folded
 
@@ -54,7 +50,7 @@ lint rule `no-raw-error-message-in-ui` reserved by task **22-01**.
 
 This rule is the **only** way an analytics SDK is permitted to load:
 no SDK MAY load before `state.privacy.allowAnalytics === true`.
-The toggle is owned by Plan 21's privacy pane; this rule is the
+The toggle is owned by the privacy pane; this rule is the
 build-mode gate that prevents a silent regression.
 
 ## 4. Console sinks route through `formatDevError`
@@ -82,8 +78,7 @@ in the production artifact. The minimum guarded set:
 - the literal `process.env.NODE_ENV` (rule 1 cross-check — code
   should already use `__DEV__`).
 
-Plan 30 owns the implementation; this file is the acceptance
-criterion the build task must satisfy.
+This file is the acceptance criterion the build task must satisfy.
 
 ## 6. Cross-references
 

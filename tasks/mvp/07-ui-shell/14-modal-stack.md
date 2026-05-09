@@ -20,12 +20,7 @@ and the canonical example records. The per-screen replacement of
 `callerRoute` bindings is owned by
 [`13-screen-package-contract-sweep.md`](./13-screen-package-contract-sweep.md).
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q60, Q61, Q62, Issues 3.A-4 and 3.A-5, Missing Logic bullets 4–6).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/ui-routing.md`](../../../docs/architecture/ui-routing.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - `docs/architecture/wiki/screens/54-system-menu/spec.md`
@@ -35,8 +30,6 @@ Read First:
 - `docs/architecture/wiki/screens/25-building-recruitment-dialog/spec.md`
 
 Inputs:
-- Audit Q60, Q61, Q62 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The eleven modal screen packages under
   [`docs/architecture/wiki/screens/`](../../../docs/architecture/wiki/screens/)
 - [`docs/architecture/wiki/screens/index.json`](../../../docs/architecture/wiki/screens/index.json)
@@ -74,8 +67,7 @@ Acceptance Criteria:
   `severity`, `params`, and `additionalProperties: false`.
 - `severity` is a closed enum of `info | warn | destructive |
   system`. The dismissal policy in `ui-routing.md` declares Esc and
-  click-outside behavior for each severity tier per
-  [the plan's table](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md).
+  click-outside behavior for each severity tier.
 - `modalStack.length` MUST NOT exceed 3. The reducer-side rejection
   is documented in `ui-routing.md` and emits an `ErrorState` with
   `code: "ui.modalStack.overflow"`.

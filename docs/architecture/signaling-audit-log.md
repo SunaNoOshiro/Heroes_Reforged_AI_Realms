@@ -1,9 +1,5 @@
 # Signaling Audit Log
 
-> Source plan:
-> [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md)
-> § 3 (Issue: No audit-log policy for the signaling server; Q313).
-
 This file is the canonical contract for what the M5 signaling
 server logs, how it redacts PII, how long it retains, and when an
 event escalates.

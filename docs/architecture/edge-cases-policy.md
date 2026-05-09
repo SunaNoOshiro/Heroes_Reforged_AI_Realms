@@ -12,15 +12,12 @@ upstream documents (`command-schema.md`, `determinism.md`,
 `state-flow.md`, `content-platform.md`, `effect-registry.md`) imply
 but do not aggregate.
 
-> Source audit:
-> [`docs/readiness-audit/12-edge-cases.md`](../readiness-audit/12-edge-cases.md).
-> Section numbering follows audit questions Q204–Q218; each section
-> states the canonical policy plus its enforcing schema and task
-> references.
+> Each section states the canonical policy plus its enforcing schema
+> and task references.
 
 ---
 
-## 1. Invalid commands (Q204)
+## 1. Invalid commands
 
 Commands that fail JSON-Schema or Zod validation never reach a
 reducer.
@@ -37,7 +34,7 @@ reducer.
   validator in
   [`tasks/mvp/01-engine-core/06-command-dispatcher.md`](../../tasks/mvp/01-engine-core/06-command-dispatcher.md).
 
-## 2. Current-actor gate (Q205)
+## 2. Current-actor gate
 
 A top-level **Gate 0** check at the dispatcher entry rejects any
 command whose `metadata.playerId` does not match
@@ -56,7 +53,7 @@ command whose `metadata.playerId` does not match
   into multiplayer lockstep, where downstream sequence dedup
   (which is *not* a gate) cannot catch a non-current actor.
 
-## 3. Stale references (Q206)
+## 3. Stale references
 
 Per-command existence checks return a typed `ENTITY_NOT_FOUND`
 discriminant carrying `{ entityKind, id, lastKnownState? }`, so the
@@ -69,7 +66,7 @@ prior validators.
 - **Owning task.**
   [`tasks/mvp/01-engine-core/06-command-dispatcher.md`](../../tasks/mvp/01-engine-core/06-command-dispatcher.md).
 
-## 4. Input conflicts (Q207, cross-ref Q59)
+## 4. Input conflicts
 
 Two complementary mechanisms keep redundant intents out of the
 command log when a click + hotkey both fire `END_DAY`-like
@@ -91,7 +88,7 @@ and `interactions.md` for the screens that surface those commands
 [`38-combat-screen`](./wiki/screens/38-combat-screen/),
 [`54-system-menu`](./wiki/screens/54-system-menu/)).
 
-## 5. Zero-resource transactions (Q209)
+## 5. Zero-resource transactions
 
 `quantity` integer fields default to `minimum: 1` in JSON-Schema;
 `cost` integer fields default to `minimum: 0`. Free actions remain
@@ -106,7 +103,7 @@ encodes a zero-quantity intent.
   `BUY_FROM_MARKET amount: 0`) are rejected at schema time, before
   the dispatcher; the replay log stays clean.
 
-## 6. Overflow & saturation (Q210)
+## 6. Overflow & saturation
 
 Hard caps as named constants and a `clamp`-saturates-not-wraps
 policy. JavaScript safe-integer ceiling is `2^53 − 1`; without an
@@ -126,7 +123,7 @@ intermediate cap a max-stack creature multiplier could wrap.
   `src/engine/constants.ts`; fuzz target in
   `tests/fuzz/overflow.fuzz.ts`.
 
-## 7. Negative resources (Q211)
+## 7. Negative resources
 
 Every `resources[k] ≥ 0` and every `unit.count ≥ 0` after every
 dispatch.
@@ -141,7 +138,7 @@ dispatch.
   references `nonNegativeInteger` (§ 5) for every resource and
   unit-count field.
 
-## 8. Save gating (Q212)
+## 8. Save gating
 
 A pure `canSaveNow(state): { allowed: boolean, reason?: string }`
 predicate enumerates when Save is disabled.
@@ -164,7 +161,7 @@ events execute synchronously without being scheduled. The first
   [`tasks/mvp/08-persistence/02-log-only-save-format.md`](../../tasks/mvp/08-persistence/02-log-only-save-format.md),
   [`tasks/mvp/06-renderer/08-presentation-loop-decoupled-from-sim.md`](../../tasks/mvp/06-renderer/08-presentation-loop-decoupled-from-sim.md).
 
-## 9. Mid-combat disconnect (Q213)
+## 9. Mid-combat disconnect
 
 The 30 s reconnect / 120 s forfeit window from the multiplayer
 transport applies during combat with these refinements:
@@ -172,8 +169,7 @@ transport applies during combat with these refinements:
 - **Combat clock pauses** during the reconnect window. Still-
   connected player sees a banner `mp.combat.disconnect_banner`.
 - **AI does not take over** the absent player's stack during the
-  reconnect window. Fairness is preferred over throughput; matches
-  audit Q146 deferral.
+  reconnect window. Fairness is preferred over throughput.
 - **At 120 s**, defender wins by forfeit (or attacker, if the
   defender disconnected — i.e., the still-present player wins).
   Combat resolves; the absent player's hero is treated as
@@ -188,7 +184,7 @@ Owning files:
 [`tasks/phase-3/01-multiplayer/06-reconnection-log-range-request-plus-replay.md`](../../tasks/phase-3/01-multiplayer/06-reconnection-log-range-request-plus-replay.md),
 [Screen 38 Combat](./wiki/screens/38-combat-screen/).
 
-## 10. Locale swap mid-game (Q214)
+## 10. Locale swap mid-game
 
 Locale change is **presentation-only**, never a deterministic
 command.
@@ -227,7 +223,7 @@ Closed enum of dispatcher-emitted error codes. Schema:
 Each error carries a structured `path` (RFC 6901 JSON-pointer into
 payload) when applicable.
 
-## 12. Asset-load failure (Q215)
+## 12. Asset-load failure
 
 - **Fallback chain order.** `locale variant → faction default →
   generic placeholder`. The generic placeholder is bundled with
@@ -246,7 +242,7 @@ payload) when applicable.
   remains the fail-loud gate. Runtime never accepts an
   AI-generated *gameplay* record.
 
-## 13. Wall-clock readers (Q216)
+## 13. Wall-clock readers
 
 Single inventory of every subsystem allowed to read wall-clock
 time. The lint rule
@@ -255,7 +251,7 @@ forbids it elsewhere in `src/engine/`, `src/rules/`,
 `src/content-runtime/`. Full table lives in
 [`determinism.md` § Wall-clock readers](./determinism.md#wall-clock-readers).
 
-## 14. Tab backgrounding / `visibilitychange` (Q217)
+## 14. Tab backgrounding / `visibilitychange`
 
 Single canonical doc:
 [`visibility-policy.md`](./visibility-policy.md).
@@ -276,7 +272,7 @@ Single canonical doc:
   state-hash comparison; if hashes match, resume; otherwise treat
   as desync and trigger the reconnection flow.
 
-## 15. Storage quota (Q218)
+## 15. Storage quota
 
 Single canonical doc:
 [`storage-policy.md`](./storage-policy.md).

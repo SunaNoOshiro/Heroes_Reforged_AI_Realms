@@ -17,7 +17,6 @@ both together amortizes review.
 
 Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md) § Replay
-- [`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q252
 
 Inputs:
 - Replay API (`mvp.01-engine-core.08-replay-api`); this task extends

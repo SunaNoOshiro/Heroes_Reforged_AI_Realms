@@ -1,8 +1,4 @@
-# Byzantine-Tolerant Bisect Protocol (Plan 26 — Improvement)
-
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § System Improvements / Architecture / Byzantine-tolerant bisect.
+# Byzantine-Tolerant Bisect Protocol
 
 Canonical doctrine for the binary-search bisect that runs after a
 per-turn state-hash mismatch. Closes the assumption-of-honest-peer
@@ -115,8 +111,7 @@ without ladder consequence.
 ## 5. Blame attribution
 
 The desync report shape (extended in
-[`05-...md`](../../tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md)
-per Plan 26 Improvement):
+[`05-...md`](../../tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md)):
 
 ```jsonc
 {
@@ -176,8 +171,7 @@ maintainer to triage.
 ## 7. CI golden tests
 
 Pinned in
-[`tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md`](../../tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md)
-(extended by Plan 26):
+[`tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md`](../../tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md):
 
 - **Lying peer**: a peer sends `H_A_K` that does not match its
   actual prefix; the offline replay tiebreaker attributes the

@@ -1,9 +1,5 @@
 # Reproducible `.hrmod` Archive Contract
 
-> Source plan:
-> [`docs/implementation-plans/27-save-tampering-and-pack-signing-plan.md`](../implementation-plans/27-save-tampering-and-pack-signing-plan.md)
-> § Improvement: Reproducible-Archive Contract.
-
 Canonical doctrine for byte-stable `.hrmod` ZIP archives. The
 canonical-JSON contract makes `contentHash` reproducible by any
 party that runs the same serializer; this document extends that

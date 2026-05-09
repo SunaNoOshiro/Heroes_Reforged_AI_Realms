@@ -1,8 +1,5 @@
 # Module: Build Pipeline & Supply-Chain Hygiene (Phase 2)
 
-Source plan:
-[`docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md`](../../docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md).
-
 The supply-chain perimeter for the repo. Lands the today-relevant
 guardrails (version pinning, action SHA-pinning, workflow-permission
 checks, no-postinstall default) before the first runtime PR

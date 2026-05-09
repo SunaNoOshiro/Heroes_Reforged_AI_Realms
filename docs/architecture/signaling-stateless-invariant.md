@@ -1,7 +1,5 @@
 # Signaling Stateless Invariant
 
-> Source plan:
-> [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)
 > § System Improvements / Architecture (Stateless-by-design audit
 > checklist).
 

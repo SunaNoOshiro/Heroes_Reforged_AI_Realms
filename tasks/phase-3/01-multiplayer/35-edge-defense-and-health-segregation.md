@@ -5,10 +5,9 @@ Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 Description:
 Land the **edge-tier abuse defenses**, the **public/admin
 listener split**, the **stateless-by-design gate**, and the
-**TURN-down fallback UI** for M5. Closes Plan 25 Critical Fix 5
-plus the System Improvements / Architecture clauses
-("Stateless-by-design audit checklist" and
-"Lobby surfaces relay failure as a non-blocking, actionable toast").
+**TURN-down fallback UI** for M5. Covers the stateless-by-design
+audit checklist and the relay-failure non-blocking, actionable
+toast in the lobby.
 
 Read First:
 - [`docs/architecture/signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md)

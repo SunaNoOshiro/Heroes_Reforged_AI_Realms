@@ -9,7 +9,7 @@ through the signaling server's structured logger. Per-IP-bucket
 rate aggregation; closed `errorCode` enum; no raw IP / UA / SDP /
 cert in any sample emission.
 
-Plan 24 § System Improvements — Observability.
+System Improvements — Observability.
 
 Read First:
 - [`docs/architecture/tls-observability.md`](../../../docs/architecture/tls-observability.md)

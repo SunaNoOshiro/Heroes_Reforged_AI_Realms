@@ -6,8 +6,8 @@ Description:
 Persist outbound content reports under IndexedDB
 `hr-profile.reports` with a retry stub. Validates each report
 against [`content-report.schema.json`](../../../content-schema/schemas/content-report.schema.json)
-before enqueue. No network call at v1; the queue is shaped so
-Plan 30's moderation backend can dequeue once it lands.
+before enqueue. No network call at v1; the queue is shaped so a
+future moderation backend can dequeue once it lands.
 
 Read First:
 - [`docs/architecture/persistence.md`](../../../docs/architecture/persistence.md)

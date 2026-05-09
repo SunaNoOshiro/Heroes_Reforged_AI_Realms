@@ -44,11 +44,12 @@ function normalizeTarget(rawTarget) {
 
 function isForwardLookingDoc(filePath) {
   const relative = repoRelative(filePath);
-  // Implementation plans describe future state and intentionally point at
-  // artifacts that will exist after the plan is implemented. Their links
-  // are validated separately when each plan lands; skipping them here keeps
-  // the link checker focused on docs that describe current state.
-  return relative.startsWith("docs/implementation-plans/");
+  // Archived prep material: readiness-audit and implementation-plans were
+  // upstream backlog/spec inputs and are no longer maintained. Their links
+  // are frozen historical references; skipping keeps the link checker
+  // focused on docs that describe current state.
+  return relative.startsWith("docs/archive/implementation-plans/")
+    || relative.startsWith("docs/archive/readiness-audit/");
 }
 
 export async function collectBrokenLinks() {

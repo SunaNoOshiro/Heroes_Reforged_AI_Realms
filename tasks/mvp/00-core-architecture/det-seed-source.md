@@ -16,18 +16,11 @@ Precedence (first match wins):
 3. `ROLL_RMG_SEED` command result for random-map games.
 4. CSPRNG fallback at session start, pinned into the log immediately.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q11, Issue 3.D-3).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/command-schema.md`](../../../docs/architecture/command-schema.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 
 Inputs:
-- Audit Q11 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 - Existing `SCENARIO_LOAD` command in `command-schema.md`
 
 Outputs:

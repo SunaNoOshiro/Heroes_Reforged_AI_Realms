@@ -14,9 +14,9 @@ Read First:
 - [`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)
 - [`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
 
-### Plan 26 cross-cutting additions
+### Cross-cutting additions
 
-#### Match Handshake (Critical Fix 2)
+#### Match Handshake
 - The very first message exchanged on the open `commands`
   DataChannel is the match-handshake `COMMIT` per
   [`match-handshake.md`](../../../docs/architecture/match-handshake.md).

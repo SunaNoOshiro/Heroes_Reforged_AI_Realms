@@ -12,12 +12,7 @@ Today no procedure or check exists; a single PR can corrupt every
 existing save with no failing CI gate. This task adds the policy doc
 and the snapshot/check pair.
 
-Source plan:
-[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
-(§ Enum-value lifecycle, T-13).
-
 Read First:
-- [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
 - [`docs/architecture/enum-lifecycle-policy.md`](../../../docs/architecture/enum-lifecycle-policy.md)
 - [`docs/architecture/schema-migration-policy.md`](../../../docs/architecture/schema-migration-policy.md)
 

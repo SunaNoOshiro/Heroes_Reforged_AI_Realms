@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/error-envelope.schema.json",
   "title": "ErrorEnvelope",
-  "description": "Canonical error response shape shared by every public service surface (HTTP and WebSocket). Source plan: docs/implementation-plans/29-rate-limiting-and-secret-management-plan.md (Critical Fix 4). Doctrine: docs/operations/error-envelope.md. The `scope` field is intentionally coarse to deny attackers an oracle on the exact bucket key; per-bucket fields (`bucketKey`, `remaining`, `limit`, `currentCount`) are forbidden by `additionalProperties: false`. See docs/architecture/error-schema-map.md for the layer / consumer / owning-plan map across all error-shaped schemas.",
+  "description": "Canonical error response shape shared by every public service surface (HTTP and WebSocket). Doctrine: docs/operations/error-envelope.md. The `scope` field is intentionally coarse to deny attackers an oracle on the exact bucket key; per-bucket fields (`bucketKey`, `remaining`, `limit`, `currentCount`) are forbidden by `additionalProperties: false`. See docs/architecture/error-schema-map.md for the layer / consumer / owning-plan map across all error-shaped schemas.",
   "type": "object",
   "required": ["error", "scope", "requestId"],
   "additionalProperties": false,

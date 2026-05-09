@@ -5,7 +5,7 @@ Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 Description:
 Pin `.hrmod` ZIP determinism and ship the CI gate that re-builds
 canonical fixtures and re-hashes the ZIP bytes against a recorded
-`archiveHash`. Closes Plan 27 § Improvement: Reproducible-Archive
+`archiveHash`. Closes Improvement: Reproducible-Archive
 Contract.
 
 Read First:

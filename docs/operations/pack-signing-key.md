@@ -1,16 +1,11 @@
 # Pack-Signing Private Key — Custody Doctrine
 
-> Source plan:
-> [`docs/implementation-plans/29-rate-limiting-and-secret-management-plan.md`](../implementation-plans/29-rate-limiting-and-secret-management-plan.md)
-> — Critical Fix 6.
-
 The Ed25519 key pair used to sign first-party content packs is the
 single most load-bearing secret in the project. Compromise lets an
 attacker forge an "official" pack, bypass the sandbox flag, and
-defeat the entire mod-trust model committed in
-[Plan 27](../implementation-plans/27-save-tampering-and-pack-signing-plan.md).
-Recovery requires a coordinated **client release** because the
-public half is hardcoded into the engine.
+defeat the entire mod-trust model. Recovery requires a coordinated
+**client release** because the public half is hardcoded into the
+engine.
 
 Companion docs:
 
@@ -117,8 +112,7 @@ client release — the public key is hardcoded in the engine
    because the client-release coordination dominates the timeline).
 
 Cross-references:
-[`tasks/phase-2/05-mod-system/05d-official-pack-signing-and-bundle-verification.md`](../../tasks/phase-2/05-mod-system/05d-official-pack-signing-and-bundle-verification.md),
-[Plan 27](../implementation-plans/27-save-tampering-and-pack-signing-plan.md).
+[`tasks/phase-2/05-mod-system/05d-official-pack-signing-and-bundle-verification.md`](../../tasks/phase-2/05-mod-system/05d-official-pack-signing-and-bundle-verification.md).
 
 ## 7. Forbidden Patterns
 

@@ -3,7 +3,7 @@
 > Companion to [`docs/architecture/wiki/screens/01-main-menu/`](./wiki/screens/01-main-menu/),
 > [`docs/architecture/wiki/screens/05-intro-cinematic/`](./wiki/screens/05-intro-cinematic/),
 > and [`docs/architecture/animation-contract.md`](./animation-contract.md).
-> Plan 23 / Q444 introduces this contract to handle the "Autoplay
+>  introduces this contract to handle the "Autoplay
 > surprise" risk and align with browser autoplay-mute defaults.
 
 ## 1. Rule
@@ -42,10 +42,10 @@ user's OS preference.
 
 A CI lint scans `src/` for direct calls to:
 
-- `HTMLMediaElement.play()` outside an `unlockMedia` helper that
+- `HTMLMediaElement.play` outside an `unlockMedia` helper that
   inspects `state.runtime.media.unlocked`.
-- `new Audio(...).play()` direct invocations.
-- `AudioContext.resume()` outside the unlock helper.
+- `new Audio(...).play` direct invocations.
+- `AudioContext.resume` outside the unlock helper.
 
 Each match must import the unlock helper or carry an explicit
 allowlist annotation.

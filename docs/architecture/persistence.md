@@ -21,7 +21,7 @@
 | Trust store | IndexedDB | `hr-trust.decisions` | yes | small |
 | Lobby chat | in-memory only | n/a | n/a | n/a |
 | Crash dumps | in-memory only at v1 | n/a | n/a | n/a |
-| Auth tokens | **forbidden until Plan 25** | n/a | n/a | n/a |
+| Auth tokens | **forbidden at v1** | n/a | n/a | n/a |
 
 The four IndexedDB databases are: `hr-saves`, `hr-profile`,
 `hr-packs`, `hr-trust`. Each store name is a stable ID; renaming a
@@ -48,7 +48,7 @@ fails on any match outside an explicit allowlist (currently empty).
 
 ## 3. Cookies
 
-Cookies are banned client-side. Future signed-in flows (Plan 25) will
+Cookies are banned client-side. Future signed-in flows will
 use HTTP-only cookies set by the signaling server, unreadable from
 JS. Reading or writing `document.cookie` from any module under `src/`
 is a CI failure.
@@ -69,12 +69,12 @@ predates the auth surface.
 Permitted future patterns (when an auth surface lands):
 
 - HTTP-only cookies set by the signaling server (the auth boundary
-  lives server-side; Plan 25 owns the signaling server).
+  lives server-side).
 - Non-extractable WebCrypto `CryptoKey` instances stored in
   IndexedDB (the key is opaque to JS and survives reload).
 
 WebRTC TURN credentials are short-lived and ephemeral by design;
-never persisted (Plan 25 / audit 25 cross-ref).
+never persisted.
 
 The local salt declared by [`data-inventory.md`](./data-inventory.md)
 is non-sensitive outside the device threat model and lives in

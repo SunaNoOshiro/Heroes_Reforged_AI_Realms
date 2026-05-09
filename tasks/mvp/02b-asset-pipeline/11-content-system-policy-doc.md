@@ -17,7 +17,6 @@ Read First:
 - [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)
 
 Inputs:
-- The nine audit gaps in `docs/readiness-audit/13-content-system.md`
 - Existing references in `pack-contract.md`, `content-platform.md`,
   `schema-matrix.md`
 

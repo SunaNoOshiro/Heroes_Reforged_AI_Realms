@@ -166,22 +166,22 @@ Acceptance Criteria:
   `eventLog` returned by `AUTO_RESOLVE_BATTLE` is one-shot UI-bound
   and never enters the save record. See
   [`docs/architecture/event-system.md` § 7 Save & Load](../../../docs/architecture/event-system.md#7-save--load).
-- **Save eligibility (Q212).** `save()` is rejected when the pure
+- **Save eligibility.** `save()` is rejected when the pure
   predicate `canSaveNow(state)` from
   [`content-schema/save-eligibility.md`](../../../content-schema/save-eligibility.md)
   returns `false` (active battle, multiplayer turn lock, open
   choice modal, mid-end-of-day animation).
-- **Animation rehydration (Q212).** `load()` replays the command
+- **Animation rehydration.** `load()` replays the command
   log silently; the animation timeline starts empty (no in-flight
   animations). Re-emitted events from replay execute
   synchronously without scheduling. The first post-load command
   schedules animations normally. See
   [`docs/architecture/edge-cases-policy.md` § 8](../../../docs/architecture/edge-cases-policy.md#8-save-gating-q212).
-- **Locale metadata (Q214).** Save metadata captures `localeAtSave`.
+- **Locale metadata.** Save metadata captures `localeAtSave`.
   Load shows no warning when the active locale differs; display
   strings re-resolve normally. See
   [`docs/architecture/edge-cases-policy.md` § 10](../../../docs/architecture/edge-cases-policy.md#10-locale-swap-mid-game-q214).
-- **Tab-resume autosave (Q217).** On `visibilitychange:hidden`, the
+- **Tab-resume autosave.** On `visibilitychange:hidden`, the
   persistence layer fires a best-effort tab-resume autosave
   (synchronous IDB write where possible, wrapped in a 50 ms
   timeout; falls back to no-save if the budget is exceeded). The

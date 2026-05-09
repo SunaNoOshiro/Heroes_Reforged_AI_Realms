@@ -20,10 +20,8 @@ between `npm test` and the determinism fuzz step.
 | `src/net/**` | 80 % | 70 % | Lockstep / hash-exchange / reconnection / host-migration transports. The chaos harness covers behavioral coverage; line coverage guards branch-table omissions. |
 | `src/ui/**` | smoke only | smoke only | The UI smoke contract is the binding test. Coverage here would penalize component composition and bias toward over-tested presentation. |
 
-Thresholds are calibrated against the audit's own recommendations
-([`docs/readiness-audit/15-testability.md`](../../readiness-audit/15-testability.md)
-Q259) and pinned in `vitest.config.ts` under the canonical `coverage`
-block.
+Thresholds are pinned in `vitest.config.ts` under the canonical
+`coverage` block.
 
 ## Tightening Policy
 

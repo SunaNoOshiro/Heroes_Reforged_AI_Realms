@@ -13,19 +13,12 @@ command-log)` triple has to produce the same selector output on
 every client. The host doc declares the rule; this task lands the
 machine-checkable enforcement (lint + sentinel test).
 
-Source audit:
-[`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
-(Q47, Issue 3.A-2).
-
 Read First:
-- [`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../../../docs/implementation-plans/03-ui-state-and-interactions-plan.md)
 - [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 - `docs/architecture/wiki/screens/07-adventure-map/spec.md`
 
 Inputs:
-- Audit Q47 in
-  [`docs/readiness-audit/03-ui-state-and-interactions.md`](../../../docs/readiness-audit/03-ui-state-and-interactions.md)
 - The Selector Purity section of
   [`docs/architecture/ui-state-contract.md`](../../../docs/architecture/ui-state-contract.md)
 

@@ -12,7 +12,6 @@ defaults, and the `RequireTypeChallenge` component. Wire the
 until the pop-in animation completes, the delay elapses, and the
 optional type challenge passes.
 
-Plan 23 / Critical Fix 1.
 
 Read First:
 - `docs/architecture/wiki/screens/60-confirmation-dialog/spec.md`

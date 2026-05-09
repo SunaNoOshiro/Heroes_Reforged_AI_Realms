@@ -69,7 +69,7 @@ flowchart LR
 - Both ack checkboxes MUST be true before export enables.
 - The ack file lives inside the exported archive — not in the trust
   store, not in any save.
-- No network upload at v1. Plan 30 (moderation backend) consumes the
+- No network upload at v1. (moderation backend) consumes the
   ack format when authored.
 - All copy follows
   [`ugc-safety.md` § Localization Keys](../../../ugc-safety.md#7-localization-keys).

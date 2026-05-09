@@ -9,7 +9,7 @@ lockstep protects, what it does not, the inherent limits of the
 chosen netcode, the threat-model summary, and the product gating
 that follows. Cross-link from [`CLAUDE.md`](../../../CLAUDE.md) so
 new contributors and AI agents encounter the doctrine before
-designing downstream features. Plan 26 § Critical Fix 5.
+designing downstream features.
 
 Read First:
 - [`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)
@@ -18,8 +18,6 @@ Read First:
 - [`docs/architecture/wiki/screens/77-multiplayer-game/spec.md`](../../../docs/architecture/wiki/screens/77-multiplayer-game/spec.md)
 
 Inputs:
-- Audit findings from
-  `docs/readiness-audit/26-replay-tampering-and-simulation-cheating.md`.
 - Existing multiplayer-security doctrine for cross-references.
 
 Outputs:
@@ -44,7 +42,7 @@ Acceptance Criteria:
 - `security-model.md` enumerates the protections from § 1 and the
   inherent limits from § 2 of
   [`docs/architecture/security-model.md`](../../../docs/architecture/security-model.md)
-  and matches every Plan 26 Critical Fix and Improvement to a row
+  and matches every multiplayer fix and improvement to a row
   in § 3 (Mitigations).
 - `CLAUDE.md` lists `security-model.md` in the **Read first**
   table and adds the "information secrecy is not provided by

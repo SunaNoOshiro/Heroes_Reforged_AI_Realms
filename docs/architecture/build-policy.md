@@ -1,7 +1,5 @@
 # Build Policy
 
-> Source plan:
-> [`docs/implementation-plans/30-dependencies-and-build-pipeline-plan.md`](../implementation-plans/30-dependencies-and-build-pipeline-plan.md).
 > Pairs with [`dependency-policy.md`](dependency-policy.md).
 
 `dependency-policy.md` gates *what enters* the lockfile; this doc

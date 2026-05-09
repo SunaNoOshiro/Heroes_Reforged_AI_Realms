@@ -1,11 +1,8 @@
 # Module: Core Architecture Contracts (M0)
 
 The contracts that the deterministic engine, command dispatcher,
-multi-engine harness, and renderer all hand off to one another. These
-tasks formalize gaps surfaced by
-[`docs/readiness-audit/01-core-architecture.md`](../../docs/readiness-audit/01-core-architecture.md);
-the source plan is
-[`docs/implementation-plans/01-core-architecture-plan.md`](../../docs/implementation-plans/01-core-architecture-plan.md).
+multi-engine harness, and renderer all hand off to one another.
+These tasks formalize the cross-module contract gaps in this module.
 
 No runtime engine code is shipped here — only documentation, JSON
 schemas, and CI-side checks that future engine, AI, and net tasks can
@@ -13,9 +10,9 @@ implement against.
 
 **Milestone**: M0 — Skeleton  
 **Total Estimate**: ~22 hours  
-**Exit Criteria**: All ten audit gaps from the source plan are closed
-in docs / schemas / CI; `npm run validate` passes including the new
-`validate:arch` step.
+**Exit Criteria**: All cross-module contract gaps in this module are
+closed in docs / schemas / CI; `npm run validate` passes including
+the new `validate:arch` step.
 
 ---
 

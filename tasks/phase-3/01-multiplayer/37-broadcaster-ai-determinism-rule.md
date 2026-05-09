@@ -4,7 +4,7 @@ Module: [Multiplayer (M5)](../01-multiplayer.md)
 
 Description:
 Pin the structural rule that keeps deterministic replay safe under
-wall-clock-driven AI fallbacks. Closes Plan 32 § CF-3 (Pin the AI
+wall-clock-driven AI fallbacks. Closes CF-3 (Pin the AI
 broadcaster rule for wall-clock budgets).
 
 The doctrine — that wall-clock budgets are permitted only in the
@@ -24,13 +24,12 @@ Read First:
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
   § AI Compute Budget
 - [`tasks/phase-3/01-multiplayer/07-host-migration-heartbeat-election.md`](./07-host-migration-heartbeat-election.md)
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § CF-3
 
 Inputs:
 - Broadcaster election state from
   [`07-host-migration-heartbeat-election.md`](./07-host-migration-heartbeat-election.md).
-- `botRngStreamId` model from Plan 07 § Bot RNG Sub-Streams.
+- `botRngStreamId` model § Bot RNG Sub-Streams.
 - AI worker boundary from
   [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../mvp/10-heuristic-ai/06-run-ai-in-web-worker.md).
 
@@ -55,7 +54,7 @@ Owned Paths:
 Owned Paths (shared):
 - `docs/architecture/ai-contract.md` — primary owner is the AI
   module index; this task contributes the § 6 normative section
-  pinned by Plan 32 § CF-3 and must not rewrite earlier semantics.
+  pinned by CF-3 and must not rewrite earlier semantics.
 - `docs/architecture/determinism.md` — primary owner is the engine
   determinism module; this task adds the one-line cross-reference
   to ai-contract § 6 and must not rewrite earlier rules.
@@ -66,7 +65,7 @@ Dependencies:
 Acceptance Criteria:
 - `ai-contract.md` § 6 carries the normative
   "AI Determinism Under Wall-Clock Budgets" section listing the
-  four rules from Plan 32 § CF-3.
+  four rules § CF-3.
 - `determinism.md` § AI Compute Budget references the new
   section.
 - `npm run validate:links` passes.

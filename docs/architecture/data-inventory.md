@@ -24,14 +24,14 @@
 | known peers | `state.profile.knownPeers` | IndexedDB (`hr-profile.knownPeers`) | medium | LRU 256, 30-day implicit retention for `tier: recent` | `WIPE_LOCAL_DATA scope=profile\|all` | `peer-allowlist.schema.json`; writes require `consent.multiplayer === 'granted'` |
 | lobby chat (transient) | `state.net.lobby.chat` | in-memory | medium | session | n/a | not persisted; cleared on lobby exit |
 | save thumbnail | save `metadata.thumbnail` | IndexedDB (`hr-saves.slots`) | low | until save deleted | `WIPE_LOCAL_DATA scope=saves\|all` | base64 PNG/WebP |
-| AI prompt (per pack) | pack `manifest.aiProvenance.promptExcerpt` | IndexedDB (`hr-packs.packs`) + `.hrmod` | medium | until pack uninstalled | n/a (pack scope) | declared by Plan 14; truncated to 280 chars |
-| outbound content reports | `state.privacy.outboundReports[]` | IndexedDB (`hr-profile.reports`) | medium | until dequeued or user-deleted | `WIPE_LOCAL_DATA scope=profile\|all` | local queue with retry stub; consumes Plan 30 backend when authored |
-| trust store | `selectors.packs.trustStore` | IndexedDB (`hr-trust.decisions`) | low | until user-revoked | `WIPE_LOCAL_DATA scope=profile\|all` | Plan 20 schema; per-pack decisions |
-| pack store (`.hrmod` bytes) | (binary) | IndexedDB (`hr-packs.packs`) | low | until uninstalled | `WIPE_LOCAL_DATA scope=profile\|all` | Plan 20 owns runtime |
+| AI prompt (per pack) | pack `manifest.aiProvenance.promptExcerpt` | IndexedDB (`hr-packs.packs`) + `.hrmod` | medium | until pack uninstalled | n/a (pack scope) | truncated to 280 chars |
+| outbound content reports | `state.privacy.outboundReports[]` | IndexedDB (`hr-profile.reports`) | medium | until dequeued or user-deleted | `WIPE_LOCAL_DATA scope=profile\|all` | local queue with retry stub; consumes the moderation backend when authored |
+| trust store | `selectors.packs.trustStore` | IndexedDB (`hr-trust.decisions`) | low | until user-revoked | `WIPE_LOCAL_DATA scope=profile\|all` | per-pack decisions |
+| pack store (`.hrmod` bytes) | (binary) | IndexedDB (`hr-packs.packs`) | low | until uninstalled | `WIPE_LOCAL_DATA scope=profile\|all` | runtime managed by the pack loader |
 | signed publish ack | pack `signed-acks/<contentHash>.json` | in-pack file (`.hrmod`) | low | bound to pack lifetime | n/a (pack scope) | per-pack content-policy ack timestamp |
 | `analyticsClientId` | `state.privacy.options.analyticsClientId` (FUTURE) | IndexedDB (`hr-profile.privacy`) | medium | until user-deleted | `WIPE_LOCAL_DATA scope=profile\|all` | **not generated at v1**; future opt-in only; UUIDv4 |
-| crash dump | `state.diagnostics.crashDump` | in-memory only at v1 | high | session | `WIPE_LOCAL_DATA scope=profile\|all` clears in-memory copy | Plan 22 owns full pipeline; redaction baseline below |
-| auth tokens | (forbidden until Plan 25) | n/a (banned from `localStorage`) | high | n/a | n/a | see `persistence.md` § Token & Secret Storage |
+| crash dump | `state.diagnostics.crashDump` | in-memory only at v1 | high | session | `WIPE_LOCAL_DATA scope=profile\|all` clears in-memory copy | redaction baseline below |
+| auth tokens | (forbidden at v1) | n/a (banned from `localStorage`) | high | n/a | n/a | see `persistence.md` § Token & Secret Storage |
 
 ## 2. Sensitivity Tiers
 
@@ -71,8 +71,8 @@ that has no inventory row.
 
 ## 4. Crash Dumps
 
-(Plan 22 owns the full pipeline. This section declares the
-**redaction baseline** so Plan 22 inherits a clear contract.)
+(This section declares the **redaction baseline** for the
+crash-dump pipeline.)
 
 A crash dump MAY include:
 
@@ -91,7 +91,7 @@ A crash dump MUST NOT include:
 - any field tagged `medium` or `high` in this table
 
 Persistence: in-memory only at v1; user-initiated export to a local
-file only. No network upload until Plan 22 declares one. The
+file only. No network upload until a future amendment declares one. The
 `WIPE_LOCAL_DATA` handler clears any in-memory crash dumps and any
 on-disk export (when wired).
 

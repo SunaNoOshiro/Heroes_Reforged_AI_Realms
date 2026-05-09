@@ -285,13 +285,13 @@ play modes:
   definition in single-player; friendly MP elects a broadcaster
   per the heartbeat-election task above.
 - The rule is enforced by the existing `botRngStreamId` model
-  pinned by Plan 07 § Bot RNG Sub-Streams: only the elected
+  pinned by Bot RNG Sub-Streams: only the elected
   broadcaster mints `botRngStreamId` consumers; other peers read
   the resulting `Command` from the log without minting their own
   RNG draws.
 
-Future N-peer mesh designs (deferred per Plan 07 / `glossary.md`
-M7 sketches) MUST preserve this rule: if a feature lets each peer
+Future N-peer mesh designs (deferred per `glossary.md` M7
+sketches) MUST preserve this rule: if a feature lets each peer
 run its own AI search under a wall-clock budget, the feature is
 incompatible with deterministic replay and is rejected at design
 review.

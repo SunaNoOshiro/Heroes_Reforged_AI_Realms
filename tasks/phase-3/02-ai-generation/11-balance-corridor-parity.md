@@ -6,8 +6,7 @@ Description:
 Pin
 [`content-schema/balance/corridor.json`](../../../content-schema/balance/corridor.json)
 as the **single source of truth** for per-tier numeric bounds (hp,
-attack, defense, damageMin, damageMax, speed). Closes Plan 32 §
-NC-3 (Fold balance corridor data into one source).
+attack, defense, damageMin, damageMax, speed). Closes NC-3 (Fold balance corridor data into one source).
 
 The companion fixture
 [`content-schema/examples/balance-constraints/canonical.balance-constraints.json`](../../../content-schema/examples/balance-constraints/canonical.balance-constraints.json)
@@ -24,10 +23,9 @@ asserts the two files are numerically identical and is wired into
 A pure JSON-Schema `$ref` from `balance-constraints.schema.json` to
 `corridor.json` is incompatible with the AJV loader (canonical
 data file, not a schema), so the generator-script approach was
-chosen per Plan 32 § Risk Notes.
+chosen § Risk Notes.
 
 Read First:
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § NC-3
 - [`docs/architecture/content-system-policy.md`](../../../docs/architecture/content-system-policy.md)
   § balance corridor

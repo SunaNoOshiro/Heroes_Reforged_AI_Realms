@@ -3,12 +3,11 @@
 Module: [Multiplayer — WebRTC Lockstep (M5)](../01-multiplayer.md)
 
 Description:
-Extend the three-phase commit-reveal handshake (Plan 26 Critical
-Fix 2) to support resuming a saved match into a fresh multiplayer
-session. Both peers compute their loaded-from-disk `stateHash`
-from the replayed `commandLog` *before* the first resumed turn
-and exchange it via the REVEAL frame; mismatch refuses to start.
-Plan 27 § Improvement: MP Load-Resume Protocol.
+Extend the three-phase commit-reveal handshake to support resuming
+a saved match into a fresh multiplayer session. Both peers compute
+their loaded-from-disk `stateHash` from the replayed `commandLog`
+*before* the first resumed turn and exchange it via the REVEAL
+frame; mismatch refuses to start.
 
 Read First:
 - [`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)

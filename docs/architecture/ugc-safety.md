@@ -13,7 +13,7 @@ constant and a regex on every entry's `path`. A malicious or
 careless pack that declares `https://attacker.example/probe.png`
 is rejected at load time with `pack.error.asset.external-url`.
 
-The pack loader (Plan 20) MUST reject any `assets/index.json` whose
+The pack loader MUST reject any `assets/index.json` whose
 `pathScheme != "pack-relative"` or whose `path` matches an absolute
 scheme — fail loudly per CLAUDE.md "missing gameplay requirements
 must fail loudly".

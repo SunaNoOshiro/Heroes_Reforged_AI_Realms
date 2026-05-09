@@ -6,9 +6,8 @@ Description:
 Author the lobby-chat envelope schema, the dedicated `chat`
 DataChannel send/receive validators, the `normalizeChatText`
 pipeline (NFKC + control + bidi strip + length cap), and the
-per-peer token-bucket rate limit. Closes Q333–Q336, Q342–Q343 and
-the chat-DoS / identity-spoofing risks documented in
-[`docs/readiness-audit/19-chat-safety-and-user-reporting.md`](../../../docs/readiness-audit/19-chat-safety-and-user-reporting.md).
+per-peer token-bucket rate limit. Closes the chat-DoS and
+identity-spoofing risks for the lobby chat surface.
 
 Read First:
 - [`docs/architecture/chat-safety.md`](../../../docs/architecture/chat-safety.md)

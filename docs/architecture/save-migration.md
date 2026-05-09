@@ -132,7 +132,6 @@ HMAC keyed by a server-issued match secret. See
 
 ## Envelope, Intent Discriminator & MAC Phase-In
 
-> Source: Plan 27 § Critical Fix 4.
 
 The on-disk save artifact is wrapped in
 [`save-envelope.schema.json`](../../content-schema/schemas/save-envelope.schema.json).
@@ -177,7 +176,6 @@ re-emit a fixture envelope without re-signing.
 
 ## MAC Phase-In Plan
 
-> Source: Plan 27 § Improvement: Save-Envelope MAC Phase-In.
 
 The `mac` field on the envelope is **optional in M4** — saves are
 device-local, IndexedDB-bound, and not exposed across installations.

@@ -1,8 +1,6 @@
 # Error Taxonomy
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md)
-> (T13). Sister docs:
+> Sister docs:
 > [`pack-error-codes.md`](./pack-error-codes.md) (pack-loader-specific
 > codes), [`storage-policy.md`](./storage-policy.md) (storage-specific
 > codes), [`edge-cases-policy.md`](./edge-cases-policy.md) (cross-

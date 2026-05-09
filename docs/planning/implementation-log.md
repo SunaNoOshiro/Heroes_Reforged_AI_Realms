@@ -295,8 +295,7 @@ Right now the repository does not yet prove:
 
 ### Data Contracts & Schema Plan Implementation (2026-05-03)
 
-Closed the seven data-contract gaps from
-[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../implementation-plans/06-data-contracts-and-schema-plan.md):
+Closed seven data-contract gaps:
 
 - Authored
   [`docs/architecture/version-policy.md`](../architecture/version-policy.md)
@@ -350,8 +349,7 @@ Closed the seven data-contract gaps from
 
 ### UI State & Interactions Plan Implementation (2026-05-03)
 
-Closed the thirteen audit gaps from
-[`docs/implementation-plans/03-ui-state-and-interactions-plan.md`](../implementation-plans/03-ui-state-and-interactions-plan.md):
+Closed thirteen UI state-and-interactions gaps:
 
 - Authored the cross-screen UI contract docs:
   [`docs/architecture/ui-state-contract.md`](../architecture/ui-state-contract.md)
@@ -418,8 +416,7 @@ Closed the thirteen audit gaps from
 
 ### Core-Architecture Plan Implementation (2026-05-02)
 
-Closed the ten audit gaps from
-[`docs/implementation-plans/01-core-architecture-plan.md`](../implementation-plans/01-core-architecture-plan.md):
+Closed ten core-architecture gaps:
 
 - Authored
   [`docs/architecture/state-shape.md`](../architecture/state-shape.md),
@@ -453,8 +450,7 @@ Closed the ten audit gaps from
 
 ### Multiplayer Plan Implementation (2026-05-03)
 
-Closed the operational gaps from
-[`docs/implementation-plans/07-multiplayer-plan.md`](../implementation-plans/07-multiplayer-plan.md):
+Closed the multiplayer operational gaps:
 
 - Extended
   [`docs/architecture/determinism.md`](../architecture/determinism.md)
@@ -500,8 +496,7 @@ Closed the operational gaps from
 
 ### Performance Plan Implementation (2026-05-03)
 
-Closed the performance gaps from
-[`docs/implementation-plans/09-performance-plan.md`](../implementation-plans/09-performance-plan.md):
+Closed the performance gaps:
 
 - Authored
   [`docs/architecture/performance.md`](../architecture/performance.md)
@@ -602,8 +597,7 @@ Closed the performance gaps from
 
 ### Content System Plan Implementation (2026-05-04)
 
-Closed the nine audit gaps from
-[`docs/implementation-plans/13-content-system-plan.md`](../implementation-plans/13-content-system-plan.md):
+Closed nine content-system gaps:
 
 - Authored
   [`docs/architecture/content-system-policy.md`](../architecture/content-system-policy.md)
@@ -685,8 +679,7 @@ Closed the nine audit gaps from
 
 ### Testability Plan Implementation (2026-05-04)
 
-Closed the ten audit gaps from
-[`docs/implementation-plans/15-testability-plan.md`](../implementation-plans/15-testability-plan.md):
+Closed ten testability gaps:
 
 - Authored five new architecture-testing docs:
   [`docs/architecture/testing/ui-smoke-contract.md`](../architecture/testing/ui-smoke-contract.md),
@@ -752,13 +745,9 @@ Closed the ten audit gaps from
   switched from self-authored bracket loops to the shared harness).
 - Registry now contains 370 tasks across 28 modules.
 
-Implementation report:
-[`docs/implementation-plans/15-testability-report.md`](../implementation-plans/15-testability-report.md).
-
 ### Implementation-Readiness Plan Implementation (2026-05-04)
 
-Closed the 11 ❌/⚠ findings from
-[`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md):
+Closed 11 implementation-readiness findings:
 
 - **T1** — Ratified DEFEND damage-reduction at `250 permille`
   (25 % reduction) in
@@ -788,7 +777,7 @@ Closed the 11 ❌/⚠ findings from
   `check-repo-contracts.mjs`: every
   `docs/architecture/wiki/screens/<n>-<id>/` package must ship a
   `data-contracts.md` file. Schema-landing per screen remains owned
-  by [`06-data-contracts-and-schema-plan.md`](../implementation-plans/06-data-contracts-and-schema-plan.md).
+  by [`06-data-contracts-and-schema-plan.md`](../archive/implementation-plans/06-data-contracts-and-schema-plan.md).
 - **T5** — Authored
   [`content-schema/schemas/renderer-event.schema.json`](../../content-schema/schemas/renderer-event.schema.json)
   (closed discriminated union: `SELECTION_CHANGED`, `CAMERA_FOCUSED`,
@@ -852,7 +841,7 @@ Closed the 11 ❌/⚠ findings from
   (DI convention, shared-fake catalogue location, mocking policy
   matrix, per-module test rubric, fuzz/property targets). Concrete
   fake bodies are landed by
-  [`15-testability-plan.md`](../implementation-plans/15-testability-plan.md).
+  [`15-testability-plan.md`](../archive/implementation-plans/15-testability-plan.md).
 - **T11** — Added a `## Self-Contained Brief` section to every
   `tasks/mvp/<n>-<module>.md` index (Purpose / Public surface /
   Side effects / NFR / Exit criteria). Extended
@@ -876,13 +865,9 @@ Closed the 11 ❌/⚠ findings from
   (editor-time string lookups vs runtime registry resolution).
   Cross-linked from `AGENTS.md` (read-first list, items 29–34).
 
-Implementation report:
-[`docs/implementation-plans/16-implementation-readiness-report.md`](../implementation-plans/16-implementation-readiness-report.md).
-
 ### Final-Critical-Questions Plan Implementation (2026-05-04)
 
-Closed the synthesis-layer findings from
-[`docs/implementation-plans/17-final-critical-questions-plan.md`](../implementation-plans/17-final-critical-questions-plan.md):
+Closed the synthesis-layer findings:
 
 - **Decision-log + provenance gate** — created
   [`docs/planning/decision-log.md`](./decision-log.md) (DEC-001
@@ -956,23 +941,19 @@ Closed the synthesis-layer findings from
   expose / consume the transcript.
 - **Balance judgement rules** — task stub
   [`tasks/phase-2/12-balance-judgement/01-judgement-rules-doc.md`](../../tasks/phase-2/12-balance-judgement/01-judgement-rules-doc.md)
-  schedules the methodology extraction (Q294 #2).
+  schedules the methodology extraction.
 - **Lobby placeholder** — task stub
   [`tasks/phase-3/05-lobby/00-plan-stub.md`](../../tasks/phase-3/05-lobby/00-plan-stub.md)
-  marks the gap until plan 18 lands (DEF-016).
+  marks the gap until lobby discovery lands (DEF-016).
 - **Wiring** — `package.json` wires `validate:provenance`,
   `validate:runtime-requirements`, `validate:deferred`,
   `validate:diagram-task-parity`, `validate:error-ux` into
   `npm run validate`. AGENTS.md, overview.md, and the architecture
   README index point at the new docs.
 
-Implementation report:
-[`docs/implementation-plans/17-final-critical-questions-report.md`](../implementation-plans/17-final-critical-questions-report.md).
-
 ### TURN Credentials & Signaling-Server Abuse Plan Implementation (2026-05-05)
 
-Closed the doctrine and contract gaps from
-[`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md):
+Closed the TURN-credentials doctrine and contract gaps:
 
 - **Doctrine docs (six new)** — authored
   [`docs/architecture/signaling-message-schema.md`](../architecture/signaling-message-schema.md),
@@ -1063,12 +1044,9 @@ Closed the doctrine and contract gaps from
   `outOfScope` and to
   [`task-command-token-coverage.json`](../architecture/task-command-token-coverage.json).
 
-Implementation report:
-[`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-report.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-report.md).
-
 ### Trust Boundaries and Logging / Monitoring
 
-[`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-plan.md):
+Closed the trust-boundaries gaps:
 
 - **Single trust contract** —
   [`docs/architecture/trust-boundaries.md`](../architecture/trust-boundaries.md)
@@ -1148,9 +1126,6 @@ Implementation report:
   [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
   extended with example-record suffix mappings for the four new
   object schemas. `npm run validate` and `npm test` are green.
-
-Implementation report:
-[`docs/implementation-plans/31-trust-boundaries-and-logging-monitoring-report.md`](../implementation-plans/31-trust-boundaries-and-logging-monitoring-report.md).
 
 ## Recommended Next Steps
 

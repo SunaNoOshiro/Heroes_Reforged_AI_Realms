@@ -15,7 +15,6 @@ The golden-state suite owned by
 consumes these scenarios to produce checked-in expected hashes.
 
 Read First:
-- [`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md) § Q258
 - [`content-schema/schemas/scenario.schema.json`](../../../content-schema/schemas/scenario.schema.json)
 - [`docs/architecture/edge-cases-policy.md`](../../../docs/architecture/edge-cases-policy.md)
 

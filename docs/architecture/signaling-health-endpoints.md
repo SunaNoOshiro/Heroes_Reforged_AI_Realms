@@ -1,9 +1,5 @@
 # Signaling Health Endpoints
 
-> Source plan:
-> [`docs/implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md`](../implementation-plans/25-turn-credentials-and-signaling-server-abuse-plan.md)
-> § Critical Fix 5.
-
 This file is the canonical contract for **how the M5 signaling
 server exposes health and metrics**. It supersedes the looser
 `/healthz` rule that earlier appeared in

@@ -12,7 +12,6 @@ before any state-changing command fires. Honors the fragment
 discipline pinned by
 [`62-multiplayer-setup/spec.md`](../../../docs/architecture/wiki/screens/62-multiplayer-setup/spec.md).
 
-Plan 23 / Q443.
 
 Read First:
 - [`docs/architecture/url-routing.md`](../../../docs/architecture/url-routing.md)

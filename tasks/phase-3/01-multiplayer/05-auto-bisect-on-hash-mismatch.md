@@ -11,7 +11,7 @@ Read First:
 - [`docs/architecture/lockstep-envelope.md`](../../../docs/architecture/lockstep-envelope.md)
 - [`docs/architecture/peer-reputation.md`](../../../docs/architecture/peer-reputation.md)
 
-### Plan 26 cross-cutting additions
+### Cross-cutting additions
 
 #### Byzantine Handling (Improvement / Bisect Protocol)
 - Every midpoint hash rides a lockstep envelope with the inner

@@ -11,10 +11,10 @@
 In-match multiplayer status surface. Hosts the opponent-turn
 indicator (waiting / stalled / auto-ended), the build-attestation
 banner, the desync detection / bisect report panel, the envelope
-statistics, and the developer-mode match-key display. Created by
-Plan 26 to give Critical Fix 4 (turn timer) and the Improvements
-(blame-attributed bisect, build attestation, peer reputation) a UI
-home that previously did not exist as a numbered screen package.
+statistics, and the developer-mode match-key display. Gives the
+turn timer, the blame-attributed bisect, build attestation, and
+peer reputation surfaces a UI home that previously did not exist
+as a numbered screen package.
 
 ### Visual Direction
 - Original internal UI contract. Do not use third-party captures,
@@ -61,7 +61,7 @@ post-match summary route.
 | envelopeStats | `selectors.net.lockstep.envelopeStats` | `{ macFailureCount, duplicateSeqDrops, preconditionRejects, lastBisectOutcome }`. Per [`lockstep-envelope.md`](../../../lockstep-envelope.md). |
 | desyncReport | `state.net.lockstep.desyncReport` | Null while clean. Populated after bisect; carries `attributedAbortPeer`, `attributionConfidence`. Per [`bisect-protocol.md`](../../../bisect-protocol.md). |
 | developerModeFlag | `state.developer.flags.showMatchKey` | Per [`developer-mode.md`](../../../developer-mode.md); developer-mode-only flag. |
-| postMatchAuditConsent | `state.profile.consent.replayAudit.state` | Per Plan 23 consent UX; `unset | granted | denied`. Source: [`replay-audit-pipeline.md`](../../../replay-audit-pipeline.md). |
+| postMatchAuditConsent | `state.profile.consent.replayAudit.state` | Per the consent UX; `unset | granted | denied`. Source: [`replay-audit-pipeline.md`](../../../replay-audit-pipeline.md). |
 | trustBanner | `selectors.net.lockstep.trustBanner` | Friendly / closed-beta gating copy per [`security-model.md`](../../../security-model.md) § 4. |
 
 ### Mechanics Mapping

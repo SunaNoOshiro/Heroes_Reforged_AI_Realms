@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/telemetry-event.schema.json",
   "title": "TelemetryEvent",
-  "description": "Canonical event shape for the per-match anonymous-stats emission pipeline. Authored by docs/architecture/observability.md. Privacy rules forbid PII, IPs, and peer IDs; only pack hashes, engine hashes, faction IDs, and aggregate metrics are allowed. See docs/implementation-plans/17-final-critical-questions-plan.md.",
+  "description": "Canonical event shape for the per-match anonymous-stats emission pipeline. Authored by docs/architecture/observability.md. Privacy rules forbid PII, IPs, and peer IDs; only pack hashes, engine hashes, faction IDs, and aggregate metrics are allowed.",
   "type": "object",
   "required": ["schemaVersion", "kind", "timestamp", "engineHash", "fields"],
   "additionalProperties": false,

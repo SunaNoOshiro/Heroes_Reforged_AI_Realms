@@ -6,10 +6,6 @@ envelope**, the **per-session key derivation rule**, and the
 window that DTLS alone cannot close once a peer client is compromised
 post-handshake.
 
-> Source plan:
-> [`docs/implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md`](../implementation-plans/24-tls-enforcement-and-webrtc-authentication-plan.md)
-> § Critical Fix 4.
-
 Companion docs:
 
 - [`signaling-envelope.md`](./signaling-envelope.md) — outer

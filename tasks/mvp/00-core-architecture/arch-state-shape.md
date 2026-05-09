@@ -25,18 +25,11 @@ Deliverables:
   mine, and bootstrap RNG sub-streams under
   `content-schema/examples/game-state.example.json`.
 
-Source audit:
-[`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
-(Q5, Issue 3.A-1).
-
 Read First:
-- [`docs/implementation-plans/01-core-architecture-plan.md`](../../../docs/implementation-plans/01-core-architecture-plan.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)
 - [`docs/architecture/state-flow.md`](../../../docs/architecture/state-flow.md)
 
 Inputs:
-- Audit Q5 in
-  [`docs/readiness-audit/01-core-architecture.md`](../../../docs/readiness-audit/01-core-architecture.md)
 - Existing per-record schemas under `content-schema/schemas/`
 
 Outputs:

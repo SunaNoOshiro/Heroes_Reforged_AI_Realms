@@ -4,9 +4,6 @@ Closed HTTP-wire vocabulary for the AI gateway. The wire surface is
 HTTP — there is no body-side enum schema; the rules below pin which
 HTTP statuses may appear and what each means.
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Allowed wire statuses
 
 | Status | When | Body |

@@ -11,16 +11,15 @@ enum (`INVALID_SIGNATURE`, `SIGNATURE_DISABLED`). Cross-link from
 [`pack-contract.md` § Trust Fields](../../../docs/architecture/pack-contract.md#trust-fields).
 Reserve the `no-raw-eq-on-secret` lint rule for a Phase-2 task.
 
-Plan 22 § 2 — Crypto-rules + constant-time compare.
+2 — Crypto-rules + constant-time compare.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)
 - [`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)
 
 Inputs:
-- Plan 22's three crypto rules (Compare / Throw / Log).
-- Plan 27's prospective save-MAC and pack-signing surfaces.
+- the three crypto rules (Compare / Throw / Log).
+- the prospective save-MAC and pack-signing surfaces.
 
 Outputs:
 - `docs/architecture/crypto-rules.md`

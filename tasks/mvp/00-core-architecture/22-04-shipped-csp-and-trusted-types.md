@@ -11,10 +11,9 @@ is enforced at the browser layer, not just by intent. Owns the
 contract, the `canonical-policy` Trusted Types policy
 registration, and the build-time CSP-assertion gate.
 
-Plan 28 § Tasks — Shipped CSP.
+Tasks — Shipped CSP.
 
 Read First:
-- [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../../../docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md)
 - [`docs/architecture/csp.md`](../../../docs/architecture/csp.md)
 - [`docs/architecture/worker-csp.md`](../../../docs/architecture/worker-csp.md)
 - [`docs/architecture/error-formatter.md`](../../../docs/architecture/error-formatter.md)
@@ -24,12 +23,12 @@ Inputs:
   [`docs/architecture/csp.md` § 1](../../../docs/architecture/csp.md#1-shipped-policy).
 - The Trusted Types policy stub in
   [`docs/architecture/csp.md` § 2](../../../docs/architecture/csp.md#2-trusted-types-policy).
-- The bundled HTML produced by the Plan 30 build pipeline (this
+- The bundled HTML produced by the build pipeline (this
   task only owns the meta tag + policy registration; the build
   pipeline owns header emission).
 
 Outputs:
-- `docs/architecture/csp.md` — already authored under Plan 28.
+- `docs/architecture/csp.md` — already.
 - `index.html` `<meta http-equiv="Content-Security-Policy">`
   carrying the policy text byte-for-byte.
 - `src/runtime/security/trusted-types.ts` — registers the

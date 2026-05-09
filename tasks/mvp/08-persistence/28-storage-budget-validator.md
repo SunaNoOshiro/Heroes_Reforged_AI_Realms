@@ -8,7 +8,7 @@ Pin a CI gate that totals the per-store soft caps declared in
 § Per-Store Byte Budgets and asserts the sum fits within the
 [RR-05](../../../docs/architecture/runtime-requirements.md#rr-05-storage--indexeddb--50-mb-opfs-preferred-when-present)
 IndexedDB-quota floor times a documented headroom multiplier.
-Closes Plan 32 § PI-7 (Storage budget aggregator). Plans 21, 22,
+Closes PI-7 (Storage budget aggregator). Plans 21, 22,
 23, 24 each added per-store budgets without an aggregator; this
 task is the aggregator.
 
@@ -16,7 +16,6 @@ Read First:
 - [`docs/architecture/storage-policy.md`](../../../docs/architecture/storage-policy.md)
 - [`docs/architecture/runtime-requirements.md`](../../../docs/architecture/runtime-requirements.md)
   § RR-05
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § PI-7
 
 Inputs:
@@ -58,9 +57,8 @@ Acceptance Criteria:
   the validator.
 - `storage-policy.md` § Per-Store Byte Budgets table references
   the validator.
-- The headroom multiplier is documented in the script header per
-  Plan 32 § PI-7 Risk Notes; tightening it once real overhead
-  numbers surface is a follow-up.
+- The headroom multiplier is documented in the script header;
+  tightening it once real overhead numbers surface is a follow-up.
 
 Owned Paths (shared) acceptance:
 - `package.json` is **owned by** the repo root (the primary

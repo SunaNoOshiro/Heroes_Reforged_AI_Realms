@@ -6,14 +6,12 @@ Description:
 Build the `tests/security/escape-vectors/` fixture corpus and the
 CI driver that runs every fixture through the real loader and
 asserts a closed-code refusal. The corpus closes the regression
-gap on every cap, sanitiser, magic-byte check, and trust gate
-authored by Plan 28 — once it is wired into CI, drift on any
+gap on every cap, sanitiser, magic-byte check, and trust gate — once it is wired into CI, drift on any
 loader rule fails the build instead of silently regressing.
 
-Plan 28 § Tasks — security-fuzz / escape-vector corpus.
+Tasks — security-fuzz / escape-vector corpus.
 
 Read First:
-- [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../../../docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md)
 - [`docs/architecture/asset-loading.md`](../../../docs/architecture/asset-loading.md)
 - [`docs/architecture/asset-policy.md`](../../../docs/architecture/asset-policy.md)
 - [`docs/architecture/sandbox-model.md`](../../../docs/architecture/sandbox-model.md)
@@ -74,7 +72,7 @@ Acceptance Criteria:
   `npm run validate`.
 - Coverage table in `README.md` lists at least one fixture per
   closed `pack.error.asset.*`, `pack.error.archive.*`, and
-  `parser.error.*` code emitted by the loaders Plan 28 names.
+  `parser.error.*` code emitted by the loaders named here.
 - Adding a new cap or refusal code requires either a fixture in
   this corpus or a documented exemption in `README.md`; CI
   surfaces the gap as

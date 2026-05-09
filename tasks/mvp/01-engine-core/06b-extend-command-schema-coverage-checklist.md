@@ -45,7 +45,7 @@ Acceptance Criteria:
   npm wiring without rewriting the primary command contract owned by
   `docs/architecture/command-schema.md` and
   `mvp.01-engine-core.06-command-dispatcher`
-- **Numeric invariants (Q209).** Every integer `quantity` field in
+- **Numeric invariants.** Every integer `quantity` field in
   `command.schema.json` `$ref`s `numeric.json#/$defs/positiveInteger`
   (`minimum: 1`); every integer `cost` / `amount` field `$ref`s
   `numeric.json#/$defs/nonNegativeInteger` (`minimum: 0`). Free

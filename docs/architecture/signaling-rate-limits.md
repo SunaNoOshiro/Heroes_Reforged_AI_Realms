@@ -1,9 +1,5 @@
 # Signaling Rate Limits
 
-> Source plan:
-> [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md)
-> § 2 (Issue: No rate limiting; Q303, Q310, Q311, Q312).
-
 This file is the canonical contract for the M5 signaling server's
 throttle layer. Token-bucket throttles in three tiers — per-IP,
 per-code, and global. Implemented in-memory; no Redis dependency.
@@ -20,7 +16,7 @@ the wiring into the request handler is shared with
 | Tier | Bucket | Refill | Burst | Action on exceed |
 |---|---|---|---|---|
 | Per-IP `JOIN_ROOM` | 10 tokens | 1 token / 10 s | 10 | `RATE_LIMITED { retryAfterMs }` then 60 s ban |
-| Per-IP `CREATE_ROOM` | 3 tokens | 1 token / 60 s | 3 | `RATE_LIMITED` (closes Q308 squat risk) |
+| Per-IP `CREATE_ROOM` | 3 tokens | 1 token / 60 s | 3 | `RATE_LIMITED` (closes the room-squat risk) |
 | Per-code failed `JOIN_ROOM` | 5 tokens | 1 token / 30 s | 5 | Code locked 60 s; host receives `JOIN_ATTEMPT_REJECTED` |
 | Global failure | 200 / minute (rolling) | n/a | n/a | Structured alert + temp accept-only-known-IPs mode |
 
@@ -105,10 +101,8 @@ The `/healthz` HTTP route exposes:
 }
 ```
 
-These counters are the operator's primary signal that the
-enumeration risk in
-[`docs/readiness-audit/18-room-codes-and-lobby-discovery.md`](../readiness-audit/18-room-codes-and-lobby-discovery.md)
-is materializing.
+These counters are the operator's primary signal that a
+room-code enumeration risk is materializing.
 
 ## 7. Determinism note
 

@@ -7,16 +7,13 @@ client-side flow (`WIPE_LOCAL_DATA` → `REQUEST_ERASURE_RECEIPT`) is
 authoritative for *local* data and is described in
 [`docs/architecture/privacy.md` § 6](../architecture/privacy.md#6-erasure-pathway).
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Local erasure (always available)
 
 This path is fully implemented client-side and does not require
 contacting a human:
 
 1. Open screen [`54-system-menu`](../architecture/wiki/screens/54-system-menu/).
-2. Select "Forget me on this device" (Plan 21).
+2. Select "Forget me on this device".
 3. Choose scope: `all`, `saves`, `profile`, or `chat`.
 4. Confirm.
 5. Press "Receipt" — screen renders the receipt JSON
@@ -37,7 +34,7 @@ the moderation backend is implemented:
    (the queue is non-blocking; the local wipe completes regardless).
 2. The user is offered an "Email this receipt" affordance that
    composes a `mailto:` envelope to **privacy@<reserved-domain>**
-   (the canonical address is reserved by Plan 30 deploy).
+   (the canonical address is reserved deploy).
 3. We acknowledge within **30 days** of receiving the email and
    delete any matching server-side state. If no server-side state
    matches the receipt, the response confirms that result.
@@ -68,7 +65,7 @@ services are deployed, is bounded by:
 | Confirm deletion or absence | ≤ 30 days |
 | Inform downstream processors (when any) | ≤ 30 days |
 
-When the server-side intake lands (Plan 30), this file is updated
+When the server-side intake lands, this file is updated
 and the SLA shortens to the platform-supported window (typically
 ≤ 7 days).
 

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/renderer-event.schema.json",
   "title": "RendererEvent",
-  "description": "Closed discriminated union of every event the renderer emits across the renderer ↔ UI seam. Distinct from event.schema.json (which is the engine's event log read-only by the renderer): a RendererEvent is *produced by* the renderer to notify the UI shell of presentation-side state changes (selection, camera focus, animation start/finish, damage numbers, fog reveal). See docs/architecture/ui-renderer-seam.md and docs/implementation-plans/16-implementation-readiness-plan.md (T5).",
+  "description": "Closed discriminated union of every event the renderer emits across the renderer ↔ UI seam. Distinct from event.schema.json (which is the engine's event log read-only by the renderer): a RendererEvent is *produced by* the renderer to notify the UI shell of presentation-side state changes (selection, camera focus, animation start/finish, damage numbers, fog reveal). See docs/architecture/ui-renderer-seam.md.",
   "oneOf": [
     { "$ref": "#/$defs/selectionChanged" },
     { "$ref": "#/$defs/cameraFocused" },

@@ -14,12 +14,7 @@ against the previous renderer's input, and two parallel agents
 implementing the same screen can shape the same selector
 differently with no detection.
 
-Source plan:
-[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
-(§ Per-screen view-model contract is missing, T-SVM).
-
 Read First:
-- [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
 - [`docs/architecture/wiki/README.md`](../../../docs/architecture/wiki/README.md)
 - [`docs/architecture/wiki/screens/07-adventure-map/data-contracts.md`](../../../docs/architecture/wiki/screens/07-adventure-map/data-contracts.md)
 - [`docs/architecture/wiki/screens/24-town-screen/data-contracts.md`](../../../docs/architecture/wiki/screens/24-town-screen/data-contracts.md)

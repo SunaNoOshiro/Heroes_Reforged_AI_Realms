@@ -15,7 +15,6 @@ emissions it owes the catalogue.
 Read First:
 - [`docs/architecture/observability.md`](../../../docs/architecture/observability.md)
 - [`content-schema/schemas/telemetry-event.schema.json`](../../../content-schema/schemas/telemetry-event.schema.json)
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 
 Inputs:
 - Required emissions table in
@@ -49,7 +48,7 @@ Acceptance Criteria:
 - Every row of the § 4 table cites a stable event name and at least
   one owning subsystem.
 - Privacy redaction rules from § 5 are referenced from the privacy-
-  retention plan ([`22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md));
+  retention plan ;
   do not duplicate the rules.
 - Shared-path work is additive only: extending § 4 must not rewrite
   the rest of `observability.md`. The primary owner of

@@ -3,7 +3,7 @@
 Module: [Content Schemas (M0/M1)](../02-content-schemas.md)
 
 Description:
-Add the four schemas Plan 22 needs and that have no existing surface:
+Add the four schemas needed and that have no existing surface:
 [`signaling-error.schema.json`](../../../content-schema/schemas/signaling-error.schema.json),
 [`audit-log-entry.schema.json`](../../../content-schema/schemas/audit-log-entry.schema.json),
 and
@@ -14,11 +14,10 @@ and
 [`content-schema/README.md`](../../../content-schema/README.md), and
 extend `scripts/check-repo-contracts.mjs` with the suffix mapping rows.
 
-Plan 22 § 3 — Closed signaling-error / signature-error / audit-log /
+3 — Closed signaling-error / signature-error / audit-log /
 erasure-receipt schemas.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)
 
 Inputs:
@@ -26,7 +25,7 @@ Inputs:
 - The closed `OwnerNotice` reason enum.
 - The audit-log type enum (`ERASURE`, `REPLAY_EXPORT`,
   `POLICY_ACCEPTED`, `OPT_IN_TOGGLED`).
-- The erasure-receipt fields named in Plan 22 § Erasure-receipt UX.
+- The erasure-receipt fields named in Erasure-receipt UX.
 
 Outputs:
 - `content-schema/schemas/signaling-error.schema.json`

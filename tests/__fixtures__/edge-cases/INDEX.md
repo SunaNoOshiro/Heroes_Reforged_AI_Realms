@@ -1,7 +1,6 @@
 # Edge-Case Scenario Fixtures
 
-Minimal scenario records that exercise the corner cases enumerated in
-[`docs/readiness-audit/15-testability.md`](../../../docs/readiness-audit/15-testability.md)
+Minimal scenario records that exercise the corner cases enumerated.
 § Q258. Each scenario is consumed by the golden-state suite to
 produce a checked-in expected-state hash; refactors that change
 behavior in any of these corners fail the suite. Owned by

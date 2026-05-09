@@ -11,12 +11,7 @@ Zod adapter (Task 10) returns raw Zod errors. Without a unified shape,
 editor surfacing, the Phase-3 AI generation feedback loop, and any
 multi-validator parity test cannot consume errors generically.
 
-Source plan:
-[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
-(§ ValidationError shape, T-15).
-
 Read First:
-- [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
 - [`docs/architecture/schema-matrix.md`](../../../docs/architecture/schema-matrix.md)
 - [`content-schema/schemas/error-state.schema.json`](../../../content-schema/schemas/error-state.schema.json)
 

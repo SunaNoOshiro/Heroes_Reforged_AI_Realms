@@ -89,7 +89,7 @@ live slot.
   slots' manifests, ordered newest-first; the Save/Load screen
   surfaces them distinguishably from user slots.
 
-## Tab-Resume Autosave (Q217)
+## Tab-Resume Autosave
 
 The autosave hook also fires on `visibilitychange:hidden` and
 `pagehide` to capture in-flight session state when the tab is on
@@ -102,9 +102,9 @@ Subsequent `visibilitychange:visible` does not re-fire the save.
 The full visibility policy across subsystems lives in
 [`docs/architecture/visibility-policy.md`](../../../docs/architecture/visibility-policy.md).
 
-> Note: this hook is best-effort until Q160's full autosave
-> cadence policy lands. The current cadence remains the End-Day
-> boundary above; the tab-resume save is an additional safety net.
+> Note: this hook is best-effort until the full autosave cadence
+> policy lands. The current cadence remains the End-Day boundary
+> above; the tab-resume save is an additional safety net.
 
 Dependencies:
 - mvp.08-persistence.01-indexeddb-wrapper

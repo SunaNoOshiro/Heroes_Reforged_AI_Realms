@@ -19,12 +19,7 @@ lands ad-hoc, possibly skipping the matching `contentHash` recompute.
 This task is **dormant** until the engine reaches M2. Author it now
 so the procedure is reviewable before deadline pressure exists.
 
-Source plan:
-[`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
-(§ engineHash backfill at M2, T-FB).
-
 Read First:
-- [`docs/implementation-plans/06-data-contracts-and-schema-plan.md`](../../../docs/implementation-plans/06-data-contracts-and-schema-plan.md)
 - [`docs/architecture/pack-contract.md`](../../../docs/architecture/pack-contract.md)
 - [`docs/architecture/version-policy.md`](../../../docs/architecture/version-policy.md)
 - [`docs/architecture/determinism.md`](../../../docs/architecture/determinism.md)

@@ -1,8 +1,6 @@
 # Asset Path Resolution
 
-> Source plan:
-> [`docs/implementation-plans/16-implementation-readiness-plan.md`](../implementation-plans/16-implementation-readiness-plan.md)
-> (T13). Sister docs:
+> Sister docs:
 > [`pack-contract.md`](./pack-contract.md),
 > [`pack-resolver.md`](./pack-resolver.md),
 > [`atlas-pipeline.md`](./atlas-pipeline.md),

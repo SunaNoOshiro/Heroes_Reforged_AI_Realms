@@ -56,7 +56,7 @@ dismissal is gestural only.
 ### During Multiplayer
 - **Saving during MP is host-only.** The host's save captures the full agreed log. Peers may not save mid-match: the Save tab is read-only on peer machines and displays a localized "host saved" indicator after each host autosave / manual save.
 - **Loading into MP** is host-driven: the host loads the save locally, then the lobby flow re-establishes lockstep from the saved log. Peers do not load files; they receive the full log over the signaling channel as part of join.
-- Mid-match save records embed `mp.{ matchId, participants, hostPlayerId }` (see [`tasks/mvp/08-persistence/02-log-only-save-format.md`](../../../../../tasks/mvp/08-persistence/02-log-only-save-format.md)) so a re-loaded match can recognize itself. Runtime consumption of this block lives in the M5 multiplayer module — cross-reference [`docs/implementation-plans/07-multiplayer-plan.md`](../../../../implementation-plans/07-multiplayer-plan.md).
+- Mid-match save records embed `mp.{ matchId, participants, hostPlayerId }` (see [`tasks/mvp/08-persistence/02-log-only-save-format.md`](../../../../../tasks/mvp/08-persistence/02-log-only-save-format.md)) so a re-loaded match can recognize itself. Runtime consumption of this block lives in the M5 multiplayer module.
 - Peers do **not** autosave during a remote match (see [`tasks/mvp/08-persistence/06-autosave.md`](../../../../../tasks/mvp/08-persistence/06-autosave.md)). This avoids divergent libraries and keeps save/replay artifacts attributable to the host.
 
 ### AI Implementation Notes

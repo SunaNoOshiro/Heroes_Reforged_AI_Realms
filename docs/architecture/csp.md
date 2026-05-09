@@ -1,9 +1,5 @@
 # Content Security Policy (CSP) — Host Application
 
-> Source plan:
-> [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../implementation-plans/28-asset-loading-and-sandboxing-plan.md)
-> § Tasks — Shipped CSP.
-
 The host HTML ships a **deny-by-default Content Security Policy**
 that bounds every other defence layer in the codebase. Without
 CSP, the no-eval / no-remote-asset / no-inline-script rules in
@@ -31,7 +27,7 @@ The canonical HTML file ships the CSP via a `<meta http-equiv>`
 tag. Static-host configurations (e.g. nginx, Cloudflare Pages,
 Tauri local server) MUST also emit the same policy as an
 HTTP response header. The two surfaces are kept in lockstep by
-the build pipeline (Plan 30); divergence is a CI failure.
+the build pipeline; divergence is a CI failure.
 
 ```
 default-src 'self';
@@ -101,8 +97,7 @@ allowlist for the few places that need it.
 
 ## 3. CI gate
 
-The build pipeline (Plan 30 — owning doc
-[`production-build.md`](./production-build.md)) ships a
+The build pipeline) ships a
 **CSP-assertion script** that:
 
 1. Loads the bundled `index.html` and asserts the `<meta>` CSP

@@ -48,14 +48,14 @@ Acceptance Criteria:
 - Command discriminants match `content-schema/schemas/command.schema.json`
 - `npm run validate:commands` passes so screen interaction tokens are
   schema-backed, aliased, UI-local, or explicitly out of scope
-- **Gate 0 (current-actor) check (Q205).** A command with
+- **Gate 0 (current-actor) check.** A command with
   `metadata.playerId !== state.currentPlayerId` returns
   `Result.err({ code: 'NOT_CURRENT_ACTOR' })` *before* any per-command
   validator runs. Unit test: dispatch `MOVE_HERO` with `playerId=0`
   while `currentPlayerId=1` → error returned, state unchanged, no
   command appended to log. Exempt commands (none in MVP) are listed
   in [`command-schema.md` § Validation Framework](../../../docs/architecture/command-schema.md#validation-framework).
-- **Validation error taxonomy (Q206).** Every rejection returns a
+- **Validation error taxonomy.** Every rejection returns a
   structured error matching
   `content-schema/schemas/dispatcher-validation-error.schema.json`.
   Each existence-check failure returns `code: 'ENTITY_NOT_FOUND'`
@@ -63,13 +63,13 @@ Acceptance Criteria:
   enum and per-code shape are owned by
   [`docs/architecture/command-schema.md` § ValidationError taxonomy](../../../docs/architecture/command-schema.md#validationerror-taxonomy)
   and [`docs/architecture/edge-cases-policy.md` § 11](../../../docs/architecture/edge-cases-policy.md#11-validation-error-taxonomy).
-- **Single-flight gate (Q207).** Dispatching the same `END_DAY`,
+- **Single-flight gate.** Dispatching the same `END_DAY`,
   `END_BATTLE_TURN`, or `START_BATTLE` twice within one logical
   tick returns `code: 'DUPLICATE_INTENT'` on the second call;
   state unchanged. Single-flight is keyed by `(playerId, kind)`
   and resets at tick boundary. See
   [`docs/architecture/command-schema.md` § Single-flight commands](../../../docs/architecture/command-schema.md#single-flight-commands).
-- **State-shape invariants (Q211).** Post-dispatch state passes
+- **State-shape invariants.** Post-dispatch state passes
   the canonical state-shape invariant assertion (every
   `resources[k] ≥ 0`, every `unit.count ≥ 0`). A reducer producing
   a negative balance raises `InvariantViolation` in dev / clamps

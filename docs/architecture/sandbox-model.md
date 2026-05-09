@@ -1,9 +1,5 @@
 # Sandbox Model — Trust Tiers and Capability Matrix
 
-> Source plan:
-> [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../implementation-plans/28-asset-loading-and-sandboxing-plan.md)
-> § Architecture — `sandbox-model.md`.
-
 `manifest.sandboxed: boolean` is a one-bit declaration; this doc
 turns it into a **capability matrix** keyed on a closed
 `trustTier` enum. Every loader, registry, override-resolver, and

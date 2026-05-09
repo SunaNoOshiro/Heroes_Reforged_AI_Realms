@@ -1,8 +1,4 @@
-# Draft-Preview Policy (Plan 26 — Improvement)
-
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § System Improvements / UI / Draft-Preview Policy.
+# Draft-Preview Policy
 
 Canonical UI policy that prevents one peer from iteratively probing
 canonical RNG outcomes pre-commit by running `apply(state, draft)`

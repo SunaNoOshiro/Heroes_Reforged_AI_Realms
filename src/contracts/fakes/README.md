@@ -8,7 +8,7 @@ Pinned by [`testing-conventions.md`](../../../docs/architecture/testing-conventi
 
 | Fake | Mirrors | Status |
 |---|---|---|
-| `FakeRng` | [`Rng`](../rng.ts) | placeholder — body lands via [15-testability-plan.md](../../../docs/implementation-plans/15-testability-plan.md) |
+| `FakeRng` | [`Rng`](../rng.ts) | placeholder — body lands |
 | `FakeClock` | [`Clock`](../clock.ts) | placeholder |
 | `FakeIdAllocator` | [`IdAllocator`](../id-allocator.ts) | placeholder |
 | `FakePackRegistry` | [`PackRegistry`](../pack-registry.ts) | placeholder |

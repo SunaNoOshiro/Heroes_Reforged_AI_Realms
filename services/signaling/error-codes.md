@@ -6,9 +6,6 @@ vocabulary is exactly three values per
 richer reasons are surfaced only via `OWNER_NOTICE` on the room
 owner's authenticated channel.
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Wire-visible codes (joiner)
 
 | Code | When |

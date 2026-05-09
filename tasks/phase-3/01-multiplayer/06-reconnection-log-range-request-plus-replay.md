@@ -54,7 +54,7 @@ Idempotency Note:
   and
   [`docs/architecture/determinism.md` § Canonical Command Key](../../../docs/architecture/determinism.md#canonical-command-key).
 
-## Combat-Specific Behaviour (Q213)
+## Combat-Specific Behaviour
 
 The 30 s reconnect / 120 s forfeit window applies during combat
 with these refinements (full framing in
@@ -65,8 +65,7 @@ with these refinements (full framing in
   `mp.combat.disconnect_banner` ("Opponent disconnected — 0:30 to
   reconnect"). The combat reducer emits no auto-advance.
 - **AI does not take over** the absent player's stack during the
-  reconnect window. Fairness is preferred over throughput; this
-  matches the audit Q146 deferral.
+  reconnect window. Fairness is preferred over throughput.
 - **At 120 s**, defender wins by forfeit (or attacker, if the
   defender is the disconnected party — the still-present player
   wins the combat). Combat resolves; the absent player's hero is

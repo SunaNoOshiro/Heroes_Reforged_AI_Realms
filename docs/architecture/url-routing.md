@@ -5,7 +5,7 @@
 > [`70-save-import`](./wiki/screens/70-save-import/),
 > [`71-pack-manager`](./wiki/screens/71-pack-manager/), and
 > [`docs/architecture/lobby-identifiers.md`](./lobby-identifiers.md).
-> Plan 23 / Q443 introduces this contract to handle the "Deep-link
+>  introduces this contract to handle the "Deep-link
 > state changes" risk: every state-changing URL handler routes through
 > `60-confirmation-dialog` first; the underlying command never fires
 > from URL parse alone.

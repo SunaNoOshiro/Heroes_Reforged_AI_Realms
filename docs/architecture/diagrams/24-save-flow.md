@@ -118,7 +118,7 @@ The sanitizer:
    with `type: 'REPLAY_EXPORT'`, the chosen `mode`, and the
    digest of the exported file.
 
-The save-import side (Plan 20) does **not** un-redact; once a hash
+The save-import side does **not** un-redact; once a hash
 leaves, it stays a hash.
 
 ## Pre-Decompression Caps (Imports)

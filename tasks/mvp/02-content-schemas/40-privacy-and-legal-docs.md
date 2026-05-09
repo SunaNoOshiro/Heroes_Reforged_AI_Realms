@@ -11,15 +11,14 @@ Add the `state.privacy.acceptedPolicyVersion` /
 `state.privacy.currentDisclosureVersion` slice declaration to
 [`state-flow.md`](../../../docs/architecture/state-flow.md).
 
-Plan 22 § 1 — Privacy artifact + Service-side observability + retention.
+1 — Privacy artifact + Service-side observability + retention.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/data-inventory.md`](../../../docs/architecture/data-inventory.md)
 
 Inputs:
-- Plan 21's data-inventory rows (medium / sensitivity / TTL / wipe scope).
-- Plan 18 / Plan 19 / Plan 20 chat / lobby / pack contracts.
+- the data-inventory rows (medium / sensitivity / TTL / wipe scope).
+- Chat / lobby / pack contracts.
 
 Outputs:
 - `docs/architecture/privacy.md` (versioned `policyVersion: 1`).

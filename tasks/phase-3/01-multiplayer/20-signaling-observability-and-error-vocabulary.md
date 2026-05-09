@@ -12,10 +12,9 @@ The wire-visible signaling enum collapses to `JOIN_FAILED`,
 `OWNER_NOTICE` on the room owner's authenticated channel. The
 deploy step disables platform access-log persistence beyond 24 h.
 
-Plan 22 § 2 — Closed signaling error vocabulary (uniform JOIN_FAILED).
+2 — Closed signaling error vocabulary (uniform JOIN_FAILED).
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/signaling-payload-policy.md`](../../../docs/architecture/signaling-payload-policy.md)
 - [`docs/architecture/signaling-rate-limits.md`](../../../docs/architecture/signaling-rate-limits.md)
 - [`content-schema/schemas/signaling-error.schema.json`](../../../content-schema/schemas/signaling-error.schema.json)
@@ -23,7 +22,7 @@ Read First:
 Inputs:
 - The closed three-value wire enum.
 - The closed seven-value `OwnerNotice` reason enum.
-- Plan 18's room-code rate limit (consumed, not redesigned).
+- the room-code rate limit (consumed, not redesigned).
 
 Outputs:
 - `services/signaling/observability.md`

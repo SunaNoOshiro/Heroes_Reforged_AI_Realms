@@ -1,9 +1,5 @@
 # Security Model — Symmetric Input-Only Lockstep
 
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § Critical Fix 5.
-
 Canonical doctrine for the M5 multiplayer model. This file is the
 single place the project commits, in writing, to **what symmetric
 input-only lockstep protects** and **what it does not**. New
@@ -97,8 +93,8 @@ depends on information secrecy.
 
 ## 3. Mitigations in this codebase
 
-The Critical Fixes from Plan 26 close every information-leak vector
-that *can* be closed under symmetric lockstep. None of them claims to
+The fixes pinned below close every information-leak vector that
+*can* be closed under symmetric lockstep. None of them claims to
 close the structural limits in section 2.
 
 1. **Wire envelope + per-match HMAC** — see
@@ -207,7 +203,7 @@ A malicious peer:
 
 ## 5a. Save threat model
 
-> Source: Plan 27 § Improvement: Save & Pack Threat Model.
+> Source: Save & Pack Threat Model.
 
 The save loader assumes hostile input. `xxh64` over canonical-JSON
 detects accidental corruption only — it is **not** a signature
@@ -242,7 +238,7 @@ before they ship.
 
 ## 5b. Pack threat model
 
-> Source: Plan 27 § Improvement: Save & Pack Threat Model.
+> Source: Save & Pack Threat Model.
 
 The pack loader assumes hostile input even from the local filesystem.
 Defenses run in this order:
@@ -269,7 +265,7 @@ every transitive dependency's tier (Dependency Trust Propagation,
 
 ## 5c. What this codebase does NOT protect
 
-> Source: Plan 27 § Improvement: Save & Pack Threat Model.
+> Source: Save & Pack Threat Model.
 
 Cross-referenced from § 4 Inherent limits:
 

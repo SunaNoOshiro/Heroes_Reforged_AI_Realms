@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heroes-reforged/report-base.schema.json",
   "title": "ReportBase",
-  "description": "Shared shape for AI-generation pipeline stage reports (validation, coherence, balance). Each report carries the stage identifier, the input record's ID, the verdict, an optional findings list with severities, and a metrics map for stage-specific numerics. See docs/architecture/ai-generation-pipeline.md and docs/implementation-plans/16-implementation-readiness-plan.md (T6).",
+  "description": "Shared shape for AI-generation pipeline stage reports (validation, coherence, balance). Each report carries the stage identifier, the input record's ID, the verdict, an optional findings list with severities, and a metrics map for stage-specific numerics. See docs/architecture/ai-generation-pipeline.md.",
   "$defs": {
     "stringId": {
       "type": "string",

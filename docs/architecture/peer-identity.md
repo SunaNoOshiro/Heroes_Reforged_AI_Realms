@@ -1,9 +1,5 @@
 # Peer Identity
 
-> Source plan:
-> [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md)
-> § 3 (Issue: No peer-identity keypair schema; Q332).
-
 This file is the canonical contract for the **peer identity**
 that the M5 lobby uses to authenticate `JOIN_ROOM`, key the
 host-side denylist, and stamp local `REPORT_PEER` records.

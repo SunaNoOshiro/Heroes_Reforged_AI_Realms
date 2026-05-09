@@ -6,9 +6,6 @@ data from this product. **Adding a row requires a DPA per
 bump in [`privacy.md`](../architecture/privacy.md).** This is a
 hard procurement gate, not an afterthought.
 
-> Source plan:
-> [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md).
-
 ## 1. Active processors at v1
 
 | Processor | Surface | Data flowing | Retention | DPA |

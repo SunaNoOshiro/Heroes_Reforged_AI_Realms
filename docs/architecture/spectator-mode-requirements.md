@@ -1,13 +1,9 @@
-# Spectator Mode Requirements (Plan 26 — Improvement / Phase-4)
+# Spectator Mode Requirements
 
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § System Improvements / Architecture / Spectator-stream verification.
-
-Spectator mode is **out of M5 scope** (audit 07 Q140 + audit 26
-Q526). This file is the *requirements doctrine* for any future
-Phase-4 spectator implementation, pinned now so when the work
-lands it inherits all of Plan 26's protections rather than
+Spectator mode is **out of M5 scope**. This file is the
+*requirements doctrine* for any future Phase-4 spectator
+implementation, pinned now so when the work lands it inherits
+all of the multiplayer-security protections rather than
 re-introducing the gaps.
 
 Companion docs:
@@ -38,7 +34,7 @@ spectator chooses (Player A perspective, Player B perspective, or
 
 ---
 
-## 2. Required protections inherited from Plan 26
+## 2. Required protections inherited from the multiplayer security model
 
 Any spectator implementation MUST satisfy:
 

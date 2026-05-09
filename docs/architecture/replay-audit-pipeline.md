@@ -1,17 +1,13 @@
-# Replay Audit Pipeline (Plan 26 — Improvement)
-
-> Source plan:
-> [`docs/implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md`](../implementation-plans/26-replay-tampering-and-simulation-cheating-plan.md)
-> § System Improvements / Architecture / Post-match audit pipeline.
+# Replay Audit Pipeline
 
 Canonical contract for the **opt-in, post-match** audit pipeline
 that consumes the deterministic replay payload, re-runs the reducer
 offline, and surfaces statistical anomalies for human review. Closes
-audit Q539 (no anti-cheat tool that consumes replays).
+the "no anti-cheat tool that consumes replays" gap.
 
 This file is the **contract**. The hosted ingestion service is a
-**Phase-4** follow-up that lives alongside Plan 22 (privacy /
-retention) and Plan 31 (trust boundaries / logging). M5 ships:
+**Phase-4** follow-up that lives alongside the privacy / retention
+and trust-boundaries / logging work. M5 ships:
 
 1. The contract pinned in this file.
 2. The opt-in surface in the post-match summary
@@ -29,10 +25,7 @@ Companion docs:
 [`lockstep-envelope.md`](./lockstep-envelope.md),
 [`match-handshake.md`](./match-handshake.md),
 [`determinism.md`](./determinism.md),
-the privacy-retention plan
-[`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../implementation-plans/22-privacy-retention-and-error-leaks-plan.md),
-the consent UX plan
-[`docs/implementation-plans/23-unsafe-actions-ux-and-consent-plan.md`](../implementation-plans/23-unsafe-actions-ux-and-consent-plan.md).
+[`privacy.md`](./privacy.md).
 
 ---
 
@@ -48,7 +41,7 @@ shows:
 > Excludes: chat, display names, IP, anything that identifies you.
 > [Submit] [No thanks]
 
-Consent is recorded per Plan 23's consent UX surface; the
+Consent is recorded via the consent UX surface; the
 acknowledgement persists locally only. Per-match opt-in is *not*
 remembered across matches — the user is asked every time a match
 ends.
@@ -84,7 +77,7 @@ ends.
 }
 ```
 
-Privacy invariants pinned by Plan 22:
+Privacy invariants:
 
 - `peerId` is never uploaded raw; it is hashed to 16 chars before
   payload assembly.
@@ -160,7 +153,7 @@ auto-actioned without a human in the loop.
 
 ## 6. Retention
 
-Per Plan 22:
+Per [`privacy.md`](./privacy.md):
 
 - Raw uploaded replay payloads: **30 days** retention.
 - Per-player aggregated statistics (no per-match payload): **1
@@ -168,8 +161,8 @@ Per Plan 22:
 - Maintainer review queue entries: retained until the maintainer
   resolves them.
 - The user may request erasure of their replays via the consent
-  surface from Plan 23; erasure is processed within 30 days per
-  Plan 22's privacy contract.
+  surface; erasure is processed within 30 days per
+  [`privacy.md`](./privacy.md).
 
 ---
 

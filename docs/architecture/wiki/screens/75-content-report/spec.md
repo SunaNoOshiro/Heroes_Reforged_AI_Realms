@@ -9,12 +9,12 @@
 
 ### Description
 Player-facing intake for unsafe / infringing UGC. Distinct from
-`REPORT_PEER` (chat-safety / Plan 19), which targets player
+`REPORT_PEER` (chat-safety), which targets player
 behavior; this screen targets **content** (pack, scenario, hero,
 unit, AI-faction). Validates against
 [`content-report.schema.json`](../../../../../content-schema/schemas/content-report.schema.json)
 and persists to `state.privacy.outboundReports[]` with retry. No
-network call at v1; the queue is shaped so Plan 30's moderation
+network call at v1; the queue is shaped so the moderation
 backend can dequeue once it lands.
 
 ### Visual Direction

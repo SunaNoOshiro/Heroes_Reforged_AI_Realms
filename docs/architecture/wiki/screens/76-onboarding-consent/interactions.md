@@ -18,7 +18,7 @@ Re-prompts on policy bumps, revocations, and save imports.
 | Set age gate | `onboarding.ageGate` | local-ui | Current screen | `SET_AGE_GATE_DRAFT` | Updates `state.ui.onboarding.ageGateDraft`. Drives optional-tier visibility per [`age-gate.md`](../../../age-gate.md). | Row highlight; minor-strict rows fade if `under13`. |
 | Toggle scope | `onboarding.toggleScope` | local-ui | Current screen | `SET_CONSENT_DRAFT` | Updates `state.ui.onboarding.consentDraft[scope].state`. | Toggle flip; disclosure callout fades in. |
 | Continue | `onboarding.continue` | command | Caller (or `01-main-menu`) | `GRANT_CONSENT` (per accepted scope) → `RECORD_CONSENT_AUDIT` (per transition) | Persists `config.player.ageGate` + every `state.profile.consent[scope]` row + audit-log rows. | Frame seal stamps, screen routes back. |
-| Decline optional | `onboarding.decline` | command | Caller (or `01-main-menu`) | `REVOKE_CONSENT` / `RECORD_CONSENT_AUDIT` (`unset → denied`) | Records explicit decline so the runtime can distinguish "didn't read" from "read and declined" per Q458. | Toggle flip + audit chime. |
+| Decline optional | `onboarding.decline` | command | Caller (or `01-main-menu`) | `REVOKE_CONSENT` / `RECORD_CONSENT_AUDIT` (`unset → denied`) | Records explicit decline so the runtime can distinguish "didn't read" from "read and declined". | Toggle flip + audit chime. |
 | Cancel re-prompt | `onboarding.cancel` | navigation | Caller screen | `CANCEL_CONSENT_PROMPT` | Closes the screen without granting; the originating gated action is **not** retried. | Modal slide-out. |
 | Open privacy policy | `onboarding.openPrivacyPolicy` | local-ui | _(modal)_ | `OPEN_PRIVACY_POLICY` | Opens an in-app modal rendering [`docs/architecture/privacy.md`](../../../privacy.md). | Modal fade-in. |
 
@@ -40,15 +40,15 @@ Re-prompts on policy bumps, revocations, and save imports.
    the matrix in [`age-gate.md`](../../../age-gate.md).
 
 ### IP-Exposure Disclosure
-The `multiplayer` row carries the IP-exposure disclosure required by
-plan 23 / Q439 / Q454. Localization key
+The `multiplayer` row carries the IP-exposure disclosure required
+before any peer-to-peer connection. Localization key
 `consent.multiplayer.ipDisclosure`. Until the user accepts, the
 runtime refuses to open `RTCPeerConnection` per
 [`62-multiplayer-setup`](../62-multiplayer-setup/interactions.md).
 
 ### Off-Device AI Disclosure
 The `aiGeneration` row carries the off-device prompt-transmission
-disclosure (plan 23 / Q452). Localization key
+disclosure. Localization key
 `consent.aiGeneration.offDeviceDisclosure`. Until the user accepts,
 the runtime refuses to call the AI gateway per
 [`02-new-game-setup`](../02-new-game-setup/interactions.md).

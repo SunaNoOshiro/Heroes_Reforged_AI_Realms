@@ -11,7 +11,6 @@ Closes the disconnect-spoof / forfeit-fraud window where a peer
 about to lose can fake the opponent's drop and claim a win-on-
 timeout.
 
-Plan 24 § Critical Fix 5.
 
 Read First:
 - [`docs/architecture/abandon-penalty.md`](../../../docs/architecture/abandon-penalty.md)

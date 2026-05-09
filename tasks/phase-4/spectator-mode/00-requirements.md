@@ -4,13 +4,11 @@ Module: [Spectator Mode (Phase 4 — Out of M5 Scope)](../spectator-mode.md)
 
 Description:
 Placeholder task that pins the requirements every future spectator
-implementation must satisfy. Spectator mode is **out of M5 scope**
-per audit 07 Q140 and audit 26 Q526. Any subsequent implementation
-task in this module MUST cite
+implementation must satisfy. Spectator mode is **out of M5 scope**.
+Any subsequent implementation task in this module MUST cite
 [`docs/architecture/spectator-mode-requirements.md`](../../../docs/architecture/spectator-mode-requirements.md)
 in its Read First section and add one acceptance criterion per row
-of the requirement tables in §§ 2-3 of that doctrine. Plan 26 §
-System Improvements / Architecture / Spectator-stream verification.
+of the requirement tables in §§ 2-3 of that doctrine.
 
 Read First:
 - [`docs/architecture/spectator-mode-requirements.md`](../../../docs/architecture/spectator-mode-requirements.md)
@@ -19,9 +17,9 @@ Read First:
 - [`docs/architecture/match-handshake.md`](../../../docs/architecture/match-handshake.md)
 
 Inputs:
-- Plan 26 doctrine for envelope MAC, handshake binding, visibility
-  precondition, pack signature, build attestation.
-- Plan 22 retention semantics; Plan 23 consent UX.
+- Multiplayer security doctrine: envelope MAC, handshake binding,
+  visibility precondition, pack signature, build attestation.
+- The retention semantics and consent UX.
 
 Outputs:
 - This file is a contract placeholder. No code, schema, or screen

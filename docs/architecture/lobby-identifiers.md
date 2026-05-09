@@ -1,7 +1,5 @@
 # Lobby Identifiers
 
-> Source plan:
-> [`docs/implementation-plans/18-room-codes-and-lobby-discovery-plan.md`](../implementation-plans/18-room-codes-and-lobby-discovery-plan.md)
 > § 2 (Issue: Room-code generation contract is undefined; Issue: No
 > room TTL or maximum lifetime).
 
@@ -87,9 +85,9 @@ by the host) enters a **10-minute cool-down** before it is eligible
 for reuse. The cool-down table is in-memory and indexed by the
 canonical upper-case code form.
 
-The cool-down closes both the **stale-rebind** risk (Q307: an old
+The cool-down closes both the **stale-rebind** risk (an old
 invite link reaches a fresh room with the same code) and the
-**reuse** risk (Q306: the next host inherits the previous host's
+**reuse** risk (the next host inherits the previous host's
 attackers).
 
 Host-initiated `CLOSE_ROOM` MAY use a 0 s cool-down at the host's

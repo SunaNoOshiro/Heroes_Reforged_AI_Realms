@@ -11,7 +11,6 @@ becomes reachable. Re-prompts on policy bumps, revocations, and save
 imports per
 [`docs/architecture/onboarding.md`](../../../docs/architecture/onboarding.md).
 
-Plan 23 / Critical Fix 2 + Critical Fix 3.
 
 Read First:
 - `docs/architecture/wiki/screens/76-onboarding-consent/spec.md`

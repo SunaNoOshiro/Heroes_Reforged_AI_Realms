@@ -164,7 +164,7 @@ runs against full state.
 
 `state.privacy.*` is the in-memory mirror of the persisted privacy
 options ([`privacy-options.schema.json`](../../content-schema/schemas/privacy-options.schema.json))
-plus the consent-version state added by Plan 22:
+plus the consent-version state:
 
 - `state.privacy.options` — display-name mode, analytics opt-in,
   mature-content gate, salt fingerprint (mirrors the persisted

@@ -1,9 +1,5 @@
 # Worker CSP — Off-Main-Thread Decode Security Profile
 
-> Source plan:
-> [`docs/implementation-plans/28-asset-loading-and-sandboxing-plan.md`](../implementation-plans/28-asset-loading-and-sandboxing-plan.md)
-> § Architecture — `worker-csp.md`.
-
 Canonical security profile for every `Worker`, `SharedWorker`
 (if ever introduced), and `AudioWorklet` instance in the codebase.
 The same profile binds:
@@ -153,7 +149,7 @@ The boundary is the last-resort recovery for any Worker crash
 that propagates up through `Result.err` and is not handled by
 the calling component. Owning task:
 [`tasks/mvp/06-renderer/`](../../tasks/mvp/06-renderer/) (acceptance
-criterion added per Plan 28 § Worker-crash recovery).
+criterion for the worker-crash recovery boundary).
 
 ---
 

@@ -19,7 +19,7 @@ revoke trust, or remove packs.
 | Trust selected | `packManager.trust` | command | `72-pack-trust-prompt` | `GRANT_PACK_TRUST` | Writes `decision = "trust"` to the trust store. | Trust badge transitions to green. |
 | Run sandboxed | `packManager.sandboxed` | command | Current screen | `RUN_PACK_SANDBOXED` | Writes `decision = "sandboxed"`. | Sandboxed badge transitions to amber. |
 | Revoke trust | `packManager.revoke` | command | `60-confirmation-dialog` | `REVOKE_PACK_TRUST` | Drops trust-store entry; routes through confirmation. | Confirmation modal mounts, accepted action plays revoke transition. |
-| Remove pack | `packManager.remove` | command | `60-confirmation-dialog` | `REQUEST_CONFIRMATION` → `REMOVE_PACK` | Uninstalls the pack, drops trust-store entries. Routes through `60-confirmation-dialog` per plan 23 § 3.1 with `severity: 'critical'`, `confirmDelayMs: 1500` (default), and `requireType: 'UNINSTALL'`. Payload `{ packId, contentHash }`. | Confirmation modal mounts; row removes on success. |
+| Remove pack | `packManager.remove` | command | `60-confirmation-dialog` | `REQUEST_CONFIRMATION` → `REMOVE_PACK` | Uninstalls the pack, drops trust-store entries. Routes through `60-confirmation-dialog` with `severity: 'critical'`, `confirmDelayMs: 1500` (default), and `requireType: 'UNINSTALL'`. Payload `{ packId, contentHash }`. | Confirmation modal mounts; row removes on success. |
 | Close manager | `packManager.close` | local-ui | `54-system-menu` | `CLOSE_PACK_MANAGER` | Returns to caller. | Manager fades out. |
 | Filter rows | `packManager.filter` | local-ui | Current screen | `SET_PACK_MANAGER_FILTER` | Updates `state.ui.packManager.filter`. | Filter chips highlight selection. |
 

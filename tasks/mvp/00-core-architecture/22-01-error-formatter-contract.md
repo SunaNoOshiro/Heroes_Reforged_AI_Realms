@@ -17,10 +17,9 @@ implementation paths plus a fixture-driven lint test
 "errors are produced by `formatUserError(err, locale)`; never
 construct error toast text inline."
 
-Plan 22 § 2 — Centralized error-formatter and lint contract.
+2 — Centralized error-formatter and lint contract.
 
 Read First:
-- [`docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md`](../../../docs/implementation-plans/22-privacy-retention-and-error-leaks-plan.md)
 - [`docs/architecture/error-ux.md`](../../../docs/architecture/error-ux.md)
 - [`docs/architecture/error-taxonomy.md`](../../../docs/architecture/error-taxonomy.md)
 

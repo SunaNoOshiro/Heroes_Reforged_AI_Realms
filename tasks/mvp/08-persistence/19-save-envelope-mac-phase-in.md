@@ -8,8 +8,8 @@ under a per-installation `deviceKey`, with re-key on cloud-sync
 opt-in. The schema seam is in place from
 [`tasks/mvp/08-persistence/18-save-envelope-and-intent.md`](./18-save-envelope-and-intent.md);
 this task ships the M5 implementation and the cross-installation
-re-key flow that cloud sync depends on. Plan 27 § Improvement —
-deferred from MVP. Plan 27 § Improvement: Save-Envelope MAC
+re-key flow that cloud sync depends on. Improvement —
+deferred from MVP. Improvement: Save-Envelope MAC
 Phase-In.
 
 Read First:

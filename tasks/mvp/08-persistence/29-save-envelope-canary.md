@@ -5,7 +5,7 @@ Module: [Persistence (M3 / M4)](../08-persistence.md)
 Description:
 Per-cluster canary task that **reserves the save-envelope contract**
 and asserts the canonical refusal codes fire on each malformed
-fixture. Closes Plan 32 § PI-4 (Doctrine canary tasks per cluster)
+fixture. Closes PI-4 (Doctrine canary tasks per cluster)
 for the save cluster.
 
 The canary parses a canonical `save-envelope` example, runs the
@@ -20,7 +20,6 @@ Read First:
 - [`docs/architecture/save-envelope-mac.md`](../../../docs/architecture/save-envelope-mac.md)
 - [`content-schema/schemas/save-envelope.schema.json`](../../../content-schema/schemas/save-envelope.schema.json)
 - [`tasks/mvp/08-persistence/16-parser-hardening.md`](./16-parser-hardening.md)
-- [`docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md`](../../../docs/implementation-plans/32-cross-plan-conflict-resolution-plan.md)
   § PI-4
 
 Inputs:

@@ -10,7 +10,6 @@ DataChannel; enforce the duplicate-`seq` policy per
 Closes the bit-tampering and replay-injection windows that DTLS
 alone cannot close once a peer client is compromised.
 
-Plan 24 § Critical Fix 4.
 
 Read First:
 - [`docs/architecture/command-stream-integrity.md`](../../../docs/architecture/command-stream-integrity.md)

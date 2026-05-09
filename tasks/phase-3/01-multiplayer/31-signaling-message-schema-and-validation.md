@@ -11,7 +11,7 @@ caps, and pattern-checked id fields), wire AJV at the
 message-router boundary so raw strings never reach the in-memory
 `room → peer` map, and pin `ws`-library hardening defaults
 (`maxPayload: 64 KiB`, ping interval, frame deadline, upgrade
-deadline). Closes Plan 25 Critical Fix 1.
+deadline).
 
 Read First:
 - [`docs/architecture/signaling-message-schema.md`](../../../docs/architecture/signaling-message-schema.md)

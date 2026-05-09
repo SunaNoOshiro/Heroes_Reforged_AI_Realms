@@ -28,7 +28,7 @@
 | `envelopeStats` | `selectors.net.lockstep.envelopeStats` | `{ macFailureCount, duplicateSeqDrops, preconditionRejects, lastBisectOutcome }`. |
 | `desyncReport` | `state.net.lockstep.desyncReport` | Carries `attributedAbortPeer`, `attributionConfidence` per [`bisect-protocol.md`](../../../bisect-protocol.md). |
 | `developerModeFlag` | `state.developer.flags.showMatchKey` | Per [`developer-mode.md`](../../../developer-mode.md). |
-| `auditConsent` | `state.profile.consent.replayAudit.state` | Per Plan 23 consent UX; informs the post-match prompt. |
+| `auditConsent` | `state.profile.consent.replayAudit.state` | Per the consent UX; informs the post-match prompt. |
 | `trustBanner` | `selectors.net.lockstep.trustBanner` | Friendly / closed-beta gating copy per [`security-model.md`](../../../security-model.md) § 4. |
 
 ### Commands And Events
@@ -72,5 +72,5 @@
 ### Save / Replay Fields
 - The screen reads from the live-match selectors only; nothing
   is persisted into save records by this screen.
-- Replay-audit consent is persisted per Plan 23; per-match
+- Replay-audit consent is persisted; per-match
   consent is not remembered across matches.

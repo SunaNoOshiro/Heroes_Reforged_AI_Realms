@@ -7,7 +7,7 @@ Implement the bounded, in-memory peer-reputation counter on the
 signaling server. Counts attributed `MATCH_ABORTED_DESYNC` events
 per `(peerHash, ipPrefix)` with a 24-hour TTL; soft-rate-limits a
 peer at 5 attributed early-game aborts in 24 hours by rejecting
-new `CREATE_ROOM` / `JOIN_ROOM` requests. Plan 26 § System
+new `CREATE_ROOM` / `JOIN_ROOM` requests. System
 Improvements / Architecture / Peer reputation.
 
 Read First:
@@ -32,7 +32,7 @@ Outputs:
   [`signaling-edge-defense.md`](../../../docs/architecture/signaling-edge-defense.md).
 - Updates to
   [Task 01](./01-signaling-server-node-js-websocket-lobby.md):
-  add **Peer Reputation** subsection cross-linking Plan 25.
+  add **Peer Reputation** subsection.
 
 Owned Paths:
 - `docs/architecture/peer-reputation.md`

@@ -12,8 +12,7 @@ Player-facing surface that surfaces `manifest.aiProvenance` and the
 referenced `GeneratedFaction.notes` for an AI-generated pack.
 Triggered by the `[AI]` badge on hero / unit / faction info-cards
 or from the pack-manager (screen 71). Read-only; no mutation. Per
-[`ugc-safety.md`](../../../ugc-safety.md) and audit 21 (Q396).
-
+[`ugc-safety.md`](../../../ugc-safety.md) and.
 ### Visual Direction
 - Original internal UI contract. Do not use third-party captures,
   copied franchise art, or external product pixels as implementation input.
