@@ -1,59 +1,48 @@
 # Enum Value Lifecycle Policy
 
-This file is the canonical procedure for adding, deprecating,
-aliasing, and removing values from any closed enum in
+Canonical procedure for adding, deprecating, aliasing, and removing
+values from any closed enum in
 [`content-schema/schemas/`](../../content-schema/schemas/). Closed
 enums (`command.kind`, `manifest.capabilities`, `resource-id`,
-`stat-id`, `status-id`, effect kinds, spell schools, …) are part of
-the public contract: every save and replay in the wild may reference
-any value that was ever valid. Removing a value silently breaks every
-save that references it.
+`stat-id`, `status-id`, effect kinds, spell schools, …) are public
+contract: every save and replay in the wild may reference any value
+that was ever valid, so silent removal corrupts those records.
 
-This policy + the CI snapshot gate
-([`scripts/snapshot-enums.mjs`](../../scripts/snapshot-enums.mjs) and
+The CI snapshot gate
+([`scripts/snapshot-enums.mjs`](../../scripts/snapshot-enums.mjs),
 [`scripts/check-enum-snapshot.mjs`](../../scripts/check-enum-snapshot.mjs))
-make removals impossible without a deliberate, reviewable step.
+enforces this policy by failing any PR that drops a baseline value
+without authorisation.
 
-## States
+## 1. Lifecycle states
 
 A value moves through four states:
 
-1. **additive** — newly added at the end of an `enum` array. Records
-   may reference it. No CI gate fires.
-2. **deprecated** — annotated in the schema but still validated by
-   the loader. New records should not use the value; old records do.
-   The schema entry is moved into a sibling `deprecated/` block in the
-   schema's description **or** annotated `"deprecated": true` per
-   JSON Schema 2020-12.
-3. **aliased** — listed in the per-schema
-   `<record>.aliases.json` file. The loader rewrites
-   `old → new` before validation. The `enum` array can drop the old
-   value because the snapshot gate sees the alias entry as
-   authorisation.
-4. **removed** — gone from the schema, gone from `aliases.json`. Only
-   permitted after one full deprecation cycle (one minor release per
-   [`schema-migration-policy.md` § Deprecation window](./schema-migration-policy.md#deprecation-window)).
-   Removed values are tracked in `content-schema/enums.removed.json`
-   so the snapshot gate keeps recognising the historical change.
+| State | Schema | Loader | Snapshot gate |
+|---|---|---|---|
+| **additive** | newly appended to `enum` | accepts | no diff (new entries only) |
+| **deprecated** | listed in `enum`; flagged `"deprecated": true` or moved into a sibling `deprecated/` description block (per JSON Schema 2020-12) | accepts; authoring tools warn | still requires the value to remain in `enum` (deprecation alone does not authorise removal) |
+| **aliased** | absent from `enum`; `old → new` entry in `<record>.aliases.json` | rewrites `old → new` before validation | accepts the removal because the alias entry plus a registered migration authorise it |
+| **removed** | absent from `enum`; absent from `aliases.json` | rejects | accepts only after one full deprecation cycle (one minor release per [`schema-migration-policy.md` § Deprecation window](./schema-migration-policy.md#deprecation-window)); historical change tracked in `content-schema/enums.removed.json` |
 
-## Workflow per kind of change
+## 2. Workflow per change
 
 ### Add a value
 1. Append the value to the `enum` array.
-2. Run `npm run generate:enum-snapshot`; commit the updated snapshot.
-3. Done. No migration needed (additive).
+2. `npm run generate:enum-snapshot`; commit the snapshot diff.
+3. Done — no migration needed (additive).
 
 ### Deprecate a value (still accepted)
-1. Annotate the value as deprecated in the schema description.
-2. Update authoring tools to surface a warning when an editor picks
-   the value.
-3. The snapshot gate continues to require the value to be present in
-   the schema's `enum` array (deprecation alone does not authorise
-   removal).
+1. Annotate the value as deprecated in the schema (description block
+   or `"deprecated": true`).
+2. Surface a warning in authoring tools when an editor picks the
+   value.
+3. Leave the value in the `enum` array — the snapshot gate keeps
+   requiring it until aliased or removed.
 
 ### Rename / alias a value
 1. Add the new value to the `enum` array.
-2. Add the alias entry to the schema's `<record>.aliases.json`:
+2. Add the alias entry to `<record>.aliases.json`:
    ```json
    {
      "<jsonPointer>": {
@@ -65,7 +54,7 @@ A value moves through four states:
    [`src/content-schema/migrations/`](../../src/content-schema/migrations/)
    that rewrites `old → new` for any record carrying the old value.
 4. Remove the old value from the `enum` array.
-5. Run `npm run generate:enum-snapshot`; commit. The check gate sees the
+5. `npm run generate:enum-snapshot`; commit. The check gate sees the
    alias and accepts the removal.
 
 ### Remove a value (no replacement)
@@ -73,28 +62,26 @@ A value moves through four states:
 2. Add the value to `content-schema/enums.removed.json` with a
    `since:` entry naming the release.
 3. Remove the value from the `enum` array.
-4. Run `npm run generate:enum-snapshot`; commit.
+4. `npm run generate:enum-snapshot`; commit.
 
-## CI Gate
+## 3. CI gate
 
 `npm run validate:enums` re-walks every `*.schema.json`, collects
 `enum` arrays and `const` values inside discriminated unions, and
 diffs against `content-schema/enums.snapshot.json`.
 
-Removed values must satisfy at least one of:
+A removed value must satisfy at least one of:
 
-- present in a `<record>.aliases.json` next to the schema **with** a
-  registered migration entry under `src/content-schema/migrations/`,
-  **or**
+- present in the schema's `<record>.aliases.json` **and** referenced
+  by a migration entry under `src/content-schema/migrations/`, or
 - listed in `content-schema/enums.removed.json` with a `since:`
   release tag.
 
 Otherwise the check fails with a `ValidationError` of `rule: enum`.
 
-`npm run generate:enum-snapshot` regenerates the snapshot. The CI invocation
-of `validate:enums` runs the check, not the regeneration. To update
-the baseline you must run the regenerator locally and commit the
-diff.
+`npm run generate:enum-snapshot` regenerates the snapshot. The CI
+invocation runs the check, never the regeneration — to update the
+baseline, regenerate locally and commit the diff.
 
 ## Related Docs
 
@@ -106,3 +93,15 @@ diff.
 - [`version-policy.md`](./version-policy.md) — what happens at load
   time when a record references a value that has been removed without
   an alias.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — CI-gate policy doc; no UI surface to cross-check.
+- **Schema: ⚠** — All referenced paths exist ([`scripts/snapshot-enums.mjs`](../../scripts/snapshot-enums.mjs), [`scripts/check-enum-snapshot.mjs`](../../scripts/check-enum-snapshot.mjs), [`content-schema/enums.snapshot.json`](../../content-schema/enums.snapshot.json), [`content-schema/enums.removed.json`](../../content-schema/enums.removed.json), [`src/content-schema/migrations/`](../../src/content-schema/migrations/)), and the alias-file shape matches `aliasCoversValue` in the check script. The documented `since:` tag in `enums.removed.json` is not currently parsed by the gate; see `## ⚠ Issues`.
+- **Tasks: ✔** — Owning task [`mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate`](../../tasks/mvp/02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md) names this file in both `Owned Paths` and `Read First`; no orphan tasks reference it.
+
+## ⚠ Issues
+
+- **`since:` tag is documented but not enforced by the gate.** Both this policy and the owning task ([`mvp.02-content-schemas.24-enum-lifecycle-and-snapshot-gate.md`](../../tasks/mvp/02-content-schemas/24-enum-lifecycle-and-snapshot-gate.md) Acceptance Criteria, branch `(b)`) require `enums.removed.json` entries to carry a `since:` release tag. The current implementation in [`scripts/check-enum-snapshot.mjs`](../../scripts/check-enum-snapshot.mjs) treats `removedForSchema[pointerKey]` as a flat `string[]` and only calls `.includes(value)` — it neither reads nor validates `since:`. Per CLAUDE.md root contract on schema evolution and the task's own Acceptance Criteria, the gate must enforce the `since:` tag. Suggested values: store entries as `{ "<value>": { "since": "<release>" } }` or `[ { "value": "<v>", "since": "<release>" } ]` and fail the check on missing `since:`. Skill did not change either file (Hard Prohibition D — never edit cross-checked files); the fix belongs in a follow-up PR owned by `mvp.02-content-schemas.24`.

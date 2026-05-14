@@ -71,6 +71,8 @@
     "tasks:revalidate": "node scripts/tasks.mjs revalidate",
     "tasks:blocked": "node scripts/tasks.mjs blocked",
     "tasks:lint": "node scripts/tasks.mjs lint",
+    "audit:docs-loop": "node scripts/audit-docs-loop.mjs",
+    "audit:docs-issues": "node scripts/audit-docs-issues.mjs",
     "all": "npm run validate && npm run generate:wiki && npm run generate:task-system-report && npm run test"
   },
   "devDependencies": {

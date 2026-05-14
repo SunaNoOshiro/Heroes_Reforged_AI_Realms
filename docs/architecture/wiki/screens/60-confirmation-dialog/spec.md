@@ -8,82 +8,120 @@
 - Architecture Diagrams: `architecture.md`
 
 ### Description
-Reusable confirmation dialog for destructive, irreversible, or route-changing actions.
+Reusable modal that gates destructive, irreversible, or
+route-changing actions. The dialog itself has no gameplay logic — it
+queues the caller-supplied command and dispatches it once the
+[`ConfirmEnabled`](./interactions.md#confirmenabled-predicate)
+predicate passes.
 
 ### Visual Direction
 - Original internal UI contract. Do not use third-party captures,
-  copied franchise art, or external product pixels as implementation input.
+  copied franchise art, or external product pixels as implementation
+  input.
 
 ### Visual Contract
 - Curation status: `curated-pass-6`.
-- Z-Layer: 1000 per [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
-- Small centered red-bronze modal over dimmed caller screen with icon, localized prompt, Confirm/Cancel buttons, and caller-specific warning line.
-- Use dense classic fantasy strategy UI: fixed 800x600 layout, ornate gold frame, red/brown/stone panels, compact icon slots, right-click detail affordances, and bottom status/resource feedback.
-- `mockup.html` contains visible UI only. Logic, transitions, and implementation notes live in Markdown package files.
+- Z-Layer: `1000` (Modal dialogs) per
+  [`docs/architecture/ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract).
+- Small centered red-bronze modal over a dimmed caller screen: icon,
+  localized prompt, Confirm/Cancel buttons, optional warning line.
+- Dense classic fantasy strategy UI: fixed `800 × 600` layout, ornate
+  gold frame, red/brown/stone panels.
+- `mockup.html` contains visible UI only. Logic, timing, and
+  implementation notes live in the sibling Markdown files.
 
 ### Component Tree
-- ConfirmationDialog
-  - DimmedCaller
-  - WarningIcon
-  - PromptText
-  - RequireTypeChallenge
-  - ConfirmCancelButtons
+- `ConfirmationDialog`
+  - `DimmedCaller`
+  - `WarningIcon`
+  - `PromptText`
+  - `RequireTypeChallenge` — mounted only when `requireType != null`
+  - `ConfirmCancelButtons`
 
 ### State Bindings
 | Element | Bound To | Notes |
 | --- | --- | --- |
-| pendingAction | state.ui.confirmation.pendingAction | Action/event awaiting confirmation. |
-| promptKey | state.ui.confirmation.promptKey | Localized prompt key. |
-| callerRoute | state.ui.confirmation.callerRoute | Screen to return on cancel. |
-| confirmPayload | state.ui.confirmation.payload | Stable IDs/scalars passed on confirm. |
-| severity | state.ui.confirmation.severity | Closed enum `info` / `warning` / `critical`. Load-bearing — drives both styling **and** the input gate in [Click-Through Resistance](#click-through-resistance). |
-| openedAt | state.ui.confirmation.openedAt | Wall-clock at modal mount; used by the click-through-resistance timer. Never enters saves, replays, or the canonical state hash. |
-| confirmDelayMs | state.ui.confirmation.confirmDelayMs | Optional integer (ms). When omitted, falls back to the per-severity default in [Click-Through Resistance](#click-through-resistance). |
-| requireType | state.ui.confirmation.requireType | Optional literal text the user must type before `Confirm` enables. Combined with `severity: critical` for high-impact actions. |
-| typedConfirmText | state.ui.confirmation.typedConfirmText | Live local input from `RequireTypeChallenge`; presentation-only. |
-| popInComplete | state.ui.confirmation.popInComplete | Set by the modal pop-in animation end-frame. While `false`, `Confirm` stays disabled regardless of `confirmDelayMs`. |
+| `pendingAction` | `state.ui.confirmation.pendingAction` | Caller command/event awaiting confirmation. |
+| `promptKey` | `state.ui.confirmation.promptKey` | Localization key for the prompt text. |
+| `callerRoute` | `state.ui.confirmation.callerRoute` | Screen to return to on cancel. |
+| `confirmPayload` | `state.ui.confirmation.payload` | Stable IDs / scalars passed through on confirm. |
+| `severity` | `state.ui.confirmation.severity` | Closed enum `info` / `warning` / `critical`. Load-bearing — drives styling **and** the input gate in [Click-Through Resistance](#click-through-resistance). |
+| `openedAt` | `state.ui.confirmation.openedAt` | Wall-clock at modal mount, used by the click-through-resistance timer. Never enters saves, replays, or the canonical state hash. |
+| `confirmDelayMs` | `state.ui.confirmation.confirmDelayMs` | Optional integer (ms). When omitted, falls back to the per-severity default in [Click-Through Resistance](#click-through-resistance). |
+| `requireType` | `state.ui.confirmation.requireType` | Optional literal text the user must type before `Confirm` enables. Reserved for `severity: critical`. |
+| `typedConfirmText` | `state.ui.confirmation.typedConfirmText` | Live local input from `RequireTypeChallenge`; presentation-only, cleared on close. |
+| `popInComplete` | `state.ui.confirmation.popInComplete` | Set by the modal pop-in animation end-frame; cleared on close. While `false`, `Confirm` stays disabled regardless of `confirmDelayMs`. |
 
 ### Click-Through Resistance
-The modal hardens against reflexive confirm clicks. `Confirm` is
-disabled until **all** of the following are true:
+`Confirm` is disabled until **all** four conditions hold:
 
 1. `pendingAction != null`
-2. `now - openedAt >= confirmDelayMs`
+2. `now() - openedAt >= confirmDelayMs`
 3. `popInComplete === true`
 4. `requireType == null || typedConfirmText === requireType`
 
-Defaults consumed when the caller omits the optional fields:
+Per-severity defaults applied when the caller omits the optional
+fields:
 
-| `severity`   | default `confirmDelayMs` | optional `requireType` |
-|--------------|--------------------------|------------------------|
-| `info`       | `0`                      | unsupported            |
-| `warning`    | `750`                    | `false` (omitted)      |
-| `critical`   | `1500`                   | caller-supplied (e.g. `'CONFIRM'`, `'UNINSTALL'`, `'REVOKE'`, `'DEV'`) |
+| `severity`  | default `confirmDelayMs` | optional `requireType`                                                  |
+|-------------|--------------------------|-------------------------------------------------------------------------|
+| `info`      | `0`                      | unsupported                                                             |
+| `warning`   | `750`                    | `false` (omitted)                                                       |
+| `critical`  | `1500`                   | caller-supplied (e.g. `'CONFIRM'`, `'UNINSTALL'`, `'REVOKE'`, `'DEV'`)  |
 
-Any caller dispatching `REQUEST_CONFIRMATION` with `severity: 'critical'`
-and no `confirmDelayMs` MUST inherit the `1500` default — the
-confirmation builder in `src/ui/confirmation/` is the single enforcement
-point. `severity` is no longer "warning styling only"; it is the closed
-input-gate selector.
+Defaults are applied by the single builder in
+`src/ui/confirmation/` per
+[`mvp.07-ui-shell.28-confirmation-dialog-hardening`](../../../../../tasks/mvp/07-ui-shell/28-confirmation-dialog-hardening.md):
+any `severity: 'critical'` payload without `confirmDelayMs` MUST
+inherit `1500`. `severity` is the closed input-gate selector — it is
+not "warning styling only".
 
 ### Mechanics Mapping
-- Executes only the pending confirmed event supplied by caller. Dialog itself has no gameplay logic beyond confirm/cancel routing.
-- UI previews stay local until a listed command or route guard accepts them.
-- Costs, spells, artifacts, buildings, stacks, heroes, towns, and objects resolve through registries/content schemas, not hardcoded view logic.
+- The dialog dispatches the pending caller command; it owns no
+  reducer logic of its own.
+- UI previews stay local until the caller's command or route guard
+  accepts them.
+- Costs, spells, artifacts, buildings, stacks, heroes, towns, and
+  objects resolve through registries / content schemas, never via
+  hardcoded view logic.
 
 ### Animation Contract
-- Modal pops in, warning icon pulses, Confirm button depresses, and accepted action plays caller-provided transition animation.
-- Animation consumes reducer or route results; it never decides gameplay outcomes.
-- Reduced-motion mode preserves visible state changes with static highlights and localized feedback.
+- Modal pops in, warning icon pulses, `Confirm` depresses on accept,
+  caller-provided transition animation plays after the accepted
+  command/route resolves.
+- Animation consumes reducer or route results; it never decides
+  gameplay outcomes.
+- Reduced-motion mode preserves visible state changes via static
+  highlights and localized feedback (no pop-in, no pulse).
 
 ### Acceptance Criteria
-- Mockup is visually distinct from other screens and follows this screen's internal visual direction.
-- Spec lists all visible regions and authoritative state bindings.
-- Interactions file covers every primary control, next screen, state update, animation, disabled case, and error path.
-- Architecture file contains screen-specific diagrams, not copied archetype diagrams.
-- Data contracts identify schema/config/localization/asset/sound/VFX/save/replay fields required to implement the screen.
+- Mockup is visually distinct from other screens and follows this
+  package's internal visual direction.
+- Spec lists every visible region and authoritative state binding.
+- Interactions covers every primary control, next screen, state
+  update, animation, disabled case, and error path.
+- Architecture file holds screen-specific diagrams, not copied
+  archetype diagrams.
+- Data contracts identify every schema, config, localization, asset,
+  sound, VFX, save, and replay field required to implement the
+  screen.
 
 ### AI Implementation Notes
-- Screen slug: `confirmation-dialog`; system group: `system`; curation marker: `curated-pass-6`.
-- Build runtime components from the package contract, not from third-party captures or external product pixels.
-- Runtime code should resolve presentation through asset IDs/manifests; deterministic gameplay commands use stable IDs and scalar values.
+- Screen slug `confirmation-dialog`; system group `system`; curation
+  marker `curated-pass-6`.
+- Build runtime components from this package contract, not from
+  third-party captures or external product pixels.
+- Resolve presentation through asset IDs / manifests; deterministic
+  commands carry stable IDs and scalar values only.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Layout, Z-layer (`1000`), and component tree match `mockup.html` and the modal entry in [`ui-technology-choice.md` § Z-Stack Contract](../../../ui-technology-choice.md#z-stack-contract); sibling `interactions.md` and `data-contracts.md` align on the same component, command, and selector names.
+- **Schema: ✔** — `state.ui.confirmation.*` bindings match the `REQUEST_CONFIRMATION` payload in [`command-schema.md` § Consent, Onboarding & Destructive-UX Commands](../../../command-schema.md#consent-onboarding--destructive-ux-commands); per-severity defaults match the hardening task `Inputs` section.
+- **Tasks: ✔** — Owning task [`phase-2.07-ui-screen-backlog.60-confirmation-dialog-screen`](../../../../../tasks/phase-2/07-ui-screen-backlog/60-confirmation-dialog-screen.md) Reads First this file; hardening task [`mvp.07-ui-shell.28-confirmation-dialog-hardening`](../../../../../tasks/mvp/07-ui-shell/28-confirmation-dialog-hardening.md) owns `src/ui/confirmation/` and enforces the per-severity defaults.
+
+## ⚠ Issues
+
+_None._

@@ -1,17 +1,19 @@
 # Non-Functional Requirements (NFR) Matrix
 
-> Numeric per-frame tier breakdown:
+> Per-frame numeric breakdown:
 > [`performance.md`](./performance.md).
 
-This is the single matrix of measurable non-functional targets. Each
-row carries a numeric **target**, a **tolerance**, the **owning
-module**, and the **harness that verifies the target**. Modules are
-expected to add the relevant rows to their `Exit Criteria`; individual
-tasks gate on the matching row in their `Acceptance Criteria` /
-`Verify:` section.
+The single registry of measurable non-functional targets. Every row
+gives a numeric **target**, a **tolerance**, the **owning module**,
+and the **harness that verifies it**.
 
-The matrix is the canonical source. If a number changes, update this
-file first; downstream task files reference rows by NFR ID.
+- Modules cite the relevant NFR IDs in their `Exit Criteria`.
+- Tasks gate on the matching row in their `Acceptance Criteria` /
+  `Verify` section.
+- The matrix is canonical for **NFR IDs and row composition**.
+  Per-frame budgets and tier ceilings are sourced from
+  [`performance.md`](./performance.md); if the two diverge, the
+  numeric file wins and this matrix must be updated.
 
 ---
 
@@ -81,12 +83,12 @@ file first; downstream task files reference rows by NFR ID.
 
 ## How to use this matrix
 
-- **Module index files** must reference any NFR row in their owning
-  module's "Exit Criteria" section (see T9 in the source plan).
-- **Task files** that ship a benchmark or guard the gate cite the NFR
+- **Module index files** must cite the NFR rows they own in their
+  `Exit Criteria` section.
+- **Task files** that ship a benchmark or guard a gate cite the NFR
   ID in their `Acceptance Criteria` (e.g.
   `Holds NFR-PERF-01 within tolerance on the Scenario-A profile`).
-- **The numeric source of truth** for per-frame budgets and tier
+- **Numeric source of truth** for per-frame budgets and tier
   ceilings is [`performance.md`](./performance.md). This matrix
   pulls those numbers into a per-NFR view; if the two diverge, the
   numeric file wins and this matrix must be updated.
@@ -94,17 +96,34 @@ file first; downstream task files reference rows by NFR ID.
 ## Adding a new NFR
 
 1. Pick the next ID in the appropriate section (`NFR-<KIND>-NN`).
-2. Provide all six columns: metric, target, tolerance, owning
-   module, and harness.
+2. Fill all six columns: ID, metric, target, tolerance, owning
+   module, verified by.
 3. Update the owning module's `Exit Criteria` to cite the new row.
-4. If the harness does not yet exist, scaffold a perf-benchmark task
-   under that module following the canonical task shape.
+4. If the harness does not yet exist, scaffold a perf-benchmark
+   task under that module following the canonical task shape.
 5. Run `npm run validate` to confirm cross-references resolve.
 
 ## Verified by
 
-- This file is grep-checked for `TBD` / `TODO` / `FIXME` by
-  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
-  (T1 grep gate). Every row above must commit to a numeric target.
+- This file is grep-checked for `TBD` / `TODO` / `FIXME` placeholder
+  markers by
+  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs).
+  Every row above must commit to a numeric target.
 - The owning-module column is a path; broken links fail
   `npm run validate:links`.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — No UI surfaces are claimed in the matrix; cross-checked screen specs are out of scope for this doc.
+- **Schema: ✔** — `world.schema.json` (referenced by NFR-CAP-01) and the entity ceilings cited in NFR-CAP-02..05 match [`performance.md` § 5](./performance.md#5-entity-ceilings) verbatim.
+- **Tasks: ⚠** — All cited task paths exist (`tasks/mvp/00-perf/0{1,2,3,5}-…`, `tasks/mvp/01-engine-core/{10,13,14}-…`, `tasks/phase-3/01-multiplayer/12-network-chaos-harness.md`, `tasks/phase-3/03-mcts-ai.md`), but several owning-module index files do not yet back-reference their NFR rows; see issues below.
+
+## ⚠ Issues
+
+- **NFR-MEM-01 contradicts `performance.md` § 4 memory budget.** Matrix sets the Reference-tier RAM ceiling at ≤ 1 500 MB (tolerance 1 800 MB); [`performance.md` § 4](./performance.md#4-memory-budget) defines the absolute peak as **1 000 MB** at the Reference tier (per-category breakdown sums to 1 000). Per this doc's own rule ("if the two diverge, the numeric file wins"), `performance.md` is canonical and one of the two files must change. Skill did not silently rewrite the threshold (Hard Prohibition A — never change a numeric claim without surfacing). Suggested resolution: an explicit decision-log entry that picks one number, then a single-PR update to whichever file is wrong. Owner candidate: `mvp.06-renderer` (memory-regression gate task `mvp.00-perf.03-memory-regression-gate` calibrates against this number).
+- **Missing back-reference in `phase-3/01-multiplayer.md`.** NFR-LAT-01, NFR-LAT-02, and NFR-LAT-04 list `phase-3.01-multiplayer` as the owning module, but [`tasks/phase-3/01-multiplayer.md`](../../tasks/phase-3/01-multiplayer.md) has no `**NFR**:` line in its module front-matter (the convention used in every `tasks/mvp/*.md` index). Per the "How to use" section above, owning-module index files must cite the NFR rows they own. Suggested fix: add `- **NFR**: NFR-LAT-01, NFR-LAT-02, NFR-LAT-04` to the module file. Skill did not edit it (Hard Prohibition D).
+- **Missing back-reference in `phase-3/03-mcts-ai.md`.** NFR-AI-02 and NFR-AI-03 (co-owner) list `phase-3.03-mcts-ai` as owner, but [`tasks/phase-3/03-mcts-ai.md`](../../tasks/phase-3/03-mcts-ai.md) has no NFR citation. Same fix shape as above. Skill did not edit it (Hard Prohibition D).
+- **Missing back-reference in `mvp/05-adventure-map.md` for NFR-MEM-01.** [`tasks/mvp/05-adventure-map.md`](../../tasks/mvp/05-adventure-map.md) cites NFR-CAP-02 and NFR-PERF-01 only; NFR-MEM-01 lists it as co-owner alongside `mvp.06-renderer`. Suggested fix: extend the existing `**NFR**:` line to include NFR-MEM-01. Skill did not edit it (Hard Prohibition D).
+- **GC-pause minimum-spec tolerance is matrix-only.** NFR-MEM-04 sets the Minimum-spec tolerance at ≤ 8 ms; [`performance.md` § 3](./performance.md#3-gc-and-allocation-budget) states only the Reference-tier 4 ms target and does not enumerate a Minimum-spec value. Consistent with the "every line above is doubled" pattern in `performance.md` § 2, but not currently stated as canon. Suggested fix: add a one-line minimum-spec GC clause to `performance.md` § 3, or note in the matrix that the doubling is implicit via § 2.

@@ -1,10 +1,10 @@
 # Performance
 
-This file is the single source of truth for performance budgets,
-hardware tiers, allocation policy, entity ceilings, and memory
-ceilings. Every numeric target the renderer, engine, AI, or content
-loader must meet lives here. Other docs link to this file rather
-than restating the numbers.
+Single source of truth for performance budgets, hardware tiers,
+allocation policy, entity ceilings, and memory ceilings. Every
+numeric target the renderer, engine, AI, or content loader must
+meet lives here. Other docs link to this file rather than restating
+the numbers.
 
 The contracts below are enforced by the bench harness owned by
 [`tasks/mvp/00-perf/01-bench-harness.md`](../../tasks/mvp/00-perf/01-bench-harness.md)
@@ -29,9 +29,8 @@ content tasks.
 | **Minimum-spec** | Intel HD 620 / Apple A12-class iGPU | 8 GB | Desktop browser | 30 FPS on 200×200 map and 14-stack battle | 60 FPS |
 | **Mobile** *(deferred)* | Tablet-class | 4 GB | Mobile browser | declared, not implemented in M1 | declared, not implemented in M1 |
 
-Mobile is **declared but deferred**. Runtime work for the mobile
-tier is out of scope until a later milestone formally adopts the
-row.
+Mobile is **declared but deferred**: runtime work is out of scope
+until a later milestone formally adopts the row.
 
 The renderer's frame-time degradation table
 ([`renderer-technology-choice.md` § Frame-Time Budget &amp; Degradation](./renderer-technology-choice.md#frame-time-budget--degradation))
@@ -185,9 +184,9 @@ Notes:
   [`docs/architecture/diagrams/22-building-loop.md`](./diagrams/22-building-loop.md)
   and skip frame-advance entirely when over budget.
 - The 14-stack base battle ceiling is pinned in
-  [`tasks/mvp/06-renderer/05-1115-tactical-battlefield-renderer.md`](../../tasks/mvp/06-renderer/05-1115-tactical-battlefield-renderer.md)
-  and the renderer's per-frame budget is computed to absorb
-  +50 % to support summons (21 stacks).
+  [`tasks/mvp/06-renderer/05-1115-tactical-battlefield-renderer.md`](../../tasks/mvp/06-renderer/05-1115-tactical-battlefield-renderer.md);
+  the renderer's per-frame budget is computed to absorb +50 % to
+  support summons (21 stacks).
 
 ---
 
@@ -210,17 +209,18 @@ deterministic contract is:
   no-action fallback). The chosen `Command` is logged once and
   replays bit-identically from the log without re-running the
   search.
-- An over-budget difficulty level is a **bug** in the implementing
-  task ([Pawn / Knight](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md),
-  Grand Master / Lord / Immortal — see ai-contract.md § 4
-  Implementing tasks). Tune the difficulty constants in the
+- An over-budget difficulty level is a **bug** in the owning task,
+  not a runtime fallback. Tune the difficulty constants in the
   ai-contract table until the bench-harness Scenario C AI-vs-AI
   run keeps every move under its `wallClockHardMs` on the
-  Minimum-spec tier.
+  Minimum-spec tier. Implementing tasks: Pawn / Knight in
+  [`tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md`](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md);
+  Grand Master / Lord / Immortal listed under
+  [`ai-contract.md` § 4](./ai-contract.md#4-per-turn-budget-table).
 
 This rule is part of the determinism contract; see
 [`docs/architecture/determinism.md`](./determinism.md) and
-[`ai-contract.md` § 6 (AI Determinism Under Wall-Clock Budgets)](./ai-contract.md#6-parallelism).
+[`ai-contract.md` § 6 (AI Determinism Under Wall-Clock Budgets)](./ai-contract.md#ai-determinism-under-wall-clock-budgets).
 
 ---
 
@@ -285,4 +285,15 @@ Bench-harness sources:
 - [`docs/architecture/atlas-pipeline.md`](./atlas-pipeline.md)
   — atlas-generation pipeline that feeds the texture-memory
   category.
-  — the audit that motivated this doc.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Screen 68 (`wiki/screens/68-dev-profiler/spec.md`) panels, `state.perf.*` bindings, `Ctrl+Shift+P` toggle, build-flag gate, `?dev_profiler=1` escape hatch, and `< 0.2 ms` overlay overhead all match § 7. The screen reciprocally cites § 2 and § 5 anchors.
+- **Schema: ✔** — No JSON schema is owned or directly referenced by this doc; the budgets and ceilings are runtime invariants enforced by the bench harness, not schema-validated record shapes. Pool kinds and counts agree with [`tasks/mvp/00-perf/05-object-pools.md`](../../tasks/mvp/00-perf/05-object-pools.md).
+- **Tasks: ✔** — Every linked task exists and reciprocally cites this doc: [`tasks/mvp/00-perf/01-bench-harness.md`](../../tasks/mvp/00-perf/01-bench-harness.md), [`02-bench-baseline-and-ci-gate.md`](../../tasks/mvp/00-perf/02-bench-baseline-and-ci-gate.md), [`03-memory-regression-gate.md`](../../tasks/mvp/00-perf/03-memory-regression-gate.md), [`04-profiling-overlay.md`](../../tasks/mvp/00-perf/04-profiling-overlay.md), [`05-object-pools.md`](../../tasks/mvp/00-perf/05-object-pools.md), [`tasks/mvp/03-map-system/03-layered-tile-storage.md`](../../tasks/mvp/03-map-system/03-layered-tile-storage.md), [`tasks/mvp/06-renderer/05-1115-tactical-battlefield-renderer.md`](../../tasks/mvp/06-renderer/05-1115-tactical-battlefield-renderer.md), and [`tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md`](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md). Sibling docs ([`renderer-technology-choice.md`](./renderer-technology-choice.md), [`determinism.md`](./determinism.md), [`ai-contract.md`](./ai-contract.md), [`diagrams/17-cache-strategy.md`](./diagrams/17-cache-strategy.md)) link back at the cited anchors.
+
+## ⚠ Issues
+
+- **`state.perf.*` slice has no row in [`data-inventory.md`](./data-inventory.md).** Screen 68 binds every overlay panel to `state.perf.fps | frameMs | cpuPerSystem | allocPerFrame | heap | aiCompute | pools | animations | overlayVisible` (per [`wiki/screens/68-dev-profiler/spec.md`](./wiki/screens/68-dev-profiler/spec.md) and `data-contracts.md`). Performance.md does not itself claim the slice is registered, so this is not a contradiction with this doc — but per the CLAUDE.md root contract ("every persisted field is registered in `data-inventory.md`") and the inventory's existing convention of marking transient slices (cf. `lobby chat (transient)` row), the dev-only `state.perf.*` slice would benefit from an explicit `in-memory / session / n/a` row so the no-persist intent is unambiguous and the `validate:tasks` IndexedDB-store-name lint can confirm there is no missing store. Owner: [`tasks/mvp/00-perf/04-profiling-overlay.md`](../../tasks/mvp/00-perf/04-profiling-overlay.md). Suggested row: `state.perf.*` / in-memory / low / session / n/a / "dev-only profiler readouts; gated by `import.meta.env.DEV` per screen 68". Per Hard Prohibition D, no edit was made to `data-inventory.md`.

@@ -23,7 +23,7 @@ const screensRoot = path.join(repoRoot, "docs", "architecture", "wiki", "screens
 
 const STRICT = process.env.HR_ERROR_UX_STRICT !== "0";
 
-const ERROR_BLOCK_HEADING = /^##\s+Error\s+surfaces\b/m;
+const ERROR_BLOCK_HEADING = /^#{2,}\s+(?:\d+\.\s+)?Error\s+[Ss]urfaces\b/m;
 
 // A screen requires the per-screen block when its interactions.md
 // cites a *specific* error code by name — i.e. <PREFIX>_<TOKEN> where

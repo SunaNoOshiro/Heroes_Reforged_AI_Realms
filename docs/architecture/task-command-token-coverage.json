@@ -102,6 +102,8 @@
     "UPGRADE_DEADLINE_MS": "Pinned `ws`-library hardening constant owned by phase-3.01-multiplayer.31-signaling-message-schema-and-validation per docs/architecture/signaling-message-schema.md § 5; not a command.",
     "FRAME_DEADLINE_MS": "Pinned `ws`-library hardening constant owned by phase-3.01-multiplayer.31-signaling-message-schema-and-validation per docs/architecture/signaling-message-schema.md § 5; not a command.",
     "BINARY_FRAMES_REJECTED": "Pinned `ws`-library hardening constant owned by phase-3.01-multiplayer.31-signaling-message-schema-and-validation per docs/architecture/signaling-message-schema.md § 5; not a command.",
-    "ADMIN_TOKEN": "Bearer-auth env var consumed by phase-3.01-multiplayer.35-edge-defense-and-health-segregation per docs/architecture/signaling-health-endpoints.md § 2; not a command."
+    "ADMIN_TOKEN": "Bearer-auth env var consumed by phase-3.01-multiplayer.35-edge-defense-and-health-segregation per docs/architecture/signaling-health-endpoints.md § 2; not a command.",
+    "STALL_LIMIT_MS": "Turn-timer auto-end-day threshold constant (default 90_000 ms) from docs/architecture/turn-timer.md; owned by phase-3.01-multiplayer.11-turn-timer-and-stall-detection; not a command.",
+    "WAITING_THRESHOLD_MS": "Turn-timer stall-detection threshold constant (default 30_000 ms) from docs/architecture/turn-timer.md; owned by phase-3.01-multiplayer.11-turn-timer-and-stall-detection; not a command."
   }
 }

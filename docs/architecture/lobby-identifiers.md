@@ -1,26 +1,40 @@
 # Lobby Identifiers
 
-> § 2 (Issue: Room-code generation contract is undefined; Issue: No
-> room TTL or maximum lifetime).
-
-This file is the single canonical contract for the room-code identifier
-that the [signaling server](../../tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)
-mints, that the invite-link surface
+Canonical contract for the **room code** that the
+[signaling server](../../tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)
+mints, the invite-link surface
 ([screen 62](./wiki/screens/62-multiplayer-setup/spec.md)) carries,
-and that the [network lobby](./wiki/screens/64-network-lobby/spec.md)
-displays.
+and the [network lobby](./wiki/screens/64-network-lobby/spec.md)
+displays. Owns alphabet, length, RNG mandate, collision policy,
+reuse cool-down, and TTL bounds.
 
-The room **secret** (16-byte URL-fragment token) is owned by
-[`multiplayer-security.md` § Room Secret + Handshake](./multiplayer-security.md#room-secret--handshake);
-this doc owns only the room **code** that is shown to humans and
-matched on `JOIN_ROOM`.
+Companion docs:
+- [`multiplayer-security.md` § Room Secret + Handshake](./multiplayer-security.md#room-secret--handshake)
+  — owns the 16-byte URL-fragment **secret**; this doc owns only the
+  human-visible code.
+- [`signaling-rate-limits.md`](./signaling-rate-limits.md) — per-IP /
+  per-code / global token buckets keyed on the canonical code form.
+- [`signaling-payload-policy.md`](./signaling-payload-policy.md) —
+  signaling-server allow / deny list for protocol payloads.
+- [`signaling-message-schema.md`](./signaling-message-schema.md) —
+  wire-level `RoomId` regex (mirrors this doc's alphabet).
+- [`signaling-audit-log.md`](./signaling-audit-log.md) — log lines
+  emitted on mint / allocate / expire.
+- [`peer-identity.md`](./peer-identity.md) — Ed25519 keypair that
+  authenticates `JOIN_ROOM` against the room code.
+- [`ice-disclosure-policy.md`](./ice-disclosure-policy.md) —
+  pre-consent vs. post-consent ICE candidate matrix.
+
+Schemas:
+[`room-code.schema.json`](../../content-schema/schemas/room-code.schema.json),
+[`signaling-message.schema.json`](../../content-schema/schemas/signaling-message.schema.json)
+(`RoomId` `$def`).
 
 ---
 
 ## 1. Alphabet
 
-Crockford Base32 minus the ambiguous characters `0`, `1`, `I`, `L`,
-`O`, `U` — yielding **30 symbols**:
+Crockford Base32 minus `0`, `1`, `I`, `L`, `O`, `U` — **30 symbols**:
 
 ```
 23456789ABCDEFGHJKMNPQRSTVWXYZ
@@ -38,41 +52,43 @@ log2(30 ** 8) ≈ 39.24 bits
 keyspace      = 30 ** 8 = 656 100 000 000
 ```
 
-This is comfortably above the ≤100-active-rooms cap multiplied by
-the rate-limit budget defined in
+Comfortably above the ≤ 100-active-rooms cap multiplied by the
+rate-limit budget in
 [`signaling-rate-limits.md`](./signaling-rate-limits.md), so a
-brute-force scan against the active subset is no longer trivial.
+brute-force scan against the active subset is non-trivial.
 
 ## 3. Case rule
 
 - Codes are generated **upper-case**.
-- Inbound `JOIN_ROOM` codes are **NFC-normalized**, then
-  upper-cased, before lookup. Lower-case input from a user-typed
-  field MUST still match.
-- The canonical-on-disk form (logs, telemetry, audit trail) is the
+- Inbound `JOIN_ROOM` codes are NFC-normalized, then upper-cased,
+  before lookup. Lower-case input from a user-typed field MUST still
+  match.
+- The canonical on-disk form (logs, telemetry, audit trail) is the
   upper-case form.
 
 ## 4. RNG mandate
 
 **CSPRNG only.** Server-side: `crypto.randomBytes(...)` (Node).
-Client-side echoes the server's code; clients never mint codes.
+Clients echo the server's code; clients never mint codes.
 
 The deterministic engine RNG (PCG32) is **forbidden** in
 `services/signaling/`. The carve-out is pinned in
-[`determinism.md` § Forbidden In Deterministic Paths`](./determinism.md#forbidden-in-deterministic-paths).
+[`determinism.md` § Forbidden In Deterministic Paths](./determinism.md#forbidden-in-deterministic-paths)
+(see also
+[§ Signaling and lobby identifiers — CSPRNG mandate](./determinism.md#signaling-and-lobby-identifiers--csprng-mandate)).
 A linter rule under `services/signaling/` rejects imports of
 `src/engine/rng/*` and any seeded PRNG.
 
 The 8-character code is drawn rejection-sampled from
 `crypto.randomBytes(...)`: read 5 bytes (≥ 40 bits), peel off
-8 base-30 digits using rejection of indices ≥ `30 * floor(256 / 30)`
-to keep the output uniform.
+8 base-30 digits using rejection of indices ≥
+`30 * floor(256 / 30)` to keep the output uniform.
 
 ## 5. Collision policy
 
 - On `CREATE_ROOM`, the server generates a candidate code and checks
   the in-memory active-room table.
-- On collision, regenerate. Maximum **5 retries**.
+- On collision, regenerate. **Maximum 5 retries.**
 - After 5 retries the server replies with the structured error code
   `room.code.allocation_exhausted` (`HTTP 503`) and emits a
   `signaling.room.allocation_exhausted` log line per
@@ -80,15 +96,15 @@ to keep the output uniform.
 
 ## 6. Reuse policy (cool-down)
 
-A code that becomes free (last peer left, or `CLOSE_ROOM` was issued
-by the host) enters a **10-minute cool-down** before it is eligible
-for reuse. The cool-down table is in-memory and indexed by the
-canonical upper-case code form.
+A code that becomes free (last peer left, or the host issued
+`CLOSE_ROOM`) enters a **10-minute cool-down** before reuse. The
+cool-down table is in-memory and indexed by the canonical
+upper-case code form.
 
-The cool-down closes both the **stale-rebind** risk (an old
-invite link reaches a fresh room with the same code) and the
-**reuse** risk (the next host inherits the previous host's
-attackers).
+The cool-down closes two risks:
+- **Stale-rebind** — an old invite link reaches a fresh room with
+  the same code.
+- **Reuse** — the next host inherits the previous host's attackers.
 
 Host-initiated `CLOSE_ROOM` MAY use a 0 s cool-down at the host's
 discretion to support the "I picked the wrong room" UX path.
@@ -103,7 +119,7 @@ discretion to support the "I picked the wrong room" UX path.
 
 The TTL sweep loop runs every **60 s** and is wall-clock-driven.
 Wall-clock reads on the signaling server are documented in
-[`determinism.md` § Wall-clock readers`](./determinism.md#wall-clock-readers).
+[`determinism.md` § Wall-clock readers](./determinism.md#wall-clock-readers).
 
 ## 8. Worked example
 
@@ -119,15 +135,54 @@ canonical code     = "9FTPV7EY"
 A regenerated code re-runs § 4 from a fresh `randomBytes` draw; no
 deterministic seeding.
 
-## 9. Linked rules
+---
 
-- [`signaling-rate-limits.md`](./signaling-rate-limits.md) — per-code,
-  per-IP, and global rate buckets that consume the canonical code form.
-- [`signaling-payload-policy.md`](./signaling-payload-policy.md) — the
-  signaling server's allow/deny list for protocol payloads.
-- [`peer-identity.md`](./peer-identity.md) — Ed25519 keypair that
-  authenticates `JOIN_ROOM` against the room code.
-- [`ice-disclosure-policy.md`](./ice-disclosure-policy.md) —
-  pre-consent vs. post-consent ICE candidate matrix.
-- [`signaling-audit-log.md`](./signaling-audit-log.md) — what gets
-  logged when codes are minted, allocated, or expired.
+## 🔍 Sync Check
+
+- **UI: ✔** — Invite-URL shape on
+  [`screens/62-multiplayer-setup/spec.md`](./wiki/screens/62-multiplayer-setup/spec.md)
+  and the `Close room` row on
+  [`screens/64-network-lobby/interactions.md`](./wiki/screens/64-network-lobby/interactions.md)
+  match this doc's code form, cool-down, and `ROOM_CLOSED` reason.
+- **Schema: ⚠** — [`room-code.schema.json`](../../content-schema/schemas/room-code.schema.json)
+  and the `RoomId` `$def` in
+  [`signaling-message.schema.json`](../../content-schema/schemas/signaling-message.schema.json)
+  both pin `^[A-Z0-9]{8}$`. That regex is **wider** than this doc's
+  30-symbol alphabet (it admits `0`, `1`, `I`, `L`, `O`, `U`). Wire
+  validation accepts; lookup against the in-memory table will miss.
+  See `## ⚠ Issues`.
+- **Tasks: ✔** — Owning task
+  [`phase-3.01-multiplayer.01-signaling-server-…`](../../tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)
+  reads this doc First and restates the alphabet / length / collision
+  / cool-down / TTL contract verbatim in its Acceptance Criteria.
+  `screen-command-coverage.json` and `task-command-token-coverage.json`
+  attribute `CLOSE_ROOM` / `ROOM_EXPIRED` / `ROOM_CLOSED` to that
+  task and reference this doc § 7.
+
+## ⚠ Issues
+
+- **Stale code description in `multiplayer-security.md`.**
+  [`multiplayer-security.md` § Room Secret + Handshake](./multiplayer-security.md#room-secret--handshake)
+  introduces room codes as `6-character alphanumeric, ~2 billion
+  keyspace`. The contract here is 8-character Crockford-Base32 over
+  30 symbols (≈ 39.24 bits, 6.56 × 10¹¹ keyspace). The sibling-doc
+  prose is purely descriptive, not load-bearing on any other rule,
+  but it disagrees with this canonical doc and with the schemas.
+  Per CLAUDE.md "no duplicated logic", the next edit to that doc
+  should demote that paragraph to a one-line reference back to
+  this file. Skill did not edit a sibling file (Hard Prohibition D).
+- **`RoomId` regex broader than the alphabet.**
+  [`room-code.schema.json`](../../content-schema/schemas/room-code.schema.json)
+  and the `RoomId` `$def` in
+  [`signaling-message.schema.json`](../../content-schema/schemas/signaling-message.schema.json)
+  use `^[A-Z0-9]{8}$`, which admits `0`, `1`, `I`, `L`, `O`, `U` —
+  symbols this doc explicitly excludes. A crafted `JOIN_ROOM` with
+  e.g. `00000000` passes wire validation, then fails active-room
+  lookup. Not CI-blocking (lookup catches it; per-code rate-limit
+  buckets bound abuse), but the schema row should narrow to
+  `^[2-9A-HJ-NP-TV-Z]{8}$` to make the alphabet authoritative end
+  to end. Suggested owner: the schema-owning task
+  [`phase-3.01-multiplayer.31-signaling-message-schema-and-validation`](../../tasks/phase-3/01-multiplayer/31-signaling-message-schema-and-validation.md)
+  for `signaling-message.schema.json`; `room-code.schema.json` is
+  unowned by a current task and would need a follow-up entry.
+  Skill did not edit either schema (Hard Prohibition D).

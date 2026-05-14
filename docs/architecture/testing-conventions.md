@@ -1,9 +1,12 @@
 # Testing Conventions
 
-> The fake catalogue and per-test-type mechanics live alongside this
-> file in [`docs/architecture/testing/`](./testing/).
+> Companion specs (per-test-type mechanics, fakes, harnesses):
+> [`testing/unit-test-contract.md`](./testing/unit-test-contract.md),
+> [`testing/coverage-policy.md`](./testing/coverage-policy.md),
+> [`testing/ui-smoke-contract.md`](./testing/ui-smoke-contract.md),
+> [`testing/ai-tournament-harness.md`](./testing/ai-tournament-harness.md).
 
-This file is the canonical convention an AI agent or contributor reads
+This is the canonical convention an AI agent or contributor reads
 before writing a test. It answers five recurring questions:
 
 1. How do I inject dependencies?
@@ -16,8 +19,8 @@ before writing a test. It answers five recurring questions:
 
 ## 1. Dependency injection
 
-The deterministic core (`src/engine/`, `src/rules/`,
-`src/content-runtime/` paths that read inputs) **never** uses a
+The deterministic core (`src/engine/`, `src/rules/`, and the
+input-reading paths in `src/content-runtime/`) **never** uses a
 module-global singleton for an environmental dependency. The
 following are always injected:
 
@@ -30,20 +33,20 @@ following are always injected:
 - the `NetTransport` (when the engine is wrapped in multiplayer).
 
 The TS interface for each handle lives in
-[`src/contracts/`](../../src/contracts/) (see T7 in the source plan).
-A module accepts the handle through its constructor or through the
-factory function that builds it. Code that needs the handle does **not**
-import it from a module-level variable.
+[`src/contracts/`](../../src/contracts/). A module accepts the
+handle through its constructor or factory function; it does **not**
+import the handle from a module-level variable.
 
 Consequences:
 
 - Tests construct the module with explicit fake handles.
-- Production code constructs the module once at the composition root
-  (per the boundary table in [`state-flow.md`](./state-flow.md)).
+- Production code constructs the module once at the composition
+  root (per the boundary table in
+  [`state-flow.md`](./state-flow.md)).
 - Replacing a real handle with a fake never requires monkey-patching.
 
-**Allowed singletons (presentation tier only):** the React root, the
-Zustand store, the WebGL context. These are `src/ui/` and
+**Allowed singletons (presentation tier only):** the React root,
+the Zustand store, the WebGL context. These are `src/ui/` and
 `src/renderer/` concerns and never enter the deterministic path.
 
 ---
@@ -51,13 +54,15 @@ Zustand store, the WebGL context. These are `src/ui/` and
 ## 2. Shared fake catalogue
 
 Canonical in-memory implementations live under
-[`src/contracts/fakes/`](../../src/contracts/fakes/). Every cross-
-module contract in `src/contracts/` ships at least one fake here.
+[`src/contracts/fakes/`](../../src/contracts/fakes/). Every
+cross-module contract published in `src/contracts/` ships at least
+one fake here.
 
-The **rule**: if you need a fake of a contract that is published in
-`src/contracts/`, **import the shared fake**. Do not write a new fake
-in your test file. If the shared fake is missing a capability you
-need, extend the shared fake (and add a test for the new capability).
+**Rule:** if you need a fake of a contract published in
+`src/contracts/`, **import the shared fake**. Do not write a new
+fake in your test file. If the shared fake is missing a capability
+you need, extend the shared fake (and add a test for the new
+capability).
 
 Inventory (initial; extends as `src/contracts/` grows):
 
@@ -70,15 +75,14 @@ Inventory (initial; extends as `src/contracts/` grows):
 - `FakeNetTransport` — the deterministic `NetSim` from
   [`net-transport.md`](./net-transport.md).
 
-The actual fake bodies are landed by per-module testability work.
-This doc only fixes the **location** and **import discipline**.
+Concrete fake bodies are landed by per-module testability work;
+this doc fixes only **location** and **import discipline**.
 
 ---
 
 ## 3. Mocking policy
 
-The convention is **mock at the contract surface, not at the
-implementation surface**.
+**Mock at the contract surface, not at the implementation surface.**
 
 | Test type | Engine | Renderer | UI | AI | Net | Persistence |
 |---|---|---|---|---|---|---|
@@ -90,38 +94,37 @@ implementation surface**.
 | Multiplayer integration | real engine | (n/a) | (n/a) | (n/a) | `FakeNetTransport` (NetSim) | (n/a) |
 | Persistence integration | real engine | (n/a) | (n/a) | (n/a) | (n/a) | real `IndexedDB` (fake-indexeddb in CI) |
 
-**Critical rule**: tests that target the engine **do not mock the
-engine**. They construct the real reducer and run it with seed +
-commands. If your test needs to "mock the engine", you are testing the
-wrong thing.
+**Engine tests do not mock the engine.** They construct the real
+reducer and run it with seed + commands. If your test needs to
+"mock the engine", you are testing the wrong thing.
 
-Tests that target a downstream consumer (UI, renderer, net) mock the
-engine via the `EngineSnapshot` / `CommandBus` contract surface. They
-do **not** stub internal engine functions.
+Tests targeting a downstream consumer (UI, renderer, net) mock the
+engine via the `EngineSnapshot` / `CommandBus` contract surface.
+They do **not** stub internal engine functions.
 
 ---
 
 ## 4. Per-module unit-test rubric
 
-Each module that owns code under `src/` must satisfy:
+Every module owning code under `src/` must satisfy:
 
 - **Happy path** — every public function exported from the module's
-  `src/<module>/index.ts` (or named entry) has at least one test that
-  exercises the success path with realistic inputs.
-- **Determinism golden** — every effect emitter (anything that emits
-  events the renderer consumes) has a golden-replay test that runs a
-  fixed seed + command list and asserts the resulting event log matches
-  a checked-in golden.
+  `src/<module>/index.ts` (or named entry) has at least one test
+  exercising the success path with realistic inputs.
+- **Determinism golden** — every effect emitter (anything emitting
+  events the renderer consumes) has a golden-replay test that runs
+  a fixed seed + command list and asserts the resulting event log
+  matches a checked-in golden.
 - **Edge cases** — every branch flagged in
-  [`edge-cases-policy.md`](./edge-cases-policy.md) for the module is
-  covered by a unit or integration test.
+  [`edge-cases-policy.md`](./edge-cases-policy.md) for the module
+  is covered by a unit or integration test.
 - **NFR guard** — every NFR row in
   [`non-functional-requirements.md`](./non-functional-requirements.md)
   with `Owning module = <this module>` ships a benchmark task that
   references the row.
 
-The detailed unit-test contract (test file naming, fixture layout,
-golden-bless workflow) lives in
+Test-file naming, fixture layout, and the golden-bless workflow
+live in
 [`testing/unit-test-contract.md`](./testing/unit-test-contract.md).
 
 ---
@@ -130,7 +133,7 @@ golden-bless workflow) lives in
 
 | Module | Test type required | Where |
 |---|---|---|
-| `src/engine/` | property-based + fuzz | `mvp.01-engine-core.fuzz` (existing); + edge-case fuzz harness `mvp.09-tactical-combat.12-edge-case-fuzz-harness` |
+| `src/engine/` | property-based + fuzz | `mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test`; edge-case fuzz harness `mvp.09-tactical-combat.12-edge-case-fuzz-harness` |
 | `src/rules/` | property-based (formula evaluator round-trip) | `mvp.02-tooling.04-property-based-testing` |
 | `src/content-runtime/` | unit + integration (loader scenarios) | `mvp.02-content-schemas.*` |
 | `src/content-schema/` | schema-roundtrip property tests | `mvp.02-tooling.04-property-based-testing` |
@@ -141,39 +144,38 @@ golden-bless workflow) lives in
 | `src/ui/` | smoke (jsdom or headless) | [`testing/ui-smoke-contract.md`](./testing/ui-smoke-contract.md) |
 | `src/editor/` | smoke + content-roundtrip | future editor tasks |
 
-If a module is **not** in this table and lands code under `src/`,
-that is a bug — add the row in the same PR.
+A module that lands code under `src/` without a row above is a bug
+— add the row in the same PR.
 
 ---
 
 ## 6. Escape hatches and prohibitions
 
-- Tests must not reach for `Math.random()` or `Date.now()` directly.
-  Use `FakeRng` / `FakeClock`. (The wall-clock lint catches this in
-  production code; tests follow the same rule by convention.)
-- Tests must not pull production network or storage. The shared
-  fakes cover both.
-- Tests must not call `process.exit()` or skip via `--bail` to mask
-  flakes. A flaky test is a bug; quarantine it with a tracked issue
-  in the issue tracker, not with a `TODO` marker in the file (the
-  `TBD` / `TODO` grep gate forbids the literal markers in canonical
-  paths).
+- No `Math.random()` or `Date.now()` in tests. Use `FakeRng` /
+  `FakeClock`. (The wall-clock lint catches these in production
+  code; tests follow the same rule by convention.)
+- No production network or storage in tests. The shared fakes
+  cover both.
+- No `process.exit()` and no `--bail` to mask flakes. A flaky test
+  is a bug; quarantine it with a tracked issue, not with a `TODO`
+  marker (the `TBD` / `TODO` grep gate forbids the literal markers
+  in canonical paths).
 
 ---
 
 ## 7. Verified by
 
 - [`scripts/check-cross-references.mjs`](../../scripts/check-cross-references.mjs)
-  enforces that every `Verify:` block in a `src/`-touching task names
-  at least one test command (T10 cross-ref rule, planned with the
-  `validate:tasks` extension below).
+  enforces that every `Verify:` block in a `src/`-touching task
+  names at least one test command.
 - [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
   refuses bare placeholder markers in this file.
-- The detailed test mechanics are pinned in
+- Detailed test mechanics are pinned in
   [`testing/unit-test-contract.md`](./testing/unit-test-contract.md),
   [`testing/coverage-policy.md`](./testing/coverage-policy.md),
   [`testing/ui-smoke-contract.md`](./testing/ui-smoke-contract.md),
-  and [`testing/ai-tournament-harness.md`](./testing/ai-tournament-harness.md).
+  and
+  [`testing/ai-tournament-harness.md`](./testing/ai-tournament-harness.md).
 
 ---
 
@@ -181,40 +183,42 @@ that is a bug — add the row in the same PR.
 
 Pinned conventions:
 
-- All scripts under `scripts/` ship as `.mjs` until Task
+- All scripts under `scripts/` ship as `.mjs` until task
   [`mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`](../../tasks/mvp/01-engine-core/02-set-up-vite-plus-typescript-strict-mode-per-module.md)
-  (the Vite/TS bootstrap) lands. Once it does, scripts migrate
-  `.mjs` → `.ts` in batches per module under a new follow-up task.
+  (the Vite/TS bootstrap) lands. After that, scripts migrate
+  `.mjs` → `.ts` in batches per module under a follow-up task.
 - Tests under `src/**/__tests__/` are permitted as `.ts` and run
   via `node --experimental-strip-types --test` **only until the
   Vite/TS bootstrap task lands**. That task migrates the existing
   `node:test` files to the Vitest API and rewires `npm test` to
-  invoke Vitest. After that, the runner is Vitest and the StrykerJS
-  mutation-test gate (owned by
+  invoke Vitest. After it lands, the runner is Vitest and the
+  StrykerJS mutation-test gate (owned by
   [`mvp.02-tooling.06-mutation-test-gate`](../../tasks/mvp/02-tooling/06-mutation-test-gate.md))
   runs scoped to each task's `ownedPaths` before
-  `npm run tasks:done` flips status; the gate's loop and anti-cheat
-  rules are pinned in
+  `npm run tasks:done` flips status. The gate's loop and
+  anti-cheat rules are pinned in
   [`.claude/skills/mutation-test/SKILL.md`](../../.claude/skills/mutation-test/SKILL.md).
 - Tests under `scripts/__tests__/` (gate tests for repo tooling)
   stay on Node's built-in `node --test` runner permanently and are
   **not** in scope for the Vitest migration above. They exercise
-  pure-Node `.mjs` scripts that have no need for the Vitest browser
-  / jsdom features, and StrykerJS does not mutate `scripts/`. The
-  trust-anchor `node --test scripts/__tests__/*.test.mjs` invocation
-  in `package.json` is the canonical wiring.
+  pure-Node `.mjs` scripts that have no need for Vitest's browser /
+  jsdom features, and StrykerJS does not mutate `scripts/`. The
+  trust-anchor `node --test scripts/__tests__/*.test.mjs`
+  invocation in `package.json` is the canonical wiring.
+
+---
 
 ## 9. Locked runner + mutation-gate values (2026-05-06)
 
-The choices below are repo-owned and threshold changes go through a
+The choices below are repo-owned. Threshold changes go through a
 separate PR with a written rationale, not a drive-by tweak.
 
 - **Runner:** Vitest 4.x.
 - **Mutation framework:** StrykerJS 9.x via
   `@stryker-mutator/vitest-runner`.
 - **Coverage analysis:** `perTest` (Stryker's
-  [per-test analysis mode](https://stryker-mutator.io/docs/stryker-js/configuration/#coverageanalysis-string)
-  that gives a 5–10× speedup over the off / all alternatives).
+  [per-test analysis mode](https://stryker-mutator.io/docs/stryker-js/configuration/#coverageanalysis-string),
+  5–10× faster than the `off` / `all` alternatives).
 - **Mutation-score floors** (kills/total):
 
   | Module class | Floor |
@@ -231,19 +235,32 @@ separate PR with a written rationale, not a drive-by tweak.
   | `contracts`, `services` | 80 % | 70 % |
   | `ui`, `renderer` | 70 % | 60 % |
 
-The thresholds and class assignments live in
-[`scripts/lib/module-classes.mjs`](../../scripts/lib/module-classes.mjs).
-A future "include `src/audio/`" change lands in that one file.
+Thresholds and class assignments are sourced from
+[`scripts/lib/module-classes.mjs`](../../scripts/lib/module-classes.mjs)
+— a future "include `src/audio/`" change lands in that one file.
 
-**Rationale.** `node:test` has no first-class StrykerJS plugin; the
-command-runner workaround loses `perTest` coverage analysis (the
-5–10× speedup that makes mutation testing affordable per task).
-Mutation score is the only gate that catches the "test executes the
-line but never asserts on the output" failure mode that pure
-coverage misses — exactly the failure mode most likely under
+**Rationale.** `node:test` has no first-class StrykerJS plugin;
+the command-runner workaround loses `perTest` coverage analysis
+(the 5–10× speedup that makes mutation testing affordable per
+task). Mutation score is the only gate that catches the "test
+executes the line but never asserts on the output" failure mode
+that pure coverage misses — exactly the mode most likely under
 autonomous AI execution. UI/renderer get lower floors because
 mutation score is noisier on presentation code (snapshot tests,
 DOM-event sequencing). Anti-cheat rules (no source deletion, no
-assertion softening, no threshold lowering, no silent excludes, no
-unjustified `// Stryker disable`) are documented in
+assertion softening, no threshold lowering, no silent excludes,
+no unjustified `// Stryker disable`) live in
 [`.claude/skills/mutation-test/SKILL.md`](../../.claude/skills/mutation-test/SKILL.md).
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Doc carries no UI surface claims; cross-cutting test policy only.
+- **Schema: ✔** — Contract handles (`Rng`, `Clock`, `IdAllocator`, `PackRegistry`, `AssetLoader`, `CommandBus`, `NetTransport`) all resolve under [`src/contracts/`](../../src/contracts/); the shared-fakes location [`src/contracts/fakes/`](../../src/contracts/fakes/) exists with a placeholder body, consistent with § 2's own disclaimer that bodies land per-module.
+- **Tasks: ✔** — All referenced task IDs resolve in [`tasks/task-registry.json`](../../tasks/task-registry.json): `mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test`, `mvp.09-tactical-combat.12-edge-case-fuzz-harness`, `mvp.02-tooling.04-property-based-testing`, `mvp.02-tooling.06-mutation-test-gate`, `mvp.01-engine-core.02-set-up-vite-plus-typescript-strict-mode-per-module`, `phase-3.01-multiplayer.12-network-chaos-harness`. Wildcard module references (`mvp.02-content-schemas.*`, `mvp.08-persistence.*`, `mvp.06-renderer.*`, `mvp.00-perf.*`) all map to live task directories under `tasks/mvp/`.
+
+## ⚠ Issues
+
+- **Stale planning shorthand removed (in-target).** The original referenced "T7 in the source plan" (§ 1) and "T10 cross-ref rule, planned with the `validate:tasks` extension below" (§ 7). Both originated in the archived [`16-implementation-readiness-plan.md`](../archive/implementation-plans/16-implementation-readiness-plan.md); T7 (the `src/contracts/` workspace) and T10 (this doc itself) have landed, and `validate:tasks` is now wired in `package.json`. Rewrite drops the parentheticals and points at the live artefacts. No cross-checked file needs editing.
+- **Non-canonical task ID normalised (in-target).** § 5 referenced `mvp.01-engine-core.fuzz`; the registry ID is `mvp.01-engine-core.09-fuzz-harness-1000-command-ai-vs-ai-determinism-test`. Rewrite uses the canonical ID. No cross-checked file affected.

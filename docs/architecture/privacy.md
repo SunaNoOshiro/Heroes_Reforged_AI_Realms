@@ -1,21 +1,20 @@
 # Privacy Artifact
 
-> **policyVersion: 1**
->
-> Version is the integer mirrored by `state.privacy.acceptedPolicyVersion`
-> (per [`state-flow.md` § Privacy Slice](./state-flow.md#privacy-slice))
-> and `state.privacy.currentDisclosureVersion`. Increment when the
-> material content of any section below changes; the next launch then
-> re-shows the disclosure modal in screen
-> [`56-options`](./wiki/screens/56-options/) before any analytics or
-> reporting surface activates.
->
+> **policyVersion: 1.** Mirrored by
+> `state.privacy.acceptedPolicyVersion` (per
+> [`state-flow.md` § Privacy Slice](./state-flow.md#privacy-slice))
+> and `state.privacy.currentDisclosureVersion`. Increment whenever
+> any section below changes materially; the next launch re-opens
+> the disclosure modal in screen
+> [`56-options`](./wiki/screens/56-options/) before any analytics
+> or reporting surface activates.
+
 ## 1. Data inventory
 
-The canonical inventory lives in
-[`data-inventory.md`](./data-inventory.md). Per-row sensitivity tier,
-medium, retention, and `WIPE_LOCAL_DATA` coverage are pinned there;
-this document is the user-facing summary.
+The canonical per-field inventory lives in
+[`data-inventory.md`](./data-inventory.md): sensitivity tier,
+medium, retention, and `WIPE_LOCAL_DATA` coverage are pinned
+there. This document is the user-facing summary.
 
 ## 2. Retention TTL matrix
 
@@ -23,7 +22,7 @@ this document is the user-facing summary.
 |---|---|---|---|
 | Save metadata + payload | IndexedDB `hr-saves.slots` | until user-deleted | thumbnails included |
 | Privacy options | IndexedDB `hr-profile.privacy` | until user-deleted | `WIPE_LOCAL_DATA scope=profile` |
-| Audit log journal | IndexedDB `hr-profile.audit` | until user-deleted | `WIPE_LOCAL_DATA scope=profile` |
+| Audit log journal | IndexedDB `hr-profile.audit` | until user-deleted | `WIPE_LOCAL_DATA scope=profile`; the privacy / erasure slice (`audit-log-entry.schema.json`) is **not yet registered** in `data-inventory.md` — see `## ⚠ Issues` |
 | Active-session display name | in-memory only | session | never persisted |
 | Lobby chat | in-memory only | session | never persisted |
 | Crash dump | in-memory only | session | export to file is user-initiated; no automatic upload |
@@ -32,9 +31,9 @@ this document is the user-facing summary.
 | AI gateway response | server response cache | ≤ 24 h | purged on TTL; never per-user |
 | Outbound content reports | IndexedDB `hr-profile.reports` | until dequeued or user-deleted | `WIPE_LOCAL_DATA scope=profile` |
 
-Retention beyond TTL on any surface is a CI-enforced violation: the
-service-side docs name "do not log" / "log as hash" / "TTL" rows that
-the deploy step must satisfy.
+Each "do not log" / "log as hash" / "TTL" row above is restated in
+the relevant service-side doc; deploy-time misconfiguration that
+extends a TTL is a CI-enforced violation.
 
 ## 3. Scrubbing rules
 
@@ -43,75 +42,77 @@ The `formatUserError` / `formatDevError` redactor (per
 strips:
 
 - file paths under `node_modules/` and absolute filesystem paths;
-- IP literals (IPv4 dotted-quad, IPv6 colon-separated) — covers WebRTC
-  ICE addresses surfaced in
-  [`64-network-lobby/`](./wiki/screens/64-network-lobby/) peer-failure
-  toasts;
-- base64 payloads ≥ 32 characters (heuristic for SDP / ICE blobs and
-  signed-blob fragments);
+- IP literals (IPv4 dotted-quad, IPv6 colon-separated) — covers
+  WebRTC ICE addresses surfaced in
+  [`64-network-lobby/`](./wiki/screens/64-network-lobby/)
+  peer-failure toasts;
+- base64 payloads ≥ 32 characters (heuristic for SDP / ICE blobs
+  and signed-blob fragments);
 - any structured-error field tagged `redact: true` (used by
   pack-signature failures per
   [`crypto-rules.md` § 2](./crypto-rules.md#2-throw--uniform-error-never-carry-the-secret)).
 
 In production builds, `Error.cause` chains are dropped entirely
-(per [`production-build.md` rule 3](./production-build.md#3-formatusererror-is-the-only-ui-error-sink));
-no stack frames carrying repository file paths reach the bundle's UI
-sinks. The on-device crash log writer consumes `formatDevError` and
-therefore inherits the same redactor.
+(per
+[`production-build.md` rule 3](./production-build.md#3-formatusererror-is-the-only-ui-error-sink));
+no stack frames carrying repository file paths reach the bundle's
+UI sinks. The on-device crash log writer consumes `formatDevError`
+and inherits the same redactor.
 
 The desync redactor declared in
 [`desync-redaction.md`](./desync-redaction.md) tags command fields
 `public` or `hidden` per the closed enum on
-[`command-schema.md`](./command-schema.md), and rewrites the
-last-K-commands payload before it leaves the engine — so a
-desync report cannot leak hero loadouts, spell choices, or
-fog-of-war movement intentions.
+[`command-schema.md`](./command-schema.md) and rewrites the
+last-K-commands payload before it leaves the engine — so a desync
+report cannot leak hero loadouts, spell choices, or fog-of-war
+movement intentions.
 
 ## 4. Third parties
 
-The complete list of third-party processors that may receive any data
-from this product lives in [`docs/legal/processors.md`](../legal/processors.md).
-A change to that list (adding a CDN, hosting platform, AI provider,
-or analytics SDK) requires a DPA per
+The complete list of third-party processors that may receive any
+data from this product lives in
+[`docs/legal/processors.md`](../legal/processors.md). Adding a
+CDN, hosting platform, AI provider, or analytics SDK requires a
+DPA per
 [`docs/legal/dpa-checklist.md`](../legal/dpa-checklist.md) and a
-matching policyVersion bump on this document.
+matching `policyVersion` bump on this document.
 
 ## 5. Compliance posture
 
 GDPR, CCPA, and COPPA scope, plus the age-gate hookup, live in
-[`docs/legal/compliance.md`](../legal/compliance.md). The cliff
-notes:
+[`docs/legal/compliance.md`](../legal/compliance.md). Cliff notes:
 
-- COPPA: under-13 sign-in is not implemented; no account system at
-  v1; mature-content gate (`config.player.allowMatureContent`) is
-  off by default per [`pack-trust.md`](./pack-trust.md) § Content
+- **COPPA** — no under-13 sign-in; no account system at v1; the
+  mature-content gate (`config.player.allowMatureContent`) is off
+  by default per [`pack-trust.md`](./pack-trust.md) § Content
   Rating.
-- GDPR Art. 17: the erasure pathway is `WIPE_LOCAL_DATA` →
+- **GDPR Art. 17** — the erasure pathway is `WIPE_LOCAL_DATA` →
   `REQUEST_ERASURE_RECEIPT` → screen
-  [`54-system-menu`](./wiki/screens/54-system-menu/). The signed
+  [`54-system-menu`](./wiki/screens/54-system-menu/); the signed
   receipt is the verifiable artifact.
-- CCPA §1798.105: the same flow satisfies the "Right to Delete."
-- No cross-border data export is in scope at v1 because no
-  account / per-user identifiers are persisted.
+- **CCPA §1798.105** — the same flow satisfies the "Right to
+  Delete."
+- **No cross-border export at v1** — no account or per-user
+  identifier is persisted.
 
 ## 6. Erasure pathway
 
-`WIPE_LOCAL_DATA` wipes the local inventory rows. This
-plan layers the **receipt** on top:
+`WIPE_LOCAL_DATA` clears the local inventory rows; the receipt is
+layered on top:
 
 1. `REQUEST_ERASURE_RECEIPT` writes a row to the local audit log
    ([`audit-log-entry.schema.json`](../../content-schema/schemas/audit-log-entry.schema.json))
-   with `type: ERASURE`, `erasureRequestId`, `scope`, `performedAt`,
-   `contentHash`.
-2. Screen [`54-system-menu`](./wiki/screens/54-system-menu/) renders
-   the receipt JSON
+   with `type: "ERASURE"`, `erasureRequestId`, `scope`,
+   `performedAt`, `contentHash`.
+2. Screen [`54-system-menu`](./wiki/screens/54-system-menu/)
+   renders the receipt JSON
    ([`erasure-receipt.schema.json`](../../content-schema/schemas/erasure-receipt.schema.json))
-   and offers "Copy to clipboard."
-3. If the user is in an active multiplayer session, the receipt also
-   carries `signalingSessionId` and the user is offered a second
-   affordance "Request server-side erasure" that envelopes the
-   receipt and queues it on the local outbound `erasure-queue`
-   (delivered when the moderation backend lands).
+   in `ErasureReceiptModal` and offers "Copy to clipboard."
+3. If the user is in an active multiplayer session, the receipt
+   also carries `signalingSessionId` and the user is offered a
+   second affordance "Request server-side erasure" that envelopes
+   the receipt and queues it on the local outbound
+   `erasure-queue` (delivered when the moderation backend lands).
 4. Until that backend exists, the manual fallback in
    [`docs/legal/erasure-process.md`](../legal/erasure-process.md)
    names an email contact, a 30-day SLA, and a scope statement.
@@ -120,33 +121,38 @@ plan layers the **receipt** on top:
 
 Telemetry is **off by default**. No analytics SDK loads at first
 paint; `state.privacy.allowAnalytics === true` is the load gate
-declared in [`production-build.md` rule 3](./production-build.md#3-formatusererror-is-the-only-ui-error-sink).
+declared in
+[`production-build.md` rule 3](./production-build.md#3-formatusererror-is-the-only-ui-error-sink).
 The opt-in toggle lives in screen
 [`56-options`](./wiki/screens/56-options/) (Privacy pane) and is
-gated behind the disclosure modal that lists every row of
-[`data-inventory.md`](./data-inventory.md) before it can be flipped.
+gated behind the disclosure modal, which lists every row of
+[`data-inventory.md`](./data-inventory.md) before it can be
+flipped.
 
-`state.privacy.options.analyticsClientId` is **not generated at v1**.
-Future analytics integration must:
+`state.privacy.options.analyticsClientId` is **not generated at
+v1**. A future analytics integration must:
 
 - be opt-in (`state.privacy.options.analyticsOptIn === true`);
-- generate a UUIDv4 `analyticsClientId` on the toggle, never before;
+- generate a UUIDv4 `analyticsClientId` on the toggle, never
+  before;
 - be regeneratable via "Reset analytics ID" in the privacy pane;
 - be wiped by `WIPE_LOCAL_DATA scope=profile|all`.
 
 ## 8. Versioning
 
-The top-of-file `policyVersion: 1` is mirrored by:
+`policyVersion: 1` (top of file) is mirrored by:
 
-- `state.privacy.acceptedPolicyVersion` — the integer the user has
-  accepted; gates the privacy-disclosure modal;
-- `state.privacy.currentDisclosureVersion` — the compile-time
-  constant that increments when a section above changes materially.
+- `state.privacy.acceptedPolicyVersion` — the integer the user
+  has accepted; gates the privacy-disclosure modal;
+- `state.privacy.currentDisclosureVersion` — compile-time
+  constant that increments when a section above changes
+  materially.
 
-If `acceptedPolicyVersion < currentDisclosureVersion`, the disclosure
-modal in screen [`56-options`](./wiki/screens/56-options/) re-opens
-on next launch. The modal documents the diff between the two
-versions and re-records consent before any opt-in toggle is honoured.
+When `acceptedPolicyVersion < currentDisclosureVersion`, the
+disclosure modal in screen
+[`56-options`](./wiki/screens/56-options/) re-opens on next
+launch, documents the version diff, and re-records consent
+before any opt-in toggle is honoured.
 
 ## 9. Cross-references
 
@@ -162,3 +168,81 @@ versions and re-records consent before any opt-in toggle is honoured.
 - [`docs/legal/erasure-process.md`](../legal/erasure-process.md) — manual erasure fallback.
 - [`services/signaling/observability.md`](../../services/signaling/observability.md) — signaling logs.
 - [`services/ai-gateway/retention.md`](../../services/ai-gateway/retention.md) — AI gateway retention.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — `PrivacyDisclosureModal` and the Privacy pane match
+  [`wiki/screens/56-options/spec.md`](./wiki/screens/56-options/spec.md)
+  and
+  [`wiki/screens/56-options/interactions.md`](./wiki/screens/56-options/interactions.md);
+  `ErasureReceiptModal` plus `WIPE_LOCAL_DATA` /
+  `REQUEST_ERASURE_RECEIPT` wiring match
+  [`wiki/screens/54-system-menu/spec.md`](./wiki/screens/54-system-menu/spec.md)
+  and
+  [`wiki/screens/54-system-menu/data-contracts.md`](./wiki/screens/54-system-menu/data-contracts.md);
+  ICE-toast scope aligns with
+  [`wiki/screens/64-network-lobby/`](./wiki/screens/64-network-lobby/).
+- **Schema: ✔** — `type` / `erasureRequestId` / `scope` /
+  `performedAt` / `contentHash` fields match
+  [`audit-log-entry.schema.json`](../../content-schema/schemas/audit-log-entry.schema.json);
+  the receipt JSON and `signalingSessionId` carry-forward match
+  [`erasure-receipt.schema.json`](../../content-schema/schemas/erasure-receipt.schema.json);
+  `WIPE_LOCAL_DATA` and `REQUEST_ERASURE_RECEIPT` are defined in
+  [`command-schema.md`](./command-schema.md).
+- **Tasks: ⚠** — Privacy.md is referenced by the four owning tasks
+  ([`tasks/mvp/02-content-schemas/40-privacy-and-legal-docs.md`](../../tasks/mvp/02-content-schemas/40-privacy-and-legal-docs.md),
+  [`tasks/mvp/07-ui-shell/22-privacy-pane-in-options.md`](../../tasks/mvp/07-ui-shell/22-privacy-pane-in-options.md),
+  [`tasks/mvp/07-ui-shell/25-privacy-footer-and-disclosure-modal.md`](../../tasks/mvp/07-ui-shell/25-privacy-footer-and-disclosure-modal.md),
+  [`tasks/mvp/07-ui-shell/26-erasure-receipt-modal.md`](../../tasks/mvp/07-ui-shell/26-erasure-receipt-modal.md)),
+  but the privacy / erasure audit-log slice that § 2 and § 6 rely
+  on is unregistered in
+  [`data-inventory.md`](./data-inventory.md) (already self-flagged
+  in that doc's `## ⚠ Issues`). See below.
+
+## ⚠ Issues
+
+- **Missing data-inventory row for the privacy / erasure audit-log
+  slice (`hr-profile.audit`).** § 2 lists "Audit log journal |
+  IndexedDB `hr-profile.audit`" and § 6 step 1 writes
+  [`audit-log-entry.schema.json`](../../content-schema/schemas/audit-log-entry.schema.json)
+  rows into that store, but
+  [`data-inventory.md`](./data-inventory.md) only registers the
+  `consent audit log` (`consent-audit-log.schema.json`) row in
+  `hr-profile.audit`. The privacy / erasure / replay journal
+  (`AuditLogEntry`) is unregistered. This is the same gap already
+  surfaced in `data-inventory.md`'s own `## ⚠ Issues` block. Per
+  CLAUDE.md root contract ("every persisted field is registered in
+  `data-inventory.md`"), the owning task —
+  [`tasks/mvp/02-content-schemas/41-error-and-audit-schemas.md`](../../tasks/mvp/02-content-schemas/41-error-and-audit-schemas.md)
+  — must add the row before the slice ships. Suggested values:
+  Field=`privacy audit log`,
+  State path=`state.profile.auditLog`,
+  Medium=`IndexedDB (hr-profile.audit)`, Sensitivity=`low`,
+  Retention=`rolling capacity (capped ring buffer)`,
+  Wipe scope=`WIPE_LOCAL_DATA scope=profile|all`,
+  Notes=`audit-log-entry.schema.json`. Skill did not edit
+  `data-inventory.md` (Hard Prohibition D — never edit
+  cross-checked files).
+- **State-path naming divergence:
+  `state.privacy.acceptedPolicyVersion` vs
+  `state.privacy.disclosureSeenVersion`.** This doc's preamble
+  and § 8 use `state.privacy.acceptedPolicyVersion` — consistent
+  with
+  [`state-flow.md` § Privacy Slice](./state-flow.md#privacy-slice)
+  — but
+  [`wiki/screens/56-options/spec.md`](./wiki/screens/56-options/spec.md)
+  line 46,
+  [`wiki/screens/56-options/data-contracts.md`](./wiki/screens/56-options/data-contracts.md)
+  line 31, and
+  [`wiki/screens/56-options/interactions.md`](./wiki/screens/56-options/interactions.md)
+  lines 25 / 51–52 use `state.privacy.disclosureSeenVersion` for
+  the disclosure-modal gate. The canonical state-path lives in
+  `state-flow.md`; the screen 56 package should reconcile (either
+  rename to `acceptedPolicyVersion`, or `state-flow.md` /
+  `privacy.md` / the `audit-log-entry.schema.json`
+  `POLICY_ACCEPTED.policyVersion` description should add
+  `disclosureSeenVersion` as a sibling field). Skill kept the
+  state-flow-canonical name in this rewrite (Hard Prohibition A —
+  never silently rewrite a structural-invariant claim).

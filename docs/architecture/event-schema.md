@@ -1,48 +1,56 @@
 # Event Schema
 
-Canonical reference for the closed event vocabulary. Pinned parallel
-to [`command-schema.md`](./command-schema.md): commands mutate state,
-events describe what happened so consumers (animation timeline, sound
-system, future replay diagnostics) can react.
+Per-kind catalog of the closed event vocabulary. Pinned parallel to
+[`command-schema.md`](./command-schema.md): commands mutate state,
+events describe what happened so consumers (animation timeline,
+sound system, future replay diagnostics) can react.
 
-The runtime contract — emission timing, consumer iteration order, no
-veto, no re-entry, retention, save/load, error isolation, and
+The runtime contract — emission timing, consumer iteration order,
+no-veto, no re-entry, retention, save/load, error isolation, and
 determinism guard rules — lives in
 [`event-system.md`](./event-system.md). The closed JSON schema lives
 in
 [`content-schema/schemas/event.schema.json`](../../content-schema/schemas/event.schema.json).
-This file enumerates each kind, its payload, its emitting command(s),
-and its consumer(s).
+This file is the human-readable companion: one section per `kind`
+with payload, emitter command(s), and consumer(s).
 
 ---
 
-## Contract
+## Contract (summary)
 
-- Every event has a `kind` field (closed enum) and a `payload` object.
-- Events are **pure data** — no methods, no callbacks, no side effects.
+Full rules in [`event-system.md`](./event-system.md). The clauses
+this catalog leans on:
+
+- Every event has a `kind` field (closed enum) and a `payload`
+  object. Events are pure data — no methods, no callbacks.
 - Events are emitted synchronously by command handlers and returned
-  on the dispatcher's `Result.events` array; they are never globally
-  retained by the engine.
-- Consumers iterate the array in insertion order on their own clock.
-  No consumer may cancel, reorder, mutate, or replace an event.
+  on the dispatcher's `Result.events` array. Consumers iterate in
+  insertion order on their own clock; no consumer may cancel,
+  reorder, mutate, or replace an event.
 - Events MUST validate against
-  [`event.schema.json`](../../content-schema/schemas/event.schema.json);
-  any extra property, unknown `kind`, or malformed payload is a
+  [`event.schema.json`](../../content-schema/schemas/event.schema.json).
+  Any extra property, unknown `kind`, or malformed payload is a
   `ValidationError`.
 - Events are **never serialized**. Saves contain `(seed, content
-  hashes, command log, state snapshot)` only; events are re-derived
-  by replay. See [`event-system.md` § 7](./event-system.md#7-save--load).
-- Screen interaction tokens are checked by
-  [`screen-event-coverage.json`](./screen-event-coverage.json) and
-  the screen-event coverage validator. A token must be a schema kind,
-  an alias to one, UI-local, or explicitly out of scope with an
-  owning task.
+  hashes, command log, state snapshot)`; events are re-derived by
+  replay. See
+  [`event-system.md` § 7](./event-system.md#7-save--load).
+- Screen tokens are validated by
+  [`screen-event-coverage.json`](./screen-event-coverage.json): a
+  token must be a schema kind, an alias to one, UI-local, or
+  explicitly out of scope with an owning task.
+
+Adding a new kind requires extending `event.schema.json`, this doc,
+and [`screen-event-coverage.json`](./screen-event-coverage.json) in
+the same change.
 
 ---
 
 ## Summary
 
-| Kind | Emitter(s) | Consumer(s) | Payload |
+The 13 kinds enumerated below are the closed vocabulary.
+
+| Kind | Emitter command(s) | Consumer(s) | Payload keys |
 |---|---|---|---|
 | `UNIT_MOVED` | `BATTLE_MOVE`, `MOVE_HERO` (presentation) | animation timeline, sound system | `unitId`, `fromHex`, `toHex`, `path?` |
 | `UNIT_ATTACKED` | `BATTLE_ATTACK`, `AUTO_RESOLVE_BATTLE` | animation timeline, sound system (`sword_hit`) | `attackerStackId`, `defenderStackId`, `damage` |
@@ -58,20 +66,16 @@ and its consumer(s).
 | `DAY_END` | `END_DAY` (pre-advance) | animation timeline, sound system (`end_turn`) | `turn` |
 | `WEEK_START` | `END_DAY` (day-7 rollover) | animation timeline, sound system | `week`, `themedWeekId?` |
 
-The 13 kinds enumerated above are the closed vocabulary. Adding a new
-kind requires extending `event.schema.json`, this doc, and
-[`screen-event-coverage.json`](./screen-event-coverage.json) in the
-same change.
+The animation-timeline owner is
+[`tasks/mvp/06-renderer/07-event-log-animation-timeline.md`](../../tasks/mvp/06-renderer/07-event-log-animation-timeline.md);
+the sound-system owner is
+[`tasks/phase-3/04-polish/02-sound-system-event-log-driven.md`](../../tasks/phase-3/04-polish/02-sound-system-event-log-driven.md).
 
 ---
 
-## Combat-Tactical Events
+## Combat-tactical events
 
-Events emitted from inside the tactical-battle nested reducer. Driven
-into presentation by the animation timeline
-([`tasks/mvp/06-renderer/07-event-log-animation-timeline.md`](../../tasks/mvp/06-renderer/07-event-log-animation-timeline.md))
-and the sound system
-([`tasks/phase-3/04-polish/02-sound-system-event-log-driven.md`](../../tasks/phase-3/04-polish/02-sound-system-event-log-driven.md)).
+Emitted from inside the tactical-battle nested reducer.
 
 ### UNIT_MOVED
 
@@ -89,14 +93,12 @@ A unit/stack moved from one hex to another.
 }
 ```
 
-**Emitted by:** `BATTLE_MOVE` (tactical), `MOVE_HERO` (adventure-map
-presentation projection).
-
-**Consumed by:** animation timeline (walk animation along path).
-
-**Determinism:** payload is a pure projection of the move command;
-no RNG. `path` is optional — present when the consumer must animate
-hex-by-hex traversal, omitted for teleport-style moves.
+- **Emitted by:** `BATTLE_MOVE` (tactical), `MOVE_HERO` (adventure-
+  map presentation projection).
+- **Consumed by:** animation timeline (walk animation along path).
+- **Determinism:** payload is a pure projection of the move command;
+  no RNG. `path` is present when the consumer must animate hex-by-
+  hex traversal, omitted for teleport-style moves.
 
 ---
 
@@ -115,13 +117,12 @@ A stack performed a melee or ranged attack.
 }
 ```
 
-**Emitted by:** `BATTLE_ATTACK`, `AUTO_RESOLVE_BATTLE` (per-strike).
-
-**Consumed by:** animation timeline (attack swing + hit/miss),
-sound system (`sword_hit`).
-
-**Determinism:** `damage` is the integer post-formula damage; no
-RNG inside the event.
+- **Emitted by:** `BATTLE_ATTACK`, `AUTO_RESOLVE_BATTLE`
+  (per-strike).
+- **Consumed by:** animation timeline (attack swing + hit/miss),
+  sound system (`sword_hit`).
+- **Determinism:** `damage` is the integer post-formula damage; no
+  RNG inside the event.
 
 ---
 
@@ -138,10 +139,10 @@ A stack reached zero HP and is removed from the battlefield.
 }
 ```
 
-**Emitted by:** `BATTLE_ATTACK`, `BATTLE_SPELL`, `AUTO_RESOLVE_BATTLE`.
-
-**Consumed by:** animation timeline (death animation, then unit
-removal), sound system (`death_cry`).
+- **Emitted by:** `BATTLE_ATTACK`, `BATTLE_SPELL`,
+  `AUTO_RESOLVE_BATTLE`.
+- **Consumed by:** animation timeline (death animation, then unit
+  removal), sound system (`death_cry`).
 
 ---
 
@@ -159,10 +160,9 @@ A ranged unit launched a projectile.
 }
 ```
 
-**Emitted by:** `BATTLE_ATTACK` for ranged stacks; one
-`PROJECTILE_FIRED` precedes the corresponding `UNIT_ATTACKED`.
-
-**Consumed by:** animation timeline (arrow / magic-bolt arc).
+- **Emitted by:** `BATTLE_ATTACK` for ranged stacks; one
+  `PROJECTILE_FIRED` precedes the corresponding `UNIT_ATTACKED`.
+- **Consumed by:** animation timeline (arrow / magic-bolt arc).
 
 ---
 
@@ -185,18 +185,17 @@ contexts.
 }
 ```
 
-**Emitted by:** `SPELL_CAST`.
-
-**Consumed by:** animation timeline (spell VFX at target hex /
-target stack), sound system (`spell_cast_<school>`; school is
-resolved from `spellId` against the spell registry, not embedded in
-the event).
+- **Emitted by:** `SPELL_CAST`.
+- **Consumed by:** animation timeline (spell VFX at target hex /
+  target stack), sound system (`spell_cast_<school>`; school is
+  resolved from `spellId` against the spell registry, not embedded
+  in the event).
 
 ---
 
-## Adventure-Map Events
+## Adventure-map events
 
-Events emitted from the strategic-layer reducer. Driven by the same
+Emitted from the strategic-layer reducer; consumed by the same
 animation-timeline / sound-system pair as combat events.
 
 ### MINE_CAPTURED
@@ -214,10 +213,9 @@ A mine changed ownership.
 }
 ```
 
-**Emitted by:** `CAPTURE_MINE` (chained from `MOVE_HERO` arrival).
-
-**Consumed by:** animation timeline (flag swap), sound system
-(`mine_capture`).
+- **Emitted by:** `CAPTURE_MINE` (chained from `MOVE_HERO` arrival).
+- **Consumed by:** animation timeline (flag swap), sound system
+  (`mine_capture`).
 
 ---
 
@@ -236,11 +234,10 @@ An encounter created pending battle state.
 }
 ```
 
-**Emitted by:** `INITIATE_BATTLE` (chained from `MOVE_HERO`
-arrival).
-
-**Consumed by:** animation timeline (encounter zoom / banner),
-sound system.
+- **Emitted by:** `INITIATE_BATTLE` (chained from `MOVE_HERO`
+  arrival).
+- **Consumed by:** animation timeline (encounter zoom / banner),
+  sound system.
 
 ---
 
@@ -258,9 +255,9 @@ A hero entered a town tile.
 }
 ```
 
-**Emitted by:** `MOVE_HERO` (arrival on a town tile).
-
-**Consumed by:** animation timeline (gate animation), sound system.
+- **Emitted by:** `MOVE_HERO` (arrival on a town tile).
+- **Consumed by:** animation timeline (gate animation), sound
+  system.
 
 ---
 
@@ -278,10 +275,9 @@ A town building completed construction.
 }
 ```
 
-**Emitted by:** `BUILD_BUILDING`.
-
-**Consumed by:** animation timeline (build animation), sound
-system (`construction`).
+- **Emitted by:** `BUILD_BUILDING`.
+- **Consumed by:** animation timeline (build animation), sound
+  system (`construction`).
 
 ---
 
@@ -299,19 +295,18 @@ A hero gained a level.
 }
 ```
 
-**Emitted by:** `LEVEL_UP`.
-
-**Consumed by:** animation timeline (XP bar / primary-stat flash),
-sound system (`level_up`). The level-up dialog screen
-([`docs/architecture/wiki/screens/48-level-up-dialog/`](./wiki/screens/48-level-up-dialog/))
-binds to this event for its post-confirm animation.
+- **Emitted by:** `LEVEL_UP`.
+- **Consumed by:** animation timeline (XP bar / primary-stat flash),
+  sound system (`level_up`). The level-up dialog screen
+  ([`docs/architecture/wiki/screens/48-level-up-dialog/`](./wiki/screens/48-level-up-dialog/))
+  binds to this event for its post-confirm animation.
 
 ---
 
-## Turn-Marker Events
+## Turn-marker events
 
-Calendar / event-log markers emitted by `END_DAY`. Used by HUD,
-end-of-turn banner, and weekly-event popup.
+Calendar / event-log markers emitted by `END_DAY`. Consumed by the
+HUD, end-of-turn banner, and weekly-event popup.
 
 ### DAY_START
 
@@ -327,9 +322,8 @@ notified).
 }
 ```
 
-**Emitted by:** `END_DAY` (after advancing the calendar).
-
-**Consumed by:** animation timeline (banner), sound system.
+- **Emitted by:** `END_DAY` (after advancing the calendar).
+- **Consumed by:** animation timeline (banner), sound system.
 
 ---
 
@@ -346,9 +340,8 @@ The strategic day ended (daily resource income collected).
 }
 ```
 
-**Emitted by:** `END_DAY` (before advancing the calendar).
-
-**Consumed by:** animation timeline, sound system (`end_turn`).
+- **Emitted by:** `END_DAY` (before advancing the calendar).
+- **Consumed by:** animation timeline, sound system (`end_turn`).
 
 ---
 
@@ -366,28 +359,77 @@ A new week began (weekly unit growth + themed-week roll).
 }
 ```
 
-**Emitted by:** `END_DAY` on day-7 rollover; fires exactly once per
-week boundary per
-[`tasks/mvp/05-adventure-map/02-turn-structure.md`](../../tasks/mvp/05-adventure-map/02-turn-structure.md).
-
-**Consumed by:** animation timeline, sound system. The themed-week
-popup screen consumes `themedWeekId` to resolve the localized
-description.
+- **Emitted by:** `END_DAY` on day-7 rollover; fires exactly once
+  per week boundary per
+  [`tasks/mvp/05-adventure-map/02-turn-structure.md`](../../tasks/mvp/05-adventure-map/02-turn-structure.md).
+- **Consumed by:** animation timeline, sound system. The themed-
+  week popup screen consumes `themedWeekId` to resolve the
+  localized description.
 
 ---
 
-## Related Docs
+## Related docs
 
 - [`event-system.md`](./event-system.md) — runtime contract
   (emission, consumption, no-veto, retention, save/load, error
   isolation, determinism guard rules).
 - [`command-schema.md`](./command-schema.md) — the command
   vocabulary that emits these events.
+- [`schema-matrix.md`](./schema-matrix.md) — record-type matrix
+  including the `Event` row.
 - [`screen-event-coverage.json`](./screen-event-coverage.json) —
   closed-set coverage validator for ALL_CAPS event tokens in screen
   packages.
-- [`task-command-token-coverage.json`](./task-command-token-coverage.json) —
-  task-side classification of event-only tokens (sibling to this
-  doc; the canonical kind list lives here).
-- [`schema-matrix.md`](./schema-matrix.md) — record-type matrix
-  including the `Event` row.
+- [`task-command-token-coverage.json`](./task-command-token-coverage.json)
+  — task-side classification of event-only tokens (sibling to this
+  doc). The canonical kind list lives in this file and in
+  [`event.schema.json`](../../content-schema/schemas/event.schema.json).
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — `wiki/screens/48-level-up-dialog/` exists and
+  `HERO_LEVEL_UP` is mapped to that screen in
+  [`screen-event-coverage.json`](./screen-event-coverage.json); all
+  13 kinds appear in the coverage map.
+- **Schema: ⚠** — All 13 `kind` consts, payload shapes, required
+  keys, and minima in
+  [`event.schema.json`](../../content-schema/schemas/event.schema.json)
+  match this doc, and the `Event` row exists in
+  [`schema-matrix.md`](./schema-matrix.md). The doc and the schema
+  agree that `UNIT_DIED` is emitted by `BATTLE_SPELL`, but
+  `BATTLE_SPELL` is not a member of the closed `Command` union in
+  [`command.schema.json`](../../content-schema/schemas/command.schema.json)
+  (the schema only ships `SPELL_CAST`). Detail in `## ⚠ Issues`.
+- **Tasks: ✔** — Animation-timeline owner
+  [`tasks/mvp/06-renderer/07-event-log-animation-timeline.md`](../../tasks/mvp/06-renderer/07-event-log-animation-timeline.md),
+  sound-system owner
+  [`tasks/phase-3/04-polish/02-sound-system-event-log-driven.md`](../../tasks/phase-3/04-polish/02-sound-system-event-log-driven.md),
+  turn-structure owner
+  [`tasks/mvp/05-adventure-map/02-turn-structure.md`](../../tasks/mvp/05-adventure-map/02-turn-structure.md),
+  and themed-week roller `phase-2.08-meta-systems.08-themed-week-roller`
+  all resolve in `tasks/task-registry.json`.
+
+## ⚠ Issues
+
+- **`BATTLE_SPELL` emitter is unbacked by the command schema.** This
+  doc and the `unitDied` `description` in
+  [`event.schema.json`](../../content-schema/schemas/event.schema.json)
+  list `BATTLE_SPELL` among the emitters of `UNIT_DIED`, and
+  [`command-schema.md` § BATTLE_SPELL](./command-schema.md#battle_spell)
+  documents the command, but the closed `Command` `oneOf` in
+  [`command.schema.json`](../../content-schema/schemas/command.schema.json)
+  has no `BATTLE_SPELL` entry (the schema uses `SPELL_CAST` for both
+  adventure and tactical spell casts). The same gap is already
+  flagged in the [`command-schema.md` Sync Check](./command-schema.md).
+  Per the project root contract that schemas are the public
+  contract, the closing change is one of: (a) add a `BATTLE_SPELL`
+  branch to `command.schema.json` (and regenerate
+  `enums.snapshot.json`) so the doc-side claim resolves, or (b)
+  rewrite the `BATTLE_SPELL` references in this doc, in
+  `event.schema.json`'s `unitDied.description`, and in
+  `command-schema.md` § `BATTLE_SPELL` to point at `SPELL_CAST`. The
+  doc-audit skill leaves the choice to the owning task because
+  either fix touches files outside this audit's scope (Hard
+  Prohibition D).

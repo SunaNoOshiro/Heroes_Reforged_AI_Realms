@@ -10,29 +10,44 @@
 ### Content Schemas And Registries
 | Schema / Registry | Used For | Canonical Source |
 | --- | --- | --- |
-| `asset-index.schema.json` | Backgrounds, frames, icons, cursor sprites, animation manifests. | `content-schema/schemas/asset-index.schema.json` |
-| `localization.schema.json` | UI labels, status text, disabled reasons, error messages. | `content-schema/schemas/localization.schema.json` |
-| `ruleset.schema.json` | Deterministic constants, formulas, and guard rules consumed by commands. | `content-schema/schemas/ruleset.schema.json` |
-| `hero.schema.json` | Hero identity, stats, army, skills, spellbook, equipment, and ownership selectors. | `content-schema/schemas/hero.schema.json` |
-| `resource-id.schema.json` | Canonical resource IDs used by costs, rewards, income, trade rates, and affordability checks. | `content-schema/schemas/resource-id.schema.json` |
-| `command.schema.json` | Reducer-backed gameplay command payloads dispatched or previewed by this screen. | `content-schema/schemas/command.schema.json` |
-| Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, or shell state as listed below. | Loaded content/runtime registries. |
+| `asset-index.schema.json` | Frame, panel, drawer, and icon sprites for the status strip and message drawer. | `content-schema/schemas/asset-index.schema.json` |
+| `localization.schema.json` | Status text, disabled reasons, error messages, and modded-indicator labels. | `content-schema/schemas/localization.schema.json` |
+| `resource-id.schema.json` | Canonical IDs for resource-delta badges (gold, wood, ore, mercury, sulfur, crystal, gems). | `content-schema/schemas/resource-id.schema.json` |
+
+The status bar dispatches no reducer commands, so
+`command.schema.json`, `ruleset.schema.json`, and entity registries
+(hero, town, spell, artifact, …) are not consumed here. Messages
+arrive as pre-formatted localized strings and resource deltas; see
+[`error-formatter.md`](../../../error-formatter.md) for error
+construction.
 
 ### Runtime State Selectors
-| UI Element | Selector | Notes |
+| Binding | Selector | Notes |
 | --- | --- | --- |
-| `hoverContext` | `state.ui.adventure.hoverContext` | Current hover/focus description. |
-| `latestMessage` | `state.ui.messages.latest` | Most recent localized status event. |
-| `messageHistory` | `state.ui.messages.history` | Client-side message history, not replay authoritative. |
-| `resourceDeltas` | `selectors.economy.lastVisibleDeltas` | Recent command-result deltas. |
+| `hoverContext` | `state.ui.adventure.hoverContext` | Localized hover/focus description from adventure map or right-chrome. |
+| `latestMessage` | `state.ui.messages.latest` | Most recent localized status event; ticker source. |
+| `messageHistory` | `state.ui.messages.history` | Client-side ring buffer of recent messages; not replay-authoritative. |
+| `resourceDeltas` | `selectors.economy.lastVisibleDeltas` | Recent command-result deltas, keyed by `resource-id`. |
 | `drawerOpen` | `state.ui.statusBar.drawerOpen` | Local expanded/collapsed state. |
+| `pinnedMessageId` | `state.ui.statusBar.pinnedMessageId` | Local pin selection; persists only for the session. |
 | `moddedIndicator` | `selectors.session.moddedIndicator` | `off \| trusted \| sandboxed \| mixed` per [`pack-trust.md` § Modded Indicator](../../../pack-trust.md#6-modded-indicator). |
 
 ### Commands And Events
-- `EXPAND_STATUS_HISTORY` from `status.expand`: Shows recent UI feedback.
-- `PIN_STATUS_MESSAGE` from `status.pinMessage`: Pins selected visible message locally.
-- `CLEAR_STATUS_HISTORY` from `status.clear`: Clears client-only history, not gameplay records.
-- `COLLAPSE_STATUS_HISTORY` from `status.collapse`: Returns to single-line status strip.
+All four are UI-local tokens (no reducer entry). Matched by the
+`EXPAND_/PIN_/CLEAR_/COLLAPSE_` prefixes in
+[`screen-command-coverage.json`](../../../screen-command-coverage.json).
+
+| Token | Action ID | Effect |
+| --- | --- | --- |
+| `EXPAND_STATUS_HISTORY` | `status.expand` | Opens the message-history drawer. |
+| `PIN_STATUS_MESSAGE` | `status.pinMessage` | Pins the selected visible message locally. |
+| `CLEAR_STATUS_HISTORY` | `status.clear` | Clears the client-only message history. |
+| `COLLAPSE_STATUS_HISTORY` | `status.collapse` | Returns to the single-line status strip. |
+
+Inbound: reducer-produced events (movement, capture, combat
+resolution, errors) populate `state.ui.messages.latest` via the
+adventure event projector; this screen reads but does not mutate
+that path.
 
 ### Config Keys
 - `config.ui.locale`
@@ -40,32 +55,73 @@
 - `config.ui.animationSpeed`
 - `config.audio.enabled`
 - `config.audio.uiVolume`
-- `config.render.pixelSnap`
 
 ### Localization Keys
 - `ui.status-bar.title`
-- `ui.status-bar.actions.*`
+- `ui.status-bar.actions.expand`, `…actions.pin`, `…actions.clear`,
+  `…actions.collapse`
 - `ui.status-bar.status.*`
 - `ui.status-bar.errors.*`
-- `ui.status-bar.modded.off`
-- `ui.status-bar.modded.trusted`
-- `ui.status-bar.modded.sandboxed`
-- `ui.status-bar.modded.mixed`
-- `ui.common.ok`, `ui.common.cancel`, `ui.common.back`, `ui.common.close`
+- `ui.status-bar.modded.off` / `.trusted` / `.sandboxed` / `.mixed`
+- `ui.common.close`, `ui.common.clear`
 
 ### Asset, Sound, And VFX IDs
-- `ui.status-bar.background`
-- `ui.status-bar.frame`
-- `ui.status-bar.icons.*`
-- `audio.ui.hover`, `audio.ui.click`, `audio.adventure.*`
-- `vfx.status-bar.*`
+- `ui.status-bar.background`, `ui.status-bar.frame`,
+  `ui.status-bar.drawer-panel`
+- `ui.status-bar.icons.pin`, `…icons.clear`, `…icons.collapse`,
+  `…icons.modded-badge`
+- `audio.ui.hover`, `audio.ui.click`
+- `vfx.status-bar.message-slide-in`, `vfx.status-bar.drawer-fold`,
+  `vfx.status-bar.delta-glow`, `vfx.status-bar.pin-wax-seal`
 
 ### Save And Replay Fields
-- Persist reducer-approved gameplay state, setup records, content hashes, command inputs, and explicit draft records only when named by the owning system.
-- Do not persist hover, focus, tooltip, scroll, drag ghost, cursor blink, animation frame, or transient visual effects.
-- Replays use stable IDs and scalar command inputs, never raw paths, localized labels, rendered positions, or wall-clock timestamps.
+- Persisted: none. The status bar is pure presentation.
+- Replay-authoritative: none. `state.ui.messages.*`,
+  `state.ui.statusBar.*`, hover, focus, pin selection, and ticker
+  animation frames are transient UI state per
+  [`fail-loud.md`](../../../fail-loud.md) and the persistence
+  exemption for `state.ui.*` in
+  [`persistence.md`](../../../persistence.md).
+- The modded badge in replays is derived from `packHashes` in the
+  setup record, not from this screen's local selector.
 
 ### Validation And Fallback
-- Status messages are UI feedback derived from hover context, command results, and localized errors. They do not control reducers or alter replay state.
-- Missing presentation may fall back through asset resolver.
-- Missing gameplay records, invalid commands, and unresolved content IDs fail loudly before controls become enabled.
+- Status messages are presentation derived from hover context and
+  reducer-emitted events; they never feed back into the reducer or
+  alter replay state.
+- Missing presentation assets fall back through the asset resolver.
+- Missing localization keys surface the raw key (loud) per
+  [`untrusted-strings.md`](../../../untrusted-strings.md), never a
+  silent blank.
+- Error text is produced exclusively by
+  `formatUserError(err, locale)` from
+  [`error-formatter.md`](../../../error-formatter.md); never
+  constructed inline.
+
+## 🔍 Sync Check
+- Sibling `spec.md` § State Bindings — aligned; `pinnedMessageId`
+  added here matches the pin affordance documented in
+  `interactions.md`.
+- Sibling `interactions.md` § Actions — all four tokens mapped to
+  their local-ui prefixes; effect descriptions match.
+- Sibling `architecture.md` § State Inputs — aligned (six
+  bindings).
+- `mockup.html` — drawer with CLEAR + CLOSE buttons,
+  `data-action="status.clear"` and `"status.collapse"` present;
+  expand/pin trigger from collapsed strip and message-row hit
+  targets respectively.
+- `pack-trust.md` § 6 — selector path correct.
+- `screen-command-coverage.json` — `EXPAND_/PIN_/CLEAR_/COLLAPSE_`
+  all in `localUiPrefixes`.
+- `error-formatter.md`, `untrusted-strings.md`, `fail-loud.md`,
+  `persistence.md` — all exist at the linked paths.
+
+## ⚠ Issues
+- `state.ui.statusBar.pinnedMessageId` is referenced here and in
+  `interactions.md` but is not yet enumerated in a sibling arch
+  doc. Owning task should add a one-line entry to the adventure
+  UI-state inventory (in the adventure-map task spec, not this
+  screen) when implementing.
+- `vfx.status-bar.*` and `ui.status-bar.icons.*` IDs are proposed
+  here for the runtime asset index; confirm exact slugs against
+  the pack manifest when the implementing task lands.

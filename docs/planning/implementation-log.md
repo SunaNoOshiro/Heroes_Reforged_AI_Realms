@@ -1,10 +1,8 @@
 # Implementation Log
 
-This file tracks what is actually implemented or materially set up in
-the repository right now, what is only planned, and what should happen
-next.
-
-Use this as the fastest "current state" document.
+What is actually implemented or materially set up in the repository
+right now, what is only planned, and what should happen next. Use
+this as the fastest "current state" document.
 
 ## Status Summary
 
@@ -13,7 +11,7 @@ Current state:
 - architecture-first
 - planning-first
 - schema-first
-- contract-validation tooling now scaffolded at the repo root
+- contract-validation tooling scaffolded at the repo root
 - no gameplay runtime implemented yet
 - no renderer implemented yet
 - no editor implemented yet
@@ -28,20 +26,15 @@ What exists today:
 
 ## Implemented So Far
 
-The following work is already present in the repo:
-
 ### Repository Structure
 
-- Root `content-schema/` folder created for canonical schemas and
-  example JSON.
-- Root `src/` folder created for future implementation modules.
-- Root `src/content-runtime/` placeholder added for future pack loading,
+- `content-schema/` for canonical schemas and example JSON.
+- `src/` for future implementation modules.
+- `src/content-runtime/` placeholder for future pack loading,
   dependency resolution, and override handling.
-- Root `services/` folder added for optional backend adapters such as AI
-  gateway and signaling.
-- Root `research/` folder added for checked-in reference baselines and
-  source notes.
-- Root `resources/` folder created for future packs and assets.
+- `services/` for optional backend adapters (AI gateway, signaling).
+- `research/` for checked-in reference baselines and source notes.
+- `resources/` for future packs and assets.
 - Old `packages/` schema/example layout removed.
 
 ### Documentation
@@ -50,11 +43,11 @@ The following work is already present in the repo:
 - `AGENTS.md` updated for AI contributors.
 - `docs/architecture/` organized as the main design reference.
 - `docs/planning/` organized as the execution and milestone reference.
-- Added a dedicated `solo-build-lane.md` so a solo developer can find
-  the smallest path to a first playable slice without reading every
+- `solo-build-lane.md` added so a solo developer can find the
+  smallest path to a first playable slice without reading every
   module.
-- Canonical pack contract doc added for manifest fields, archive rules,
-  and folder layout.
+- Canonical pack-contract doc added for manifest fields, archive
+  rules, and folder layout.
 - AI integration doc added for provider-neutral generation and
   moderation boundaries.
 
@@ -62,22 +55,21 @@ The following work is already present in the repo:
 
 - JSON schema files added under `content-schema/schemas/`.
 - Canonical example records added under `content-schema/examples/`.
-- Schema docs updated to link directly to JSON schema files and example
-  files.
-- Directory READMEs now explain the difference between standalone record
+- Schema docs link directly to JSON schemas and example files.
+- Directory READMEs explain the difference between standalone-record
   fixtures, end-to-end pack fixtures, and AI-generation fixtures.
 
 ### Planning Alignment
 
-- MVP content-schema tasks now point to future runtime code under
+- MVP content-schema tasks point to future runtime code under
   `src/content-schema/`.
-- Engine-core tasks now point to future implementation under `src/`
+- Engine-core tasks point to future implementation under `src/`
   instead of the removed `packages/` layout.
-- Overview and backlog docs now reflect the `content-schema/`,
-  `src/`, and `resources/` structure.
-- Markdown task files now have a generated machine-readable companion in
+- Overview and backlog docs reflect the `content-schema/`, `src/`,
+  and `resources/` structure.
+- Markdown task files have a generated machine-readable companion in
   `tasks/task-registry.json`.
-- The main planning docs now separate live operator guidance from
+- The main planning docs separate live operator guidance from
   historical audits and reports.
 
 ### Tooling
@@ -85,31 +77,31 @@ The following work is already present in the repo:
 - Root workspace metadata added: `package.json` and
   `tsconfig.base.json`. (Earlier `pnpm-workspace.yaml` was removed
   2026-04-22 — see Audit-2026-04-22 N8; the repo uses npm.)
-- Repo validation scripts added for task-registry generation, Markdown
-  link checking, and contract checks.
-- Contract validation now also checks task-doc hygiene: every task file
-  must carry outputs, dependencies, acceptance criteria, and a 2–6 hour
-  estimate.
+- Repo validation scripts added for task-registry generation,
+  Markdown link checking, and contract checks.
+- Contract validation also checks task-doc hygiene: every task file
+  must carry outputs, dependencies, acceptance criteria, and a 2–6
+  hour estimate.
 - Initial GitHub Actions workflow added for repo validation and tests.
 
-### Audit-2026-04-20 Implementation Pass
+### Audit-2026-04-20 Implementation Pass (2026-04-21)
 
-Applied on 2026-04-21, following
-[`audit-2026-04-20.md`](../archive/audit-2026-04-20.md):
+Applied per [`audit-2026-04-20.md`](../archive/audit-2026-04-20.md):
 
-- Renamed reference faction from "Castle" to **Emberwild** across 44
-  task and doc files; all IP-unsafe references (legacy expansion, classic fantasy strategy, "Angels",
-  "Pikeman", "Sword of Hellfire") replaced with original material
-  (Phoenix Vanguard, Ash Hound, Torch of Cinders, Kaelis, ...).
-- Renamed the top town fortification tier from Castle → **Keep**
-  (Fort → Citadel → Keep progression), decoupled from faction name.
+- Renamed reference faction Castle → **Emberwild** across 44 task
+  and doc files; all IP-unsafe references (legacy expansion, classic
+  fantasy strategy, "Angels", "Pikeman", "Sword of Hellfire")
+  replaced with original material (Phoenix Vanguard, Ash Hound,
+  Torch of Cinders, Kaelis, …).
+- Renamed top town fortification tier Castle → **Keep**
+  (Fort → Citadel → Keep), decoupled from faction name.
 - Added closed **effect registry** schema
   (`content-schema/schemas/effect.schema.json`) consumed by spells,
   abilities, and artifacts via a single discriminated union.
 - Added closed **formula AST** schema
   (`content-schema/schemas/formula.schema.json`) with a 10-op
-  vocabulary. All combat math is now expressed as AST nodes — no
-  strings, no `eval`, no `new Function`.
+  vocabulary. All combat math is AST nodes — no strings, no `eval`,
+  no `new Function`.
 - Added provider-neutral **AI generation schemas**
   (`generation-request.schema.json`, `generated-faction.schema.json`)
   as the only surface crossing the model-provider boundary.
@@ -120,17 +112,16 @@ Applied on 2026-04-21, following
   [35 %, 65 %] for AI-generated).
 - Extended `scripts/check-repo-contracts.mjs` to validate every
   example record under `content-schema/examples/` against its
-  type-appropriate schema (recursive validator supporting `$ref`,
+  type-appropriate schema (recursive validator with `$ref`,
   `oneOf`, `anyOf`, `allOf`, `const`, `enum`, `pattern`, `minItems`,
   `minLength`, `additionalProperties`).
-- Removed `docs/planning/executable-backlog.md` — it had already been
-  reduced to a pointer; `tasks/README.md` is the single source of
-  truth for execution order.
+- Removed `docs/planning/executable-backlog.md`; `tasks/README.md`
+  is the single source of truth for execution order.
 - Moved generated `tasks/task-registry.json` out of version control.
   CI regenerates it on every run; local agents run
-  `npm run generate:task-registry` (or just `npm run validate`).
-- Added four new task files: formula DSL, effect registry, canonical
-  JSON + content hash, generation-I/O schemas.
+  `npm run generate:task-registry` (or `npm run validate`).
+- Added four new task files: formula DSL, effect registry,
+  canonical JSON + content hash, generation-I/O schemas.
 - Added baseline stat corridors to `research/deep-research-report.md`
   (tier-by-tier stat bands, weekly growth, building prices, hero
   starting stats, combat math constants).
@@ -139,87 +130,82 @@ Applied on 2026-04-21, following
 
 ### Repo Hardening Pass (2026-04-22)
 
-Applied after the 2026-04-21 audit/report cycle:
-
-- Rewrote planning indexes so `roadmap.md`, `solo-build-lane.md`, and
-  `tasks/README.md` now give one clear execution path instead of
-  spreading the guidance across multiple lightly-overlapping files.
+- Rewrote planning indexes so `roadmap.md`, `solo-build-lane.md`,
+  and `tasks/README.md` give one clear execution path instead of
+  spreading guidance across multiple lightly-overlapping files.
 - Rewrote `content-schema/` README surfaces so schemas, standalone
-  record fixtures, pack fixtures, and AI-generation fixtures are easy to
-  distinguish in isolation.
-- Fixed stale schema/example references in the schema matrix and removed
-  a lingering broken reference to `docs/architecture/baseline-corridor.md`.
-- Hardened task docs by filling in missing sections, correcting stale
-  dependency references, and splitting oversized 8–16 hour tasks into
-  smaller `05a` / `01a` style task families.
+  record fixtures, pack fixtures, and AI-generation fixtures are
+  easy to distinguish in isolation.
+- Fixed stale schema/example references in the schema matrix;
+  removed a broken pointer to `docs/architecture/baseline-corridor.md`.
+- Hardened task docs by filling in missing sections, correcting
+  stale dependency references, and splitting oversized 8–16 hour
+  tasks into smaller `05a` / `01a` style task families.
 
 ### Implementation-Readiness Pass (2026-04-24)
 
-Applied to resolve the critical blockers flagged in the 2026-04-22
-full-repo audit so the MVP backlog can start executing without
-contradicting itself:
+Resolves the critical blockers flagged in the 2026-04-22 full-repo
+audit so the MVP backlog can execute without contradicting itself:
 
 - **Combat-math drift resolved.** `docs/architecture/determinism.md`
-  no longer advertises the obsolete `atkBonusMax=140/100` percent cap.
-  The baseline ruleset JSON, the ruleset-sanity test, the corridor in
-  `research/deep-research-report.md`, and every live task now use the
-  same point-based semantics (`atkBonusPerPoint = 1/20`,
-  `defReductionPerPoint = 1/20`, caps 60/60,
-  `moralePenaltyMissProb = 1/24`). The JSON is the single source of
-  truth; every prose mention is gated by a CI drift test.
+  no longer advertises the obsolete `atkBonusMax=140/100` percent
+  cap. The baseline ruleset JSON, the ruleset-sanity test, the
+  corridor in `research/deep-research-report.md`, and every live
+  task use the same point-based semantics
+  (`atkBonusPerPoint = 1/20`, `defReductionPerPoint = 1/20`, caps
+  60/60, `moralePenaltyMissProb = 1/24`). The JSON is the single
+  source of truth; every prose mention is gated by a CI drift test.
 - **Constant-drift CI guard added.**
   `scripts/__tests__/constant-drift.test.mjs` scans every Markdown
-  file under `docs/`, `research/`, and `tasks/` for integer and ratio
-  mentions of ruleset constants and fails the build if any disagrees
-  with `baseline.ruleset.json`. Historical audit logs under
-  `docs/planning/audits/` are excluded by design (they record past
-  drift).
-- **Hero specialty is now a closed discriminated union.**
+  file under `docs/`, `research/`, and `tasks/` for integer and
+  ratio mentions of ruleset constants and fails the build if any
+  disagrees with `baseline.ruleset.json`. Historical audit logs
+  under `docs/planning/audits/` are excluded by design.
+- **Hero specialty is a closed discriminated union.**
   `content-schema/schemas/hero.schema.json` replaces the open-bag
   `specialty` object with a `oneOf` over five kind-specific shapes
   (`unit_bonus`, `creature_specialty`, `spell_bonus`, `skill_bonus`,
   `resource_bonus`). Cross-kind fields now fail validation; AI
   generation has a rigid template instead of a freeform object.
-- **Shared packs populated.** `shared-abilities/` now provides
+- **Shared packs populated.** `shared-abilities/` provides
   `hardy`, `flying`, `regeneration`, `large_creature`, `undead`.
-  `shared-skills/` now provides `pathfinding_basic`,
-  `leadership_basic`, `defense_basic`, `wisdom_basic`. The packs
-  README documents the dependency-resolution model so AI-generated
-  factions can reach for a shared vocabulary instead of inventing
-  pack-local IDs.
+  `shared-skills/` provides `pathfinding_basic`, `leadership_basic`,
+  `defense_basic`, `wisdom_basic`. The packs README documents the
+  dependency-resolution model so AI-generated factions can reach for
+  a shared vocabulary instead of inventing pack-local IDs.
 - **Runtime validator decision locked in.**
-  `src/content-schema/README.md` now declares **Zod** as the runtime
+  `src/content-schema/README.md` declares **Zod** as the runtime
   validator with a three-reason ADR (TS inference, discriminated
   unions, no `eval`). Task 02-content-schemas/10 adds acceptance
   criteria for `z.discriminatedUnion` over effect kinds and hero
-  specialty plus a JSON-Schema↔Zod round-trip test so the two
+  specialty, plus a JSON-Schema ↔ Zod round-trip test so the two
   contracts cannot drift apart.
 
 ### Task-System Consistency Pass (2026-04-29)
 
-Applied to resolve the 2026-04-28 full task-system consistency audit:
+Resolves the 2026-04-28 full task-system consistency audit:
 
-- Hardened `scripts/generate-task-registry.mjs` so section parsing stops
-  at markdown rules and headings; worked examples no longer bleed into
-  `estimatedTime`.
+- Hardened `scripts/generate-task-registry.mjs` so section parsing
+  stops at markdown rules and headings; worked examples no longer
+  bleed into `estimatedTime`.
 - Added command-coverage validation:
   `scripts/check-command-coverage.mjs`,
   `docs/architecture/screen-command-coverage.json`, and
-  `npm run validate:commands`. Screen interaction tokens now have to be
-  schema-backed, aliased, UI-local, or explicitly out of scope with an
-  owning task.
+  `npm run validate:commands`. Screen interaction tokens must be
+  schema-backed, aliased, UI-local, or explicitly out of scope with
+  an owning task.
 - Extended `command.schema.json` with the missing planned gameplay
   command vocabulary for marketplace, tavern, prison, external
-  dwellings, creature banks, artifacts, battle exits, RMG, shipyards,
-  grail structures, stack transfer, and related flows.
-- Added the missing schema, command, RMG/underground, campaign, quest,
-  cinematic, and status-history task anchors. Registry size is now
-  **262 tasks across 23 modules**.
-- Renamed the colliding phase-2 spells/artifacts task files to
+  dwellings, creature banks, artifacts, battle exits, RMG,
+  shipyards, grail structures, stack transfer, and related flows.
+- Added the missing schema, command, RMG/underground, campaign,
+  quest, cinematic, and status-history task anchors. Registry size
+  now **262 tasks across 23 modules**.
+- Renamed colliding phase-2 spells/artifacts task files to
   `01a`/`01b` and `04a`/`04b`.
-- Rewrote the phase-2 UI screen backlog acceptance criteria so UI tasks
-  consume the command-coverage map instead of inventing missing engine
-  reducers.
+- Rewrote phase-2 UI screen backlog acceptance criteria so UI tasks
+  consume the command-coverage map instead of inventing missing
+  engine reducers.
 - Added task-lint enforcement for path ownership: duplicate primary
   ownership now fails unless additive work is marked with
   `Owned Paths (shared):`.
@@ -229,69 +215,65 @@ Applied to resolve the 2026-04-28 full task-system consistency audit:
 Applied after
 [`AUDIT-2026-05-01-TASK-SYSTEM-AI-EXECUTION-AUDIT.md`](../archive/AUDIT-2026-05-01-TASK-SYSTEM-AI-EXECUTION-AUDIT.md):
 
-- Added the `renderer-primitive` module lint tag and a task-lint guard
-  so renderer-only visual-fidelity tasks stay anchored to
+- Added the `renderer-primitive` module lint tag and a task-lint
+  guard so renderer-only visual-fidelity tasks stay anchored to
   renderer/content architecture docs instead of UI screen packages.
 - Expanded the glossary's H3 alias anchors so agents searching by
   legacy genre terms land on canonical schema/task vocabulary.
-- Split the broad phase-3 polish performance gate into focused engine,
-  renderer, AI, and content-loader profiling tasks with shared owned
-  paths and narrower subsystem dependencies.
-- Re-scoped the accessibility and launch polish tasks away from broad
-  module-level dependency gates toward direct UI/polish dependencies.
+- Split the broad phase-3 polish performance gate into focused
+  engine, renderer, AI, and content-loader profiling tasks with
+  shared owned paths and narrower subsystem dependencies.
+- Re-scoped the accessibility and launch polish tasks away from
+  broad module-level dependency gates toward direct UI/polish
+  dependencies.
 - Pinned AI-generated-content lifecycle as **contractual** rather
-  than discretionary: sandbox enforcement now lists four named
+  than discretionary: sandbox enforcement lists four named
   consumers (matchmaker, lobby, replay validator, editor) in
   [`pack-contract.md` § Sandbox enforcement`](../architecture/pack-contract.md#sandbox-enforcement),
   hard caps live in
   [`balance-constraints.schema.json`](../../content-schema/schemas/balance-constraints.schema.json)
-  (so non-orchestrator producers cannot bypass them), the materialized
-  manifest carries a `manifest.generation` version pin, image
-  moderation has a typed report shape, the retry policy and
-  provider-failure taxonomy are closed schemas, asset normalization
-  has a four-rule contract, and post-publication revocation has a
-  signed-list / client-check / replay-fallback contract.
+  (so non-orchestrator producers cannot bypass them), the
+  materialized manifest carries a `manifest.generation` version
+  pin, image moderation has a typed report shape, the retry policy
+  and provider-failure taxonomy are closed schemas, asset
+  normalization has a four-rule contract, and post-publication
+  revocation has a signed-list / client-check / replay-fallback
+  contract.
 
-## Not Implemented Yet
+### Core-Architecture Plan Implementation (2026-05-02)
 
-These areas are still planned only:
+Closed ten core-architecture gaps:
 
-- deterministic engine runtime in `src/engine/`
-- rules interpreter in `src/rules/`
-- runtime schema validators and migration code in `src/content-schema/`
-- pack loading, dependency resolution, and override handling in
-  `src/content-runtime/`
-- rendering in `src/renderer/`
-- UI shell and editor screens in `src/ui/` or `src/editor/`
-- AI systems in `src/ai/`
-- networking in `src/net/`
-- persistence in `src/persistence/`
-- authored official packs in `resources/packs/`
-- imported or processed production assets in `resources/assets/`
-
-## What The Repo Proves Right Now
-
-Right now the repository proves:
-
-- the content architecture is separated from runtime code
-- schemas and examples have a canonical home
-- future implementation has a dedicated root layout
-- future assets and packs have a dedicated root layout
-- pack-manifest and pack-folder rules are aligned across docs, schema,
-  and example content
-- task metadata can be consumed through a generated machine-readable
-  registry
-- contributor docs, links, and contract checks can be validated in CI
-- docs and tasks are aligned with the intended extensible platform
-
-Right now the repository does not yet prove:
-
-- that packs can be loaded at runtime
-- that schema validation runs in code
-- that assets resolve through an actual registry
-- that gameplay is deterministic in implementation
-- that factions, worlds, animations, artifacts, heroes, towns, and
-  map objects can be played in-engine
+- Authored
+  [`docs/architecture/state-shape.md`](../architecture/state-shape.md),
+  [`docs/architecture/rng-streams.md`](../architecture/rng-streams.md),
+  [`docs/architecture/id-allocator.md`](../architecture/id-allocator.md),
+  [`docs/architecture/multi-engine-harness.md`](../architecture/multi-engine-harness.md),
+  and
+  [`docs/architecture/module-graph.md`](../architecture/module-graph.md).
+- Added the closed top-level state schema
+  [`content-schema/schemas/game-state.schema.json`](../../content-schema/schemas/game-state.schema.json)
+  with a canonical example.
+- Extended `command.schema.json` so every command requires a
+  `metadata` block with a pattern-checked `nonce`;
+  `command-schema.md` gained Deduplication, Dispatcher Queue,
+  Cross-Actor Ordering, and Seed Source Precedence sections.
+- Pinned the renderer's frame-time budget & degradation tier table
+  in
+  [`renderer-technology-choice.md`](../architecture/renderer-technology-choice.md#frame-time-budget--degradation)
+  and updated audits Q4 in `01-core-architecture.md` plus the
+  performance audit anchor in `09-performance.md`.
+- Authored
+  [`scripts/check-module-graph.mjs`](../../scripts/check-module-graph.mjs)
+  (zero-deps Node, ~200 lines) instead of the source plan's
+  `dependency-cruiser` to keep `node_modules` empty. Added
+  `npm run validate:arch` to the `validate` aggregate. The empty
+  `src/` tree is clean; the rules go live the moment any source
+  file is added. Switching to `dependency-cruiser` later is a
+  one-line change in `package.json`.
+- Authored 10 owning tasks plus a module file under
+  [`tasks/mvp/00-core-architecture/`](../../tasks/mvp/00-core-architecture/);
+  registry now contains 294 tasks across 24 modules.
 
 ### Data Contracts & Schema Plan Implementation (2026-05-03)
 
@@ -301,8 +283,8 @@ Closed seven data-contract gaps:
   [`docs/architecture/version-policy.md`](../architecture/version-policy.md)
   with the consolidated refuse / migrate / degrade decision matrix
   (six mismatch kinds × three contexts) and removed the duplicated
-  prose from `state-flow.md`, `pack-contract.md`, `content-platform.md`,
-  and the persistence task.
+  prose from `state-flow.md`, `pack-contract.md`,
+  `content-platform.md`, and the persistence task.
 - Authored
   [`docs/architecture/schema-migration-policy.md`](../architecture/schema-migration-policy.md)
   plus the worked example migration under
@@ -315,13 +297,14 @@ Closed seven data-contract gaps:
   shipped the CI snapshot gate
   ([`scripts/snapshot-enums.mjs`](../../scripts/snapshot-enums.mjs),
   [`scripts/check-enum-snapshot.mjs`](../../scripts/check-enum-snapshot.mjs),
-  baseline [`content-schema/enums.snapshot.json`](../../content-schema/enums.snapshot.json)).
+  baseline
+  [`content-schema/enums.snapshot.json`](../../content-schema/enums.snapshot.json)).
   `npm run validate:enums` is wired into `npm run validate`.
 - Authored
   [`docs/architecture/schema-defaults-policy.md`](../architecture/schema-defaults-policy.md)
   pinning `default` keyword authoring rules, the integers-only
-  constraint, and the round-trip-of-defaults parity test required by
-  Task 10.
+  constraint, and the round-trip-of-defaults parity test required
+  by Task 10.
 - Added the canonical `ValidationError` schema
   [`content-schema/schemas/validation-error.schema.json`](../../content-schema/schemas/validation-error.schema.json)
   with two example records under
@@ -329,8 +312,8 @@ Closed seven data-contract gaps:
   `schemaForFile` in
   [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
   gained the `.error.json` suffix mapping.
-- Broadened the float-ban ESLint task scope from `src/engine` only to
-  `src/{engine,rules,content-runtime,content-schema}/**/*.ts` so
+- Broadened the float-ban ESLint task scope from `src/engine` only
+  to `src/{engine,rules,content-runtime,content-schema}/**/*.ts` so
   formula evaluators, content-runtime helpers, and schema-side
   defaulting cannot reintroduce floats.
 - Authored 6 new task records pulling the work into the tasks-next
@@ -356,7 +339,8 @@ Closed thirteen UI state-and-interactions gaps:
   (component-state matrix, selector purity, tooltip lifecycle,
   command lifecycle, error state, undo/redo),
   [`docs/architecture/ui-routing.md`](../architecture/ui-routing.md)
-  (screen-router FSM, transition graph, modal stack, dismissal policy),
+  (screen-router FSM, transition graph, modal stack, dismissal
+  policy),
   [`docs/architecture/ui-input-arbitration.md`](../architecture/ui-input-arbitration.md)
   (single-emit, Esc precedence ladder, animation gates),
   [`docs/architecture/ui-gestures.md`](../architecture/ui-gestures.md)
@@ -365,8 +349,8 @@ Closed thirteen UI state-and-interactions gaps:
   (hotkey registry, focus order, tab-trap, focus restoration), and
   [`docs/architecture/ui-input-modalities.md`](../architecture/ui-input-modalities.md)
   (mouse / touch / keyboard / gamepad bridging).
-- Added the canonical `ErrorState`, `ModalEntry`, and `HotkeyRegistry`
-  schemas under
+- Added the canonical `ErrorState`, `ModalEntry`, and
+  `HotkeyRegistry` schemas under
   [`content-schema/schemas/`](../../content-schema/schemas/) plus
   example records under
   [`content-schema/examples/records/`](../../content-schema/examples/records/).
@@ -413,40 +397,6 @@ Closed thirteen UI state-and-interactions gaps:
   - [`tasks/mvp/07-ui-shell/19-input-modalities.md`](../../tasks/mvp/07-ui-shell/19-input-modalities.md)
   - [`tasks/mvp/07-ui-shell/20-command-lifecycle.md`](../../tasks/mvp/07-ui-shell/20-command-lifecycle.md)
   - [`tasks/phase-2/08-meta-systems/09-map-editor-undo-redo.md`](../../tasks/phase-2/08-meta-systems/09-map-editor-undo-redo.md)
-
-### Core-Architecture Plan Implementation (2026-05-02)
-
-Closed ten core-architecture gaps:
-
-- Authored
-  [`docs/architecture/state-shape.md`](../architecture/state-shape.md),
-  [`docs/architecture/rng-streams.md`](../architecture/rng-streams.md),
-  [`docs/architecture/id-allocator.md`](../architecture/id-allocator.md),
-  [`docs/architecture/multi-engine-harness.md`](../architecture/multi-engine-harness.md),
-  and
-  [`docs/architecture/module-graph.md`](../architecture/module-graph.md).
-- Added the closed top-level state schema
-  [`content-schema/schemas/game-state.schema.json`](../../content-schema/schemas/game-state.schema.json)
-  with a canonical example.
-- Extended `command.schema.json` so every command requires a `metadata`
-  block with a pattern-checked `nonce`; `command-schema.md` gained
-  Deduplication, Dispatcher Queue, Cross-Actor Ordering, and Seed
-  Source Precedence sections.
-- Pinned the renderer's frame-time budget &amp; degradation tier table in
-  [`renderer-technology-choice.md`](../architecture/renderer-technology-choice.md#frame-time-budget--degradation)
-  and updated audits Q4 in `01-core-architecture.md` plus the
-  performance audit anchor in `09-performance.md`.
-- Authored
-  [`scripts/check-module-graph.mjs`](../../scripts/check-module-graph.mjs)
-  (zero-deps Node, ~200 lines) instead of the source plan's
-  `dependency-cruiser` to keep `node_modules` empty. Added
-  `npm run validate:arch` to the `validate` aggregate. The empty
-  `src/` tree is clean; the rules go live the moment any source file
-  is added. Switching to `dependency-cruiser` later is a one-line
-  change in `package.json`.
-- Authored 10 owning tasks plus a module file under
-  [`tasks/mvp/00-core-architecture/`](../../tasks/mvp/00-core-architecture/);
-  registry now contains 294 tasks across 24 modules.
 
 ### Multiplayer Plan Implementation (2026-05-03)
 
@@ -501,24 +451,23 @@ Closed the performance gaps:
 - Authored
   [`docs/architecture/performance.md`](../architecture/performance.md)
   as the canonical performance doc: hardware tiers (Reference /
-  Minimum-spec / Mobile-deferred), per-frame CPU budget, GC
-  budget, allocation policy, memory budget with per-category
-  split, entity ceilings (incl. adventure-map animation
-  ceilings), AI compute budget, in-game profiling overlay
-  reference, enforcement-via-bench-harness contract.
+  Minimum-spec / Mobile-deferred), per-frame CPU budget, GC budget,
+  allocation policy, memory budget with per-category split, entity
+  ceilings (incl. adventure-map animation ceilings), AI compute
+  budget, in-game profiling overlay reference, enforcement-via-
+  bench-harness contract.
 - Authored
   [`docs/architecture/atlas-pipeline.md`](../architecture/atlas-pipeline.md)
   pinning `free-tex-packer-cli` as the canonical packer, the
-  deterministic input-ordering / `--seed` invocation, the
-  per-frame input layout, the per-entity output layout, and the
-  publish-step ordering with `contentHash` integration.
+  deterministic input-ordering / `--seed` invocation, the per-frame
+  input layout, the per-entity output layout, and the publish-step
+  ordering with `contentHash` integration.
 - Extended
   [`docs/architecture/determinism.md`](../architecture/determinism.md)
-  with the AI Compute Budget section (deterministic
-  `searchBudget`, watchdog-only wall clock, ban on
-  wall-clock-driven AI truncation) and the Pathfinder Cache
-  Invariants section (`mapVersion` / `zocVersion` keys, explicit
-  invalidation, End-Day flush).
+  with the AI Compute Budget section (deterministic `searchBudget`,
+  watchdog-only wall clock, ban on wall-clock-driven AI truncation)
+  and the Pathfinder Cache Invariants section (`mapVersion` /
+  `zocVersion` keys, explicit invalidation, End-Day flush).
 - Updated
   [`docs/architecture/renderer-technology-choice.md`](../architecture/renderer-technology-choice.md)
   to defer numeric per-tier targets to `performance.md`.
@@ -551,8 +500,8 @@ Closed the performance gaps:
   [`tasks/mvp/06-renderer/09-atlas-pipeline.md`](../../tasks/mvp/06-renderer/09-atlas-pipeline.md).
 - Extended existing task files with the new contracts:
   - `mvp.10-heuristic-ai.06-run-ai-in-web-worker` —
-    deterministic `searchBudget`, wall clock demoted to
-    warn-only watchdog.
+    deterministic `searchBudget`, wall clock demoted to warn-only
+    watchdog.
   - `mvp.10-heuristic-ai.05-difficulty-levels-pawn-and-knight` —
     per-difficulty `maxNodes` / `maxDepth` constants and
     `searchBudgetFor(...)` API.
@@ -560,19 +509,17 @@ Closed the performance gaps:
     — consume the shared pathfinder cache and the AI search-node
     pool.
   - `mvp.03-map-system.04-a-pathfinder-with-terrain-cost-plus-zoc`
-    — Optional cache section pinning the per-turn cache
-    invariants.
+    — Optional cache section pinning the per-turn cache invariants.
   - `mvp.03-map-system.03-layered-tile-storage` — link the
     in-memory map decision.
   - `mvp.01-engine-core.06-command-dispatcher` — declare
     `mapVersion` / `zocVersion` increment invariants.
   - `mvp.01-engine-core.09-fuzz-harness-…` — share fixtures with
     bench Scenario C and add a `searchBudget` determinism case.
-  - `mvp.01-engine-core.10-github-actions-ci` — add the
-    perf-bench job and the memory-gate job.
-  - `mvp.06-renderer.03-map-renderer-…` — adventure-map
-    animation ceilings and renderer-side pool acceptance
-    criteria.
+  - `mvp.01-engine-core.10-github-actions-ci` — add the perf-bench
+    job and the memory-gate job.
+  - `mvp.06-renderer.03-map-renderer-…` — adventure-map animation
+    ceilings and renderer-side pool acceptance criteria.
   - `mvp.06-renderer.05-1115-tactical-battlefield-renderer` —
     30 FPS Minimum-spec criterion and 21-stack budget.
   - `mvp.06-renderer.06-sprite-sheet-loader-plus-frame-animation`
@@ -582,15 +529,15 @@ Closed the performance gaps:
     per-frame budget envelope.
 - Added the new dev-only screen package
   [`docs/architecture/wiki/screens/68-dev-profiler/`](../architecture/wiki/screens/68-dev-profiler/)
-  (mockup, spec, interactions, data-contracts, architecture) for
-  the in-app profiling overlay; registered under the
-  `diagnostics` group in `screens/index.json`.
+  (mockup, spec, interactions, data-contracts, architecture) for the
+  in-app profiling overlay; registered under the `diagnostics` group
+  in `screens/index.json`.
 
   Note: the implementation plan literally specified
   `57-dev-profiler/`, but `57-high-scores/` already owns that
-  number. The next sequential number `68` is used; the screen
-  also lives in the existing `diagnostics` group rather than a
-  new "Dev tools" group, since `66-debug-overlay` and
+  number. The next sequential number `68` is used; the screen also
+  lives in the existing `diagnostics` group rather than a new
+  "Dev tools" group, since `66-debug-overlay` and
   `67-animation-debug-overlay` already group there.
 - Updated [`CLAUDE.md`](../../CLAUDE.md) "Read first" list to
   include `performance.md` and `atlas-pipeline.md`.
@@ -630,7 +577,8 @@ Closed nine content-system gaps:
   [`resources/canonical-packs.json`](../../resources/canonical-packs.json).
 - Added the balance corridor spec at
   [`content-schema/balance/corridor.json`](../../content-schema/balance/corridor.json)
-  (with [`corridor.schema.json`](../../content-schema/balance/corridor.schema.json))
+  (with
+  [`corridor.schema.json`](../../content-schema/balance/corridor.schema.json))
   encoding the per-tier numeric corridor from
   `research/deep-research-report.md` § 1 plus per-stat tolerance
   factors. Two gates: per-unit (out-of-band stat →
@@ -668,8 +616,8 @@ Closed nine content-system gaps:
 - Extended existing tasks (02b-01 manifest+registry, 02b-04 asset
   registry, 02b-06 completeness validator, 02b-08 scaffold script,
   02-14 localization schema, 05-03 sandbox, 05-04 mod manager UI,
-  05a baseline ruleset packs, 05d official signing) to point at
-  the new policy/spec docs and replace ad-hoc error strings with
+  05a baseline ruleset packs, 05d official signing) to point at the
+  new policy/spec docs and replace ad-hoc error strings with
   `pack.error.*` codes.
 - Cross-linked the new policy from
   [`pack-contract.md`](../architecture/pack-contract.md),
@@ -696,10 +644,10 @@ Closed ten testability gaps:
   for the golden-state regression suite and
   [`tournament-result`](../../content-schema/schemas/tournament-result.schema.json)
   for the shared AI tournament harness.
-- Added a new module `tasks/mvp/02-tooling/` with five tasks:
-  UI smoke harness, coverage gate, unit-test contract, property-
-  based testing, edge-case fixtures. Created six placeholder
-  edge-case scenario fixtures and an `INDEX.md` under
+- Added a new module `tasks/mvp/02-tooling/` with five tasks: UI
+  smoke harness, coverage gate, unit-test contract, property-based
+  testing, edge-case fixtures. Created six placeholder edge-case
+  scenario fixtures and an `INDEX.md` under
   `tests/__fixtures__/edge-cases/`.
 - Added three new engine-core tasks: `12-golden-state-suite`,
   `13-replay-regression-suite`, `14-engine-throughput-benchmark`.
@@ -755,8 +703,9 @@ Closed 11 implementation-readiness findings:
   and
   [`tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md`](../../tasks/mvp/09-tactical-combat/02a-defend-damage-reduction.md);
   removed the dead `defendCapDEF` alternative; added a worked
-  example. Cleared remaining `TBD` markers from `mechanics-coverage.md`
-  and `26-m2-engine-hash-backfill.md`. Extended
+  example. Cleared remaining `TBD` markers from
+  `mechanics-coverage.md` and `26-m2-engine-hash-backfill.md`.
+  Extended
   [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
   with a placeholder-marker gate: any bare `TBD`, `TODO`, `FIXME`,
   or `???` in `docs/architecture/` or `tasks/mvp/` (outside backtick
@@ -777,7 +726,8 @@ Closed 11 implementation-readiness findings:
   `check-repo-contracts.mjs`: every
   `docs/architecture/wiki/screens/<n>-<id>/` package must ship a
   `data-contracts.md` file. Schema-landing per screen remains owned
-  by [`06-data-contracts-and-schema-plan.md`](../archive/implementation-plans/06-data-contracts-and-schema-plan.md).
+  by
+  [`06-data-contracts-and-schema-plan.md`](../archive/implementation-plans/06-data-contracts-and-schema-plan.md).
 - **T5** — Authored
   [`content-schema/schemas/renderer-event.schema.json`](../../content-schema/schemas/renderer-event.schema.json)
   (closed discriminated union: `SELECTION_CHANGED`, `CAMERA_FOCUSED`,
@@ -805,8 +755,8 @@ Closed 11 implementation-readiness findings:
   phase-3 generation tasks 02 and 03 updated to cite the schemas.
 - **T7** — Stood up the
   [`src/contracts/`](../../src/contracts/) workspace package
-  (`@hr/contracts`, zero-runtime, `sideEffects: false`). Hand-
-  authored contracts for `Rng`, `Clock`, `IdAllocator`,
+  (`@hr/contracts`, zero-runtime, `sideEffects: false`).
+  Hand-authored contracts for `Rng`, `Clock`, `IdAllocator`,
   `PackRegistry`, `AssetLoader`, `CommandBus`, `NetTransport`;
   schema-derived TS for `RendererEvent` and the three reports.
   Added [`src/contracts/index.ts`](../../src/contracts/index.ts)
@@ -826,8 +776,8 @@ Closed 11 implementation-readiness findings:
   inline blocks are the only place those interfaces currently live.
 - **T8** — Authored
   [`docs/architecture/side-effect-matrix.md`](../architecture/side-effect-matrix.md)
-  (one row per `src/<module>` with purity / permitted /
-  forbidden / enforced-by columns). Cross-linked from
+  (one row per `src/<module>` with purity / permitted / forbidden /
+  enforced-by columns). Cross-linked from
   [`determinism.md`](../architecture/determinism.md) and
   [`state-flow.md`](../architecture/state-flow.md).
 - **T9** — Authored
@@ -871,9 +821,9 @@ Closed the synthesis-layer findings:
 
 - **Decision-log + provenance gate** — created
   [`docs/planning/decision-log.md`](./decision-log.md) (DEC-001
-  ratifies the DEFEND `250 permille` lock; DEC-002 captures the
+  ratified the DEFEND `250 permille` lock; DEC-002 captured the
   IP-neutralization rules) and `scripts/check-decision-provenance.mjs`.
-  The gate fails when an archive `Locked` claim is absent from both
+  The gate failed when an archive `Locked` claim was absent from both
   canonical sources and the decision log.
   *(Historical: the provenance gate and DEC-001/DEC-002 entries were
   retired 2026-05-09 — rationale moved inline to canonical sources;
@@ -912,14 +862,14 @@ Closed the synthesis-layer findings:
   callbacks at DAMAGE_FRAME).
 - **Error UX** — authored
   [`docs/architecture/error-ux.md`](../architecture/error-ux.md)
-  (surface decision matrix, code → surface mapping, localization-
-  key convention, `error.shown` telemetry rule). Gate
+  (surface decision matrix, code → surface mapping, localization-key
+  convention, `error.shown` telemetry rule). Gate
   [`scripts/check-error-ux-coverage.mjs`](../../scripts/check-error-ux-coverage.mjs)
   runs strict and fires when a screen names a specific error code
   without an accompanying `## Error surfaces` block. Per-screen
   blocks were generated from each screen's Actions table using the
-  row's `Type` column as the authority — `Type: command` rows get
-  a domain-aware default (`STORAGE_REJECTED → modal` for save-load
+  row's `Type` column as the authority — `Type: command` rows get a
+  domain-aware default (`STORAGE_REJECTED → modal` for save-load
   actions, `NET_REJECTED → modal` for multiplayer actions,
   `VALIDATION_REJECTED → inline` for editor actions,
   `DISPATCHER_REJECTED → inline` otherwise); `Type: navigation` /
@@ -936,7 +886,7 @@ Closed the synthesis-layer findings:
   recorded reason.
 - **Cross-environment parity** — task
   [`tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md`](../../tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md)
-  pins the Playwright-driven Node↔browser byte-equality proof; the
+  pins the Playwright-driven Node ↔ browser byte-equality proof; the
   parent serializer task and fuzz harness task were extended to
   expose / consume the transcript.
 - **Balance judgement rules** — task stub
@@ -960,7 +910,8 @@ Closed the TURN-credentials doctrine and contract gaps:
   [`docs/architecture/turn-credentials.md`](../architecture/turn-credentials.md),
   [`docs/architecture/signaling-edge-defense.md`](../architecture/signaling-edge-defense.md),
   [`docs/architecture/signaling-health-endpoints.md`](../architecture/signaling-health-endpoints.md),
-  [`docs/architecture/turn-fallback-policy.md`](../architecture/turn-fallback-policy.md), and
+  [`docs/architecture/turn-fallback-policy.md`](../architecture/turn-fallback-policy.md),
+  and
   [`docs/architecture/signaling-stateless-invariant.md`](../architecture/signaling-stateless-invariant.md).
 - **Schemas (two new)** —
   [`signaling-message.schema.json`](../../content-schema/schemas/signaling-message.schema.json)
@@ -998,22 +949,22 @@ Closed the TURN-credentials doctrine and contract gaps:
   - `32-signaling-rate-limit-augmentations.md` — per-prefix
     concurrent-socket cap, per-connection message rate,
     `REQUEST_TURN_REFRESH` throttle, `ROOM_FULL` reply.
-  - `33-turn-credentials-doctrine-issuance.md` — HMAC-SHA1
-    issuer, dual-secret rotation, `TURN_CREDENTIALS` envelope,
-    deny-list emitter, `validate:turn`.
+  - `33-turn-credentials-doctrine-issuance.md` — HMAC-SHA1 issuer,
+    dual-secret rotation, `TURN_CREDENTIALS` envelope, deny-list
+    emitter, `validate:turn`.
   - `34-turn-server-hardening.md` — coturn config + deny-list
     consumers + log-rewriter sidecar + `validate:turn-config`.
-  - `35-edge-defense-and-health-segregation.md` — blocklist
-    store, admin server on `127.0.0.1:9091`, CAPTCHA escalation,
-    TURN-down state machine, lobby failure-state handlers,
-    `validate:edge` and `validate:signaling-stateless`.
+  - `35-edge-defense-and-health-segregation.md` — blocklist store,
+    admin server on `127.0.0.1:9091`, CAPTCHA escalation, TURN-down
+    state machine, lobby failure-state handlers, `validate:edge` and
+    `validate:signaling-stateless`.
 - **Existing tasks extended (additive)** —
   [Task 01](../../tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md)
   message list extended with
   `ROOM_FULL` / `TURN_CREDENTIALS` / `REQUEST_TURN_REFRESH` /
   `ERROR`; new sections (Message Validation, Edge-Tier Defenses,
-  TURN Credentials, Stateless Invariant); shared-ownership rows
-  for Tasks 31 / 32 / 33 / 35.
+  TURN Credentials, Stateless Invariant); shared-ownership rows for
+  Tasks 31 / 32 / 33 / 35.
   [Task 02](../../tasks/phase-3/01-multiplayer/02-webrtc-peer-connection-plus-datachannel-setup.md)
   acceptance criteria extended with TURN-provisioning + TURN-down
   fallback clauses.
@@ -1027,19 +978,19 @@ Closed the TURN-credentials doctrine and contract gaps:
   `codeLocked`) plus the transient `captchaRequired`;
   [`64-network-lobby/interactions.md`](../architecture/wiki/screens/64-network-lobby/interactions.md)
   added the matching handler block; data-contracts now list
-  `errorState`. [`62-multiplayer-setup/architecture.md`](../architecture/wiki/screens/62-multiplayer-setup/architecture.md)
+  `errorState`.
+  [`62-multiplayer-setup/architecture.md`](../architecture/wiki/screens/62-multiplayer-setup/architecture.md)
   carries a TURN Provisioning subsection pointing at
   `turn-credentials.md`.
 - **Command + screen-coverage maps** —
-  [`command-schema.md`](../architecture/command-schema.md) gained
-  a "Signaling Abuse-Defense, TURN, and Connection-Failure
-  Commands" subsection registering
-  `RECEIVE_TURN_CREDENTIALS`, `REQUEST_TURN_REFRESH`,
-  `TURN_CREDENTIALS_EXPIRED`, `CONNECTION_FAILED_RELAY_UNAVAILABLE`,
-  `SIGNALING_RATE_LIMITED`, `SIGNALING_ROOM_FULL`,
-  `SIGNALING_VALIDATION_FAILED`, `SIGNALING_PAYLOAD_REJECTED`,
-  `CAPTCHA_REQUIRED`, `CAPTCHA_VERIFIED`, `IP_BLOCKLISTED`. Same
-  tokens added to
+  [`command-schema.md`](../architecture/command-schema.md) gained a
+  "Signaling Abuse-Defense, TURN, and Connection-Failure Commands"
+  subsection registering `RECEIVE_TURN_CREDENTIALS`,
+  `REQUEST_TURN_REFRESH`, `TURN_CREDENTIALS_EXPIRED`,
+  `CONNECTION_FAILED_RELAY_UNAVAILABLE`, `SIGNALING_RATE_LIMITED`,
+  `SIGNALING_ROOM_FULL`, `SIGNALING_VALIDATION_FAILED`,
+  `SIGNALING_PAYLOAD_REJECTED`, `CAPTCHA_REQUIRED`,
+  `CAPTCHA_VERIFIED`, `IP_BLOCKLISTED`. Same tokens added to
   [`screen-command-coverage.json`](../architecture/screen-command-coverage.json)
   `outOfScope` and to
   [`task-command-token-coverage.json`](../architecture/task-command-token-coverage.json).
@@ -1063,8 +1014,8 @@ Closed the trust-boundaries gaps:
   [`docs/architecture/fail-loud.md`](../architecture/fail-loud.md)
   + [`src/shared/assert.ts`](../../src/shared/assert.ts) name the
   `TrustViolationError` helper and the four lint rules (empty
-  catch, default-coalesce on required field, `as any` in
-  trusted code, direct `console.*` in `services/`).
+  catch, default-coalesce on required field, `as any` in trusted
+  code, direct `console.*` in `services/`).
 - **Untrusted-string contract** —
   [`docs/architecture/untrusted-strings.md`](../architecture/untrusted-strings.md)
   + per-string schemas
@@ -1074,8 +1025,8 @@ Closed the trust-boundaries gaps:
   + ingest helper [`src/ui/sanitize.ts`](../../src/ui/sanitize.ts).
 - **Pre-emptive desktop sandboxing** —
   [`docs/architecture/desktop-sandboxing.md`](../architecture/desktop-sandboxing.md)
-  pins Tauri / Electron rules so a future desktop wrapper does
-  not gain unscoped filesystem access.
+  pins Tauri / Electron rules so a future desktop wrapper does not
+  gain unscoped filesystem access.
 - **Centralized logger contract** —
   [`content-schema/schemas/log-record.schema.json`](../../content-schema/schemas/log-record.schema.json),
   [`content-schema/schemas/security-event.schema.json`](../../content-schema/schemas/security-event.schema.json),
@@ -1089,30 +1040,29 @@ Closed the trust-boundaries gaps:
   (closed channel enum).
 - **Operations stack — folded into one doc** —
   [`docs/operations/services-runtime-rules.md`](../operations/services-runtime-rules.md)
-  collapses logger pipeline, channel + retention, spike
-  thresholds, SLO targets, containment runbooks, crash-report
-  rules, and metrics-endpoint contract into a single ~150-line
-  rules doc. The original plan called for seven separate docs
-  (observability, log-retention, integrity-monitoring, alerting,
-  slo, incident-response, crash-reports, dashboards/, audit-log)
-  plus an `oncall.md` and `access-control.md`; for a solo
-  pre-runtime maintainer that volume is speculative. Tamper-
-  evident audit log (schema + writer + daily-root export) is
-  dropped entirely — the maintainer signs their own packs and
-  the audit is git history.
+  collapses logger pipeline, channel + retention, spike thresholds,
+  SLO targets, containment runbooks, crash-report rules, and
+  metrics-endpoint contract into a single ~150-line rules doc. The
+  original plan called for seven separate docs (observability,
+  log-retention, integrity-monitoring, alerting, slo,
+  incident-response, crash-reports, dashboards/, audit-log) plus an
+  `oncall.md` and `access-control.md`; for a solo pre-runtime
+  maintainer that volume is speculative. Tamper-evident audit log
+  (schema + writer + daily-root export) is dropped entirely — the
+  maintainer signs their own packs and the audit is git history.
 - **Top-level disclosure surface** —
-  [`SECURITY.md`](../../SECURITY.md) carries the disclosure
-  contact + GDPR 72-hour breach trigger; severity matrix and
-  supported-versions table are intentionally omitted (they
-  imply ack timelines a solo maintainer cannot promise).
+  [`SECURITY.md`](../../SECURITY.md) carries the disclosure contact
+  + GDPR 72-hour breach trigger; severity matrix and
+  supported-versions table are intentionally omitted (they imply
+  ack timelines a solo maintainer cannot promise).
 - **Owning tasks** at
   [`tasks/phase-3/05-observability/`](../../tasks/phase-3/05-observability/):
   - `01-shared-logger-and-redaction.md` — pino + redact +
     `LogRecord` / `SecurityEvent` schemas + lint rules.
   - `02-worker-message-validation.md` — closed envelope +
     `event.source` check + `worker_message_invalid` emit path.
-  - `03-untrusted-string-schemas.md` — display-name / room-code
-    / case-id validators wired to multiplayer-setup, network-lobby,
+  - `03-untrusted-string-schemas.md` — display-name / room-code /
+    case-id validators wired to multiplayer-setup, network-lobby,
     and content-report screens.
 - **Cross-links** —
   [`CLAUDE.md`](../../CLAUDE.md) "Read first" list extended with
@@ -1127,6 +1077,47 @@ Closed the trust-boundaries gaps:
   extended with example-record suffix mappings for the four new
   object schemas. `npm run validate` and `npm test` are green.
 
+## Not Implemented Yet
+
+Still planned only:
+
+- deterministic engine runtime in `src/engine/`
+- rules interpreter in `src/rules/`
+- runtime schema validators and migration code in `src/content-schema/`
+- pack loading, dependency resolution, and override handling in
+  `src/content-runtime/`
+- rendering in `src/renderer/`
+- UI shell and editor screens in `src/ui/` or `src/editor/`
+- AI systems in `src/ai/`
+- networking in `src/net/`
+- persistence in `src/persistence/`
+- authored official packs in `resources/packs/`
+- imported or processed production assets in `resources/assets/`
+
+## What The Repo Proves Right Now
+
+Proves today:
+
+- the content architecture is separated from runtime code
+- schemas and examples have a canonical home
+- future implementation has a dedicated root layout
+- future assets and packs have a dedicated root layout
+- pack-manifest and pack-folder rules are aligned across docs,
+  schema, and example content
+- task metadata can be consumed through a generated machine-readable
+  registry
+- contributor docs, links, and contract checks can be validated in CI
+- docs and tasks are aligned with the intended extensible platform
+
+Does not yet prove:
+
+- that packs can be loaded at runtime
+- that schema validation runs in code
+- that assets resolve through an actual registry
+- that gameplay is deterministic in implementation
+- that factions, worlds, animations, artifacts, heroes, towns, and
+  map objects can be played in-engine
+
 ## Recommended Next Steps
 
 Suggested order:
@@ -1140,12 +1131,12 @@ Suggested order:
    schemas.
 5. Add `src/content-runtime/` for manifests, dependency resolution,
    override precedence, and asset indirection.
-6. Add the first content-loading path:
-   manifest loader, schema validation, reference resolution.
-7. Add one thin playable slice:
-   one faction, one hero, one town flow, one battle flow.
-8. Start wiring `resources/packs/` and `resources/assets/` into a real
-   asset and pack pipeline.
+6. Add the first content-loading path: manifest loader, schema
+   validation, reference resolution.
+7. Add one thin playable slice: one faction, one hero, one town
+   flow, one battle flow.
+8. Start wiring `resources/packs/` and `resources/assets/` into a
+   real asset and pack pipeline.
 
 ## Update Rule
 
@@ -1157,3 +1148,60 @@ places:
 3. `Recommended Next Steps`
 
 If a feature is only designed in docs, do not list it as implemented.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Every referenced screen package exists on disk
+  (62-multiplayer-setup, 64-network-lobby, 66-debug-overlay,
+  67-animation-debug-overlay, 68-dev-profiler, 57-high-scores); the
+  numbering-collision note on `68-dev-profiler` matches reality
+  (`57-high-scores/` is present).
+- **Schema: ✔** — All cited schemas (`signaling-message`,
+  `turn-credential`, `validation-error`, `report-base`,
+  `renderer-event`, `golden-fixture`, `tournament-result`,
+  `log-record`, `security-event`, `worker-message`, `display-name`,
+  `room-code`, `case-id`, `atlas`, `game-state`,
+  `canonical-packs`, balance corridor pair) resolve under
+  `content-schema/schemas/` (or `content-schema/balance/`).
+- **Tasks: ✔** — All referenced task files resolve, including
+  `tasks/phase-3/05-observability/01-03`,
+  `tasks/phase-3/05-lobby/00-plan-stub.md`,
+  `tasks/phase-3/01-multiplayer/31-35`, `tasks/mvp/00-perf/`,
+  `tasks/mvp/00-core-architecture/`, the six new content-schema
+  tasks (21–26), and the thirteen UI-state tasks (07-ui-shell/10–20
+  + phase-2/08-meta-systems/09).
+- **Planning / decision: ✔** — `decision-log.md` confirms DEC-001–
+  DEC-005 were inlined 2026-05-09; the inline footnote on the
+  Final-Critical-Questions pass already records this retirement and
+  the absence of `scripts/check-decision-provenance.mjs`.
+
+## ⚠ Issues
+
+- **Section hierarchy was structurally broken.** Every dated
+  implementation pass from 2026-05-02 onward
+  (`Core-Architecture`, `Data Contracts & Schema`,
+  `UI State & Interactions`, `Multiplayer`, `Performance`,
+  `Content System`, `Testability`, `Implementation-Readiness`,
+  `Final-Critical-Questions`, `TURN Credentials`,
+  `Trust Boundaries`) appeared as H3 subsections under H2
+  `What The Repo Proves Right Now` rather than under
+  `Implemented So Far`. The rewrite moves them under
+  `Implemented So Far` in chronological order and places
+  `Not Implemented Yet` + `What The Repo Proves Right Now` after
+  the full implementation history. Content preserved verbatim; only
+  the section parentage changed.
+- **HTML entity in prose.** Original line 436 carried
+  `frame-time budget &amp; degradation tier`; rewritten as
+  `frame-time budget & degradation tier`.
+- **Self-described retirement of DEC-001/DEC-002 and
+  `check-decision-provenance.mjs`.** The Final-Critical-Questions
+  entry still narrates the original provenance gate plus its
+  retirement footnote — kept verbatim because it is historical
+  log content, not a live claim. Per
+  [`decision-log.md`](./decision-log.md), the inlining happened
+  2026-05-09; no further action is required and the absence of
+  `scripts/check-decision-provenance.mjs` is consistent with the
+  footnote. Flagging here only so a future maintainer auditing live
+  references to that script knows it is intentionally gone.

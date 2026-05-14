@@ -1,10 +1,13 @@
 # Command Schema
 
-Canonical reference for all game commands. Commands are the only way to mutate game state. Every command is deterministic and serializable.
+Canonical reference for every game command. Commands are the only
+way to mutate game state; each one is deterministic and serializable.
 
-**See also:** [`state-flow.md`](./state-flow.md) (how commands flow through the engine), [`event-schema.md`](./event-schema.md) (the read-only event vocabulary command handlers emit), and [`event-system.md`](./event-system.md) (the runtime contract events flow through).
-
-Events are the read-only flip-side of commands: a command handler computes the next state and the `events: Event[]` array together, and consumers (animation timeline, sound system) iterate the array on their own clock. Events never mutate state, never veto a command, and are never serialized into saves.
+**See also:** [`state-flow.md`](./state-flow.md) (turn loop),
+[`event-schema.md`](./event-schema.md) and
+[`event-system.md`](./event-system.md) (the read-only event
+vocabulary command handlers return alongside `state'`; events never
+mutate state and never serialize into saves).
 
 ---
 
@@ -32,16 +35,13 @@ Events are the read-only flip-side of commands: a command handler computes the n
 ### AI-Emitted Commands
 
 Gameplay-AI workers emit the same closed `Command` enum as human
-players; there are no AI-only kinds. The AI consumes a projected
-per-player `AdventureView` (per
-[`ai-contract.md` § 1 Input View](./ai-contract.md#1-input-view))
-when deciding which command to emit. The dispatcher validates
-the emitted command against full `AdventureState` per the
-[Validation Framework](#validation-framework) below; the
-projected view is the AI's perception, not a relaxation of
-legality. `MOVE_HERO`, `INITIATE_BATTLE`, and every other kind
-are checked against the full state at dispatch time, regardless
-of which actor emitted them.
+players; there are no AI-only kinds. The AI decides against a
+projected per-player `AdventureView` (see
+[`ai-contract.md` § 1 Input View](./ai-contract.md#1-input-view)),
+but the dispatcher validates every command against the full
+`AdventureState` per the [Validation Framework](#validation-framework)
+regardless of which actor emitted it. The projected view is the
+AI's perception, not a relaxation of legality.
 
 ### Command Envelope
 
@@ -842,21 +842,21 @@ plus a length-class label (`<8` / `<32` / `<128` / `>=128`).
 
 ## Future Commands (Phase 2+)
 
-These are documented for reference but not implemented in MVP:
+Reserved kinds not yet defined in
+[`command.schema.json`](../../content-schema/schemas/command.schema.json):
 
-- `SPELL_CAST` — adventure-map and combat spell casting
-- `ACTIVATE_ARTIFACT` — artifact special ability
-- `TRADE_RESOURCES` — marketplace resource exchange
-- `RECRUIT_EXTERNAL_DWELLING_UNITS` — hire from neutral or owned dwellings
-- `ATTACK_TOWN` — siege assault
-- `DIPLOMACY` — alliances, gifts (multiplayer only)
+- `ACTIVATE_ARTIFACT` — artifact special ability.
+- `ATTACK_TOWN` — siege assault wrapper above the existing
+  `BATTLE_*` and `FIRE_CATAPULT` building blocks.
+- `DIPLOMACY` — alliances and gifts (multiplayer only).
 
-The JSON schema already reserves command kinds for several phase-2
-systems so UI tasks can depend on a closed command vocabulary without
-inventing reducers: tavern hiring, prison rescue, creature-bank rewards,
-artifact equip/unequip, retreat/surrender, war machines, university
-skills, shipyards, grail structures, random-map generation, and army or
-artifact transfer flows.
+The schema already includes most other phase-2 systems so UI tasks
+can depend on a closed command vocabulary without inventing
+reducers: spell casting, tavern hiring, prison rescue, creature-bank
+rewards, artifact equip / unequip, retreat / surrender, war
+machines, university skills, shipyards, grail structures, random-map
+generation, marketplace resource trades, external-dwelling recruits,
+and army / artifact transfer flows.
 
 ---
 
@@ -1107,3 +1107,19 @@ for rationale.
 - `docs/architecture/id-allocator.md` — runtime entity-ID format used by minting commands
 - `docs/architecture/multi-engine-harness.md` — desync detection across engine instances
 - `docs/architecture/ai-contract.md` — gameplay-AI runtime contract (projected view, worker protocol, budgets, cancellation, parallelism)
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Save-import / pack-trust / UGC / consent / multiplayer-trust token lists match the screen packages they cite (`70-save-import`, `71-pack-manager`, `72-pack-trust-prompt`, `73-ugc-publish-disclaimer`, `74-ai-provenance-detail`, `75-content-report`, `76-onboarding-consent`, `60-confirmation-dialog`, `62-multiplayer-setup`, `64-network-lobby`); coverage is enforced by [`screen-command-coverage.json`](./screen-command-coverage.json) and `npm run validate:commands`.
+- **Schema: ⚠** — The closed `Command` enum in [`command.schema.json`](../../content-schema/schemas/command.schema.json) ships several kinds the doc still lists as Phase-2 (rewritten) and one section (`BATTLE_SPELL`) whose name does not appear in the schema (the schema uses `SPELL_CAST`). Detail in `## ⚠ Issues`. The `commandMetadata` `$def` and the nonce regex `^[A-Za-z0-9_-]+:[0-9]+:[0-9]+$` match § Deduplication exactly.
+- **Tasks: ✔** — Every owning-task reference in the token lists points to an existing task file under `tasks/mvp/07-ui-shell/`, `tasks/mvp/08-persistence/`, `tasks/phase-2/04-content-editor/`, `tasks/phase-2/05-mod-system/`, and `tasks/phase-3/01-multiplayer/`.
+
+## ⚠ Issues
+
+- **`BATTLE_SPELL` section names a kind that does not exist in the schema.** The doc declares a `BATTLE_SPELL` payload (`{ casterId, spellId, targetStackId, targetPosition }`) but the closed `oneOf` in [`command.schema.json`](../../content-schema/schemas/command.schema.json) defines `SPELL_CAST` (`{ casterId, spellId, target: { stackId, position } }`) — same intent, different `kind` and target shape. Per CLAUDE.md ("Stable IDs are public API"), the rename is non-trivial. The owning task for combat-spell wiring (Phase-2 magic) must either migrate the doc section to `SPELL_CAST` or alias the new kind back to `BATTLE_SPELL` in [`enums.removed.json`](../../content-schema/enums.removed.json) — flagged here rather than rewritten silently because the payload shapes differ.
+- **`BATTLE_SURRENDER` section names a kind that does not exist in the schema.** The schema defines two distinct kinds: `RETREAT_BEFORE_BATTLE` (escape before combat begins) and `ACCEPT_BATTLE_SURRENDER` (the opposing hero accepts a surrender). The doc's `BATTLE_SURRENDER` ("Hero surrenders the battle") matches neither. Phase-2 surrender-flow task must reconcile — flagged rather than rewritten because the policy text (50 % army loss to attacker) is load-bearing for balance.
+- **Single-flight list cites `END_BATTLE_TURN` and `START_BATTLE`, neither of which appears in the schema.** [`command.schema.json`](../../content-schema/schemas/command.schema.json) defines `INITIATE_BATTLE` (entry) and `START_BATTLE_AFTER_TACTICS` (post-tactics start), and the per-stack battle turn advances implicitly after `BATTLE_ATTACK` / `BATTLE_WAIT` / `BATTLE_DEFEND`. The dispatcher single-flight gate must either be retargeted to the actual kinds or the new kinds added to the schema; flagged rather than silently rewritten because the gate's `(playerId, kind)` key is load-bearing.
+- **Field-Visibility quick-reference table uses non-canonical `kind` names.** The table at § Field Visibility lists `CAST_SPELL`, `RECRUIT_UNIT`, `TRANSFER_ARTIFACT`, `SET_GUARD`; the schema enum has `SPELL_CAST`, `RECRUIT_UNITS`, `TRANSFER_HERO_ARTIFACT`, and no `SET_GUARD`. The same table is mirrored in [`desync-redaction.md` § 3](./desync-redaction.md#3-worked-examples), which labels the table _illustrative, not exhaustive_; both files share the drift. Surfaced here rather than rewritten unilaterally because fixing only one of the two would split the canonical list. Owner: the desync-redaction owning task should sync both tables to schema kinds.
+- **`commandMetadata.nonce` description in the schema names `playerId` rather than `actorId`.** The doc's § Deduplication uses `actorId` (string token; example `p1`, `system`) consistent with the regex `^[A-Za-z0-9_-]+:[0-9]+:[0-9]+$`. The schema's `commandMetadata` `description` text reads `<playerId>:<turn>:<sequence>`. Functionally consistent (regex permits both forms), but the schema description is misleading for `system`-minted bookkeeping commands. Suggested fix: update the schema description to `<actorId>:<turn>:<sequence>` to match this doc; not done here per Hard Prohibition D.

@@ -48,10 +48,10 @@ command whose `metadata.playerId` does not match
   `system`. The exempt enumeration lives in
   [`command-schema.md` § Validation Framework](./command-schema.md#validation-framework).
 - **Why a separate gate.** Per-command validators encode
-  ownership ad hoc. A gate prevents the entire class of
-  "forgot to add the ownership precondition" bugs from leaking
-  into multiplayer lockstep, where downstream sequence dedup
-  (which is *not* a gate) cannot catch a non-current actor.
+  ownership ad hoc; a single gate prevents the "forgot to add
+  the ownership precondition" bug class from reaching multiplayer
+  lockstep, where the nonce-based dedup is *not* a gate and
+  cannot catch a non-current actor.
 
 ## 3. Stale references
 
@@ -306,11 +306,73 @@ Single canonical doc:
 This file is the canonical home of cross-cutting edge-case policy.
 Other documents back-link here rather than duplicating prose:
 
-- [`command-schema.md`](./command-schema.md) — § Validation
-  Framework, § Single-flight commands, § Numeric invariants.
-- [`determinism.md`](./determinism.md) — § Saturation policy,
-  § State-shape invariants, § Wall-clock readers.
-- [`state-flow.md`](./state-flow.md) — § Save eligibility.
-- [`content-platform.md`](./content-platform.md) — § Asset
-  fallback policy.
-- [`effect-registry.md`](./effect-registry.md) — § Drain semantics.
+- [`command-schema.md`](./command-schema.md#validation-framework)
+  — § Validation Framework,
+  [§ Single-flight commands](./command-schema.md#single-flight-commands),
+  [§ Numeric invariants](./command-schema.md#numeric-invariants).
+- [`determinism.md`](./determinism.md#saturation-policy)
+  — § Saturation policy,
+  [§ State-shape invariants](./determinism.md#state-shape-invariants),
+  [§ Wall-clock readers](./determinism.md#wall-clock-readers).
+- [`state-flow.md`](./state-flow.md#save-eligibility) — § Save
+  eligibility.
+- [`content-platform.md`](./content-platform.md#asset-load-failure-policy)
+  — § Asset-Load Failure Policy.
+- [`effect-registry.md`](./effect-registry.md#drain-semantics) —
+  § Drain semantics.
+- [`visibility-policy.md`](./visibility-policy.md) — per-subsystem
+  `visibilitychange` behavior referenced from § 14.
+- [`storage-policy.md`](./storage-policy.md) — IDB wrapper, byte
+  budgets, eviction order referenced from § 15.
+- [`edge-case-policy.md`](./edge-case-policy.md) — paired
+  *gameplay* corner cases (empty army, simultaneous death, HP
+  overflow).
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Screen citations in §§ 4, 8, 9 ([`07-adventure-map`](./wiki/screens/07-adventure-map/), [`38-combat-screen`](./wiki/screens/38-combat-screen/), [`54-system-menu`](./wiki/screens/54-system-menu/), [`55-save-load`](./wiki/screens/55-save-load/)) all resolve; the toast / banner / modal IDs (`mp.combat.disconnect_banner`, `mp.combat.forfeit_modal`, `save.disabled.*`) match [`save-eligibility.md`](../../content-schema/save-eligibility.md).
+- **Schema: ⚠** — § 11 enum (8 codes) matches [`dispatcher-validation-error.schema.json`](../../content-schema/schemas/dispatcher-validation-error.schema.json) exactly; § 5 `$defs` match [`numeric.json`](../../content-schema/schemas/numeric.json); § 15 codes match [`storage-error.schema.json`](../../content-schema/schemas/storage-error.schema.json). However, neither `dispatcher-validation-error` nor `storage-error` is registered in [`schema-matrix.md`](./schema-matrix.md). Detail in `## ⚠ Issues`.
+- **Tasks: ⚠** — Owning tasks in §§ 1, 3, 8, 9, 13 all exist on disk and back-link here. Section 6 fuzz target `tests/fuzz/overflow.fuzz.ts` is owned by [`tasks/phase-2/09-quality/01-overflow-fuzz.md`](../../tasks/phase-2/09-quality/01-overflow-fuzz.md), which back-links here, but that task is not named in the body. Section 14 (`WILL_BACKGROUND` + 60 s grace) and § 15 (eviction order, warning threshold) are owned by tasks ([`07-host-migration-heartbeat-election`](../../tasks/phase-3/01-multiplayer/07-host-migration-heartbeat-election.md), [`09-quota-handling`](../../tasks/mvp/08-persistence/09-quota-handling.md)) that are referenced from the *companion* sibling docs ([`visibility-policy.md`](./visibility-policy.md), [`storage-policy.md`](./storage-policy.md)) rather than from this file. Non-blocking; consistent with this file being the cross-cutting pointer doc.
+
+## ⚠ Issues
+
+- **Inbound `qNNN` anchors broken across the corpus.** Commit
+  `446a5a8` ("Drop stale archived-plan links from canonical docs")
+  removed audit-question Q-IDs (`Q204` … `Q218`) from the headings
+  of §§ 1–10 and 12–15, but did not scrub the inbound anchors that
+  reference them. As a result, ~12 sibling documents and tasks now
+  point at anchors that no longer resolve in this file:
+  [`command-schema.md` line 1094](./command-schema.md), [`determinism.md` lines 155, 180](./determinism.md),
+  [`content-platform.md` line 132](./content-platform.md),
+  [`effect-registry.md` line 165](./effect-registry.md),
+  [`state-flow.md` line 134](./state-flow.md),
+  [`visibility-policy.md` lines 6, 95](./visibility-policy.md),
+  [`storage-policy.md` lines 14, 122](./storage-policy.md),
+  [`ai-generation-pipeline.md` line 267](./ai-generation-pipeline.md),
+  [`diagrams/19-locale-variants.md` line 51](./diagrams/19-locale-variants.md),
+  [`diagrams/18-string-resolution.md` line 72](./diagrams/18-string-resolution.md),
+  [`save-eligibility.md` line 48](../../content-schema/save-eligibility.md),
+  and several files under `tasks/` (`mvp/01-engine-core/06-command-dispatcher.md`, `mvp/01-engine-core/06b-extend-command-schema-coverage-checklist.md`, `mvp/02-content-schemas/12-formula-dsl.md`, `mvp/02b-asset-pipeline/04-asset-registry-id-based-resolution-no-hardcoded-paths.md`, `mvp/06-renderer/08-presentation-loop-decoupled-from-sim.md`, `mvp/08-persistence/02-log-only-save-format.md`, `phase-2/09-quality/01-overflow-fuzz.md`, `phase-3/01-multiplayer/06-reconnection-log-range-request-plus-replay.md`, plus the `task-registry.json` rows that mirror them). The owner of `446a5a8` (or whoever continues the cleanup) must close the gap by either restoring the `(QNNN)` suffixes on these headings (so anchors like `#5-zero-resource-transactions-q209` resolve again) or sweeping the inbound anchors in those files to drop the suffix. The audit did not pick a side because (a) reverting the heading change in `446a5a8` would undo a deliberate maintainer edit and (b) editing the sibling files would violate Hard Prohibition D. Suggested values: prefer the corpus-wide sweep — drop `qNNN` from inbound anchors in the listed files, leave the cleaner headings as in this rewrite. Mapping for reverse-direction repair if that is the chosen path: § 1 = Q204, § 2 = Q205, § 3 = Q206, § 4 = Q207, § 5 = Q209, § 6 = Q210, § 7 = Q211, § 8 = Q212, § 9 = Q213, § 10 = Q214, § 12 = Q215, § 13 = Q216, § 14 = Q217, § 15 = Q218 (§ 11 was never tied to a Q-ID; cross-refs to Q208 = "state-vs-UI divergence" were absorbed into § 11 + § 8 without their own section).
+- **`dispatcher-validation-error.schema.json` and `storage-error.schema.json` not in `schema-matrix.md`.** § 11 names the dispatcher error taxonomy as the canonical closed enum, and § 15 names the storage error taxonomy. Both schema files exist on disk and both `$id` themselves under the `heroes-reforged/` namespace. Neither row appears in [`schema-matrix.md`](./schema-matrix.md). Per CLAUDE.md root contract on schema registration, the schema-matrix owner must add the two rows — the matrix is the index agents read to discover error envelopes. Suggested values: add a `DispatcherValidationError` row pointing at the schema and at this file § 11, and a `StorageError` row pointing at the schema and at this file § 15 (and at [`storage-policy.md` § StorageError Taxonomy](./storage-policy.md#storageerror-taxonomy)). Skill did not edit `schema-matrix.md` (Hard Prohibition D).
+- **`STACK_CAP_EXCEEDED` not in the § 11 closed enum.** Already
+  flagged from the gameplay companion [`edge-case-policy.md` §
+  ⚠ Issues](./edge-case-policy.md). Surfacing again from this side
+  because § 11 is the canonical home of the dispatcher
+  validation-error taxonomy. The closed `oneOf` in
+  [`dispatcher-validation-error.schema.json`](../../content-schema/schemas/dispatcher-validation-error.schema.json)
+  defines exactly the eight codes listed in § 11; the gameplay
+  companion's § 3 (and the parallel
+  [`in-combat-stack-rules.md`](./in-combat-stack-rules.md) § 2.3)
+  reference `STACK_CAP_EXCEEDED` and `BATTLEFIELD_STACK_CAP_EXCEEDED`
+  as dispatcher-surfaced rejections. Either the codes belong in § 11
+  (and the schema) so UIs can localize them, or those callers should
+  re-classify as reducer-internal `Result` codes. Owner:
+  [`mvp.05-adventure-map.01-strategic-game-state-model`](../../tasks/mvp/05-adventure-map/01-strategic-game-state-model.md)
+  for the army cap and
+  [`mvp.09-tactical-combat.05-retaliation-once-per-round-nullification`](../../tasks/mvp/09-tactical-combat/05-retaliation-once-per-round-nullification.md)'s
+  sibling stack-cap task for the battlefield variant — or
+  [`mvp.01-engine-core.06-command-dispatcher`](../../tasks/mvp/01-engine-core/06-command-dispatcher.md)
+  if the gate is upstream. This skill did not edit either file
+  (Hard Prohibition D).

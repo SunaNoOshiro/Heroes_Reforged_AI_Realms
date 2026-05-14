@@ -6,31 +6,30 @@ introducing new jargon.
 
 ## Core Engine
 
-- **Deterministic path** — any code that advances game state. Must use
-  only seeded RNG, fixed-point math, and canonical ordering. Never wall
-  clock, never `Math.random()`, never uncontrolled floats.
+- **Deterministic path** — code that advances game state. Uses only
+  seeded RNG, fixed-point math, and canonical ordering. Never wall
+  clock, `Math.random()`, or uncontrolled floats.
 - **Fixed-point** — integers used to represent fractions. Ratios are
   stored as paired numerator/denominator integers; multiply first,
   divide last.
-- **Canonical JSON** — the one serialization of game state (sorted keys,
-  no whitespace, integers without exponent) used for hashing and
-  replays.
-- **Content hash** — hex digest of canonical-JSON over every record in a
-  pack. Pinned by saves, replays, and multiplayer.
-- **Command** — an atomic, serializable player or AI action. The engine
-  is a reducer: `state = apply(state, command)`.
+- **Canonical JSON** — the one serialization of game state (sorted
+  keys, no whitespace, integers without exponent) used for hashing
+  and replays.
+- **Content hash** — hex digest of canonical-JSON over every record
+  in a pack. Pinned by saves, replays, and multiplayer.
+- **Command** — an atomic, serializable player or AI action. The
+  engine is a reducer: `state = apply(state, command)`.
 - **GameState** — the closed top-level value the reducer consumes.
   Normalized `byId` collections, frozen plain objects, structural
   sharing across reducer steps. Shape pinned in
   [`state-shape.md`](./state-shape.md) and
   [`game-state.schema.json`](../../content-schema/schemas/game-state.schema.json).
 - **Replay** — the ordered list of commands plus the seed and ruleset
-  ids. Replaying regenerates the state without storing it.
-- **Named sub-stream** — one PCG32 generator forked from the root seed
-  by name (`damage`, `morale`, `mage-guild`, ...). Each stream advances
-  independently so adding a new system never shifts existing draw
-  sequences. Catalogue:
-  [`rng-streams.md`](./rng-streams.md).
+  ids. Replaying regenerates state without storing it.
+- **Named sub-stream** — one PCG32 generator forked from the root
+  seed by name (`damage`, `morale`, `mage-guild`, ...). Streams
+  advance independently, so adding a new system never shifts existing
+  draws. Catalogue: [`rng-streams.md`](./rng-streams.md).
 - **Command nonce** — the per-actor, per-turn dedup key
   `<actorId>:<turn>:<sequence>` carried in every command's metadata.
   The dispatcher rejects repeats; the format also supplies the
@@ -39,58 +38,58 @@ introducing new jargon.
 - **Dispatcher queue** — the single bounded FIFO per engine instance.
   Capacity 1024, hard-reject overflow, single-threaded drain. See
   [`command-schema.md` § Dispatcher Queue](./command-schema.md#dispatcher-queue).
-- **Cross-actor ordering** — the canonical tie-break rule when more
-  than one actor (hotseat, AI co-actor, multiplayer peer) emits
-  commands in the same window. See
+- **Cross-actor ordering** — the canonical tie-break when more than
+  one actor (hotseat, AI co-actor, multiplayer peer) emits commands
+  in the same window. See
   [`command-schema.md` § Cross-Actor Ordering](./command-schema.md#cross-actor-ordering).
 - **Seed source** — the precedence list that resolves
   `SCENARIO_LOAD.seed` for a fresh session: explicit user input >
   scenario field > `ROLL_RMG_SEED` > CSPRNG fallback. See
   [`command-schema.md` § Seed Source Precedence](./command-schema.md#seed-source-precedence).
 - **Multi-engine harness** — the test fixture that runs two
-  `createEngine()` instances side by side and compares their state
-  hashes after each command to catch determinism leaks. See
+  `createEngine()` instances side by side and compares state hashes
+  after each command to catch determinism leaks. See
   [`multi-engine-harness.md`](./multi-engine-harness.md).
 - **Frame-time tier** — the renderer's degradation bucket
   (Green / Amber / Orange / Red) selected from the rolling-average
   frame time. Each tier prescribes which presentation features stay
   on. See
-  [`renderer-technology-choice.md` § Frame-Time Budget &amp; Degradation](./renderer-technology-choice.md#frame-time-budget--degradation).
-- **Event** — a typed, serializable record of something that
-  happened in the deterministic engine. Returned alongside the
-  next state on every `dispatch` call (`events: Event[]`).
-  Consumers (animation timeline, sound system) iterate the array
-  read-only; events never mutate state and are never serialized.
-  Closed vocabulary in [`event-schema.md`](./event-schema.md).
-- **Event log** — the per-dispatch `events: Event[]` array. Not
-  a global, never persisted; consumers consume it on their own
-  clock. Retention and save/load rules in
+  [`renderer-technology-choice.md` § Frame-Time Budget & Degradation](./renderer-technology-choice.md#frame-time-budget--degradation).
+- **Event** — a typed, serializable record of something that happened
+  in the deterministic engine. Returned alongside the next state on
+  every `dispatch` call (`events: Event[]`). Read-only; events never
+  mutate state and are never serialized. Closed vocabulary in
+  [`event-schema.md`](./event-schema.md).
+- **Event log** — the per-dispatch `events: Event[]` array. Not a
+  global, never persisted; consumers read on their own clock.
+  Retention and save/load rules in
   [`event-system.md`](./event-system.md).
-- **Event consumer** — a presentation-side reader of the event
-  log (animation timeline, sound system). Iterates events in
-  insertion order, may not call `dispatch`, may not veto. Runtime
-  contract in [`event-system.md`](./event-system.md).
+- **Event consumer** — a presentation-side reader of the event log
+  (animation timeline, sound system). Iterates events in insertion
+  order, may not call `dispatch`, may not veto. Runtime contract in
+  [`event-system.md`](./event-system.md).
 
 ## Content Model
 
-- **Pack** — one folder under `resources/packs/` with one `manifest.json`.
-  The extension boundary for the engine.
+- **Pack** — one folder under `resources/packs/` with one
+  `manifest.json`. The extension boundary for the engine.
 - **Record** — one gameplay-or-presentation JSON file (unit, hero,
   spell, artifact, etc.) with a stable namespaced id.
-- **Stable ID** — a `<packId>:<kind>:<local>` string that is public API
-  for authored content. Never reused, aliased on rename. Mid-game
-  entities (recruited stacks, captured mines, summons, RMG objects) use
-  the runtime form `<kind>:<turn>:<actorId>:<perTurnCounter>` minted by
-  the deterministic allocator in
-  [`id-allocator.md`](./id-allocator.md); both forms share the
-  "stable, never-reused" contract.
+- **Stable ID** — a `<packId>:<kind>:<local>` string that is public
+  API for authored content. Never reused, aliased on rename.
+  Mid-game entities (recruited stacks, captured mines, summons, RMG
+  objects) use the runtime form
+  `<kind>:<turn>:<actorId>:<perTurnCounter>` minted by the
+  deterministic allocator in [`id-allocator.md`](./id-allocator.md);
+  both forms share the "stable, never-reused" contract.
 - **Registry** — in-memory map from id to resolved record used at
   runtime. Assembled by `src/content-runtime/` once per game start.
 - **Ruleset** — balance constants and formulas. Structured fixed-point
   AST, not strings; see
   [`content-schema/schemas/formula.schema.json`](../../content-schema/schemas/formula.schema.json).
-- **Effect** — one item in the effect registry; discriminated by `kind`.
-  Consumed by spells, abilities, artifacts, skills, and buildings.
+- **Effect** — one item in the effect registry; discriminated by
+  `kind`. Consumed by spells, abilities, artifacts, skills, and
+  buildings.
 
 ## Adventure Map
 
@@ -100,10 +99,10 @@ introducing new jargon.
 - **Dwelling** — a building that produces a unit on a weekly cadence.
 - **Mine** — an adventure building that yields resources per day while
   owned.
-- **Fog of war** — per-player mask over map visibility, recomputed from
-  hero/town line-of-sight each turn.
-- **Town** — a player-owned capital. Builds structures, recruits, casts
-  adventure spells.
+- **Fog of war** — per-player mask over map visibility, recomputed
+  from hero/town line-of-sight each turn.
+- **Town** — a player-owned capital. Builds structures, recruits,
+  casts adventure spells.
 
 ## Tactical Combat
 
@@ -111,14 +110,15 @@ introducing new jargon.
 - **Initiative queue** — speed-ordered list of which stack acts next.
 - **Retaliation** — automatic counterattack once per round, nullifiable
   by specific abilities.
-- **Morale / luck** — probability-of-bonus-turn and probability-of-double-
-  damage rolls. Expressed in the ruleset as integer numerators.
+- **Morale / luck** — probability-of-bonus-turn and probability-of-
+  double-damage rolls. Expressed in the ruleset as integer numerators.
 
 ## Heroes
 
 - **Hero** — a mobile commander. Has an army, primary stats, secondary
   skills, artifacts, specialty.
-- **Paper doll** — the inventory layout that equips artifacts into slots.
+- **Paper doll** — the inventory layout that equips artifacts into
+  slots.
 - **Primary stats** — attack, defense, power, knowledge. Contribute
   directly to combat formulas.
 - **Secondary skill** — passive hero trait with up to three mastery
@@ -130,10 +130,10 @@ introducing new jargon.
 
 ## H3 Alias Anchors
 
-Heroes-III community vocabulary that maps onto our canonical terms.
-Use these aliases when reading external H3 references; the canonical
-term on the right is the only one that should appear in code, schemas,
-and task acceptance criteria.
+Heroes-III community vocabulary mapped to canonical terms. Use the
+aliases when reading external H3 references; the canonical term on
+the right is the only one that should appear in code, schemas, and
+task acceptance criteria.
 
 - **Wandering monster** → **neutral stack** (see
   [`content-schema/schemas/neutral-stack-template.schema.json`](../../content-schema/schemas/neutral-stack-template.schema.json)).
@@ -151,11 +151,13 @@ and task acceptance criteria.
   `knowledge`; stored on `hero.schema.json`).
 - **Secondary skill tree** → **secondary skill catalog** (stored in
   [`content-schema/schemas/skill.schema.json`](../../content-schema/schemas/skill.schema.json)).
-- **Specialist hero** → **hero specialty** (a `Specialty` record on the
-  hero; see the `Specialty` entry in `## Heroes`).
+- **Specialist hero** → **hero specialty** (a `Specialty` record on
+  the hero; see the `Specialty` entry in `## Heroes`).
 - **Hero biography / scenario log** → **status history** (the planned
-  `status-history-store` in `phase-2.08-meta-systems`).
-- **Town portrait fly-in** → **town flyby** (screen `35-town-flyby`).
+  [`status-history-store`](../../tasks/phase-2/08-meta-systems/05-status-history-store.md)
+  in `phase-2/08-meta-systems`).
+- **Town portrait fly-in** → **town flyby** (screen
+  [`35-town-flyby`](./wiki/screens/35-town-flyby/spec.md)).
 
 When introducing a new H3 alias, add the entry here before referencing
 it from a task body or schema description.
@@ -163,15 +165,17 @@ it from a task body or schema description.
 ## AI and Generation
 
 - **Provider-neutral** — code that depends on
-  `GenerationProvider`/`ModerationProvider` interfaces, not a vendor SDK.
+  `GenerationProvider`/`ModerationProvider` interfaces, not a vendor
+  SDK.
 - **Generation request** — the structured input to
   `GenerationProvider.generateStructured`.
 - **Generated faction** — the raw provider output. Becomes a loadable
-  pack only after schema validation, coherence check, and auto-balance.
-- **Auto-balancer** — the headless-battle runner that estimates win-rate
-  vs a reference faction and feeds a stat optimizer.
-- **Sandbox pack** — a pack with `sandboxed: true`. Excluded from ranked
-  and trusted flows; restricted by runtime policy.
+  pack only after schema validation, coherence check, and
+  auto-balance.
+- **Auto-balancer** — the headless-battle runner that estimates
+  win-rate vs a reference faction and feeds a stat optimizer.
+- **Sandbox pack** — a pack with `sandboxed: true`. Excluded from
+  ranked and trusted flows; restricted by runtime policy.
 
 ## Milestones
 
@@ -191,9 +195,9 @@ it from a task body or schema description.
 
 ## M7 Multiplayer Scope Sketches
 
-These items are explicit M7 scope. The preliminary contracts are
-captured here so M5 contributors do not regress the determinism or
-state-shape rules they depend on.
+Explicit M7 scope. The preliminary contracts are captured here so M5
+contributors do not regress the determinism or state-shape rules
+they depend on.
 
 - **Spectator** — a read-only peer that joins a separate room-code
   shared by the players. Spectators receive the canonical command
@@ -211,3 +215,15 @@ state-shape rules they depend on.
 - **Tournament observer** — distinct from spectator; observers carry
   authority bound to a tournament authority service. Out of P2P scope
   by definition.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Only screen reference is `35-town-flyby`; the package exists at [`docs/architecture/wiki/screens/35-town-flyby/spec.md`](./wiki/screens/35-town-flyby/spec.md). No commands, toasts, or copy-strings claimed.
+- **Schema: ✔** — All seven schema references resolve under [`content-schema/schemas/`](../../content-schema/schemas/) (`game-state`, `formula`, `neutral-stack-template`, `unit`, `map-object`, `skill`, `hero`); definitions match the schema field names cited.
+- **Tasks: ✔** — `tasks/phase-3/01-multiplayer.md`, `tasks/phase-3/01-multiplayer/01-signaling-server-node-js-websocket-lobby.md`, and `tasks/phase-2/08-meta-systems/05-status-history-store.md` all exist and host `MAX_PEERS_PER_ROOM` / `status-history-store` per the glossary's claims.
+
+## ⚠ Issues
+
+_None._

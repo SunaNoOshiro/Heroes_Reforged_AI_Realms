@@ -1,86 +1,125 @@
 # Screen 23 Architecture: Hero Prison
 
-System: adventure
-Screen ID: hero-prison
-Visual Archetype: curated-hero-prison
-Curation Status: curated-pass-3
+- System: `adventure`
+- Screen ID: `hero-prison`
+- Visual Archetype: `curated-hero-prison`
+- Curation Status: `curated-pass-3`
+
+## Companion Docs
+- [`spec.md`](./spec.md) — components, bindings.
+- [`interactions.md`](./interactions.md) — controls, commands,
+  navigation.
+- [`data-contracts.md`](./data-contracts.md) — schemas, selectors,
+  commands.
+- [`mockup.html`](./mockup.html) — visual reference.
 
 ## Purpose
-Adventure prison dialog for releasing an imprisoned hero into the player's roster when limits and ownership rules allow.
+Adventure prison dialog. Releases an imprisoned hero into the visiting
+player's roster when capacity, ownership, and spawn-tile rules pass.
 
 ## Visual Direction
 - Original internal UI contract. Do not use third-party captures,
-  copied franchise art, or external product pixels as implementation input.
+  copied franchise art, or external product pixels as implementation
+  input.
 
 ## Visual Composition
 ```mermaid
 flowchart TD
-  Root["Hero Prison"]
-  C0["PrisonCellPortrait"]
-  Root --> C0
-  C1["ImprisonedHeroSummary"]
-  Root --> C1
-  C2["RosterCapacityPanel"]
-  Root --> C2
-  C3["ReleaseLeaveButtons"]
-  Root --> C3
+  Root["HeroPrisonDialog"]
+  Root --> C0["PrisonCellPortrait"]
+  Root --> C1["ImprisonedHeroSummary"]
+  Root --> C2["RosterCapacityPanel"]
+  Root --> C3["ReleaseLeaveButtons"]
 ```
 
 ## Screen Load And Data Resolution
 ```mermaid
 flowchart LR
-  L0["Prison object"] --> L1
-  L1["Hero record"] --> L2
-  L2["Roster capacity"] --> L3
-  L3["Spawn tile"] --> L4
-  L4["Prison dialog"]
+  L0["state.ui.adventure.pendingPrisonId"] --> L1["state.mapObjects.byId[prisonId].heroId"]
+  L1 --> L2["selectors.heroes.availableRosterSlots"]
+  L2 --> L3["selectors.mapObjects.prisonReleaseTile"]
+  L3 --> L4["HeroPrisonDialog render"]
 ```
 
 ## Main Interaction Flow
 ```mermaid
 flowchart TD
-  I0["Release input"] --> I1
-  I1["Roster/release guard"] --> I2
-  I2["Release command"] --> I3
-  I3["Reducer creates hero"] --> I4
-  I4["Map spawn"]
+  I0["Release click"] --> I1["selectors.heroes.prisonReleaseGuard"]
+  I1 -->|accepted| I2["RELEASE_PRISON_HERO"]
+  I1 -->|rejected| I5["Disabled control + localized reason"]
+  I2 --> I3["Reducer: roster + prison + spawn"]
+  I3 --> I4["Map spawn at prisonReleaseTile"]
 ```
 
 ## Animation Flow
 ```mermaid
 sequenceDiagram
   participant UI
-  participant Draft as UI Draft
   participant Guard
   participant Reducer
   participant VFX
-  UI->>Draft: hover/select/preview
-  Draft->>VFX: Bars lift
-  UI->>Guard: confirm action
-  Guard->>Reducer: accepted command or route
+  UI->>UI: hover / focus / preview (local draft)
+  UI->>Guard: confirm Release
+  Guard->>Reducer: RELEASE_PRISON_HERO (when accepted)
   Reducer-->>UI: authoritative result
-  UI->>VFX: Hero spawn
+  UI->>VFX: bars lift, portrait brighten, roster glow, hero spawn
 ```
 
 ## Outgoing Transitions
 ```mermaid
 flowchart LR
   Current["Hero Prison"]
-  Current --> T0["07-adventure-map"]
-  Current --> T1["46-hero-screen"]
-  Current --> T2["07-adventure-map"]
+  Current -->|prison.release| T0["07-adventure-map"]
+  Current -->|prison.inspectHero| T1["46-hero-screen"]
+  Current -->|prison.leave| T2["07-adventure-map"]
 ```
 
 ## State Inputs
-- prisonId -> state.ui.adventure.pendingPrisonId
-- imprisonedHero -> state.mapObjects.byId[prisonId].heroId
-- rosterSlots -> selectors.heroes.availableRosterSlots
-- releaseGuard -> selectors.heroes.prisonReleaseGuard
-- spawnTile -> selectors.mapObjects.prisonReleaseTile
+| Symbol | Source | Notes |
+| --- | --- | --- |
+| `prisonId` | `state.ui.adventure.pendingPrisonId` | UI-local route state. |
+| `imprisonedHero` | `state.mapObjects.byId[prisonId].heroId` | Hero record locked inside the prison. |
+| `rosterSlots` | `selectors.heroes.availableRosterSlots` | Active player capacity. |
+| `releaseGuard` | `selectors.heroes.prisonReleaseGuard` | Eligibility + reason. |
+| `spawnTile` | `selectors.mapObjects.prisonReleaseTile` | Released-hero spawn tile. |
 
 ## Implementation Contract
-- Mockup defines visual regions and data hooks only.
-- Spec defines the component/state contract.
-- Interactions define controls, timing, command routing, disabled states, and error behavior.
-- Data contracts define schemas, config, localization, asset, audio, VFX, save, and replay references.
-- Diagrams are screen-specific summaries of the same contract and must not introduce hidden behavior.
+- [`mockup.html`](./mockup.html) defines visual regions and data hooks
+  only.
+- [`spec.md`](./spec.md) defines the component / state contract.
+- [`interactions.md`](./interactions.md) defines controls, timing,
+  command routing, disabled states, and error behaviour.
+- [`data-contracts.md`](./data-contracts.md) defines schemas, config,
+  localization, assets, audio, VFX, save, and replay references.
+- These diagrams are screen-specific summaries of the same contract
+  and must not introduce hidden behaviour.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ⚠** — Diagrams mirror
+  [`spec.md`](./spec.md) and [`interactions.md`](./interactions.md).
+  The `prison.inspectHero` arrow in *Outgoing Transitions* is not
+  reflected by a control in [`mockup.html`](./mockup.html); flagged
+  in sibling [`spec.md`](./spec.md) Issues.
+- **Schema: ⚠** — `RELEASE_PRISON_HERO` is registered with
+  [`mvp.05-adventure-map.12-release-prison-hero-command`](../../../../../tasks/mvp/05-adventure-map/12-release-prison-hero-command.md)
+  per [`command-schema.md`](../../../command-schema.md);
+  `OPEN_IMPRISONED_HERO_PREVIEW` and `CLOSE_HERO_PRISON` are not
+  defined there. See sibling
+  [`data-contracts.md`](./data-contracts.md) Issues.
+- **Tasks: ✔** — UI surface owned by
+  [`phase-2.07-ui-screen-backlog.23-hero-prison-screen`](../../../../../tasks/phase-2/07-ui-screen-backlog/23-hero-prison-screen.md);
+  release reducer owned by
+  [`mvp.05-adventure-map.12-release-prison-hero-command`](../../../../../tasks/mvp/05-adventure-map/12-release-prison-hero-command.md).
+  Both list this screen package in Read First.
+
+## ⚠ Issues
+
+- **Inspect-hero transition has no mockup control.** *Outgoing
+  Transitions* shows the `prison.inspectHero → 46-hero-screen` edge,
+  but [`mockup.html`](./mockup.html) renders only RELEASE and LEAVE.
+  See sibling [`spec.md`](./spec.md) Issues for the canonical
+  statement; reconciler is
+  [`phase-2.07-ui-screen-backlog.23-hero-prison-screen`](../../../../../tasks/phase-2/07-ui-screen-backlog/23-hero-prison-screen.md).

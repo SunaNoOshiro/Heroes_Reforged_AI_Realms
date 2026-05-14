@@ -6,48 +6,54 @@ Visual Archetype: curated-quest-log
 Curation Status: curated-pass-3
 
 ## Purpose
-Adventure quest ledger listing active, completed, failed, and repeatable map-object quests with requirements, deadlines, and rewards.
+Adventure quest ledger that lists active, completed, failed, and
+repeatable map-object quests with requirements, deadlines, and
+rewards. All four controls are UI-local routing or local-draft
+operations; no command enters the deterministic command log on this
+screen.
 
 ## Visual Direction
 - Original internal UI contract. Do not use third-party captures,
-  copied franchise art, or external product pixels as implementation input.
+  copied franchise art, or external product pixels as implementation
+  input.
+
+## Companion docs
+- [`spec.md`](./spec.md) — component tree and state bindings.
+- [`interactions.md`](./interactions.md) — per-control routing,
+  timing, and disabled states.
+- [`data-contracts.md`](./data-contracts.md) — schemas, selectors,
+  localization, assets, save/replay.
+- [`mockup.html`](./mockup.html) — visual reference only.
 
 ## Visual Composition
 ```mermaid
 flowchart TD
-  Root["Quest Log"]
-  C0["QuestTabs"]
-  Root --> C0
-  C1["QuestList"]
-  Root --> C1
-  C2["QuestDetails"]
-  Root --> C2
-  C3["RequirementChecklist"]
-  Root --> C3
-  C4["RewardSlots"]
-  Root --> C4
-  C5["SourceFocusButton"]
-  Root --> C5
+  Root["QuestLog"]
+  Root --> C0["QuestTabs"]
+  Root --> C1["QuestList"]
+  Root --> C2["QuestDetails"]
+  Root --> C3["RequirementChecklist"]
+  Root --> C4["RewardSlots"]
+  Root --> C5["SourceFocusButton"]
 ```
 
 ## Screen Load And Data Resolution
 ```mermaid
 flowchart LR
-  L0["Quest registry"] --> L1
-  L1["Player progress"] --> L2
-  L2["Hero inventory"] --> L3
-  L3["Visible quest rows"] --> L4
-  L4["Quest log"]
+  L0["scenario quest records"] --> L1
+  L1["state.players.active progress"] --> L2
+  L2["selectors.quests.visibleQuestRows"] --> L3
+  L3["QuestList + QuestDetails"]
 ```
 
 ## Main Interaction Flow
 ```mermaid
 flowchart TD
-  I0["Tab/row input"] --> I1
-  I1["Visibility guard"] --> I2
-  I2["Local selection"] --> I3
-  I3["Optional source focus"] --> I4
-  I4["Caller return"]
+  I0["Tab / row click"] --> I1
+  I1["Local-draft write (filter or selectedQuestId)"] --> I2
+  I2["Re-derive requirements + rewardPreview"] --> I3
+  I3["Optional questLog.showSource → route + camera focus"] --> I4
+  I4["questLog.close → caller screen"]
 ```
 
 ## Animation Flow
@@ -55,35 +61,74 @@ flowchart TD
 sequenceDiagram
   participant UI
   participant Draft as UI Draft
-  participant Guard
-  participant Reducer
+  participant Selectors
   participant VFX
-  UI->>Draft: hover/select/preview
-  Draft->>VFX: Book open
-  UI->>Guard: confirm action
-  Guard->>Reducer: accepted command or route
-  Reducer-->>UI: authoritative result
-  UI->>VFX: Map fade
+  participant Camera
+  UI->>VFX: modalIn (book open)
+  UI->>Draft: questLog.changeTab → write state.ui.questLog.filter
+  Draft->>Selectors: re-derive visibleQuestRows
+  UI->>Draft: questLog.selectQuest → write state.ui.questLog.selectedQuestId
+  Draft->>Selectors: re-derive requirements + rewardPreview
+  UI->>VFX: page-flip, seal stamp on updated rows, objective underline
+  UI->>Camera: questLog.showSource → pan to source object (map fade)
+  UI->>VFX: reverse modalIn (book close)
 ```
 
 ## Outgoing Transitions
 ```mermaid
 flowchart LR
   Current["Quest Log"]
-  Current --> T0["07-adventure-map"]
-  Current --> T1["07-adventure-map or previous screen"]
+  Current -->|questLog.showSource + camera focus| T0["07-adventure-map"]
+  Current -->|questLog.close| T1["07-adventure-map or previous screen"]
 ```
 
 ## State Inputs
-- questFilter -> state.ui.questLog.filter
-- questRows -> selectors.quests.visibleQuestRows
-- selectedQuest -> state.ui.questLog.selectedQuestId
-- requirements -> selectors.quests.selectedQuestRequirements
-- rewardPreview -> selectors.quests.selectedQuestRewards
+- `questFilter` → `state.ui.questLog.filter`
+- `questRows` → `selectors.quests.visibleQuestRows`
+- `selectedQuest` → `state.ui.questLog.selectedQuestId`
+- `requirements` → `selectors.quests.selectedQuestRequirements`
+- `rewardPreview` → `selectors.quests.selectedQuestRewards`
+
+The three `selectors.quests.*` paths are produced by upstream task
+[`phase-2.08-meta-systems.04-quest-log-engine`](../../../../../tasks/phase-2/08-meta-systems/04-quest-log-engine.md);
+the underlying quest records resolve through
+[`mvp.02-content-schemas.16-quest-schema`](../../../../../tasks/mvp/02-content-schemas/16-quest-schema.md).
+Both tasks are `planned` per
+[`tasks/task-status.json`](../../../../../tasks/task-status.json),
+so the selectors do not yet resolve in `main`.
 
 ## Implementation Contract
-- Mockup defines visual regions and data hooks only.
-- Spec defines the component/state contract.
-- Interactions define controls, timing, command routing, disabled states, and error behavior.
-- Data contracts define schemas, config, localization, asset, audio, VFX, save, and replay references.
-- Diagrams are screen-specific summaries of the same contract and must not introduce hidden behavior.
+- `mockup.html` defines visual regions and data hooks only.
+- [`spec.md`](./spec.md) owns the component/state contract.
+- [`interactions.md`](./interactions.md) owns controls, timing,
+  command routing, disabled states, and error behavior.
+- [`data-contracts.md`](./data-contracts.md) owns schema, config,
+  localization, asset, audio, VFX, save, and replay references.
+- Diagrams above are screen-specific summaries of the same contract
+  and must not introduce hidden behavior.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Diagram component names (`QuestLog`, `QuestTabs`,
+  `QuestList`, `QuestDetails`, `RequirementChecklist`, `RewardSlots`,
+  `SourceFocusButton`) match the component tree in sibling
+  [`spec.md`](./spec.md). Outgoing-transition action IDs
+  (`questLog.showSource`, `questLog.close`) match the `data-action`
+  attributes in [`mockup.html`](./mockup.html) and the rows in
+  sibling [`interactions.md`](./interactions.md).
+- **Schema: ✔** — State inputs match the selector / state-path list
+  in sibling [`data-contracts.md`](./data-contracts.md). No engine
+  command enters this screen; quest content resolves through
+  upstream `quest.schema.json` (planned per
+  [`mvp.02-content-schemas.16-quest-schema`](../../../../../tasks/mvp/02-content-schemas/16-quest-schema.md)).
+- **Tasks: ✔** — Owning task
+  [`phase-2.07-ui-screen-backlog.11-quest-log-screen`](../../../../../tasks/phase-2/07-ui-screen-backlog/11-quest-log-screen.md)
+  reads this file first; upstream selector owner
+  [`phase-2.08-meta-systems.04-quest-log-engine`](../../../../../tasks/phase-2/08-meta-systems/04-quest-log-engine.md)
+  reads sibling [`interactions.md`](./interactions.md) first.
+
+## ⚠ Issues
+
+_None._

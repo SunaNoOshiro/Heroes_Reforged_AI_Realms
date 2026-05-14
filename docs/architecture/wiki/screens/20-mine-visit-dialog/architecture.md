@@ -1,89 +1,121 @@
 # Screen 20 Architecture: Mine Visit Dialog
 
-System: adventure
-Screen ID: mine-visit-dialog
-Visual Archetype: curated-mine-visit
-Curation Status: curated-pass-3
+- System: `adventure`
+- Screen ID: `mine-visit-dialog`
+- Visual Archetype: `curated-mine-visit`
+- Curation Status: `curated-pass-3`
 
 ## Purpose
-Mine capture or visit dialog showing resource type, current owner, guard state, income, and flagging outcome.
+Mine capture or visit dialog showing resource type, current owner,
+guard state, daily income preview, and flagging outcome. The diagrams
+below summarize the contract owned by sibling `spec.md`,
+`interactions.md`, and `data-contracts.md`; they must not introduce
+behavior absent from those files.
 
 ## Visual Direction
 - Original internal UI contract. Do not use third-party captures,
-  copied franchise art, or external product pixels as implementation input.
+  copied franchise art, or external product pixels as implementation
+  input.
 
 ## Visual Composition
 ```mermaid
 flowchart TD
-  Root["Mine Visit Dialog"]
-  C0["MinePortrait"]
-  Root --> C0
-  C1["OwnerFlag"]
-  Root --> C1
-  C2["IncomePreview"]
-  Root --> C2
-  C3["GuardSummary"]
-  Root --> C3
-  C4["ClaimLeaveButtons"]
-  Root --> C4
+  Root["MineVisitDialog"]
+  Root --> C0["MinePortrait"]
+  Root --> C1["OwnerFlag"]
+  Root --> C2["IncomePreview"]
+  Root --> C3["GuardSummary"]
+  Root --> C4["ClaimLeaveButtons"]
 ```
 
 ## Screen Load And Data Resolution
 ```mermaid
 flowchart LR
-  L0["Hero visit"] --> L1
-  L1["Mine object"] --> L2
-  L2["Owner/resource"] --> L3
-  L3["Guard state"] --> L4
-  L4["Mine dialog"]
+  L0["MOVE_HERO arrival at mine"] --> L1["state.mapObjects.byId[mineId]"]
+  L1 --> L2["selectors.mapObjects.mineGuardState"]
+  L2 --> L3["selectors.economy.mineIncomePreview"]
+  L3 --> L4["MineVisitDialog mount"]
 ```
 
 ## Main Interaction Flow
 ```mermaid
 flowchart TD
-  I0["Claim/fight input"] --> I1
-  I1["Guard/ownership check"] --> I2
-  I2["Claim or battle route"] --> I3
-  I3["Income refresh"] --> I4
-  I4["Flag animation"]
+  I0["CLAIM click"] --> I1["guardState == defeated || none?"]
+  I1 -- yes --> I2["dispatch CAPTURE_MINE (alias CLAIM_MINE)"]
+  I1 -- no --> I3["route 40-pre-battle-dialog (alias START_MINE_GUARD_BATTLE)"]
+  I2 --> I4["reducer transfers ownership + income"]
+  I3 --> I5["pre-battle confirms → INITIATE_BATTLE"]
+  I2 --> I6["clear pendingMineVisit; return to 07-adventure-map"]
+  I1F["LEAVE / Esc"] --> I6
 ```
 
 ## Animation Flow
 ```mermaid
 sequenceDiagram
-  participant UI
+  participant UI as MineVisitDialog
   participant Draft as UI Draft
-  participant Guard
-  participant Reducer
-  participant VFX
-  UI->>Draft: hover/select/preview
-  Draft->>VFX: Flag unfurl
-  UI->>Guard: confirm action
-  Guard->>Reducer: accepted command or route
-  Reducer-->>UI: authoritative result
-  UI->>VFX: Map recolor
+  participant Guard as mineGuardState
+  participant Reducer as Engine
+  participant VFX as VFX layer
+  UI->>Draft: hover / preview income
+  Draft->>VFX: flag pulse, income tick preview
+  UI->>Guard: CLAIM pressed
+  Guard->>Reducer: CAPTURE_MINE (if guard cleared)
+  Reducer-->>UI: authoritative ownership + income
+  UI->>VFX: flag unfurl, resource sparkle, map recolor on exit
 ```
 
 ## Outgoing Transitions
 ```mermaid
 flowchart LR
-  Current["Mine Visit Dialog"]
-  Current --> T0["07-adventure-map"]
-  Current --> T1["40-pre-battle-dialog"]
-  Current --> T2["07-adventure-map"]
-  Current --> T3["18-map-object-tooltip"]
+  Current["MineVisitDialog"]
+  Current -->|CLAIM accepted or LEAVE| T0["07-adventure-map"]
+  Current -->|CLAIM with live guard| T1["40-pre-battle-dialog"]
+  Current -->|right-click resource| T2["18-map-object-tooltip"]
 ```
 
 ## State Inputs
-- mineId -> state.ui.adventure.pendingMineVisit.mineId
-- mineRecord -> state.mapObjects.byId[mineId]
-- activePlayer -> state.turn.activePlayerId
-- dailyIncome -> selectors.economy.mineIncomePreview
-- guardState -> selectors.mapObjects.mineGuardState
+| Binding | Source |
+| --- | --- |
+| `mineId` | `state.ui.adventure.pendingMineVisit.mineId` |
+| `mineRecord` | `state.mapObjects.byId[mineId]` |
+| `activePlayer` | `state.turn.activePlayerId` |
+| `dailyIncome` | `selectors.economy.mineIncomePreview` |
+| `guardState` | `selectors.mapObjects.mineGuardState` |
 
 ## Implementation Contract
-- Mockup defines visual regions and data hooks only.
-- Spec defines the component/state contract.
-- Interactions define controls, timing, command routing, disabled states, and error behavior.
-- Data contracts define schemas, config, localization, asset, audio, VFX, save, and replay references.
-- Diagrams are screen-specific summaries of the same contract and must not introduce hidden behavior.
+- `mockup.html` defines visible regions and data hooks only.
+- `spec.md` owns the component / state contract.
+- `interactions.md` owns controls, timing, command routing, disabled
+  states, and error behavior.
+- `data-contracts.md` enumerates schemas, config, localization,
+  asset, sound, VFX, save, and replay references.
+- These diagrams summarize the same contract and must not introduce
+  hidden behavior.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Component tree mirrors sibling `spec.md` § Component
+  Tree; outgoing transitions match the four-row Actions table in
+  sibling `interactions.md` (`07-adventure-map`,
+  `40-pre-battle-dialog`, `18-map-object-tooltip`).
+- **Schema: ✔** — `CAPTURE_MINE` and `INITIATE_BATTLE` nodes in the
+  Main Interaction Flow are closed-enum kinds defined in
+  [`command.schema.json`](../../../../../content-schema/schemas/command.schema.json)
+  and documented in
+  [`command-schema.md`](../../../command-schema.md#capture_mine);
+  the screen-side aliases `CLAIM_MINE` and `START_MINE_GUARD_BATTLE`
+  are registered in
+  [`screen-command-coverage.json`](../../../screen-command-coverage.json).
+- **Tasks: ✔** — Owning task
+  [`mvp.05-adventure-map.09-map-object-dialogs`](../../../../../tasks/mvp/05-adventure-map/09-map-object-dialogs.md)
+  reads this file; reducers for `CAPTURE_MINE` and `INITIATE_BATTLE`
+  are owned by
+  [`mvp.05-adventure-map.21-map-object-visit-and-battle-initiation-commands`](../../../../../tasks/mvp/05-adventure-map/21-map-object-visit-and-battle-initiation-commands.md),
+  which reads sibling `interactions.md`.
+
+## ⚠ Issues
+
+_None._

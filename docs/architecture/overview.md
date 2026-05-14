@@ -17,14 +17,11 @@ game.
 
 ## What The Engine Should Know
 
-- schemas
-- stable IDs
-- commands
-- content registries
-- pack manifests
+The engine knows: schemas, stable IDs, commands, content registries,
+pack manifests.
 
-It should not know specific factions, creatures, towns, spells, or
-asset file paths.
+The engine must not know: specific factions, creatures, towns, spells,
+or asset file paths.
 
 ## Repo Shape
 
@@ -49,13 +46,14 @@ Required order:
 
 1. seeded RNG
 2. fixed-point math
-3. command dispatcher (also returns the per-dispatch event log; see [event-system.md](event-system.md))
+3. command dispatcher (also returns the per-dispatch event log; see
+   [event-system.md](event-system.md))
 4. canonical serializer + state hash
 5. replay API
 6. fuzz harness
 
-No `Math.random()`, wall-clock time, or uncontrolled floating-point math
-in deterministic paths. Full rules and anti-patterns live in
+No `Math.random()`, wall-clock time, or uncontrolled floating-point
+math in deterministic paths. Full rules and anti-patterns live in
 [determinism.md](determinism.md).
 
 The reducer's input shape is pinned in
@@ -83,25 +81,25 @@ Canonical pack shape, manifest fields, and archive rules live in
 
 ## UI Boundary
 
-UI screens are presentation contracts, not gameplay authority. Runtime UI
-reads through selectors, keeps transient UI-only state outside
-deterministic gameplay state, and emits commands instead of mutating the
-engine directly.
+UI screens are presentation contracts, not gameplay authority. Runtime
+UI reads through selectors, keeps transient UI-only state outside
+deterministic gameplay state, and emits commands instead of mutating
+the engine directly.
 
-The DOM-side framework, state-binding model, z-stack, localization
-runtime, fonts, and build flags are pinned in
-[ui-technology-choice.md](ui-technology-choice.md). The DOM ↔ canvas
-seam (input routing, hit-tests, resize protocol) is in
-[ui-renderer-seam.md](ui-renderer-seam.md). Resolution, aspect, and
-hi-DPI rules live in [screen-scaling.md](screen-scaling.md). The
-`data-component` runtime resolver is in
-[ui-component-resolver.md](ui-component-resolver.md). UI lag bounds
-(single-player, optimistic UI, M5 lockstep, context loss, replay) are
-in [ui-frame-lag-contract.md](ui-frame-lag-contract.md).
+DOM-side foundations:
 
-Cross-screen UI rules (component-state matrix, selector purity, modal
-stack, gesture taxonomy, hotkey registry, input arbitration, modality
-bridging) live in:
+- [ui-technology-choice.md](ui-technology-choice.md) — framework,
+  state binding, z-stack, localization, fonts, build flags
+- [ui-renderer-seam.md](ui-renderer-seam.md) — DOM ↔ canvas seam,
+  input routing, hit-tests, resize protocol
+- [screen-scaling.md](screen-scaling.md) — resolution, aspect, hi-DPI
+- [ui-component-resolver.md](ui-component-resolver.md) —
+  `data-component` runtime resolver
+- [ui-frame-lag-contract.md](ui-frame-lag-contract.md) — UI lag
+  bounds (single-player, optimistic UI, M5 lockstep, context loss,
+  replay)
+
+Cross-screen UI rules:
 
 - [ui-state-contract.md](ui-state-contract.md) — component states,
   selector purity, tooltip lifecycle, command lifecycle, undo/redo
@@ -129,29 +127,36 @@ updated first. The canonical policy lives in
 5. tactical combat and AI
 6. creator platform, multiplayer, AI generation
 
-Use [content-platform.md](content-platform.md) for pack and extension
-rules, [pack-contract.md](pack-contract.md) for pack contract details,
-[ai-integration.md](ai-integration.md) for provider boundaries,
-[schema-matrix.md](schema-matrix.md) for record types,
-[effect-registry.md](effect-registry.md) for effect `kind` values,
-[command-schema.md](command-schema.md) for the closed command
-vocabulary, [event-schema.md](event-schema.md) for the closed event
-vocabulary, [event-system.md](event-system.md) for the event-log
-runtime contract,
-[determinism.md](determinism.md) for deterministic-path rules,
-[runtime-requirements.md](runtime-requirements.md) for load-bearing
-runtime preconditions (UI shell, WebGL floor, Web Workers, gzip
-pin, browser engine floor, cross-environment serializer parity),
-[observability.md](observability.md) for the logger / metrics-sink
-interfaces and the per-match anonymous-stats schema,
-[error-ux.md](error-ux.md) for the player-facing error surface
-matrix,
-[glossary.md](glossary.md) for domain terms, and
-[../planning/roadmap.md](../planning/roadmap.md) for milestones.
+## References
 
-For operations-side runbooks see
-[../operations/rollback-playbook.md](../operations/rollback-playbook.md);
-for the append-only register of locked decisions, see
-[../planning/decision-log.md](../planning/decision-log.md); for the
-deferred / out-of-scope items register, see
-[../planning/deferred.md](../planning/deferred.md).
+| Doc | Use For |
+|---|---|
+| [content-platform.md](content-platform.md) | Pack and extension rules |
+| [pack-contract.md](pack-contract.md) | Pack contract details |
+| [ai-integration.md](ai-integration.md) | AI provider boundaries |
+| [schema-matrix.md](schema-matrix.md) | Record types |
+| [effect-registry.md](effect-registry.md) | Effect `kind` values |
+| [command-schema.md](command-schema.md) | Closed command vocabulary |
+| [event-schema.md](event-schema.md) | Closed event vocabulary |
+| [event-system.md](event-system.md) | Event-log runtime contract |
+| [determinism.md](determinism.md) | Deterministic-path rules |
+| [runtime-requirements.md](runtime-requirements.md) | Load-bearing runtime preconditions (UI shell, WebGL floor, Web Workers, gzip pin, browser engine floor, cross-environment serializer parity) |
+| [observability.md](observability.md) | Logger / metrics-sink interfaces and the per-match anonymous-stats schema |
+| [error-ux.md](error-ux.md) | Player-facing error surface matrix |
+| [glossary.md](glossary.md) | Domain terms |
+| [../planning/roadmap.md](../planning/roadmap.md) | Milestones |
+| [../operations/rollback-playbook.md](../operations/rollback-playbook.md) | Operations runbooks |
+| [../planning/decision-log.md](../planning/decision-log.md) | Append-only register of locked decisions |
+| [../planning/deferred.md](../planning/deferred.md) | Deferred / out-of-scope items |
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Every UI doc and cross-screen rule referenced in `## UI Boundary` resolves; the `wiki/README.md#ui-evolution-policy` anchor matches the `## UI Evolution Policy` heading in [`wiki/README.md`](wiki/README.md).
+- **Schema: ✔** — Overview only references registry-level schema docs ([`schema-matrix.md`](schema-matrix.md), [`command-schema.md`](command-schema.md), [`event-schema.md`](event-schema.md), [`effect-registry.md`](effect-registry.md)); no per-schema enum claims to verify.
+- **Tasks: ✔** — Overview is registered as entry 2 in [`INDEX.md`](INDEX.md) and is a navigation root, not owned by any single task; no orphan references.
+
+## ⚠ Issues
+
+_None._

@@ -5,12 +5,11 @@
 > [`pack-lifecycle.md`](./pack-lifecycle.md),
 > [`asset-path-resolution.md`](./asset-path-resolution.md).
 
-This file documents the **exact** order of re-validation steps the dev
-hot-reload runs when a pack file changes on disk. It exists because
-the order matters: revalidating the manifest after the registry rebuilds,
-or skipping schema-validation after an asset-index change, leaves the
-runtime in a state the multi-engine harness will catch but the dev
-loop will not.
+This file pins the **exact, ordered** re-validation pipeline the dev
+runner runs when a pack file changes on disk. The order is canonical
+because reordering it (e.g. rebuilding the registry before schema
+validation) leaves the runtime in a state the multi-engine harness
+catches but the dev loop does not.
 
 Hot-reload is **dev-only**. Production builds embed a frozen content
 snapshot built by [`atlas-pipeline.md`](./atlas-pipeline.md) and never
@@ -27,15 +26,18 @@ The dev runner watches:
 - `resources/packs/**/assets/index.json`
 - `resources/packs/**/assets/**/*.{png,webp,ogg,mp3,…}`
 
-Any change in these paths fires the hot-reload pipeline below. The
-pipeline runs once per debounced batch (default 100 ms).
+A change in any of these paths fires the pipeline below, debounced
+into one batch per **100 ms** window.
 
 ---
 
 ## 2. Re-validation order
 
-The order is canonical. A step's prerequisite is the previous step's
-success.
+Each step is gated on the previous step's success. On any failure the
+runtime keeps the **previous** registry, surfaces the error per
+[`error-taxonomy.md`](./error-taxonomy.md) (full code catalog in
+[`pack-error-codes.md`](./pack-error-codes.md)), and emits an
+`info`-level log when a later batch succeeds.
 
 ```
 1. manifest reload
@@ -61,62 +63,67 @@ success.
    └─ if the pack is loaded into a live engine, the engine
       consumes the new registry handle through the contract surface
       (src/contracts/pack-registry.ts)
-   └─ in-flight commands are drained against the OLD registry
-      before the NEW registry takes over (one full reducer tick of
-      quiesce time)
+   └─ in-flight commands drain against the OLD registry before the
+      NEW registry takes over (one full reducer tick of quiesce time)
    └─ replay log re-pins to the new contentHash; saves taken before
       the reload remain compatible iff the new pack matches the
       version-policy matrix
 ```
 
-If any step fails, the runtime keeps the **previous** registry, surfaces
-the error per [`error-taxonomy.md`](./error-taxonomy.md), and emits an
-`info`-level log when the developer fixes the file and the next batch
-succeeds.
-
 ---
 
-## 3. Why each step is mandatory
+## 3. Why the order is fixed
 
-- **manifest reload first** — the manifest names the records and the
-  asset index; without a valid manifest, later steps cannot know which
-  files to look at.
-- **asset-index reload before record reload** — record files reference
-  asset IDs through the registry; the registry needs the asset-index
-  hashes to resolve them.
-- **schema-validate before registry rebuild** — a record that fails
-  schema validation must never enter the registry; otherwise the
-  engine reads an invalid record and either crashes or silently
-  diverges.
-- **registry rebuild before engine reload** — the engine consumes
-  the registry through its contract; reloading the engine before the
-  registry is ready means the engine sees a stale handle.
-- **engine reload last** — reloading the engine recomputes
-  `contentHash` and may invalidate replays in flight; this happens
-  after every other check has passed, so a reload-and-rollback never
-  occurs.
+- **Manifest first.** The manifest names the records and the asset
+  index; later steps cannot know which files to look at without it.
+- **Asset index before records.** Records reference assets by
+  logical ID; resolution needs the asset-index hash table.
+- **Schema-validate before registry rebuild.** A record that fails
+  validation must never enter the registry — otherwise the engine
+  reads an invalid record and either crashes or silently diverges.
+- **Registry rebuild before engine reload.** The engine consumes the
+  registry through its contract; reloading earlier means the engine
+  sees a stale handle.
+- **Engine reload last.** This step recomputes `contentHash` and may
+  invalidate replays in flight; running it after every other check
+  guarantees a reload-and-rollback never occurs.
 
 ---
 
 ## 4. NFR target
 
-This flow is gated by NFR-START-04 in
+Gated by NFR-START-04 in
 [`non-functional-requirements.md`](./non-functional-requirements.md):
 
 > Pack hot-reload settle time ≤ 500 ms in dev; ≤ 1 s with a large
 > pack (≥ 100 records).
 
-Settle time is measured from the file-system event firing through
-the engine's first dispatched tick on the new registry.
+**Settle time** = file-system event firing → engine's first dispatched
+tick on the new registry.
 
 ---
 
 ## 5. Verified by
 
-- The hot-reload pipeline is exercised by
+- **Integration tests.** The pipeline is exercised by
   [`tasks/mvp/02b-asset-pipeline`](../../tasks/mvp/02b-asset-pipeline.md)
-  integration tests.
-- Per-frame budget regressions during hot-reload are caught by the
-  bench harness (`mvp.00-perf.02-bench-baseline-and-ci-gate`).
-- This file is grep-checked for placeholder markers by
+  (specifically
+  [`07-dev-hot-reload-watch-folder-reload-without-restart`](../../tasks/mvp/02b-asset-pipeline/07-dev-hot-reload-watch-folder-reload-without-restart.md)).
+- **Per-frame budget regressions during reload** are caught by the
+  bench harness
+  ([`mvp.00-perf.02-bench-baseline-and-ci-gate`](../../tasks/mvp/00-perf/02-bench-baseline-and-ci-gate.md)).
+- **Placeholder-marker drift** in this file is grep-checked by
   [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs).
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Hot-reload is a dev-only runtime flow; no end-user UI surface to align (the dev toast lives in `src/renderer/hot-reload.ts` per the owning task).
+- **Schema: ✔** — `manifest.schema.json` and `asset-index.schema.json` both exist and have canonical rows in [`schema-matrix.md`](./schema-matrix.md); record-suffix → schema mapping is unchanged.
+- **Tasks: ⚠** — Owning task `mvp.02b-asset-pipeline.07-dev-hot-reload-...` exists and matches the flow, but does **not** list `hot-reload-flow.md` in its `Read First`; bench task `mvp.00-perf.02-bench-baseline-and-ci-gate` exists and aligns with NFR-START-04.
+
+## ⚠ Issues
+
+- **Pack error-code shorthand vs canonical catalog.** This doc names `PACK_MANIFEST_*`, `PACK_ASSET_*`, and `VALIDATION_*` as the failure codes for steps 1–3, but the canonical catalog in [`pack-error-codes.md`](./pack-error-codes.md) uses dotted form (`pack.error.manifest.*`, `pack.error.asset.*`, `pack.error.<area>.schema`); [`error-taxonomy.md` § 2](./error-taxonomy.md#2-error-categories) lists only the single `PACK_*` prefix. Per Hard Prohibition A the code shorthand was preserved verbatim. Suggested values: either (a) update this doc's step labels to match `pack.error.manifest.*` / `pack.error.asset.*` once `mvp.02b-asset-pipeline.16-pack-error-code-catalog` lands the runtime mirror, or (b) add `PACK_MANIFEST_*` / `PACK_ASSET_*` as recognised aliases in `pack-error-codes.md`. Owning task: `mvp.02b-asset-pipeline.16-pack-error-code-catalog`.
+- **Reciprocal `Read First` gap on owning task.** [`tasks/mvp/02b-asset-pipeline/07-dev-hot-reload-watch-folder-reload-without-restart.md`](../../tasks/mvp/02b-asset-pipeline/07-dev-hot-reload-watch-folder-reload-without-restart.md) lists only `content-platform.md` under `Read First`. This arch doc is its canonical contract and should be added. Per [`.agents/rules/tasks.md`](../../.agents/rules/tasks.md) the task `.md` is the implementer's entry point. Skill did not edit the task file (Hard Prohibition D — never edit cross-checked files). Suggested fix: add `docs/architecture/hot-reload-flow.md` to that task's `Read First`.

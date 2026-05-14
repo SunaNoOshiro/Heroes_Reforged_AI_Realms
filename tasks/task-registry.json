@@ -7058,6 +7058,7 @@
       ],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -7066,6 +7067,7 @@
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -10200,14 +10202,17 @@
       ],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/random-map-template.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/random-map-template.schema.json",
@@ -10352,6 +10357,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -10361,6 +10367,7 @@
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -11522,6 +11529,7 @@
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/marketplace-rate-table.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
@@ -11530,6 +11538,7 @@
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/marketplace-rate-table.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
@@ -11605,7 +11614,8 @@
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/tavern-offer.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
@@ -11614,7 +11624,8 @@
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/tavern-offer.schema.json"
       ],
       "taskDependencies": [
         "mvp.02-content-schemas.19-tavern-and-marketplace-tables",
@@ -11844,6 +11855,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/neutral-stack-template.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -11853,6 +11865,7 @@
       "schemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/neutral-stack-template.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -11923,18 +11936,22 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/themed-week.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/themed-week.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
       "taskDependencies": [
@@ -12005,6 +12022,7 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
@@ -12013,6 +12031,7 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
@@ -12416,7 +12435,6 @@
       ],
       "screenSchemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
-        "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
@@ -12428,7 +12446,6 @@
       ],
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
-        "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/building.schema.json",
         "content-schema/schemas/command.schema.json",
@@ -14626,6 +14643,8 @@
         "content-schema/schemas/hero-class.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/marketplace-rate-table.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/skill.schema.json",
@@ -14640,6 +14659,8 @@
         "content-schema/schemas/hero-class.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/marketplace-rate-table.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/skill.schema.json",
@@ -14731,7 +14752,6 @@
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
-        "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/neutral-stack-template.schema.json",
@@ -14746,7 +14766,6 @@
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
-        "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/neutral-stack-template.schema.json",
@@ -15288,6 +15307,7 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -15296,6 +15316,7 @@
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -15515,6 +15536,7 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -15523,6 +15545,7 @@
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -16356,6 +16379,7 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
@@ -16368,6 +16392,7 @@
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
@@ -19503,11 +19528,13 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/command.schema.json",
-        "content-schema/schemas/ui-component-registry.schema.json"
+        "content-schema/schemas/ui-component-registry.schema.json",
+        "content-schema/schemas/worker-message.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/command.schema.json",
-        "content-schema/schemas/ui-component-registry.schema.json"
+        "content-schema/schemas/ui-component-registry.schema.json",
+        "content-schema/schemas/worker-message.schema.json"
       ],
       "taskDependencies": [
         "mvp.10-heuristic-ai.03-action-scorer-priority-weights-plus-tie-breaking",
@@ -21360,19 +21387,19 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
-        "content-schema/schemas/unit.schema.json"
+        "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
-        "content-schema/schemas/unit.schema.json"
+        "content-schema/schemas/ruleset.schema.json"
       ],
       "taskDependencies": [
         "mvp.05-adventure-map.01-strategic-game-state-model",
@@ -21438,6 +21465,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/condition.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -21447,6 +21475,7 @@
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/condition.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -24589,7 +24618,8 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
@@ -24598,7 +24628,8 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json"
       ],
       "taskDependencies": [
         "phase-2.01-spells-artifacts.05-artifact-paper-doll-system",
@@ -26567,16 +26598,20 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/random-map-template.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/random-map-template.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
@@ -26752,19 +26787,17 @@
       ],
       "directSchemaPaths": [],
       "screenSchemaPaths": [
-        "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "schemaPaths": [
-        "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "taskDependencies": [
@@ -26846,19 +26879,19 @@
       "screenSchemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "taskDependencies": [
@@ -26940,6 +26973,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/neutral-stack-template.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -26949,6 +26983,7 @@
       "schemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/neutral-stack-template.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -27035,6 +27070,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -27043,6 +27079,7 @@
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -27128,19 +27165,19 @@
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
-        "content-schema/schemas/unit.schema.json"
+        "content-schema/schemas/ruleset.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
-        "content-schema/schemas/unit.schema.json"
+        "content-schema/schemas/ruleset.schema.json"
       ],
       "taskDependencies": [
         "mvp.05-adventure-map.09-map-object-dialogs",
@@ -27220,15 +27257,15 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json",
         "content-schema/schemas/world.schema.json"
       ],
@@ -27311,6 +27348,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -27320,6 +27358,7 @@
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -27881,6 +27920,7 @@
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/marketplace-rate-table.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
@@ -27889,6 +27929,7 @@
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/marketplace-rate-table.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json"
       ],
@@ -28068,7 +28109,8 @@
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/tavern-offer.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
@@ -28077,7 +28119,8 @@
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/tavern-offer.schema.json"
       ],
       "taskDependencies": [
         "mvp.05-adventure-map.11-hire-tavern-hero-command",
@@ -28359,7 +28402,8 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/adventure-building.schema.json",
@@ -28368,7 +28412,8 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/scenario.schema.json"
       ],
       "taskDependencies": [
         "mvp.07-ui-shell.01-react-18-app-shell-with-canvas-overlay",
@@ -29014,7 +29059,6 @@
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
-        "content-schema/schemas/skill.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
       "schemaPaths": [
@@ -29025,7 +29069,6 @@
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
-        "content-schema/schemas/skill.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
       "taskDependencies": [
@@ -29290,14 +29333,12 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
@@ -29757,18 +29798,22 @@
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/hero-class.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/skill.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/hero-class.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/skill.schema.json"
       ],
@@ -29948,6 +29993,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/ability.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -29956,6 +30002,7 @@
       "schemaPaths": [
         "content-schema/schemas/ability.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/effect.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -30042,6 +30089,7 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
@@ -30050,6 +30098,7 @@
         "content-schema/schemas/command.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
+        "content-schema/schemas/modal-entry.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
@@ -30226,6 +30275,7 @@
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/condition.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -30235,6 +30285,7 @@
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
         "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/condition.schema.json",
         "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
@@ -30400,6 +30451,7 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -30408,6 +30460,7 @@
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/audit-log-entry.schema.json",
         "content-schema/schemas/consent-audit-log.schema.json",
         "content-schema/schemas/consent.schema.json",
         "content-schema/schemas/localization.schema.json",
@@ -30578,18 +30631,22 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/themed-week.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/themed-week.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
       "taskDependencies": [
@@ -31196,14 +31253,12 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/faction.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
@@ -31276,20 +31331,20 @@
       "screenSchemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/artifact.schema.json",
         "content-schema/schemas/asset-index.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/map-object.schema.json",
         "content-schema/schemas/quest.schema.json",
         "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json",
         "content-schema/schemas/scenario.schema.json"
       ],
       "taskDependencies": [
@@ -31359,19 +31414,13 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/command.schema.json",
-        "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
-        "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/resource-id.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/command.schema.json",
-        "content-schema/schemas/hero.schema.json",
         "content-schema/schemas/localization.schema.json",
-        "content-schema/schemas/resource-id.schema.json",
-        "content-schema/schemas/ruleset.schema.json"
+        "content-schema/schemas/resource-id.schema.json"
       ],
       "taskDependencies": [
         "mvp.07-ui-shell.02-zustand-store",
@@ -31774,15 +31823,18 @@
       ],
       "screenSchemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
+        "content-schema/schemas/themed-week.schema.json",
         "content-schema/schemas/unit.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/asset-index.schema.json",
-        "content-schema/schemas/building.schema.json",
+        "content-schema/schemas/command.schema.json",
+        "content-schema/schemas/event.schema.json",
         "content-schema/schemas/localization.schema.json",
         "content-schema/schemas/resource-id.schema.json",
         "content-schema/schemas/ruleset.schema.json",
@@ -31865,11 +31917,13 @@
       "directSchemaPaths": [],
       "screenSchemaPaths": [
         "content-schema/schemas/animation.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/ui-component-registry.schema.json",
         "content-schema/schemas/vfx.schema.json"
       ],
       "schemaPaths": [
         "content-schema/schemas/animation.schema.json",
+        "content-schema/schemas/command.schema.json",
         "content-schema/schemas/ui-component-registry.schema.json",
         "content-schema/schemas/vfx.schema.json"
       ],
@@ -37809,7 +37863,7 @@
       "path": "tasks/phase-3/02-ai-generation/10-ai-gateway-retention-and-error-codes.md",
       "moduleId": "phase-3.02-ai-generation",
       "modulePath": "tasks/phase-3/02-ai-generation.md",
-      "description": "Author [`services/ai-gateway/retention.md`](../../../services/ai-gateway/retention.md) and [`services/ai-gateway/error-codes.md`](../../../services/ai-gateway/error-codes.md). Prompts log only as `promptHash` (the `notes.promptHash` field already declared); raw responses retained ≤ 24 h in the provider-response cache then purged; failure-path logger uses `formatDevError` to strip the prompt body before any sink. Wire the new error-code mapping (401/403 collapse → 404, 429 with `Retry-After`, 500 without `cause`). 3 — Service-side observability + retention docs.",
+      "description": "Author [`services/ai-gateway/retention.md`](../../../services/ai-gateway/retention.md) and [`services/ai-gateway/error-codes.md`](../../../services/ai-gateway/error-codes.md). Prompts log only as `promptHash` (the `notes.promptHash` field already declared); raw responses retained ≤ 24 h in the provider-response cache then purged; failure-path logger uses `formatDevError` to strip the prompt body before any sink. Wire the new error-code mapping (401/403 collapse → 404, 429 with `Retry-After`, 500 without `cause`). Service-side observability + retention docs.",
       "inputs": [
         "the `notes.promptHash` rule.",
         "the failure-path redactor.",

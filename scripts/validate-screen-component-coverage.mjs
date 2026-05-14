@@ -19,8 +19,8 @@ const registrySchemaPath = path.join(
 
 const dataComponentPattern = /data-component="([^"]+)"/g;
 const dataI18nPattern = /data-i18n="([^"]+)"/g;
-const componentTreeHeader = "### Component Tree";
-const componentTreeTerminator = "### State Bindings";
+const componentTreeHeaderPattern = /^#{2,}\s+(?:\d+\.\s+)?Component Tree\s*$/;
+const sectionHeaderPattern = /^#{1,}\s+/;
 
 const i18nKeyPattern = /^ui\.[a-z0-9-]+(?:\.[a-z0-9_-]+)+$/;
 
@@ -49,20 +49,44 @@ function extractMatches(source, pattern) {
 
 function extractComponentTree(specMarkdown) {
   const lines = specMarkdown.split(/\r?\n/);
-  const startIndex = lines.findIndex((line) => line.trim() === componentTreeHeader);
+  const startIndex = lines.findIndex((line) => componentTreeHeaderPattern.test(line.trim()));
   if (startIndex === -1) return [];
 
   const ids = [];
+  let inFence = false;
   for (let i = startIndex + 1; i < lines.length; i += 1) {
     const line = lines[i];
-    if (line.trim().startsWith("### ")) {
-      if (line.trim() === componentTreeTerminator) break;
-      // Other ### sections also terminate the tree.
-      break;
+    if (!inFence && sectionHeaderPattern.test(line.trim())) break;
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
     }
-    const itemMatch = line.match(/^\s*-\s+(.+?)\s*$/);
-    if (itemMatch) {
-      ids.push(itemMatch[1]);
+
+    // Bullet form: "- `Id` — optional prose" or "- Id ..."
+    const bulletMatch = line.match(/^\s*-\s+(.+?)\s*$/);
+    if (bulletMatch) {
+      const bullet = bulletMatch[1];
+      const backtickMatch = bullet.match(/^`([^`]+)`/);
+      if (backtickMatch) {
+        ids.push(backtickMatch[1]);
+        continue;
+      }
+      const bareMatch = bullet.match(/^([A-Za-z][A-Za-z0-9_]*)/);
+      if (bareMatch) {
+        ids.push(bareMatch[1]);
+      }
+      continue;
+    }
+
+    // ASCII tree form inside a fenced block: lines may start with
+    // tree-drawing chars (├ └ ─ │) or no prefix at all (root row).
+    // Trailing parenthesized notes are stripped.
+    if (inFence) {
+      const cleaned = line.replace(/^[\s├└─│]+/u, "").trim();
+      const treeMatch = cleaned.match(/^`?([A-Z][A-Za-z0-9_]*)`?/);
+      if (treeMatch) {
+        ids.push(treeMatch[1]);
+      }
     }
   }
   return ids;

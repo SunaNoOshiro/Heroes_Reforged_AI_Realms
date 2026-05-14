@@ -5,82 +5,98 @@ Screen ID: map-object-tooltip
 Visual Archetype: curated-object-tooltip
 Curation Status: curated-pass-3
 
+## Companion Docs
+- [`ui-state-contract.md` § Tooltip Lifecycle](../../../ui-state-contract.md#tooltip-lifecycle) — owns per-tick re-resolution, auto-dismiss on null, ownership-change re-render, and the `ruleset.ui.timing` constants.
+- [`screen-command-coverage.json`](../../../screen-command-coverage.json) — confirms the four tooltip tokens are local-ui by prefix match.
+- Sibling `spec.md` (component tree + state bindings), `interactions.md` (per-gesture behavior + animation/audio), `data-contracts.md` (schemas + tokens).
+
 ## Purpose
-Right-click informational tooltip for adventure map objects, heroes, towns, resources, and guarded encounters.
+Right-click informational tooltip for adventure map objects — heroes, towns, mines, resources, neutral stacks, treasures. Presentation-only; no gameplay state mutates here.
 
 ## Visual Direction
-- Original internal UI contract. Do not use third-party captures,
-  copied franchise art, or external product pixels as implementation input.
+Original internal UI contract. Do not use third-party captures, copied franchise art, or external product pixels as implementation input.
 
 ## Visual Composition
 ```mermaid
 flowchart TD
-  Root["Map Object Tooltip"]
-  C0["TooltipAnchor"]
-  Root --> C0
-  C1["ObjectPortrait"]
-  Root --> C1
-  C2["PublicInfoRows"]
-  Root --> C2
-  C3["PinState"]
-  Root --> C3
-  C4["CloseHotspot"]
-  Root --> C4
+  Root["MapObjectTooltip"]
+  Root --> C0["TooltipAnchor"]
+  Root --> C1["ObjectPortrait"]
+  Root --> C2["PublicInfoRows"]
+  Root --> C3["PinState"]
+  Root --> C4["CloseHotspot"]
 ```
 
 ## Screen Load And Data Resolution
 ```mermaid
 flowchart LR
-  L0["Hover object"] --> L1
-  L1["Scouting visibility"] --> L2
-  L2["Public info selector"] --> L3
-  L3["Anchor rect"] --> L4
-  L4["Tooltip"]
+  L0["Hover/right-click object"] --> L1["selectors.mapObjects.publicTooltipInfo"]
+  L1 --> L2["selectors.scouting.hiddenTooltipFields"]
+  L2 --> L3["state.ui.pointer.anchorRect"]
+  L3 --> L4["Render MapObjectTooltip"]
 ```
 
 ## Main Interaction Flow
 ```mermaid
 flowchart TD
-  I0["Right-click/hold"] --> I1
-  I1["Visibility guard"] --> I2
-  I2["Local tooltip draft"] --> I3
-  I3["Optional detail route"] --> I4
-  I4["Tooltip close"]
+  I0["Right-click / hold object"] --> I1["Hold-delay timer (ruleset.ui.timing.tooltipHoldDelayMs)"]
+  I1 --> I2["Fade-in (tooltipFadeInMs)"]
+  I2 --> I3{"Action"}
+  I3 -->|"tooltip.pin"| I4["Write state.ui.tooltips.pinnedObjectId"]
+  I3 -->|"tooltip.details"| I5["Route to 09 or 50 (local-ui)"]
+  I3 -->|"tooltip.close / Esc / null selector"| I6["Fade-out (tooltipFadeOutMs)"]
 ```
 
 ## Animation Flow
 ```mermaid
 sequenceDiagram
-  participant UI
-  participant Draft as UI Draft
-  participant Guard
-  participant Reducer
+  participant UI as MapObjectTooltip
+  participant Sel as Selectors
+  participant State as state.ui.tooltips
   participant VFX
-  UI->>Draft: hover/select/preview
-  Draft->>VFX: Hold delay
-  UI->>Guard: confirm action
-  Guard->>Reducer: accepted command or route
-  Reducer-->>UI: authoritative result
-  UI->>VFX: Fade out
+  UI->>Sel: publicTooltipInfo(pinnedObjectId)
+  Sel-->>UI: row data or null
+  alt row data
+    UI->>VFX: hold-delay → fade-in
+    UI->>State: PIN_OBJECT_TOOLTIP (on pin gesture)
+  else null result
+    UI->>VFX: feedback.tooltip.invalidate
+    UI->>State: pinnedObjectId ← null
+  end
+  UI->>VFX: fade-out on close / route
 ```
 
 ## Outgoing Transitions
 ```mermaid
 flowchart LR
-  Current["Map Object Tooltip"]
-  Current --> T0["09-map-object-dialog or 50-creature-info"]
+  Current["18-map-object-tooltip"] --> T0["09-map-object-dialog"]
+  Current --> T1["50-creature-info"]
 ```
 
+`tooltip.details` routes to `09-map-object-dialog` for towns / mines / generic interactables, and to `50-creature-info` for neutral stacks and army units. The route is local-ui; gameplay commands fire from the destination screen, not from this tooltip.
+
 ## State Inputs
-- hoverObject -> state.ui.adventure.hoverObjectId
-- publicInfo -> selectors.mapObjects.publicTooltipInfo
-- hiddenGuard -> selectors.scouting.hiddenTooltipFields
-- pinState -> state.ui.tooltips.pinnedObjectId
-- anchorPosition -> state.ui.pointer.anchorRect
+- `hoverObject` → `state.ui.adventure.hoverObjectId`
+- `publicInfo` → `selectors.mapObjects.publicTooltipInfo`
+- `hiddenGuard` → `selectors.scouting.hiddenTooltipFields`
+- `pinState` → `state.ui.tooltips.pinnedObjectId`
+- `anchorPosition` → `state.ui.pointer.anchorRect`
 
 ## Implementation Contract
-- Mockup defines visual regions and data hooks only.
-- Spec defines the component/state contract.
-- Interactions define controls, timing, command routing, disabled states, and error behavior.
-- Data contracts define schemas, config, localization, asset, audio, VFX, save, and replay references.
-- Diagrams are screen-specific summaries of the same contract and must not introduce hidden behavior.
+- The mockup defines visible regions and data hooks only.
+- `spec.md` owns the component / state contract.
+- `interactions.md` owns gestures, animation durations, route targets, and dismissal paths.
+- `data-contracts.md` owns schemas, tokens, config, localization, asset, audio, VFX, and save/replay references.
+- Per-tick re-resolution, auto-dismiss on `null`, and ownership-change re-render are owned by [`ui-state-contract.md § Tooltip Lifecycle`](../../../ui-state-contract.md#tooltip-lifecycle); these diagrams summarize that contract and must not introduce hidden behavior.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Component nodes and state inputs match sibling `spec.md` § Component Tree / State Bindings. Outgoing transitions (`09-map-object-dialog`, `50-creature-info`) match sibling `interactions.md` § Navigation Outcomes.
+- **Schema: ✔** — Timing constants (`tooltipHoldDelayMs`, `tooltipFadeInMs`, `tooltipFadeOutMs`) cited in the Main Interaction Flow exist in [`ruleset.schema.json`](../../../../../content-schema/schemas/ruleset.schema.json) (lines 111–113); selectors are declared in [`ui-state-contract.md § Tooltip Lifecycle`](../../../ui-state-contract.md#tooltip-lifecycle).
+- **Tasks: ✔** — Runtime owner `mvp.05-adventure-map.09-map-object-dialogs` ships `MapObjectTooltip.tsx`. Lifecycle/constants owner `mvp.07-ui-shell.17-tooltip-lifecycle` ships the `ui.timing` block and the per-tick re-resolution invariant these diagrams reference.
+
+## ⚠ Issues
+
+_None._

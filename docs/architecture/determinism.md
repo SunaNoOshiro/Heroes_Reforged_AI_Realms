@@ -1,28 +1,27 @@
 # Determinism
 
-> State-hash primitive (xxh64) is catalogued in
-> [`crypto-primitives.md`](./crypto-primitives.md).
-
 Hard constraint: the same seed, the same commands, and the same content
 hashes produce the same state on any machine, any time.
 
 > Companion docs: this file enumerates what is **forbidden** in the
-> deterministic core. The per-module ledger of *permitted* side effects
-> lives in [`side-effect-matrix.md`](./side-effect-matrix.md), and the
-> data-flow boundaries that protect determinism live in
-> [`state-flow.md`](./state-flow.md).
+> deterministic core. Permitted side effects per module live in
+> [`side-effect-matrix.md`](./side-effect-matrix.md); the data-flow
+> boundaries that protect determinism live in
+> [`state-flow.md`](./state-flow.md). The xxh64 state-hash primitive is
+> catalogued in [`crypto-primitives.md`](./crypto-primitives.md).
 
 ## Non-Negotiable Stack
 
 The engine must provide these, in this order:
 
-1. **Seeded RNG** (PCG32 with named sub-streams, no
-   `Math.random()`). The canonical sub-stream catalogue lives in
-   [`rng-streams.md`](./rng-streams.md); every `rng.next()` site
-   MUST cite a stream from that table.
+1. **Seeded RNG** (PCG32 with named sub-streams, no `Math.random()`).
+   The canonical sub-stream catalogue is
+   [`rng-streams.md`](./rng-streams.md); every `rng.next()` site MUST
+   cite a stream from that table.
 2. **Fixed-point math** (integer arithmetic with explicit
    numerator/denominator ratios).
-3. **Command dispatcher** (pure reducer: `state = apply(state, command)`).
+3. **Command dispatcher** (pure reducer:
+   `state' = apply(state, command)`).
 4. **Canonical serializer + state hash** (sorted keys, no whitespace,
    xxh64 over canonical bytes).
 5. **Replay API** (seed + command log reproduces final state). The
@@ -31,12 +30,11 @@ The engine must provide these, in this order:
    and pinned into `SCENARIO_LOAD`.
 6. **Fuzz harness** (N random commands replayed bit-identically). The
    companion **multi-engine harness** runs two `createEngine()`
-   instances in parallel and compares hashes per step; see
-   [`multi-engine-harness.md`](./multi-engine-harness.md). The fuzz
-   harness's Node-only output is additionally cross-validated against
-   the browser engines pinned by
-   [`runtime-requirements.md` RR-08](./runtime-requirements.md#rr-08-browser-engine-floor)
-   and RR-09 by the Playwright job owned by
+   instances in parallel and compares hashes per step
+   ([`multi-engine-harness.md`](./multi-engine-harness.md)). Node-only
+   fuzz output is cross-validated against the browser engines pinned
+   by [`runtime-requirements.md` RR-08](./runtime-requirements.md#rr-08-browser-engine-floor)
+   / RR-09 by the Playwright job owned by
    [`tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md`](../../tasks/mvp/01-engine-core/09b-cross-environment-canonical-bytes-test.md).
 
 ## Forbidden In Deterministic Paths
@@ -49,19 +47,19 @@ The engine must provide these, in this order:
 - **Wall-clock-driven AI truncation.** AI search budgets are pure
   functions of difficulty and game-state size (`maxNodes`,
   `maxDepth`); a wall-clock timer may run as a warn-only watchdog
-  but MUST NOT truncate the search. See "AI Compute Budget" below
+  but MUST NOT truncate the search. See [§ AI Compute Budget](#ai-compute-budget)
   and [`performance.md` § 6](./performance.md#6-ai-compute-budget).
 - **Hosted AI-provider calls.** `GenerationRequest.seed` is a
-  best-effort reproducibility hint only — provider output is not
-  guaranteed deterministic. Determinism in the AI generation
-  pipeline begins at Stage 4 onward, once shape and coherence have
-  been validated. See
-  [`ai-generation-pipeline.md` § Determinism boundary`](./ai-generation-pipeline.md#determinism-boundary).
+  best-effort reproducibility hint only; provider output is not
+  guaranteed deterministic. Determinism in the AI generation pipeline
+  begins at Stage 4 onward, once shape and coherence have been
+  validated. See
+  [`ai-generation-pipeline.md` § Determinism boundary](./ai-generation-pipeline.md#determinism-boundary).
 
 ### Signaling and lobby identifiers — CSPRNG mandate
 
-Signaling-server room codes, room secrets, and any other
-lobby-identifier surface MUST use a cryptographically-secure RNG
+Signaling-server room codes, room secrets, and any other lobby-
+identifier surface MUST use a cryptographically-secure RNG
 (`crypto.randomBytes` server-side). The deterministic engine PRNG
 (PCG32) is forbidden in `services/signaling/`. Lobby identifiers do
 not enter `state.*` and are therefore outside the determinism
@@ -74,57 +72,55 @@ The AI search budget is part of the determinism contract. Two
 identically-seeded clients on different hardware MUST produce
 identical commands during AI turns.
 
-The budget is a deterministic iteration / node-count limit keyed
-by difficulty and map size:
+The budget is a deterministic iteration / node-count limit keyed by
+difficulty and map size:
 
-- AI workers stop when `nodesExpanded >= maxNodes(difficulty,
-  mapDims)` or `searchDepth >= maxDepth(difficulty)`, whichever
-  fires first.
-- The wall-clock timer remains, **only as a watchdog**, that logs
-  a warning if a single AI move exceeds 2 s on the current
-  machine. It never truncates the search. An over-budget
-  difficulty level is a bug, tuned against the bench harness's
-  Scenario C — not silently absorbed at runtime.
+- AI workers stop when
+  `nodesExpanded >= maxNodes(difficulty, mapDims)` or
+  `searchDepth >= maxDepth(difficulty)`, whichever fires first.
+- The wall-clock timer remains **only as a watchdog**: it logs a
+  warning if a single AI move exceeds 2 s on the current machine
+  and never truncates the search. An over-budget difficulty level
+  is a bug, tuned against the bench harness's Scenario C — not
+  silently absorbed at runtime.
 - The per-difficulty `maxNodes` / `maxDepth` constants are pinned
-  in
-  [`ai-contract.md` § 4 Per-Turn Budget Table](./ai-contract.md#4-per-turn-budget-table)
-  (the **only authoritative source**). The implementing tasks
-  ([Pawn / Knight](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md),
-  Grand Master, Lord, Immortal — see ai-contract.md § 4 Implementing
-  tasks) cite that table; do not duplicate the numbers elsewhere.
-  The worker-side enforcement is owned by
+  in [`ai-contract.md` § 4 Per-Turn Budget Table](./ai-contract.md#4-per-turn-budget-table)
+  (the **only authoritative source**); the implementing tasks
+  ([Pawn / Knight](../../tasks/mvp/10-heuristic-ai/05-difficulty-levels-pawn-and-knight.md);
+  Grand Master, Lord, and Immortal — see ai-contract.md § 4
+  Implementing tasks) cite that table. Do not duplicate the numbers
+  elsewhere. Worker-side enforcement is owned by
   [`tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md`](../../tasks/mvp/10-heuristic-ai/06-run-ai-in-web-worker.md).
-- Wall-clock hard-timeout fallbacks are permitted **only** in the
-  broadcaster-elected AI worker; non-broadcaster peers consume the
-  resulting `Command` from the lockstep log. See
-  [`ai-contract.md` § 6 (AI Determinism Under Wall-Clock Budgets)](./ai-contract.md#ai-determinism-under-wall-clock-budgets)
-  for the structural rule that keeps replay deterministic even
-  when machine speed determines whether `wallClockHardMs` fires.
+- Wall-clock hard-timeout fallbacks (`wallClockHardMs`) are permitted
+  **only** in the broadcaster-elected AI worker; non-broadcaster peers
+  consume the resulting `Command` from the lockstep log. See
+  [`ai-contract.md` § 6 AI Determinism Under Wall-Clock Budgets](./ai-contract.md#ai-determinism-under-wall-clock-budgets)
+  for the structural rule that keeps replay deterministic when
+  machine speed alone determines whether the timeout fires.
 
 The fuzz harness
 ([`tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](../../tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md))
-includes a `searchBudget` determinism case: identical seed +
-state + budget on two simulated rate environments produces
-identical commands.
+includes a `searchBudget` determinism case: identical seed + state +
+budget on two simulated rate environments produces identical commands.
 
 ## Pathfinder Cache Invariants
 
-Memoization of pure pathfinder results is determinism-safe:
-`findPath(...)` and `reachable(...)` are pure functions of
-`(map, terrain, src, mpBudget, zocTiles)`, so a cache hit returns
-the same value as a cache miss.
+Memoization of pure pathfinder results is determinism-safe: `findPath`
+and `reachable` are pure functions of
+`(map, terrain, src, mpBudget, zocTiles)`, so a cache hit returns the
+same value as a cache miss.
 
-The cache key includes `mapVersion` and `zocVersion`, which are
-fields on `GameState` (additive `number`, default `0`) bumped
-deterministically by the command dispatcher:
+The cache key includes `mapVersion` and `zocVersion`, additive `number`
+fields on `GameState` (default `0`) bumped deterministically by the
+command dispatcher:
 
 - `mapVersion` increments on any command that mutates terrain
-  (terraform-effect, bridge-built).
-- `zocVersion` increments on any command that changes hero
-  occupancy of a tile (hero-move, hero-spawn, hero-defeat).
+  (`terraform-effect`, `bridge-built`).
+- `zocVersion` increments on any command that changes hero occupancy
+  of a tile (`hero-move`, `hero-spawn`, `hero-defeat`).
 
-The cache is flushed at every End-Day turn boundary as a
-belt-and-braces guard. Implementation is owned by
+The cache is flushed at every End-Day turn boundary as a belt-and-
+braces guard. Implementation is owned by
 [`tasks/mvp/03-map-system/11-pathfinder-cache.md`](../../tasks/mvp/03-map-system/11-pathfinder-cache.md);
 the version-bump invariants are owned by
 [`tasks/mvp/01-engine-core/06-command-dispatcher.md`](../../tasks/mvp/01-engine-core/06-command-dispatcher.md).
@@ -135,10 +131,8 @@ Ruleset formulas live as structured fixed-point ASTs (see
 [`content-schema/schemas/formula.schema.json`](../../content-schema/schemas/formula.schema.json)),
 not strings. The evaluator is a small pure function over named
 variables: `add`, `sub`, `mul`, `divFloor`, `ratio`, `min`, `max`,
-`clamp`, `neg`, `abs`.
-
-This avoids a second parser, prevents code-injection via packs, and
-keeps determinism portable across languages.
+`clamp`, `neg`, `abs`. This avoids a second parser, prevents code
+injection via packs, and keeps determinism portable across languages.
 
 ## Fixed-Point Conventions
 
@@ -159,7 +153,7 @@ keeps determinism portable across languages.
 
 Cross-cutting overflow handling is pinned in
 [`edge-cases-policy.md` § 6](./edge-cases-policy.md#6-overflow--saturation-q210).
-The rule is `clamp` saturates at the cap; never wraps.
+The rule is: `clamp` saturates at the cap; never wraps.
 
 | Constant | Value | Scope |
 |---|---|---|
@@ -168,17 +162,16 @@ The rule is `clamp` saturates at the cap; never wraps.
 | `MAX_HERO_STAT` | ruleset-pack-driven (default `99`) | per primary stat |
 | `MAX_INTERMEDIATE` | `2 ** 53 - 1` | every formula step |
 
-- Dev builds raise `OverflowError` when an intermediate result
-  exceeds `MAX_INTERMEDIATE`.
-- Prod builds saturate to the documented cap and emit a
-  warn-level telemetry counter; never wrap.
-- The constants themselves live in `src/engine/constants.ts`.
-  Schemas reference the maxima via `content-schema/schemas/numeric.json`
-  (see [`command-schema.md` § Numeric invariants](./command-schema.md#numeric-invariants)).
+- Dev builds raise `OverflowError` when an intermediate result exceeds
+  `MAX_INTERMEDIATE`.
+- Prod builds saturate to the documented cap and emit a warn-level
+  telemetry counter; never wrap.
+- The constants live in `src/engine/constants.ts`. Schemas reference
+  the maxima via `content-schema/schemas/numeric.json` (see
+  [`command-schema.md` § Numeric invariants](./command-schema.md#numeric-invariants)).
 - The fuzz target `tests/fuzz/overflow.fuzz.ts` is owned by
   [`tasks/phase-2/09-quality/01-overflow-fuzz.md`](../../tasks/phase-2/09-quality/01-overflow-fuzz.md)
-  and asserts the saturation policy under near-`MAX_INTERMEDIATE`
-  inputs.
+  and asserts the saturation policy under near-`MAX_INTERMEDIATE` inputs.
 
 ## State-shape invariants
 
@@ -199,7 +192,8 @@ negative balance to UI render code.
 ## Wall-clock readers
 
 `Date.now()` and wall-clock time are forbidden in deterministic paths
-(see "Forbidden In Deterministic Paths" above and the lint rule in
+(see [§ Forbidden In Deterministic Paths](#forbidden-in-deterministic-paths)
+and the lint rule in
 [`tasks/mvp/01-engine-core/11-no-wall-clock-lint.md`](../../tasks/mvp/01-engine-core/11-no-wall-clock-lint.md)).
 The exhaustive list of subsystems allowed to read wall-clock and
 their behavior on a backward / DST jump:
@@ -214,9 +208,8 @@ their behavior on a backward / DST jump:
 | Audio scheduling | `audioContext.currentTime` (monotonic) | immune |
 
 No other subsystem may read wall-clock. The lint rule scopes the ban
-to `src/engine/`, `src/rules/`, `src/content-runtime/`,
-`src/net/webrtc/` (the M5 lockstep transports already covered by the
-existing rule).
+to `src/engine/`, `src/rules/`, `src/content-runtime/`, and
+`src/net/webrtc/` (the M5 lockstep transports).
 
 ## Content Hash + Engine Hash
 
@@ -246,17 +239,16 @@ packManifestDigest, bundleSha256)` are mutually verified before any
 
 Tamper detection that the seed binding does not catch — information
 leaks via local memory read, host-side speculative apply, etc. — is
-covered by
-[`security-model.md`](./security-model.md). Read it before designing
-any feature that depends on hidden information.
+covered by [`security-model.md`](./security-model.md). Read it before
+designing any feature that depends on hidden information.
 
 ## Save Artifact Byte Determinism
 
 The save artifact's gzip layer is pinned to **`pako` at level 6** so
 on-disk bytes are reproducible across machines for the same canonical
 input (see
-[`tasks/mvp/08-persistence/02-log-only-save-format.md`](../../tasks/mvp/08-persistence/02-log-only-save-format.md) §
-"Compression contract"). The pin applies to the save artifact only —
+[`tasks/mvp/08-persistence/02-log-only-save-format.md`](../../tasks/mvp/08-persistence/02-log-only-save-format.md)
+§ Compression contract). The pin applies to the save artifact only —
 it is **not** part of the determinism contract for engine state
 itself, which is owned by the canonical serializer + xxh64 hash above.
 
@@ -267,15 +259,15 @@ record, excluding dynamic metadata: `id`, `name`, `createdAt`,
 is **not** a contract; canonical-content-hash equality is. The
 fuzz-harness CI gate
 ([`tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md`](../../tasks/mvp/01-engine-core/09-fuzz-harness-1000-command-ai-vs-ai-determinism-test.md))
-asserts this equivalence by re-saving and re-loading every fixture
-and comparing `canonicalContentHash` and post-replay `stateHash`.
+asserts this by re-saving and re-loading every fixture and comparing
+`canonicalContentHash` and post-replay `stateHash`.
 
 ## Golden-State Regression
 
 Differential fuzz catches non-determinism between two live engine
-instances; it does not catch an unintended *intentional* rule
-change that silently shifts a canonical state hash. The golden-
-state regression suite owned by
+instances; it does not catch an unintended *intentional* rule change
+that silently shifts a canonical state hash. The golden-state
+regression suite owned by
 [`tasks/mvp/01-engine-core/12-golden-state-suite.md`](../../tasks/mvp/01-engine-core/12-golden-state-suite.md)
 is the canonical drift sentinel: every fixture under
 `tests/__fixtures__/golden/` pins
@@ -338,13 +330,14 @@ The UI may render optimistic placeholders bound to draft state under
 `state.ui.<screen>.draft.*`. Drafts are excluded from the canonical
 serializer input and never enter the command log. This rule is the
 sole exception to "every state shape is reducer-owned"; it is pinned
-in [`ui-frame-lag-contract.md` § Optimistic UI](./ui-frame-lag-contract.md#2-optimistic-ui).
+in
+[`ui-frame-lag-contract.md` § 2 Optimistic UI](./ui-frame-lag-contract.md#2-optimistic-ui).
 Drafts must clear when the matching command resolves; persisting a
 draft across save/load is a determinism leak.
 
 ## UI Selector Purity
 
-Selectors live in `src/ui/` and the UI layer is non-deterministic at
+Selectors live in `src/ui/`, and the UI layer is non-deterministic at
 the input boundary, but selectors themselves MUST be pure functions
 of state. The full rule — no `Math.random()`, `Date.now()`,
 `performance.now()`, `crypto.randomUUID()`, no async, no I/O, no
@@ -388,18 +381,19 @@ will desync.
 
 ### Canonical Command Key
 
-Every command on the wire is keyed by `(playerId, seq)` where
+Every command on the wire is keyed by `(playerId, seq)`, where
 `playerId` is the multiplayer peer slot and `seq` is the per-peer
 monotonic sequence number assigned at emit time. The pair is the
 **primary key on the command log**: the lockstep transport drops
 duplicates silently before they reach the reducer and emits the
 counter `dup_command_dropped_total` to telemetry.
 
-This rule is what makes reconnection (Task 6) safe: the log-range
-response from the host will overlap commands the client already
-replayed, and the dedupe set is the single point that prevents
-double-application. Implementers MUST treat `(playerId, seq)` as a
-contract, not a hint.
+This rule is what makes reconnection safe
+([`tasks/phase-3/01-multiplayer/06-reconnection-log-range-request-plus-replay.md`](../../tasks/phase-3/01-multiplayer/06-reconnection-log-range-request-plus-replay.md)):
+the log-range response from the host overlaps commands the client
+already replayed, and the dedupe set is the single point that
+prevents double-application. Implementers MUST treat
+`(playerId, seq)` as a contract, not a hint.
 
 ### Clock Policy
 
@@ -432,12 +426,14 @@ reads one.
 
 ### Snapshot Cadence and Resync
 
-`DESYNC_DETECTED` (Task 4) does not abort the match by default.
-Both peers maintain a ring of the last **5 canonical state
-snapshots** taken every **20 turns** (configurable per match via the
-scenario record), keyed by command-log offset:
+`DESYNC_DETECTED`
+([`tasks/phase-3/01-multiplayer/04-per-turn-hash-exchange-plus-desync-detection.md`](../../tasks/phase-3/01-multiplayer/04-per-turn-hash-exchange-plus-desync-detection.md))
+does not abort the match by default. Both peers maintain a ring of
+the last **5 canonical state snapshots** taken every **20 turns**
+(configurable per match via the scenario record), keyed by
+command-log offset:
 
-```
+```text
 { seqOffset, turn, contentHash, engineHash, canonicalState, stateHash }
 ```
 
@@ -447,17 +443,21 @@ On desync:
    ring (compact: `(seqOffset, stateHash)` pairs only — no payload).
 2. Peers walk the ring newest-to-oldest and look for the first
    `seqOffset` whose `stateHash` agrees on both sides.
-3. If a pair agrees, both peers emit `SNAPSHOT_AGREE { seqOffset }`,
-   restore that snapshot's `canonicalState`, and re-apply commands
-   from `seqOffset + 1` through the lockstep transport.
+3. If a pair agrees, both peers emit
+   `SNAPSHOT_AGREE { seqOffset }`, restore that snapshot's
+   `canonicalState`, and re-apply commands from `seqOffset + 1`
+   through the lockstep transport.
 4. If no pair agrees, fall through to the existing bisect-and-quit
-   path (Task 5).
+   path
+   ([`tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md`](../../tasks/phase-3/01-multiplayer/05-auto-bisect-on-hash-mismatch.md)).
 
 The snapshot artifact is hashed and serialized through the same
 canonical serializer used for the per-turn state hash. The ring is
 in-memory only; saves persist the full state, not the ring. Because
 each snapshot pins `contentHash` and `engineHash`, restoring across
 a pack or engine upgrade fails loudly the same way save-load does.
+Implementation is owned by
+[`tasks/phase-3/01-multiplayer/09-snapshot-resync-fallback.md`](../../tasks/phase-3/01-multiplayer/09-snapshot-resync-fallback.md).
 
 ### Bot RNG Sub-Streams
 
@@ -465,7 +465,7 @@ Bots run on **every** peer using the shared match seed. Each bot
 draws from a dedicated PCG32 sub-stream named in
 [`rng-streams.md`](./rng-streams.md):
 
-```
+```text
 botRngStreamId = hash(matchSeed, botId)
 ```
 
@@ -475,13 +475,27 @@ preserved across a re-host.
 
 To avoid O(N) wire traffic per bot, the lockstep transport elects
 exactly one peer as the **broadcaster** (the first peer in the
-deterministic peer-priority order from Task 7's host-migration
-election). Only the broadcaster's emitted bot commands are accepted
-on the wire; non-broadcasters compute the same commands and verify
-them locally but do not transmit. The receiving side gates on
-`(playerId=botId, seq)` exactly like a human player, so the
-canonical command key (above) keeps the dedupe contract uniform.
+deterministic peer-priority order from the host-migration election in
+[`tasks/phase-3/01-multiplayer/07-host-migration-heartbeat-election.md`](../../tasks/phase-3/01-multiplayer/07-host-migration-heartbeat-election.md)).
+Only the broadcaster's emitted bot commands are accepted on the wire;
+non-broadcasters compute the same commands and verify them locally
+but do not transmit. The receiving side gates on
+`(playerId=botId, seq)` exactly like a human player, so the canonical
+command key (above) keeps the dedupe contract uniform.
 
 A re-election of the broadcaster (host migration) does not require
 restarting bot decision sequences — both peers are at the same RNG
 position because both have been computing in lockstep.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — UI-side claims (`state.ui.<screen>.draft.*` exclusion, selector purity, single-emit per gesture) match [`ui-frame-lag-contract.md` § 2 Optimistic UI](./ui-frame-lag-contract.md#2-optimistic-ui), [`ui-state-contract.md` § Selector Purity](./ui-state-contract.md#selector-purity), and [`ui-input-arbitration.md`](./ui-input-arbitration.md). No screen-spec strings asserted here.
+- **Schema: ✔** — Saturation constants match `src/engine/constants.ts` (`MAX_RESOURCE = 2_000_000_000`, `MAX_UNIT_COUNT = 1_000_000`, `MAX_HERO_STAT_DEFAULT = 99`, `MAX_INTERMEDIATE = Number.MAX_SAFE_INTEGER`); ratio / cap names (`atkBonusPerPointNum/Den`, `atkBonusCap=60`, `defReductionCap=60`) match [`baseline.ruleset.json`](../../content-schema/examples/records/rulesets/baseline.ruleset.json). [`numeric.json`](../../content-schema/schemas/numeric.json) cross-links back to this doc's saturation policy.
+- **Tasks: ✔** — Every linked task file exists under `tasks/mvp/01-engine-core/`, `tasks/mvp/03-map-system/`, `tasks/mvp/08-persistence/`, `tasks/mvp/10-heuristic-ai/`, `tasks/phase-2/09-quality/`, and `tasks/phase-3/01-multiplayer/`; each owning task references this doc back via its Read First or anchor link.
+
+## ⚠ Issues
+
+- **`botRngStreamId` model is not registered in [`rng-streams.md`](./rng-streams.md).** § Bot RNG Sub-Streams asserts each bot draws from a dedicated PCG32 sub-stream "named in `rng-streams.md`", with `botRngStreamId = hash(matchSeed, botId)`. The catalogue ships exactly one AI entry — `ai-decision` — and its add-a-stream rule requires kebab-case, additive entries; per-bot derived stream IDs are not expressible under that rule. Per the catalogue's own contract ("every `rng.next()` site MUST cite a stream from that table"), the gap blocks lockstep bot determinism the moment a second AI player joins. Owner: [`tasks/mvp/01-engine-core/03-implement-pcg32-prng-with-named-sub-streams.md`](../../tasks/mvp/01-engine-core/03-implement-pcg32-prng-with-named-sub-streams.md). Suggested fix: add a `bot:<botId>` namespace clause to the catalogue (or a single `bot-decision` entry that is forked per `botId` at runtime), and adjust this doc to cite it. Surfaced rather than rewritten silently because the registry is canonical.
+- **Snapshot-ring `(5 snapshots, 20 turns)` "configurable per match via the scenario record" has no schema field.** § Snapshot Cadence and Resync claims the ring depth and cadence are scenario-overridable, but [`scenario.schema.json`](../../content-schema/schemas/scenario.schema.json) exposes no `snapshotRing` (or equivalent) field. Either the override is forward-looking and the prose should say so, or a schema extension is needed. Owner: [`tasks/phase-3/01-multiplayer/09-snapshot-resync-fallback.md`](../../tasks/phase-3/01-multiplayer/09-snapshot-resync-fallback.md). Suggested values: scenario field `snapshotRing: { depth: integer (default 5), cadenceTurns: integer (default 20) }`, or update this doc to "the constants are pinned here and not yet user-configurable".

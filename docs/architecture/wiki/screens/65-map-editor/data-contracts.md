@@ -26,23 +26,29 @@
 | `spell.schema.json` | Spell catalog records, school/level metadata, mana costs, mastery scaling, and castability. | `content-schema/schemas/spell.schema.json` |
 | `resource-id.schema.json` | Canonical resource IDs used by costs, rewards, income, trade rates, and affordability checks. | `content-schema/schemas/resource-id.schema.json` |
 | `command.schema.json` | Reducer-backed gameplay command payloads dispatched or previewed by this screen. | `content-schema/schemas/command.schema.json` |
-| Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, or shell state as listed below. | Loaded content/runtime registries. |
+| Screen-specific registries | Heroes, towns, spells, artifacts, armies, map objects, battles, saves, and shell state loaded by the active content/runtime registries. | Loaded content/runtime registries. |
 
 ### Runtime State Selectors
 | UI Element | Selector | Notes |
 | --- | --- | --- |
 | `editorDocument` | `state.editor.currentDocument` | Scenario draft document. |
-| `selectedTool` | `state.editor.selectedTool` | Brush, object, erase, road, river, zone, properties. |
-| `selectedLayer` | `state.editor.selectedLayer` | Surface, underground, objects, events, regions. |
-| `selection` | `state.editor.selection` | Selected tile/object/region. |
+| `selectedTool` | `state.editor.selectedTool` | One of: brush, object, erase, road, river, zone, properties. |
+| `selectedLayer` | `state.editor.selectedLayer` | One of: surface, underground, objects, events, regions. |
+| `selection` | `state.editor.selection` | Selected tile, object, or region. |
 | `validationIssues` | `selectors.editor.validationIssues` | Schema and scenario rule issues. |
 
 ### Commands And Events
-- `SELECT_EDITOR_TOOL` from `editor.selectTool`: Changes active editing tool.
-- `APPLY_EDITOR_BRUSH` from `editor.paintTile`: Mutates editor draft document.
-- `PLACE_EDITOR_OBJECT` from `editor.placeObject`: Adds object record with stable ID.
-- `VALIDATE_EDITOR_DOCUMENT` from `editor.validate`: Refreshes validation drawer.
-- `SAVE_EDITOR_SCENARIO` from `editor.save`: Writes scenario draft after validation guard.
+| Token | Action ID | Effect |
+| --- | --- | --- |
+| `SELECT_EDITOR_TOOL` | `editor.selectTool` | Changes active editing tool (local-ui draft). |
+| `APPLY_EDITOR_BRUSH` | `editor.paintTile` | Mutates editor draft document. |
+| `PLACE_EDITOR_OBJECT` | `editor.placeObject` | Adds object record with stable ID. |
+| `VALIDATE_EDITOR_DOCUMENT` | `editor.validate` | Refreshes validation drawer (local-ui). |
+| `SAVE_EDITOR_SCENARIO` | `editor.save` | Writes scenario draft after validation guard. |
+| `OPEN_PUBLISH_DISCLAIMER` → `EXPORT_SCENARIO_AS_PACK` | `editor.publish` | Routes through screen 73 for the per-pack content-policy ack; on accept, writes a local `.hrmod`. |
+
+See [`interactions.md`](./interactions.md) § Actions for the full
+per-control row (next screen, animation cue, disabled cases).
 
 ### Config Keys
 - `config.ui.locale`
@@ -67,11 +73,64 @@
 - `vfx.map-editor.*`
 
 ### Save And Replay Fields
-- Persist reducer-approved gameplay state, setup records, content hashes, command inputs, and explicit draft records only when named by the owning system.
-- Do not persist hover, focus, tooltip, scroll, drag ghost, cursor blink, animation frame, or transient visual effects.
-- Replays use stable IDs and scalar command inputs, never raw paths, localized labels, rendered positions, or wall-clock timestamps.
+- Persist reducer-approved gameplay state, setup records, content
+  hashes, command inputs, and explicit draft records **only when
+  named by the owning system**. The editor's draft persistence
+  contract is owned by
+  [`phase-2.04-content-editor.08-map-editor-commands`](../../../../../tasks/phase-2/04-content-editor/08-map-editor-commands.md);
+  the local `.hrmod` export contract is owned by
+  [`phase-2.04-content-editor.10-publish-disclaimer-flow`](../../../../../tasks/phase-2/04-content-editor/10-publish-disclaimer-flow.md).
+- Do **not** persist hover, focus, tooltip, scroll, drag ghost,
+  cursor blink, animation frame, or transient visual effects.
+- Replays use stable IDs and scalar command inputs — never raw
+  paths, localized labels, rendered positions, or wall-clock
+  timestamps.
 
 ### Validation And Fallback
-- Edits scenario authoring data, not runtime gameplay state. Save validates schema records, stable IDs, object rules, starting positions, objectives, and asset references.
-- Missing presentation may fall back through asset resolver.
-- Missing gameplay records, invalid commands, and unresolved content IDs fail loudly before controls become enabled.
+- Edits scenario authoring data, **not** runtime gameplay state.
+  Save validates schema records, stable IDs, object rules, starting
+  positions, objectives, and asset references.
+- Missing presentation may fall back through the asset resolver.
+- Missing gameplay records, invalid commands, and unresolved
+  content IDs fail loudly before controls become enabled.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Selector list mirrors [`spec.md`](./spec.md) § State
+  Bindings and the per-control rows in
+  [`interactions.md`](./interactions.md) § Actions.
+- **Schema: ✔** — Every listed schema file exists under
+  `content-schema/schemas/` and is registered in
+  [`schema-matrix.md`](../../../schema-matrix.md). `command.schema.json`
+  is the canonical command surface; aliases and out-of-scope tokens
+  resolve through
+  [`screen-command-coverage.json`](../../../screen-command-coverage.json).
+- **Tasks: ⚠** — Owning task
+  [`phase-2.07-ui-screen-backlog.65-map-editor-screen`](../../../../../tasks/phase-2/07-ui-screen-backlog/65-map-editor-screen.md)
+  reads this file; reducer-side
+  [`08-map-editor-commands`](../../../../../tasks/phase-2/04-content-editor/08-map-editor-commands.md)
+  defines a different command-token vocabulary (see
+  `interactions.md` § ⚠ Issues). No data-inventory row exists for
+  `state.editor.*` — see `## ⚠ Issues`.
+
+## ⚠ Issues
+
+- **No `state.editor.*` rows in `data-inventory.md`.** This screen
+  binds five selectors under `state.editor.*` (`currentDocument`,
+  `selectedTool`, `selectedLayer`, `selection`, `validationIssues`).
+  [`data-inventory.md`](../../../data-inventory.md) contains zero
+  rows whose path begins with `state.editor`. Per the CLAUDE.md root
+  contract ("every persisted field is registered in
+  `data-inventory.md`"), whichever of these slices is persisted
+  (most likely `state.editor.currentDocument` as the scenario
+  draft) needs a row before the slice can ship. Owning task:
+  [`phase-2.04-content-editor.08-map-editor-commands`](../../../../../tasks/phase-2/04-content-editor/08-map-editor-commands.md).
+  Suggested values: domain=`editor`, owner=
+  `phase-2.04-content-editor.08-map-editor-commands`,
+  persistence=`indexeddb`, retention=`draft`. Selectors that are
+  pure UI state (`selectedTool`, `selectedLayer`, `selection`) stay
+  outside the inventory per the original "UI-only … stay outside
+  deterministic gameplay state" rule. Skill did not add the row
+  itself (Hard Prohibition D).

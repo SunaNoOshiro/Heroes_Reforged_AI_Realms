@@ -1,18 +1,16 @@
 # Pack Contract
 
-> Crypto primitives in use here (asset bytes integrity = SHA-256)
-> are catalogued in
-> [`crypto-primitives.md`](./crypto-primitives.md).
-
-This file is the canonical source of truth for pack layout, manifest
-rules, archive rules, and trust metadata.
-
-Cross-pack rules — namespace pattern, dependency resolution, override
-precedence, asset integrity, locale merge order, error codes, and the
-canonical-packs registry — live in
+Canonical source for pack layout, manifest rules, archive rules, and
+trust metadata. Cross-pack rules — namespace pattern, dependency
+resolution, override precedence, asset integrity, locale merge
+order, error codes, and the canonical-packs registry — live in
 [`content-system-policy.md`](./content-system-policy.md). The pack
 resolver algorithm itself is pinned in
 [`pack-resolver.md`](./pack-resolver.md).
+
+> Crypto primitives used here (asset-bytes integrity = SHA-256) are
+> catalogued in
+> [`crypto-primitives.md`](./crypto-primitives.md).
 
 ## Core Rule
 
@@ -32,45 +30,37 @@ separate `faction-pack` folders express the same content more clearly.
 
 ## Manifest v1
 
-Canonical file:
-
-- [`content-schema/schemas/manifest.schema.json`](../../content-schema/schemas/manifest.schema.json)
-
-The schema is the single source of truth. This doc does not repeat the
-required-field list. When you see disagreement, trust the schema and
-update this doc.
+Schema (single source of truth):
+[`manifest.schema.json`](../../content-schema/schemas/manifest.schema.json).
+This doc never repeats the required-field list; on disagreement,
+trust the schema and update this doc.
 
 Hash fields:
 
-- `contentHash` — produced by the content-runtime at pack build time.
-  Optional at author time; required at load time for multiplayer and
-  trusted replay.
-- `engineHash` — pinned to a specific engine build. Pre-M2 (no engine
-  yet) this field is effectively unused; the loader accepts packs
-  without it. Post-M2 it becomes required at load time for
-  reproducible play.
+- `contentHash` — produced by the content-runtime at pack build
+  time. Optional at author time; required at load time for
+  multiplayer and trusted replay.
+- `engineHash` — pinned to a specific engine build. Pre-M2 (no
+  engine yet) the loader accepts packs without it; post-M2 it
+  becomes required at load time for reproducible play.
 
-The exact loader behaviour on a `contentHash`, `contentPackHashes`, or
+Loader behaviour on a `contentHash`, `contentPackHashes`, or
 `engineHash` mismatch is pinned in
-[`version-policy.md`](./version-policy.md). This file does not repeat
-the per-context rules; trust the matrix.
-
-See [`determinism.md`](determinism.md).
+[`version-policy.md`](./version-policy.md); this file does not
+repeat the per-context matrix. See also
+[`determinism.md`](./determinism.md).
 
 ## Canonical Example
 
-See:
-
-- [`content-schema/examples/packs/emberwild-faction/manifest.json`](../../content-schema/examples/packs/emberwild-faction/manifest.json)
-
-That example stays in lockstep with the schema and with this file.
-`scripts/check-repo-contracts.mjs` validates every example record in
-every example pack against its schema.
+[`content-schema/examples/packs/emberwild-faction/manifest.json`](../../content-schema/examples/packs/emberwild-faction/manifest.json)
+stays in lockstep with the schema and with this file.
+`scripts/check-repo-contracts.mjs` validates every example record
+in every example pack against its schema.
 
 ## Trust Fields
 
-- `signature` — optional object with `scheme`, `keyId`, and `value`.
-  Comparisons MUST use the constant-time-compare rule pinned in
+- `signature` — optional `{ scheme, keyId, value }`. Comparisons
+  MUST use the constant-time-compare rule pinned in
   [`crypto-rules.md`](./crypto-rules.md) § 1; failures collapse to
   the closed `signatureErrorCode` enum on
   [`signature-error.schema.json`](../../content-schema/schemas/signature-error.schema.json)
@@ -79,23 +69,22 @@ every example pack against its schema.
   surface MUST NOT distinguish "wrong key" from "no such key" —
   both collapse to `INVALID_SIGNATURE`.
 - `sandboxed` — boolean trust flag enforced by runtime policy.
-- `sandboxedReason` — optional string identifying why the pack is
-  sandboxed (`ai-generated`, `user-edited`, `unsigned`). Consumed
-  by the sandbox-enforcement layer below to render the reason and
-  by the lifecycle layer (see
-  [`pack-lifecycle.md`](./pack-lifecycle.md)) to scope GC.
+- `sandboxedReason` — optional enum (`ai-generated`, `user-edited`,
+  `unsigned`) consumed by the sandbox-enforcement layer below to
+  render the reason and by
+  [`pack-lifecycle.md`](./pack-lifecycle.md) to scope GC.
 - `contentRating` — optional, author-asserted, advisory only.
   Surfaced under "Author-declared content" by screen 72 per
   [`pack-trust.md` § Content Rating](./pack-trust.md#8-content-rating).
   Not consumed by gameplay or matchmaking gates in v1.
 
-Use `sandboxed: true` for AI-generated or otherwise restricted content
-that cannot participate in ranked or trusted flows.
+Use `sandboxed: true` for AI-generated or otherwise restricted
+content that cannot participate in ranked or trusted flows.
 
 ### Signature Policy
 
 Multiplayer matches enforce a closed `signaturePolicy` enum on the
-match handshake REVEAL phase per
+match-handshake REVEAL phase per
 [`match-handshake.md`](./match-handshake.md):
 
 | Mode | Value | Behavior |
@@ -106,12 +95,12 @@ match handshake REVEAL phase per
 
 The `packManifestDigest` (canonical-JSON xxh64 over `manifest.json`)
 is exchanged at handshake **and re-validated at every turn-end**;
-a mid-match digest drift triggers `MID_MATCH_PACK_SWAP` desync
-abort. Owning task:
+mid-match digest drift triggers `MID_MATCH_PACK_SWAP` desync
+abort. Owner:
 [`tasks/phase-3/01-multiplayer/15-pack-signature-and-build-attestation-policy.md`](../../tasks/phase-3/01-multiplayer/15-pack-signature-and-build-attestation-policy.md).
-Information-secrecy limits inherent to symmetric input-only lockstep
-that the signature policy does **not** close are pinned in
-[`security-model.md`](./security-model.md).
+Information-secrecy limits inherent to symmetric input-only
+lockstep that the signature policy does **not** close are pinned
+in [`security-model.md`](./security-model.md).
 
 ### Trust UX
 
@@ -151,7 +140,7 @@ gate.
 | Replay validator | Refuse for canonical replay (multiplayer / trusted leaderboard); allow for sandbox replay. | refuse for canonical | replay surface flags revoked-or-sandboxed packs (see [Revocation](#revocation)). |
 | Editor | Allow with a visible `SANDBOX` badge and `sandboxedReason`. | allow | none — author can clear the flag only by re-publishing through a non-sandbox pipeline. |
 
-The owning contract is
+Owner:
 [`tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md`](../../tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md).
 Cache, GC, and disk-quota policy for sandboxed packs live in
 [`pack-lifecycle.md`](./pack-lifecycle.md).
@@ -165,8 +154,8 @@ safety must still be removable from clients. The contract is in
 
 1. A maintainer-signed
    [`revocation-registry.schema.json`](../../content-schema/schemas/revocation-registry.schema.json)
-   listing revoked `contentHash`es with reason codes and
-   monotonic `version`.
+   listing revoked `contentHash`es with reason codes and monotonic
+   `version`.
 2. A client-side check at pack load: if `manifest.contentHash`
    matches a registry entry, the pack is rejected from canonical
    contexts (ranked matchmaker, signed marketplace listing).
@@ -176,28 +165,29 @@ safety must still be removable from clients. The contract is in
 
 ## Capabilities
 
-`capabilities` is a closed enum in the schema. New capability strings
-require a schema change and a runtime policy update. That blocks a
-sandboxed pack from claiming made-up permissions.
+`capabilities` is a closed enum in the schema (default
+`["scripts.none"]`). New capability strings require a schema
+change and a runtime policy update — that blocks a sandboxed pack
+from claiming made-up permissions.
 
 ### Capability Enforcement
 
-The schema declares `capabilities` with `default: ["scripts.none"]`.
-A pack that omits the field is treated as `["scripts.none"]`
-(default-deny). The loader MUST apply byte-level sniffs whenever
-`scripts.none` is declared (or default), per
+A pack that omits `capabilities` is treated as `["scripts.none"]`
+(default-deny). Whenever `scripts.none` is declared (or default),
+the loader MUST apply the byte-level sniffs listed in
 [`ugc-safety.md` § Capability Enforcement](./ugc-safety.md#6-capability-enforcement):
 no `js/mjs/cjs/ts/wasm/html/htm/svg` extensions, no
-prototype-pollution keys, no `formulas.ast` nodes outside the Effect
-Registry's pure-evaluator set.
+prototype-pollution keys, no `formulas.ast` nodes outside the
+Effect Registry's pure-evaluator set.
 
 ## Asset Path Scheme
 
-`assets/index.json` declares `pathScheme: "pack-relative"` and every
-`path` is constrained to a closed extension allowlist (`png`, `webp`,
-`ogg`, `mp3`, `json`). Absolute schemes (`http`, `https`, `file`,
-`data`, `blob`), leading slashes, and parent-directory escapes are
-rejected at schema time. Rationale: closes the IP-exfiltration surface. Cross-link:
+`assets/index.json` declares `pathScheme: "pack-relative"` and
+every `path` is constrained to a closed extension allowlist
+(`png`, `webp`, `ogg`, `mp3`, `json`). Absolute schemes (`http`,
+`https`, `file`, `data`, `blob`), leading slashes, and
+parent-directory escapes are rejected at schema time. Closes the
+IP-exfiltration surface. Cross-link:
 [`ugc-safety.md` § External URL Ban](./ugc-safety.md#1-external-url-ban),
 [`asset-index.schema.json`](../../content-schema/schemas/asset-index.schema.json).
 
@@ -215,12 +205,14 @@ Every binary asset is bound by:
 - the per-decoder cap table in
   [`asset-loading.md` § 1](./asset-loading.md#1-cap-table)
   (image dim, audio duration / channels / sample rate, asset bytes);
-- the per-pack budget in [`asset-loading.md` § 1.2](./asset-loading.md#12-per-pack-budgets)
+- the per-pack budget in
+  [`asset-loading.md` § 1.2](./asset-loading.md#12-per-pack-budgets)
   (concurrency, rate, residency, max assets per pack).
 
 Pack assets MAY NOT include `svg`, `font/*`, `video/*`, or
-`text/html` — see [`asset-policy.md` § 2](./asset-policy.md#2-forbidden-kinds)
-for the CVE classes those forbidden formats avoid.
+`text/html` — see
+[`asset-policy.md` § 2](./asset-policy.md#2-forbidden-kinds) for
+the CVE classes those forbidden formats avoid.
 
 ## Native-Target Jail Rule
 
@@ -241,12 +233,10 @@ Localization is safe by construction: only ICU `{var}`
 placeholders are evaluated. Any other syntax (Mustache `{{…}}`,
 EJS `<%= … %>`, Handlebars `{{#…}}`, Pug `#{…}`) is rendered as
 literal text. Adding a general-purpose templating engine
-(`handlebars`, `mustache`, `ejs`, `pug`, `eta`, etc.) to the
-codebase is forbidden by the dependency policy
-([`dependency-policy.md`](./dependency-policy.md)) and the
-ESLint `no-restricted-imports` rule. The rule closes the eval
-class that re-opens the moment a string-to-JS compiler enters
-the bundle.
+(`handlebars`, `mustache`, `ejs`, `pug`, `eta`, etc.) is forbidden
+by [`dependency-policy.md`](./dependency-policy.md) and the
+ESLint `no-restricted-imports` rule. Closes the `eval` class that
+re-opens the moment a string-to-JS compiler enters the bundle.
 
 ## Trust Tiers
 
@@ -256,22 +246,22 @@ directly (when the manifest declares it and the signature
 verifies) or derives per
 [`sandbox-model.md` § 1](./sandbox-model.md#1-trust-tiers). The
 boolean `manifest.sandboxed` is preserved as a derived flag:
-`sandboxed === (trustTier === "sandboxed")`. The capability
-matrix that consumes the tier is owned by
+`sandboxed === (trustTier === "sandboxed")`. The capability matrix
+that consumes the tier is owned by
 [`sandbox-model.md` § 2](./sandbox-model.md#2-capability-matrix);
 the override-precedence trust-floor rule is owned by
 [`sandbox-model.md` § 3](./sandbox-model.md#3-override-precedence-trust-rule).
 
 ## Override Precedence
 
-When a pack declares `dependencies[]` and `overrides[]`, resolution
-follows declaration order — **last declared wins** on a collision.
-Sandboxed packs MAY NEVER shadow a non-sandboxed canonical pack on a
-stable ID; attempting to do so is a load-time error
-(`override.sandboxed-shadow-canonical`). Same-tier collisions (two
-non-sandboxed packs claiming the same ID) require an explicit
-`overrides[]` entry on the downstream pack; without it the load
-fails with `override.unauthorized-shadow`.
+When a pack declares `dependencies[]` and `overrides[]`,
+resolution follows declaration order — **last declared wins** on a
+collision. Sandboxed packs MAY NEVER shadow a non-sandboxed
+canonical pack on a stable ID; attempting to do so is a load-time
+error (`override.sandboxed-shadow-canonical`). Same-tier
+collisions (two non-sandboxed packs claiming the same ID) require
+an explicit `overrides[]` entry on the downstream pack; without it
+the load fails with `override.unauthorized-shadow`.
 
 ## Folder Layout
 
@@ -306,24 +296,26 @@ resources/packs/emberwild-faction/
 
 Rules:
 
-- record files are one-per-record
-- gameplay records use ids, not asset paths
-- file extensions should communicate record type when practical
-- `assets/index.json` owns path-to-asset-id mapping plus a `sha256` per
-  binary asset; integrity rule in
-  [`content-system-policy.md` § 4](./content-system-policy.md#4-asset-integrity)
+- record files are one-per-record;
+- gameplay records use ids, not asset paths;
+- file extensions should communicate record type when practical;
+- `assets/index.json` owns path-to-asset-id mapping plus a
+  `sha256` per binary asset; integrity rule in
+  [`content-system-policy.md` § 4](./content-system-policy.md#4-asset-integrity);
 - `locales/<locale>.localization.json` carries the per-pack
   localization bundle; merge order in
-  [`content-system-policy.md` § 6](./content-system-policy.md#6-localization-bundling)
+  [`content-system-policy.md` § 6](./content-system-policy.md#6-localization-bundling).
 
 ## Resource Limits
 
-`.hrmod` packs and imported saves are subject to size, decompression
-ratio, and entry caps enforced **before** schema parsing so a hostile
-file cannot exhaust memory inside the validator. The full table —
-including the ZIP path-traversal sanitizer rule — is pinned in
+`.hrmod` packs and imported saves are subject to size,
+decompression-ratio, and entry caps enforced **before** schema
+parsing so a hostile file cannot exhaust memory inside the
+validator. The full table — including the ZIP path-traversal
+sanitizer rule — is pinned in
 [`pack-trust.md` § Resource Limits](./pack-trust.md#1-resource-limits).
-Pack loaders and the trust UI MUST consult the same constants table.
+Pack loaders and the trust UI MUST consult the same constants
+table.
 
 ## Archive Rule
 
@@ -331,46 +323,46 @@ Pack loaders and the trust UI MUST consult the same constants table.
 
 The archive must contain:
 
-- one `manifest.json`
-- zero or more canonical record folders
-- asset payloads and indexes that match the manifest and record ids
+- one `manifest.json`;
+- zero or more canonical record folders;
+- asset payloads and indexes that match the manifest and record ids.
 
-Do not add a separate manifest `files[]` inventory unless the schema
-is explicitly revised to require it.
+Do not add a separate manifest `files[]` inventory unless the
+schema is explicitly revised to require it.
 
 ## Runtime Ownership
 
 `src/content-runtime/` owns:
 
-- manifest loading
-- archive import
+- manifest loading;
+- archive import;
 - dependency resolution (algorithm in
-  [`pack-resolver.md`](./pack-resolver.md))
-- signature checks
-- sandbox policy
-- pack registry assembly
-- canonical-json serialization + `contentHash` computation
+  [`pack-resolver.md`](./pack-resolver.md));
+- signature checks;
+- sandbox policy;
+- pack registry assembly;
+- canonical-JSON serialization + `contentHash` computation.
 
-`src/engine/` consumes resolved ids and registries. It does not own
-pack loading.
+`src/engine/` consumes resolved ids and registries; it does not
+own pack loading.
 
 ## Verification Ordering
 
-The pack-load pipeline runs gates in a fixed order. Reordering is a
-threat-model violation — a tampered manifest can exercise schema-
-parser bugs or asset-extraction path-traversal before the signature
-gate fires. The pinned order:
+The pack-load pipeline runs gates in a fixed order. Reordering is
+a threat-model violation — a tampered manifest can exercise
+schema-parser bugs or asset-extraction path-traversal before the
+signature gate fires. The pinned order:
 
 1. **archive integrity** — ZIP CRC over each entry.
 2. **parser hardening** — size / ratio / depth / array caps per
    [`parser-hardening.md`](./parser-hardening.md).
 3. **manifest schema-parse** — `manifest.schema.json` validation.
-4. **signature verify** — Ed25519 over the canonical signed message
-   per [`pack-signing.md`](./pack-signing.md) § 1; constant-time
-   comparison; consults the publisher registry, revocation list,
-   and trust store.
+4. **signature verify** — Ed25519 over the canonical signed
+   message per [`pack-signing.md`](./pack-signing.md) § 1;
+   constant-time comparison; consults the publisher registry,
+   revocation list, and trust store.
 5. **publisher-registry lookup** — assigns the trust tier
-   (`canonical | thirdParty | sandboxed`).
+   (`canonical | community-signed | sandboxed`).
 6. **asset extraction** — last step; each binary asset's `sha256`
    is verified against `assets/index.json` before the bytes are
    exposed to the renderer or audio engine.
@@ -407,24 +399,24 @@ A subsequent install that omits `signature` is rejected with
 The trust store is per-installation and never synced;
 [`trust-store.schema.json`](../../content-schema/schemas/trust-store.schema.json)
 owns the persisted shape. Bootstrap (wipe / reset / new device)
-re-bootstraps the binding on first install. Authoritative doctrine:
-[`pack-signing.md` § 6](./pack-signing.md).
+re-bootstraps the binding on first install. Authoritative
+doctrine: [`pack-signing.md` § 6](./pack-signing.md).
 
 ## Reproducible Archive
 
-Canonical packs ship as byte-stable `.hrmod` ZIPs. The build script
-pins entry order, timestamps, compression level, and external
-attributes; a sibling `signedBuild.json` records the expected
-`archiveHash` plus the canonical signed message bytes. Third-party
-auditors can rebuild a canonical pack from source and confirm the
-SHA-256 matches the published artifact. Authoritative doctrine:
-[`reproducible-archive.md`](./reproducible-archive.md).
+Canonical packs ship as byte-stable `.hrmod` ZIPs. The build
+script pins entry order, timestamps, compression level, and
+external attributes; a sibling `signedBuild.json` records the
+expected `archiveHash` plus the canonical signed message bytes.
+Third-party auditors can rebuild a canonical pack from source and
+confirm the SHA-256 matches the published artifact. Authoritative
+doctrine: [`reproducible-archive.md`](./reproducible-archive.md).
 
 ## Asset Fallback And Placeholders
 
 Pack content can be incomplete (mid-development) or corrupt at
-runtime (mid-game asset loss, decode failure). The matrix below pins
-the rule per asset class. The animation contract
+runtime (mid-game asset loss, decode failure). The matrix below
+pins the rule per asset class. The animation contract
 ([`animation-contract.md` § Asset Fallback`](./animation-contract.md#asset-fallback))
 references this table; do not duplicate the rules there.
 
@@ -442,19 +434,19 @@ references this table; do not duplicate the rules there.
 ### Dev-mode placeholders
 
 `config.dev.placeholderSprites` (boolean, default `false`) toggles
-the magenta-checker placeholder for missing sprite-sheets. Production
-builds default to `false` (fail loud); dev builds may set `true`.
-Pinned in
+the magenta-checker placeholder for missing sprite-sheets.
+Production builds default to `false` (fail loud); dev builds may
+set `true`. Pinned in
 [`wiki/screens/56-options/data-contracts.md`](./wiki/screens/56-options/data-contracts.md).
 
 The two canonical placeholder assets ship under
 [`resources/dev-assets/`](../../resources/dev-assets/):
 
-- `placeholder-sprite.png` — 64×64 magenta + black checker
-- `status-unknown.png` — 32×32 generic status icon
+- `placeholder-sprite.png` — 64×64 magenta + black checker;
+- `status-unknown.png` — 32×32 generic status icon.
 
-Both are loaded only when the renderer would otherwise have logged a
-warning. They are never authored into a pack manifest.
+Both are loaded only when the renderer would otherwise have
+logged a warning. They are never authored into a pack manifest.
 
 ### Multi-page atlas manifests
 
@@ -463,8 +455,8 @@ atlases per
 [`animation.schema.json`](../../content-schema/schemas/animation.schema.json))
 must list **every** page in the pack's `assets/index.json`. The
 content runtime fails loud if any declared page is unresolved at
-load — the renderer cannot recover from a missing atlas page because
-frame indices may reference any page.
+load — the renderer cannot recover from a missing atlas page
+because frame indices may reference any page.
 
 ## Atlas Generation
 
@@ -472,7 +464,7 @@ Packed atlases are produced at pack-publish time, not authored by
 hand and not produced by the AI generation step. The producer
 contract — pinned packer, deterministic invocation, byte-identical
 output across machines — is owned by
-[`docs/architecture/atlas-pipeline.md`](./atlas-pipeline.md).
+[`atlas-pipeline.md`](./atlas-pipeline.md).
 
 Authoring summary:
 
@@ -480,7 +472,7 @@ Authoring summary:
   `<pack>/sprites/<entityId>/<frame>.png` and an
   `<pack>/atlas-manifest.json` listing every entity to be packed.
   The manifest schema is
-  [`content-schema/schemas/atlas.schema.json`](../../content-schema/schemas/atlas.schema.json).
+  [`atlas.schema.json`](../../content-schema/schemas/atlas.schema.json).
 - The publish step runs `npm run pack:build`, which writes
   `<pack>/atlases/<entityId>.png` and
   `<pack>/atlases/<entityId>.atlas.json` from the raw frames.
@@ -493,3 +485,50 @@ Authoring summary:
 The renderer-side metadata schema (TexturePacker-compatible) and
 loader live in
 [`tasks/mvp/06-renderer/06-sprite-sheet-loader-plus-frame-animation.md`](../../tasks/mvp/06-renderer/06-sprite-sheet-loader-plus-frame-animation.md).
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — `config.dev.placeholderSprites` flag and screen-72
+  trust surface match
+  [`wiki/screens/56-options/data-contracts.md`](./wiki/screens/56-options/data-contracts.md)
+  and
+  [`wiki/screens/72-pack-trust-prompt/`](./wiki/screens/72-pack-trust-prompt/);
+  `pack-trust.md` cross-links and anchors (`#1-resource-limits`,
+  `#4-trust-anchors`, `#8-content-rating`) all resolve.
+- **Schema: ⚠** — Manifest fields, the closed `trustTier` enum
+  (`canonical | community-signed | sandboxed`), the
+  `signaturePolicy` enum, the `sandboxedReason` enum, and the
+  `capabilities` default match
+  [`manifest.schema.json`](../../content-schema/schemas/manifest.schema.json);
+  schema-matrix row exists for `Manifest`. The doc previously
+  referenced trust tier `thirdParty` in § Verification Ordering
+  item 5; rewritten to `community-signed` to align with the schema
+  and with the doc's own § Trust Tiers. See `## ⚠ Issues` for the
+  separate drift in `pack-signing.md`.
+- **Tasks: ✔** — Owning tasks
+  [`tasks/phase-3/01-multiplayer/15-pack-signature-and-build-attestation-policy.md`](../../tasks/phase-3/01-multiplayer/15-pack-signature-and-build-attestation-policy.md),
+  [`tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md`](../../tasks/phase-2/05-mod-system/10-sandbox-enforcement-contract.md),
+  and
+  [`tasks/mvp/06-renderer/06-sprite-sheet-loader-plus-frame-animation.md`](../../tasks/mvp/06-renderer/06-sprite-sheet-loader-plus-frame-animation.md)
+  all exist and reference this doc; `task-registry.json` has
+  matching entries.
+
+## ⚠ Issues
+
+- **`pack-signing.md` uses the stale `thirdParty` tier name.**
+  This file's § Trust Tiers and
+  [`manifest.schema.json`](../../content-schema/schemas/manifest.schema.json)
+  define the closed `trustTier` enum as
+  `canonical | community-signed | sandboxed`, and
+  [`sandbox-model.md`](./sandbox-model.md) uses the same values.
+  [`pack-signing.md`](./pack-signing.md) (§ 4 trust tiers, § 5
+  refusal table, § 7 dep propagation, § 10 test fixtures) still
+  uses `thirdParty`. Per
+  [`enum-lifecycle-policy.md`](./enum-lifecycle-policy.md), enum
+  values are public contract; the schema is canonical, so
+  `pack-signing.md` should be brought into line by the
+  pack-signing owner — out of scope for this audit (Hard
+  Prohibition D). Suggested: replace `thirdParty` with
+  `community-signed` throughout `pack-signing.md`.

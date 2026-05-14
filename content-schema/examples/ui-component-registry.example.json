@@ -36,6 +36,14 @@
       ]
     },
     {
+      "componentId": "ActionFooter",
+      "module": "src/ui/components/action-footer.tsx",
+      "exportName": "ActionFooter",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "ActiveStackHalo",
       "module": "src/ui/components/active-stack-halo.tsx",
       "exportName": "ActiveStackHalo",
@@ -73,6 +81,14 @@
       "exportName": "AdventureStatusBar",
       "tags": [
         "hud"
+      ]
+    },
+    {
+      "componentId": "AgeGateRow",
+      "module": "src/ui/onboarding/age-gate-row.tsx",
+      "exportName": "AgeGateRow",
+      "tags": [
+        "control"
       ]
     },
     {
@@ -316,6 +332,15 @@
       ]
     },
     {
+      "componentId": "BisectReportPanel",
+      "module": "src/ui/multiplayer/BisectReportPanel.tsx",
+      "exportName": "BisectReportPanel",
+      "tags": [
+        "panel",
+        "multiplayer"
+      ]
+    },
+    {
       "componentId": "BlockedTileWarning",
       "module": "src/ui/components/blocked-tile-warning.tsx",
       "exportName": "BlockedTileWarning",
@@ -345,6 +370,15 @@
       "exportName": "BookBackdrop",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "BuildAttestationBanner",
+      "module": "src/ui/multiplayer/BuildAttestationBanner.tsx",
+      "exportName": "BuildAttestationBanner",
+      "tags": [
+        "hud",
+        "multiplayer"
       ]
     },
     {
@@ -732,6 +766,30 @@
       ]
     },
     {
+      "componentId": "ConsentHistoryPanel",
+      "module": "src/ui/options/consent-history-panel.tsx",
+      "exportName": "ConsentHistoryPanel",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ConsentRow",
+      "module": "src/ui/onboarding/consent-row.tsx",
+      "exportName": "ConsentRow",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "ConsentRowList",
+      "module": "src/ui/options/consent-row-list.tsx",
+      "exportName": "ConsentRowList",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
       "componentId": "ContentCompatibilityPanel",
       "module": "src/ui/components/content-compatibility-panel.tsx",
       "exportName": "ContentCompatibilityPanel",
@@ -956,6 +1014,15 @@
       ]
     },
     {
+      "componentId": "DesyncBanner",
+      "module": "src/ui/multiplayer/DesyncBanner.tsx",
+      "exportName": "DesyncBanner",
+      "tags": [
+        "hud",
+        "multiplayer"
+      ]
+    },
+    {
       "componentId": "DevAiInspectorOverlay",
       "module": "src/ui/dev/ai-inspector/dev-ai-inspector-overlay.tsx",
       "exportName": "DevAiInspectorOverlay",
@@ -1013,6 +1080,14 @@
       ]
     },
     {
+      "componentId": "DisclosureCallouts",
+      "module": "src/ui/onboarding/disclosure-callouts.tsx",
+      "exportName": "DisclosureCallouts",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
       "componentId": "DockPreview",
       "module": "src/ui/components/dock-preview.tsx",
       "exportName": "DockPreview",
@@ -1061,11 +1136,28 @@
       ]
     },
     {
+      "componentId": "EmptyState",
+      "module": "src/ui/components/empty-state.tsx",
+      "exportName": "EmptyState",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
       "componentId": "EnemyPreview",
       "module": "src/ui/components/enemy-preview.tsx",
       "exportName": "EnemyPreview",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "EnvelopeStatsPanel",
+      "module": "src/ui/multiplayer/EnvelopeStatsPanel.tsx",
+      "exportName": "EnvelopeStatsPanel",
+      "tags": [
+        "panel",
+        "multiplayer"
       ]
     },
     {
@@ -1133,11 +1225,27 @@
       ]
     },
     {
+      "componentId": "FilterRow",
+      "module": "src/ui/components/filter-row.tsx",
+      "exportName": "FilterRow",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "FilterTabs",
       "module": "src/ui/components/filter-tabs.tsx",
       "exportName": "FilterTabs",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "FocusButton",
+      "module": "src/ui/components/focus-button.tsx",
+      "exportName": "FocusButton",
+      "tags": [
+        "control"
       ]
     },
     {
@@ -1461,6 +1569,14 @@
       ]
     },
     {
+      "componentId": "HideButton",
+      "module": "src/ui/components/hide-button.tsx",
+      "exportName": "HideButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "HighScores",
       "module": "src/ui/components/high-scores.tsx",
       "exportName": "HighScores",
@@ -1538,6 +1654,14 @@
       "exportName": "IncomePreview",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "InstalledPackTable",
+      "module": "src/ui/components/installed-pack-table.tsx",
+      "exportName": "InstalledPackTable",
+      "tags": [
+        "panel"
       ]
     },
     {
@@ -1741,6 +1865,14 @@
       ]
     },
     {
+      "componentId": "ManagePacksButton",
+      "module": "src/ui/components/manage-packs-button.tsx",
+      "exportName": "ManagePacksButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "MapCanvas",
       "module": "src/ui/components/map-canvas.tsx",
       "exportName": "MapCanvas",
@@ -1810,6 +1942,25 @@
       "exportName": "MarketplaceDialog",
       "tags": [
         "modal"
+      ]
+    },
+    {
+      "componentId": "MatchInfoPanel",
+      "module": "src/ui/multiplayer/MatchInfoPanel.tsx",
+      "exportName": "MatchInfoPanel",
+      "tags": [
+        "panel",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "MatchKeyDisplay",
+      "module": "src/ui/multiplayer/MatchKeyDisplay.tsx",
+      "exportName": "MatchKeyDisplay",
+      "tags": [
+        "panel",
+        "multiplayer",
+        "dev"
       ]
     },
     {
@@ -1890,6 +2041,15 @@
       "exportName": "MoveBudgetPlaque",
       "tags": [
         "ui"
+      ]
+    },
+    {
+      "componentId": "MultiplayerGameStatus",
+      "module": "src/ui/multiplayer/MultiplayerGameStatus.tsx",
+      "exportName": "MultiplayerGameStatus",
+      "tags": [
+        "ui",
+        "multiplayer"
       ]
     },
     {
@@ -2005,6 +2165,31 @@
       ]
     },
     {
+      "componentId": "OnboardingConsentScreen",
+      "module": "src/ui/onboarding/onboarding-consent-screen.tsx",
+      "exportName": "OnboardingConsentScreen",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "OpponentTurnIndicator",
+      "module": "src/ui/multiplayer/OpponentTurnIndicator.tsx",
+      "exportName": "OpponentTurnIndicator",
+      "tags": [
+        "hud",
+        "multiplayer"
+      ]
+    },
+    {
+      "componentId": "OptionalTierGroup",
+      "module": "src/ui/onboarding/optional-tier-group.tsx",
+      "exportName": "OptionalTierGroup",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
       "componentId": "OptionsButton",
       "module": "src/ui/components/options-button.tsx",
       "exportName": "OptionsButton",
@@ -2066,6 +2251,14 @@
       "exportName": "PackContentHashReadout",
       "tags": [
         "debug"
+      ]
+    },
+    {
+      "componentId": "PackManager",
+      "module": "src/ui/components/pack-manager.tsx",
+      "exportName": "PackManager",
+      "tags": [
+        "screen"
       ]
     },
     {
@@ -2218,6 +2411,15 @@
       "exportName": "PoolOccupancyPanel",
       "tags": [
         "debug"
+      ]
+    },
+    {
+      "componentId": "PostMatchAuditConsentPrompt",
+      "module": "src/ui/multiplayer/PostMatchAuditConsentPrompt.tsx",
+      "exportName": "PostMatchAuditConsentPrompt",
+      "tags": [
+        "modal",
+        "multiplayer"
       ]
     },
     {
@@ -2549,14 +2751,6 @@
       ]
     },
     {
-      "componentId": "ReportPeerDialog",
-      "module": "src/ui/network-lobby/ReportPeerDialog.tsx",
-      "exportName": "ReportPeerDialog",
-      "tags": [
-        "modal"
-      ]
-    },
-    {
       "componentId": "ReplayControlsBar",
       "module": "src/ui/dev/ai-inspector/replay-controls-bar.tsx",
       "exportName": "ReplayControlsBar",
@@ -2573,6 +2767,22 @@
       ]
     },
     {
+      "componentId": "ReportPeerDialog",
+      "module": "src/ui/network-lobby/ReportPeerDialog.tsx",
+      "exportName": "ReportPeerDialog",
+      "tags": [
+        "modal"
+      ]
+    },
+    {
+      "componentId": "RequiredTierGroup",
+      "module": "src/ui/onboarding/required-tier-group.tsx",
+      "exportName": "RequiredTierGroup",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
       "componentId": "RequirementChecklist",
       "module": "src/ui/components/requirement-checklist.tsx",
       "exportName": "RequirementChecklist",
@@ -2586,6 +2796,14 @@
       "exportName": "RequirementPanel",
       "tags": [
         "panel"
+      ]
+    },
+    {
+      "componentId": "RequireTypeChallenge",
+      "module": "src/ui/confirmation/require-type-challenge.tsx",
+      "exportName": "RequireTypeChallenge",
+      "tags": [
+        "control"
       ]
     },
     {
@@ -2717,6 +2935,14 @@
       ]
     },
     {
+      "componentId": "SafeModeButton",
+      "module": "src/ui/components/safe-mode-button.tsx",
+      "exportName": "SafeModeButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "SaveExportButtons",
       "module": "src/ui/components/save-export-buttons.tsx",
       "exportName": "SaveExportButtons",
@@ -2773,19 +2999,19 @@
       ]
     },
     {
-      "componentId": "ScoreMedallions",
-      "module": "src/ui/components/score-medallions.tsx",
-      "exportName": "ScoreMedallions",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
       "componentId": "ScoredActionsPanel",
       "module": "src/ui/dev/ai-inspector/scored-actions-panel.tsx",
       "exportName": "ScoredActionsPanel",
       "tags": [
         "debug"
+      ]
+    },
+    {
+      "componentId": "ScoreMedallions",
+      "module": "src/ui/components/score-medallions.tsx",
+      "exportName": "ScoreMedallions",
+      "tags": [
+        "ui"
       ]
     },
     {
@@ -3104,6 +3330,14 @@
       "componentId": "StatGrid",
       "module": "src/ui/components/stat-grid.tsx",
       "exportName": "StatGrid",
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "componentId": "StatusHint",
+      "module": "src/ui/components/status-hint.tsx",
+      "exportName": "StatusHint",
       "tags": [
         "ui"
       ]
@@ -3453,6 +3687,14 @@
       ]
     },
     {
+      "componentId": "UpgradeButton",
+      "module": "src/ui/components/upgrade-button.tsx",
+      "exportName": "UpgradeButton",
+      "tags": [
+        "control"
+      ]
+    },
+    {
       "componentId": "UpgradeButtons",
       "module": "src/ui/components/upgrade-buttons.tsx",
       "exportName": "UpgradeButtons",
@@ -3533,6 +3775,14 @@
       ]
     },
     {
+      "componentId": "WantsListPanel",
+      "module": "src/ui/dev/ai-inspector/wants-list-panel.tsx",
+      "exportName": "WantsListPanel",
+      "tags": [
+        "debug"
+      ]
+    },
+    {
       "componentId": "WarMachineFactory",
       "module": "src/ui/components/war-machine-factory.tsx",
       "exportName": "WarMachineFactory",
@@ -3546,14 +3796,6 @@
       "exportName": "WarningIcon",
       "tags": [
         "ui"
-      ]
-    },
-    {
-      "componentId": "WantsListPanel",
-      "module": "src/ui/dev/ai-inspector/wants-list-panel.tsx",
-      "exportName": "WantsListPanel",
-      "tags": [
-        "debug"
       ]
     },
     {
@@ -3586,160 +3828,6 @@
       "exportName": "ZonePreview",
       "tags": [
         "ui"
-      ]
-    },
-    {
-      "componentId": "AgeGateRow",
-      "module": "src/ui/onboarding/age-gate-row.tsx",
-      "exportName": "AgeGateRow",
-      "tags": [
-        "control"
-      ]
-    },
-    {
-      "componentId": "ConsentRow",
-      "module": "src/ui/onboarding/consent-row.tsx",
-      "exportName": "ConsentRow",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
-      "componentId": "ConsentRowList",
-      "module": "src/ui/options/consent-row-list.tsx",
-      "exportName": "ConsentRowList",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
-      "componentId": "ConsentHistoryPanel",
-      "module": "src/ui/options/consent-history-panel.tsx",
-      "exportName": "ConsentHistoryPanel",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
-      "componentId": "DisclosureCallouts",
-      "module": "src/ui/onboarding/disclosure-callouts.tsx",
-      "exportName": "DisclosureCallouts",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
-      "componentId": "OnboardingConsentScreen",
-      "module": "src/ui/onboarding/onboarding-consent-screen.tsx",
-      "exportName": "OnboardingConsentScreen",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
-      "componentId": "OptionalTierGroup",
-      "module": "src/ui/onboarding/optional-tier-group.tsx",
-      "exportName": "OptionalTierGroup",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
-      "componentId": "RequiredTierGroup",
-      "module": "src/ui/onboarding/required-tier-group.tsx",
-      "exportName": "RequiredTierGroup",
-      "tags": [
-        "ui"
-      ]
-    },
-    {
-      "componentId": "RequireTypeChallenge",
-      "module": "src/ui/confirmation/require-type-challenge.tsx",
-      "exportName": "RequireTypeChallenge",
-      "tags": [
-        "control"
-      ]
-    },
-    {
-      "componentId": "MultiplayerGameStatus",
-      "module": "src/ui/multiplayer/MultiplayerGameStatus.tsx",
-      "exportName": "MultiplayerGameStatus",
-      "tags": [
-        "ui",
-        "multiplayer"
-      ]
-    },
-    {
-      "componentId": "OpponentTurnIndicator",
-      "module": "src/ui/multiplayer/OpponentTurnIndicator.tsx",
-      "exportName": "OpponentTurnIndicator",
-      "tags": [
-        "hud",
-        "multiplayer"
-      ]
-    },
-    {
-      "componentId": "BuildAttestationBanner",
-      "module": "src/ui/multiplayer/BuildAttestationBanner.tsx",
-      "exportName": "BuildAttestationBanner",
-      "tags": [
-        "hud",
-        "multiplayer"
-      ]
-    },
-    {
-      "componentId": "MatchInfoPanel",
-      "module": "src/ui/multiplayer/MatchInfoPanel.tsx",
-      "exportName": "MatchInfoPanel",
-      "tags": [
-        "panel",
-        "multiplayer"
-      ]
-    },
-    {
-      "componentId": "EnvelopeStatsPanel",
-      "module": "src/ui/multiplayer/EnvelopeStatsPanel.tsx",
-      "exportName": "EnvelopeStatsPanel",
-      "tags": [
-        "panel",
-        "multiplayer"
-      ]
-    },
-    {
-      "componentId": "DesyncBanner",
-      "module": "src/ui/multiplayer/DesyncBanner.tsx",
-      "exportName": "DesyncBanner",
-      "tags": [
-        "hud",
-        "multiplayer"
-      ]
-    },
-    {
-      "componentId": "BisectReportPanel",
-      "module": "src/ui/multiplayer/BisectReportPanel.tsx",
-      "exportName": "BisectReportPanel",
-      "tags": [
-        "panel",
-        "multiplayer"
-      ]
-    },
-    {
-      "componentId": "MatchKeyDisplay",
-      "module": "src/ui/multiplayer/MatchKeyDisplay.tsx",
-      "exportName": "MatchKeyDisplay",
-      "tags": [
-        "panel",
-        "multiplayer",
-        "dev"
-      ]
-    },
-    {
-      "componentId": "PostMatchAuditConsentPrompt",
-      "module": "src/ui/multiplayer/PostMatchAuditConsentPrompt.tsx",
-      "exportName": "PostMatchAuditConsentPrompt",
-      "tags": [
-        "modal",
-        "multiplayer"
       ]
     }
   ]

@@ -6,52 +6,50 @@ Visual Archetype: curated-town
 Curation Status: anchor-v1
 
 ## Purpose
-Town management panorama with clickable building hotspots, town/visiting hero armies, construction state, recruit/service entry points, resources, and exit back to adventure.
+Town management panorama with clickable building hotspots, town and
+visiting-hero army rows, daily-build state, service entry points
+(build / recruit / mage / tavern / market), resource strip, and exit
+back to the adventure map.
 
 ## Visual Direction
 - Original internal UI contract. Do not use third-party captures,
-  copied franchise art, or external product pixels as implementation input.
+  copied franchise art, or external product pixels as implementation
+  input.
 
 ## Visual Composition
 ```mermaid
 flowchart TD
   Root["Town Screen"]
-  C0["TownPanorama"]
-  Root --> C0
-  C1["BuildingHotspots"]
-  Root --> C1
-  C2["TownHeader"]
-  Root --> C2
-  C3["TownGarrisonRow"]
-  Root --> C3
-  C4["VisitingHeroRow"]
-  Root --> C4
-  C5["ServiceButtons"]
-  Root --> C5
-  C6["BuildStatePlaque"]
-  Root --> C6
-  C7["ResourceDateBar"]
-  Root --> C7
+  Root --> C0["TownPanorama"]
+  Root --> C1["BuildingHotspots"]
+  Root --> C2["TownHeader"]
+  Root --> C3["TownGarrisonRow"]
+  Root --> C4["VisitingHeroRow"]
+  Root --> C5["ServiceButtons (Build / Recruit / Mage / Tavern / Market / Exit)"]
+  Root --> C6["BuildStatePlaque"]
+  Root --> C7["ResourceDateBar"]
 ```
 
 ## Screen Load And Data Resolution
 ```mermaid
 flowchart LR
-  L0["Town selector"] --> L1
-  L1["Building registry"] --> L2
-  L2["Hero/town garrisons"] --> L3
-  L3["Service availability"] --> L4
-  L4["Town view model"]
+  L0["selectedTownId"] --> L1
+  L1["building registry"] --> L2
+  L2["town + visiting-hero garrisons"] --> L3
+  L3["service availability (Build/Recruit/Mage/Tavern/Market)"] --> L4
+  L4["town view model"]
 ```
 
 ## Main Interaction Flow
 ```mermaid
 flowchart TD
-  I0["Building/service click"] --> I1
+  I0["Hotspot click or service button"] --> I1
   I1["Availability guard"] --> I2
-  I2["Route or command"] --> I3
-  I3["Reducer"] --> I4
-  I4["Refresh town"]
+  I2{"Token class"}
+  I2 -->|local-ui| LU["Update selection / status"]
+  I2 -->|navigation| NV["Router transition to dest screen"]
+  I2 -->|command| RD["Dispatcher → reducer"]
+  RD --> I4["Refresh town view"]
 ```
 
 ## Animation Flow
@@ -60,36 +58,83 @@ sequenceDiagram
   participant UI
   participant Draft as UI Draft
   participant Guard
+  participant Router
   participant Reducer
   participant VFX
-  UI->>Draft: hover/select/preview
-  Draft->>VFX: Hotspot glow
+  UI->>Draft: hover / select / drag preview
+  Draft->>VFX: Hotspot glow / drag-ghost snap
   UI->>Guard: confirm action
-  Guard->>Reducer: accepted command or route
-  Reducer-->>UI: authoritative result
-  UI->>VFX: Army snap
+  alt navigation token
+    Guard->>Router: route to dest screen
+  else engine command (TRANSFER_TOWN_ARMY_STACK)
+    Guard->>Reducer: dispatch
+    Reducer-->>UI: authoritative result
+    UI->>VFX: Army snap
+  end
 ```
 
 ## Outgoing Transitions
 ```mermaid
 flowchart LR
-  Current["Town Screen"]
+  Current["24-town-screen"]
   Current --> T0["30-build-tree"]
   Current --> T1["25-building-recruitment-dialog"]
   Current --> T2["29-mage-guild"]
-  Current --> T3["07-adventure-map"]
+  Current --> T3["28-tavern"]
+  Current --> T4["26-marketplace"]
+  Current --> T5["07-adventure-map"]
 ```
 
 ## State Inputs
-- town.id -> state.towns.selectedTownId
-- town.buildings -> state.towns.byId[selected].buildings
-- dailyBuild -> state.towns.byId[selected].builtToday
-- garrison -> state.towns.byId[selected].garrison
-- visitingHero -> state.adventure.visitingHeroId
+- `town.id` → `state.towns.selectedTownId`
+- `town.buildings` → `state.towns.byId[selected].buildings`
+- `dailyBuild` → `state.towns.byId[selected].builtToday`
+- `garrison` → `state.towns.byId[selected].garrison`
+- `visitingHero` → `state.adventure.visitingHeroId`
 
 ## Implementation Contract
-- Mockup defines visual regions and data hooks only.
-- Spec defines the component/state contract.
-- Interactions define controls, timing, command routing, disabled states, and error behavior.
-- Data contracts define schemas, config, localization, asset, audio, VFX, save, and replay references.
-- Diagrams are screen-specific summaries of the same contract and must not introduce hidden behavior.
+- `mockup.html` defines visual regions and data hooks only.
+- `spec.md` defines the component tree and state contract.
+- `interactions.md` owns controls, timing, token-to-command routing,
+  disabled cases, and error surfaces.
+- `data-contracts.md` defines schemas, config, localization, asset,
+  audio, VFX, save, and replay references.
+- This file's diagrams summarize the same contract and must not
+  introduce hidden behavior. Sibling `interactions.md` § Actions
+  and `data-contracts.md` § Commands And Events are the canonical
+  per-token contract; the `## Main Interaction Flow` diagram above
+  classifies tokens, it does not enumerate them.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Component nodes match sibling `spec.md` § Component
+  Tree; outgoing-transition diagram mirrors the six navigation
+  targets named in sibling `interactions.md` § Actions and
+  `data-contracts.md` § Commands And Events.
+- **Schema: ✔** — Only `TRANSFER_TOWN_ARMY_STACK` is dispatched as
+  an engine command on this screen and is defined in
+  [`content-schema/schemas/command.schema.json`](../../../../../content-schema/schemas/command.schema.json)
+  (line 1490); all other tokens are navigation / local-ui per
+  sibling `data-contracts.md`.
+- **Tasks: ✔** — Owning task
+  [`tasks/mvp/07-ui-shell/04-town-screen-modal.md`](../../../../../tasks/mvp/07-ui-shell/04-town-screen-modal.md)
+  Reads First all four package files; the transfer command is
+  owned by
+  [`tasks/mvp/05-adventure-map/18-transfer-stack-commands.md`](../../../../../tasks/mvp/05-adventure-map/18-transfer-stack-commands.md)
+  (declared dependency).
+
+## ⚠ Issues
+
+- **Outgoing edges missing from `screen-transition-graph.json`.**
+  The six `Current → …` edges shown in `## Outgoing Transitions`
+  (`30`, `25`, `29`, `28`, `26`, `07`) are not registered in
+  [`docs/architecture/screen-transition-graph.json`](../../../screen-transition-graph.json),
+  which today only contains `07-adventure-map → 24-town-screen`.
+  Per `ui-routing.md`, the graph is regenerated by
+  `npm run generate:screen-transition-graph`. Owner:
+  [`tasks/mvp/07-ui-shell/13-screen-package-contract-sweep.md`](../../../../../tasks/mvp/07-ui-shell/13-screen-package-contract-sweep.md).
+- See sibling `interactions.md` § ⚠ Issues — aligned (same
+  screen-command-coverage gap, raised once on the canonical
+  per-token sibling).

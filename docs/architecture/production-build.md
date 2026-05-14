@@ -1,10 +1,10 @@
 # Production-Build Error & Bundle Policy
 
-The five rules below are the contract that the build pipeline (Plan
-30, when authored) must satisfy before any production bundle ships.
-None of the rules describe the toolchain itself — Vite/esbuild/swc
-configuration is the territory. This file pins the *behaviour*
-the bundle must exhibit, regardless of which toolchain renders it.
+The five rules below pin the **behaviour** every production bundle
+must exhibit. Toolchain choice (Vite, esbuild, swc) is out of scope —
+this doc declares the contract; the build pipeline (task
+[`mvp.00-core-architecture.22-02-production-build-policy`](../../tasks/mvp/00-core-architecture/22-02-production-build-policy.md))
+makes the toolchain satisfy it. Cross-doc map at § 6.
 
 ## 1. `__DEV__` is constant-folded
 
@@ -15,22 +15,22 @@ compile-time constant `__DEV__` is folded to:
 - `false` for production builds.
 
 Code paths gated on `if (__DEV__)` are dead-code-eliminated in
-production. The constant is the single switch consulted by every
-other rule below; runtime checks against `process.env.NODE_ENV`
-inside `src/` are forbidden (use `__DEV__`).
+production. `__DEV__` is the **single switch** consulted by every
+other rule in this doc; runtime checks against
+`process.env.NODE_ENV` inside `src/` are forbidden.
 
 ## 2. Source maps are not shipped publicly
 
 Source maps MAY be uploaded to a private store (e.g., a crash-mapping
-service) but the public bundle's `//# sourceMappingURL=` comment
+service), but the public bundle's `//# sourceMappingURL=` comment
 MUST be stripped. A production bundle that contains the literal
-string `sourceMappingURL=` is a CI failure.
+string `sourceMappingURL=` is a CI failure (see rule 5).
 
 The on-device crash log writer (per
 [`data-inventory.md` § Crash Dumps](./data-inventory.md#4-crash-dumps))
-already carries an `errorId`; the private map upload is keyed off
-the same `errorId` so support can resolve a stack without a public
-map ever leaking.
+already carries an `errorId`; the private map upload is keyed off the
+same `errorId` so support can resolve a stack without a public map
+ever leaking.
 
 ## 3. `formatUserError` is the only UI error sink
 
@@ -43,42 +43,47 @@ In production builds:
 - `formatDevError` is still called for the on-device crash log file,
   but it produces a synthetic single-line stack only.
 
-A production bundle that imports `err.message` / `err.stack` /
-`String(err)` / `JSON.stringify(err)` from `src/ui/` or
-`src/services/*` (outside `src/errors/`) is a CI failure — see the
-lint rule `no-raw-error-message-in-ui` reserved by task **22-01**.
+A production bundle that imports `err.message`, `err.stack`,
+`String(err)`, or `JSON.stringify(err)` from `src/ui/` or
+`src/services/*` (anywhere outside `src/errors/`) is a CI failure —
+enforced by lint rule `no-raw-error-message-in-ui` reserved by task
+[`mvp.00-core-architecture.22-01-error-formatter-contract`](../../tasks/mvp/00-core-architecture/22-01-error-formatter-contract.md).
 
-This rule is the **only** way an analytics SDK is permitted to load:
-no SDK MAY load before `state.privacy.allowAnalytics === true`.
-The toggle is owned by the privacy pane; this rule is the
-build-mode gate that prevents a silent regression.
+**Analytics-SDK load gate.** Because `formatUserError` is the only
+sink, no analytics SDK MAY load before
+`state.privacy.allowAnalytics === true`. The toggle is owned by the
+privacy pane in
+[`56-options`](./wiki/screens/56-options/) per
+[`privacy.md`](./privacy.md); this rule is the build-mode gate that
+prevents a silent regression.
 
 ## 4. Console sinks route through `formatDevError`
 
-Even in production, `console.error` / `console.warn` calls inside
-`src/ui/` route through `formatDevError`. The reasoning: a player
-with the browser console open should never see PII, file paths, or
-SDP / ICE blobs — only the redacted stack and the `errorId`.
+Even in production, `console.error` and `console.warn` calls inside
+`src/ui/` route through `formatDevError`. A player with the browser
+console open must never see PII, file paths, or SDP / ICE blobs —
+only the redacted stack and the `errorId`.
 
-The only way to obtain a raw stack is the on-device crash log file,
-which never auto-uploads. The user must explicitly press "Send
-report" in screen
-[`75-content-report`](./wiki/screens/75-content-report/) after seeing
-a redacted preview.
+The only path to a raw stack is the on-device crash log file, which
+**never auto-uploads**. The user must explicitly press "Send report"
+in screen
+[`75-content-report`](./wiki/screens/75-content-report/) after
+seeing a redacted preview.
 
 ## 5. Bundle-size CI check on dev-only constants
 
 A bundle-size CI check fails if any known dev-only constant appears
 in the production artifact. The minimum guarded set:
 
-- `__SOURCE_PATHS__` (reserved for dev-only path emission);
-- `__DEV__` literal as a non-folded reference (post-fold the
-  constant should be replaced with `false` and tree-shaken);
-- the literal `sourceMappingURL=` (rule 2 cross-check);
-- the literal `process.env.NODE_ENV` (rule 1 cross-check — code
-  should already use `__DEV__`).
+| Token | Why it must not appear | Cross-rule |
+|---|---|---|
+| `__SOURCE_PATHS__` | reserved for dev-only path emission | — |
+| `__DEV__` (literal, non-folded) | post-fold the constant should be `false` and tree-shaken | rule 1 |
+| `sourceMappingURL=` | public sourcemap leak | rule 2 |
+| `process.env.NODE_ENV` | code should already use `__DEV__` | rule 1 |
 
-This file is the acceptance criterion the build task must satisfy.
+This file is the acceptance criterion the build task must satisfy;
+the toolchain implementation is deferred to the build-pipeline task.
 
 ## 6. Cross-references
 
@@ -92,3 +97,54 @@ This file is the acceptance criterion the build task must satisfy.
 - [`state-flow.md`](./state-flow.md) — names this doc as the build
   contract; the privacy slice (`state.privacy.*`) consumed by the
   analytics gate lives there.
+- [`csp.md`](./csp.md) — production-bundle CSP requirements layered
+  on top of these build-mode rules.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Screen references resolve:
+  [`75-content-report`](./wiki/screens/75-content-report/) (rule 4
+  "Send report" path) and
+  [`56-options`](./wiki/screens/56-options/) (analytics opt-in
+  toggle, per rule 3 gate). Anchor
+  `#1-__dev__-is-constant-folded` is consumed by
+  [`64-network-lobby/spec.md`](./wiki/screens/64-network-lobby/spec.md)
+  and survives the rewrite.
+- **Schema: ✔** — No schema is declared in this doc; the analytics
+  toggle gate references `state.privacy.*` which is owned by
+  [`privacy-options.schema.json`](../../content-schema/schemas/privacy-options.schema.json)
+  via [`privacy.md`](./privacy.md). No `schema-matrix.md` row is
+  required for this doc.
+- **Tasks: ✔** — Owning task
+  [`mvp.00-core-architecture.22-02-production-build-policy`](../../tasks/mvp/00-core-architecture/22-02-production-build-policy.md)
+  names this file as its sole Owned Path; the lint rule referenced
+  in rule 3 is owned by
+  [`mvp.00-core-architecture.22-01-error-formatter-contract`](../../tasks/mvp/00-core-architecture/22-01-error-formatter-contract.md)
+  per `tasks/task-registry.json`.
+
+## ⚠ Issues
+
+- **Analytics-load-gate state path drifts from the schema.** Rule 3
+  gates the analytics SDK on `state.privacy.allowAnalytics === true`,
+  matching [`privacy.md` § Telemetry posture](./privacy.md#7-telemetry-posture).
+  The persisted privacy slice, however, is
+  [`privacy-options.schema.json`](../../content-schema/schemas/privacy-options.schema.json)
+  with the field name `analyticsOptIn` (state path
+  `state.privacy.options.analyticsOptIn`), as used by
+  [`data-inventory.md`](./data-inventory.md) row 18,
+  [`persistence.md` § 1](./persistence.md#1-per-slice-mapping),
+  [`command-schema.md`](./command-schema.md) (`TOGGLE_ANALYTICS_OPT_IN`),
+  and [`56-options/data-contracts.md`](./wiki/screens/56-options/data-contracts.md).
+  Either `state.privacy.allowAnalytics` is a derived selector that
+  needs an explicit definition somewhere canonical, or both arch
+  docs should refer directly to `state.privacy.options.analyticsOptIn`.
+  Per CLAUDE.md root contract ("every persisted field is registered
+  in `data-inventory.md`"), the canonical name is the schema field.
+  The owning task —
+  [`mvp.00-core-architecture.22-02-production-build-policy`](../../tasks/mvp/00-core-architecture/22-02-production-build-policy.md),
+  in coordination with the privacy-doc owner — should pick one
+  spelling and propagate. Skill did not silently rewrite this doc
+  alone (Hard Prohibitions A and D) because the same drift survives
+  in `privacy.md` and would create a fresh inconsistency.

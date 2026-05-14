@@ -6,33 +6,50 @@
 > [`data-inventory.md`](./data-inventory.md) if the API can produce
 > persisted data.
 
+Companion docs:
+[`persistence.md`](./persistence.md) (storage media derived from
+this allowlist),
+[`data-inventory.md`](./data-inventory.md) (per-field inventory of
+what the allowed APIs persist),
+[`ugc-safety.md`](./ugc-safety.md) (decoder / validator constraints
+layered on top of allowed APIs),
+[`runtime-requirements.md`](./runtime-requirements.md) (runtime
+preconditions intersecting this allowlist),
+[`error-ux.md`](./error-ux.md) (banner surface used by the
+degradation matrix).
+
 ## 1. Allowlist
 
-| API | Purpose | Justification |
-|-----|---------|---------------|
-| WebRTC `RTCDataChannel` | gameplay command transport | sole multiplayer transport; no media tracks |
-| WebRTC ICE / STUN / TURN | NAT traversal | required by DataChannel |
-| `IndexedDB` | persistence | per [`persistence.md`](./persistence.md) |
-| `File System Access API` | save export only (optional desktop) | user-initiated; never background |
-| `Clipboard read/write` | save-link share, content-report screenshot ref | user-gesture-only; no background read |
-| `WebCrypto` | salt / hashing / future tokens | non-extractable keys |
-| `Canvas` / `WebGL2` | renderer | rendering only; never reads CORS-tainted images |
-| `HTMLCanvasElement.toBlob` | screenshot for content reports | user-initiated only |
-| `Web Workers` | gameplay-AI workers, decoders | per [`ai-contract.md`](./ai-contract.md) and [`ugc-safety.md`](./ugc-safety.md) |
-| `createImageBitmap` | image decode-off-thread | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
-| `AudioContext.decodeAudioData` | audio decode | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
-| `Notification API` | (deferred) | requires architecture amendment |
-| `Microphone` / `Camera` | (deferred; voice chat out of MVP) | requires architecture amendment |
-| `Geolocation` | forbidden | not used; banned indefinitely |
-| `Contacts API` | forbidden | not used; banned indefinitely |
-| `Bluetooth` / `Serial` / `USB` / `HID` | forbidden | not used; banned indefinitely |
-| `localStorage` | forbidden | per [`persistence.md`](./persistence.md) § localStorage Ban |
-| `document.cookie` (read/write from JS) | forbidden | per [`persistence.md`](./persistence.md) § Cookies |
+| API | Status | Purpose | Justification |
+|-----|--------|---------|---------------|
+| WebRTC `RTCDataChannel` | allowed | gameplay command transport | sole multiplayer transport; no media tracks |
+| WebRTC ICE / STUN / TURN | allowed | NAT traversal | required by DataChannel |
+| `IndexedDB` | allowed | persistence | per [`persistence.md`](./persistence.md) |
+| `File System Access API` | allowed (optional desktop) | save export only | user-initiated; never background |
+| `Clipboard read/write` | allowed | save-link share, content-report screenshot ref | user-gesture-only; no background read |
+| `WebCrypto` | allowed | salt / hashing / future tokens | non-extractable keys |
+| `Canvas` / `WebGL2` | allowed | renderer | rendering only; never reads CORS-tainted images |
+| `HTMLCanvasElement.toBlob` | allowed | screenshot for content reports | user-initiated only |
+| `Web Workers` | allowed | gameplay-AI workers, decoders | per [`ai-contract.md`](./ai-contract.md) and [`ugc-safety.md`](./ugc-safety.md) |
+| `createImageBitmap` | allowed | image decode off-thread | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
+| `AudioContext.decodeAudioData` | allowed | audio decode | required by [`ugc-safety.md` § Binary Asset Validators](./ugc-safety.md#binary-asset-validators) |
+| `Notification API` | deferred | n/a until amendment | requires architecture amendment |
+| `Microphone` / `Camera` | deferred (voice chat out of MVP) | n/a until amendment | requires architecture amendment |
+| `Geolocation` | forbidden | not used | banned indefinitely |
+| `Contacts API` | forbidden | not used | banned indefinitely |
+| `Bluetooth` / `Serial` / `USB` / `HID` | forbidden | not used | banned indefinitely |
+| `localStorage` | forbidden | n/a | per [`persistence.md` § localStorage Ban](./persistence.md#2-localstorage-ban) |
+| `document.cookie` (read/write from JS) | forbidden | n/a | per [`persistence.md` § Cookies](./persistence.md#3-cookies) |
+
+`allowed` = usable today under the per-row constraint.
+`deferred` = on the roadmap; an architecture amendment + new row
+must land before any `src/` usage.
+`forbidden` = banned indefinitely; CI lint (§ 4) blocks invocations.
 
 ## 2. Permission-Request Policy
 
-Permission requests fire on **explicit user gesture** only — never on
-session start, never on screen mount.
+Permission requests fire on **explicit user gesture** only — never
+on session start, never on screen mount.
 
 - Clipboard read/write requires a click or keyboard shortcut on a UI
   affordance that explicitly names the target.
@@ -52,16 +69,17 @@ rationale modal whose copy comes from the localization namespace
 3. What the app **falls back to** if the user denies (per the
    degradation matrix below).
 
-Concretely, every call site for `navigator.permissions.request`,
+Every call site for `navigator.permissions.request`,
 `Notification.requestPermission`, `navigator.storage.persist`,
 `showOpenFilePicker`, `showSaveFilePicker`, and any future
-`getUserMedia` MUST first dispatch a `REQUEST_PERMISSION_RATIONALE`
-modal. CI enforces this by linting for raw API invocations and
-demanding the rationale-helper import.
+`getUserMedia` MUST first dispatch
+[`REQUEST_PERMISSION_RATIONALE`](./command-schema.md) (`local-ui`).
+CI lint (§ 4) enforces this by refusing raw API invocations that
+skip the rationale-helper import.
 
 ### Rationale Copy Convention
 
-Localization keys for each prompt-bearing scope:
+Localization keys per prompt-bearing scope:
 
 - `permission.<scope>.prompt` — short title rendered above the OS prompt.
 - `permission.<scope>.rationale` — body of the in-app pre-prompt.
@@ -74,16 +92,16 @@ introducing a new scope.
 
 ### Degradation Matrix
 
-| Scope             | Denied → Behavior                                      |
-|-------------------|--------------------------------------------------------|
-| `storage.persist` | session-only mode; persistent banner via `error-ux.md` |
-| `notifications`   | feature off, no error                                  |
-| `clipboardWrite`  | inline copy textarea fallback                          |
-| `clipboardRead`   | feature off, no error                                  |
-| any other         | feature off, link to settings                          |
+| Scope             | Denied → Behavior                                                                  |
+|-------------------|------------------------------------------------------------------------------------|
+| `storage.persist` | session-only mode; persistent banner via [`error-ux.md`](./error-ux.md)            |
+| `notifications`   | feature off, no error                                                              |
+| `clipboardWrite`  | inline copy textarea fallback                                                      |
+| `clipboardRead`   | feature off, no error                                                              |
+| any other         | feature off, link to settings                                                      |
 
-A denied permission must never break the screen; the surface gracefully
-degrades and the rationale modal cites
+A denied permission MUST never break the screen; the surface
+gracefully degrades and the rationale modal cites
 `permission.<scope>.deniedFallback`.
 
 ## 3. Crash Reporting
@@ -97,22 +115,83 @@ amendment declares a network upload destination.
 ## 4. CI Enforcement
 
 A lint rule scans `src/` for direct invocations of any forbidden API
-(see the table above) and fails on any match outside an explicit
-allowlist. Adding a new permitted API requires:
+(see § 1) and fails on any match outside an explicit allowlist.
+Adding a new permitted API requires:
 
-1. A row in this document.
+1. A row in § 1 of this document.
 2. A row in [`data-inventory.md`](./data-inventory.md) if the API
    produces persisted data.
-3. A privacy-pane disclosure on screen 56 if the API can correlate
-   to a single device or session.
+3. A privacy-pane disclosure on
+   [`56-options`](./wiki/screens/56-options/) (the `PrivacyPane`
+   inside the `Privacy` tab) if the API can correlate to a single
+   device or session.
 
 ## 5. Cross-References
 
 - [`docs/architecture/persistence.md`](./persistence.md) — concrete
   storage media derived from this allowlist.
-- [`docs/architecture/data-inventory.md`](./data-inventory.md) — per-field
-  inventory of what those APIs persist.
+- [`docs/architecture/data-inventory.md`](./data-inventory.md) —
+  per-field inventory of what those APIs persist.
 - [`docs/architecture/ugc-safety.md`](./ugc-safety.md) — decoder /
   validator constraints layered on top of the allowed APIs.
 - [`docs/architecture/runtime-requirements.md`](./runtime-requirements.md)
   — runtime preconditions intersect with this allowlist.
+- [`docs/architecture/command-schema.md`](./command-schema.md) —
+  defines `REQUEST_PERMISSION_RATIONALE` (`local-ui`) referenced in
+  § 2.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Privacy-pane disclosure cite resolves to
+  [`56-options/spec.md`](./wiki/screens/56-options/spec.md), which
+  declares `PrivacyPane` (incl. `ConsentRowList`, `AgeGateRow`,
+  `ConsentHistoryPanel`) and `PrivacyDisclosureModal` inside a
+  `Privacy` tab.
+- **Schema: ✔ (n/a)** — Target references no schemas directly;
+  registration of derived state slices (privacy options, consent,
+  crash dump) lives in [`data-inventory.md`](./data-inventory.md)
+  and [`schema-matrix.md`](./schema-matrix.md), both already
+  populated.
+- **Tasks: ⚠** — `command-schema.md` defines
+  `REQUEST_PERMISSION_RATIONALE` and points back to this file's
+  `#just-in-time-jit-rule` anchor (verified), but no entry in
+  [`tasks/task-registry.json`](../../tasks/task-registry.json) names
+  this file or owns the JIT rationale-helper / forbidden-API lint
+  claimed in §§ 2 and 4. See `## ⚠ Issues`.
+
+## ⚠ Issues
+
+- **Missing owning task for the JIT rationale helper.** § 2
+  asserts every call site for
+  `navigator.permissions.request`, `Notification.requestPermission`,
+  `navigator.storage.persist`, `showOpenFilePicker`,
+  `showSaveFilePicker`, and future `getUserMedia` MUST go through a
+  rationale helper that dispatches `REQUEST_PERMISSION_RATIONALE`,
+  but no task in
+  [`tasks/task-registry.json`](../../tasks/task-registry.json)
+  registers this file in `Read First` or owns the helper module.
+  Per CLAUDE.md ("Every described logic has a task"), a future task
+  under `tasks/mvp/14-system/` (or the system-menu / options module)
+  should add the helper, the call-site lint, and a
+  `Read First: docs/architecture/permissions.md`. Suggested values:
+  `Owned Paths` = `src/ui/permissions/requestPermissionRationale.ts`
+  + the lint hook in `scripts/check-repo-contracts.mjs`;
+  `Acceptance Criteria` includes a passing call-site grep and a
+  failing-test demo for raw API invocation. Skill did not add the
+  task itself (Hard Prohibition D — never edit cross-checked files).
+- **Missing forbidden-API CI lint.** § 4 asserts a lint that scans
+  `src/` for direct invocations of every forbidden row in § 1
+  (`Geolocation`, `Bluetooth`/`Serial`/`USB`/`HID`, `Contacts`,
+  `Notification` until amended, `localStorage`, `document.cookie`,
+  raw `getUserMedia`). Grep across
+  [`scripts/`](../../scripts/) finds no such check (only the
+  `localStorage` / `document.cookie` ban from
+  [`persistence.md`](./persistence.md) is implied by
+  `tasks/mvp/02-content-schemas/25-safe-user-text-helper-and-jsx-lint.md`).
+  Per CLAUDE.md root contract ("OS / browser API usage is bounded
+  by `permissions.md`"), the same future task above should extend
+  [`scripts/check-repo-contracts.mjs`](../../scripts/check-repo-contracts.mjs)
+  to enumerate and fail on each forbidden symbol. Skill did not add
+  the lint (Hard Prohibition D).

@@ -111,8 +111,9 @@ The sanitizer:
    names.
 4. Routes the command log through the desync redactor declared in
    [`desync-redaction.md`](../desync-redaction.md) when
-   `displayNameMode: 'hash'` is set: hidden fields are replaced
-   with their truncated hash + length-class label.
+   `state.privacy.options.displayNameMode === 'hashed'`: hidden
+   fields are replaced with their truncated hash + length-class
+   label.
 5. Writes a row to the local audit-log
    ([`audit-log-entry.schema.json`](../../../content-schema/schemas/audit-log-entry.schema.json))
    with `type: 'REPLAY_EXPORT'`, the chosen `mode`, and the
@@ -134,3 +135,16 @@ import contract. The exportable shape is also pinned by
 [`save.schema.json`](../../../content-schema/schemas/save.schema.json),
 with `minRuntimeSaveVersion` / `maxRuntimeSaveVersion` driving the
 "reject newer / older without migration" terminals.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — The "Saved ✓" terminal, the "save too large — start a new chapter?" dialog, and the Replay-Export confirmation modal listing per-field include/redact toggles all defer to consumer specs ([`56-options`](../wiki/screens/56-options/), [`70-save-import`](../wiki/screens/70-save-import/)) without inventing copy here.
+- **Schema: ⚠** — Two distinct `SaveRecord` shapes coexist: the **runtime** record (this diagram's example, matching [`02-log-only-save-format.md`](../../../tasks/mvp/08-persistence/02-log-only-save-format.md) — `contentPackHashes: string[]`, `canonicalContentHash`, `intent`, `checkpoints[]`) and the **exportable** record pinned by [`save.schema.json`](../../../content-schema/schemas/save.schema.json) (`packHashes: { id, version, contentHash }[]`, `engineHash`, `metadata.{playerHash,playerName,playerLabel,displayNameMode}`, no `intent`). Both are intentional; the diagram only shows the runtime side. Step 4 of the sanitizer was rewritten from `displayNameMode: 'hash'` to `displayNameMode === 'hashed'` to match the closed enum `["clear", "hashed"]` in [`save.schema.json`](../../../content-schema/schemas/save.schema.json) and [`privacy-options.schema.json`](../../../content-schema/schemas/privacy-options.schema.json) (snapshot in [`enums.snapshot.json`](../../../content-schema/enums.snapshot.json)). Detail in `## ⚠ Issues`.
+- **Tasks: ✔** — Owning runtime task [`mvp.08-persistence.02-log-only-save-format`](../../../tasks/mvp/08-persistence/02-log-only-save-format.md) lists this diagram, and the sanitizer / hash steps line up with [`mvp.08-persistence.13-display-name-hash-and-salt`](../../../tasks/mvp/08-persistence/13-display-name-hash-and-salt.md). The diagram is named in [`scripts/check-diagram-task-parity.mjs`](../../../scripts/check-diagram-task-parity.mjs) so the log-only invariant is CI-asserted; no orphan tasks reference it without reciprocal mention.
+
+## ⚠ Issues
+
+- **Sibling drift: `desync-redaction.md` § 6 still uses `displayNameMode: 'hash'`.** Step 4 of the sanitizer here was rewritten to `'hashed'` to match the schema enum, but [`desync-redaction.md` § 6 Replay export reuse](../desync-redaction.md#6-replay-export-reuse) still cites the literal `'hash'` (it already flags the drift in its own Issues block). Per CLAUDE.md ("Stable IDs are public API"), the schema is canonical. Suggested fix: rename to `'hashed'` in `desync-redaction.md` § 6 in the same PR so the two arch docs land in lock-step. Surfaced rather than rewritten unilaterally (Hard Prohibition D — never edit cross-checked files).
+- **Runtime vs exportable `SaveRecord` field-name skew.** The runtime record (`contentPackHashes: string[]`, top-level `canonicalContentHash`, `intent`) and the exportable record in [`save.schema.json`](../../../content-schema/schemas/save.schema.json) (`packHashes: { id, version, contentHash }[]`, `engineHash`, `metadata.*`) use different field names for overlapping concepts. Per CLAUDE.md ("Schema evolution is additive-first; alias before remove"), one of the two should be aliased or the projection from runtime → export should be pinned in a single place. Not a CI-blocking gap (both shapes have owning tasks: `02-log-only-save-format.md` for runtime, `mvp.02-content-schemas.28-save-schema.md` for export), but the absence of a written projection invites future drift. Suggested fix: add a "Runtime → Export projection" subsection to [`02-log-only-save-format.md`](../../../tasks/mvp/08-persistence/02-log-only-save-format.md) listing the field-name mapping. Surfaced rather than added here (Hard Prohibition B — never invent features).

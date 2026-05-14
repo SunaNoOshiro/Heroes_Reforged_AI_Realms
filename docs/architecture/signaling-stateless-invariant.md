@@ -1,23 +1,36 @@
 # Signaling Stateless Invariant
 
-> § System Improvements / Architecture (Stateless-by-design audit
-> checklist).
+> *§ System Improvements / Architecture (Stateless-by-design audit
+> checklist).*
 
-This file is the canonical contract for **what the M5 signaling
-server is allowed to remember**. It exists because the
-"stateless-by-design" property is referenced from
-[`multiplayer-security.md`](./multiplayer-security.md),
-[`signaling-payload-policy.md`](./signaling-payload-policy.md),
-and [`signaling-rate-limits.md`](./signaling-rate-limits.md), but
-without a mechanical gate a future contributor can silently add a
-persistent slice ("just a small cache") and regress the threat
-model.
+Canonical contract for **what the M5 signaling server is allowed to
+remember**. Without a mechanical gate a future contributor can
+silently add a persistent slice ("just a small cache") and regress
+the threat model — § 3 wires the gate that prevents that drift.
 
-The owning task is
-[`tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md`](../../tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md);
-the stateless gate `services/signaling/scripts/check-stateless.ts`
-is wired into `npm run validate:signaling-stateless` and into
-`npm run validate`.
+**Companion docs:**
+- [`multiplayer-security.md`](./multiplayer-security.md) — threat
+  model that this invariant supports.
+- [`signaling-payload-policy.md`](./signaling-payload-policy.md) —
+  allow / deny list of payloads (denylisted payloads are also things
+  the server may never persist).
+- [`signaling-rate-limits.md`](./signaling-rate-limits.md) — the
+  token-bucket tier that drives the rate-limit slice in § 1.
+- [`signaling-edge-defense.md`](./signaling-edge-defense.md) —
+  edge-tier prefix bucket and blocklist consumed by § 1.
+- [`signaling-audit-log.md`](./signaling-audit-log.md) — IP-prefix
+  redaction shape used for every key in § 1.
+- [`signaling-message-schema.md`](./signaling-message-schema.md) —
+  wire validation gate (per-frame timers in § 1 row).
+- [`turn-credentials.md`](./turn-credentials.md) — TTL math behind
+  the deny-list slice in § 1.
+
+**Implementation:**
+- Owning task —
+  [`tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md`](../../tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md).
+- Mechanical gate — `services/signaling/scripts/check-stateless.ts`,
+  invoked by `npm run validate:signaling-stateless` (wired into
+  `npm run validate`).
 
 ---
 
@@ -38,8 +51,8 @@ cache):
 | Audit-log buffer | Task 20 | flushed to stdout-JSON; never retained in memory beyond the flush window (≤ 1 second) |
 
 Every slice above is keyed on **redacted prefixes / hashes** per
-[`signaling-audit-log.md`](./signaling-audit-log.md); the raw
-`(IP, peerId, displayName, …)` tuple is never held.
+[`signaling-audit-log.md` § 3](./signaling-audit-log.md#3-ip-redaction-rule);
+the raw `(IP, peerId, displayName, …)` tuple is never held.
 
 ## 2. Forbidden state
 
@@ -109,3 +122,64 @@ slice fails CI before review.
 - Deny-list TTL math: [`turn-credentials.md` § 7](./turn-credentials.md#7-revocation-on-end).
 - Blocklist TTL ladder: [`signaling-edge-defense.md` § 4](./signaling-edge-defense.md#4-time-bound-blocklist).
 - Threat model: [`multiplayer-security.md`](./multiplayer-security.md).
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — No UI surface is owned by this doc; the
+  connection-failure states bound to `state.net.lobby.errorState`
+  in [`64-network-lobby/spec.md`](./wiki/screens/64-network-lobby/spec.md)
+  are owned by [`signaling-edge-defense.md`](./signaling-edge-defense.md)
+  and [`turn-fallback-policy.md`](./turn-fallback-policy.md), which
+  this doc does not duplicate.
+- **Schema: ✔** — No schema is owned by this doc; the closed
+  allowlist files (`blocklist/redis-backing.ts`,
+  `captcha/turnstile.ts`) match [Task 35 § Outputs](../../tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md)
+  verbatim, and the redacted-prefix shape in § 1 matches
+  [`signaling-audit-log.md` § 3](./signaling-audit-log.md#3-ip-redaction-rule).
+  TURN deny-list TTL formula `expEpochSeconds + 60_000` matches
+  [`turn-credentials.md` § 7](./turn-credentials.md#7-revocation-on-end).
+- **Tasks: ⚠** — Owners cited in § 1 (Tasks 01, 13, 20, 31, 32, 33,
+  35) all resolve under
+  [`tasks/phase-3/01-multiplayer/`](../../tasks/phase-3/01-multiplayer/),
+  and the owning task
+  [`35-edge-defense-and-health-segregation`](../../tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md)
+  lists this doc in `Read First` and pins the gate in `Outputs` +
+  `Acceptance Criteria`. Task 35 is currently `planned` in
+  [`tasks/task-status.json`](../../tasks/task-status.json), so the
+  in-prose tense is forward-looking; see `## ⚠ Issues`.
+
+## ⚠ Issues
+
+- **Forward-looking gate language is not yet implemented.** The
+  Implementation block above states `services/signaling/scripts/check-stateless.ts`
+  and `npm run validate:signaling-stateless` are wired into
+  `npm run validate`. Today, `services/signaling/scripts/` does not
+  exist and `package.json` has no `validate:signaling-stateless`
+  entry — both are pinned in
+  [Task 35 § Outputs](../../tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md)
+  and [§ Acceptance Criteria](../../tasks/phase-3/01-multiplayer/35-edge-defense-and-health-segregation.md),
+  and Task 35 is `planned` per
+  [`tasks/task-status.json`](../../tasks/task-status.json). The
+  rewrite preserved the present-tense contract wording (Hard
+  Prohibition A — meaning unchanged; this is the canonical target
+  shape) and surfaced the gap here. No `## ⚠ Issues` action implied
+  beyond shipping Task 35.
+- **TTL formula mixes time units (carried over from canonical
+  doc).** § 1 row "TURN credential deny-list" lists
+  `TTL = expEpochSeconds + 60_000` with `(≤ 6 minutes)`. The
+  literal arithmetic mixes seconds (`expEpochSeconds`) with
+  milliseconds (`60_000`); the same wording appears in
+  [`turn-credentials.md` § 7](./turn-credentials.md#7-revocation-on-end),
+  which is the SSOT for this math. The intent — retain deny-list
+  entries until ≤ 1 minute past credential expiry, with a 5-minute
+  hard credential ceiling totalling ≤ 6 minutes — is unambiguous,
+  and the SSOT owns the canonical wording. Per Hard Prohibition A
+  (no meaning change) and § 8 Option B (target is consistent with
+  the SSOT; the SSOT is where any clarification belongs), this
+  audit kept the wording verbatim. Suggested follow-up: align both
+  docs on `expEpochSeconds + 60` (seconds) or
+  `(expEpochSeconds * 1000) + 60_000` (ms) so the units are
+  internally consistent. This audit did not edit
+  `turn-credentials.md` (Hard Prohibition D).

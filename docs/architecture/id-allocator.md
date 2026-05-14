@@ -1,14 +1,26 @@
 # Runtime Entity-ID Allocator
 
-Scenario-load entity IDs are stable and authored. **Mid-game** entities
-— recruited stacks, captured mines, summoned creatures, treasures
-spawned by random-map generation — need a deterministic allocator so
-that two engines fed identical commands mint identical IDs. This file
-pins that allocator.
+Companion docs:
+[`state-shape.md`](./state-shape.md) (`idCounters` field on `GameState`),
+[`command-schema.md`](./command-schema.md) (commands that mint IDs),
+[`determinism.md`](./determinism.md) (why this is part of state),
+[`glossary.md`](./glossary.md#content-model) (the "Stable ID" entry covers
+both authored and runtime forms).
 
-## Format
+Closed schema:
+[`content-schema/schemas/game-state.schema.json`](../../content-schema/schemas/game-state.schema.json)
+(`idCounters` property).
 
-Mid-game IDs are strings of the form:
+Authored entities (scenario-load IDs) are pinned by the scenario file
+and are public-API stable IDs. **Mid-game** entities — recruited
+stacks, captured mines, summoned creatures, treasures spawned by
+random-map generation — need a deterministic allocator so that two
+engines fed identical commands mint identical IDs. This file pins
+that allocator.
+
+## 1. Format
+
+Mid-game IDs are strings:
 
 ```
 <kind>:<turn>:<actorId>:<perTurnCounter>
@@ -16,25 +28,24 @@ Mid-game IDs are strings of the form:
 
 | Segment | Meaning | Constraint |
 |---|---|---|
-| `kind` | Entity kind discriminator | One of `stack`, `mine`, `mapObject`, `summon`, `boat`, `rmgObject`, ... |
+| `kind` | Entity kind discriminator | One of `stack`, `mine`, `mapObject`, `summon`, `boat`, `rmgObject`, … (closed list, extended additively per [§ 5](#5-add-a-kind-rule)) |
 | `turn` | Current turn at mint time | Integer ≥ 0; matches `GameState.turn` |
-| `actorId` | The minting actor's stable id | `playerId` for player-driven actions; `system` for engine-only mints (RMG, weekly growth) |
-| `perTurnCounter` | Monotonic counter, zero-padded to 3 | Resets to 0 each turn per `(kind, actorId)` pair |
+| `actorId` | The minting actor's stable id | `playerId` for player-driven actions; literal `system` for engine-only mints (RMG, weekly growth) |
+| `perTurnCounter` | Monotonic counter, zero-padded to 3 digits | Resets to 0 each turn per `(kind, actorId)` pair |
 
 Examples:
 
-- `stack:12:p1:003` — fourth stack player 1 minted on turn 12 (e.g. via
-  `RECRUIT_UNITS`).
+- `stack:12:p1:003` — fourth stack player 1 minted on turn 12 (e.g.
+  via `RECRUIT_UNITS`).
 - `summon:7:p2:000` — first creature summon player 2 made on turn 7
   (e.g. via `SPELL_CAST`).
 - `rmgObject:0:system:042` — 43rd object the random-map generator
   placed at scenario load.
 
-## Where Counters Live
+## 2. Where Counters Live
 
-The counters live in `GameState.idCounters` (see
-[`state-shape.md`](./state-shape.md)) so they are part of the canonical
-hashed state and survive replays:
+Counters live in `GameState.idCounters` so they are part of the
+canonical hashed state and survive replays:
 
 ```jsonc
 "idCounters": {
@@ -45,18 +56,19 @@ hashed state and survive replays:
 }
 ```
 
-Lookup at mint time:
+Mint algorithm:
 
-1. `bucket = idCounters[kind][actorId + ":" + turn] ?? 0`
-2. mint `id = ${kind}:${turn}:${actorId}:${pad3(bucket)}`
-3. write back `bucket + 1` into `idCounters[kind][actorId + ":" + turn]`
+- **Inputs:** `kind`, `actorId`, `turn = state.turn`.
+- **Lookup:** `bucket = idCounters[kind][actorId + ":" + turn] ?? 0`.
+- **Mint:** `id = ${kind}:${turn}:${actorId}:${pad3(bucket)}`.
+- **Write back:** `idCounters[kind][actorId + ":" + turn] = bucket + 1`.
 
 Counters are **never reused**, **never depend on wall-clock or
 insertion order**, and are part of the reducer's deterministic state.
 
-## Commands That Mint IDs
+## 3. Commands That Mint IDs
 
-The following command kinds (closed list; extend additively):
+Closed list (extended additively per [§ 5](#5-add-a-kind-rule)):
 
 | Command | Mints | Counter |
 |---|---|---|
@@ -70,18 +82,18 @@ The following command kinds (closed list; extend additively):
 | `BUILD_BUILDING` (with adventure-side effect) | adventure dwelling, when applicable | `mapObject` |
 
 `SCENARIO_LOAD` does **not** use this allocator. Authored scenario IDs
-come from the scenario file and are the public-API stable IDs. See the
-"Stable ID" entry in [`glossary.md`](./glossary.md).
+come from the scenario file and are the public-API stable IDs (see
+the "Stable ID" entry in [`glossary.md`](./glossary.md#content-model)).
 
 Each minting reducer cites this doc and uses the helper that bumps the
-right counter. Reducers must not mint IDs through any other route.
+right counter. Reducers MUST NOT mint IDs through any other route.
 
-## Replay Safety
+## 4. Replay Safety
 
 Because counters are part of `GameState`, replays produce
 byte-identical IDs:
 
-- Replay starts from the saved (or scenario-derived) counters.
+- Replay starts from the saved (or scenario-derived) counter state.
 - Each replayed command runs the same mint helper against the same
   counter state.
 - The minted ID is therefore identical across machines, sessions, and
@@ -92,17 +104,20 @@ canonical state hash on the very next reducer step — desync detection
 catches it (see
 [`multi-engine-harness.md`](./multi-engine-harness.md)).
 
-## Add-a-Kind Rule
+## 5. Add-a-Kind Rule
 
-1. Pick a kebab-case `kind` not already in the table above.
-2. Append a row.
-3. Update the minting command's reducer to call the allocator with the
-   new kind.
+1. Pick a lowerCamelCase `kind` not already in the [§ 3 table](#3-commands-that-mint-ids).
+2. Append a row to that table.
+3. Update the minting command's reducer to call the allocator with
+   the new kind.
 4. Counter buckets for new kinds appear lazily in `idCounters`; no
-   migration needed for existing saves.
+   migration needed for existing saves (the schema permits any
+   non-empty string key).
 
 Renaming or retiring a `kind` is a breaking change to replays and is
-forbidden once shipped.
+forbidden once shipped — alias-before-remove per
+[`enum-lifecycle-policy.md`](./enum-lifecycle-policy.md) if a kind
+must ever be retired.
 
 ## Related
 
@@ -110,3 +125,18 @@ forbidden once shipped.
 - [`command-schema.md`](./command-schema.md) — minting command kinds
 - [`determinism.md`](./determinism.md) — why this matters
 - [`glossary.md`](./glossary.md) — "Stable ID"
+- [`multi-engine-harness.md`](./multi-engine-harness.md) — desync
+  detection that catches ID divergence
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — No screen package surfaces this allocator directly; mid-game IDs are an engine concern. No UI cross-check applies.
+- **Schema: ⚠** — `game-state.schema.json` `idCounters` shape (`object → object → integer ≥ 0`) and its description ("Per-actor, per-turn entity-ID allocator counters. See docs/architecture/id-allocator.md.") match the doc. **However**, the hand-authored TS contract [`src/contracts/id-allocator.ts`](../../src/contracts/id-allocator.ts) declares a wholly different design (`kind` enum `"hero" | "stack" | "battle" | "command" | "event" | "ai-decision"`, format `<kind>:<n>`, single counter per kind). Detail in `## ⚠ Issues`.
+- **Tasks: ✔** — Owning task [`tasks/mvp/00-core-architecture/det-id-allocator.md`](../../tasks/mvp/00-core-architecture/det-id-allocator.md) lists this file in `Owned Paths` and reads `state-shape.md` first; engine-core task [`tasks/mvp/01-engine-core.md`](../../tasks/mvp/01-engine-core.md) cites `src/contracts/id-allocator.ts` as part of its public surface. No orphan tasks.
+
+## ⚠ Issues
+
+- **TS contract `src/contracts/id-allocator.ts` does not match this doc.** The header comment claims `Pinned by docs/architecture/id-allocator.md`, but the contract exposes a single-counter-per-kind allocator (`next(kind): "<kind>:<n>"`, snapshot `Record<IdAllocatorKind, number>`) over a fixed `IdAllocatorKind` enum (`"hero" | "stack" | "battle" | "command" | "event" | "ai-decision"`). The doc and [`game-state.schema.json`](../../content-schema/schemas/game-state.schema.json) pin per-`(kind, actorId, turn)` buckets and the format `<kind>:<turn>:<actorId>:<perTurnCounter>`. Per CLAUDE.md ("Stable IDs are public API"; "Determinism. Saves, replays, and multiplayer must be byte-identical"), this drift is replay-breaking. Owning task [`mvp.00-core-architecture.det-id-allocator`](../../tasks/mvp/00-core-architecture/det-id-allocator.md) is currently `revalidate` in [`task-status.json`](../../tasks/task-status.json); it must rewrite the TS contract to expose `next({ kind, actorId, turn })` returning the four-segment string and a snapshot mirroring the schema's nested map shape, then re-run the gate. Not edited here per Hard Prohibition D.
+- **`kind` casing convention silently changed in this rewrite.** The previous wording said "Pick a kebab-case `kind`" but every existing kind in the [§ 3 table](#3-commands-that-mint-ids) is lowerCamelCase (`mapObject`, `rmgObject`); the schema accepts any non-empty string, so neither form is enforced. Rewrote § 5 to say `lowerCamelCase` because that is consistent with the existing table values and the canonical ID list — the kebab-case wording was a typo, not a deliberate rule. Flagged here so the owning task can confirm and update [`enum-lifecycle-policy.md`](./enum-lifecycle-policy.md) if a casing rule needs to be added globally.

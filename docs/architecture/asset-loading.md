@@ -3,8 +3,8 @@
 Canonical doctrine for the asset loader's hostile-input contract:
 per-decoder caps, per-asset / per-pack budgets, fetch-rate policy,
 and the pinned pre-flight pipeline. Every cap below is a
-**load-bearing constant** for any task that touches the loader,
-the renderer atlas tracker, the audio engine, or the cache strategy.
+**load-bearing constant** for any task touching the loader, the
+renderer atlas tracker, the audio engine, or the cache strategy.
 
 Companion docs:
 - [`asset-policy.md`](./asset-policy.md) — closed asset-kind enum +
@@ -12,7 +12,7 @@ Companion docs:
 - [`worker-csp.md`](./worker-csp.md) — Worker / Worklet security
   profile that decoders run inside.
 - [`sandbox-model.md`](./sandbox-model.md) — trust-tier capability
-  matrix; tier-aware budget hooks.
+  matrix; tier-aware budget hooks (§ 1.3 below).
 - [`pack-contract.md`](./pack-contract.md) — pack-load verification
   ordering.
 - [`csp.md`](./csp.md) — host CSP that bounds the loader's network
@@ -22,10 +22,10 @@ Companion docs:
 
 ## 1. Cap Table
 
-Each row is a numeric ceiling enforced by the loader. A row that
-fails refuses the asset with a closed error code (see
+Each row is a numeric ceiling enforced by the loader. A failed row
+refuses the asset with a closed error code (see
 [`pack-error-codes.md`](./pack-error-codes.md) and
-[error-taxonomy.md](./error-taxonomy.md)).
+[`error-taxonomy.md`](./error-taxonomy.md)).
 
 ### 1.1 Per-asset decoder caps
 
@@ -51,17 +51,25 @@ fails refuses the asset with a closed error code (see
 ### 1.3 Tier hooks
 
 The numbers above are the **canonical-tier defaults**. Sandboxed
-packs ship with the same budgets but every cap is enforced as a
-hard refuse rather than a warn-and-degrade. The trust-tier
-overrides live in [`sandbox-model.md`](./sandbox-model.md) § 3.
+packs share the per-asset decoder caps in § 1.1 but receive
+stricter per-pack budgets:
+
+| Cap | Canonical / community-signed | Sandboxed |
+|---|---|---|
+| `maxFetchesPerSecondPerPack` | `32` | `16` |
+| `maxResidentBytesPerPack` | `67_108_864` (64 MB) | `33_554_432` (32 MB) |
+
+Every cap on the sandboxed tier is enforced as a hard refuse rather
+than warn-and-degrade. The full per-tier matrix is canonical in
+[`sandbox-model.md` § 2](./sandbox-model.md#2-capability-matrix).
 
 ---
 
 ## 2. Pre-flight Pipeline
 
-Every binary asset is run through the gates below in order. Any
-gate may refuse; refusal returns `Result.err(code, …)` and the
-bytes are released without ever reaching a decoder.
+Every binary asset runs through the gates below in order. Any gate
+may refuse; refusal returns `Result.err(code, …)` and the bytes are
+released without ever reaching a decoder.
 
 ```mermaid
 sequenceDiagram
@@ -90,9 +98,9 @@ sequenceDiagram
     end
 ```
 
-**Ordering is load-bearing.** Reordering — e.g. running the SHA-256
-check after `decodeAudioData` — would expose the decoder before
-the integrity gate. The pipeline is pinned by the pack-load
+**Ordering is load-bearing.** Reordering — e.g. running SHA-256
+after `decodeAudioData` — would expose the decoder before the
+integrity gate. The pipeline is pinned by the pack-load
 verification ordering in
 [`pack-contract.md` § Verification Ordering](./pack-contract.md#verification-ordering)
 and consumed by the asset loader task in
@@ -124,8 +132,9 @@ rejects the failing asset with a closed error code.
 | OGG (sound, music, ambient, audio, audio-bank) | `4F 67 67 53` | OggS capture pattern. |
 | JSON (data, animation, theme) | `7B` (`{`) after optional UTF-8 BOM (`EF BB BF`) | Streaming parse capped by `parser-hardening.md`. |
 
-A mismatch between `asset-index[].kind` and the observed magic bytes
-returns `Result.err("pack.error.asset.mime-mismatch", { expected, observed })`.
+A mismatch between `asset-index[].kind` and the observed magic
+bytes returns
+`Result.err("pack.error.asset.mime-mismatch", { expected, observed })`.
 Polyglot payloads (PNG/JS, OGG/HTML, etc.) refuse on the magic-byte
 gate before any decoder runs.
 
@@ -144,18 +153,23 @@ Every refusal path emits one of the closed codes registered in
 - `pack.error.asset.integrity` — SHA-256 mismatch.
 - `pack.error.asset.mime-mismatch` — magic-byte / declared-kind
   divergence.
-- `pack.error.asset.too-large` — `maxAssetBytes` / per-pack
+- `pack.error.asset.too-large` — `maxAssetBytes` or per-pack
   residency exceeded.
 - `pack.error.asset.dim-cap` — image width / height / pixel cap
   exceeded.
 - `pack.error.asset.audio-cap` — audio channel / sample-rate /
   duration cap exceeded.
-- `pack.error.asset.fetch-rate` — per-pack token-bucket exhausted
-  (queued > 5 s).
+- `pack.error.asset.fetch-rate` — per-pack token bucket exhausted
+  (request queued > 5 s).
 
-Surface routing per [`error-ux.md`](./error-ux.md): all of the
-above route to `log-only` in production builds and to a dev-mode
-inline banner under `config.dev.placeholderSprites === true`.
+All six codes carry severity `fatal` per
+[`pack-error-codes.md`](./pack-error-codes.md). Surface routing per
+[`error-ux.md` § 1–2](./error-ux.md): pack-load failures (severity
+`fatal`, prefix `pack.*`) render a **full-screen pre-game error**.
+The `config.dev.placeholderSprites === true` toggle in
+[`pack-contract.md` § Asset Fallback And Placeholders](./pack-contract.md#asset-fallback-and-placeholders)
+governs the dev-only magenta-checker sprite fallback for missing
+presentation assets — it is not part of error surfacing.
 
 ---
 
@@ -176,6 +190,20 @@ The same cap table is consumed by:
   — fixture corpus that asserts every cap above produces the
   expected refusal code.
 
-If you need to change a cap, update this doc first and only then
-update the consumers above. The numbers are not duplicated;
-consumers cite this doc by section anchor.
+To change a cap: update this doc first, then update the consumers
+above. Numbers are not duplicated; consumers cite this doc by
+section anchor.
+
+---
+
+## 🔍 Sync Check
+
+- **UI: ✔** — Surface routing now matches [`error-ux.md` § 1](./error-ux.md) (`pack / asset` load-time → full-screen pre-game error) and § 2 (`PACK_*` prefix mapping). No screen-package copy strings are claimed by this file.
+- **Schema: ✔** — All six refusal codes resolve in [`pack-error-codes.md`](./pack-error-codes.md) (`pack.error.asset.{integrity,mime-mismatch,too-large,dim-cap,audio-cap,fetch-rate}`). Asset-kind enums match [`asset-policy.md`](./asset-policy.md) and the magic-byte rows are consistent.
+- **Tasks: ✔** — Owning runtime tasks `mvp.02b.04` and `mvp.02b.05` exist and reciprocally reference this doc; renderer cluster `tasks/mvp/06-renderer/` and security fixture corpus `tests/security/escape-vectors/` resolve.
+
+## ⚠ Issues
+
+- **Tier-hook section anchor (fixed in target).** Original text said "trust-tier overrides live in `sandbox-model.md` § 3", but [`sandbox-model.md`](./sandbox-model.md) § 3 is "Override-precedence trust rule" (pack-vs-pack record overrides). The tier-aware capability matrix is § 2. Per Hard Prohibition A (pick the interpretation consistent with the cross-checked file), the link was rewritten to [`sandbox-model.md` § 2](./sandbox-model.md#2-capability-matrix). No code change implied.
+- **Sandboxed budgets are not the same as canonical (fixed in target).** Original § 1.3 said sandboxed packs "ship with the same budgets". [`sandbox-model.md` § 2](./sandbox-model.md#2-capability-matrix) registers stricter sandboxed values: `maxFetchesPerSecondPerPack` `16` (vs `32`) and `maxResidentBytesPerPack` `32 MB` (vs `64 MB`). The "hard refuse vs warn-and-degrade" enforcement difference is preserved; the false equivalence was corrected. Sandbox-model.md remains canonical for the per-tier matrix.
+- **Surface routing claim contradicted `error-ux.md` (fixed in target).** Original § 5 said "all of the above route to `log-only` in production builds and to a dev-mode inline banner under `config.dev.placeholderSprites === true`". [`error-ux.md` § 1](./error-ux.md) maps `error/fatal` from pack/asset originator at load-time to "full-screen pre-game error", and § 2 maps the `PACK_*` prefix to the same surface. All six asset codes are `fatal` per [`pack-error-codes.md`](./pack-error-codes.md). The `placeholderSprites` flag is the dev-mode sprite-fallback toggle in [`pack-contract.md` § Asset Fallback And Placeholders](./pack-contract.md#asset-fallback-and-placeholders), not an error-surface toggle. Both facts were corrected in the target without altering any cap, code, or link target.
