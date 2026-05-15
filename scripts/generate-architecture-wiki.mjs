@@ -31,7 +31,20 @@ const REPO_ROOT = resolve(__dirname, "..");
 const ARCH_DIR = join(REPO_ROOT, "docs", "architecture");
 const DIAGRAMS_DIR = join(ARCH_DIR, "diagrams");
 const SCREEN_PACKAGES_DIR = join(ARCH_DIR, "wiki", "screens");
+const TASKS_DIR = join(REPO_ROOT, "tasks");
 const OUTPUT = join(ARCH_DIR, "architecture-wiki.html");
+
+function prettifyModule(name) {
+  return name.replace(/^\d+[a-z]?-/, "").split("-")
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join(" ");
+}
+
+function prettifyPhase(name) {
+  if (name === "mvp") return "MVP";
+  if (name === "phase-2") return "Phase 2";
+  return name.split("-").map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join(" ");
+}
 
 const EXCLUDED_DOCS = new Set([
   "architecture-wiki.html",
@@ -69,13 +82,10 @@ function architectureRelative(repoPath) {
 }
 
 // The wiki HTML lives at docs/architecture/architecture-wiki.html, so
-// any relative URL inside a bundled markdown file must be relative to
-// docs/architecture/ rather than to the source file's own directory.
-// Rewrite relative URLs accordingly. The runtime client-side rewriter
-// in inlineMd handles `.md` and `.md#anchor` links separately
-// (turning them into wiki-internal navigation); this preprocessor
-// only fixes non-`.md` relative links (e.g. links into `scripts/`,
-// `tasks/`, `content-schema/`).
+// every relative URL inside a bundled markdown file is rewritten to
+// be relative to docs/architecture/. The runtime client-side router
+// in inlineMd then pattern-matches the rewritten URL to route to a
+// doc, diagram, screen tab, or external file (e.g. tasks/).
 function rewriteRelativeLinks(markdown, sourceRepoPath) {
   if (!markdown) return markdown;
   const sourceDirRepo = sourceRepoPath.includes("/")
@@ -88,10 +98,6 @@ function rewriteRelativeLinks(markdown, sourceRepoPath) {
       || url.startsWith("mailto:")
       || url.startsWith("#")
     ) {
-      return match;
-    }
-    if (/\.md(?:#[^)\s]*)?$/.test(url)) {
-      // Internal `.md` links are handled by the runtime rewriter.
       return match;
     }
     if (url.startsWith("/")) return match;
@@ -277,6 +283,152 @@ async function readScreenIndex(screens) {
   };
 }
 
+async function readSourceFiles() {
+  const refs = new Set();
+  const linkRe = /\]\(([^)]+)\)/g;
+  const sourceExtRe = /\.(ts|tsx|js|mjs)$/;
+
+  async function harvest(absPath, sourceDirRepo) {
+    let raw;
+    try { raw = await readFile(absPath, "utf8"); } catch { return; }
+    for (const match of raw.matchAll(linkRe)) {
+      const rawUrl = match[1].split("#")[0];
+      if (!sourceExtRe.test(rawUrl)) continue;
+      if (rawUrl.startsWith("http://") || rawUrl.startsWith("https://")) continue;
+      if (rawUrl.startsWith("/")) continue;
+      const resolved = relative(
+        "docs/architecture",
+        resolve("/" + sourceDirRepo, rawUrl).slice(1)
+      ).replaceAll("\\", "/");
+      refs.add(resolved);
+    }
+  }
+
+  async function walkMd(absRoot, repoRoot) {
+    const entries = await readdir(absRoot, { withFileTypes: true });
+    for (const entry of entries) {
+      const abs = join(absRoot, entry.name);
+      const rel = repoRoot + "/" + entry.name;
+      if (entry.isDirectory()) {
+        await walkMd(abs, rel);
+      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+        const sourceDir = rel.includes("/") ? rel.slice(0, rel.lastIndexOf("/")) : "";
+        await harvest(abs, sourceDir);
+      }
+    }
+  }
+
+  if (existsSync(ARCH_DIR)) await walkMd(ARCH_DIR, "docs/architecture");
+  if (existsSync(TASKS_DIR)) await walkMd(TASKS_DIR, "tasks");
+
+  const sourceFiles = {};
+  for (const archRel of refs) {
+    const repoRel = relative(REPO_ROOT, resolve(REPO_ROOT, "docs/architecture", archRel))
+      .replaceAll("\\", "/");
+    const absPath = join(REPO_ROOT, repoRel);
+    if (existsSync(absPath)) {
+      sourceFiles[archRel] = await readFile(absPath, "utf8");
+    }
+  }
+  return sourceFiles;
+}
+
+async function readJsonFiles() {
+  const jsonFiles = {};
+
+  async function walk(absDir, archRel) {
+    const entries = await readdir(absDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = join(absDir, entry.name);
+      const entryArchRel = archRel ? archRel + "/" + entry.name : entry.name;
+      if (entry.isDirectory()) {
+        await walk(fullPath, entryArchRel);
+      } else if (entry.isFile() && entry.name.endsWith(".json")) {
+        jsonFiles[entryArchRel] = await readFile(fullPath, "utf8");
+      }
+    }
+  }
+
+  // Architecture-relative paths matching what rewriteRelativeLinks produces.
+  if (existsSync(ARCH_DIR)) {
+    for (const name of await readdir(ARCH_DIR)) {
+      if (name.endsWith(".json")) {
+        jsonFiles[name] = await readFile(join(ARCH_DIR, name), "utf8");
+      }
+    }
+  }
+
+  const contentSchemaDir = join(REPO_ROOT, "content-schema");
+  if (existsSync(contentSchemaDir)) {
+    await walk(contentSchemaDir, "../../content-schema");
+  }
+
+  return jsonFiles;
+}
+
+async function readTasks() {
+  if (!existsSync(TASKS_DIR)) return { tasks: {}, tasksIndex: { schemaVersion: 1, categories: [] } };
+
+  const tasks = {};
+  const categoriesMap = new Map();
+  const ensureCategory = (categoryId, title) => {
+    if (!categoriesMap.has(categoryId)) {
+      categoriesMap.set(categoryId, { id: categoryId, title, tasks: [] });
+    }
+    return categoriesMap.get(categoryId);
+  };
+
+  const phases = (await readdir(TASKS_DIR, { withFileTypes: true }))
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name)
+    .sort((a, b) => a.localeCompare(b));
+
+  for (const phase of phases) {
+    const phaseDir = join(TASKS_DIR, phase);
+    const entries = (await readdir(phaseDir, { withFileTypes: true }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    for (const entry of entries) {
+      const entryPath = join(phaseDir, entry.name);
+
+      if (entry.isFile() && entry.name.endsWith(".md")) {
+        const moduleName = entry.name.slice(0, -3);
+        const categoryId = phase + "/" + moduleName;
+        const categoryTitle = prettifyPhase(phase) + " - " + prettifyModule(moduleName);
+        const id = categoryId;
+        const taskRepoPath = "tasks/" + phase + "/" + entry.name;
+        tasks[id] = rewriteRelativeLinks(await readFile(entryPath, "utf8"), taskRepoPath);
+        const cat = ensureCategory(categoryId, categoryTitle);
+        if (!cat.tasks.includes(id)) cat.tasks.unshift(id);
+      } else if (entry.isDirectory()) {
+        const moduleName = entry.name;
+        const categoryId = phase + "/" + moduleName;
+        const categoryTitle = prettifyPhase(phase) + " - " + prettifyModule(moduleName);
+        const cat = ensureCategory(categoryId, categoryTitle);
+
+        const taskFiles = (await readdir(entryPath))
+          .filter((name) => name.endsWith(".md"))
+          .sort((a, b) => a.localeCompare(b));
+
+        for (const taskFile of taskFiles) {
+          const id = phase + "/" + moduleName + "/" + taskFile.slice(0, -3);
+          const taskRepoPath = "tasks/" + phase + "/" + moduleName + "/" + taskFile;
+          tasks[id] = rewriteRelativeLinks(await readFile(join(entryPath, taskFile), "utf8"), taskRepoPath);
+          cat.tasks.push(id);
+        }
+      }
+    }
+  }
+
+  return {
+    tasks,
+    tasksIndex: {
+      schemaVersion: 1,
+      categories: Array.from(categoriesMap.values()),
+    },
+  };
+}
+
 function orderedDocList(docs) {
   const all = Object.keys(docs);
   const ordered = [];
@@ -289,7 +441,7 @@ function orderedDocList(docs) {
   return ordered;
 }
 
-function buildHtml({ docs, docOrder, diagramsIndex, diagrams, screens, screensIndex }) {
+function buildHtml({ docs, docOrder, diagramsIndex, diagrams, screens, screensIndex, tasks, tasksIndex, jsonFiles, sourceFiles }) {
   const payload = {
     docs,
     docOrder,
@@ -297,6 +449,10 @@ function buildHtml({ docs, docOrder, diagramsIndex, diagrams, screens, screensIn
     diagrams,
     screens,
     screensIndex,
+    tasks,
+    tasksIndex,
+    jsonFiles,
+    sourceFiles,
   };
   const embedded = JSON.stringify(payload)
     .replace(/</g, "\\u003c")
@@ -311,9 +467,9 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Heroes Reforged - Architecture Wiki</title>
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs';
-    window.mermaidLib = mermaid;
+  <script src="../../scripts/lib/mermaid.min.js"></script>
+  <script>
+    window.mermaidLib = window.mermaid;
     mermaid.initialize({
       startOnLoad: false,
       theme: 'default',
@@ -394,6 +550,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     }
     .sidebar {
       width: 320px;
+      height: 100%;
+      min-height: 0;
       background: #fff;
       color: #333;
       overflow-y: auto;
@@ -631,16 +789,24 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .mermaid-host svg { display: block; }
-    .mermaid-description {
-      background: #f8f5ff;
-      padding: 14px 22px;
+    .diagram-layout { display: flex; flex-direction: column; }
+    .diagram-pre, .diagram-post {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 40px;
+      width: 100%;
+    }
+    .diagram-pre { padding-bottom: 8px; }
+    .diagram-post { padding-top: 8px; }
+    .diagram-viewport {
+      position: relative;
+      height: 60vh;
+      min-height: 380px;
+      background: #fff;
+      border-top: 1px solid #e0d8f0;
       border-bottom: 1px solid #e0d8f0;
-      font-size: 13px;
-      line-height: 1.5;
-      color: #2c3e50;
-      max-height: 90px;
-      overflow-y: auto;
-      flex-shrink: 0;
+      overflow: hidden;
+      margin: 8px 0;
     }
     .mockup-iframe {
       border: 1px solid #ccc;
@@ -680,6 +846,92 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       padding: 60px 20px;
       font-style: italic;
     }
+    .json-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 18, 40, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 28px;
+    }
+    .json-modal.hidden { display: none; }
+    .json-modal-frame {
+      background: #1e1e2e;
+      color: #f0e8d8;
+      width: 100%;
+      max-width: 1100px;
+      max-height: 100%;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .json-modal-head {
+      background: linear-gradient(135deg, #2c3e50, #4a3f7a);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .json-modal-head h4 {
+      color: #ffd97a;
+      font-family: monospace;
+      font-size: 12px;
+      word-break: break-all;
+      flex: 1;
+    }
+    .json-modal-actions { display: flex; gap: 6px; }
+    .json-modal-actions button {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: none;
+      padding: 5px 11px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .json-modal-actions button:hover { background: rgba(255,255,255,0.3); }
+    .json-modal-body {
+      flex: 1;
+      overflow: auto;
+      padding: 0;
+      font-family: "SF Mono", Monaco, monospace;
+      font-size: 12.5px;
+      line-height: 1.55;
+      display: flex;
+      align-items: stretch;
+    }
+    .json-modal-body .gutter {
+      padding: 14px 12px 14px 18px;
+      background: #181822;
+      color: #4d4d68;
+      text-align: right;
+      user-select: none;
+      white-space: pre;
+      border-right: 1px solid #2a2a3a;
+      position: sticky;
+      left: 0;
+      flex-shrink: 0;
+    }
+    .json-modal-body .code {
+      padding: 14px 20px 14px 16px;
+      flex: 1;
+      white-space: pre;
+      min-width: 0;
+    }
+    .json-modal-body .jk { color: #9cdcfe; }
+    .json-modal-body .js { color: #ce9178; }
+    .json-modal-body .jn { color: #b5cea8; }
+    .json-modal-body .jb { color: #569cd6; }
+    .json-modal-body .jnull { color: #808080; }
+    .json-modal-body .jerr { color: #f48771; }
+    .json-modal-body .kw { color: #c586c0; }
+    .json-modal-body .ty { color: #4ec9b0; }
+    .json-modal-body .fn { color: #dcdcaa; }
+    .json-modal-body .cm { color: #6a9955; font-style: italic; }
   </style>
 </head>
 <body>
@@ -689,6 +941,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       <button class="mode-tab active" data-mode="docs">Docs <span class="count" id="count-docs">0</span></button>
       <button class="mode-tab" data-mode="diagrams">General Diagrams <span class="count" id="count-diagrams">0</span></button>
       <button class="mode-tab" data-mode="screens">UI Screens <span class="count" id="count-screens">0</span></button>
+      <button class="mode-tab" data-mode="tasks">Tasks <span class="count" id="count-tasks">0</span></button>
     </div>
     <div class="build-info">heroes-reforged - architecture-wiki</div>
   </div>
@@ -729,6 +982,19 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     </main>
   </div>
 
+  <div class="json-modal hidden" id="json-modal">
+    <div class="json-modal-frame">
+      <div class="json-modal-head">
+        <h4 id="json-modal-path">-</h4>
+        <div class="json-modal-actions">
+          <button id="json-modal-copy">Copy</button>
+          <button id="json-modal-close">Close</button>
+        </div>
+      </div>
+      <div class="json-modal-body" id="json-modal-body"></div>
+    </div>
+  </div>
+
   <script>
     const PAYLOAD = __PAYLOAD_PLACEHOLDER__;
 
@@ -761,15 +1027,42 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       text = text.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>');
       text = text.replace(/(^|[^*])\\*([^*]+)\\*/g, '$1<em>$2</em>');
       text = text.replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g, (m, label, url) => {
-        const mdMatch = url.match(/\\.md(?:#[^)\\s]*)?$/);
-        if (mdMatch && !url.startsWith('http')) {
-          const cleanUrl = url.split('#')[0];
-          const target = cleanUrl.split('/').pop();
-          if (cleanUrl.startsWith('diagrams/')) {
-            const id = cleanUrl.replace('diagrams/', '').replace('.md', '');
-            return '<a href="#" data-diagram-link="' + escAttr(id) + '">' + label + '</a>';
-          }
-          return '<a href="#" data-md-link="' + escAttr(target) + '">' + label + '</a>';
+        if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('mailto:')) {
+          return '<a href="' + escAttr(url) + '" target="_blank">' + label + '</a>';
+        }
+        if (url.startsWith('#')) {
+          return '<a href="' + escAttr(url) + '">' + label + '</a>';
+        }
+        const cleanUrl = url.split('#')[0];
+        const screenMd = cleanUrl.match(/^wiki\\/screens\\/([^/]+)\\/(spec|interactions|data-contracts|architecture)\\.md$/);
+        if (screenMd) {
+          return '<a href="#" data-screen-link="' + escAttr(screenMd[1]) + '" data-screen-tab="' + escAttr(screenMd[2]) + '">' + label + '</a>';
+        }
+        const screenMockup = cleanUrl.match(/^wiki\\/screens\\/([^/]+)\\/mockup\\.html$/);
+        if (screenMockup) {
+          return '<a href="#" data-screen-link="' + escAttr(screenMockup[1]) + '" data-screen-tab="mockup">' + label + '</a>';
+        }
+        const screenFolder = cleanUrl.match(/^wiki\\/screens\\/([^/]+)\\/?$/);
+        if (screenFolder) {
+          return '<a href="#" data-screen-link="' + escAttr(screenFolder[1]) + '" data-screen-tab="mockup">' + label + '</a>';
+        }
+        const diagramMatch = cleanUrl.match(/^diagrams\\/([^/]+)\\.md$/);
+        if (diagramMatch) {
+          return '<a href="#" data-diagram-link="' + escAttr(diagramMatch[1]) + '">' + label + '</a>';
+        }
+        const taskMatch = cleanUrl.match(/^\\.\\.\\/\\.\\.\\/tasks\\/(.+)\\.md$/);
+        if (taskMatch) {
+          return '<a href="#" data-task-link="' + escAttr(taskMatch[1]) + '">' + label + '</a>';
+        }
+        if (/^[^/]+\\.md$/.test(cleanUrl)) {
+          return '<a href="#" data-md-link="' + escAttr(cleanUrl) + '">' + label + '</a>';
+        }
+        if (/\\.json$/.test(cleanUrl) && PAYLOAD.jsonFiles && PAYLOAD.jsonFiles[cleanUrl]) {
+          const jsonAnchor = url.split('#')[1] || '';
+          return '<a href="#" data-json-link="' + escAttr(cleanUrl) + '" data-json-anchor="' + escAttr(jsonAnchor) + '">' + label + '</a>';
+        }
+        if (/\\.(ts|tsx|js|mjs)$/.test(cleanUrl) && PAYLOAD.sourceFiles && PAYLOAD.sourceFiles[cleanUrl]) {
+          return '<a href="#" data-src-link="' + escAttr(cleanUrl) + '">' + label + '</a>';
         }
         return '<a href="' + escAttr(url) + '" target="_blank">' + label + '</a>';
       });
@@ -843,25 +1136,49 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         const ulMatch = line.match(/^(\\s*)[-*+]\\s+(.*)$/);
         if (ulMatch) {
           const indent = ulMatch[1].length;
+          const contentCol = line.length - ulMatch[2].length;
           closeListsTo(indent + 1);
           if (!listStack.length || listStack[listStack.length - 1].indent < indent) {
             out.push('<ul>');
             listStack.push({ type: 'ul', indent });
           }
-          out.push('<li>' + inlineMd(ulMatch[2]) + '</li>');
+          const buf = [ulMatch[2]];
           i++;
+          while (i < lines.length) {
+            const next = lines[i];
+            if (next.trim() === '') break;
+            if (next.match(/^(\\s*)([-*+]|\\d+\\.)\\s/)) break;
+            if (next.match(/^(#{1,6}\\s|\`\`\`|>\\s|\\|)/)) break;
+            const lead = next.match(/^(\\s*)/)[0].length;
+            if (lead < contentCol) break;
+            buf.push(next.slice(contentCol));
+            i++;
+          }
+          out.push('<li>' + inlineMd(buf.join(' ')) + '</li>');
           continue;
         }
         const olMatch = line.match(/^(\\s*)\\d+\\.\\s+(.*)$/);
         if (olMatch) {
           const indent = olMatch[1].length;
+          const contentCol = line.length - olMatch[2].length;
           closeListsTo(indent + 1);
           if (!listStack.length || listStack[listStack.length - 1].indent < indent) {
             out.push('<ol>');
             listStack.push({ type: 'ol', indent });
           }
-          out.push('<li>' + inlineMd(olMatch[2]) + '</li>');
+          const buf = [olMatch[2]];
           i++;
+          while (i < lines.length) {
+            const next = lines[i];
+            if (next.trim() === '') break;
+            if (next.match(/^(\\s*)([-*+]|\\d+\\.)\\s/)) break;
+            if (next.match(/^(#{1,6}\\s|\`\`\`|>\\s|\\|)/)) break;
+            const lead = next.match(/^(\\s*)/)[0].length;
+            if (lead < contentCol) break;
+            buf.push(next.slice(contentCol));
+            i++;
+          }
+          out.push('<li>' + inlineMd(buf.join(' ')) + '</li>');
           continue;
         }
         if (line.trim() === '') {
@@ -908,6 +1225,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         }
         document.getElementById('count-diagrams').textContent = diagramCount;
         document.getElementById('count-screens').textContent = PAYLOAD.screens.length;
+        document.getElementById('count-tasks').textContent = PAYLOAD.tasks ? Object.keys(PAYLOAD.tasks).length : 0;
 
         document.querySelectorAll('.mode-tab').forEach((btn) => {
           btn.onclick = () => this.switchMode(btn.dataset.mode);
@@ -919,7 +1237,86 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         window.addEventListener('resize', () => {
           if (this.mode !== 'docs') setTimeout(() => this.zoomFit(), 100);
         });
+        this.attachJsonModal();
         this.switchMode('docs');
+      }
+      attachJsonModal() {
+        const modal = document.getElementById('json-modal');
+        const closeBtn = document.getElementById('json-modal-close');
+        const copyBtn = document.getElementById('json-modal-copy');
+        const close = () => modal.classList.add('hidden');
+        closeBtn.onclick = close;
+        modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) close(); });
+        copyBtn.onclick = async () => {
+          const text = this.currentJsonText || '';
+          try { await navigator.clipboard.writeText(text); copyBtn.textContent = 'Copied'; setTimeout(() => copyBtn.textContent = 'Copy', 1200); } catch (_) {}
+        };
+      }
+      openCodeModal(path, lang) {
+        let raw;
+        if (lang === 'json') raw = PAYLOAD.jsonFiles && PAYLOAD.jsonFiles[path];
+        else raw = PAYLOAD.sourceFiles && PAYLOAD.sourceFiles[path];
+        if (raw == null) return;
+
+        const body = document.getElementById('json-modal-body');
+        let formatted = raw;
+        let highlighted;
+        let errorPrefix = '';
+        if (lang === 'json') {
+          try {
+            formatted = JSON.stringify(JSON.parse(raw), null, 2);
+          } catch (e) {
+            errorPrefix = '<span class="jerr">Failed to parse JSON: ' + escHtml(e.message) + '</span>\\n';
+            formatted = raw;
+          }
+          highlighted = this.highlightJson(formatted);
+        } else {
+          highlighted = this.highlightTs(formatted);
+        }
+
+        this.currentJsonText = formatted;
+        const lines = formatted.split('\\n');
+        const gutter = lines.map((_, i) => i + 1).join('\\n');
+        body.innerHTML =
+          '<div class="gutter">' + gutter + '</div>' +
+          '<div class="code">' + errorPrefix + highlighted + '</div>';
+        document.getElementById('json-modal-path').textContent = path;
+        document.getElementById('json-modal').classList.remove('hidden');
+        body.scrollTop = 0;
+        body.scrollLeft = 0;
+      }
+      openJsonModal(path) { this.openCodeModal(path, 'json'); }
+      highlightJson(pretty) {
+        const escaped = escHtml(pretty);
+        return escaped.replace(/("(?:\\\\.|[^"\\\\])*")(\\s*:)?|\\b(true|false)\\b|\\bnull\\b|(-?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)/g, (m, str, colon, bool, num) => {
+          if (str) return '<span class="' + (colon ? 'jk' : 'js') + '">' + str + '</span>' + (colon || '');
+          if (bool) return '<span class="jb">' + bool + '</span>';
+          if (num) return '<span class="jn">' + num + '</span>';
+          return '<span class="jnull">null</span>';
+        });
+      }
+      highlightTs(src) {
+        const tokens = [];
+        const TOKEN_RE = /(\\/\\*[\\s\\S]*?\\*\\/)|(\\/\\/[^\\n]*)|('(?:\\\\.|[^'\\\\])*')|("(?:\\\\.|[^"\\\\])*")|(\`(?:\\\\.|[^\`\\\\])*\`)|\\b(import|export|from|default|const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|new|class|extends|implements|interface|type|enum|namespace|public|private|protected|static|readonly|async|await|yield|throw|try|catch|finally|typeof|instanceof|in|of|void|null|undefined|true|false|this|super|as|satisfies|keyof|infer|never|unknown|any|string|number|boolean|symbol|bigint|object)\\b|(\\b[A-Z][A-Za-z0-9_]*\\b)|(\\b[a-zA-Z_$][\\w$]*)(?=\\s*\\()|(-?\\b\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?\\b)/g;
+        let lastIndex = 0;
+        let out = '';
+        for (const m of src.matchAll(TOKEN_RE)) {
+          out += escHtml(src.slice(lastIndex, m.index));
+          if (m[1] || m[2]) out += '<span class="cm">' + escHtml(m[0]) + '</span>';
+          else if (m[3] || m[4] || m[5]) out += '<span class="js">' + escHtml(m[0]) + '</span>';
+          else if (m[6]) {
+            if (/^(true|false)$/.test(m[6])) out += '<span class="jb">' + m[6] + '</span>';
+            else if (/^(null|undefined)$/.test(m[6])) out += '<span class="jnull">' + m[6] + '</span>';
+            else if (/^(string|number|boolean|symbol|bigint|object|void|any|never|unknown)$/.test(m[6])) out += '<span class="ty">' + m[6] + '</span>';
+            else out += '<span class="kw">' + m[6] + '</span>';
+          } else if (m[7]) out += '<span class="ty">' + escHtml(m[7]) + '</span>';
+          else if (m[8]) out += '<span class="fn">' + escHtml(m[8]) + '</span>';
+          else if (m[9]) out += '<span class="jn">' + m[9] + '</span>';
+          lastIndex = m.index + m[0].length;
+        }
+        out += escHtml(src.slice(lastIndex));
+        return out;
       }
       switchMode(mode) {
         this.mode = mode;
@@ -928,8 +1325,9 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         document.getElementById('sidebar-title').textContent =
           mode === 'docs' ? 'Architecture Docs' :
           mode === 'diagrams' ? 'General Architecture Diagrams' :
+          mode === 'tasks' ? 'Tasks' :
           'UI Screen Packages';
-        document.getElementById('controls').classList.toggle('hidden', mode === 'docs' || (mode === 'screens' && this.screenTab !== 'mockup'));
+        document.getElementById('controls').classList.toggle('hidden', mode === 'docs' || mode === 'tasks' || (mode === 'screens' && this.screenTab !== 'mockup'));
         document.getElementById('sub-tabs').classList.toggle('hidden', mode !== 'screens');
         this.buildSidebar();
 
@@ -938,6 +1336,9 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         } else if (mode === 'diagrams') {
           const first = PAYLOAD.diagramsIndex?.categories[0]?.diagrams[0];
           if (first) this.showDiagram(first);
+        } else if (mode === 'tasks') {
+          const first = PAYLOAD.tasksIndex?.categories[0]?.tasks[0];
+          if (first) this.showTask(first);
         } else {
           const first = PAYLOAD.screens[0]?.id;
           if (first) this.showScreen(first);
@@ -986,6 +1387,31 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
               btn.dataset.diagramId = id;
               btn.textContent = label;
               btn.onclick = () => this.showDiagram(id);
+              nav.appendChild(btn);
+            });
+          });
+          return;
+        }
+
+        if (this.mode === 'tasks') {
+          if (!PAYLOAD.tasksIndex || PAYLOAD.tasksIndex.categories.length === 0) {
+            nav.innerHTML = '<div class="empty">No tasks found</div>';
+            return;
+          }
+          PAYLOAD.tasksIndex.categories.forEach((cat) => {
+            const t = document.createElement('div');
+            t.className = 'nav-section-title';
+            t.textContent = cat.title;
+            nav.appendChild(t);
+            cat.tasks.forEach((id) => {
+              const raw = PAYLOAD.tasks[id];
+              const titleMatch = raw && raw.match(/^#\\s+(.+)$/m);
+              const label = titleMatch ? titleMatch[1] : id.split('/').pop();
+              const btn = document.createElement('button');
+              btn.className = 'nav-btn';
+              btn.dataset.taskId = id;
+              btn.textContent = label;
+              btn.onclick = () => this.showTask(id);
               nav.appendChild(btn);
             });
           });
@@ -1067,6 +1493,64 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
             }
           };
         });
+        root.querySelectorAll('a[data-screen-link]').forEach((a) => {
+          a.onclick = (e) => {
+            e.preventDefault();
+            const id = a.dataset.screenLink;
+            const tab = a.dataset.screenTab;
+            if (!this.findScreen(id)) return;
+            if (this.mode !== 'screens') this.switchMode('screens');
+            this.screenTab = tab;
+            document.querySelectorAll('.sub-tab').forEach((b) => b.classList.toggle('active', b.dataset.screenTab === tab));
+            document.getElementById('controls').classList.toggle('hidden', tab !== 'mockup');
+            this.showScreen(id);
+          };
+        });
+        root.querySelectorAll('a[data-task-link]').forEach((a) => {
+          a.onclick = (e) => {
+            e.preventDefault();
+            const id = a.dataset.taskLink;
+            if (PAYLOAD.tasks && PAYLOAD.tasks[id]) {
+              if (this.mode !== 'tasks') this.switchMode('tasks');
+              this.showTask(id);
+            }
+          };
+        });
+        root.querySelectorAll('a[data-json-link]').forEach((a) => {
+          a.onclick = (e) => {
+            e.preventDefault();
+            this.openJsonModal(a.dataset.jsonLink);
+          };
+        });
+        root.querySelectorAll('a[data-src-link]').forEach((a) => {
+          a.onclick = (e) => {
+            e.preventDefault();
+            this.openCodeModal(a.dataset.srcLink, 'ts');
+          };
+        });
+      }
+      showTask(id) {
+        if (!id) return;
+        this.currentId = id;
+        this.cleanupDescription();
+        this.markActive('data-task-id', id);
+        const raw = PAYLOAD.tasks && PAYLOAD.tasks[id];
+        if (!raw) {
+          document.getElementById('content').innerHTML = '<div class="empty">Task not found: ' + escHtml(id) + '</div>';
+          return;
+        }
+        const titleMatch = raw.match(/^#\\s+(.+)$/m);
+        const title = titleMatch ? titleMatch[1] : id;
+        document.getElementById('title').textContent = title;
+        document.getElementById('subtitle').textContent = 'tasks/' + id + '.md';
+        const link = document.getElementById('source-link');
+        link.href = '../../tasks/' + id + '.md';
+        link.style.display = 'inline-block';
+        link.textContent = id.split('/').pop() + '.md';
+        const content = document.getElementById('content');
+        content.classList.remove('has-mockup');
+        content.innerHTML = '<div class="md-rendered">' + mdToHtml(raw) + '</div>';
+        this.attachInternalLinks(content);
       }
       async showDiagram(id) {
         if (!id) return;
@@ -1083,28 +1567,46 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         link.style.display = 'inline-block';
         link.textContent = id + '.md';
 
-        const descMatch = fm.body.match(/^([\\s\\S]*?)\`\`\`mermaid/);
-        const description = descMatch ? descMatch[1].trim() : '';
         const merMatch = fm.body.match(/\`\`\`mermaid\\n([\\s\\S]*?)\\n\`\`\`/);
         const mermaidCode = merMatch ? merMatch[1] : '';
-        const content = document.getElementById('content');
-        content.classList.add('has-mockup');
-        content.innerHTML = '';
+        const preMd = merMatch ? fm.body.slice(0, merMatch.index).trim() : fm.body.trim();
+        const postMd = merMatch ? fm.body.slice(merMatch.index + merMatch[0].length).trim() : '';
 
-        if (description) {
-          const desc = document.createElement('div');
-          desc.className = 'mermaid-description';
-          desc.innerHTML = inlineMd(description.replace(/\\n+/g, ' '));
-          content.parentElement.insertBefore(desc, content);
-        }
-        if (!mermaidCode || !window.mermaidLib) {
-          content.innerHTML = '<div class="empty">No mermaid block</div>';
-          return;
-        }
+        const content = document.getElementById('content');
+        content.classList.remove('has-mockup');
+        content.innerHTML = '';
         this.scale = 1;
         this.panX = 0;
         this.panY = 0;
-        content.innerHTML = '<div class="mermaid-host" id="mermaid-host"><div class="mermaid-box"><div id="mermaid-container">Rendering...</div></div></div>';
+
+        const layout = document.createElement('div');
+        layout.className = 'diagram-layout';
+
+        if (preMd) {
+          const preDiv = document.createElement('div');
+          preDiv.className = 'md-rendered diagram-pre';
+          preDiv.innerHTML = mdToHtml(preMd);
+          layout.appendChild(preDiv);
+        }
+
+        if (mermaidCode) {
+          const viewport = document.createElement('div');
+          viewport.className = 'diagram-viewport';
+          viewport.innerHTML = '<div class="mermaid-host" id="mermaid-host"><div class="mermaid-box"><div id="mermaid-container">Rendering...</div></div></div>';
+          layout.appendChild(viewport);
+        }
+
+        if (postMd) {
+          const postDiv = document.createElement('div');
+          postDiv.className = 'md-rendered diagram-post';
+          postDiv.innerHTML = mdToHtml(postMd);
+          layout.appendChild(postDiv);
+        }
+
+        content.appendChild(layout);
+        this.attachInternalLinks(content);
+
+        if (!mermaidCode || !window.mermaidLib) return;
         try {
           this.renderCount++;
           const result = await window.mermaidLib.render('mer-' + this.renderCount, mermaidCode);
@@ -1116,6 +1618,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         }
       }
       cleanupDescription() {
+        // Legacy: older diagram view inserted .mermaid-description outside .content.
         document.querySelectorAll('.mermaid-description').forEach((d) => d.remove());
       }
       findScreen(id) {
@@ -1197,10 +1700,12 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
           html = html.replace('MERMAID_DIAGRAM_' + idx, diagramHtml);
         });
         content.innerHTML = '<div class="md-rendered">' + html + '</div>';
+        this.attachInternalLinks(content);
 
         if (diagrams.length === 0 || !window.mermaidLib) {
           if (diagrams.length === 0) {
             content.innerHTML = '<div class="md-rendered">' + mdToHtml(markdown) + '<div class="empty">' + escHtml(emptyMessage) + '</div></div>';
+            this.attachInternalLinks(content);
           }
           return;
         }
@@ -1224,7 +1729,9 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         const content = document.getElementById('content');
         content.addEventListener('mousedown', (e) => {
           if (this.mode === 'docs') return;
+          if (this.mode === 'tasks') return;
           if (this.mode === 'screens' && this.screenTab !== 'mockup') return;
+          if (this.mode === 'diagrams' && !e.target.closest('.diagram-viewport')) return;
           const target = this.mode === 'diagrams'
             ? document.getElementById('mermaid-host')
             : document.getElementById('mockup-iframe');
@@ -1247,7 +1754,9 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         });
         content.addEventListener('wheel', (e) => {
           if (this.mode === 'docs') return;
+          if (this.mode === 'tasks') return;
           if (this.mode === 'screens' && this.screenTab !== 'mockup') return;
+          if (this.mode === 'diagrams' && !e.target.closest('.diagram-viewport')) return;
           e.preventDefault();
           const delta = e.deltaY < 0 ? 1.15 : 0.87;
           this.scale = Math.max(0.2, Math.min(5, this.scale * delta));
@@ -1265,10 +1774,17 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         target.style.transform = 'translate(' + this.panX + 'px, ' + this.panY + 'px) scale(' + this.scale + ')';
         document.getElementById('zoom-info').textContent = Math.round(this.scale * 100) + '%';
       }
+      zoomViewport() {
+        if (this.mode === 'diagrams') {
+          const vp = document.querySelector('.diagram-viewport');
+          if (vp) return vp;
+        }
+        return document.getElementById('content');
+      }
       zoomFit() {
         const target = this.currentPanTarget();
-        const content = document.getElementById('content');
-        if (!target || !content) return;
+        const viewport = this.zoomViewport();
+        if (!target || !viewport) return;
         target.style.transform = '';
         let w;
         let h;
@@ -1282,7 +1798,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         }
         if (!w || !h) return;
         const padding = 40;
-        this.scale = Math.min((content.clientWidth - padding) / w, (content.clientHeight - padding) / h, 1.5);
+        this.scale = Math.min((viewport.clientWidth - padding) / w, (viewport.clientHeight - padding) / h, 1.5);
         this.panX = 0;
         this.panY = 0;
         this.applyTransform();
@@ -1295,8 +1811,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       }
       zoomFill() {
         const target = this.currentPanTarget();
-        const content = document.getElementById('content');
-        if (!target || !content) return;
+        const viewport = this.zoomViewport();
+        if (!target || !viewport) return;
         target.style.transform = '';
         let w;
         let h;
@@ -1309,7 +1825,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
           h = r.height;
         }
         if (!w || !h) return;
-        this.scale = Math.max(content.clientWidth / w, content.clientHeight / h);
+        this.scale = Math.max(viewport.clientWidth / w, viewport.clientHeight / h);
         this.panX = 0;
         this.panY = 0;
         this.applyTransform();
@@ -1340,7 +1856,16 @@ async function main() {
   const screensIndex = await readScreenIndex(screens);
   console.log("  Loaded " + screensIndex.categories.length + " UI screen groups");
 
-  const html = buildHtml({ docs, docOrder, diagramsIndex, diagrams, screens, screensIndex });
+  const { tasks, tasksIndex } = await readTasks();
+  console.log("  Loaded " + Object.keys(tasks).length + " task files in " + tasksIndex.categories.length + " modules");
+
+  const jsonFiles = await readJsonFiles();
+  console.log("  Loaded " + Object.keys(jsonFiles).length + " JSON files for in-wiki viewer");
+
+  const sourceFiles = await readSourceFiles();
+  console.log("  Loaded " + Object.keys(sourceFiles).length + " source files (TS/JS/MJS) for in-wiki viewer");
+
+  const html = buildHtml({ docs, docOrder, diagramsIndex, diagrams, screens, screensIndex, tasks, tasksIndex, jsonFiles, sourceFiles });
   await writeFile(OUTPUT, html, "utf8");
 
   const stats = await stat(OUTPUT);
