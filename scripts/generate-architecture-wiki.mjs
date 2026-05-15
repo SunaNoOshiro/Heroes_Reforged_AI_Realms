@@ -503,11 +503,33 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       flex-shrink: 0;
       z-index: 10;
     }
+    .history-nav {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,217,122,0.35);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 12px;
+    }
+    .history-nav button {
+      background: none;
+      border: none;
+      color: #ffd97a;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      transition: background 0.15s;
+    }
+    .history-nav button + button { border-left: 1px solid rgba(255,217,122,0.2); }
+    .history-nav button:hover:not(:disabled) { background: rgba(255,217,122,0.18); }
+    .history-nav button:disabled { opacity: 0.3; cursor: default; }
     .mode-bar h1 {
       font-size: 16px;
       letter-spacing: 2px;
       color: #ffd97a;
-      margin-right: 8px;
+      margin-right: 16px;
     }
     .mode-tabs { display: flex; gap: 6px; }
     .mode-tab {
@@ -520,6 +542,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       font-size: 13px;
       letter-spacing: 1px;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .mode-tab:hover { background: rgba(255,255,255,0.18); color: #fff; }
     .mode-tab.active {
@@ -682,6 +705,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow: hidden;
     }
     .md-rendered {
       max-width: 960px;
@@ -813,6 +837,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       background: black;
       transform-origin: center center;
+      width: 800px;
+      height: 600px;
     }
     .controls {
       background: #f5f5f7;
@@ -936,6 +962,10 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
 </head>
 <body>
   <div class="mode-bar">
+    <div class="history-nav">
+      <button id="back-btn" title="Go back to previous page" disabled>←</button>
+      <button id="forward-btn" title="Go forward to next page" disabled>→</button>
+    </div>
     <h1>Architecture Wiki</h1>
     <div class="mode-tabs">
       <button class="mode-tab active" data-mode="docs">Docs <span class="count" id="count-docs">0</span></button>
@@ -1216,6 +1246,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         this.startX = 0;
         this.startY = 0;
         this.renderCount = 0;
+        this.history = [];
+        this.historyIndex = -1;
       }
       init() {
         document.getElementById('count-docs').textContent = PAYLOAD.docOrder.length;
@@ -1233,6 +1265,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         document.querySelectorAll('.sub-tab').forEach((btn) => {
           btn.onclick = () => this.switchScreenTab(btn.dataset.screenTab);
         });
+        document.getElementById('back-btn').onclick = () => this.goBack();
+        document.getElementById('forward-btn').onclick = () => this.goForward();
         this.attachPanZoom();
         window.addEventListener('resize', () => {
           if (this.mode !== 'docs') setTimeout(() => this.zoomFit(), 100);
@@ -1317,6 +1351,56 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         }
         out += escHtml(src.slice(lastIndex));
         return out;
+      }
+      pushHistory(mode, id) {
+        this.historyIndex++;
+        this.history = this.history.slice(0, this.historyIndex);
+        this.history.push({ mode, id });
+        this.updateHistoryBtns();
+      }
+      goBack() {
+        if (this.historyIndex <= 0) return;
+        this.historyIndex--;
+        const entry = this.history[this.historyIndex];
+        if (entry.mode === 'docs') {
+          if (this.mode !== 'docs') this.switchMode('docs');
+          this.showDocDirect(entry.id);
+        } else if (entry.mode === 'diagrams') {
+          if (this.mode !== 'diagrams') this.switchMode('diagrams');
+          this.showDiagramDirect(entry.id);
+        } else if (entry.mode === 'screens') {
+          if (this.mode !== 'screens') this.switchMode('screens');
+          this.showScreenDirect(entry.id);
+        } else if (entry.mode === 'tasks') {
+          if (this.mode !== 'tasks') this.switchMode('tasks');
+          this.showTaskDirect(entry.id);
+        }
+        this.updateHistoryBtns();
+      }
+      goForward() {
+        if (this.historyIndex >= this.history.length - 1) return;
+        this.historyIndex++;
+        const entry = this.history[this.historyIndex];
+        if (entry.mode === 'docs') {
+          if (this.mode !== 'docs') this.switchMode('docs');
+          this.showDocDirect(entry.id);
+        } else if (entry.mode === 'diagrams') {
+          if (this.mode !== 'diagrams') this.switchMode('diagrams');
+          this.showDiagramDirect(entry.id);
+        } else if (entry.mode === 'screens') {
+          if (this.mode !== 'screens') this.switchMode('screens');
+          this.showScreenDirect(entry.id);
+        } else if (entry.mode === 'tasks') {
+          if (this.mode !== 'tasks') this.switchMode('tasks');
+          this.showTaskDirect(entry.id);
+        }
+        this.updateHistoryBtns();
+      }
+      updateHistoryBtns() {
+        const backBtn = document.getElementById('back-btn');
+        const fwdBtn = document.getElementById('forward-btn');
+        backBtn.disabled = this.historyIndex <= 0;
+        fwdBtn.disabled = this.historyIndex >= this.history.length - 1;
       }
       switchMode(mode) {
         this.mode = mode;
@@ -1451,6 +1535,11 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       }
       showDoc(name) {
         if (!name) return;
+        this.pushHistory('docs', name);
+        this.showDocDirect(name);
+      }
+      showDocDirect(name) {
+        if (!name) return;
         this.currentId = name;
         this.cleanupDescription();
         this.markActive('data-doc-name', name);
@@ -1531,6 +1620,11 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       }
       showTask(id) {
         if (!id) return;
+        this.pushHistory('tasks', id);
+        this.showTaskDirect(id);
+      }
+      showTaskDirect(id) {
+        if (!id) return;
         this.currentId = id;
         this.cleanupDescription();
         this.markActive('data-task-id', id);
@@ -1553,6 +1647,11 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         this.attachInternalLinks(content);
       }
       async showDiagram(id) {
+        if (!id) return;
+        this.pushHistory('diagrams', id);
+        await this.showDiagramDirect(id);
+      }
+      async showDiagramDirect(id) {
         if (!id) return;
         this.currentId = id;
         this.cleanupDescription();
@@ -1626,6 +1725,11 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       }
       showScreen(id) {
         if (!id) return;
+        this.pushHistory('screens', id);
+        this.showScreenDirect(id);
+      }
+      showScreenDirect(id) {
+        if (!id) return;
         this.currentId = id;
         this.cleanupDescription();
         this.markActive('data-screen-id', id);
@@ -1649,7 +1753,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
           this.scale = 1;
           this.panX = 0;
           this.panY = 0;
-          content.innerHTML = '<iframe class="mockup-iframe" id="mockup-iframe" srcdoc="' + escAttr(screen.mockupHtml) + '" width="1280" height="720"></iframe>';
+          content.innerHTML = '<iframe class="mockup-iframe" id="mockup-iframe" srcdoc="' + escAttr(screen.mockupHtml) + '"></iframe>';
           setTimeout(() => this.zoomFit(), 60);
           return;
         }
@@ -1789,8 +1893,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         let w;
         let h;
         if (this.mode === 'screens') {
-          w = Number(target.getAttribute('width')) || 1280;
-          h = Number(target.getAttribute('height')) || 720;
+          w = Number(target.getAttribute('width')) || 800;
+          h = Number(target.getAttribute('height')) || 600;
         } else {
           const r = target.querySelector('svg')?.getBoundingClientRect() || target.getBoundingClientRect();
           w = r.width;
@@ -1817,8 +1921,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         let w;
         let h;
         if (this.mode === 'screens') {
-          w = Number(target.getAttribute('width')) || 1280;
-          h = Number(target.getAttribute('height')) || 720;
+          w = Number(target.getAttribute('width')) || 800;
+          h = Number(target.getAttribute('height')) || 600;
         } else {
           const r = target.querySelector('svg')?.getBoundingClientRect() || target.getBoundingClientRect();
           w = r.width;
